@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,17 +13,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
-
-Route::get('/login', function () {
-    return view('authentication.login');
+Route::get('/create', function () {
+    return view('create');
 });
-
-Route::get('/signup', function () {
-    return view('authentication.signup');
-});
-
 Route::get('/home', function () {
-    return view('courses.home');
+    return view('home');
+});
+Route::get('/courses', function () {
+    return view('courses');
+});
+Route::get('/courses/1', function () {
+    return view('course_content');
+});
+Route::get('/courses/1/pdf', function () {
+    return view('course_pdf');
+});
+Route::get('/courses/2/video', function () {
+    return view('course_video');
+});
+
+Route::get('/profile/1', function () {
+    return view('profile');
+});
+
+Route::get('/courses/1/getcerti', function () {
+    return view('certificate');
+});
+Route::get('/courses/1/getcerti', function () {
+    return view('certificate');
+});
+
+Route::get('/courses/1/getcerti', function () {
+    return view('certificate');
 });
