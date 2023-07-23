@@ -117,7 +117,7 @@
                             10 Modul
                         </h4>
                         {{-- USE KALAU USER ONGOING COURSE --}}
-                        <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal text-teal-400">
+                        <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal text-yellow-400">
                             Sedang Mengerjakan
                         </h4>
                         {{-- PROG BAR --}}

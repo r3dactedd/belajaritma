@@ -49,17 +49,29 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto mb-10 mt-10 flex w-3/5 rounded bg-white shadow">
+        <div class="container mx-auto my-5 p-5">
+            <div class="no-wrap my-4 md:-mx-2 md:flex">
+                <div class="w-full md:mx-2 md:w-2/12">
+                    <!-- Profile Card -->
+                    <div class="hidden border-t-4 border-green-400 bg-white p-3 md:flex">
 
-            <iframe src="{{ Storage::url('pdf_folder/test.pdf') }}" width="100%" height="1200">
-                This browser does not support PDFs. Please download the PDF to view it: <a
-                    href="{{ asset('public\storage\pdf_folder\Materi_Briefing_24_Pre-Thesis_R1-2.pdf') }}">Download
-                    PDF</a>
-            </iframe>
+                        <div class="mx-auto w-full p-6">
+                            <img src="{{ Storage::url('image/mario.jpg') }}" alt="e" />
+                        </div>
+                    </div>
+                </div>
+                <div class="my-4"></div>
+                <div class="h-64 w-full rounded bg-white shadow md:mx-2 md:w-9/12">
 
+                    <iframe src="{{ Storage::url('pdf_folder/test.pdf') }}" width="100%" height="1200">
+                        This browser does not support PDFs. Please download the PDF to view it: <a
+                            href="{{ asset('public\storage\pdf_folder\Materi_Briefing_24_Pre-Thesis_R1-2.pdf') }}">Download
+                            PDF</a>
+                    </iframe>
+
+                </div>
+            </div>
         </div>
-
-
     </body>
 @endsection
 
