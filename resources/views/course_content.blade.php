@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-200">
+<body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
     @extends('layout')
     @section('header')
@@ -198,8 +198,13 @@
                 </div>
             </div>
         </div>
+        </div>
 
     </body>
+
+@endsection
+@section('footer')
+    @include('footer')
 @endsection
 
 </html>

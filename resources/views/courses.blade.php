@@ -11,7 +11,7 @@
     <link href="./style.css" rel="stylesheet" />
 </head>
 
-<body class="bg-gray-200">
+<body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
     @extends('layout')
     @section('header')
@@ -49,7 +49,8 @@
             </div>
         </div>
         {{-- USE KALAU USER BELUM AMBIL COURSE --}}
-        <div class="container mx-auto my-12 grid w-11/12 gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div
+            class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <div>
                 <div
                     class="cursor-pointer items-stretch rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
@@ -183,7 +184,11 @@
                     </div>
                 </div>
             </div>
-    </body>
-@endsection
+        @endsection
+        @section('footer')
+            @include('footer')
+        @endsection
+</body>
+
 
 </html>

@@ -9,7 +9,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-100">
+<body class="mb-12 bg-gray-100">
     @yield('header')
     @yield('content')
     @yield('footer')

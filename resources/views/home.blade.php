@@ -11,7 +11,7 @@
     <link href="style.css" rel="stylesheet" />
 </head>
 
-<body class="bg-gray-200">
+<body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
     @extends('layout')
     @section('header')
@@ -372,5 +372,8 @@
     </body>
 @endsection
 
+@section('footer')
+    @include('footer')
+@endsection
 
 </html>
