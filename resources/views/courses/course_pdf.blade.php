@@ -51,8 +51,8 @@
         </div>
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
+                <!-- Sidebar -->
                 <div class="w-full md:mx-2 md:w-2/12">
-                    <!-- Sidebar -->
                     <div class="hidden rounded-xl border-4 border-green-400 bg-white p-2 md:flex md:flex-col">
                         <div class="flex flex-col overflow-hidden bg-white">
                             <ul class="flex flex-col py-4">

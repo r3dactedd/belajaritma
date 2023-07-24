@@ -22,16 +22,16 @@ Route::get('/home', function () {
     return view('home');
 });
 Route::get('/courses', function () {
-    return view('courses');
+    return view('courses/courses');
 });
 Route::get('/courses/1', function () {
-    return view('course_content');
+    return view('courses/course_content');
 });
 Route::get('/courses/1/pdf', function () {
-    return view('course_pdf');
+    return view('courses/course_pdf');
 });
 Route::get('/courses/2/video', function () {
-    return view('course_video');
+    return view('courses/course_video');
 });
 
 Route::get('/profile/1', function () {
