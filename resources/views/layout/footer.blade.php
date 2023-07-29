@@ -9,7 +9,7 @@
 
 <body>
     <footer
-        class="fixed bottom-0 left-0 z-10 hidden min-w-full flex-col items-center justify-between bg-gray-600 p-6 md:flex md:flex-row">
+        class="fixed bottom-0 left-0 z-10 hidden min-w-full flex-col items-center justify-between bg-gray-600 p-4 md:flex md:flex-row">
         <a></a>
         <p class="text-sm text-gray-300">© Belajaritma, 2023.</p>
         <a></a>

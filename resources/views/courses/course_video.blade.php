@@ -13,9 +13,9 @@
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
-    @extends('layout')
+    @extends('layout.layout')
     @section('header')
-        @include('header')
+        @include('layout.header')
     @endsection
     @section('content')
         <div class="bg-white px-5 sm:px-10">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="mt-6 md:mt-0">
                     <button
-                        class="flex items-center rounded-xl bg-teal-400 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                        class="flex items-center rounded bg-teal-400 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
                             height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -73,12 +73,26 @@
                                                 class="bx bx-music"></i></span>
                                         <span class="text-sm font-medium">Sesi 2: Session Title</span>
                                     </a>
+                                    <a href="#"
+                                        class="flex h-4 transform flex-row items-center text-gray-500 transition-transform duration-200 ease-in hover:translate-x-2 hover:text-gray-800">
+                                        <span
+                                            class="inline-flex h-12 w-12 items-center justify-center text-lg text-gray-400"><i
+                                                class="bx bx-drink"></i></span>
+                                        <span class="text-sm font-medium">Sesi 3: Session Title</span>
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex h-12 transform flex-row items-center text-gray-500 transition-transform duration-200 ease-in hover:translate-x-2 hover:text-gray-800">
+                                        class="flex h-12 transform flex-row items-center text-gray-500 hover:text-gray-800">
                                         <span
                                             class="inline-flex h-12 w-8 items-center justify-center text-lg text-gray-400"><i
+                                                class="bx bx-drink"></i></span>
+                                        <span class="text-sm font-medium">Sesi 3: Session Title</span>
+                                    </a>
+                                    <a href="#"
+                                        class="flex h-4 transform flex-row items-center text-gray-500 transition-transform duration-200 ease-in hover:translate-x-2 hover:text-gray-800">
+                                        <span
+                                            class="inline-flex h-12 w-12 items-center justify-center text-lg text-gray-400"><i
                                                 class="bx bx-drink"></i></span>
                                         <span class="text-sm font-medium">Sesi 3: Session Title</span>
                                     </a>
@@ -124,12 +138,8 @@
                 <div class="my-4"></div>
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-10/12">
 
-                    <object data="{{ Storage::url('pdf_folder/test.pdf') }}" type="application/pdf" width="100%"
-                        height="960">
-                        This browser does not support PDFs. Please download the PDF to view it: <a
-                            href="{{ asset('pdf_folder/test.pdf') }}">Download
-                            PDF</a>
-                    </object>
+                    <iframe width="100%" height="640" src="https://www.youtube.com/embed/fTczCpIaLAU" frameborder="0"
+                        allowfullscreen></iframe>
 
                 </div>
             </div>
@@ -137,7 +147,7 @@
     </body>
 @endsection
 @section('footer')
-    @include('footer')
+    @include('layout.footer')
 @endsection
 
 </html>

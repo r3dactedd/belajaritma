@@ -14,12 +14,14 @@
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
     @extends('layout.layout')
-
+    @section('header')
+        @include('layout.header')
+    @endsection
     @section('content')
         <!-- Data card style 7 starts -->
         <div class="container mx-auto my-12 grid w-11/12 gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <div class="flex items-center rounded bg-white px-8 py-6 shadow">
-                <div class="rounded bg-yellow-400 p-4">
+                <div class="rounded bg-teal-400 p-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-discount" width="32"
                         height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -39,7 +41,7 @@
                 </div>
             </div>
             <div class="flex items-center rounded bg-white px-8 py-6 shadow">
-                <div class="rounded bg-yellow-400 p-4">
+                <div class="rounded bg-teal-400 p-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-click text-white"
                         width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                         fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -60,7 +62,7 @@
                 </div>
             </div>
             <div class="flex items-center rounded bg-white px-8 py-6 shadow">
-                <div class="rounded bg-yellow-400 p-4">
+                <div class="rounded bg-teal-400 p-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="32"
                         height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -77,7 +79,7 @@
                 </div>
             </div>
             <div class="flex items-center rounded bg-white px-8 py-6 shadow">
-                <div class="rounded bg-yellow-400 p-4">
+                <div class="rounded bg-teal-400 p-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-credit-card"
                         width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff"
                         fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -370,5 +372,8 @@
     </body>
 @endsection
 
+@section('footer')
+    @include('layout.footer')
+@endsection
 
 </html>

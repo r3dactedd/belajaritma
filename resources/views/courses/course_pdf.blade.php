@@ -13,9 +13,9 @@
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
-    @extends('layout')
+    @extends('layout.layout')
     @section('header')
-        @include('header')
+        @include('layout.header')
     @endsection
     @section('content')
         <div class="bg-white px-5 sm:px-10">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="mt-6 md:mt-0">
                     <button
-                        class="flex items-center rounded bg-teal-400 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                        class="flex items-center rounded-xl bg-teal-400 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
                             height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -51,8 +51,8 @@
         </div>
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
+                <!-- Sidebar -->
                 <div class="w-full md:mx-2 md:w-2/12">
-                    <!-- Sidebar -->
                     <div class="hidden rounded-xl border-4 border-green-400 bg-white p-2 md:flex md:flex-col">
                         <div class="flex flex-col overflow-hidden bg-white">
                             <ul class="flex flex-col py-4">
@@ -124,8 +124,12 @@
                 <div class="my-4"></div>
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-10/12">
 
-                    <iframe width="100%" height="640" src="https://www.youtube.com/embed/fTczCpIaLAU" frameborder="0"
-                        allowfullscreen></iframe>
+                    <object data="{{ Storage::url('pdf_folder/test.pdf') }}" type="application/pdf" width="100%"
+                        height="960">
+                        This browser does not support PDFs. Please download the PDF to view it: <a
+                            href="{{ asset('pdf_folder/test.pdf') }}">Download
+                            PDF</a>
+                    </object>
 
                 </div>
             </div>
@@ -133,7 +137,7 @@
     </body>
 @endsection
 @section('footer')
-    @include('footer')
+    @include('layout.footer')
 @endsection
 
 </html>

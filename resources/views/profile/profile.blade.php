@@ -13,9 +13,9 @@
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
-    @extends('layout')
+    @extends('layout.layout')
     @section('header')
-        @include('header')
+        @include('layout.header')
     @endsection
     @section('content')
 
@@ -60,7 +60,7 @@
                     <div class="border-t-4 border-green-400 bg-white p-3">
 
                         <div class="mx-auto w-full p-6">
-                            <img src="{{ Storage::url('image/mario.jpg') }}" alt="e" />
+                            <img src="" alt="e" />
                         </div>
                     </div>
                 </div>
