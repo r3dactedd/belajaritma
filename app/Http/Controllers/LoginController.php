@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -15,6 +17,32 @@ class LoginController extends Controller
         ]);
     }
 
+    // public function authenticate(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => 'required|email:dns',
+    //         'password' => 'required'
+    //     ]);
+
+    //     if($request->remember){
+    //         Cookie::queue("rememberMe", $request->email, 120);
+    //     }
+
+    //     // KALO PASSWORD & EMAILNYA BENER
+    //     if(Auth::attempt($credentials)) {
+    //         Session::put('mysession',['email'=>$credentials['email'],'password' => $credentials['password']]);
+    //         $request->session()->regenerate();
+
+    //         if($request->remember){
+    //             return redirect('/home');
+    //         }else{
+    //             return redirect('/home')->withoutCookie('rememberMe');
+    //         }
+    //     }
+
+    //     // kalo salah
+    //     return back()->with('loginError', 'Login failed!');
+    // }
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([

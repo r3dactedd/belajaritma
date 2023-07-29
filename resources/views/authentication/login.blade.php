@@ -23,54 +23,96 @@
                         </svg>
                     </div>
 
-                        <h1 class="text-center text-4xl font-semibold">Masuk</h1>
-                        <h1 class="text-center text-md font-light">Selamat datang kembali di Belajaritma</h1>
-                    <form action="/home" method="post">
-                        @csrf
+                    <h1 class="text-center text-4xl font-semibold">Masuk</h1>
+                    <h1 class="text-center text-md font-light">Selamat datang kembali di Belajaritma</h1>
+                    @if(session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
 
-                        <div class="mt-8 w-full px-5 sm:px-6">
-                            <div class="mt-8 flex flex-col">
-                                <label for="email" class="text-lg font-semibold leading-tight">Email</label>
-                                <input id="email" class="mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6 @error('email') is-invalid @enderror"
-                                    type="email" />
+                {{-- pesan login salah --}}
+                @if(session()->has('loginError'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    {{session('loginError')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                @endif
+                    <main class="form-signin">
+                        <form method="post" action="/login">
+                            @csrf
+                            <div class="mt-8 w-full px-5 sm:px-6">
+                                {{-- <div class="mt-8 flex flex-col">
+                                    <label for="email" class="text-lg font-semibold leading-tight">Email</label>
+                                    <input id="email"
+                                        class="form-control mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6 @error('email') is-invalid @enderror"
+                                        placeholder="name@example.com"
+                                        type="email" autofocus required value="{{ old('email') }}"/>
+                                        @error('email')
+                                        <div class="invalid-feedback">
+                                          {{ $message }}
+                                        </div>
+                                      @enderror
+                                </div>
+                                <div class="mt-5 flex flex-col">
+                                    <label for="password" class="fleading-tight text-lg font-semibold">Kata Sandi</label>
+                                    <input id="password"
+                                        class="form-control mt-2  h-10 w-full rounded border border-gray-400 px-5 sm:px-6 @error('password') is-invalid @enderror"
+                                        type="password"
+                                        placeholder="Password" required/>
+                                </div> --}}
+                                <div class="form-floating mb-3">
+                                    <label for="email" class="text-lg font-semibold leading-tight">Email</label>
+                                    <input type="email" name="email" class="form-control h-10 w-full rounded border border-gray-400 px-5 sm:px-6 @error('email') is-invalid @enderror" id="email" style="border-radius:10px; border-color:black;" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
+
+                                    @error('email')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
+                                  </div>
+
+                                  <div class="form-floating">
+                                    <label for="email" class="text-lg font-semibold leading-tight">Password</label>
+                                    <input type="password" name="password" class="form-control h-10 w-full rounded border border-gray-400 px-5 sm:px-6" style="border-radius:10px; border-color:black;" id="password" placeholder="Password" required>
+
+                                  </div>
 
                             </div>
-                            <div class="mt-5 flex flex-col">
-                                <label for="password" class="fleading-tight text-lg font-semibold">Kata Sandi</label>
-                                <input id="password" class="mt-2  h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
-                                    type="text" />
+                            <div class="flex w-full justify-between px-5 pt-6 sm:px-6">
+                                <div class="flex items-center">
+                                    <input class="form-check-input" type="checkbox" id="remember" name="remember"
+                                    checked={{ Cookie::get('rememberMe') !== null }}>
+                                    <label for="rememberme" class="text-xs">Ingat Saya</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex w-full justify-between px-5 pt-6 sm:px-6">
-                            <div class="flex items-center">
-                                <input id="rememberme" class="mr-2 h-3 w-3" type="checkbox" />
-                                <label for="rememberme" class="text-xs">Ingat Saya</label>
+                            <div class="px-5 sm:mb-16 sm:px-6">
+                                <button
+                                type="submit"
+                                    class="mt-6 w-full rounded bg-yellow-400 px-8 py-3 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 group-invalid:pointer-events-none group-invalid:opacity-30">
+                                    Login
+                                </button>
+                                <p class="mt-6 text-xs">
+                                    Don’t Have An Account?
+                                    <a class="text-yellow-400 underline" href="/signup">Sign Up</a>
+                                </p>
                             </div>
-                            <a class="text-xs text-yellow-400" href="#">Forgot Password?</a>
-                        </div>
-                        <div class="px-5 sm:mb-16 sm:px-6">
-                            <button
-                                class="mt-6 w-full rounded bg-yellow-400 px-8 py-3 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 group-invalid:pointer-events-none group-invalid:opacity-30">
-                                Login
-                            </button>
-                            <p class="mt-6 text-xs">
-                                Don’t Have An Account?
-                                <a class="text-yellow-400 underline" href="/signup">Sign Up</a>
-                            </p>
-                        </div>
-                    </form>
+                        </form>
+                    </main>
+
 
                 </div>
             </div>
             <div class="relative flex w-full flex-col justify-center bg-yellow-600 bg-cover bg-center bg-no-repeat px-5 py-40 sm:px-12 sm:py-48 lg:w-1/2"
-                style="background-image: url('https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_1.png')">
+                style="background-image: url('https://miro.medium.com/v2/resize:fit:1400/0*0f5eeUtoLQbDw89b');opacity: 0.75;">
                 <div class="absolute right-0 top-0 pr-3 pt-3 text-white">
                     <?xml version="1.0 " encoding="UTF-8 "?>
 
                 </div>
                 <div class="relative z-30 flex flex-col justify-center pl-4 md:pl-24 md:pr-12 xl:pr-12">
                     <h3 class="text-5xl font-extrabold leading-tight text-white">
-                        Learn & Upgrade <br /> your Skills on your <br /> schedule
+                        Selamat Datang di <br /> BelajaRitma
                     </h3>
                     <p class="pt-3 text-xl leading-tight text-white xl:w-10/12">
                         Anywhere, anytime. Enjoy risk-free with our 30-day, money-back guarantee.

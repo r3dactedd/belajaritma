@@ -13,9 +13,9 @@
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
-    @extends('layout')
+    @extends('layout.layout')
     @section('header')
-        @include('header')
+        @include('layout.header')
     @endsection
     @section('content')
 
