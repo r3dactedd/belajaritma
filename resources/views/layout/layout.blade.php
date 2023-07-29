@@ -12,6 +12,7 @@
 <body class="mb-12 bg-gray-100">
     @yield('header')
     @yield('content')
+    @yield('course_sidebar')
     @yield('footer')
     <style>
         </body>

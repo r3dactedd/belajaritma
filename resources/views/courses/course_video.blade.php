@@ -73,12 +73,26 @@
                                                 class="bx bx-music"></i></span>
                                         <span class="text-sm font-medium">Sesi 2: Session Title</span>
                                     </a>
+                                    <a href="#"
+                                        class="flex h-4 transform flex-row items-center text-gray-500 transition-transform duration-200 ease-in hover:translate-x-2 hover:text-gray-800">
+                                        <span
+                                            class="inline-flex h-12 w-12 items-center justify-center text-lg text-gray-400"><i
+                                                class="bx bx-drink"></i></span>
+                                        <span class="text-sm font-medium">Sesi 3: Session Title</span>
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex h-12 transform flex-row items-center text-gray-500 transition-transform duration-200 ease-in hover:translate-x-2 hover:text-gray-800">
+                                        class="flex h-12 transform flex-row items-center text-gray-500 hover:text-gray-800">
                                         <span
                                             class="inline-flex h-12 w-8 items-center justify-center text-lg text-gray-400"><i
+                                                class="bx bx-drink"></i></span>
+                                        <span class="text-sm font-medium">Sesi 3: Session Title</span>
+                                    </a>
+                                    <a href="#"
+                                        class="flex h-4 transform flex-row items-center text-gray-500 transition-transform duration-200 ease-in hover:translate-x-2 hover:text-gray-800">
+                                        <span
+                                            class="inline-flex h-12 w-12 items-center justify-center text-lg text-gray-400"><i
                                                 class="bx bx-drink"></i></span>
                                         <span class="text-sm font-medium">Sesi 3: Session Title</span>
                                     </a>
