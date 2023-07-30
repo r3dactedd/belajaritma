@@ -13,9 +13,9 @@
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
-    @extends('layout')
+    @extends('layout.layout')
     @section('header')
-        @include('header')
+        @include('layout.header')
     @endsection
     @section('content')
 
@@ -49,46 +49,58 @@
             </div>
         </div>
 
+         {{-- AMBIL DATA COURSE DARI DATABASE --}}
         <div
             class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <div>
-                <a href="/courses/1">
-                    <div
-                        class="cursor-pointer items-stretch rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
 
-                        <div class="relative h-40 w-full">
-                            <img class="absolute inset-0 z-0 h-full w-full rounded-t-xl object-cover"
-                                src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_10.png"
-                                alt="banner" />
-                        </div>
-                        <div class="h-full w-full pt-5">
-                            {{-- MATERI TITLE, LIMIT 30 CHAR --}}
-                            <h3 class="mb-4 px-5 text-lg font-bold leading-5 tracking-normal text-gray-800">
-                                Algoritma dan Pemrograman
-                            </h3>
-                            {{-- MATERI DESC, LIMIT 100 CHAR --}}
-                            <h4 class="text-md mb-6 h-16 px-5 font-semibold leading-5 tracking-normal text-gray-600">
-                                Kursus ini mengajarkan salah satu materi fundamental terpenting bagi Software Developer.
-                            </h4>
-                            {{-- JUMLAH MODULE --}}
-                            <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal">
-                                6 Modul
-                            </h4>
-                            {{-- USE KALAU USER BELUM AMBIL COURSE --}}
-                            <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal text-red-600">
-                                Belum Dimulai
-                            </h4>
-                            {{-- PROG BAR --}}
-                            <div class="bg-grey-light mb-6 w-full px-5">
-                                <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
-                                    style="width: 10%">0%
-                                </div>
-                            </div>
-                </a>
-            </div>
-        </div>
+            {{-- <div class="row">
+                @foreach ($data as $data)
+                <br>
+                  <div class="col-auto col-md-3 my-3" style="">
+                      <div class="card-deck"  style="max-height:700px !important; max-width: 500px !important; background-color: rgb(215, 215, 215); border-color:yellow; border-radius:20px; margin-top:120px">
 
-        </div>
+                        <img class="absolute inset-0 z-0 h-full w-full rounded-t-xl object-cover"
+                        src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_10.png"
+                        alt="banner" />
+
+                      <div class="card-body" style="background: transparent">
+                          <h5 style="color:rgb(255, 255, 255); font-weight:bold">{{$data->course_name}}</h5>
+                              <p class="text-start" style="color:rgb(255, 255, 255)">Rp{{ $data->course_desc }}</p>
+
+                      </div>
+                      </div>
+                  </div>
+
+                @endforeach
+              </div> --}}
+              @foreach ($data as $data)
+              <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+                <img class="w-full" src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_10.png" alt="banner">
+                <div class="px-6 py-4">
+                    <h3 class="font-bold text-xl mb-2">{{$data->course_name}}</h3>
+                  <p class="text-dark-700 text-base">
+                    {{$data->course_desc}}
+                  </p>
+                </div>
+                {{-- JUMLAH MODULE --}}
+                <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal">
+                    10 Modul
+                </h4>
+                {{-- USE KALAU USER ONGOING COURSE --}}
+                <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal text-yellow-400">
+                    Sedang Mengerjakan
+                </h4>
+                {{-- PROG BAR --}}
+                <div class="bg-grey-light mb-6 w-full px-5">
+                    <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
+                        style="width: 45%">45%
+                    </div>
+                </div>
+              </div>
+              @endforeach
+
+
+
 
         {{-- USE KALAU USER ONGOING COURSE --}}
         <div>
@@ -168,7 +180,7 @@
                     </a>
                 </div>
         </div>
-
+    </div>
         <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
             <a href="/courses/1/getcerti"
                 class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Unduh
@@ -176,7 +188,7 @@
         </p>
     @endsection
     @section('footer')
-        @include('footer')
+        @include('layout.footer')
     @endsection
 </body>
 

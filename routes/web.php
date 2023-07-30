@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -34,9 +35,11 @@ Route::get('/home', function () {
 
 
 
-Route::get('/courses', function () {
-    return view('courses.courses');
-});
+Route::get('/courses', [CourseController::class, 'showData']);
+
+// Route::get('/courses', function () {
+//     return view('courses.courses');
+// });
 Route::get('/courses/1', function () {
     return view('courses.course_content');
 });
