@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,38 +15,49 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
-Route::get('/create', function () {
-    return view('create');
+
+//USER-RELATED ROUTE
+Route::get('/login',[LoginController::class,'index'])->name('login')->middleware('guest');
+Route::post('/login',[LoginController::class,'authenticate']);
+Route::get('/signup', function () {
+    return view('authentication.signup');
 });
+Route::post('/signup', [RegisterController::class, 'register']);
+
+Route::post('/logout',[LoginController::class,'logout']);
+
 Route::get('/home', function () {
-    return view('home');
+    return view('courses.home');
 });
+
+
+
 Route::get('/courses', function () {
-    return view('courses/courses');
+    return view('courses.courses');
 });
 Route::get('/courses/1', function () {
-    return view('courses/course_content');
+    return view('courses.course_content');
 });
 Route::get('/courses/1/pdf', function () {
-    return view('courses/course_pdf');
+    return view('courses.course_pdf');
 });
 Route::get('/courses/2/video', function () {
-    return view('courses/course_video');
+    return view('courses.course_video');
 });
 
 Route::get('/profile/1', function () {
-    return view('profile');
+    return view('profile.profile');
 });
 
 Route::get('/courses/1/getcerti', function () {
-    return view('certificate');
+    return view('certification.certificate');
 });
 Route::get('/courses/1/getcerti', function () {
-    return view('certificate');
+    return view('certification.certificate');
 });
 
 Route::get('/courses/1/getcerti', function () {
-    return view('certificate');
+    return view('certification.certificate');
 });

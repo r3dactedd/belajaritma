@@ -13,9 +13,9 @@
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
-    @extends('layout')
+    @extends('layout.layout')
     @section('header')
-        @include('header')
+        @include('layout.header')
     @endsection
     @section('content')
         <!-- Data card style 7 starts -->
@@ -322,7 +322,7 @@
 @endsection
 
 @section('footer')
-    @include('footer')
+    @include('layout.footer')
 @endsection
 
 </html>
