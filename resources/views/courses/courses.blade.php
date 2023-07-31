@@ -24,14 +24,16 @@
         <div class="bg-white px-5 sm:px-10">
             <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
                 <div>
-                    <p class="flex items-center text-xs text-teal-400">
-                        <span>Home</span>
-                        <span class="mx-2">&gt;</span>
-                        <span>Courses</span>
-                    </p>
-                    <h4 class="text-2xl font-bold leading-tight text-gray-800">
-                        Courses
-                    </h4>
+
+                    <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
+                        <a class="flex items-center" href="/home">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
+                            </svg>
+                            <span class="mb-1 ml-2">Kursus</span>
+                        </a>
                 </div>
 
                 <div class="mt-6 md:mt-0">
@@ -151,6 +153,7 @@
                                 style="width: 45%">45%
                             </div>
                         </div>
+
                     </div>
             </a>
         </div>
@@ -189,6 +192,7 @@
                                     style="width: 100%">100%
                                 </div>
                             </div>
+
                         </div>
                     </a>
                 </div>
