@@ -24,7 +24,7 @@
                     </div> --}}
 
                     <h1 class="mt-8 text-center text-4xl font-semibold">Masuk</h1>
-                    <h1 class="text-md text-center font-light">Selamat datang kembali di Belajaritma</h1>
+                    <h1 class="text-md text-center font-light">Selamat datang kembali di Belajaritma!</h1>
                     @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}
@@ -42,7 +42,7 @@
                                 aria-label="Close"></button>
                         </div>
                     @endif
-                    <main class="form-signin">
+                    <main class="form-signin mt-5 px-5 sm:px-6">
                         <form method="post" action="/login">
                             @csrf
                             <div class="mt-8 w-full px-5 sm:px-6">
@@ -51,8 +51,8 @@
                                     <label for="email" class="text-lg font-semibold leading-tight">Email</label>
                                     <input type="email" name="email"
                                         class="form-control @error('email') is-invalid @enderror h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
-                                        id="email" style="border-radius:10px; border-color:black;"
-                                        placeholder="name@example.com" autofocus required value="{{ old('email') }}">
+                                        id="email" style="border-radius:10px;" placeholder="name@example.com"
+                                        autofocus required value="{{ old('email') }}">
 
                                     @error('email')
                                         <div class="invalid-feedback">
@@ -61,12 +61,11 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-floating">
+                                <div class="form-floating mb-3">
                                     <label for="email" class="text-lg font-semibold leading-tight">Password</label>
                                     <input type="password" name="password"
                                         class="form-control h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
-                                        style="border-radius:10px; border-color:black;" id="password"
-                                        placeholder="Password" required>
+                                        style="border-radius:10px; " id="password" placeholder="Password" required>
 
                                 </div>
 
@@ -75,7 +74,7 @@
                                 <div class="flex items-center">
                                     <input class="form-check-input" type="checkbox" id="remember" name="remember"
                                         checked={{ Cookie::get('rememberMe') !== null }}>
-                                    <label for="rememberme" class="text-xs">Ingat Saya</label>
+                                    <label for="rememberme" class="ml-1 text-xs"> Ingat Saya</label>
                                 </div>
                             </div>
                             <div class="px-5 sm:mb-16 sm:px-6">
@@ -84,8 +83,8 @@
                                     Login
                                 </button>
                                 <p class="mt-6 text-xs">
-                                    Don’t Have An Account?
-                                    <a class="text-yellow-400 underline" href="/signup">Sign Up</a>
+                                    Tidak memiliki akun?
+                                    <a class="text-yellow-400 underline" href="/signup"> Daftar</a>
                                 </p>
                             </div>
                         </form>

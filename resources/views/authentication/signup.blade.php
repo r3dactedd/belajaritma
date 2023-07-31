@@ -15,44 +15,7 @@
     <section class="overflow-y-scroll bg-white xl:h-screen">
         <div class="mx-auto flex h-full flex-col-reverse justify-center lg:flex-row">
             <div class="flex w-full justify-center bg-white lg:w-1/2">
-                {{-- <div class="mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
-                    <div class="flex flex-col items-center justify-center px-5 pt-12 sm:px-10 lg:pt-0">
-                        <svg width="300px" height="100px" viewBox="0 0 384 100" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>63EC04EA-F9B5-4F76-AA27-C6D0890287B3</title>
-                        </svg>
-                    </div>
-                    <div class="mt-8 w-full px-5 sm:px-6">
-                        <div class="mt-8 flex flex-col">
-                            <label for="email" class="text-lg font-semibold leading-tight">Email</label>
-                            <input id="email" class="mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
-                                type="text" />
-                        </div>
-                        <div class="mt-5 flex flex-col">
-                            <label for="password" class="fleading-tight text-lg font-semibold">Password</label>
-                            <input id="password" class="mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
-                                type="text" />
-                        </div>
-                    </div>
-                    <div class="flex w-full justify-between px-5 pt-6 sm:px-6">
-                        <div class="flex items-center">
-                            <input id="rememberme" class="mr-2 h-3 w-3" type="checkbox" />
-                            <label for="rememberme" class="text-xs">Remember Me</label>
-                        </div>
-                        <a class="text-xs text-yellow-400" href="#">Forgot Password?</a>
-                    </div>
-                    <div class="px-5 sm:mb-16 sm:px-6">
-                        <button
-                            class="mt-6 w-full rounded bg-yellow-400 px-8 py-3 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500">
-                            Login
-                        </button>
-                        <p class="mt-6 text-xs">
-                            Already Have An Account?
-                            <a class="text-yellow-400 underline" href="/login">Sign In Here</a>
-                        </p>
-                    </div>
-                </div> --}}
-                <div class="mb-12 flex flex-col justify-center px-4 text-gray-800 sm:mb-0">
+                <div class="mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
                     {{-- <div class="flex flex-col items-center justify-center px-5 pt-12 sm:px-10 lg:pt-0">
                         <svg width="300px" height="100px" viewBox="0 0 384 100" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -61,9 +24,8 @@
                     </div> --}}
 
                     <h1 class="mt-8 text-center text-4xl font-semibold">Daftar</h1>
-                    <h1 class="text-md text-center font-light">Selamat datang di Belajaritma, mulailah perjalanan
-                        programming kamu sekarang juga</h1>
-                    <main class="form-registration mt-5">
+                    <h1 class="text-md text-center font-light">Mulailah perjalanan programming kamu sekarang juga.</h1>
+                    <main class="form-registration mt-5 px-5 sm:px-6">
                         <form action="/signup" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-floating mb-3">
@@ -81,7 +43,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <label for="first_name">Nama Pertama</label>
+                                <label for="first_name" class="font-semibold">Nama Pertama</label>
                                 <label for="first_name" class="text-sm leading-tight text-red-500"> (Input
                                     details)</label>
                                 <input type="text" name="first_name"
@@ -97,7 +59,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <label for="lastname">Nama Belakang</label>
+                                <label for="lastname" class="font-semibold">Nama Belakang</label>
                                 <label for="first_name" class="text-sm leading-tight text-red-500"> (Input
                                     details)</label>
                                 <input type="text" name="last_name"
@@ -113,7 +75,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <label for="username">Username</label>
+                                <label for="username" class="font-semibold">Username</label>
                                 <label for="first_name" class="text-sm leading-tight text-red-500"> (Input
                                     details)</label>
                                 <input type="text" name="username"
@@ -129,7 +91,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <label for="email">Email</label>
+                                <label for="email" class="font-semibold">Email</label>
                                 <label for="first_name" class="text-sm leading-tight text-red-500"> (Input
                                     details)</label>
                                 <input type="email" name="email"
@@ -144,13 +106,9 @@
                                 @enderror
                             </div>
 
-
-
-
-
                             <div class="form-floating mb-3">
-                                <label for="password">Kata Sandi</label>
-                                <label for="first_name" class="text-sm leading-tight"> (Length detail
+                                <label for="password" class="font-semibold">Kata Sandi</label>
+                                <label for="first_name" class="text-sm leading-tight text-red-500"> (Length detail
                                     sini)</label>
                                 <input type="password" name="password"
                                     class="form-control @error('password') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
@@ -164,8 +122,8 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <label for="password_confirmation">Konfirmasi Kata Sandi</label>
-                                <label for="first_name" class="text-sm leading-tight"> (Harus sama dengan
+                                <label for="password_confirmation" class="font-semibold">Konfirmasi Kata Sandi</label>
+                                <label for="first_name" class="text-sm leading-tight text-red-500"> (Harus sama dengan
                                     password)</label>
                                 <input type="password" name="password_confirmation"
                                     class="form-control @error('password') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
@@ -179,14 +137,14 @@
                                 @enderror
                             </div>
 
-                            <div class="px-5 sm:mb-16 sm:px-6">
+                            <div class="sm:mb-16">
                                 <button type="submit"
                                     class="mt-6 w-full rounded bg-yellow-400 px-8 py-3 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 group-invalid:pointer-events-none group-invalid:opacity-30">
-                                    Sign Up
+                                    Daftar Akun
                                 </button>
                                 <p class="mt-6 text-xs">
-                                    Already Have An Account?
-                                    <a class="text-yellow-400 underline" href="/login">Sign In Now</a>
+                                    Sudah memiliki akun?
+                                    <a class="text-yellow-400 underline" href="/login">Login</a>
                                 </p>
                             </div>
                     </main>
