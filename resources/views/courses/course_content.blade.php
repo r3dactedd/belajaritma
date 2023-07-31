@@ -50,13 +50,15 @@
         </div>
         <div class="container mx-auto my-auto p-5">
 
-            <div class="my-4 bg-white md:-mx-2 md:flex">
+            <div class="my-4 bg-white md:flex">
                 <!-- Left Side -->
-                <div class="w-full md:mx-2 md:w-3/12">
+                <div class="w-full md:w-3/12">
                     <!-- Profile Card -->
-                    <div class="bg-white p-3">
-                        <div class="mx-auto h-auto w-full">
-                            <img src="{{ Storage::url('image/mario.jpg') }}" alt="e" />
+                    <div class="p-2md:py-4 h-full bg-white md:pl-8">
+                        <div class="mx-auto h-full w-full">
+                            <img class="h-full px-4 py-8 md:px-0"
+                                src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
+                                alt="e" />
                         </div>
                     </div>
                 </div>
@@ -65,59 +67,32 @@
                 <div class="h-auto w-full md:mx-2 md:w-9/12">
                     <!-- Profile tab -->
                     <!-- About Section -->
-                    <div class="rounded-sm bg-white p-3 shadow-sm">
-                        <div class="flex flex-row-reverse items-center justify-between lg:flex-col lg:items-start">
-                            <h4 class="px-4 py-2 text-base leading-4 tracking-normal text-yellow-400">
-                                12:00pm
-                            </h4>
-                            <h4 class="py-2text-base px-4 font-normal text-gray-600">
-                                23 August, Sunday
-                            </h4>
-                        </div>
-                        <h2 class="px-4 py-2 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                    <div class="rounded-sm bg-white px-8 py-2">
+
+                        <h1 class="px-2 py-2 text-xl font-bold tracking-normal text-gray-800 md:px-4 md:py-8 lg:text-3xl">
                             Strategies for Moving Online
-                        </h2>
-                        <div class="text-gray-700">
-                            <div class="grid text-sm">
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">First Name</div>
-                                    <div class="px-4 py-2">Jane</div>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Last Name</div>
-                                    <div class="px-4 py-2">Doe</div>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Gender</div>
-                                    <div class="px-4 py-2">Female</div>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Contact No.</div>
-                                    <div class="px-4 py-2">+11 998001001</div>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Current Address</div>
-                                    <div class="px-4 py-2">Beech Creek, PA, Pennsylvania</div>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Permanant Address</div>
-                                    <div class="px-4 py-2">Arlington Heights, IL, Illinois</div>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Email.</div>
-                                    <div class="px-4 py-2">
-                                        <a class="text-blue-800" href="mailto:jane@example.com">jane@example.com</a>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Birthday</div>
-                                    <div class="px-4 py-2">Feb 06, 1998</div>
-                                </div>
+                        </h1>
+                        <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
+                            <div class="mb-3 ml-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512">
+                                    <path
+                                        d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                </svg>
+                                <span class="p-2 text-base font-semibold text-gray-600">Sekitar 10 Jam</span>
+                            </div>
+                            <div class="mb-3 ml-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512">
+                                    <path
+                                        d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                </svg>
+                                <span class="p-2 text-base font-semibold text-gray-600">Sekitar 10 Jam</span>
                             </div>
                         </div>
-
+                        <div class="text-gray-700">
+                            <div class="my-8 grid text-sm">
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
             <div class="my-4"></div>
@@ -155,9 +130,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="my-4"></div>
+
                     <div class="rounded-sm bg-white p-4 shadow-sm">
-                        <div class="grid grid-cols-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2">
                             <div>
                                 <div class="mb-3 ml-2 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
                                     <span clas="text-green-500">
@@ -167,7 +142,7 @@
                                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                         </svg>
                                     </span>
-                                    <span class="tracking-wide">Spesifikasi dan Tools yang Dibutuhkan</span>
+                                    <span class="tracking-wide">Spesifikasi Minimum</span>
                                 </div>
                                 <ul class="list-inside space-y-2">
                                     <li>
@@ -189,7 +164,8 @@
                                 </ul>
                             </div>
                             <div>
-                                <div class="mb-3 ml-2 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                                <div
+                                    class="mb-3 ml-2 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
                                     <span clas="text-green-500">
                                         <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
@@ -197,7 +173,7 @@
                                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                         </svg>
                                     </span>
-                                    <span class="tracking-wide">Experience</span>
+                                    <span class="tracking-wide">Tools yang Dibutuhkan</span>
                                 </div>
                                 <ul class="list-inside space-y-2">
                                     <li>
