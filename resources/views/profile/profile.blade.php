@@ -12,7 +12,7 @@
 </head>
 
 <body class="bg-gray-200 pb-12">
-    @section('title', 'Homepage')
+    @section('title', 'My Profile')
     @extends('layout.layout')
     @section('header')
         @include('layout.header')
@@ -22,31 +22,9 @@
         <div class="bg-white px-5 sm:px-10">
             <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
                 <div>
-                    <p class="flex items-center text-xs text-teal-400">
-                        <span>Home</span>
-                        <span class="mx-2">&gt;</span>
-                        <span>Kursus</span>
-                        <span class="mx-2">&gt;</span>
-                        <span>Nama Kursus</span>
-                        <span class="mx-2">&gt;</span>
-                        <span>Nama Materi</span>
-                    </p>
                     <h4 class="text-2xl font-bold leading-tight text-gray-800">
-                        Materi Kursus
+                        My Profile
                     </h4>
-                </div>
-                <div class="mt-6 md:mt-0">
-                    <button
-                        class="flex items-center rounded bg-teal-400 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
-                            height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <line x1="12" y1="5" x2="12" y2="19" />
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                        </svg>
-                        <div class="mx-2"> Tambah Materi </div>
-                    </button>
                 </div>
             </div>
         </div>
@@ -58,9 +36,8 @@
                 <div class="w-full md:mx-2 md:w-3/12">
                     <!-- Profile Card -->
                     <div class="border-t-4 border-green-400 bg-white p-3">
-
                         <div class="mx-auto w-full p-6">
-                            <img src="" alt="e" />
+                            <img class="mx-3" src="/storage/profile_img/{{Auth::user()->profile_img}}" style="width: 8rem; height:15rem;">
                         </div>
                     </div>
                 </div>
@@ -70,61 +47,58 @@
                     <!-- Profile tab -->
                     <!-- About Section -->
                     <div class="rounded-sm bg-white p-3 shadow-sm">
-                        <div class="flex items-center space-x-2 font-semibold leading-8 text-gray-900">
-                            <span clas="text-green-500">
-                                <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                </svg>
-                            </span>
-                            <span class="tracking-wide">About</span>
-                        </div>
                         <div class="text-gray-700">
                             <div class="grid text-sm md:grid-cols-2">
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">First Name</div>
-                                    <div class="px-4 py-2">Jane</div>
+                                    <div class="px-4 py-2">{{$searchUser->first_name}}</div>
                                 </div>
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">Last Name</div>
-                                    <div class="px-4 py-2">Doe</div>
+                                    <div class="px-4 py-2">{{$searchUser->last_name}}</div>
                                 </div>
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Gender</div>
-                                    <div class="px-4 py-2">Female</div>
+                                    <div class="px-4 py-2 font-semibold ">Username</div>
+                                    <div class="px-4 py-2">{{$searchUser->username}}</div>
                                 </div>
                                 <div class="grid grid-cols-2">
+                                    <div class="px-4 py-2 font-semibold">Email</div>
+                                    <div class="px-4 py-2">
+                                        <a class="text-blue-800" href="mailto:jane@example.com">{{$searchUser->email}}</a>
+                                    </div>
+                                </div>
+                                {{-- <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">Contact No.</div>
                                     <div class="px-4 py-2">+11 998001001</div>
-                                </div>
-                                <div class="grid grid-cols-2">
+                                </div> --}}
+                                {{-- <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">Current Address</div>
                                     <div class="px-4 py-2">Beech Creek, PA, Pennsylvania</div>
                                 </div>
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">Permanant Address</div>
                                     <div class="px-4 py-2">Arlington Heights, IL, Illinois</div>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Email.</div>
-                                    <div class="px-4 py-2">
-                                        <a class="text-blue-800" href="mailto:jane@example.com">jane@example.com</a>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2">
+                                </div> --}}
+                                {{-- <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">Birthday</div>
                                     <div class="px-4 py-2">Feb 06, 1998</div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
-
+                        <div class="mt-6 md:mt-0">
+                            <form action="/editProfile" method="get">
+                                <button
+                                    class="flex items-center rounded bg-blue-400 mt-10 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none" action="/editProfile" method="get">
+                                    <div class="mx-2"> Edit Profile</div>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     <!-- End of about section -->
 
                     <div class="my-4"></div>
 
-                    <!-- Experience and education -->
+                    {{-- <!-- Experience and education -->
                     <div class="rounded-sm bg-white p-3 shadow-sm">
 
                         <div class="grid grid-cols-2">
@@ -185,7 +159,7 @@
                             </div>
                         </div>
                         <!-- End of Experience and education grid -->
-                    </div>
+                    </div> --}}
                     <!-- End of profile tab -->
                 </div>
             </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 /*
 |--------------------------------------------------------------------------
@@ -50,9 +51,14 @@ Route::get('/courses/2/video', function () {
     return view('courses.course_video');
 });
 
-Route::get('/profile/1', function () {
-    return view('profile.profile');
-});
+// Route::get('/profile/1', function () {
+//     return view('profile.profile');
+// });
+Route::get('/profile', [ProfileController::class, 'viewProfile']);
+
+Route::get('/editProfile', [ProfileController::class,'editProfile']);
+Route::post('/editProfile', [ProfileController::class,'update']);
+
 
 Route::get('/courses/1/getcerti', function () {
     return view('certification.certificate');
