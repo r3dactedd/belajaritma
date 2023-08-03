@@ -53,28 +53,7 @@
             </div>
         </div>
 
-        <div class="f-r-t container mx-auto mb-10 mt-10 flex rounded bg-white shadow lg:flex-row">
-            <div class="flex flex-wrap justify-between lg:flex-nowrap">
-                <div class="flex w-full flex-col gap-4 md:flex-col lg:flex-row">
-                    <div class="block w-full">
-                        <input placeholder="Search"
-                            class="focus w-full rounded border border-gray-100 bg-gray-100 p-4 py-3 pr-10 leading-4 text-slate-600 outline-none" />
-                        <svg class="pointer-events-none absolute right-5 top-3" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M10 17C13.866 17 17 13.866 17 10C17 6.13401 13.866 3 10 3C6.13401 3 3 6.13401 3 10C3 13.866 6.13401 17 10 17Z"
-                                stroke="#4B5563" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M21 21L15 15" stroke="#4B5563" stroke-width="1.66667" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <button
-                        class="w-full rounded-[4px] bg-indigo-700 px-6 py-4 font-medium leading-[14px] text-white hover:bg-indigo-600 lg:max-w-[164px]">
-                        Search
-                    </button>
-                </div>
-            </div>
-        </div>
+
         <div
             class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <div>
@@ -114,7 +93,6 @@
                 </a>
             </div>
         </div>
-
         </div>
 
         {{-- USE KALAU USER ONGOING COURSE --}}

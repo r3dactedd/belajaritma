@@ -8,7 +8,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
+
 </head>
 
 <body class="bg-gray-200 pb-12">
@@ -55,15 +55,53 @@
                     @include('courses.course_sidebar')
                 </div>
                 <div class="my-4"></div>
-                <div class="w-full rounded bg-white shadow md:mx-2 md:w-10/12">
+                <div class="w-2xl mx-12 bg-white md:w-10/12">
+                    <h1
+                        class="relative mx-6 mb-6 block w-auto pt-6 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                        1. PARAGRAPH "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum."
+                    </h1>
 
-                    <object data="{{ Storage::url('pdf_folder/test.pdf') }}" type="application/pdf" width="100%"
-                        height="960">
-                        This browser does not support PDFs. Please download the PDF to view it: <a
-                            href="{{ asset('pdf_folder/test.pdf') }}">Download
-                            PDF</a>
-                    </object>
+                    <div class="pl-12">
 
+                        <div class="mb-4 mr-4 flex items-center">
+                            <input id="radio1" type="radio" name="radio" class="hidden" checked />
+                            <label for="radio1" class="flex cursor-pointer items-center text-xl">
+                                <span
+                                    class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
+                                Best choice</label>
+                        </div>
+
+                        <div class="mb-4 mr-4 flex items-center">
+                            <input id="radio2" type="radio" name="radio" class="hidden" />
+                            <label for="radio2" class="flex cursor-pointer items-center text-xl">
+                                <span
+                                    class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
+                                Second choice</label>
+                        </div>
+
+                        <div class="mb-4 mr-4 flex items-center">
+                            <input id="radio3" type="radio" name="radio" class="hidden" />
+                            <label for="radio3" class="flex cursor-pointer items-center text-xl">
+                                <span
+                                    class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
+                                Third choice</label>
+                        </div>
+
+                        <div class="mb-4 mr-4 flex items-center">
+                            <input id="radio4" type="radio" name="radio" class="hidden" />
+                            <label for="radio4" class="flex cursor-pointer items-center text-xl">
+                                <span
+                                    class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
+                                Fourth choice</label>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
         </div>

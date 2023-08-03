@@ -15,7 +15,7 @@
     <section class="overflow-y-scroll bg-white xl:h-screen">
         <div class="mx-auto flex h-full flex-col-reverse justify-center lg:flex-row">
             <div class="flex w-full justify-center bg-white lg:w-1/2">
-                <div class="mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
+                <div class="mx-4 mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
                     {{-- <div class="flex flex-col items-center justify-center px-5 pt-12 sm:px-10 lg:pt-0">
                         <svg width="300px" height="100px" viewBox="0 0 384 100" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -23,13 +23,13 @@
                         </svg>
                     </div> --}}
 
-                    <h1 class="mt-8 text-center text-4xl font-semibold">Daftar</h1>
+                    <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Daftar</h1>
                     <h1 class="text-md text-center font-light">Mulailah perjalanan programming kamu sekarang juga.</h1>
                     <main class="form-registration mt-5 px-5 sm:px-6">
                         <form action="/signup" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-floating mb-3">
-                                <label for="profile_img">Gambar Profil</label>
+                                <label for="profile_img" class="font-semibold">Gambar Profil</label>
                                 <label for="first_name" class="text-sm leading-tight">(Optional)</label>
                                 <input id="profile_img"
                                     class="form-control @error('profile_img') is-invalid @enderror mt-2 h-10 w-full border-gray-400 px-5 sm:px-6"
@@ -137,7 +137,7 @@
                                 @enderror
                             </div>
 
-                            <div class="sm:mb-16">
+                            <div class="px-5 sm:mb-16 sm:px-6">
                                 <button type="submit"
                                     class="mt-6 w-full rounded bg-yellow-400 px-8 py-3 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 group-invalid:pointer-events-none group-invalid:opacity-30">
                                     Daftar Akun
@@ -162,7 +162,7 @@
                     <h3 class="text-5xl font-extrabold leading-tight text-white">
                         Selamat Datang di <br /> BelajaRitma
                     </h3>
-                    <p class="py-4 text-xl leading-tight text-white xl:w-10/12">
+                    <p class="pt-3 text-xl leading-tight text-white xl:w-10/12">
                         Anywhere, anytime. Enjoy risk-free with our 30-day, money-back guarantee.
                     </p>
                 </div>
