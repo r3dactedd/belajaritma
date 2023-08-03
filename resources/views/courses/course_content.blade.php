@@ -71,7 +71,7 @@
                     <div class="rounded-sm bg-white px-8 py-2">
 
                         <h1 class="px-2 py-2 text-xl font-bold tracking-normal text-gray-800 md:px-4 md:py-8 lg:text-3xl">
-                            Strategies for Moving Online
+                            {{$data->course_name}}
                         </h1>
                         <div class="grid-row-2 grid md:grid-cols-2">
                             <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
