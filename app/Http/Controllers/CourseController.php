@@ -12,4 +12,9 @@ class CourseController extends Controller
         $data = Course::all();
         return view('courses.courses',['data'=>$data]);
     }
+
+    public function courseDetail($id){
+        $data=Course::find($id);
+        return view('courses.course_content',['data'=>$data]);
+    }
 }

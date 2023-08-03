@@ -41,9 +41,12 @@ Route::get('/courses', [CourseController::class, 'showData']);
 // Route::get('/courses', function () {
 //     return view('courses.courses');
 // });
-Route::get('/courses/1', function () {
-    return view('courses.course_content');
-});
+// Route::get('/courses/1', function () {
+//     return view('courses.course_content');
+// });
+
+Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
+
 Route::get('/courses/1/pdf', function () {
     return view('courses.course_pdf');
 });

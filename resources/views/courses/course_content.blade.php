@@ -27,10 +27,10 @@
                         <span class="mx-2">&gt;</span>
                         <span>Kursus</span>
                         <span class="mx-2">&gt;</span>
-                        <span>Nama Kursus</span>
+                        <span>{{$data->course_name}}</span>
                     </p>
                     <h4 class="text-2xl font-bold leading-tight text-gray-800">
-                        Insert Nama Kursus
+                        {{$data->course_name}}
                     </h4>
                 </div>
                 <div class="mt-6 md:mt-0">
@@ -111,20 +111,7 @@
                         <div class="text-gray-700">
                             <div class="flex text-sm">
                                 <div class="block">
-                                    <div class="px-4 py-2 font-semibold">Kursus ini mengajarkan salah satu materi
-                                        fundamental terpenting bagi Software Developer. Pembelajaran Algoritma dan
-                                        Pemrograman ini akan menggunakan bahasa C, bahasa prosedural yang memiliki
-                                        banyak
-                                        kegunaan. Ia didesain untuk di-compile secara sederhana agar mendukung akses ke
-                                        low-level memory, pendukung bahasa dalam instruksi mesin.
-                                    </div>
-                                    <div class="px-4 py-2 font-semibold">Kursus ini akan mengajarkan anda mengenai
-                                        konsep
-                                        dasar seperti Array and Strings, Control Flow, Function, Pointers, Contoh-contoh
-                                        Algoritma, dan lain-lainnya. Kursus ini Cocok bagi Anda yang belum pernah
-                                        belajar
-                                        bahasa pemrograman apa pun, dan ingin mempelajari dasar-dasar sistem
-                                        pemrograman.
+                                    <div class="px-4 py-2 font-semibold">{{$data->course_desc}}
                                     </div>
                                 </div>
                             </div>
