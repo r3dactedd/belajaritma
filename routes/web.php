@@ -21,14 +21,16 @@ Route::get('/', function () {
 });
 
 //USER-RELATED ROUTE
-Route::get('/login',[LoginController::class,'index'])->name('login')->middleware('guest');
-Route::post('/login',[LoginController::class,'authenticate']);
+Route::get('/login', [LoginController::class, 'index'])
+    ->name('login')
+    ->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/signup', function () {
     return view('authentication.signup');
 });
 Route::post('/signup', [RegisterController::class, 'register']);
 
-Route::post('/logout',[LoginController::class,'logout']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/home', function () {
     return view('courses.home');
@@ -52,6 +54,9 @@ Route::get('/courses/1/pdf', function () {
 });
 Route::get('/courses/2/video', function () {
     return view('courses.course_video');
+});
+Route::get('/courses/2/asg', function () {
+    return view('courses.course_asg');
 });
 
 // Route::get('/profile/1', function () {

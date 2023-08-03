@@ -8,7 +8,8 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <link href="./style.css" />
+    <link href="style.css" rel="stylesheet" />
+    @vite('resources/css/app.css')
 </head>
 
 <body>
@@ -23,8 +24,9 @@
                     </div>
                     <div class="mt-8 w-full px-5 sm:px-6">
                         <div class="mt-8 flex flex-col">
-                            <label for="username" class="text-lg font-semibold leading-tight">Username</label><label
-                                for="username" class="text-sm leading-tight"> (Max 30
+                            <label for="username" class="text-lg font-semibold leading-tight">Username<span
+                                    class="ml-1 text-red-600">(*)</span></label><label for="username"
+                                class="text-sm leading-tight"> (Max 30
                                 karakter)</label>
                             <input id="username" class="mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
                                 type="text" />
