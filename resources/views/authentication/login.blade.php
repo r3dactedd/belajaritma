@@ -15,7 +15,7 @@
     <section class="overflow-y-scroll bg-white xl:h-screen">
         <div class="mx-auto flex h-full flex-col-reverse justify-center lg:flex-row">
             <div class="flex w-full justify-center bg-white lg:w-1/2">
-                <div class="mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
+                <div class="mx-4 mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
                     {{-- <div class="flex flex-col items-center justify-center px-5 pt-12 sm:px-10 lg:pt-0">
                         <svg width="300px" height="100px" viewBox="0 0 384 100" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -23,7 +23,7 @@
                         </svg>
                     </div> --}}
 
-                    <h1 class="mt-8 text-center text-4xl font-semibold">Masuk</h1>
+                    <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Masuk</h1>
                     <h1 class="text-md text-center font-light">Selamat datang kembali di Belajaritma!</h1>
                     @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -45,31 +45,31 @@
                     <main class="form-signin mt-5 px-5 sm:px-6">
                         <form method="post" action="/login">
                             @csrf
-                            <div class="mt-8 w-full px-5 sm:px-6">
 
-                                <div class="form-floating mb-3">
-                                    <label for="email" class="text-lg font-semibold leading-tight">Email</label>
-                                    <input type="email" name="email"
-                                        class="form-control @error('email') is-invalid @enderror h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
-                                        id="email" style="border-radius:10px;" placeholder="name@example.com"
-                                        autofocus required value="{{ old('email') }}">
 
-                                    @error('email')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
+                            <div class="form-floating mb-3">
+                                <label for="email" class="text-lg font-semibold leading-tight">Email</label>
+                                <input type="email" name="email"
+                                    class="form-control @error('email') is-invalid @enderror h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
+                                    id="email" style="border-radius:10px;" placeholder="name@example.com" autofocus
+                                    required value="{{ old('email') }}">
 
-                                <div class="form-floating mb-3">
-                                    <label for="email" class="text-lg font-semibold leading-tight">Password</label>
-                                    <input type="password" name="password"
-                                        class="form-control h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
-                                        style="border-radius:10px; " id="password" placeholder="Password" required>
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
-                                </div>
+                            <div class="form-floating mb-3">
+                                <label for="email" class="text-lg font-semibold leading-tight">Password</label>
+                                <input type="password" name="password"
+                                    class="form-control h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
+                                    style="border-radius:10px; " id="password" placeholder="Password" required>
 
                             </div>
+
+
                             <div class="flex w-full justify-between px-5 pt-6 sm:px-6">
                                 <div class="flex items-center">
                                     <input class="form-check-input" type="checkbox" id="remember" name="remember"
