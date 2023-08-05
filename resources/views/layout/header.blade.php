@@ -16,10 +16,10 @@
 <div class="mx-auto w-full border-b border-gray-300 bg-white px-5 shadow-sm sm:px-10">
     <div class="container mx-auto flex h-16 items-center justify-between lg:items-stretch">
         <div class="flex h-full items-center">
-            <div class="mr-10 flex items-center">
-                BelajaRitma
-            </div>
-            <ul class="hidden h-full items-center lg:flex">
+            <a href="/" class="">
+                <img src="{{ asset('/storage/images/belajaritma-logo-removebg-preview.png') }}" class="w-700 h-12 fill-current" alt="">
+            </a>
+            <ul class="hidden h-full items-center lg:flex ml-12">
                 <li
                     class="text-md flex h-full cursor-pointer items-center border-b-2 border-teal-400 font-semibold tracking-normal text-teal-400">
                     <a href="/home">Home</a>
