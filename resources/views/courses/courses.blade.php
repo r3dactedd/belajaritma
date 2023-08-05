@@ -13,9 +13,9 @@
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
-    @extends('layout')
+    @extends('layout.layout')
     @section('header')
-        @include('header')
+        @include('layout.header')
     @endsection
     @section('content')
 
@@ -49,134 +49,49 @@
             </div>
         </div>
 
-        <div
-            class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <div>
-                <a href="/courses/1">
-                    <div
-                        class="cursor-pointer items-stretch rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
-
-                        <div class="relative h-40 w-full">
-                            <img class="absolute inset-0 z-0 h-full w-full rounded-t-xl object-cover"
-                                src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_10.png"
-                                alt="banner" />
-                        </div>
-                        <div class="h-full w-full pt-5">
-                            {{-- MATERI TITLE, LIMIT 30 CHAR --}}
-                            <h3 class="mb-4 px-5 text-lg font-bold leading-5 tracking-normal text-gray-800">
-                                Algoritma dan Pemrograman
-                            </h3>
-                            {{-- MATERI DESC, LIMIT 100 CHAR --}}
-                            <h4 class="text-md mb-6 h-16 px-5 font-semibold leading-5 tracking-normal text-gray-600">
-                                Kursus ini mengajarkan salah satu materi fundamental terpenting bagi Software Developer.
-                            </h4>
-                            {{-- JUMLAH MODULE --}}
-                            <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal">
-                                6 Modul
-                            </h4>
-                            {{-- USE KALAU USER BELUM AMBIL COURSE --}}
-                            <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal text-red-600">
-                                Belum Dimulai
-                            </h4>
-                            {{-- PROG BAR --}}
-                            <div class="bg-grey-light mb-6 w-full px-5">
-                                <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
-                                    style="width: 10%">0%
-                                </div>
-                            </div>
-                </a>
-            </div>
-        </div>
-
-        </div>
-
-        {{-- USE KALAU USER ONGOING COURSE --}}
-        <div>
-            <a href="/courses/2">
-                <div
-                    class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
-
-                    <div class="relative h-40 w-full">
-                        <img class="absolute inset-0 z-0 h-full w-full rounded-t-xl object-cover"
-                            src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_10.png"
-                            alt="banner" />
-                    </div>
-
-                    <div class="h-full w-full items-stretch pt-5">
-                        {{-- MATERI TITLE, LIMIT 30 CHAR --}}
-                        <h3 class="mb-4 px-5 text-lg font-bold leading-5 tracking-normal text-gray-800">
-                            Data Structure
-                        </h3>
-                        {{-- MATERI DESC, LIMIT 100 CHAR --}}
-                        <h4 class="text-md mb-6 h-16 px-5 font-semibold leading-5 tracking-normal text-gray-600">
-                            Kursus ini mengajarkan Struktur Data, yaitu cara dan sistem menyimpan dan mengatur data di
-                            komputer.
-                        </h4>
-                        {{-- JUMLAH MODULE --}}
-                        <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal">
-                            10 Modul
-                        </h4>
-                        {{-- USE KALAU USER ONGOING COURSE --}}
-                        <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal text-yellow-400">
-                            Sedang Mengerjakan
-                        </h4>
-                        {{-- PROG BAR --}}
-                        <div class="bg-grey-light mb-6 w-full px-5">
-                            <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
-                                style="width: 45%">45%
-                            </div>
-                        </div>
-                    </div>
-            </a>
-        </div>
-        </div>
-        {{-- USE KALAU USER UDAH KELAR COURSE --}}
-        <div>
-            <a href="/courses/3">
-                <div
-                    class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
-
-                    <div class="relative h-40 w-full">
-                        <img class="absolute inset-0 z-0 h-full w-full rounded-t-xl object-cover"
-                            src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_10.png"
-                            alt="banner" />
-                    </div>
-                    <a class="relative" href="/courses/3">
-                        <div class="h-full w-full pt-5">
-                            {{-- MATERI TITLE, LIMIT 30 CHAR --}}
-                            <h3 class="mb-4 px-5 text-lg font-bold leading-5 tracking-normal text-gray-800">
-                                Basic Web Programming
-                            </h3>
-                            {{-- MATERI DESC, LIMIT 100 CHAR --}}
-                            <h4 class="text-md mb-6 h-16 px-5 font-semibold leading-5 tracking-normal text-gray-600">
-                                Kursus ini mengajarkan basis Pemrograman Web, menggunakan HTML, CSS, dan Javascript.
-                            </h4>
-                            {{-- JUMLAH MODULE --}}
-                            <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal">
-                                14 Modul
-                            </h4>
-                            {{-- USE KALAU USER UDAH KELAR COURSE --}}
-                            <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal text-green-600">
-                                Selesai
-                            </h4>
-                            <div class="bg-grey-light mb-6 w-full px-5">
-                                <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
-                                    style="width: 100%">100%
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+        <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            @foreach ($data as $data)
+              <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+                <img class="w-full" src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_10.png" alt="banner">
+                <div class="px-6 py-4">
+                    <h3 class="font-bold text-xl mb-2">{{$data->course_name}}</h3>
+                  <p class="text-dark-700 text-base">
+                    {{$data->course_desc}}
+                  </p>
                 </div>
+                {{-- JUMLAH MODULE --}}
+                <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal">
+                    {{$data->total_module}} Modul
+                </h4>
+                {{-- USE KALAU USER ONGOING COURSE --}}
+                <h4 class="text-md mb-6 px-5 font-semibold leading-5 tracking-normal text-yellow-400">
+                    Sedang Mengerjakan
+                </h4>
+                {{-- PROG BAR --}}
+                <div class="bg-grey-light mb-6 w-full px-5">
+                    <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
+                        style="width: 45%">45%
+                    </div>
+                </div>
+                <form action="/courses/{{$data->id}}" method="get">
+                    <button
+                        class="flex items-center rounded bg-blue-400 mb-6 ml-5 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none" action="/courses/{{$data->id}}" method="get">
+                        <div class="mx-2"> Go To Course</div>
+                    </button>
+                </form>
+              </div>
+              @endforeach
+              <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
+                <a href="/courses/1/getcerti"
+                    class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Unduh
+                    Sertifikat</a>
+            </p>
         </div>
 
-        <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
-            <a href="/courses/1/getcerti"
-                class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Unduh
-                Sertifikat</a>
-        </p>
+
     @endsection
     @section('footer')
-        @include('footer')
+        @include('layout.footer')
     @endsection
 </body>
 

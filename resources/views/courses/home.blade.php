@@ -106,7 +106,7 @@
             <div class="f-r-t flex flex-wrap">
                 <div class="mb-12 w-full lg:w-3/5 lg:pr-8">
                     <div class="rounded bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
-                        <p class="text-lg font-bold">My Courses</p>
+                        <p class="text-lg font-bold">Kursus Yang Diambil</p>
                         <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
                             <div class="flex w-11/12">
                                 <div class="h-12 w-12 rounded-full bg-cover bg-center bg-no-repeat">
@@ -114,59 +114,29 @@
                                         src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_2.png"
                                         alt="" />
                                 </div>
-                                <div class="ml-3 w-full">
+                                <div class="w-full px-4">
                                     <p class="text-base font-bold text-gray-800">
-                                        Complete Course on Digital Marketing
+                                        Data Structure
                                     </p>
-                                    <p class="text-xs text-gray-600">by Silene Cox</p>
-                                    <div class="mt-6 flex-wrap justify-between md:flex lg:flex xl:flex">
-                                        <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-                                            Category:
-                                            <span class="font-bold text-gray-800">Marketing & Sales</span>
-                                        </p>
-                                        <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-                                            Modules: <span class="font-bold text-gray-800">12</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="right-0 top-0 mt-0 pl-12 sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
-                                <button
-                                    class="mt-2 rounded-full bg-blue-400 px-4 py-1 text-xs text-white focus:outline-none sm:px-5 md:px-5 lg:mt-0 lg:px-5 xl:mt-0 xl:px-5">
-                                    Completed
-                                </button>
-                            </div>
-                        </div>
-                        <div class="relative border-b border-gray-300 pb-8 pt-6 sm:flex md:flex lg:flex xl:flex">
-                            <div class="flex w-11/12">
-                                <div class="h-12 w-12 rounded-full bg-cover bg-center bg-no-repeat">
-                                    <img class="w-full rounded-full border-2 border-white object-cover shadow"
-                                        src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_3.png"
-                                        alt="" />
-                                </div>
-                                <div class="ml-3 w-full">
-                                    <p class="text-base font-bold text-gray-800">
-                                        Digital Marketing and Social Media
-                                    </p>
-                                    <p class="text-xs text-gray-600">by Silene Cox</p>
-                                    <div class="mt-6 flex-wrap justify-between md:flex lg:flex xl:flex">
-                                        <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-                                            Category:
-                                            <span class="font-bold text-gray-800">Marketing & Sales</span>
-                                        </p>
-                                        <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-                                            Modules: <span class="font-bold text-gray-800">25</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
 
+                                    <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">
+                                        <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
+
+                                            <span class="font-bold text-yellow-400">In Progress</span>
+                                        </p>
+                                    </div>
+                                    <div class="mt-6 max-w-xl rounded-xl bg-gray-600">
+                                        <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
+                                            style="width: 45%">45%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div
-                                class="right-0 top-0 mt-0 pl-12 sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
+                                class="right-0 top-0 mt-0 block pl-12 sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
                                 <button
-                                    class="mt-2 rounded-full bg-yellow-300 px-4 py-1 text-xs text-white focus:outline-none sm:px-5 md:px-5 lg:mt-0 lg:px-5 xl:mt-0 xl:px-5">
-                                    InProgress
+                                    class="ml-2 mt-8 rounded-full bg-yellow-400 px-6 py-2 text-xs font-semibold text-white focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
+                                    Lanjut
                                 </button>
                             </div>
                         </div>
@@ -174,33 +144,36 @@
                             <div class="flex w-11/12">
                                 <div class="h-12 w-12 rounded-full bg-cover bg-center bg-no-repeat">
                                     <img class="w-full rounded-full border-2 border-white object-cover shadow"
-                                        src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_4.png"
+                                        src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_2.png"
                                         alt="" />
                                 </div>
-                                <div class="ml-3 w-full">
+                                <div class="w-full px-4">
                                     <p class="text-base font-bold text-gray-800">
-                                        Build a Career in IOT
+                                        Data Structure
                                     </p>
-                                    <p class="text-xs text-gray-600">by Silene Cox</p>
-                                    <div class="mt-6 flex-wrap justify-between md:flex lg:flex xl:flex">
+
+                                    <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">
                                         <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-                                            Category:
-                                            <span class="font-bold text-gray-800">Development</span>
+
+                                            <span class="font-bold text-yellow-400">In Progress</span>
                                         </p>
-                                        <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-                                            Modules: <span class="font-bold text-gray-800">34</span>
-                                        </p>
+                                    </div>
+                                    <div class="mt-6 max-w-xl rounded-xl bg-gray-600">
+                                        <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
+                                            style="width: 80%">80%
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div
-                                class="right-0 top-0 mt-0 pl-12 sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
+                                class="right-0 top-0 mt-0 block pl-12 sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
                                 <button
-                                    class="mt-2 rounded-full bg-blue-400 px-4 py-1 text-xs text-white focus:outline-none sm:px-5 md:px-5 lg:mt-0 lg:px-5 xl:mt-0 xl:px-5">
-                                    Completed
+                                    class="ml-2 mt-8 rounded-full bg-yellow-400 px-6 py-2 text-xs font-semibold text-white focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
+                                    Lanjut
                                 </button>
                             </div>
                         </div>
+
                         <div class="relative pb-8 pt-6 sm:flex md:flex lg:flex xl:flex">
                             <div class="flex w-11/12">
                                 <div class="h-12 w-12 rounded-full bg-cover bg-center bg-no-repeat">
@@ -208,19 +181,21 @@
                                         src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_5.png"
                                         alt="" />
                                 </div>
-                                <div class="ml-3 w-full">
+                                <div class="w-full px-4">
                                     <p class="text-base font-bold text-gray-800">
-                                        Emotional Intelligence at Work
+                                        Data Structure
                                     </p>
-                                    <p class="text-xs text-gray-600">by Silene Cox</p>
-                                    <div class="mt-6 flex-wrap justify-between md:flex lg:flex xl:flex">
+
+                                    <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">
                                         <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-                                            Category:
-                                            <span class="font-bold text-gray-800">Workplace</span>
+
+                                            <span class="font-bold text-yellow-400">In Progress</span>
                                         </p>
-                                        <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-                                            Modules: <span class="font-bold text-gray-800">12</span>
-                                        </p>
+                                    </div>
+                                    <div class="mt-6 max-w-xl rounded-xl bg-gray-600">
+                                        <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
+                                            style="width: 100%">100%
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -228,13 +203,14 @@
                             <div
                                 class="right-0 top-0 mt-0 pl-12 sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
                                 <button
-                                    class="mt-2 rounded-full bg-yellow-300 px-4 py-1 text-xs text-white focus:outline-none sm:px-5 md:px-5 lg:mt-0 lg:px-5 xl:mt-0 xl:px-5">
-                                    InProgress
+                                    class="ml-2 mt-8 rounded-full bg-green-600 px-6 py-2 text-xs font-semibold text-white focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
+                                    Selesai
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="mb-12 w-full lg:w-2/5">
                     <div class="rounded border border-gray-300 bg-white p-8 shadow">
@@ -309,34 +285,7 @@
                                 </h3>
                             </div>
                         </div>
-                        <div class="flex items-center border-b border-gray-300 py-4">
-                            <div class="flex h-12 w-12 items-center justify-center rounded-lg text-gray-700">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_8.png"
-                                    alt="" class="h-full w-full object-cover" />
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm font-normal leading-5 tracking-normal text-gray-500">
-                                    Mobile App Development
-                                </p>
-                                <h3 class="mt-1 text-2xl font-bold leading-6 text-gray-900">
-                                    $199
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="flex items-center pt-4">
-                            <div class="flex h-12 w-12 items-center justify-center rounded-lg text-gray-700">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_7.png"
-                                    alt="" class="h-full w-full object-cover" />
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm font-normal leading-5 tracking-normal text-gray-500">
-                                    Crash course on Big Data
-                                </p>
-                                <h3 class="mt-1 text-2xl font-bold leading-6 text-gray-900">
-                                    $99
-                                </h3>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

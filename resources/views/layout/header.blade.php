@@ -67,7 +67,7 @@
                         </li>
                     </ul>
                     <img class="h-10 w-10 rounded object-cover"
-                        src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
+                        src="/storage/profile_img/{{Auth::user()->profile_img}}"
                         alt="logo" />
                     <p class="text-md ml-2 font-semibold text-gray-800">{{ auth()->user()->username }}</p> <svg class="ml-2"
                         xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
