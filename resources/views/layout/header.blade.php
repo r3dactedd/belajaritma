@@ -21,19 +21,19 @@
             </div>
             <ul class="hidden h-full items-center lg:flex">
                 <li
-                    class="text-md flex h-full cursor-pointer items-center border-b-2 border-teal-400 font-semibold tracking-normal text-teal-400">
+                    class="text-md flex h-full cursor-pointer items-center border-b-2 border-teal-400 font-bold tracking-normal text-teal-400">
                     <a href="/home">Home</a>
                 </li>
                 <li
-                    class="text-md mx-10 flex h-full cursor-pointer items-center font-semibold tracking-normal text-gray-800">
+                    class="text-md mx-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a href="/courses">Kursus</a>
                 </li>
                 <li
-                    class="text-md mr-10 flex h-full cursor-pointer items-center font-semibold tracking-normal text-gray-800">
+                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a href="/students">Sertifikasi</a>
                 </li>
                 <li
-                    class="text-md mr-10 flex h-full cursor-pointer items-center font-semibold tracking-normal text-gray-800">
+                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a href="instructors">Add shits</a>
                 </li>
             </ul>
@@ -42,40 +42,40 @@
             <div class="flex h-full w-full items-center">
                 <div class="flex h-full w-full">
                     @auth
-                    <div class="relative flex w-full cursor-pointer items-center justify-end"
-                    onclick="dropdownHandler(this)">
-                    <ul class="absolute left-0 top-0 mt-16 hidden w-40 rounded border-r bg-white p-2 shadow">
-                        <li
-                            class="cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-                            <div class="flex items-center">
+                        <div class="relative flex w-full cursor-pointer items-center justify-end"
+                            onclick="dropdownHandler(this)">
+                            <ul class="absolute left-0 top-0 mt-16 hidden w-40 rounded border-r bg-white p-2 shadow">
+                                <li
+                                    class="cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                    <div class="flex items-center">
 
-                                <a href="/profile/1"class="ml-2">My Profile</a>
-                            </div>
-                        </li>
-                        <li
-                            class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                        <a href="/profile/1"class="ml-2">My Profile</a>
+                                    </div>
+                                </li>
+                                <li
+                                    class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
 
-                            <a class="ml-2">Account Settings</a>
-                        </li>
-                        <li
-                            class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                    <a class="ml-2">Account Settings</a>
+                                </li>
+                                <li
+                                    class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
 
-                            <form method="POST" action="/logout">
-                                @csrf
-                              <button type="submit" class="ml-2"> Logout</button>
-                          </form>
-                        </li>
-                    </ul>
-                    <img class="h-10 w-10 rounded object-cover"
-                        src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
-                        alt="logo" />
-                    <p class="text-md ml-2 font-semibold text-gray-800">{{ auth()->user()->username }}</p> <svg class="ml-2"
-                        xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
-                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                        <path
-                            d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
-                    </svg>
-                </div>
+                                    <form method="POST" action="/logout">
+                                        @csrf
+                                        <button type="submit" class="ml-2"> Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                            <img class="h-10 w-10 rounded object-cover"
+                                src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
+                                alt="logo" />
+                            <p class="text-md ml-2 font-semibold text-gray-800">{{ auth()->user()->username }}</p> <svg
+                                class="ml-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                                <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                            </svg>
+                        </div>
                     @endauth
 
                 </div>
@@ -137,8 +137,8 @@
                     class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24"
-                            height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
+                            height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>

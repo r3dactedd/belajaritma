@@ -34,6 +34,13 @@ Route::get('/home', function () {
     return view('courses.home');
 });
 
+Route::get('/forum', function () {
+    return view('forum.forum');
+});
+Route::get('/forum/1', function () {
+    return view('forum.forum_content');
+});
+
 Route::get('/courses', function () {
     return view('courses.courses');
 });

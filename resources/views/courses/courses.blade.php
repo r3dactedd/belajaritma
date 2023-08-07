@@ -181,6 +181,10 @@
                 class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Unduh
                 Sertifikat</a>
         </p>
+        <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
+            <a href="/forum"
+                class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Forum</a>
+        </p>
     @endsection
     @section('footer')
         @include('layout.footer')
