@@ -60,7 +60,9 @@
                     <div class="border-t-4 border-green-400 bg-white p-3">
 
                         <div class="mx-auto w-full p-6">
-                            <img src="" alt="e" />
+                            <img src="https://cdn.discordapp.com/attachments/699690186761830516/1136295687810723942/image.png"
+                                alt="test" />
+
                         </div>
                     </div>
                 </div>

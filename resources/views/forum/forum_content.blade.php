@@ -36,10 +36,9 @@
         </div>
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
-
-
                 <div class="mx-auto rounded bg-white px-8 py-4 antialiased shadow">
                     <div class="mt-4 space-y-4">
+                        {{-- FORUM CONTENT --}}
                         <div class="flex">
                             <div class="mr-3 flex-shrink-0">
                                 <img class="mt-2 h-8 w-8 rounded-full sm:h-10 sm:w-10"
@@ -61,8 +60,13 @@
                                     laborum."
                                 </p>
                             </div>
-
                         </div>
+                        <div class="flex w-full items-center md:ml-16">
+                            <img
+                                src="https://cdn.discordapp.com/attachments/699690186761830516/1136295687810723942/image.png">
+                        </div>
+                        {{-- FORUM CONTENT END --}}
+                        {{-- ADD COMMENTS --}}
                         <hr>
                         <div class="flex w-full items-center justify-center bg-white">
                             <div>
@@ -85,13 +89,17 @@
                                     </div>
                                 </div>
                                 <textarea placeholder="Add your comment..."
-                                    class="h-[120px] w-[60vw] resize-none rounded-md border-[0.1px] border-[#9EA5B1] p-2 font-bold focus:outline-1 focus:outline-blue-500"></textarea>
+                                    class="h-[150px] w-[60vw] resize-none rounded-md border-[0.1px] border-[#9EA5B1] p-2 font-semibold focus:outline-1 focus:outline-blue-500">
+                                </textarea>
+
                                 <div class="my-4 flex justify-end">
                                     <button
                                         class="absolute w-fit rounded bg-teal-400 px-4 py-2 text-sm font-semibold text-white">Balas</button>
                                 </div>
                             </div>
                         </div>
+                        {{-- ADD COMMENTS END --}}
+                        {{-- COMMENTS LIST --}}
                         <h3 class="mb-4 text-lg font-semibold text-gray-900">Comments</h3>
                         <div class="space-y-4">
                             <div class="flex">
@@ -179,6 +187,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- COMMENTS LIST END --}}
                     </div>
                 </div>
 
