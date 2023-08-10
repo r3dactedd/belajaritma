@@ -9,6 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
     <link href="./style.css" rel="stylesheet" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let modal = document.getElementById("my-modal");
+            let btn = document.getElementById("open-btn");
+            let button = document.getElementById("ok-btn");
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            button.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
 </head>
 
 <body class="bg-gray-200 pb-12">

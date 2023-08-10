@@ -9,7 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
+    <style>
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+
+        body.modal-active {
+            overflow-x: hidden;
+            overflow-y: visible !important;
+        }
+    </style>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 </head>
+
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
@@ -21,7 +34,6 @@
         <div class="scroll-smooth bg-white px-5 sm:px-10">
             <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
                 <div>
-
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
                         <a class="flex items-center" href="/home">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em"
@@ -34,10 +46,16 @@
                 </div>
             </div>
         </div>
+
+
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="w-full md:mx-2 md:w-2/12">
                     <!-- Sidebar, pass value courselistnya aja-->
+                    <button id="open-btn"
+                        class="modal-open my-4 flex w-full items-center rounded-xl bg-teal-400 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                        Buat Diskusi
+                    </button>
                     @include('courses.course_sidebar')
                 </div>
                 <div class="my-4"></div>
@@ -53,7 +71,7 @@
                             </svg>
                         </div>
                         <form>
-                            <input type="text" placeholder="Cari Judul Forum..." required=""
+                            <input type="text" placeholder="Cari Judul Diskusi..." required=""
                                 class="mt-4 w-full rounded-md border-transparent bg-gray-100 px-8 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                             <button type="submit"
                                 class="absolute right-0 top-0 mt-4 rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -186,13 +204,136 @@
                             <hr>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
+        {{-- CREATE FORUM MODAL --}}
+        <div class="modal pointer-events-none fixed left-0 top-0 flex h-full w-full items-center justify-center opacity-0">
+            <div class="modal-overlay absolute h-full w-full bg-gray-900 opacity-50"></div>
+            <div class="modal-container z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/4">
+                <!-- Add margin if you want to see some of the overlay behind the modal-->
+                <div class="modal-content px-2 py-4 text-left md:px-6">
+                    <div class="container mx-auto my-5 p-5">
+                        {{-- EDIT PROFILE --}}
+                        <div class="mx-auto rounded-xl bg-white px-2 py-8">
+                            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Diskusi Baru</h2>
+                            <form action="/editProfile" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
+                                    <div class="sm:col-span-2">
+                                        <label for="username"
+                                            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                            Judul Diskusi</label>
+                                        <input type="text" name="username" id="inputUsername"
+                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                            placeholder="Tulis Judul untuk Pertanyaan Anda..." required="">
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="username"
+                                            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                            Judul Diskusi</label>
+                                        <input type="text" name="username" id="inputUsername"
+                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                            placeholder="Tulis Pertanyaan Anda..." required="">
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="username"
+                                            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                            Pertanyaan</label>
+                                        <div id="editor">
+                                        </div>
+                                    </div>
 
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+
+                        <!--Footer-->
+                        <div class="mt-8 flex justify-end pt-2">
+                            <button
+                                class="mr-2 rounded-lg bg-transparent p-3 px-4 text-indigo-500 hover:bg-gray-100 hover:text-indigo-400">Action</button>
+                            <button
+                                class="modal-close rounded-lg bg-indigo-500 p-3 px-4 text-white hover:bg-indigo-400">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- CREATE FORUM MODAL + QUILLJS --}}
+        <script>
+            var openmodal = document.querySelectorAll('.modal-open')
+            for (var i = 0; i < openmodal.length; i++) {
+                openmodal[i].addEventListener('click', function(event) {
+                    event.preventDefault()
+                    toggleModal()
+                })
+            }
+
+            const overlay = document.querySelector('.modal-overlay')
+            overlay.addEventListener('click', toggleModal)
+
+            var closemodal = document.querySelectorAll('.modal-close')
+            for (var i = 0; i < closemodal.length; i++) {
+                closemodal[i].addEventListener('click', toggleModal)
+            }
+
+            document.onkeydown = function(evt) {
+                evt = evt || window.event
+                var isEscape = false
+                if ("key" in evt) {
+                    isEscape = (evt.key === "Escape" || evt.key === "Esc")
+                } else {
+                    isEscape = (evt.keyCode === 27)
+                }
+                if (isEscape && document.body.classList.contains('modal-active')) {
+                    toggleModal()
+                }
+            };
+
+
+            function toggleModal() {
+                const body = document.querySelector('body')
+                const modal = document.querySelector('.modal')
+                modal.classList.toggle('opacity-0')
+                modal.classList.toggle('pointer-events-none')
+                body.classList.toggle('modal-active')
+            }
+            var quill; // Declare quill in a higher scope
+
+            document.addEventListener("DOMContentLoaded", function(event) {
+                var toolbarOptions = [
+                    ['bold', 'italic', 'underline', 'strike'],
+                    ['blockquote', 'code-block'],
+                    ['image'],
+                ];
+
+                quill = new Quill('#editor', {
+                    modules: {
+                        syntax: false,
+                        toolbar: toolbarOptions
+                    },
+                    theme: 'snow'
+                });
+
+                var quillContent = quill.root.innerHTML;
+
+                document.getElementById('get-content-button').addEventListener('click', function() {
+                    // Retrieve Quill content
+                    var quillContent = quill.root.innerHTML;
+
+                    // Perform actions with the content
+                    console.log("Quill Content:");
+                    console.log(quillContent); // Print content to the browser console
+                });
+            });
+        </script>
+
+        {{-- CREATE FORUM MODAL + QUILLJS --}}
     </body>
 @endsection
-
 
 </html>

@@ -60,6 +60,9 @@ Route::get('/courses/2/asg', function () {
 Route::get('/profile/1', function () {
     return view('profile.profile');
 });
+Route::get('/profile/1/edit', function () {
+    return view('profile.profile_edit');
+});
 
 Route::get('/courses/1/getcerti', function () {
     return view('certification.certificate');
