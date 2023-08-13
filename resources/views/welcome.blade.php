@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,14 +34,14 @@
         }
     </style>
 </head>
+
 <body class="overflow-x-hidden antialiased">
     <!-- Header Section -->
-    <header class="relative z-50 w-full h-24">
-        <div
-            class="container flex items-center justify-center h-full max-w-6xl px-8 mx-auto sm:justify-between xl:px-0">
+    <header class="relative z-50 h-24 w-full">
+        <div class="container mx-auto flex h-full max-w-6xl items-center justify-center px-8 sm:justify-between xl:px-0">
 
-            <a href="/" class="relative flex items-center inline-block h-5 h-full font-black leading-none">
-                <svg class="w-auto h-6 text-indigo-600 fill-current" viewBox="0 0 194 116"
+            <a href="/" class="relative inline-block flex h-5 h-full items-center font-black leading-none">
+                <svg class="h-6 w-auto fill-current text-indigo-600" viewBox="0 0 194 116"
                     xmlns="http://www.w3.org/2000/svg">
                     <g fill-rule="evenodd">
                         <path
@@ -52,31 +53,31 @@
             </a>
 
             <nav id="nav"
-                class="absolute top-0 left-0 z-50 flex flex-col items-center justify-between hidden w-full h-64 pt-5 mt-24 text-sm text-gray-800 bg-white border-t border-gray-200 md:w-auto md:flex-row md:h-24 lg:text-base md:bg-transparent md:mt-0 md:border-none md:py-0 md:flex md:relative">
+                class="absolute left-0 top-0 z-50 mt-24 flex hidden h-64 w-full flex-col items-center justify-between border-t border-gray-200 bg-white pt-5 text-sm text-gray-800 md:relative md:mt-0 md:flex md:h-24 md:w-auto md:flex-row md:border-none md:bg-transparent md:py-0 lg:text-base">
                 <a href="#"
-                    class="ml-0 mr-0 font-bold duration-100 md:ml-12 md:mr-3 lg:mr-8 transition-color hover:text-indigo-600">Home</a>
+                    class="transition-color ml-0 mr-0 font-bold duration-100 hover:text-indigo-600 md:ml-12 md:mr-3 lg:mr-8">Home</a>
                 <a href="#features"
-                    class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-indigo-600">Features</a>
+                    class="transition-color mr-0 font-bold duration-100 hover:text-indigo-600 md:mr-3 lg:mr-8">Features</a>
                 <a href="#pricing"
-                    class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-indigo-600">Pricing</a>
+                    class="transition-color mr-0 font-bold duration-100 hover:text-indigo-600 md:mr-3 lg:mr-8">Pricing</a>
                 <a href="#testimonials"
-                    class="font-bold duration-100 transition-color hover:text-indigo-600">Testimonials</a>
-                <div class="flex flex-col block w-full font-medium border-t border-gray-200 md:hidden">
-                    <a href="/login" class="w-full py-2 font-bold text-center text-pink-500">Login</a>
+                    class="transition-color font-bold duration-100 hover:text-indigo-600">Testimonials</a>
+                <div class="block flex w-full flex-col border-t border-gray-200 font-medium md:hidden">
+                    <a href="/login" class="w-full py-2 text-center font-bold text-pink-500">Login</a>
                     <a href="/signup"
-                        class="relative inline-block w-full px-5 py-3 text-sm leading-none text-center text-white bg-indigo-700 fold-bold">Get
+                        class="fold-bold relative inline-block w-full bg-indigo-700 px-5 py-3 text-center text-sm leading-none text-white">Get
                         Started</a>
                 </div>
             </nav>
 
             <div
-                class="absolute left-0 flex-col items-center justify-center hidden w-full pb-8 mt-48 border-b border-gray-200 md:relative md:w-auto md:bg-transparent md:border-none md:mt-0 md:flex-row md:p-0 md:items-end md:flex md:justify-between">
+                class="absolute left-0 mt-48 hidden w-full flex-col items-center justify-center border-b border-gray-200 pb-8 md:relative md:mt-0 md:flex md:w-auto md:flex-row md:items-end md:justify-between md:border-none md:bg-transparent md:p-0">
                 <a href="/login"
-                    class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">Login</a>
+                    class="relative z-40 mr-0 px-3 py-2 text-sm font-bold text-pink-500 sm:mr-3 md:mt-0 md:px-5 lg:text-white">Login</a>
                 <a href="/signup"
-                    class="relative z-40 inline-block w-auto h-full px-5 py-3 text-sm font-bold leading-none text-white transition-all transition duration-100 duration-300 bg-indigo-700 rounded shadow-md fold-bold lg:bg-white lg:text-indigo-700 sm:w-full lg:shadow-none hover:shadow-xl">Get
+                    class="fold-bold relative z-40 inline-block h-full w-auto rounded bg-indigo-700 px-5 py-3 text-sm font-bold leading-none text-white shadow-md transition transition-all duration-100 duration-300 hover:shadow-xl sm:w-full lg:bg-white lg:text-indigo-700 lg:shadow-none">Get
                     Started</a>
-                <svg class="absolute top-0 left-0 hidden w-screen max-w-3xl -mt-64 -ml-12 lg:block"
+                <svg class="absolute left-0 top-0 -ml-12 -mt-64 hidden w-screen max-w-3xl lg:block"
                     viewBox="0 0 818 815" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <defs>
                         <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="c">
@@ -87,14 +88,14 @@
                             <stop stop-color="#657DE9" offset="0%" />
                             <stop stop-color="#1C0FD7" offset="100%" />
                         </linearGradient>
-                        <filter x="-4.7%" y="-3.3%" width="109.3%" height="109.3%" filterUnits="objectBoundingBox"
-                            id="a">
+                        <filter x="-4.7%" y="-3.3%" width="109.3%" height="109.3%"
+                            filterUnits="objectBoundingBox" id="a">
                             <feOffset dy="8" in="SourceAlpha" result="shadowOffsetOuter1" />
                             <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1" />
                             <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0" in="shadowBlurOuter1" />
                         </filter>
-                        <filter x="-4.7%" y="-3.3%" width="109.3%" height="109.3%" filterUnits="objectBoundingBox"
-                            id="d">
+                        <filter x="-4.7%" y="-3.3%" width="109.3%" height="109.3%"
+                            filterUnits="objectBoundingBox" id="d">
                             <feOffset dy="8" in="SourceAlpha" result="shadowOffsetOuter1" />
                             <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1" />
                             <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1" />
@@ -120,9 +121,9 @@
             </div>
 
             <div id="nav-mobile-btn"
-                class="absolute top-0 right-0 z-50 block w-6 mt-8 mr-10 cursor-pointer select-none md:hidden sm:mt-10">
-                <span class="block w-full h-1 mt-2 duration-200 transform bg-gray-800 rounded-full sm:mt-1"></span>
-                <span class="block w-full h-1 mt-1 duration-200 transform bg-gray-800 rounded-full"></span>
+                class="absolute right-0 top-0 z-50 mr-10 mt-8 block w-6 cursor-pointer select-none sm:mt-10 md:hidden">
+                <span class="mt-2 block h-1 w-full transform rounded-full bg-gray-800 duration-200 sm:mt-1"></span>
+                <span class="mt-1 block h-1 w-full transform rounded-full bg-gray-800 duration-200"></span>
             </div>
 
         </div>
@@ -130,24 +131,24 @@
     <!-- End Header Section-->
 
     <!-- BEGIN HERO SECTION -->
-    <div class="relative items-center justify-center w-full overflow-x-hidden lg:pt-40 lg:pb-40 xl:pt-40 xl:pb-64">
+    <div class="relative w-full items-center justify-center overflow-x-hidden lg:pb-40 lg:pt-40 xl:pb-64 xl:pt-40">
         <div
-            class="container flex flex-col items-center justify-between h-full max-w-6xl px-8 mx-auto -mt-32 lg:flex-row xl:px-0">
+            class="container mx-auto -mt-32 flex h-full max-w-6xl flex-col items-center justify-between px-8 lg:flex-row xl:px-0">
             <div
-                class="z-30 flex flex-col items-center w-full max-w-xl pt-48 text-center lg:items-start lg:w-1/2 lg:pt-20 xl:pt-40 lg:text-left">
+                class="z-30 flex w-full max-w-xl flex-col items-center pt-48 text-center lg:w-1/2 lg:items-start lg:pt-20 lg:text-left xl:pt-40">
                 <h1 class="relative mb-4 text-3xl font-black leading-tight text-gray-900 sm:text-6xl xl:mb-8">Build the
                     Next
                     Great Thing</h1>
-                <p class="pr-0 mb-8 text-base text-gray-600 sm:text-lg xl:text-xl lg:pr-20">Are you ready to start your
+                <p class="mb-8 pr-0 text-base text-gray-600 sm:text-lg lg:pr-20 xl:text-xl">Are you ready to start your
                     adventure and start building the next greatest SAAS app on the market?</p>
                 <a href="/signup"
-                    class="relative self-start inline-block w-auto px-8 py-4 mx-auto mt-0 text-base font-bold text-white bg-indigo-600 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 fold-bold lg:mx-0">Signup
+                    class="fold-bold relative mx-auto mt-0 inline-block w-auto self-start rounded-md border-t border-gray-200 bg-indigo-600 px-8 py-4 text-base font-bold text-white shadow-xl sm:mt-1 lg:mx-0">Signup
                     Today!</a>
                 <!-- Integrates with section -->
-                <div class="flex-col hidden mt-12 sm:flex lg:mt-24">
-                    <p class="mb-4 text-sm font-medium tracking-widest text-gray-500 uppercase">Integrates With</p>
+                <div class="mt-12 hidden flex-col sm:flex lg:mt-24">
+                    <p class="mb-4 text-sm font-medium uppercase tracking-widest text-gray-500">Integrates With</p>
                     <div class="flex">
-                        <svg class="h-8 mr-4 text-gray-500 duration-150 cursor-pointer fill-current transition-color hover:text-gray-600"
+                        <svg class="transition-color mr-4 h-8 cursor-pointer fill-current text-gray-500 duration-150 hover:text-gray-600"
                             viewBox="0 0 2499 1037" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1">
                                 <g>
@@ -156,7 +157,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <svg class="h-8 mr-4 text-gray-500 duration-150 cursor-pointer fill-current transition-color hover:text-gray-600"
+                        <svg class="transition-color mr-4 h-8 cursor-pointer fill-current text-gray-500 duration-150 hover:text-gray-600"
                             viewBox="0 0 2350 2315" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1"></g>
                             <g>
@@ -165,7 +166,7 @@
                             </g>
                             </g>
                         </svg>
-                        <svg class="h-8 mr-4 text-gray-500 duration-150 cursor-pointer fill-current transition-color hover:text-gray-600"
+                        <svg class="transition-color mr-4 h-8 cursor-pointer fill-current text-gray-500 duration-150 hover:text-gray-600"
                             viewBox="0 0 2500 2158" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1">
                                 <g transform="translate(-.157)">
@@ -174,7 +175,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <svg class="h-8 mr-4 text-gray-500 duration-150 cursor-pointer fill-current transition-color hover:text-gray-600"
+                        <svg class="transition-color mr-4 h-8 cursor-pointer fill-current text-gray-500 duration-150 hover:text-gray-600"
                             viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1">
                                 <g transform="translate(-401 -701)">
@@ -191,7 +192,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <svg class="h-8 mr-4 text-gray-500 duration-150 cursor-pointer fill-current transition-color hover:text-gray-600"
+                        <svg class="transition-color mr-4 h-8 cursor-pointer fill-current text-gray-500 duration-150 hover:text-gray-600"
                             viewBox="0 0 1681 417" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1">
                                 <g>
@@ -202,22 +203,25 @@
                         </svg>
                     </div>
                 </div>
-                <svg class="absolute left-0 max-w-md mt-24 -ml-64 left-svg" viewBox="0 0 423 423"
+                <svg class="left-svg absolute left-0 -ml-64 mt-24 max-w-md" viewBox="0 0 423 423"
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <defs>
-                        <linearGradient x1="100%" y1="0%" x2="4.48%" y2="0%" id="linearGradient-1">
+                        <linearGradient x1="100%" y1="0%" x2="4.48%" y2="0%"
+                            id="linearGradient-1">
                             <stop stop-color="#5C54DB" offset="0%" />
                             <stop stop-color="#6A82E7" offset="100%" />
                         </linearGradient>
-                        <filter x="-9.3%" y="-6.7%" width="118.7%" height="118.7%" filterUnits="objectBoundingBox"
-                            id="filter-3">
+                        <filter x="-9.3%" y="-6.7%" width="118.7%" height="118.7%"
+                            filterUnits="objectBoundingBox" id="filter-3">
                             <feOffset dy="8" in="SourceAlpha" result="shadowOffsetOuter1" />
                             <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1" />
                             <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" in="shadowBlurOuter1" />
                         </filter>
-                        <rect id="path-2" x="63" y="504" width="300" height="300" rx="40" />
+                        <rect id="path-2" x="63" y="504" width="300" height="300"
+                            rx="40" />
                     </defs>
-                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity=".9">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                        opacity=".9">
                         <g id="Desktop-HD" transform="translate(-39 -531)">
                             <g id="Hero" transform="translate(43 83)">
                                 <g id="Rectangle-6" transform="rotate(45 213 654)">
@@ -229,10 +233,10 @@
                     </g>
                 </svg>
             </div>
-            <div class="relative z-50 flex flex-col items-end justify-center w-full h-full lg:w-1/2 ms:pl-10">
-                <div class="container relative left-0 w-full max-w-4xl lg:absolute xl:max-w-6xl lg:w-screen">
+            <div class="ms:pl-10 relative z-50 flex h-full w-full flex-col items-end justify-center lg:w-1/2">
+                <div class="container relative left-0 w-full max-w-4xl lg:absolute lg:w-screen xl:max-w-6xl">
                     <img src="https://cdn.devdojo.com/images/september2020/macbook-mockup.png"
-                        class="w-full h-auto mt-20 mb-20 ml-0 lg:mt-24 xl:mt-40 lg:mb-0 lg:h-full lg:-ml-12">
+                        class="mb-20 ml-0 mt-20 h-auto w-full lg:-ml-12 lg:mb-0 lg:mt-24 lg:h-full xl:mt-40">
                 </div>
             </div>
         </div>
@@ -240,17 +244,18 @@
     <!-- HERO SECTION END -->
 
     <!-- BEGIN FEATURES SECTION -->
-    <div id="features" class="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
-        <div class="container flex flex-col items-center justify-between h-full max-w-6xl mx-auto">
-            <h2 class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">Mengapa Belajaritma?</h2>
+    <div id="features"
+        class="relative w-full border-t border-gray-200 px-8 py-10 md:py-16 lg:py-24 xl:px-0 xl:py-40">
+        <div class="container mx-auto flex h-full max-w-6xl flex-col items-center justify-between">
+            <h2 class="my-5 text-base font-medium uppercase tracking-tight text-indigo-500">Mengapa Belajaritma?</h2>
             <h3
-                class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">
+                class="mt-2 max-w-2xl px-5 text-center text-3xl font-black leading-tight text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">
                 Built and Designed with you in Mind</h3>
-            <div class="flex flex-col w-full mt-0 lg:flex-row sm:mt-10 lg:mt-20">
+            <div class="mt-0 flex w-full flex-col sm:mt-10 lg:mt-20 lg:flex-row">
 
-                <div class="w-full max-w-md p-4 mx-auto mb-0 sm:mb-16 lg:mb-0 lg:w-1/3">
-                    <div class="relative flex flex-col items-center justify-center w-full h-full p-20 mr-5 rounded-lg">
-                        <svg class="absolute w-full h-full text-gray-100 fill-current" viewBox="0 0 377 340"
+                <div class="mx-auto mb-0 w-full max-w-md p-4 sm:mb-16 lg:mb-0 lg:w-1/3">
+                    <div class="relative mr-5 flex h-full w-full flex-col items-center justify-center rounded-lg p-20">
+                        <svg class="absolute h-full w-full fill-current text-gray-100" viewBox="0 0 377 340"
                             xmlns="http://www.w3.org/2000/svg">
                             <g>
                                 <g>
@@ -260,15 +265,16 @@
                             </g>
                         </svg>
                         <!-- FEATURE Icon 1 -->
-                        <svg class="relative w-20 h-20" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg"
+                        <svg class="relative h-20 w-20" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs>
-                                <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1TriangleIcon1">
+                                <linearGradient x1="0%" y1="0%" x2="100%" y2="100%"
+                                    id="linearGradient-1TriangleIcon1">
                                     <stop stop-color="#9C09DB" offset="0%" />
                                     <stop stop-color="#1C0FD7" offset="100%" />
                                 </linearGradient>
-                                <filter x="-14%" y="-10%" width="128%" height="128%" filterUnits="objectBoundingBox"
-                                    id="filter-3TriangleIcon1">
+                                <filter x="-14%" y="-10%" width="128%" height="128%"
+                                    filterUnits="objectBoundingBox" id="filter-3TriangleIcon1">
                                     <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1" />
                                     <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1"
                                         result="shadowBlurOuter1" />
@@ -280,7 +286,8 @@
                                     d="M17.947 0h14.106c6.24 0 8.503.65 10.785 1.87a12.721 12.721 0 015.292 5.292C49.35 9.444 50 11.707 50 17.947v14.106c0 6.24-.65 8.503-1.87 10.785a12.721 12.721 0 01-5.292 5.292C40.556 49.35 38.293 50 32.053 50H17.947c-6.24 0-8.503-.65-10.785-1.87a12.721 12.721 0 01-5.292-5.292C.65 40.556 0 38.293 0 32.053V17.947c0-6.24.65-8.503 1.87-10.785A12.721 12.721 0 017.162 1.87C9.444.65 11.707 0 17.947 0z"
                                     id="path-2TriangleIcon1" />
                             </defs>
-                            <g id="Page-1TriangleIcon1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Page-1TriangleIcon1" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd">
                                 <g id="Desktop-HDTriangleIcon1" transform="translate(-291 -1278)">
                                     <g id="FeaturesTriangleIcon1" transform="translate(170 915)">
                                         <g id="Group-9TriangleIcon1" transform="translate(0 365)">
@@ -304,17 +311,18 @@
                             </g>
                         </svg>
                         <h4 class="relative mt-6 text-lg font-bold">Automated Tools</h4>
-                        <p class="relative mt-2 text-base text-center text-gray-600">Automate your workflow with these
+                        <p class="relative mt-2 text-center text-base text-gray-600">Automate your workflow with these
                             top of the
                             line marketing tools.</p>
-                        <a href="#_" class="relative flex mt-2 text-sm font-medium text-indigo-500 underline">Learn
+                        <a href="#_"
+                            class="relative mt-2 flex text-sm font-medium text-indigo-500 underline">Learn
                             More</a>
                     </div>
                 </div>
 
-                <div class="w-full max-w-md p-4 mx-auto mb-0 sm:mb-16 lg:mb-0 lg:w-1/3">
-                    <div class="relative flex flex-col items-center justify-center w-full h-full p-20 mr-5 rounded-lg">
-                        <svg class="absolute w-full h-full text-gray-100 fill-current" viewBox="0 0 358 372"
+                <div class="mx-auto mb-0 w-full max-w-md p-4 sm:mb-16 lg:mb-0 lg:w-1/3">
+                    <div class="relative mr-5 flex h-full w-full flex-col items-center justify-center rounded-lg p-20">
+                        <svg class="absolute h-full w-full fill-current text-gray-100" viewBox="0 0 358 372"
                             xmlns="http://www.w3.org/2000/svg">
                             <g>
                                 <g>
@@ -324,15 +332,16 @@
                             </g>
                         </svg>
                         <!-- FEATURE Icon 2 -->
-                        <svg class="relative w-20 h-20" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg"
+                        <svg class="relative h-20 w-20" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs>
-                                <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1Icon2">
+                                <linearGradient x1="0%" y1="0%" x2="100%" y2="100%"
+                                    id="linearGradient-1Icon2">
                                     <stop stop-color="#F2C314" offset="0%" />
                                     <stop stop-color="#FC3832" offset="100%" />
                                 </linearGradient>
-                                <filter x="-14%" y="-10%" width="128%" height="128%" filterUnits="objectBoundingBox"
-                                    id="filter-3Icon2">
+                                <filter x="-14%" y="-10%" width="128%" height="128%"
+                                    filterUnits="objectBoundingBox" id="filter-3Icon2">
                                     <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1" />
                                     <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1"
                                         result="shadowBlurOuter1" />
@@ -352,10 +361,11 @@
                                                 <g id="Rectangle-9Icon2">
                                                     <use fill="#000" filter="url(#filter-3Icon2)"
                                                         xlink:href="#path-2Icon2" />
-                                                    <use fill="url(#linearGradient-1Icon2)" xlink:href="#path-2Icon2" />
+                                                    <use fill="url(#linearGradient-1Icon2)"
+                                                        xlink:href="#path-2Icon2" />
                                                 </g>
-                                                <g id="machine-learningIcon2" transform="translate(14 12)" fill="#FFF"
-                                                    fill-rule="nonzero">
+                                                <g id="machine-learningIcon2" transform="translate(14 12)"
+                                                    fill="#FFF" fill-rule="nonzero">
                                                     <path
                                                         d="M10.554 21.418v-2.68c-1.1-.204-1.932-1.143-1.932-2.271 0-.468.143-.903.388-1.267l-2.32-1.662L4.367 15.2a2.254 2.254 0 01-.005 2.541l5.28 4.05c.268-.182.577-.311.911-.373zm.892 0c.334.062.643.191.912.373l5.28-4.05a2.254 2.254 0 01-.006-2.54l-2.321-1.663L12.99 15.2c.245.364.388.8.388 1.267 0 1.128-.832 2.067-1.932 2.27v2.681zm1.538.997c.25.365.394.803.394 1.274C13.378 24.965 12.314 26 11 26s-2.378-1.035-2.378-2.311c0-.471.145-.91.394-1.274l-5.28-4.05c-.385.26-.853.413-1.358.413C1.065 18.778 0 17.743 0 16.467c0-1.129.832-2.068 1.932-2.27v-2.393C.832 11.6 0 10.662 0 9.534c0-1.277 1.065-2.312 2.378-2.312.505 0 .973.153 1.358.414l5.28-4.05a2.254 2.254 0 01-.394-1.275C8.622 1.035 9.686 0 11 0s2.378 1.035 2.378 2.311c0 .471-.145.91-.394 1.274l5.28 4.05c.385-.26.853-.413 1.358-.413C20.935 7.222 22 8.257 22 9.533c0 1.129-.832 2.068-1.932 2.27v2.393c1.1.203 1.932 1.142 1.932 2.27 0 1.277-1.065 2.312-2.378 2.312-.505 0-.973-.153-1.358-.414l-5.28 4.05zm-9.243-7.843L5.937 13l-2.196-1.572c-.27.183-.58.314-.917.376v2.392c.336.062.647.193.917.376zm.627-3.772l2.321 1.662L9.01 10.8a2.254 2.254 0 01-.388-1.267c0-1.128.832-2.067 1.932-2.27V4.582a2.403 2.403 0 01-.912-.373l-5.28 4.05a2.254 2.254 0 01.006 2.54zm13.89 3.772c.27-.183.582-.314.918-.376v-2.392a2.403 2.403 0 01-.917-.376L16.063 13l2.196 1.572zm-.62-6.313l-5.28-4.05a2.403 2.403 0 01-.912.373v2.68c1.1.204 1.932 1.143 1.932 2.271 0 .468-.143.903-.388 1.267l2.32 1.662 2.322-1.662a2.254 2.254 0 01.005-2.541zm-8 6.313A2.415 2.415 0 0111 14.156c.507 0 .977.154 1.363.416L14.559 13l-2.196-1.572a2.415 2.415 0 01-1.363.416c-.507 0-.977-.154-1.363-.416L7.441 13l2.196 1.572zM11 10.978c.821 0 1.486-.647 1.486-1.445 0-.797-.665-1.444-1.486-1.444s-1.486.647-1.486 1.444c0 .798.665 1.445 1.486 1.445zm0 6.933c.821 0 1.486-.647 1.486-1.444 0-.798-.665-1.445-1.486-1.445s-1.486.647-1.486 1.445c0 .797.665 1.444 1.486 1.444zm8.622-6.933c.82 0 1.486-.647 1.486-1.445 0-.797-.665-1.444-1.486-1.444s-1.487.647-1.487 1.444c0 .798.666 1.445 1.487 1.445zm0 6.933c.82 0 1.486-.647 1.486-1.444 0-.798-.665-1.445-1.486-1.445s-1.487.647-1.487 1.445c0 .797.666 1.444 1.487 1.444zM2.378 10.978c.821 0 1.487-.647 1.487-1.445 0-.797-.666-1.444-1.487-1.444-.82 0-1.486.647-1.486 1.444 0 .798.665 1.445 1.486 1.445zm0 6.933c.821 0 1.487-.647 1.487-1.444 0-.798-.666-1.445-1.487-1.445-.82 0-1.486.647-1.486 1.445 0 .797.665 1.444 1.486 1.444zM11 25.133c.821 0 1.486-.646 1.486-1.444 0-.798-.665-1.445-1.486-1.445s-1.486.647-1.486 1.445.665 1.444 1.486 1.444zm0-21.377c.821 0 1.486-.647 1.486-1.445S11.821.867 11 .867s-1.486.646-1.486 1.444c0 .798.665 1.445 1.486 1.445z"
                                                         id="ShapeIcon2" />
@@ -367,17 +377,19 @@
                             </g>
                         </svg>
                         <h4 class="relative mt-6 text-lg font-bold">Machine Learning</h4>
-                        <p class="relative mt-2 text-base text-center text-gray-600">Your Marketing tools will learn how
+                        <p class="relative mt-2 text-center text-base text-gray-600">Your Marketing tools will learn
+                            how
                             to better
                             convert and sell.</p>
-                        <a href="#_" class="relative flex mt-2 text-sm font-medium text-indigo-500 underline">Learn
+                        <a href="#_"
+                            class="relative mt-2 flex text-sm font-medium text-indigo-500 underline">Learn
                             More</a>
                     </div>
                 </div>
 
-                <div class="w-full max-w-md p-4 mx-auto mb-16 lg:mb-0 lg:w-1/3">
-                    <div class="relative flex flex-col items-center justify-center w-full h-full p-20 mr-5 rounded-lg">
-                        <svg class="absolute w-full h-full text-gray-100 fill-current" viewBox="0 0 378 410"
+                <div class="mx-auto mb-16 w-full max-w-md p-4 lg:mb-0 lg:w-1/3">
+                    <div class="relative mr-5 flex h-full w-full flex-col items-center justify-center rounded-lg p-20">
+                        <svg class="absolute h-full w-full fill-current text-gray-100" viewBox="0 0 378 410"
                             xmlns="http://www.w3.org/2000/svg">
                             <g>
                                 <g>
@@ -387,15 +399,16 @@
                             </g>
                         </svg>
                         <!-- FEATURE Icon 3 -->
-                        <svg class="relative w-20 h-20" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg"
+                        <svg class="relative h-20 w-20" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs>
-                                <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1Icon3">
+                                <linearGradient x1="0%" y1="0%" x2="100%" y2="100%"
+                                    id="linearGradient-1Icon3">
                                     <stop stop-color="#32FBFC" offset="0%" />
                                     <stop stop-color="#3214F2" offset="100%" />
                                 </linearGradient>
-                                <filter x="-14%" y="-10%" width="128%" height="128%" filterUnits="objectBoundingBox"
-                                    id="filter-3Icon3">
+                                <filter x="-14%" y="-10%" width="128%" height="128%"
+                                    filterUnits="objectBoundingBox" id="filter-3Icon3">
                                     <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1" />
                                     <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1"
                                         result="shadowBlurOuter1" />
@@ -415,7 +428,8 @@
                                                 <g id="Rectangle-9Icon3">
                                                     <use fill="#000" filter="url(#filter-3Icon3)"
                                                         xlink:href="#path-2Icon3" />
-                                                    <use fill="url(#linearGradient-1Icon3)" xlink:href="#path-2Icon3" />
+                                                    <use fill="url(#linearGradient-1Icon3)"
+                                                        xlink:href="#path-2Icon3" />
                                                 </g>
                                                 <g id="smart-notificationsIcon3" transform="translate(15 11)"
                                                     fill="#FFF" fill-rule="nonzero">
@@ -430,10 +444,12 @@
                             </g>
                         </svg>
                         <h4 class="relative mt-6 text-lg font-bold">Smart Notifications</h4>
-                        <p class="relative mt-2 text-base text-center text-gray-600">Our smart notifications will notify
+                        <p class="relative mt-2 text-center text-base text-gray-600">Our smart notifications will
+                            notify
                             you when
                             users convert.</p>
-                        <a href="#_" class="relative flex mt-2 text-sm font-medium text-indigo-500 underline">Learn
+                        <a href="#_"
+                            class="relative mt-2 flex text-sm font-medium text-indigo-500 underline">Learn
                             More</a>
                     </div>
                 </div>
@@ -444,37 +460,38 @@
     <!-- END FEATURES SECTION -->
 
     <!-- Pricing Section -->
-    <div class="relative px-8 py-10 bg-white border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
+    <div class="relative border-t border-gray-200 bg-white px-8 py-10 md:py-16 lg:py-24 xl:px-0 xl:py-40">
 
-        <div id="pricing" class="container flex flex-col items-center h-full max-w-6xl mx-auto">
-            <h2 class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">Our Pricing</h2>
+        <div id="pricing" class="container mx-auto flex h-full max-w-6xl flex-col items-center">
+            <h2 class="my-5 text-base font-medium uppercase tracking-tight text-indigo-500">Our Pricing</h2>
             <h3
-                class="w-full max-w-2xl px-5 px-8 mt-2 text-2xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl md:px-0">
+                class="mt-2 w-full max-w-2xl px-5 px-8 text-center text-2xl font-black leading-tight text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl md:px-0">
                 Simple, Transparent Pricing for Everyone</h3>
 
-            <div class="max-w-full mx-auto md:max-w-6xl sm:px-8">
+            <div class="mx-auto max-w-full sm:px-8 md:max-w-6xl">
                 <!-- Basic Pricing -->
-                <div class="relative flex flex-col items-center block sm:flex-row">
+                <div class="relative block flex flex-col items-center sm:flex-row">
                     <div
-                        class="relative z-0 w-11/12 max-w-sm my-8 border border-gray-200 rounded-lg sm:w-3/5 lg:w-1/3 sm:my-5 md:-mr-4">
-                        <div class="overflow-hidden text-black bg-white border-t border-gray-100 rounded-lg shadow-sm">
+                        class="relative z-0 my-8 w-11/12 max-w-sm rounded-lg border border-gray-200 sm:my-5 sm:w-3/5 md:-mr-4 lg:w-1/3">
+                        <div class="overflow-hidden rounded-lg border-t border-gray-100 bg-white text-black shadow-sm">
                             <div
-                                class="block max-w-sm px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-6">
-                                <h3 class="p-3 text-lg font-bold tracking-wide text-center uppercase">Basic<span
+                                class="sm:text-md mx-auto mt-5 block max-w-sm px-8 text-left text-sm text-black lg:px-6">
+                                <h3 class="p-3 text-center text-lg font-bold uppercase tracking-wide">Basic<span
                                         class="ml-2 font-light">Plan</span></h3>
                                 <h4
-                                    class="flex items-center justify-center pb-6 text-4xl font-bold text-center text-gray-900">
-                                    <span class="mr-1 -ml-2 text-lg text-gray-700">$</span>48</h4>
+                                    class="flex items-center justify-center pb-6 text-center text-4xl font-bold text-gray-900">
+                                    <span class="-ml-2 mr-1 text-lg text-gray-700">$</span>48
+                                </h4>
                                 <p class="text-sm text-gray-600">In our basic plan you can take advantage of all these
                                     features below.
                                 </p>
                             </div>
 
-                            <div class="flex flex-wrap px-6 mt-8">
+                            <div class="mt-8 flex flex-wrap px-6">
                                 <ul>
                                     <li class="flex items-center">
-                                        <div class="p-2 text-green-500 rounded-full fill-current ">
-                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                        <div class="rounded-full fill-current p-2 text-green-500">
+                                            <svg class="h-6 w-6 align-middle" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -484,8 +501,8 @@
                                         <span class="ml-3 text-lg text-gray-700">Awesome Feature</span>
                                     </li>
                                     <li class="flex items-center">
-                                        <div class="p-2 text-green-500 rounded-full fill-current ">
-                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                        <div class="rounded-full fill-current p-2 text-green-500">
+                                            <svg class="h-6 w-6 align-middle" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -495,8 +512,8 @@
                                         <span class="ml-3 text-lg text-gray-700">And Another Cool Feature</span>
                                     </li>
                                     <li class="flex items-center">
-                                        <div class="p-2 text-green-500 rounded-full fill-current ">
-                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                        <div class="rounded-full fill-current p-2 text-green-500">
+                                            <svg class="h-6 w-6 align-middle" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -507,34 +524,35 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="flex items-center block p-8 uppercase">
+                            <div class="block flex items-center p-8 uppercase">
                                 <a href="#_"
-                                    class="block w-full px-6 py-4 mt-3 text-lg font-semibold text-center text-white bg-gray-900 rounded shadow-sm hover:bg-green-600">Select
+                                    class="mt-3 block w-full rounded bg-gray-900 px-6 py-4 text-center text-lg font-semibold text-white shadow-sm hover:bg-green-400">Select
                                     This Plan</a>
                             </div>
                         </div>
                     </div>
                     <!-- Pro Pricing -->
                     <div
-                        class="relative z-10 w-full max-w-md my-8 bg-white rounded-lg shadow-lg sm:w-2/3 lg:w-1/3 sm:my-5">
+                        class="relative z-10 my-8 w-full max-w-md rounded-lg bg-white shadow-lg sm:my-5 sm:w-2/3 lg:w-1/3">
                         <div
-                            class="py-4 text-sm font-semibold leading-none tracking-wide text-center text-white uppercase bg-indigo-500 rounded-t">
+                            class="rounded-t bg-indigo-500 py-4 text-center text-sm font-semibold uppercase leading-none tracking-wide text-white">
                             Most Popular</div>
-                        <div class="block max-w-sm px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-6">
-                            <h3 class="p-3 pb-1 text-lg font-bold tracking-wide text-center uppercase">Pro<span
+                        <div class="sm:text-md mx-auto mt-5 block max-w-sm px-8 text-left text-sm text-black lg:px-6">
+                            <h3 class="p-3 pb-1 text-center text-lg font-bold uppercase tracking-wide">Pro<span
                                     class="ml-2 font-light">Plan</span></h3>
                             <h4
-                                class="flex items-center justify-center pb-6 text-5xl font-bold text-center text-gray-900">
-                                <span class="mr-1 -ml-2 text-lg text-gray-700">$</span>98</h4>
+                                class="flex items-center justify-center pb-6 text-center text-5xl font-bold text-gray-900">
+                                <span class="-ml-2 mr-1 text-lg text-gray-700">$</span>98
+                            </h4>
                             <p class="text-sm text-gray-600">Our most popular package is the Pro Plan which gives you
                                 access to the
                                 following:</p>
                         </div>
-                        <div class="flex justify-start pl-12 mt-8 sm:justify-start">
+                        <div class="mt-8 flex justify-start pl-12 sm:justify-start">
                             <ul>
                                 <li class="flex items-center">
-                                    <div class="p-2 text-green-500 rounded-full fill-current">
-                                        <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                    <div class="rounded-full fill-current p-2 text-green-500">
+                                        <svg class="h-6 w-6 align-middle" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                             stroke-linejoin="round">
                                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -544,8 +562,8 @@
                                     <span class="ml-3 text-lg text-gray-700">Really Cool Features</span>
                                 </li>
                                 <li class="flex items-center">
-                                    <div class="p-2 text-green-500 rounded-full fill-current ">
-                                        <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                    <div class="rounded-full fill-current p-2 text-green-500">
+                                        <svg class="h-6 w-6 align-middle" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                             stroke-linejoin="round">
                                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -555,8 +573,8 @@
                                     <span class="ml-3 text-lg text-gray-700">Another Cool Feature</span>
                                 </li>
                                 <li class="flex items-center">
-                                    <div class="p-2 text-green-500 rounded-full fill-current ">
-                                        <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                    <div class="rounded-full fill-current p-2 text-green-500">
+                                        <svg class="h-6 w-6 align-middle" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                             stroke-linejoin="round">
                                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -568,32 +586,33 @@
                             </ul>
                         </div>
 
-                        <div class="flex items-center block p-8 uppercase">
+                        <div class="block flex items-center p-8 uppercase">
                             <a href="#_"
-                                class="block w-full px-6 py-4 mt-3 text-lg font-semibold text-center text-white bg-gray-900 rounded shadow-sm hover:bg-indigo-600">Select
+                                class="mt-3 block w-full rounded bg-gray-900 px-6 py-4 text-center text-lg font-semibold text-white shadow-sm hover:bg-indigo-600">Select
                                 This Plan</a>
                         </div>
                     </div>
                     <!-- Premium Pricing -->
                     <div
-                        class="relative z-0 w-11/12 max-w-sm my-8 rounded-lg shadow-lg sm:w-3/5 lg:w-1/3 sm:my-5 md:-ml-4">
-                        <div class="overflow-hidden text-black bg-white rounded-lg shadow-lg shadow-inner">
+                        class="relative z-0 my-8 w-11/12 max-w-sm rounded-lg shadow-lg sm:my-5 sm:w-3/5 md:-ml-4 lg:w-1/3">
+                        <div class="overflow-hidden rounded-lg bg-white text-black shadow-inner shadow-lg">
                             <div
-                                class="block max-w-sm px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-8">
-                                <h3 class="p-3 pb-1 text-lg font-bold tracking-wide text-center uppercase">Premium<span
+                                class="sm:text-md mx-auto mt-5 block max-w-sm px-8 text-left text-sm text-black lg:px-8">
+                                <h3 class="p-3 pb-1 text-center text-lg font-bold uppercase tracking-wide">Premium<span
                                         class="ml-2 font-light">Plan</span></h3>
                                 <h4
-                                    class="flex items-center justify-center pb-6 text-4xl font-bold text-center text-gray-900">
-                                    <span class="mr-1 -ml-2 text-lg text-gray-700">$</span>78</h4>
+                                    class="flex items-center justify-center pb-6 text-center text-4xl font-bold text-gray-900">
+                                    <span class="-ml-2 mr-1 text-lg text-gray-700">$</span>78
+                                </h4>
                                 <p class="pl-2 text-sm text-gray-600">With our premium plan you can take advantage of
                                     all the following
                                     features:</p>
                             </div>
-                            <div class="flex flex-wrap px-8 mt-8">
+                            <div class="mt-8 flex flex-wrap px-8">
                                 <ul>
                                     <li class="flex items-center">
-                                        <div class="p-2 text-green-500 rounded-full fill-current ">
-                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                        <div class="rounded-full fill-current p-2 text-green-500">
+                                            <svg class="h-6 w-6 align-middle" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -603,8 +622,8 @@
                                         <span class="ml-3 text-lg text-gray-700">Totally Tubular Feature</span>
                                     </li>
                                     <li class="flex items-center">
-                                        <div class="p-2 text-green-500 rounded-full fill-current ">
-                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                        <div class="rounded-full fill-current p-2 text-green-500">
+                                            <svg class="h-6 w-6 align-middle" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -614,8 +633,8 @@
                                         <span class="ml-3 text-lg text-gray-700">Super Cool Feature</span>
                                     </li>
                                     <li class="flex items-center">
-                                        <div class="p-2 text-green-500 rounded-full fill-current ">
-                                            <svg class="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                                        <div class="rounded-full fill-current p-2 text-green-500">
+                                            <svg class="h-6 w-6 align-middle" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -627,9 +646,9 @@
                                 </ul>
                             </div>
 
-                            <div class="flex items-center block p-8 uppercase">
+                            <div class="block flex items-center p-8 uppercase">
                                 <a href="#_"
-                                    class="block w-full px-6 py-4 mt-3 text-lg font-semibold text-center text-white bg-gray-900 rounded shadow-sm hover:bg-green-600">Select
+                                    class="mt-3 block w-full rounded bg-gray-900 px-6 py-4 text-center text-lg font-semibold text-white shadow-sm hover:bg-green-400">Select
                                     This Plan</a>
                             </div>
                         </div>
@@ -644,11 +663,12 @@
 
     <!-- Start Testimonials -->
     <div id="testimonials"
-        class="flex items-center justify-center w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex-col items-center ">
-                <div class="flex flex-col items-center justify-center w-full h-full max-w-2xl pr-8 mx-auto text-center">
-                    <p class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">Our customers love
+        class="flex w-full items-center justify-center border-t border-gray-200 px-8 py-10 md:py-16 lg:py-24 xl:px-0 xl:py-40">
+        <div class="mx-auto max-w-6xl">
+            <div class="flex-col items-center">
+                <div
+                    class="mx-auto flex h-full w-full max-w-2xl flex-col items-center justify-center pr-8 text-center">
+                    <p class="my-5 text-base font-medium uppercase tracking-tight text-indigo-500">Our customers love
                         our product
                     </p>
                     <h2
@@ -659,13 +679,14 @@
                         list of case studies and customer testimonials.</p>
 
                 </div>
-                <div class="flex flex-col items-center justify-center max-w-2xl py-8 mx-auto xl:flex-row xl:max-w-full">
+                <div
+                    class="mx-auto flex max-w-2xl flex-col items-center justify-center py-8 xl:max-w-full xl:flex-row">
                     <div class="w-full xl:w-1/2 xl:pr-8">
                         <blockquote
-                            class="flex flex-col-reverse items-center justify-between w-full col-span-1 p-6 text-center transition-all duration-200 bg-gray-100 rounded-lg md:flex-row md:text-left hover:bg-white hover:shadow ease">
+                            class="ease col-span-1 flex w-full flex-col-reverse items-center justify-between rounded-lg bg-gray-100 p-6 text-center transition-all duration-200 hover:bg-white hover:shadow md:flex-row md:text-left">
                             <div class="flex flex-col pr-8">
                                 <div class="relative pl-12">
-                                    <svg class="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
+                                    <svg class="absolute left-0 h-10 w-10 fill-current text-indigo-500"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
                                         <path
                                             d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
@@ -675,20 +696,20 @@
                                     </p>
                                 </div>
 
-                                <h3 class="pl-12 mt-3 text-base font-medium leading-5 text-gray-800 truncate">Sandra
-                                    Walton <span class="mt-1 text-sm leading-5 text-gray-500 truncate">- CEO
+                                <h3 class="mt-3 truncate pl-12 text-base font-medium leading-5 text-gray-800">Sandra
+                                    Walton <span class="mt-1 truncate text-sm leading-5 text-gray-500">- CEO
                                         SomeCompany</span></h3>
-                                <p class="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
+                                <p class="mt-1 truncate text-sm leading-5 text-gray-500"></p>
                             </div>
-                            <img class="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
+                            <img class="mb-5 h-24 w-24 flex-shrink-0 rounded-full bg-gray-300 object-cover md:mb-0"
                                 src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2694&q=80"
                                 alt="">
                         </blockquote>
                         <blockquote
-                            class="flex flex-col-reverse items-center justify-between w-full col-span-1 p-6 mt-16 mb-16 text-center transition-all duration-200 bg-gray-100 rounded-lg md:flex-row md:text-left hover:bg-white hover:shadow ease xl:mb-0">
+                            class="ease col-span-1 mb-16 mt-16 flex w-full flex-col-reverse items-center justify-between rounded-lg bg-gray-100 p-6 text-center transition-all duration-200 hover:bg-white hover:shadow md:flex-row md:text-left xl:mb-0">
                             <div class="flex flex-col pr-10">
                                 <div class="relative pl-12">
-                                    <svg class="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
+                                    <svg class="absolute left-0 h-10 w-10 fill-current text-indigo-500"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
                                         <path
                                             d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
@@ -697,45 +718,48 @@
                                         quickly bootstrap any
                                         project.</p>
                                 </div>
-                                <h3 class="pl-12 mt-3 text-base font-medium leading-5 text-gray-800 truncate">Kenny
-                                    Jones <span class="mt-1 text-sm leading-5 text-gray-500 truncate">- CEO
+                                <h3 class="mt-3 truncate pl-12 text-base font-medium leading-5 text-gray-800">Kenny
+                                    Jones <span class="mt-1 truncate text-sm leading-5 text-gray-500">- CEO
                                         SomeCompany</span></h3>
-                                <p class="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
+                                <p class="mt-1 truncate text-sm leading-5 text-gray-500"></p>
                             </div>
-                            <img class="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
+                            <img class="mb-5 h-24 w-24 flex-shrink-0 rounded-full bg-gray-300 object-cover md:mb-0"
                                 src="https://images.unsplash.com/photo-1546820389-44d77e1f3b31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80"
                                 alt="">
                         </blockquote>
                     </div>
                     <div class="w-full xl:w-1/2 xl:pl-8">
                         <blockquote
-                            class="flex flex-col-reverse items-center justify-between w-full col-span-1 p-6 text-center transition-all duration-200 bg-gray-100 rounded-lg md:flex-row md:text-left hover:bg-white hover:shadow ease">
+                            class="ease col-span-1 flex w-full flex-col-reverse items-center justify-between rounded-lg bg-gray-100 p-6 text-center transition-all duration-200 hover:bg-white hover:shadow md:flex-row md:text-left">
                             <div class="flex flex-col pr-10">
                                 <div class="relative pl-12">
-                                    <svg class="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
+                                    <svg class="absolute left-0 h-10 w-10 fill-current text-indigo-500"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
                                         <path
                                             d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
                                     </svg>
-                                    <p class="mt-2 text-base text-gray-600">Extremely helpful in every single project we
+                                    <p class="mt-2 text-base text-gray-600">Extremely helpful in every single project
+                                        we
                                         have released.
                                     </p>
                                 </div>
 
-                                <h3 class="pl-12 mt-3 text-base font-medium leading-5 text-gray-800 truncate">Mike Smith
-                                    <span class="mt-1 text-sm leading-5 text-gray-500 truncate">- CEO SomeCompany</span>
+                                <h3 class="mt-3 truncate pl-12 text-base font-medium leading-5 text-gray-800">Mike
+                                    Smith
+                                    <span class="mt-1 truncate text-sm leading-5 text-gray-500">- CEO
+                                        SomeCompany</span>
                                 </h3>
-                                <p class="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
+                                <p class="mt-1 truncate text-sm leading-5 text-gray-500"></p>
                             </div>
-                            <img class="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
+                            <img class="mb-5 h-24 w-24 flex-shrink-0 rounded-full bg-gray-300 object-cover md:mb-0"
                                 src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1700&q=80"
                                 alt="">
                         </blockquote>
                         <blockquote
-                            class="flex flex-col-reverse items-center justify-between w-full col-span-1 p-6 mt-16 text-center transition-all duration-200 bg-gray-100 rounded-lg md:flex-row md:text-left hover:bg-white hover:shadow ease">
+                            class="ease col-span-1 mt-16 flex w-full flex-col-reverse items-center justify-between rounded-lg bg-gray-100 p-6 text-center transition-all duration-200 hover:bg-white hover:shadow md:flex-row md:text-left">
                             <div class="flex flex-col pr-10">
                                 <div class="relative pl-12">
-                                    <svg class="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
+                                    <svg class="absolute left-0 h-10 w-10 fill-current text-indigo-500"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
                                         <path
                                             d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
@@ -745,12 +769,12 @@
                                         project.</p>
                                 </div>
 
-                                <h3 class="pl-12 mt-3 text-base font-medium leading-5 text-gray-800 truncate">Molly
-                                    Sanchez <span class="mt-1 text-sm leading-5 text-gray-500 truncate">- CEO
+                                <h3 class="mt-3 truncate pl-12 text-base font-medium leading-5 text-gray-800">Molly
+                                    Sanchez <span class="mt-1 truncate text-sm leading-5 text-gray-500">- CEO
                                         SomeCompany</span></h3>
-                                <p class="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
+                                <p class="mt-1 truncate text-sm leading-5 text-gray-500"></p>
                             </div>
-                            <img class="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
+                            <img class="mb-5 h-24 w-24 flex-shrink-0 rounded-full bg-gray-300 object-cover md:mb-0"
                                 src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80"
                                 alt="">
                         </blockquote>
@@ -764,13 +788,13 @@
     <!-- End Testimonials-->
 
 
-    <footer class="px-4 pt-12 pb-8 text-white bg-white border-t border-gray-200">
-        <div class="container flex flex-col justify-between max-w-6xl px-4 mx-auto overflow-hidden lg:flex-row">
-            <div class="w-full pl-12 mr-4 text-left lg:w-1/4 sm:text-center sm:pl-0 lg:text-left">
+    <footer class="border-t border-gray-200 bg-white px-4 pb-8 pt-12 text-white">
+        <div class="container mx-auto flex max-w-6xl flex-col justify-between overflow-hidden px-4 lg:flex-row">
+            <div class="mr-4 w-full pl-12 text-left sm:pl-0 sm:text-center lg:w-1/4 lg:text-left">
                 <a href="/"
-                    class="flex justify-start block text-left sm:text-center lg:text-left sm:justify-center lg:justify-start">
+                    class="block flex justify-start text-left sm:justify-center sm:text-center lg:justify-start lg:text-left">
                     <span class="flex items-start sm:items-center">
-                        <svg class="w-auto h-6 text-gray-800 fill-current" viewBox="0 0 194 116"
+                        <svg class="h-6 w-auto fill-current text-gray-800" viewBox="0 0 194 116"
                             xmlns="http://www.w3.org/2000/svg">
                             <g fill-rule="evenodd">
                                 <path
@@ -781,12 +805,12 @@
                         </svg>
                     </span>
                 </a>
-                <p class="mt-6 mr-4 text-base text-gray-500">Crafting the next-level of user experience and engagement.
+                <p class="mr-4 mt-6 text-base text-gray-500">Crafting the next-level of user experience and engagement.
                 </p>
             </div>
-            <div class="block w-full pl-10 mt-6 text-sm lg:w-3/4 sm:flex lg:mt-0">
-                <ul class="flex flex-col w-full p-0 font-medium text-left text-gray-700 list-none">
-                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-gray-800 uppercase md:mt-0">
+            <div class="mt-6 block w-full pl-10 text-sm sm:flex lg:mt-0 lg:w-3/4">
+                <ul class="flex w-full list-none flex-col p-0 text-left font-medium text-gray-700">
+                    <li class="mt-5 inline-block px-3 py-2 font-bold uppercase tracking-wide text-gray-800 md:mt-0">
                         Product</li>
                     <li><a href="#_"
                             class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Features</a>
@@ -800,18 +824,19 @@
                     <li><a href="#_"
                             class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">FAQ</a></li>
                 </ul>
-                <ul class="flex flex-col w-full p-0 font-medium text-left text-gray-700 list-none">
-                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-gray-800 uppercase md:mt-0">
+                <ul class="flex w-full list-none flex-col p-0 text-left font-medium text-gray-700">
+                    <li class="mt-5 inline-block px-3 py-2 font-bold uppercase tracking-wide text-gray-800 md:mt-0">
                         Company</li>
                     <li><a href="#_"
                             class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Privacy</a>
                     </li>
-                    <li><a href="#_" class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Terms
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Terms
                             of
                             Service</a></li>
                 </ul>
-                <ul class="flex flex-col w-full p-0 font-medium text-left text-gray-700 list-none">
-                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-gray-800 uppercase md:mt-0">
+                <ul class="flex w-full list-none flex-col p-0 text-left font-medium text-gray-700">
+                    <li class="mt-5 inline-block px-3 py-2 font-bold uppercase tracking-wide text-gray-800 md:mt-0">
                         TailwindCSS
                     </li>
                     <li><a href="https://devdojo.com/tailwindcss/components"
@@ -821,28 +846,29 @@
                             class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Tailwind
                             Templates</a></li>
                     <li><a href="https://devdojo.com/tails"
-                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Tails</a></li>
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Tails</a>
+                    </li>
                 </ul>
-                <div class="flex flex-col w-full text-gray-700">
-                    <div class="inline-block px-3 py-2 mt-5 font-bold text-gray-800 uppercase md:mt-0">Follow Us</div>
-                    <div class="flex justify-start pl-4 mt-2">
-                        <a class="flex items-center block mr-6 text-gray-400 no-underline hover:text-gray-600"
+                <div class="flex w-full flex-col text-gray-700">
+                    <div class="mt-5 inline-block px-3 py-2 font-bold uppercase text-gray-800 md:mt-0">Follow Us</div>
+                    <div class="mt-2 flex justify-start pl-4">
+                        <a class="mr-6 block flex items-center text-gray-400 no-underline hover:text-gray-600"
                             target="_blank" rel="noopener noreferrer" href="https://devdojo.com">
-                            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                            <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M23.998 12c0-6.628-5.372-12-11.999-12C5.372 0 0 5.372 0 12c0 5.988 4.388 10.952 10.124 11.852v-8.384H7.078v-3.469h3.046V9.356c0-3.008 1.792-4.669 4.532-4.669 1.313 0 2.686.234 2.686.234v2.953H15.83c-1.49 0-1.955.925-1.955 1.874V12h3.328l-.532 3.469h-2.796v8.384c5.736-.9 10.124-5.864 10.124-11.853z" />
                             </svg>
                         </a>
-                        <a class="flex items-center block mr-6 text-gray-400 no-underline hover:text-gray-600"
+                        <a class="mr-6 block flex items-center text-gray-400 no-underline hover:text-gray-600"
                             target="_blank" rel="noopener noreferrer" href="https://devdojo.com">
-                            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                            <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M23.954 4.569a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.061a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.548l-.047-.02z" />
                             </svg>
                         </a>
-                        <a class="flex items-center block text-gray-400 no-underline hover:text-gray-600"
+                        <a class="block flex items-center text-gray-400 no-underline hover:text-gray-600"
                             target="_blank" rel="noopener noreferrer" href="https://devdojo.com">
-                            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                            <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
                             </svg>
@@ -851,14 +877,14 @@
                 </div>
             </div>
         </div>
-        <div class="pt-4 pt-6 mt-10 text-center text-gray-500 border-t border-gray-100">© 2023 Belajaritma. All rights
+        <div class="mt-10 border-t border-gray-100 pt-4 pt-6 text-center text-gray-500">© 2023 Belajaritma. All rights
             reserved.</div>
     </footer>
 
     <!-- a little JS for the mobile nav button -->
     <script>
         if (document.getElementById('nav-mobile-btn')) {
-            document.getElementById('nav-mobile-btn').addEventListener('click', function () {
+            document.getElementById('nav-mobile-btn').addEventListener('click', function() {
                 if (this.classList.contains('close')) {
                     document.getElementById('nav').classList.add('hidden');
                     this.classList.remove('close');
@@ -870,4 +896,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -243,15 +243,9 @@
                                         <div id="editor">
                                         </div>
                                     </div>
-
-
                                 </div>
-
                             </form>
-
                         </div>
-
-
                         <!--Footer-->
                         <div class="mt-8 flex justify-end pt-2">
                             <button

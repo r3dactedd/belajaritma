@@ -44,6 +44,14 @@ Route::get('/forum/1', function () {
 Route::get('/courses', function () {
     return view('courses.courses');
 });
+
+Route::get('/manager', function () {
+    return view('administrator.admin_manager');
+});
+
+Route::get('/manager/1', function () {
+    return view('administrator.admin_content');
+});
 Route::get('/courses/1', function () {
     return view('courses.course_content');
 });
@@ -53,7 +61,7 @@ Route::get('/courses/1/pdf', function () {
 Route::get('/courses/2/video', function () {
     return view('courses.course_video');
 });
-Route::get('/courses/2/asg', function () {
+Route::get('/courses/3/asg', function () {
     return view('courses.course_asg');
 });
 

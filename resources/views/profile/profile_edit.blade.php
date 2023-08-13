@@ -37,7 +37,7 @@
         <div class="container mx-auto my-5 p-5">
             {{-- EDIT PROFILE --}}
             <div class="mx-auto rounded-xl bg-white px-4 py-8">
-                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit Profile</h2>
+                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Ubah Profil</h2>
                 <form action="/editProfile" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
@@ -55,8 +55,9 @@
                             <label for="username" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                                 Username</label>
                             <input type="text" name="username" id="inputUsername"
+                                value="masukin current Usernamenya user"
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                                placeholder="Username" required="">
+                                placeholder="Input Username" required="">
                             {{-- @error('username')
                                 <p>{{ $message }}</p>
                             @enderror --}}
@@ -66,30 +67,60 @@
                             <label for="firstName" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Lengkap</label>
                             <input type="text" name="first_name" id="inputFirstName"
+                                value="masukin current Nama Lengkap user"
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                                placeholder="Nama Lengkap" required="">
+                                placeholder="Input Nama Lengkap" required="">
                             {{-- @error('first_name')
                                 <p>{{ $message }}</p>
                             @enderror --}}
 
                         </div>
 
-                        <div class="w-full">
+                        <div class="sm:col-span-2">
                             <label for="email"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="text" name="email" id="inputEmail"
+                            <input type="text" name="email" id="inputEmail" value="masukin current Email user"
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                                 placeholder="Email" required="">
                             {{-- @error('email')
                                 <p>{{ $message }}</p>
                             @enderror --}}
                         </div>
-                        <div class="w-full">
-                            <label for="password"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                            <input type="password" name="password" id="inputPassword"
+
+
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button type="submit" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+                            Update Profil
+                        </button>
+                    </div>
+                </form>
+            </div>
+            {{-- EDIT PASSWORD --}}
+            <div class="mt-8"></div>
+            <div class="mx-auto rounded-xl bg-white px-4 py-8">
+                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Ubah Password</h2>
+                <form action="/editProfile" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
+
+
+                        <div class="sm:col-span-2">
+                            <label for="email"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password Lama</label>
+                            <input type="password" name="oldPass" id="inputOldPass"
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                                placeholder="Enter New Password" required="">
+                                placeholder="Masukkan Password Lama" required="">
+                            {{-- @error('password')
+                                <p>{{ $message }}</p>
+                            @enderror --}}
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="password"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password Baru</label>
+                            <input type="password" name="newPass" id="inputNewPass"
+                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                placeholder="Masukkan Password Baru" required="">
                             {{-- @error('password')
                                 <p>{{ $message }}</p>
                             @enderror --}}
@@ -98,50 +129,12 @@
                     </div>
                     <div class="flex items-center space-x-4">
                         <button type="submit" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
-                            Update Profile
+                            Ubah Password
                         </button>
                     </div>
                 </form>
             </div>
             {{-- EDIT PASSWORD --}}
-            <div class="mt-8"></div>
-            <div class="mx-auto rounded-xl bg-white px-4 py-8">
-                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit Profile</h2>
-                <form action="/editProfile" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
-
-
-                        <div class="sm:col-span-2">
-                            <label for="email"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="text" name="email" id="inputEmail"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                                placeholder="Email" required="">
-                            {{-- @error('email')
-                                <p>{{ $message }}</p>
-                            @enderror --}}
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label for="password"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                            <input type="password" name="password" id="inputPassword"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                                placeholder="Enter New Password" required="">
-                            {{-- @error('password')
-                                <p>{{ $message }}</p>
-                            @enderror --}}
-                        </div>
-
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <button type="submit"
-                            class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
-                            Update Profile
-                        </button>
-                    </div>
-                </form>
-            </div>
         </div>
         {{--  --}}
     @endsection

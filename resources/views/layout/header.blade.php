@@ -34,7 +34,7 @@
                 </li>
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="instructors">Add shits</a>
+                    <a href="/manager">Admin Manager (only for admins lah ya)</a>
                 </li>
             </ul>
         </div>
