@@ -9,6 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
     <link href="./style.css" rel="stylesheet" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let modal = document.getElementById("my-modal");
+            let btn = document.getElementById("open-btn");
+            let button = document.getElementById("ok-btn");
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            button.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
 </head>
 
 <body class="bg-gray-200 pb-12">
@@ -88,7 +109,15 @@
             </p>
         </div>
 
-
+        <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
+            <a href="/courses/1/getcerti"
+                class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Unduh
+                Sertifikat</a>
+        </p>
+        <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
+            <a href="/forum"
+                class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Forum</a>
+        </p>
     @endsection
     @section('footer')
         @include('layout.footer')
