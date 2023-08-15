@@ -47,28 +47,12 @@
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
                         <a class="flex items-center" href="/home">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
                             <span class="mb-1 ml-2">Kursus</span>
                         </a>
-                </div>
-
-                <div class="mt-6 md:mt-0">
-                    <button>
-                        <div
-                            class="flex items-center rounded bg-teal-400 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
-                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <line x1="12" y1="5" x2="12" y2="19" />
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                            </svg>
-                            <div class="mx-2"> Tambah Kursus </div>
-                    </button>
                 </div>
             </div>
         </div>
@@ -103,12 +87,9 @@
                                             <p class="mt-4 w-fit rounded-xl bg-green-400 px-6 py-1.5 text-sm text-white">
                                                 Selesai
                                             </p>
-
                                         </div>
-
                                     </div>
                                 </div>
-
                                 <p class="text-md mb-6 w-11/12 px-4 font-normal tracking-normal text-gray-600">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
