@@ -43,17 +43,27 @@ Route::get('/forum/1', function () {
     return view('forum.forum_content');
 });
 
-Route::get('/courses', [CourseController::class, 'showData']);
+Route::get('/courses', function () {
+    return view('courses.courses');
+});
 
-Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
+Route::get('/manager', function () {
+    return view('administrator.admin_manager');
+});
 
+Route::get('/manager/1', function () {
+    return view('administrator.admin_content');
+});
+Route::get('/courses/1', function () {
+    return view('courses.course_content');
+});
 Route::get('/courses/1/pdf', function () {
     return view('courses.course_pdf');
 });
 Route::get('/courses/2/video', function () {
     return view('courses.course_video');
 });
-Route::get('/courses/2/asg', function () {
+Route::get('/courses/3/asg', function () {
     return view('courses.course_asg');
 });
 

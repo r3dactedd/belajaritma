@@ -13,15 +13,10 @@
 
 <body>
     <section class="overflow-y-scroll bg-white xl:h-screen">
-        <div class="mx-auto flex h-full flex-col-reverse justify-center lg:flex-row">
+        <div class="mx-auto flex h-full flex-col justify-center lg:flex-row">
             <div class="flex w-full justify-center bg-white lg:w-1/2">
                 <div class="mx-4 mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
-                    {{-- <div class="flex flex-col items-center justify-center px-5 pt-12 sm:px-10 lg:pt-0">
-                        <svg width="300px" height="100px" viewBox="0 0 384 100" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>63EC04EA-F9B5-4F76-AA27-C6D0890287B3</title>
-                        </svg>
-                    </div> --}}
+
 
                     <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Masuk</h1>
                     <h1 class="text-md text-center font-light">Selamat datang kembali di Belajaritma!</h1>

@@ -13,15 +13,10 @@
 
 <body>
     <section class="overflow-y-scroll bg-white xl:h-screen">
-        <div class="mx-auto flex h-full flex-col-reverse justify-center lg:flex-row">
+        <div class="mx-auto flex h-full flex-col justify-center lg:flex-row">
             <div class="flex w-full justify-center bg-white lg:w-1/2">
                 <div class="mx-4 mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
-                    {{-- <div class="flex flex-col items-center justify-center px-5 pt-12 sm:px-10 lg:pt-0">
-                        <svg width="300px" height="100px" viewBox="0 0 384 100" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>63EC04EA-F9B5-4F76-AA27-C6D0890287B3</title>
-                        </svg>
-                    </div> --}}
+
 
                     <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Daftar</h1>
                     <h1 class="text-md text-center font-light">Mulailah perjalanan programming kamu sekarang juga.</h1>
@@ -43,36 +38,22 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <label for="first_name" class="font-semibold">Nama Pertama</label>
+                                <label for="first_name" class="font-semibold">Nama Lengkap</label>
                                 <label for="first_name" class="text-sm leading-tight text-red-500"> (Input
                                     details)</label>
-                                <input type="text" name="first_name"
-                                    class="form-control @error('first_name') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
+                                <input type="text" name="full_name"
+                                    class="form-control mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
                                     id="first_name" style=" border-radius:10px;" placeholder="Nama Pertama" required
                                     value="{{ old('first_name') }}" autofocus>
 
-                                @error('first_name')
+                                {{-- @error('first_name') is-invalid @enderror
+                                    @error('first_name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
-                                @enderror
+                                @enderror --}}
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <label for="lastname" class="font-semibold">Nama Belakang</label>
-                                <label for="first_name" class="text-sm leading-tight text-red-500"> (Input
-                                    details)</label>
-                                <input type="text" name="last_name"
-                                    class="form-control @error('last_name') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
-                                    id="last_name" style=" border-radius:10px;" placeholder="Nama Belakang" required
-                                    value="{{ old('last_name') }}" autofocus>
-
-                                @error('last_name')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
 
                             <div class="form-floating mb-3">
                                 <label for="username" class="font-semibold">Username</label>
@@ -107,7 +88,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <label for="password" class="font-semibold">Kata Sandi</label>
+                                <label for="password" class="font-semibold">Password</label>
                                 <label for="first_name" class="text-sm leading-tight text-red-500"> (Length detail
                                     sini)</label>
                                 <input type="password" name="password"
@@ -122,7 +103,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <label for="password_confirmation" class="font-semibold">Konfirmasi Kata Sandi</label>
+                                <label for="password_confirmation" class="font-semibold">Konfirmasi Password</label>
                                 <label for="first_name" class="text-sm leading-tight text-red-500"> (Harus sama dengan
                                     password)</label>
                                 <input type="password" name="password_confirmation"
