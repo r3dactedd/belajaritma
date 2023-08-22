@@ -43,9 +43,11 @@ Route::get('/forum/1', function () {
     return view('forum.forum_content');
 });
 
-Route::get('/courses', function () {
-    return view('courses.courses');
-});
+// Route::get('/courses', function () {
+//     return view('courses.courses');
+// });
+
+Route::get('/courses', [CourseController::class, 'showData']);
 
 Route::get('/manager', function () {
     return view('administrator.admin_manager');
@@ -54,9 +56,9 @@ Route::get('/manager', function () {
 Route::get('/manager/1', function () {
     return view('administrator.admin_content');
 });
-Route::get('/courses/1', function () {
-    return view('courses.course_content');
-});
+
+Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
+
 Route::get('/courses/1/pdf', function () {
     return view('courses.course_pdf');
 });
@@ -67,12 +69,10 @@ Route::get('/courses/3/asg', function () {
     return view('courses.course_asg');
 });
 
-Route::get('/profile/1', function () {
-    return view('profile.profile');
-});
-Route::get('/profile/1/edit', function () {
-    return view('profile.profile_edit');
-});
+Route::get('/profile', [ProfileController::class, 'viewProfile']);
+
+Route::get('/profile/edit', [ProfileController::class,'editProfile']);
+Route::post('/profile/edit', [ProfileController::class,'update']);
 
 Route::get('/courses/1/getcerti', function () {
     return view('certification.certificate');

@@ -22,7 +22,7 @@
         <section class="bg-white dark:bg-gray-900">
             <div class="max-w-2xl px-4 py-8 mx-auto lg:py-16">
                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit Profile</h2>
-                <form action="/editProfile" method="post" enctype="multipart/form-data">
+                <form action="/profile/edit" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
                         <div class="sm:col-span-2">

@@ -55,30 +55,30 @@
                             <div class="grid text-sm md:grid-cols-2">
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">First Name</div>
-                                    <div class="px-4 py-2"> FIRST </div>
+                                    <div class="px-4 py-2"> {{$searchUser->first_name}} </div>
                                     {{-- <div class="px-4 py-2">{{$searchUser->first_name}}</div> --}}
                                 </div>
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">Last Name</div>
-                                    <div class="px-4 py-2">LAST </div>
+                                    <div class="px-4 py-2">{{$searchUser->last_name}} </div>
                                     {{-- <div class="px-4 py-2">{{$searchUser->last_name}}</div> --}}
                                 </div>
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">Username</div>
-                                    <div class="px-4 py-2"> UNAME </div>
+                                    <div class="px-4 py-2"> {{$searchUser->username}}</div>
                                     {{-- <div class="px-4 py-2">{{$searchUser->username}}</div> --}}
                                 </div>
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">Email</div>
                                     <div class="px-4 py-2">
-                                        <a class="text-blue-800" href="mailto:jane@example.com"> MAIL </a>
+                                        <a class="text-blue-800" href="mailto:jane@example.com"> {{$searchUser->email}} </a>
                                         {{-- <a class="text-blue-800" href="mailto:jane@example.com">{{$searchUser->email}}</a> --}}
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="ml-4 mt-6 md:mt-0">
+                        {{-- <div class="ml-4 mt-6 md:mt-0">
                             <form action="/edit" method="get">
                                 <button
                                     class="mt-10 flex items-center rounded bg-blue-400 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
@@ -91,7 +91,7 @@
                                 action="/edit" method="get">
                                 <div class="mx-2"> Edit Profile debug</div>
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="my-4"></div>
                 </div>
