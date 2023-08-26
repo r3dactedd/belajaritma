@@ -203,7 +203,7 @@
                             <div
                                 class="right-0 top-0 mt-0 pl-12 sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
                                 <button
-                                    class="ml-2 mt-8 rounded-full bg-green-600 px-6 py-2 text-xs font-semibold text-white focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
+                                    class="ml-2 mt-8 rounded-full bg-green-400 px-6 py-2 text-xs font-semibold text-white focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
                                     Selesai
                                 </button>
                             </div>

@@ -36,16 +36,26 @@ Route::get('/home', function () {
     return view('courses.home');
 });
 
-
-
-Route::get('/courses', [CourseController::class, 'showData']);
+Route::get('/forum', function () {
+    return view('forum.forum');
+});
+Route::get('/forum/1', function () {
+    return view('forum.forum_content');
+});
 
 // Route::get('/courses', function () {
 //     return view('courses.courses');
 // });
-// Route::get('/courses/1', function () {
-//     return view('courses.course_content');
-// });
+
+Route::get('/courses', [CourseController::class, 'showData']);
+
+Route::get('/manager', function () {
+    return view('administrator.admin_manager');
+});
+
+Route::get('/manager/1', function () {
+    return view('administrator.admin_content');
+});
 
 Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
 
@@ -55,18 +65,14 @@ Route::get('/courses/1/pdf', function () {
 Route::get('/courses/2/video', function () {
     return view('courses.course_video');
 });
-Route::get('/courses/2/asg', function () {
+Route::get('/courses/3/asg', function () {
     return view('courses.course_asg');
 });
 
-// Route::get('/profile/1', function () {
-//     return view('profile.profile');
-// });
 Route::get('/profile', [ProfileController::class, 'viewProfile']);
 
-Route::get('/editProfile', [ProfileController::class,'editProfile']);
-Route::post('/editProfile', [ProfileController::class,'update']);
-
+Route::get('/profile/edit', [ProfileController::class,'editProfile']);
+Route::post('/profile/edit', [ProfileController::class,'update']);
 
 Route::get('/courses/1/getcerti', function () {
     return view('certification.certificate');
