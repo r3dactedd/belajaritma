@@ -85,12 +85,22 @@
                                 <p>{{ $message }}</p>
                             @enderror --}}
                         </div>
-
+                        <div class="sm:col-span-2">
+                            <label for="email"
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Tentang Saya</label>
+                            <textarea id="myInfo"
+                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                placeholder="Silahkan isi informasi mengenai anda." required="">INSERT TENTANG SAYA THINGS HERE
+                            </textarea>
+                            {{-- @error('email')
+                                <p>{{ $message }}</p>
+                            @enderror --}}
+                        </div>
 
                     </div>
                     <div class="flex items-center space-x-4">
                         <button type="submit" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
-                            Update Profil
+                            Simpan Profil
                         </button>
                     </div>
                 </form>
@@ -127,7 +137,8 @@
 
                     </div>
                     <div class="flex items-center space-x-4">
-                        <button type="submit" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+                        <button type="submit"
+                            class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
                             Ubah Password
                         </button>
                     </div>
