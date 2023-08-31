@@ -36,11 +36,11 @@
         </div>
         <div class="container mx-auto my-auto p-6 md:w-7/12">
 
-            <div class="my-4 bg-white md:flex">
+            <div class="my-4 rounded-xl bg-white md:flex">
                 <!-- Left Side -->
                 <div class="w-full md:w-1/3">
                     <!-- Profile Card -->
-                    <div class="h-full bg-white p-2 md:py-4 md:pl-8">
+                    <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
                             <img class="h-full px-4 py-8 md:px-0"
                                 src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
@@ -53,12 +53,12 @@
                 <div class="h-auto w-full md:mx-2 md:w-2/3">
                     <!-- Profile tab -->
                     <!-- About Section -->
-                    <div class="rounded-sm bg-white px-6 py-2 md:px-12">
+                    <div class="rounded-xl bg-white px-6 py-2 md:px-12">
                         <h1
                             class="py-2 pr-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-8 md:pr-4 md:text-left lg:text-3xl">
                             {{$data->course_name}}
                         </h1>
-                        <div class="grid-row-2 grid md:grid-cols-3">
+                        <div class="grid-row-2 grid md:grid-cols-2">
                             <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
                                 <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 640 512">
@@ -107,7 +107,7 @@
             <div class="my-4"></div>
             <div class="mx-auto my-auto md:-mx-2 md:flex">
                 <div class="h-auto w-full md:mx-2">
-                    <div class="rounded-sm bg-white p-4 shadow-sm">
+                    <div class="rounded-t-xl bg-white p-4 shadow-sm">
                         <div class="mb-3 ml-2 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
                             <span class="text-green-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -127,7 +127,7 @@
                         </div>
                     </div>
 
-                    <div class="rounded-sm bg-white p-4 shadow-sm">
+                    <div class="rounded-b-xl bg-white p-4 shadow-sm">
                         <div class="grid grid-cols-1 md:grid-cols-2">
                             <div>
                                 <div class="mb-3 ml-2 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
@@ -165,12 +165,13 @@
                                 </div>
                                 <ul class="list-inside space-y-2">
                                     <li>
-                                        <div class="px-4 text-teal-600">Owner at Her Company Inc.</div>
-                                        <div class="px-4 text-xs text-gray-500">March 2020 - Now</div>
+                                        <div class="px-4 text-teal-600">C Language Compiler (seperti DevC dan onlinegdb)
+                                        </div>
+                                        <div class="px-4 text-xs text-gray-500">Diperlukan untuk menjalankan kode C</div>
                                     </li>
                                     <li>
-                                        <div class="px-4 text-teal-600">Owner at Her Company Inc.</div>
-                                        <div class="px-4 text-xs text-gray-500">March 2020 - Now</div>
+                                        <div class="px-4 text-teal-600">Web Browser (seperti Chrome atau Firefox)</div>
+                                        <div class="px-4 text-xs text-gray-500">Digunakan untuk mengakses materi</div>
                                     </li>
 
                                 </ul>
@@ -183,169 +184,252 @@
             </div>
             <h1 class="my-8 text-center text-3xl font-semibold">Materi Pembelajaran </h1>
             <div id="syllabus"class="my-4"></div>
-            <div class="container mx-auto mb-10 flex flex-col-reverse rounded bg-white shadow md:w-3/5 lg:flex-row">
-                <a href="/courses/1/pdf">
-                    <div class="w-full">
-                        <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                            <div class="flex flex-row-reverse items-center justify-between lg:flex-col lg:items-start">
-                                <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-teal-400">
-                                    Sesi 1
-                                </h4>
-                            </div>
-                            <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                Materi Name
-                            </h2>
-                            <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut
-                                labore et dolore magna aliqua.
-                            </p>
-                            <p class="my-3 w-11/12 text-sm font-normal tracking-normal text-gray-600 lg:w-9/12">
-                                <svg class="ml-1" xmlns="http://www.w3.org/2000/svg" height="1.5em"
-                                    viewBox="0 0 512 512">
+
+            {{-- MATERI LIST START --}}
+            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                <div class="w-full px-4">
+                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                        <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
+                            <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-teal-400">
+                                Sesi 1
+                            </h4>
+                        </div>
+
+                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                            Materi 1
+                        </h2>
+                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                            We recommend this introduction as a starting point for how to move from face-to-face to
+                            online
+                            teaching. In this 60-minute webinar, we discuss how to effectively communicate with your
+                            students &
+                            the range of ways you can deliver content online.
+                        </p>
+
+                        <div class="transition hover:bg-indigo-50">
+                            <div class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
                                     <path
-                                        d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V304H176c-35.3 0-64 28.7-64 64V512H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM176 352h32c30.9 0 56 25.1 56 56s-25.1 56-56 56H192v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V448 368c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24H192v48h16zm96-80h32c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H304c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H320v96h16zm80-112c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16s-7.2 16-16 16H448v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H448v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V432 368z" />
+                                        d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
                                 </svg>
-                            </p>
-                        </div>
-                </a>
-                <div
-                    class="flex flex-row items-center justify-between border-t border-gray-300 px-5 py-3 md:px-10 lg:px-5 lg:py-4">
-                    <div class="flex items-center">
-                        <div class="flex items-center">
-                            <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
-                                <a href="/courses/1/pdf"
-                                    class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Buka
-                                    Sesi</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container mx-auto mb-10 flex flex-col-reverse rounded bg-white shadow md:w-3/5 lg:flex-row">
-            <div class="w-full">
-                <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                    <div class="flex flex-row-reverse items-center justify-between lg:flex-col lg:items-start">
-                        <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-teal-400">
-                            Sesi 2
-                        </h4>
-                    </div>
-                    <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                        Video Materi
-                    </h2>
-                    <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                        We recommend this introduction as a starting point for how to move from face-to-face to
-                        online
-                        teaching. In this 60-minute webinar, we discuss how to effectively communicate with your
-                        students &
-                        the range of ways you can deliver content online.
-                    </p>
-                    <p class="my-3 w-11/12 text-sm font-normal tracking-normal text-gray-600 lg:w-9/12">
-                        <svg class="ml-1" xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 576 512">
-                            <path
-                                d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
-                        </svg>
-                    </p>
-                </div>
-                <div
-                    class="flex flex-row items-center justify-between border-t border-gray-300 px-5 py-3 md:px-10 lg:px-5 lg:py-4">
-                    <div class="flex items-center">
-                        <div class="flex items-center">
-                            <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
-                                <a href="/courses/2/video"
-                                    class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Buka
-                                    Sesi</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div
-            class="f-r-t container mx-auto mb-10 mt-10 flex flex-col-reverse rounded bg-white shadow md:w-3/5 lg:flex-row">
-            <div class="w-full">
-                <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                    <div class="flex flex-row-reverse items-center justify-between lg:flex-col lg:items-start">
-                        <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-teal-400">
-                            Sesi 3
-                        </h4>
-                    </div>
-                    <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                        Assignment
-                    </h2>
-                    <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                        We recommend this introduction as a starting point for how to move from face-to-face to
-                        online
-                        teaching. In this 60-minute webinar, we discuss how to effectively communicate with your
-                        students &
-                        the range of ways you can deliver content online.
-                    </p>
-                    <p class="my-3 w-11/12 text-sm font-normal tracking-normal text-gray-600 lg:w-9/12">
-                        <svg class="ml-1" xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 576 512">
-                            <path
-                                d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                        </svg>
-                    </p>
-                </div>
-                <div
-                    class="flex flex-row items-center justify-between border-t border-gray-300 px-5 py-3 md:px-10 lg:px-5 lg:py-4">
-                    <div class="flex items-center">
-                        <div class="flex items-center">
+                                <h3 class="font-semibold">Konten Modul</h3>
+                            </div>
 
-                            <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
-                                <a href="/courses/3/asg"
-                                    class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Buka
-                                    Sesi</a>
-                            </p>
+                            <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
+                                <ul class="ml-8 list-inside space-y-2 pb-4">
+                                    <!-- Materi Module-->
+                                    <li>
+                                        <div class="flex items-center">
+                                            <!-- If done, add check-->
+                                            <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                                height="1em" viewBox="0 0 512 512">
+
+                                                <path
+                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                            </svg>
+                                            <a href="/courses/1/pdf"
+                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                                PDF Materi Ticked
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="flex items-center">
+                                            <!-- If done, add check-->
+                                            <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                                height="1em" viewBox="0 0 512 512">
+                                                <path
+                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                            </svg>
+                                            <a href="/courses/2/video"
+                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                                Video Materi Ticked
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <!-- If not done, add pointer-events-none -->
+                                        <div class="pointer-events-none flex items-center">
+                                            <!-- If not done, add lock ini-->
+                                            <svg id="lock" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                                height="1em" viewBox="0 0 448 512">
+                                                <path
+                                                    d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+                                            </svg>
+
+                                            <a href="/courses/1/pdf"
+                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                                PDF Materi not ticked
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <!-- Materi Module-->
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div
-            class="f-r-t container mx-auto mb-10 mt-10 flex flex-col-reverse rounded bg-white shadow md:w-3/5 lg:flex-row">
-            <div class="w-full">
-                <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                    <div class="flex flex-row-reverse items-center justify-between lg:flex-col lg:items-start">
-                        <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-teal-400">
-                            Sesi 4
-                        </h4>
+            <!-- Module-->
+            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                <div class="w-full px-4">
+                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                        <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
+                            <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-teal-400">
+                                Sesi 2
+                            </h4>
+                        </div>
+
+                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                            Materi 2
+                        </h2>
+                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                            We recommend this introduction as a starting point for how to move from face-to-face to
+                            online
+                            teaching. In this 60-minute webinar, we discuss how to effectively communicate with your
+                            students &
+                            the range of ways you can deliver content online.
+                        </p>
+
+                        <div class="transition hover:bg-indigo-50">
+                            <div class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                                    <path
+                                        d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                                </svg>
+                                <h3 class="font-semibold">Konten Modul</h3>
+                            </div>
+
+                            <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
+                                <ul class="ml-8 list-inside space-y-2 pb-4">
+                                    <!-- Materi Module-->
+                                    <li>
+                                        <div class="flex items-center">
+                                            <!-- If done, add check-->
+                                            <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                                height="1em" viewBox="0 0 512 512">
+
+                                                <path
+                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                            </svg>
+                                            <a href="/courses/1/pdf"
+                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                                PDF Materi Ticked
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="flex items-center">
+                                            <!-- If done, add check-->
+                                            <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                                height="1em" viewBox="0 0 512 512">
+                                                <path
+                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                            </svg>
+                                            <a href="/courses/3/asg"
+                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                                Assignment Materi
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="flex items-center">
+                                            <!-- If done, add check-->
+                                            <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                                height="1em" viewBox="0 0 512 512">
+                                                <path
+                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                            </svg>
+                                            <a href="/courses/2/video"
+                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                                Video Materi Ticked
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <!-- If not done, add pointer-events-none -->
+                                        <div class="pointer-events-none flex items-center">
+                                            <!-- If not done, add lock ini-->
+                                            <svg id="lock" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                                height="1em" viewBox="0 0 448 512">
+                                                <path
+                                                    d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+                                            </svg>
+
+                                            <a href="/courses/1/pdf"
+                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                                PDF Materi not ticked
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <!-- Materi Module-->
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                        Final Test
-                    </h2>
-                    <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                        We recommend this introduction as a starting point for how to move from face-to-face to
-                        online
-                        teaching. In this 60-minute webinar, we discuss how to effectively communicate with your
-                        students &
-                        the range of ways you can deliver content online.
-                    </p>
-                    <p class="my-3 w-11/12 text-sm font-normal tracking-normal text-gray-600 lg:w-9/12">
-                        <svg class="ml-1" xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512">
-                            <path
-                                d="M32 0C49.7 0 64 14.3 64 32V48l69-17.2c38.1-9.5 78.3-5.1 113.5 12.5c46.3 23.2 100.8 23.2 147.1 0l9.6-4.8C423.8 28.1 448 43.1 448 66.1V345.8c0 13.3-8.3 25.3-20.8 30l-34.7 13c-46.2 17.3-97.6 14.6-141.7-7.4c-37.9-19-81.3-23.7-122.5-13.4L64 384v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V400 334 64 32C0 14.3 14.3 0 32 0zM64 187.1l64-13.9v65.5L64 252.6V318l48.8-12.2c5.1-1.3 10.1-2.4 15.2-3.3V238.7l38.9-8.4c8.3-1.8 16.7-2.5 25.1-2.1l0-64c13.6 .4 27.2 2.6 40.4 6.4l23.6 6.9v66.7l-41.7-12.3c-7.3-2.1-14.8-3.4-22.3-3.8v71.4c21.8 1.9 43.3 6.7 64 14.4V244.2l22.7 6.7c13.5 4 27.3 6.4 41.3 7.4V194c-7.8-.8-15.6-2.3-23.2-4.5l-40.8-12v-62c-13-3.8-25.8-8.8-38.2-15c-8.2-4.1-16.9-7-25.8-8.8v72.4c-13-.4-26 .8-38.7 3.6L128 173.2V98L64 114v73.1zM320 335.7c16.8 1.5 33.9-.7 50-6.8l14-5.2V251.9l-7.9 1.8c-18.4 4.3-37.3 5.7-56.1 4.5v77.4zm64-149.4V115.4c-20.9 6.1-42.4 9.1-64 9.1V194c13.9 1.4 28 .5 41.7-2.6l22.3-5.2z" />
-                        </svg>
-                    </p>
                 </div>
-                <div
-                    class="flex flex-row items-center justify-between border-t border-gray-300 px-5 py-3 md:px-10 lg:px-5 lg:py-4">
-                    <div class="flex items-center">
+            </div>
+            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                <div class="w-full px-4">
+                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                        <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
+                            <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-teal-400">
+                                Final Session
+                            </h4>
+                        </div>
+
+                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                            Final Test
+                        </h2>
+                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                            Memuat test akhir untuk kursus Algoritma dan Pemrograman
+                        </p>
+
                         <div class="flex items-center">
+                            <div class="flex items-center">
 
-                            <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
-                                <a href="/courses/3/asg"
-                                    class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Buka
-                                    Sesi</a>
-                            </p>
+                                <p class="text-lg font-bold leading-5 tracking-normal text-teal-400">
+                                    <a href="/courses/3/asg"
+                                        class="bg-selected inline-block rounded-3xl bg-teal-400 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Buka
+                                        Test</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
     </body>
+    <style>
+        .accordion-content {
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+    </style>
+
+    <script>
+        const accordionHeader = document.querySelectorAll(".accordion-header");
+        accordionHeader.forEach((header) => {
+            header.addEventListener("click", function() {
+                const accordionContent = header.parentElement.querySelector(".accordion-content");
+                let accordionMaxHeight = accordionContent.style.maxHeight;
+
+                // Condition handling
+                if (accordionMaxHeight == "0px" || accordionMaxHeight.length == 0) {
+                    accordionContent.style.maxHeight = `${accordionContent.scrollHeight + 32}px`;
+                    header.querySelector(".fas").classList.remove("fa-plus");
+                    header.querySelector(".fas").classList.add("fa-minus");
+                    header.parentElement.classList.add("bg-indigo-50");
+                } else {
+                    accordionContent.style.maxHeight = `0px`;
+                    header.querySelector(".fas").classList.add("fa-plus");
+                    header.querySelector(".fas").classList.remove("fa-minus");
+                    header.parentElement.classList.remove("bg-indigo-50");
+                }
+            });
+        });
+    </script>
+
 @endsection
 @section('footer')
     @include('layout.footer')

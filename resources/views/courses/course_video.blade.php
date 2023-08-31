@@ -49,12 +49,12 @@
         </div>
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
-                <div class="w-full md:mx-2 md:w-2/12">
+                <div class="w-full md:mx-2 md:w-3/12">
                     <!-- Sidebar, pass value courselistnya aja-->
                     @include('courses.course_sidebar')
                 </div>
                 <div class="my-4"></div>
-                <div class="w-full rounded bg-white shadow md:mx-2 md:w-10/12">
+                <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
 
                     <iframe width="100%" height="640" src="https://www.youtube.com/embed/fTczCpIaLAU" frameborder="0"
                         allowfullscreen></iframe>
