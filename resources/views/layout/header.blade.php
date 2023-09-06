@@ -30,7 +30,7 @@
                 </li>
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/students">Sertifikasi</a>
+                    <a href="/certifications">Sertifikasi</a>
                 </li>
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
@@ -105,7 +105,7 @@
                 </li>
                 <li
                     class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none lg:hidden">
-                    <span class="ml-2 font-bold"><a href="students.html">Sertifikasi</a></span>
+                    <span class="ml-2 font-bold"><a href="/certification">Sertifikasi</a></span>
                 </li>
                 {{-- IF USER SUDAH DAFTAR/LOGIN --}}
                 <li

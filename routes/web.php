@@ -68,17 +68,19 @@ Route::get('/courses/3/asg', function () {
 Route::get('/profile/1', function () {
     return view('profile.profile');
 });
+
 Route::get('/profile/1/edit', function () {
     return view('profile.profile_edit');
 });
 
-Route::get('/courses/1/getcerti', function () {
-    return view('certification.certificate');
+Route::get('/certifications', function () {
+    return view('certification.certifications');
 });
-Route::get('/courses/1/getcerti', function () {
-    return view('certification.certificate');
+
+Route::get('/certifications/1', function () {
+    return view('certification.certification_content');
 });
 
 Route::get('/courses/1/getcerti', function () {
-    return view('certification.certificate');
+    return view('courses.course_certificate');
 });
