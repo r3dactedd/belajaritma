@@ -18,6 +18,6 @@ class Sidebar extends Model
         'type',
     ];
     public function sidebarToCourse(){
-        return $this->hasMany(Course::class,'id','id');
+        return $this->hasMany(Course::class,'course_id','id');
     }
 }
