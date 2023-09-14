@@ -48,18 +48,20 @@
                                     alt="">
                             </div>
                             <div class="flex-1 rounded-lg px-4 pb-2 text-2xl leading-relaxed">
-                                <strong>User Name</strong> <span class="ml-2 text-xl text-gray-400">Date Create
-                                    Thread</span>
-                                <p class="text-base">
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                    ullamco
-                                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in
-                                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                                    laborum."
+                                <strong>{{$data->forum_title}}</strong> <span class="ml-2 text-xl text-gray-400">{{$data->created_at}}</span>
+
+                                <div>
+                                    <p class="text-sm inline">
+                                        Created By {{$data->formToUser->username}}
+                                    </p>
+                                    <p class="text-sm inline ml-5">
+                                        <b>
+                                            {{$data->formToMasterType->master_type_name}}
+                                        </b>
+                                    </p>
+                                </div>
+                                <p class="text-base mt-4">
+                                    {{$data->forum_message}}
                                 </p>
                             </div>
                         </div>

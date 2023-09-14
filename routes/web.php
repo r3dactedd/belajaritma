@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
@@ -36,12 +37,19 @@ Route::get('/home', function () {
     return view('courses.home');
 });
 
-Route::get('/forum', function () {
-    return view('forum.forum');
-});
-Route::get('/forum/1', function () {
-    return view('forum.forum_content');
-});
+// Route::get('/forum', function () {
+//     return view('forum.forum');
+// });
+
+Route::get('/forum', [ForumController::class, 'showForumList']);
+
+// Route::get('/forum/1', function () {
+//     return view('forum.forum_content');
+// });
+
+Route::get('/forum/{id}', [ForumController::class, 'forumDetail']);
+Route::post('/createForum', [ForumController::class, 'createForum']);
+
 
 // Route::get('/courses', function () {
 //     return view('courses.courses');
