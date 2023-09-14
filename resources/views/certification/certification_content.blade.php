@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Instructors</title>
+    <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto my-auto p-6 md:w-7/12">
+        <div class="container mx-auto my-auto p-6 md:w-8/12">
 
             <div class="my-4 rounded-xl bg-white md:flex">
                 <!-- Left Side -->
@@ -42,7 +42,7 @@
                     <!-- Profile Card -->
                     <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
-                            <img class="h-full px-4 py-8 md:px-0"
+                            <img class="h-full p-4 md:px-0"
                                 src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
                                 alt="e" />
                         </div>
@@ -55,9 +55,14 @@
                     <!-- About Section -->
                     <div class="rounded-xl bg-white px-6 py-2 md:px-12">
                         <h1
-                            class="py-2 pr-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-8 md:pr-4 md:text-left lg:text-3xl">
+                            class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-6 md:pr-4 md:text-left lg:text-3xl">
                             Algoritma dan Pemrograman
                         </h1>
+                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
+                            Course Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
+                        </p>
                         <div class="grid-row-2 grid md:grid-cols-2">
                             <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
                                 <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
@@ -79,7 +84,7 @@
                             <div class="flex flex-row items-center justify-between md:ml-8 lg:flex-col lg:items-start">
                                 <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
                                     <a href="#syllabus"
-                                        class="inline-flex items-center rounded-md bg-teal-400 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none md:w-36">
+                                        class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none md:w-36">
                                         <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
                                             height="1.1em" viewBox="0 0 576 512" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -115,7 +120,43 @@
                                         d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
                                 </svg>
                             </span>
-                            <span class="tracking-wide">Mengenai Kursus</span>
+                            <span class="text-xl tracking-wide">Mengenai Sertifikasi</span>
+                        </div>
+                        <div class="text-gray-700">
+                            <div class="flex text-sm">
+                                <div class="block">
+                                    <div class="px-4 py-2 font-semibold">Whether you’re a student, business user, or IT
+                                        professional, this certification ensures you have a firm grasp of a range of topics
+                                        in the rapidly growing field of cybersecurity. This fundamentals certification can
+                                        serve as a steppingstone if you’re interested in advancing to role-based
+                                        certifications in security operations, identity and access management, and
+                                        information protection.
+                                    </div>
+                                    <div class="text-md px-4 py-2 font-semibold"> The Microsoft Certified: Security,
+                                        Compliance, and
+                                        Identity Fundamentals certification could be a great fit for you if you’d like to:
+                                        <h3>&#x2022 Demonstrate your knowledge of Microsoft Security, compliance, and
+                                            identity (SCI)
+                                            solutions.</h3>
+
+                                        <h3>&#x2022; Highlight your understanding of how Microsoft SCI solutions provide
+                                            holistic,
+                                            end-to-end cybersecurity capabilities.</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-b-xl bg-white p-4 shadow-sm">
+                        <div class="mb-3 ml-2 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                            <span class="text-green-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                    <path
+                                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+                                </svg>
+                            </span>
+                            <span class="text-xl tracking-wide">Informasi Test</span>
                         </div>
                         <div class="text-gray-700">
                             <div class="flex text-sm">
@@ -138,63 +179,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="rounded-b-xl bg-white p-4 shadow-sm">
-                        <div class="grid grid-cols-1 md:grid-cols-2">
-                            <div>
-                                <div class="mb-3 ml-2 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512">
-                                        <path
-                                            d="M384 96V320H64L64 96H384zM64 32C28.7 32 0 60.7 0 96V320c0 35.3 28.7 64 64 64H181.3l-10.7 32H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H352c17.7 0 32-14.3 32-32s-14.3-32-32-32H277.3l-10.7-32H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm464 0c-26.5 0-48 21.5-48 48V432c0 26.5 21.5 48 48 48h64c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48H528zm16 64h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H544c-8.8 0-16-7.2-16-16s7.2-16 16-16zm-16 80c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H544c-8.8 0-16-7.2-16-16zm32 160a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
-                                    </svg>
-                                    <span class="tracking-wide">Spesifikasi Minimum</span>
-                                </div>
-                                <ul class="list-inside space-y-2">
-                                    <li>
-                                        <div class="px-4 text-teal-600">Resolusi Layar</div>
-                                        <div class="px-4 text-xs text-gray-500">1366 x 768 (rec. 1920 x 1080) </div>
-                                    </li>
-                                    <li>
-                                        <div class="px-4 text-teal-600">RAM</div>
-                                        <div class="px-4 text-xs text-gray-500">1GB (rec. 2GB keatas)</div>
-                                    </li>
-                                    <li>
-                                        <div class="px-4 text-teal-600">Processor</div>
-                                        <div class="px-4 text-xs text-gray-500">Intel Celeron / Sekelas (rec. Intel i3 /
-                                            Sekelas)</div>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div>
-                                <div
-                                    class="mb-3 ml-2 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                                        <path
-                                            d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z" />
-                                    </svg>
-                                    <span class="tracking-wide">Tools yang Dibutuhkan</span>
-                                </div>
-                                <ul class="list-inside space-y-2">
-                                    <li>
-                                        <div class="px-4 text-teal-600">C Language Compiler (seperti DevC dan onlinegdb)
-                                        </div>
-                                        <div class="px-4 text-xs text-gray-500">Diperlukan untuk menjalankan kode C</div>
-                                    </li>
-                                    <li>
-                                        <div class="px-4 text-teal-600">Web Browser (seperti Chrome atau Firefox)</div>
-                                        <div class="px-4 text-xs text-gray-500">Digunakan untuk mengakses materi</div>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
                         <!-- End of Experience and education grid -->
                     </div>
                     <!-- End of profile tab -->
                 </div>
             </div>
+
 
     </body>
     <style>

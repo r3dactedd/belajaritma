@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Instructors</title>
+    <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
@@ -43,7 +43,7 @@
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
 
                     <object data="{{ Storage::url('pdf_folder/test.pdf') }}" type="application/pdf" width="100%"
-                        height="960">
+                        height="1024">
                         This browser does not support PDFs. Please download the PDF to view it: <a
                             href="{{ asset('pdf_folder/test.pdf') }}">Download
                             PDF</a>

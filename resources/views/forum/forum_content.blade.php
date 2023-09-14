@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
@@ -80,7 +80,7 @@
                                 {{-- QUILL JS HERE --}}
                                 <div class="my-4 flex justify-end">
                                     <button id="get-content-button"
-                                        class="absolute w-fit rounded bg-teal-400 px-4 py-2 text-sm font-semibold text-white">Balas</button>
+                                        class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Balas</button>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                                                     {{-- QUILL JS HERE --}}
                                                     <div class="my-4 flex justify-end">
                                                         <button id="get-content-button"
-                                                            class="w-fit rounded bg-teal-400 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
+                                                            class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
                                                     </div>
                                                 </div>
 
@@ -176,7 +176,7 @@
                                                     {{-- QUILL JS HERE --}}
                                                     <div class="my-4 flex justify-end">
                                                         <button id="get-content-button"
-                                                            class="w-fit rounded bg-teal-400 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
+                                                            class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
                                                     </div>
                                                 </div>
                                                 <!-- Materi Module-->
@@ -221,7 +221,7 @@
                                                                 {{-- QUILL JS HERE --}}
                                                                 <div class="my-4 flex justify-end">
                                                                     <button id="get-content-button"
-                                                                        class="w-fit rounded bg-teal-400 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
+                                                                        class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
                                                                 </div>
                                                             </div>
                                                             <!-- Materi Module-->
