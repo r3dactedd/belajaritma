@@ -34,7 +34,7 @@ Route::post('/signup', [RegisterController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/home', function () {
-    return view('courses.home');
+    return view('home');
 });
 
 // Route::get('/forum', function () {
@@ -67,6 +67,9 @@ Route::get('/manager/1', function () {
 
 Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
 
+Route::get('/courses/1', function () {
+    return view('courses.course_content');
+});
 Route::get('/courses/1/pdf', function () {
     return view('courses.course_pdf');
 });
@@ -81,14 +84,37 @@ Route::get('/profile', [ProfileController::class, 'viewProfile']);
 
 Route::get('/profile/edit', [ProfileController::class,'editProfile']);
 Route::post('/profile/edit', [ProfileController::class,'update']);
-
-Route::get('/courses/1/getcerti', function () {
-    return view('certification.certificate');
-});
-Route::get('/courses/1/getcerti', function () {
-    return view('certification.certificate');
+Route::get('/profile/1', function () {
+    return view('profile.profile');
 });
 
+Route::get('/profile/1/edit', function () {
+    return view('profile.profile_edit');
+});
+
+Route::get('/certifications', function () {
+    return view('certification.certifications');
+});
+
+Route::get('/certifications/1', function () {
+    return view('certification.certification_content');
+});
+
 Route::get('/courses/1/getcerti', function () {
-    return view('certification.certificate');
+    return view('courses.course_certificate');
+});
+
+Route::get('/manager', function () {
+    return view('administrator.admin_manager');
+});
+
+Route::get('/manager/course', function () {
+    return view('administrator.admin_course');
+});
+
+Route::get('/manager/certification', function () {
+    return view('administrator.admin_certification');
+});
+Route::get('/manager/forum', function () {
+    return view('administrator.admin_forum');
 });

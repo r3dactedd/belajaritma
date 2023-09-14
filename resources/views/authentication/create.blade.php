@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign in</title>
+    <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
@@ -54,12 +54,12 @@
 
                     <div class="px-5 sm:mb-16 sm:px-6">
                         <button
-                            class="mt-6 w-full rounded bg-teal-400 px-8 py-3 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500">
+                            class="mt-6 w-full rounded bg-indigo-600 px-8 py-3 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500">
                             Login
                         </button>
                         <p class="mt-6 text-xs">
                             Sudah Memiliki Akun?
-                            <a class="text-teal-400 underline" href="/">Login</a>
+                            <a class="text-indigo-600 underline" href="/">Login</a>
                         </p>
 
                     </div>

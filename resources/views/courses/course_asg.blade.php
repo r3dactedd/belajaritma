@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Instructors</title>
+    <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-
 </head>
 
 <body class="bg-gray-200 pb-12">
@@ -23,7 +22,7 @@
                 <div>
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
-                        <a class="flex items-center" href="/home">
+                        <a onclick="history.back()" class="flex items-center" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
@@ -40,14 +39,14 @@
                     @include('courses.course_sidebar')
                 </div>
                 {{-- QUESTION  --}}
-                <div class="my-4"></div>
+                <div id="asg-top" class="my-4"></div>
 
                 <div class="w-2xl mx-4 bg-white md:mx-12 md:w-9/12">
                     <div class="mx-auto p-6 antialiased">
-                        <div id="asg-top" class="space-y-4">
+                        <div class="space-y-4">
                             <h1
-                                class="text-md relative mx-6 block w-auto pt-6 font-semibold tracking-normal text-gray-800 lg:text-xl">
-                                Judul assignment
+                                class="text-md relative mx-6 block w-auto pt-6 font-bold tracking-normal text-gray-800 lg:text-xl">
+                                Judul Assignment
                             </h1>
                             <h2
                                 class="text-md lg:text-md relative mx-6 mb-6 block w-auto pt-6 font-medium tracking-normal text-gray-800">
@@ -215,7 +214,6 @@
                     {{-- QUESTION RESULT CORRECT --}}
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
-
                             <h1
                                 class="text-md relative mx-6 mb-6 block w-auto pt-2 font-semibold tracking-normal text-gray-800 lg:text-xl">
                                 3. CORRECT EXAMPLE "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -268,10 +266,10 @@
                     <hr>
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
-                            <button id="open-btn"
-                                class="modal-open my-4 ml-4 flex w-fit items-center rounded-md bg-teal-400 px-4 py-3 text-center text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                            <a href="#asg-top"
+                                class="modal-open my-4 ml-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-center text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                                 Finish Assignment
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
