@@ -20,14 +20,12 @@ class ManageCourseController extends Controller
         }
     }
     public function deleteCourse($id){
-    $course = Course::find($id);
+        $course = Course::find($id);
 
-    if (!$course) {
-        return redirect()->back()->with('error', 'Course not found.');
-    }
-
-    $course->delete();
-
-    return redirect('/manager/course')->with('success', 'Course deleted successfully.');
+        if (!$course) {
+            return redirect()->back()->with('error', 'Course not found.');
+        }
+        $course->delete();
+        return redirect('/manager/course')->with('success', 'Course deleted successfully.');
     }
 }

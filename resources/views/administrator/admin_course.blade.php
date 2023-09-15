@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
     <script>
-        function showDeleteModal() {
-            const deleteModal = document.getElementById('deleteModal');
-            const overlay = document.getElementById('overlay');
+        function showDeleteModal(courseId) {
+            const deleteModal = document.getElementById(`deleteModal-${courseId}`);
+            const overlay = document.getElementById(`overlay-${courseId}`);
 
             deleteModal.classList.remove('hidden');
-            overlay.classList.remove('hidden');
+            overlay.style.display = 'block'; 
         }
 
-        function hideDeleteModal() {
-            const deleteModal = document.getElementById('deleteModal');
-            const overlay = document.getElementById('overlay');
+        function hideDeleteModal(courseId) {
+            const deleteModal = document.getElementById(`deleteModal-${courseId}`);
+            const overlay = document.getElementById(`overlay-${courseId}`);
 
             deleteModal.classList.add('hidden');
-            overlay.classList.add('hidden');
+            overlay.style.display = 'none';
         }
-
     </script>
 <head>
     <meta charset="UTF-8" />
@@ -140,20 +139,20 @@
                                         </div>
                                     </div>
                                     <div class="my-4 flex">
-                                        <button id="get-content-button"
+                                        <button id="get-content-button-{{$course->id}}"
                                             class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white"
-                                            onclick="showDeleteModal()">
+                                            onclick="showDeleteModal({{$course->id}})">
                                             Delete
                                         </button>
                                     </div>
-                                    <div id="overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden"></div>
-
-                                    <div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+                                    <div id="overlay-{{$course->id}}" class="fixed inset-0 bg-black opacity-50 z-40 hidden"></div>
+                                    <div id="deleteModal-{{$course->id}}" class="hidden fixed inset-0 flex items-center justify-center z-50">
                                         <div class="modal-container bg-white w-96 p-6 rounded shadow-lg">
                                             <h2 class="text-lg font-semibold mb-4">Confirm Deletion</h2>
                                             <p>Are you sure you want to delete this course?</p>
                                             <div class="mt-4 flex justify-end">
-                                                <button id="cancelDelete" class="mr-4 px-4 py-2 text-gray-600" onclick="hideDeleteModal()">Cancel</button>
+                                                <button id="cancelDelete-{{$course->id}}" class="mr-4 px-4 py-2 text-gray-600"
+                                                    onclick="hideDeleteModal({{$course->id}})">Cancel</button>
                                                 <form method="POST" action="/deleteCourse/{{$course->id}}">
                                                     @csrf
                                                     @method('DELETE')
