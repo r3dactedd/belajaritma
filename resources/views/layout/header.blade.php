@@ -57,13 +57,13 @@
                                     class="cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                     <div class="flex items-center">
 
-                                        <a href="/profile/1"class="ml-2 font-semibold">Profil Saya</a>
+                                        <a href="/profile"class="ml-2 font-semibold">Profil Saya</a>
                                     </div>
                                 </li>
                                 <li
                                     class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
 
-                                    <a href="/profile/1/edit" class="ml-2 font-semibold">Atur Profil</a>
+                                    <a href="/profile/edit" class="ml-2 font-semibold">Atur Profil</a>
                                 </li>
                                 <li
                                     class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">

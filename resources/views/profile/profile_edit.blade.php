@@ -37,13 +37,13 @@
             {{-- EDIT PROFILE --}}
             <div class="mx-auto rounded-xl bg-white px-4 py-8">
                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Ubah Profil</h2>
-                <form action="/editProfile" method="post" enctype="multipart/form-data">
+                <form action="/profile/edit" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                         <div class="w-full">
                             <label for="profilePicture"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Profile Picture</label>
-                            <input type="file" name="profile_img" id="inputPicture"
+                            <input type="file" name="profile_img" id="profile_img"
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                                 placeholder="Choose Image File" required="">
                             {{-- @error('profile_img')
@@ -53,8 +53,8 @@
                         <div class="sm:col-span-2">
                             <label for="username" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                                 Username</label>
-                            <input type="text" name="username" id="inputUsername"
-                                value="masukin current Usernamenya user"
+                            <input type="text" name="username" id="username"
+                                value={{$searchUser->username}}
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                                 placeholder="Input Username" required="">
                             {{-- @error('username')
@@ -65,8 +65,8 @@
                         <div class="sm:col-span-2">
                             <label for="firstName" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Lengkap</label>
-                            <input type="text" name="first_name" id="inputFirstName"
-                                value="masukin current Nama Lengkap user"
+                            <input type="text" name="fullname" id="fullname"
+                                value="{{$searchUser->first_name}} {{$searchUser->last_name}}"
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                                 placeholder="Input Nama Lengkap" required="">
                             {{-- @error('first_name')
@@ -78,7 +78,7 @@
                         <div class="sm:col-span-2">
                             <label for="email"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="text" name="email" id="inputEmail" value="masukin current Email user"
+                            <input type="text" name="email" id="email" value={{$searchUser->email}}
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                                 placeholder="Email" required="">
                             {{-- @error('email')
@@ -88,9 +88,9 @@
                         <div class="sm:col-span-2">
                             <label for="email"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Tentang Saya</label>
-                            <textarea id="myInfo"
+                            <textarea name="about_me" id="about_me"
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                                placeholder="Silahkan isi informasi mengenai anda." required="">INSERT TENTANG SAYA THINGS HERE
+                                placeholder="Silahkan isi informasi mengenai anda." required=""> {{$searchUser->about_me}}
                             </textarea>
                             {{-- @error('email')
                                 <p>{{ $message }}</p>
@@ -109,15 +109,13 @@
             <div class="mt-8"></div>
             <div class="mx-auto rounded-xl bg-white px-4 py-8">
                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Ubah Password</h2>
-                <form action="/editProfile" method="post" enctype="multipart/form-data">
+                <form action="/profile/edit/changePassword" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
-
-
                         <div class="sm:col-span-2">
                             <label for="email"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password Lama</label>
-                            <input type="password" name="oldPass" id="inputOldPass"
+                            <input type="password" name="old_password" id="old_password"
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                                 placeholder="Masukkan Password Lama" required="">
                             {{-- @error('password')
@@ -127,7 +125,7 @@
                         <div class="sm:col-span-2">
                             <label for="password"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password Baru</label>
-                            <input type="password" name="newPass" id="inputNewPass"
+                            <input type="password" name="new_password" id="new_password"
                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                                 placeholder="Masukkan Password Baru" required="">
                             {{-- @error('password')

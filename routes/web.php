@@ -4,6 +4,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ManageCourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 /*
@@ -84,13 +85,16 @@ Route::get('/profile', [ProfileController::class, 'viewProfile']);
 
 Route::get('/profile/edit', [ProfileController::class,'editProfile']);
 Route::post('/profile/edit', [ProfileController::class,'update']);
-Route::get('/profile/1', function () {
-    return view('profile.profile');
-});
+Route::post('/profile/edit/changePassword', [ProfileController::class,'changePassword']);
 
-Route::get('/profile/1/edit', function () {
-    return view('profile.profile_edit');
-});
+
+// Route::get('/profile/1', function () {
+//     return view('profile.profile');
+// });
+
+// Route::get('/profile/1/edit', function () {
+//     return view('profile.profile_edit');
+// });
 
 Route::get('/certifications', function () {
     return view('certification.certifications');
@@ -108,9 +112,9 @@ Route::get('/manager', function () {
     return view('administrator.admin_manager');
 });
 
-Route::get('/manager/course', function () {
-    return view('administrator.admin_course');
-});
+Route::get('/manager/course', [ManageCourseController::class, 'showCourseAdmin']);
+Route::delete('/deleteCourse/{id}', [ManageCourseController::class, 'deleteCourse']);
+
 
 Route::get('/manager/certification', function () {
     return view('administrator.admin_certification');
