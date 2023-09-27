@@ -80,3 +80,23 @@
         </td>
     </tr>
 </table>
+<script>
+    // Capture the certificate content and convert it to an image
+    document.addEventListener("DOMContentLoaded", function() {
+        const elementToCapture = document.querySelector(".cert");
+
+        html2canvas(elementToCapture).then(function(canvas) {
+            // Create an image from the canvas
+            const image = new Image();
+            image.src = canvas.toDataURL("image/jpeg");
+
+            // Create a download link for the image
+            const a = document.createElement("a");
+            a.href = image.src;
+            a.download = "certificate.jpg";
+
+            // Simulate a click on the download link to trigger the download
+            a.click();
+        });
+    });
+</script>

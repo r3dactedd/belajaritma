@@ -34,19 +34,69 @@
                 </div>
             </div>
         </div>
+        <div class="container mx-auto my-4 pb-4">
+            {{-- Search Bar --}}
+            <div class="relative m-4">
+                <form>
+                    <input type="text" placeholder="Cari Nama Kursus..." required=""
+                        class="mt-4 w-full rounded-md border-transparent bg-gray-100 px-8 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
+                    <button type="submit"
+                        class="absolute right-0 top-0 mt-4 rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <svg aria-hidden="true" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <span class="sr-only font-semibold">Search</span>
+                    </button>
+                </form>
+            </div>
+            {{-- Search Bar --}}
+            {{-- Certi Component --}}
+            <div
+                class="container mx-auto mb-10 mt-10 flex w-11/12 flex-col-reverse rounded-xl border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg lg:flex-row">
+                <a href="/certifications/1">
+                    <div class="w-full lg:w-2/3">
+                        <div class="px-4 py-6 lg:px-6">
+                            <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
+                                <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                                    Certification Name
+                                </h2>
+                            </div>
+                            <p class="text-md mb-6 font-normal tracking-normal text-gray-600 md:w-3/4">
+                                Certi Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
+                            </p>
+                        </div>
+                </a>
+                <div
+                    class="flex flex-row items-center justify-between border-t border-gray-300 px-5 py-3 md:px-10 lg:px-5 lg:py-4">
 
+                    <div class="flex items-center">
+                        <p class="w-fit rounded-xl bg-green-400 px-6 py-1.5 text-sm text-white">
+                            Selesai
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative inline-block h-64 w-full rounded-t lg:h-auto lg:w-1/3 lg:rounded-r lg:rounded-t-none">
+                <img class="absolute inset-0 h-full w-full rounded-t object-cover lg:rounded-r lg:rounded-t-none"
+                    src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_43.png" alt="banner" />
+            </div>
+        </div>
         {{-- Certi Component --}}
         <div
             class="container mx-auto mb-10 mt-10 flex w-11/12 flex-col-reverse rounded-xl border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg lg:flex-row">
             <a href="/certifications/1">
                 <div class="w-full lg:w-2/3">
                     <div class="px-4 py-6 lg:px-6">
-                        <div class="flex flex-row-reverse items-center justify-between lg:flex-col lg:items-start">
+                        <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
                             <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
                                 Certification Name
                             </h2>
                         </div>
-                        <p class="text-md mb-4 w-11/12 font-normal tracking-normal text-gray-600 lg:w-9/12">
+                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600 md:w-3/4">
                             Certi Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
@@ -68,7 +118,7 @@
                 src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_43.png" alt="banner" />
         </div>
         </div>
-        {{-- Certi Component --}}
+
 
     @endsection
     @section('footer')

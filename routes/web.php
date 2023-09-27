@@ -37,6 +37,7 @@ Route::get('/home', function () {
 Route::get('/forum', function () {
     return view('forum.forum');
 });
+
 Route::get('/forum/1', function () {
     return view('forum.forum_content');
 });
@@ -51,18 +52,20 @@ Route::get('/courses/1', function () {
 Route::get('/courses/1/pdf', function () {
     return view('courses.course_pdf');
 });
+
 Route::get('/courses/2/video', function () {
     return view('courses.course_video');
 });
+
 Route::get('/courses/3/asg', function () {
     return view('courses.course_asg');
 });
 
-Route::get('/profile/1', function () {
+Route::get('/profile/name', function () {
     return view('profile.profile');
 });
 
-Route::get('/profile/1/edit', function () {
+Route::get('/profile/name/edit', function () {
     return view('profile.profile_edit');
 });
 
@@ -86,9 +89,29 @@ Route::get('/manager/course', function () {
     return view('administrator.admin_course');
 });
 
+Route::get('/manager/course/create', function () {
+    return view('administrator.admin_course_edit');
+});
+
 Route::get('/manager/certification', function () {
     return view('administrator.admin_certification');
 });
 Route::get('/manager/forum', function () {
     return view('administrator.admin_forum');
+});
+
+Route::get('/transaction', function () {
+    return view('transactions.transaction');
+});
+
+Route::get('/profile/name/dashboard', function () {
+    return view('profile.profile_dashboard');
+});
+
+Route::get('/profile/name/courses', function () {
+    return view('profile.profile_courselist');
+});
+
+Route::get('/profile/name/certifications', function () {
+    return view('profile.profile_certilist');
 });

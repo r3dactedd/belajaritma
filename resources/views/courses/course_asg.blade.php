@@ -49,8 +49,12 @@
                                 Judul Assignment
                             </h1>
                             <h2
-                                class="text-md lg:text-md relative mx-6 mb-6 block w-auto pt-6 font-medium tracking-normal text-gray-800">
+                                class="text-md lg:text-md relative mx-6 block w-auto pt-6 font-medium tracking-normal text-gray-800">
                                 Pilihlah jawaban yang menurut anda paling tepat!
+                            </h2>
+                            <h2 id="asgScore"
+                                class="text-md lg:text-md relative mx-6 mb-6 block w-auto pt-6 font-semibold tracking-normal text-gray-800">
+                                Nilai Assignment : <span class="text-indigo-600">90</span>
                             </h2>
                         </div>
                     </div>
@@ -118,7 +122,11 @@
                                 laboris
                                 nisi ut aliquip ex ea commodo consequat.
                             </h1>
-
+                            <div class="mx-12 mb-2 w-full md:w-4/12">
+                                <div class="h-fit w-auto">
+                                    <img class="max-h-full w-full" src="/storage/image/forumtest.png">
+                                </div>
+                            </div>
                             <div class="pl-12">
 
                                 <div class="mb-4 mr-4 flex items-center">

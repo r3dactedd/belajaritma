@@ -65,7 +65,7 @@
                 <div class="block flex w-full flex-col border-t border-gray-200 font-medium md:hidden">
                     <a href="/login" class="w-full py-2 text-center font-bold text-pink-500">Login</a>
                     <a href="/signup"
-                        class="fold-bold relative inline-block w-full bg-indigo-700 px-5 py-3 text-center text-sm leading-none text-white">Get
+                        class="fold-bold relative inline-block w-full bg-indigo-600 px-5 py-3 text-center text-sm leading-none text-white">Get
                         Started</a>
                 </div>
             </nav>
@@ -75,7 +75,7 @@
                 <a href="/login"
                     class="relative z-40 mr-0 px-3 py-2 text-sm font-bold text-pink-500 sm:mr-3 md:mt-0 md:px-5 lg:text-white">Login</a>
                 <a href="/signup"
-                    class="fold-bold relative z-40 inline-block h-full w-auto rounded bg-indigo-700 px-5 py-3 text-sm font-bold leading-none text-white shadow-md transition transition-all duration-100 duration-300 hover:shadow-xl sm:w-full lg:bg-white lg:text-indigo-700 lg:shadow-none">Get
+                    class="fold-bold relative z-40 inline-block h-full w-auto rounded bg-indigo-600 px-5 py-3 text-sm font-bold leading-none text-white shadow-md transition transition-all duration-100 duration-300 hover:shadow-xl sm:w-full lg:bg-white lg:text-indigo-600 lg:shadow-none">Get
                     Started</a>
                 <svg class="absolute left-0 top-0 -ml-12 -mt-64 hidden w-screen max-w-3xl lg:block"
                     viewBox="0 0 818 815" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

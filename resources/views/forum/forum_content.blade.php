@@ -103,7 +103,7 @@
                                     </p>
                                     <div class="transition">
                                         <div
-                                            class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-2 transition">
+                                            class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
                                             {{-- if sudah semua, add ini --}}
                                             <div class="flex -space-x-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="0.8em"
@@ -153,7 +153,7 @@
                                     </p>
                                     <div class="transition">
                                         <div
-                                            class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-2 transition">
+                                            class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
                                             {{-- if sudah semua, add ini --}}
                                             <div class="flex -space-x-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="0.8em"
@@ -200,7 +200,7 @@
                                                 </p>
                                                 <div class="transition">
                                                     <div
-                                                        class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-2 transition">
+                                                        class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
                                                         {{-- if sudah semua, add ini --}}
                                                         <div class="flex -space-x-2">
                                                             <svg xmlns="http://www.w3.org/2000/svg" height="0.8em"
@@ -299,28 +299,27 @@
                 console.log("Quill Content:");
                 console.log(quillContent); // Print content to the browser console
             });
-        });
+            const accordionHeader = document.querySelectorAll(".accordion-header");
+            accordionHeader.forEach((header) => {
+                header.addEventListener("click", function() {
+                    const accordionContent = header.parentElement.querySelector(
+                        ".accordion-content");
+                    let accordionMaxHeight = accordionContent.style.maxHeight;
 
-
-
-        const accordionHeader = document.querySelectorAll(".accordion-header");
-        accordionHeader.forEach((header) => {
-            header.addEventListener("click", function() {
-                const accordionContent = header.parentElement.querySelector(".accordion-content");
-                let accordionMaxHeight = accordionContent.style.maxHeight;
-
-                // Condition handling
-                if (accordionMaxHeight == "0px" || accordionMaxHeight.length == 0) {
-                    accordionContent.style.maxHeight = `${accordionContent.scrollHeight + 32}px`;
-                    header.querySelector(".fas").classList.remove("fa-plus");
-                    header.querySelector(".fas").classList.add("fa-minus");
-                    header.parentElement.classList.add("bg-indigo-50");
-                } else {
-                    accordionContent.style.maxHeight = `0px`;
-                    header.querySelector(".fas").classList.add("fa-plus");
-                    header.querySelector(".fas").classList.remove("fa-minus");
-                    header.parentElement.classList.remove("bg-indigo-50");
-                }
+                    // Condition handling
+                    if (accordionMaxHeight == "0px" || accordionMaxHeight.length == 0) {
+                        accordionContent.style.maxHeight =
+                            `${accordionContent.scrollHeight + 32}px`;
+                        header.querySelector(".fas").classList.remove("fa-plus");
+                        header.querySelector(".fas").classList.add("fa-minus");
+                        header.parentElement.classList.add("bg-indigo-50");
+                    } else {
+                        accordionContent.style.maxHeight = `0px`;
+                        header.querySelector(".fas").classList.add("fa-plus");
+                        header.querySelector(".fas").classList.remove("fa-minus");
+                        header.parentElement.classList.remove("bg-indigo-50");
+                    }
+                });
             });
         });
     </script>

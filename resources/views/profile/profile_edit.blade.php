@@ -35,16 +35,22 @@
         </div>
         <div class="container mx-auto my-5 p-5">
             {{-- EDIT PROFILE --}}
-            <div class="mx-auto rounded-xl bg-white px-4 py-8">
+            <div class="mx-auto rounded-xl bg-white px-4 py-8 md:w-11/12">
                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Ubah Profil</h2>
                 <form action="/editProfile" method="post" enctype="multipart/form-data">
                     @csrf
+                    <div class="mb-2 w-full md:w-3/12">
+                        <div class="h-fit w-auto">
+                            <img class="max-h-full w-full" src="/storage/image/forumtest.png">
+                        </div>
+                    </div>
                     <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
-                        <div class="w-full">
+                        <div class="max-w-md">
                             <label for="profilePicture"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Profile Picture</label>
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Ubah Gambar
+                                Profil</label>
                             <input type="file" name="profile_img" id="inputPicture"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                 placeholder="Choose Image File" required="">
                             {{-- @error('profile_img')
                                 <p>{{ $message }}</p>
@@ -55,7 +61,7 @@
                                 Username</label>
                             <input type="text" name="username" id="inputUsername"
                                 value="masukin current Usernamenya user"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                 placeholder="Input Username" required="">
                             {{-- @error('username')
                                 <p>{{ $message }}</p>
@@ -67,7 +73,7 @@
                                 Lengkap</label>
                             <input type="text" name="first_name" id="inputFirstName"
                                 value="masukin current Nama Lengkap user"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                 placeholder="Input Nama Lengkap" required="">
                             {{-- @error('first_name')
                                 <p>{{ $message }}</p>
@@ -79,7 +85,7 @@
                             <label for="email"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
                             <input type="text" name="email" id="inputEmail" value="masukin current Email user"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                 placeholder="Email" required="">
                             {{-- @error('email')
                                 <p>{{ $message }}</p>
@@ -89,7 +95,7 @@
                             <label for="email"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Tentang Saya</label>
                             <textarea id="myInfo"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                 placeholder="Silahkan isi informasi mengenai anda." required="">INSERT TENTANG SAYA THINGS HERE
                             </textarea>
                             {{-- @error('email')
@@ -107,18 +113,16 @@
             </div>
             {{-- EDIT PASSWORD --}}
             <div class="mt-8"></div>
-            <div class="mx-auto rounded-xl bg-white px-4 py-8">
+            <div class="mx-auto rounded-xl bg-white px-4 py-8 md:w-11/12">
                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Ubah Password</h2>
                 <form action="/editProfile" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
-
-
                         <div class="sm:col-span-2">
                             <label for="email"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password Lama</label>
                             <input type="password" name="oldPass" id="inputOldPass"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                 placeholder="Masukkan Password Lama" required="">
                             {{-- @error('password')
                                 <p>{{ $message }}</p>
@@ -128,7 +132,7 @@
                             <label for="password"
                                 class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password Baru</label>
                             <input type="password" name="newPass" id="inputNewPass"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                 placeholder="Masukkan Password Baru" required="">
                             {{-- @error('password')
                                 <p>{{ $message }}</p>

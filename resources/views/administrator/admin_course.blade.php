@@ -34,7 +34,9 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto my-5 p-5">
+
+        <div class="container mx-auto my-4 pb-4">
+            {{-- Search Bar --}}
             <div class="relative m-4">
                 <form>
                     <input type="text" placeholder="Cari Nama Kursus..." required=""
@@ -50,74 +52,132 @@
                     </button>
                 </form>
             </div>
-            <div class="no-wrap my-4 md:-mx-2 md:flex">
-                <div class="my-4"></div>
-                <div class="mx-auto rounded-xl bg-white px-4 py-2">
-
-                    <div class="mx-auto p-6 antialiased">
-                        <div class="space-y-4">
-                            <!-- FORUM CONTENT -->
-                            <a href="forum/1" class="flex px-2 hover:bg-gray-200">
-
-                                <div class="flex-1 rounded-lg px-4 py-2 text-2xl leading-relaxed">
-                                    <strong>User Name</strong> <span class="ml-2 text-lg text-gray-400">Date Create
-                                        Thread</span>
-                                    <p class="text-sm">
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt
-                                        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                        exercitation
-                                        ullamco
-                                        LIMIT CHARSNYA OR SUMSHIT
-                                    </p>
-                                    <div class="mt-4 flex items-center">
-                                        <div class="mr-2 flex -space-x-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="0.8em" viewBox="0 0 640 512">
-                                                <path
-                                                    d="M32 176c0-74.8 73.7-144 176-144s176 69.2 176 144s-73.7 144-176 144c-15.3 0-30.6-1.9-46.3-5c-3.5-.7-7.1-.2-10.2 1.4c-6.1 3.1-12 6-18 8.7c-28.4 12.9-60.2 23.1-91.5 26c14.9-19 26.8-39.7 37.6-59.9c3.3-6.1 2.3-13.6-2.5-18.6C50 244.2 32 213.1 32 176zM208 0C93.1 0 0 78.9 0 176c0 44.2 19.8 80.1 46 110c-11.7 21-24 40.6-39.5 57.5l0 0-.1 .1c-6.5 7-8.2 17.1-4.4 25.8C5.8 378.3 14.4 384 24 384c43 0 86.5-13.3 122.7-29.7c4.9-2.2 9.6-4.5 14.3-6.8c15.3 2.8 30.9 4.6 47 4.6c114.9 0 208-78.9 208-176S322.9 0 208 0zM447.4 160.5C541.6 167 608 233 608 304c0 37.1-18 68.2-45.1 96.6c-4.8 5-5.8 12.5-2.5 18.6c10.9 20.2 22.7 40.8 37.6 59.9c-31.3-3-63.2-13.2-91.5-26c-6-2.7-11.9-5.6-18-8.7c-3.2-1.6-6.8-2.1-10.2-1.4c-15.6 3.1-30.9 5-46.3 5c-68.2 0-123.6-30.7-153.1-73.3c-11 3-22.3 5.2-33.8 6.8C279 439.8 349.9 480 432 480c16.1 0 31.7-1.8 47-4.6c4.6 2.3 9.4 4.6 14.3 6.8C529.5 498.7 573 512 616 512c9.6 0 18.2-5.7 22-14.5c3.8-8.7 2-18.9-4.4-25.8l-.1-.1 0 0c-15.5-17-27.8-36.5-39.5-57.5c26.2-29.9 46-65.8 46-110c0-94.4-87.8-171.5-198.2-175.8c2.8 10.4 4.7 21.2 5.6 32.3z" />
-                                            </svg>
-                                        </div>
-                                        <div class="text-sm font-semibold text-gray-500">
-                                            5 Replies
-                                        </div>
+            {{-- Search Bar --}}
+            <div class="container mx-auto w-11/12 overflow-x-auto">
+                <a href="/manager/course/create"
+                    class="modal-open my-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                    Buat Kursus Baru
+                </a>
+                <table class="mx-auto w-full text-xs text-white">
+                    <colgroup>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                    </colgroup>
+                    <thead class="bg-gray-200 leading-normal text-gray-600">
+                        <tr class="text-md bg-gray-200 leading-normal text-gray-600 md:text-lg">
+                            <th class="px-6 py-3 text-left">Nama Kursus</th>
+                            <th class="px-6 py-3 text-left">Jumlah Modul</th>
+                            <th class="px-6 py-3 text-left">Tingkat Pembelajaran</th>
+                            <th class="px-6 py-3 text-left">Estimasi Waktu</th>
+                            <th class="px-2 py-3 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-md font-light text-gray-600 md:text-lg">
+                        <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
+                            <td class="px-6 py-3">
+                                <p>Algoritma dan Pemrograman</p>
+                            </td>
+                            <td class="px-6 py-3">
+                                <p>21 Modul</p>
+                            </td>
+                            <td class="px-6 py-3">
+                                <p>Dasar</p>
+                            </td>
+                            <td class="px-6 py-3">
+                                <p>12 Jam</p>
+                            </td>
+                            <td class="px-6 py-3 text-center">
+                                <div class="item-center flex justify-center">
+                                    <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                        </svg>
+                                    </div>
+                                    <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
                                     </div>
                                 </div>
-                            </a>
-                            <hr>
-                            <!-- FORUM CONTENT END-->
-                            <a href="forum/1" class="flex px-2 hover:bg-gray-200">
-
-                                <div class="flex-1 rounded-lg px-4 py-2 text-2xl leading-relaxed">
-                                    <strong>User Name</strong> <span class="ml-2 text-lg text-gray-400">Date Create
-                                        Thread</span>
-                                    <p class="text-sm">
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt
-                                        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                        exercitation
-                                        ullamco
-                                        LIMIT CHARSNYA OR SUMSHIT
-                                    </p>
-                                    <div class="mt-4 flex items-center">
-                                        <div class="mr-2 flex -space-x-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="0.8em" viewBox="0 0 640 512">
-                                                <path
-                                                    d="M32 176c0-74.8 73.7-144 176-144s176 69.2 176 144s-73.7 144-176 144c-15.3 0-30.6-1.9-46.3-5c-3.5-.7-7.1-.2-10.2 1.4c-6.1 3.1-12 6-18 8.7c-28.4 12.9-60.2 23.1-91.5 26c14.9-19 26.8-39.7 37.6-59.9c3.3-6.1 2.3-13.6-2.5-18.6C50 244.2 32 213.1 32 176zM208 0C93.1 0 0 78.9 0 176c0 44.2 19.8 80.1 46 110c-11.7 21-24 40.6-39.5 57.5l0 0-.1 .1c-6.5 7-8.2 17.1-4.4 25.8C5.8 378.3 14.4 384 24 384c43 0 86.5-13.3 122.7-29.7c4.9-2.2 9.6-4.5 14.3-6.8c15.3 2.8 30.9 4.6 47 4.6c114.9 0 208-78.9 208-176S322.9 0 208 0zM447.4 160.5C541.6 167 608 233 608 304c0 37.1-18 68.2-45.1 96.6c-4.8 5-5.8 12.5-2.5 18.6c10.9 20.2 22.7 40.8 37.6 59.9c-31.3-3-63.2-13.2-91.5-26c-6-2.7-11.9-5.6-18-8.7c-3.2-1.6-6.8-2.1-10.2-1.4c-15.6 3.1-30.9 5-46.3 5c-68.2 0-123.6-30.7-153.1-73.3c-11 3-22.3 5.2-33.8 6.8C279 439.8 349.9 480 432 480c16.1 0 31.7-1.8 47-4.6c4.6 2.3 9.4 4.6 14.3 6.8C529.5 498.7 573 512 616 512c9.6 0 18.2-5.7 22-14.5c3.8-8.7 2-18.9-4.4-25.8l-.1-.1 0 0c-15.5-17-27.8-36.5-39.5-57.5c26.2-29.9 46-65.8 46-110c0-94.4-87.8-171.5-198.2-175.8c2.8 10.4 4.7 21.2 5.6 32.3z" />
-                                            </svg>
-                                        </div>
-                                        <div class="text-sm font-semibold text-gray-500">
-                                            5 Replies
-                                        </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
+                            <td class="px-6 py-3">
+                                <p>Artificial Intelligence</p>
+                            </td>
+                            <td class="px-6 py-3">
+                                <p>21 Modul</p>
+                            </td>
+                            <td class="px-6 py-3">
+                                <p>Dasar</p>
+                            </td>
+                            <td class="px-6 py-3">
+                                <p>12 Jam</p>
+                            </td>
+                            <td class="px-6 py-3 text-center">
+                                <div class="item-center flex justify-center">
+                                    <a href="course/1/edit"
+                                        class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                        </svg>
+                                    </a>
+                                    <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
                                     </div>
                                 </div>
-                            </a>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
+                            <td class="px-6 py-3">
+                                <p>Data Structure</p>
+                            </td>
+                            <td class="px-6 py-3">
+                                <p>21 Modul</p>
+                            </td>
+                            <td class="px-6 py-3">
+                                <p>Dasar</p>
 
-                        </div>
-                    </div>
-                </div>
+                            </td>
+                            <td class="px-6 py-3">
+                                <p>12 Jam</p>
+                            </td>
+                            <td class="px-6 py-3 text-center">
+                                <div class="item-center flex justify-center">
+                                    <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                        </svg>
+                                    </div>
+                                    <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-
     </body>
 @endsection
 @section('footer')

@@ -8,6 +8,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
     <link href="style.css" rel="stylesheet" />
     @vite('resources/css/app.css')
 </head>
@@ -22,7 +23,6 @@
         <div class="scroll-smooth bg-white px-5 sm:px-10">
             <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
                 <div>
-
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
                         <a onclick="history.back()" class="flex items-center" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -34,25 +34,21 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto my-auto w-full p-6 md:w-8/12">
-
+        <div class="container mx-auto my-auto w-full p-6 lg:w-9/12">
             <div class="my-4 rounded-xl bg-white md:flex">
                 <!-- Left Side -->
                 <div class="w-full md:w-1/3">
                     <!-- Profile Card -->
                     <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
-                            <img class="h-full p-4 md:px-0"
+                            <img class="h-64 p-4 md:px-0"
                                 src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
                                 alt="e" />
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Side -->
                 <div class="h-auto w-full md:mx-2 md:w-2/3">
-                    <!-- Profile tab -->
-                    <!-- About Section -->
                     <div class="rounded-xl bg-white px-6 py-2 md:px-12">
                         <h1
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-6 md:pr-4 md:text-left lg:text-3xl">
@@ -95,7 +91,7 @@
                                 </div>
                                 <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
                                     <a href="/courses/1/pdf"
-                                        class="inline-flex items-center rounded-md bg-indigo-500 px-4 py-2 align-middle text-sm font-semibold text-white hover:bg-indigo-600 md:w-36">
+                                        class="inline-flex items-center rounded-md bg-green-400 px-4 py-2 align-middle text-sm font-semibold text-white hover:bg-indigo-600 md:w-36">
                                         <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
                                             height="1.1em" viewBox="0 0 512 512">
                                             <path
@@ -157,19 +153,22 @@
                                 </div>
                                 <ul class="list-inside space-y-2">
                                     <li>
-                                        <div class="px-4 text-teal-600">Resolusi Layar</div>
+                                        <div class="px-4 text-indigo-500">Resolusi Layar</div>
                                         <div class="px-4 text-xs text-gray-500">1366 x 768 (rec. 1920 x 1080) </div>
                                     </li>
                                     <li>
-                                        <div class="px-4 text-teal-600">RAM</div>
+                                        <div class="px-4 text-indigo-500">Minimum RAM</div>
                                         <div class="px-4 text-xs text-gray-500">1GB (rec. 2GB keatas)</div>
                                     </li>
                                     <li>
-                                        <div class="px-4 text-teal-600">Processor</div>
+                                        <div class="px-4 text-indigo-500">Processor</div>
                                         <div class="px-4 text-xs text-gray-500">Intel Celeron / Sekelas (rec. Intel i3 /
                                             Sekelas)</div>
                                     </li>
-
+                                    <li>
+                                        <div class="px-4 text-indigo-500">Operating System</div>
+                                        <div class="px-4 text-xs text-gray-500">Linux, MacOS, dan Windows</div>
+                                    </li>
                                 </ul>
                             </div>
                             <div>
@@ -179,36 +178,27 @@
                                         <path
                                             d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z" />
                                     </svg>
-                                    <span class="text-xl tracking-wide">Tools yang Dibutuhkan</span>
+                                    <span class="text-xl tracking-wide">Tools dan Program yang Diperlukan</span>
                                 </div>
-                                <ul class="list-inside space-y-2">
-                                    <li>
-                                        <div class="px-4 text-teal-600">C Language Compiler (seperti DevC dan onlinegdb)
-                                        </div>
-                                        <div class="px-4 text-xs text-gray-500">Diperlukan untuk menjalankan kode C</div>
+                                <ul class="list-inside space-y-2" style=“list-style-type:disc”>
+                                    <li class="px-4 py-2 text-indigo-500">
+                                        C Language Compiler (seperti DevC dan onlinegdb)
                                     </li>
-                                    <li>
-                                        <div class="px-4 text-teal-600">Web Browser (seperti Chrome atau Firefox)</div>
-                                        <div class="px-4 text-xs text-gray-500">Digunakan untuk mengakses materi</div>
+                                    <li class="px-4 py-2 text-indigo-500">
+                                        Web Browser (seperti Chrome atau Firefox)
                                     </li>
-
+                                    <li class="px-4 py-2 text-indigo-500">
+                                        Code Editor (seperti Visual Studio Code)
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                        <!-- End of Experience and education grid -->
+
                     </div>
-                    <!-- End of profile tab -->
+
                 </div>
             </div>
-            {{-- <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                <a href="/courses/1/getcerti"
-                    class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Unduh
-                    Sertifikat</a>
-            </p>
-            <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                <a href="/forum"
-                    class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-green-400">Forum</a>
-            </p> --}}
+
             <h1 class="my-8 text-center text-3xl font-semibold">Materi Pembelajaran </h1>
             <div id="syllabus"class="my-4"></div>
 
@@ -232,7 +222,14 @@
                             students &
                             the range of ways you can deliver content online.
                         </p>
-
+                        <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                            </svg>
+                            <span class="text-sm font-semibold text-gray-600">45 Menit</span>
+                        </div>
                         <div class="transition hover:bg-indigo-50">
                             <div class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
@@ -318,7 +315,14 @@
                             students &
                             the range of ways you can deliver content online.
                         </p>
-
+                        <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                            </svg>
+                            <span class="text-sm font-semibold text-gray-600">45 Menit</span>
+                        </div>
                         <div class="transition hover:bg-indigo-50">
                             <div class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
@@ -413,9 +417,16 @@
                         <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
                             Memuat test akhir untuk kursus Algoritma dan Pemrograman
                         </p>
-
+                        <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                            </svg>
+                            <span class="text-sm font-semibold text-gray-600">45 Menit</span>
+                        </div>
                         <div class="flex items-center">
-                            <div class="flex items-center">
+                            <div class="flex h-16 cursor-pointer items-center">
 
                                 <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
                                     <a href="/courses/3/asg"
@@ -427,7 +438,114 @@
                     </div>
                 </div>
             </div>
+            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                <div class="w-full px-4">
+                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                            Sertifikasi Penyelesaian Kursus (MUNCULIN ABIS SELESAI FINAL TEST)
+                        </h2>
+                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                            Selamat! Anda telah menyelesaikan kursus ini. Silahkan mengunduh sertifikat anda.
+                        </p>
+
+                        <div class="flex items-center">
+                            <div class="flex items-center">
+
+                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                    <a id="convertButton"
+                                        class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
+                                        Sertifikat</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </body>
+    {{-- CERTIFICATION HERE --}}
+    <style>
+        .cert {
+            border: 15px solid #0072c6;
+            border-right: 15px solid #0894fb;
+            border-left: 15px solid #0894fb;
+            width: 700px;
+            font-family: arial;
+            color: #383737;
+        }
+
+        .crt_title {
+            margin-top: 60px;
+            font-size: 40px;
+            letter-spacing: 1px;
+            color: #0060a9;
+        }
+
+        .crt_logo img {
+            width: 130px;
+            height: auto;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .colorGreen {
+            color: #27ae60;
+        }
+
+        .crt_user {
+            display: inline-block;
+            width: 80%;
+            padding: 5px 25px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+
+            font-size: 40px;
+            border-bottom: 1px dashed #cecece;
+        }
+
+        .afterName {
+            font-weight: 100;
+            color: #383737;
+        }
+
+        .colorGrey {
+            color: grey;
+        }
+
+        .certSign {
+            width: 200px;
+        }
+
+        .marginBottom {
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 700px) {
+            .cert {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <table class="cert hidden bg-white">
+
+        <tr>
+            <td align="center">
+                <h1 class="crt_title">Certificate Of Completion
+                    <h2 class="afterName my-6 font-semibold">Sertifikat ini Diberikan Kepada</h2>
+                    <h1 class="colorGreen crt_user">Insert Name Here</h1>
+                    <h3 class="afterName mt-8">Dalam Menyelesaikan Kursus</h3>
+                    <h2 class="afterName mt-4">Insert Course Name Here</h2>
+                    <h3 class="mb-12 mt-4">Pada Tanggal <span class="font-semibold"> {{ date('Y-m-d') }}</span></h3>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <img class="mb-16" src="/storage/image/logo.png" alt="logo">
+
+            </td>
+        </tr>
+    </table>
+    {{-- CERTIFICATION HERE --}}
     <style>
         .accordion-content {
             transition: max-height 0.3s ease-out, padding 0.3s ease;
@@ -454,6 +572,31 @@
                     header.parentElement.classList.remove("bg-indigo-50");
                 }
             });
+        });
+        //Certification Upload to JPG
+        document.getElementById("convertButton").addEventListener("click", function() {
+            // Select the HTML element you want to convert to an image (your table)
+            const elementToCapture = document.querySelector(".cert");
+            elementToCapture.classList.remove("hidden")
+            // Use html2canvas to capture the element as an image
+            html2canvas(elementToCapture, {
+                allowTaint: true,
+                useCORS: true
+            }).then(function(canvas) {
+                // Create an image from the canvas
+                const image = new Image();
+                image.src = canvas.toDataURL("image/jpeg");
+
+                // Create a download link for the image
+                const a = document.createElement("a");
+                a.href = image.src;
+                a.download = "certificate.jpg";
+
+                // Simulate a click on the download link to trigger the download
+                a.click();
+
+            });
+            elementToCapture.classList.add("hidden")
         });
     </script>
 

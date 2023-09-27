@@ -164,7 +164,7 @@
         {{-- CREATE FORUM MODAL --}}
         <div class="modal pointer-events-none fixed left-0 top-0 flex h-full w-full items-center justify-center opacity-0">
             <div class="modal-overlay absolute h-full w-full bg-gray-900 opacity-50"></div>
-            <div class="modal-container z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/4">
+            <div class="modal-container z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
                 <!-- Add margin if you want to see some of the overlay behind the modal-->
                 <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
                     <div class="container mx-auto my-5 p-5">
@@ -179,7 +179,7 @@
                                             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                                             Judul Diskusi</label>
                                         <input type="text" name="username" id="inputUsername"
-                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                             placeholder="Tulis Judul untuk Pertanyaan Anda..." required="">
                                     </div>
                                     <div class="sm:col-span-2">
@@ -187,7 +187,7 @@
                                             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                                             Judul Diskusi</label>
                                         <input type="text" name="username" id="inputUsername"
-                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                             placeholder="Tulis Pertanyaan Anda..." required="">
                                     </div>
                                     <div class="sm:col-span-2">
@@ -203,7 +203,7 @@
                             </form>
                         </div>
                         <!--Footer-->
-                        <div class="mt-8 flex justify-end pt-2">
+                        <div class="flex justify-end pt-2">
 
                             <button
                                 class="modal-close mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat

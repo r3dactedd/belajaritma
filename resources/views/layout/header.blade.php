@@ -28,21 +28,20 @@
                 <span class="ml-4 text-2xl text-gray-800">Belajaritma</span>
             </a>
             <ul class="hidden h-full items-center lg:flex">
-                <li
-                    class="text-md flex h-full cursor-pointer items-center border-b-2 border-indigo-600 font-bold tracking-normal text-indigo-600">
-                    <a href="/home">Home</a>
+                <li class="text-md flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                    <a href="/home" id="home-link">Home</a>
                 </li>
                 <li
                     class="text-md mx-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/courses">Kursus</a>
+                    <a href="/courses" id="courses-link">Kursus</a>
                 </li>
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/certifications">Sertifikasi</a>
+                    <a href="/certifications" id="certifications-link">Sertifikasi</a>
                 </li>
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/manager">Admin Management</a>
+                    <a href="/manager" id="manager-link">Admin Management</a>
                 </li>
             </ul>
         </div>
@@ -54,19 +53,19 @@
                             onclick="dropdownHandler(this)">
                             <ul class="absolute left-0 top-0 mt-16 hidden w-40 rounded border-r bg-white p-2 shadow">
                                 <li
-                                    class="cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                    class="cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
                                     <div class="flex items-center">
 
-                                        <a href="/profile/1"class="ml-2 font-semibold">Profil Saya</a>
+                                        <a href="/profile/name"class="ml-2 font-semibold">Profil Saya</a>
                                     </div>
                                 </li>
                                 <li
-                                    class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                    class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
 
-                                    <a href="/profile/1/edit" class="ml-2 font-semibold">Atur Profil</a>
+                                    <a href="/profile/name/edit" class="ml-2 font-semibold">Atur Profil</a>
                                 </li>
                                 <li
-                                    class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                    class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
 
                                     <form method="POST" action="/logout">
                                         @csrf
@@ -77,8 +76,9 @@
                             <img class="h-10 w-10 rounded object-cover"
                                 src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
                                 alt="logo" />
-                            <p class="text-md ml-2 font-semibold text-gray-800">{{ auth()->user()->username }}</p> <svg
-                                class="ml-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                            <p class="text-md ml-2 font-semibold" id="profile-link">
+                                {{ auth()->user()->username }}</p> <svg class="ml-2" xmlns="http://www.w3.org/2000/svg"
+                                height="1em" viewBox="0 0 320 512">
 
                                 <path
                                     d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
@@ -89,10 +89,10 @@
             </div>
             {{-- KALAU BLM ADA ACCOUNT --}}
             <a href="/login"
-                class="focus:shadow-outline my-2 rounded-lg border border-solid bg-indigo-600 px-8 py-2 text-sm font-semibold text-white hover:bg-teal-800 focus:outline-none md:my-0 md:ml-4 md:mt-0">Login</a>
+                class="focus:shadow-outline my-2 rounded-lg border border-solid bg-indigo-500 px-8 py-2 text-sm font-semibold text-white hover:bg-teal-800 focus:outline-none md:my-0 md:ml-4 md:mt-0">Login</a>
             <a href="/signup"
-                class="focus:shadow-outline my-2 rounded-lg border border-solid bg-indigo-600 px-8 py-2 text-sm font-semibold text-white hover:bg-teal-800 focus:outline-none md:my-0 md:ml-4 md:mt-0">Daftar</a>
-            {{-- KALAU BLM ADA ACCOUNT --}}
+                class="focus:shadow-outline my-2 rounded-lg border border-solid bg-indigo-500 px-8 py-2 text-sm font-semibold text-white hover:bg-teal-800 focus:outline-none md:my-0 md:ml-4 md:mt-0">Daftar</a>
+
         </div>
 
         {{-- MOBILE DESIGN --}}
@@ -100,24 +100,24 @@
             class="cursor-pointer text-gray-700 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none lg:hidden">
             <ul class="absolute left-0 right-0 top-0 z-40 mt-16 hidden rounded border-r bg-white p-2 shadow md:mt-16">
                 <li
-                    class="flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none lg:hidden">
+                    class="flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
                     <div class="flex items-center">
-                        <span class="ml-2 text-lg font-bold"><a href="/index">Home</a></span>
+                        <span class="ml-2 font-bold"><a href="/index">Home</a></span>
                     </div>
                 </li>
-                <li class="flex cursor-pointer flex-col justify-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none lg:hidden"
+                <li class="flex cursor-pointer flex-col justify-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden"
                     onclick="dropdownHandler(this)">
                     <div class="flex items-center">
-                        <span class="ml-2 text-lg font-bold"><a href="/courses">Kursus</a></span>
+                        <span class="ml-2 font-bold"><a href="/courses">Kursus</a></span>
                     </div>
                 </li>
                 <li
-                    class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none lg:hidden">
-                    <span class="ml-2 text-lg font-bold"><a href="/certification">Sertifikasi</a></span>
+                    class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
+                    <span class="ml-2 font-bold"><a href="/certification">Sertifikasi</a></span>
                 </li>
                 {{-- IF USER SUDAH DAFTAR/LOGIN --}}
                 <li
-                    class="ml-2 mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                    class="ml-2 mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
                     <div class="flex items-center">
                         <div
                             class="flex w-12 cursor-pointer rounded border-2 border-transparent text-sm transition duration-150 ease-in-out focus:border-white focus:outline-none">
@@ -138,7 +138,7 @@
                     </div>
                 </li>
                 <li
-                    class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                    class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
@@ -151,9 +151,9 @@
                     </div>
                 </li>
                 {{-- IF USER SUDAH DAFTAR/LOGIN --}}
-
+                {{-- IF USER BELUM DAFTAR/LOGIN --}}
                 <li
-                    class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                    class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
                     <a href="/login"
                         class="hover:bg-selected focus:bg-selected focus:shadow-outline my-2 rounded-lg border border-solid bg-transparent px-8 py-2 text-sm font-semibold hover:text-gray-900 focus:text-gray-900 focus:outline-none md:my-0 md:ml-4 md:mt-0">Login</a>
                     <a href="/signup"
@@ -212,4 +212,38 @@
             el.classList.add("hidden");
         }
     }
+    //Dynamic Highlight
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the current URL or route
+        var currentUrl = window.location.pathname;
+
+        // Get the <a> elements
+        var homeLink = document.getElementById("home-link");
+        var coursesLink = document.getElementById("courses-link");
+        var certificationsLink = document.getElementById("certifications-link");
+        var managerLink = document.getElementById("manager-link");
+        var profileLink = document.getElementById("profile-link");
+        // Function to extract the base URL
+        function getBaseUrl(url) {
+            var parts = url.split('/');
+            return '/' + parts[1]; // The first part after splitting
+        }
+
+        // Extract the base URL
+        var baseUrl = getBaseUrl(currentUrl);
+
+        // Check the current URL and add the active class accordingly
+        if (baseUrl === "/home") {
+            homeLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+        } else if (baseUrl === "/courses") {
+            coursesLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+        } else if (baseUrl === "/certifications") {
+            certificationsLink.parentElement.classList.add("border-b-2", "border-indigo-600",
+                "text-indigo-600");
+        } else if (baseUrl === "/manager") {
+            managerLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+        } else if (baseUrl === "/profile") { // Add this condition
+            profileLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+        }
+    });
 </script>

@@ -182,8 +182,8 @@
                                             <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                                 Data Structures
                                             </h1>
-                                            <p class="mt-4 w-fit rounded-xl bg-yellow-400 px-6 py-1.5 text-sm text-white">
-                                                Lanjut
+                                            <p class="mt-4 w-fit rounded-xl bg-yellow-500 px-6 py-1.5 text-sm text-white">
+                                                Lanjut Kursus
                                             </p>
                                         </div>
                                     </div>
@@ -235,13 +235,10 @@
                                         </p>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </a>
-
-
                 <a href="/courses/4">
                     <div
                         class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
@@ -259,7 +256,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- Right Side -->
                                     <div class="h-auto w-full md:mx-2 md:w-2/3">
                                         <div class="rounded-sm bg-white px-4 py-2">
@@ -267,7 +263,7 @@
                                                 Artificial Intelligence
                                             </h1>
                                             <p class="mt-4 w-fit rounded-xl bg-indigo-500 px-6 py-1.5 text-sm text-white">
-                                                Dapat Diambil
+                                                Ambil Kursus
                                             </p>
                                         </div>
                                     </div>
