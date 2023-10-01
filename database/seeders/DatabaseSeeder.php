@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,5 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SidebarSeeder::class);
         $this->call(MasterTypeSeeder::class);
         $this->call(ForumSeeder::class);
+        $this->call(MaterialSeeder::class);
+        $this->call(ModuleContentSeeder::class);
     }
 }

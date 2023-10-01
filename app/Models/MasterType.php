@@ -18,4 +18,8 @@ class MasterType extends Model
     public function masterTypeToForm(){
         return $this->hasMany(Forum::class, 'master_type_id','id');
     }
+
+    public function masterTypeToMaterial(){
+        return $this->hasMany(Material::class, 'master_type_id','id');
+    }
 }

@@ -198,7 +198,9 @@
             <div id="syllabus"class="my-4"></div>
 
             {{-- MATERI LIST START --}}
+        @foreach ($material as $materialItem)
             <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+
                 <div class="w-full px-4">
                     <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                         <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
@@ -208,14 +210,10 @@
                         </div>
 
                         <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            Materi 1
+                            {{$materialItem->material_title}}
                         </h2>
                         <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                            We recommend this introduction as a starting point for how to move from face-to-face to
-                            online
-                            teaching. In this 60-minute webinar, we discuss how to effectively communicate with your
-                            students &
-                            the range of ways you can deliver content online.
+                            {{$materialItem->material_desc}}
                         </p>
 
                         <div class="transition hover:bg-indigo-50">
@@ -229,160 +227,44 @@
 
                             <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
                                 <ul class="ml-8 list-inside space-y-2 pb-4">
-                                    <!-- Materi Module-->
+                                    @foreach ($contentArray[$materialItem->id]  as $moduleContent)
                                     <li>
                                         <div class="flex items-center">
-                                            <!-- If done, add check-->
-                                            <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
-                                                height="1em" viewBox="0 0 512 512">
+                                            @if ($moduleContent->is_completed == true)
+                                                <!-- If done, add check-->
+                                                <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                                    <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                                </svg>
+                                                <a href="/courses/1/pdf" class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                                     {{$moduleContent->content_title}}
+                                                </a>
+                                            @else
+                                                <!-- If not done, add lock ini-->
+                                                <div class="pointer-events-none flex items-center">
+                                                    <!-- If not done, add lock ini-->
+                                                    <svg id="lock" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                                        height="1em" viewBox="0 0 448 512">
+                                                        <path
+                                                            d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+                                                    </svg>
 
-                                                <path
-                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                                            </svg>
-                                            <a href="/courses/1/pdf"
-                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
-                                                PDF Materi Ticked
-                                            </a>
+                                                    <a href="/courses/1/pdf"
+                                                        class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                                        {{$moduleContent->content_title}}
+                                                    </a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </li>
-
-                                    <li>
-                                        <div class="flex items-center">
-                                            <!-- If done, add check-->
-                                            <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
-                                                height="1em" viewBox="0 0 512 512">
-                                                <path
-                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                                            </svg>
-                                            <a href="/courses/2/video"
-                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
-                                                Video Materi Ticked
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!-- If not done, add pointer-events-none -->
-                                        <div class="pointer-events-none flex items-center">
-                                            <!-- If not done, add lock ini-->
-                                            <svg id="lock" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
-                                                height="1em" viewBox="0 0 448 512">
-                                                <path
-                                                    d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
-                                            </svg>
-
-                                            <a href="/courses/1/pdf"
-                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
-                                                PDF Materi not ticked
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <!-- Materi Module-->
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Module-->
-            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
-                <div class="w-full px-4">
-                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                        <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
-                            <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-indigo-600">
-                                Sesi 2
-                            </h4>
-                        </div>
+        @endforeach
 
-                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            Materi 2
-                        </h2>
-                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                            We recommend this introduction as a starting point for how to move from face-to-face to
-                            online
-                            teaching. In this 60-minute webinar, we discuss how to effectively communicate with your
-                            students &
-                            the range of ways you can deliver content online.
-                        </p>
-
-                        <div class="transition hover:bg-indigo-50">
-                            <div class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
-                                    <path
-                                        d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
-                                </svg>
-                                <h3 class="font-semibold">Konten Modul</h3>
-                            </div>
-
-                            <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
-                                <ul class="ml-8 list-inside space-y-2 pb-4">
-                                    <!-- Materi Module-->
-                                    <li>
-                                        <div class="flex items-center">
-                                            <!-- If done, add check-->
-                                            <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
-                                                height="1em" viewBox="0 0 512 512">
-
-                                                <path
-                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                                            </svg>
-                                            <a href="/courses/1/pdf"
-                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
-                                                PDF Materi Ticked
-                                            </a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="flex items-center">
-                                            <!-- If done, add check-->
-                                            <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
-                                                height="1em" viewBox="0 0 512 512">
-                                                <path
-                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                                            </svg>
-                                            <a href="/courses/3/asg"
-                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
-                                                Assignment Materi
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="flex items-center">
-                                            <!-- If done, add check-->
-                                            <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
-                                                height="1em" viewBox="0 0 512 512">
-                                                <path
-                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                                            </svg>
-                                            <a href="/courses/2/video"
-                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
-                                                Video Materi Ticked
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!-- If not done, add pointer-events-none -->
-                                        <div class="pointer-events-none flex items-center">
-                                            <!-- If not done, add lock ini-->
-                                            <svg id="lock" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
-                                                height="1em" viewBox="0 0 448 512">
-                                                <path
-                                                    d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
-                                            </svg>
-
-                                            <a href="/courses/1/pdf"
-                                                class="text-md ml-2 font-normal text-gray-600 hover:underline">
-                                                PDF Materi not ticked
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <!-- Materi Module-->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
                 <div class="w-full px-4">
                     <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
