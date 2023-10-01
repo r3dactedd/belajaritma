@@ -18,4 +18,8 @@ class Course extends Model
     public function courseToSidebar(){
         return $this->belongsTo(Sidebar::class,'id','id');
     }
+
+    public function courseToMaterial(){
+        return $this->hasMany(Material::class, 'course_id','id');
+    }
 }
