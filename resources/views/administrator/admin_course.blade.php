@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script>
+        function showDeleteModal(courseId) {
+            const deleteModal = document.getElementById(`deleteModal-${courseId}`);
+            const overlay = document.getElementById(`overlay-${courseId}`);
 
+            deleteModal.classList.remove('hidden');
+            overlay.style.display = 'block'; 
+        }
+
+        function hideDeleteModal(courseId) {
+            const deleteModal = document.getElementById(`deleteModal-${courseId}`);
+            const overlay = document.getElementById(`overlay-${courseId}`);
+
+            deleteModal.classList.add('hidden');
+            overlay.style.display = 'none';
+        }
+    </script>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,28 +24,8 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <link href="./style.css" rel="stylesheet" />
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let modal = document.getElementById("my-modal");
-            let btn = document.getElementById("open-btn");
-            let button = document.getElementById("ok-btn");
-
-            btn.onclick = function() {
-                modal.style.display = "block";
-            }
-
-            button.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        });
-    </script>
+    <link href="style.css" rel="stylesheet" />
+    @vite('resources/css/app.css')
 </head>
 
 <body class="bg-gray-200 pb-12">
@@ -39,9 +35,7 @@
         @include('layout.header')
     @endsection
     @section('content')
-
-        <!-- page heading -->
-        <div class="bg-white px-5 sm:px-10">
+        <div class="scroll-smooth bg-white px-5 sm:px-10">
             <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
                 <div>
 
@@ -51,20 +45,16 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Kursus</span>
+                            <span class="mb-1 ml-2">Manage Kursus</span>
                         </a>
                 </div>
             </div>
         </div>
-        <!-- page heading -->
-
-
-        <div class="container mx-auto my-4 pb-4">
-            {{-- Search Bar --}}
+        <div class="container mx-auto my-5 p-5">
             <div class="relative m-4">
-                <form method="get" action="/courses">
+                <form>
                     @csrf
-                    <input name="search" id= "search" type="text" placeholder="Cari Nama Kursus..." required=""
+                    <input id="search" name="search" type="text" placeholder="Cari Nama Kursus..." required=""
                         class="mt-4 w-full rounded-md border-transparent bg-gray-100 px-8 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                     <button type="submit"
                         class="absolute right-0 top-0 mt-4 rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -77,13 +67,11 @@
                     </button>
                 </form>
             </div>
-            {{-- Search Bar --}}
+
             <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2">
-                {{-- Course Components --}}
                 @foreach ($data as $course)
-                    <a href="/courses/{{$course->id}}">
                         <div
-                            class="min-h-max cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
+                            class="min-h-max  rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                             <div class="lg:w-3/2 w-full">
                                 <div class="pb-4 pl-4 pr-4 pt-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                                     <div class="my-2 bg-white md:flex md:h-36">
@@ -98,7 +86,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <!-- Right Side -->
                                         <div class="h-auto w-full md:mx-2 md:w-2/3">
                                             <div class="bg-white px-4 py-2">
@@ -151,25 +138,40 @@
                                             </p>
                                         </div>
                                     </div>
-
+                                    <div class="my-4 flex">
+                                        <button id="get-content-button-{{$course->id}}"
+                                            class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white"
+                                            onclick="showDeleteModal({{$course->id}})">
+                                            Delete
+                                        </button>
+                                    </div>
+                                    <div id="overlay-{{$course->id}}" class="fixed inset-0 bg-black opacity-50 z-40 hidden"></div>
+                                    <div id="deleteModal-{{$course->id}}" class="hidden fixed inset-0 flex items-center justify-center z-50">
+                                        <div class="modal-container bg-white w-96 p-6 rounded shadow-lg">
+                                            <h2 class="text-lg font-semibold mb-4">Confirm Deletion</h2>
+                                            <p>Are you sure you want to delete this course?</p>
+                                            <div class="mt-4 flex justify-end">
+                                                <button id="cancelDelete-{{$course->id}}" class="mr-4 px-4 py-2 text-gray-600"
+                                                    onclick="hideDeleteModal({{$course->id}})">Cancel</button>
+                                                <form method="POST" action="/deleteCourse/{{$course->id}}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="px-4 py-2 bg-red-500 text-white">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </a>
                 @endforeach
-
-
             </div>
+        </div>
 
-
-
-
-        @endsection
-        @section('footer')
-            @include('layout.footer')
-        @endsection
-
-</body>
-
+    </body>
+@endsection
+@section('footer')
+    @include('layout.footer')
+@endsection
 
 </html>

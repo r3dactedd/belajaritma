@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
+    <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
@@ -16,8 +16,6 @@
         <div class="mx-auto flex h-full flex-col justify-center lg:flex-row">
             <div class="flex w-full justify-center bg-white lg:w-1/2">
                 <div class="mx-4 mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
-
-
                     <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Daftar</h1>
                     <h1 class="text-md text-center font-light">Mulailah perjalanan programming kamu sekarang juga.</h1>
                     <main class="form-registration mt-5 px-5 sm:px-6">
