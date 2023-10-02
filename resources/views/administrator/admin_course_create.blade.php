@@ -42,7 +42,7 @@
                             <line x1="12" y1="5" x2="12" y2="19" />
                             <line x1="5" y1="12" x2="19" y2="12" />
                         </svg>
-                        <div class="mx-2"> Publish Kursus </div>
+                        <div class="mx-2"> Tambah Materi </div>
                     </button>
                 </div>
             </div>
@@ -204,8 +204,11 @@
                                             <input
                                                 class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 todo-input ml-4 block w-4/5 rounded-lg border border-gray-300 bg-gray-50 pl-4 text-gray-900"
                                                 placeholder="Add Todo">
-                                            <a class="flex-no-shrink text-teal border-teal hover:bg-teal ml-4 rounded-lg border p-2 hover:text-white"
-                                                onclick="addItem()">Add</a>
+
+                                            <a onclick="addItem()"
+                                                class="mx-2 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none">
+                                                Add
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="pl-4">
@@ -376,24 +379,6 @@
             });
         });
 
-
-        function previewImage() {
-            const input = document.getElementById('imageUpload');
-            const preview = document.getElementById('imagePreview');
-            const area = document.getElementById('imageUploadArea');
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.classList.remove('hidden');
-                    preview.classList.add('mt-4')
-                    area.classList.add('hidden');
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
         // Function to add a new item
         function addItem() {
             const input = document.querySelector('.todo-input');

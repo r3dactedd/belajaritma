@@ -90,7 +90,7 @@ Route::get('/manager/course', function () {
 });
 
 Route::get('/manager/course/create', function () {
-    return view('administrator.admin_course_edit');
+    return view('administrator.admin_course_create');
 });
 
 Route::get('/manager/certification', function () {

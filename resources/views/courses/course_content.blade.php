@@ -151,25 +151,26 @@
                                     </svg>
                                     <span class="text-xl tracking-wide">Spesifikasi Minimum</span>
                                 </div>
-                                <ul class="list-inside space-y-2">
-                                    <li>
-                                        <div class="px-4 text-indigo-500">Resolusi Layar</div>
-                                        <div class="px-4 text-xs text-gray-500">1366 x 768 (rec. 1920 x 1080) </div>
-                                    </li>
-                                    <li>
-                                        <div class="px-4 text-indigo-500">Minimum RAM</div>
-                                        <div class="px-4 text-xs text-gray-500">1GB (rec. 2GB keatas)</div>
-                                    </li>
-                                    <li>
-                                        <div class="px-4 text-indigo-500">Processor</div>
-                                        <div class="px-4 text-xs text-gray-500">Intel Celeron / Sekelas (rec. Intel i3 /
+                                <div class="grid grid-cols-2 gap-4 py-4 pl-4 pr-8">
+                                    <div class="rounded-lg bg-white p-4 shadow-md">
+                                        <div class="text-indigo-500">Resolusi Layar</div>
+                                        <div class="text-xs text-gray-500">1366 x 768 (rec. 1920 x 1080)</div>
+                                    </div>
+                                    <div class="rounded-lg bg-white p-4 shadow-md">
+                                        <div class="text-indigo-500">Minimum RAM</div>
+                                        <div class="text-xs text-gray-500">1GB (rec. 2GB keatas)</div>
+                                    </div>
+                                    <div class="rounded-lg bg-white p-4 shadow-md">
+                                        <div class="text-indigo-500">Processor</div>
+                                        <div class="text-xs text-gray-500">Intel Celeron / Sekelas (rec. Intel i3 /
                                             Sekelas)</div>
-                                    </li>
-                                    <li>
-                                        <div class="px-4 text-indigo-500">Operating System</div>
-                                        <div class="px-4 text-xs text-gray-500">Linux, MacOS, dan Windows</div>
-                                    </li>
-                                </ul>
+                                    </div>
+                                    <div class="rounded-lg bg-white p-4 shadow-md">
+                                        <div class="text-indigo-500">Operating System</div>
+                                        <div class="text-xs text-gray-500">Linux, MacOS, dan Windows</div>
+                                    </div>
+                                </div>
+
                             </div>
                             <div>
                                 <div
@@ -180,17 +181,16 @@
                                     </svg>
                                     <span class="text-xl tracking-wide">Tools dan Program yang Diperlukan</span>
                                 </div>
-                                <ul class="list-inside space-y-2" style=“list-style-type:disc”>
-                                    <li class="px-4 py-2 text-indigo-500">
-                                        C Language Compiler (seperti DevC dan onlinegdb)
-                                    </li>
-                                    <li class="px-4 py-2 text-indigo-500">
-                                        Web Browser (seperti Chrome atau Firefox)
-                                    </li>
-                                    <li class="px-4 py-2 text-indigo-500">
-                                        Code Editor (seperti Visual Studio Code)
-                                    </li>
-                                </ul>
+                                <div class="flex text-sm md:w-3/4">
+                                    <div class="block">
+                                        <div class="px-4 py-2 font-semibold">Untuk kursus ini diperlukan beberapa program
+                                            seperti
+                                            C Language Compiler (seperti DevC dan onlinegdb), Web Browser (seperti Chrome
+                                            atau Firefox).
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -213,7 +213,7 @@
                         </div>
 
                         <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            Materi 1
+                            Pengenalan Algoritma dan Pemrograman
                         </h2>
                         <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
                             We recommend this introduction as a starting point for how to move from face-to-face to
@@ -253,7 +253,7 @@
                                             </svg>
                                             <a href="/courses/1/pdf"
                                                 class="text-md ml-2 font-normal text-gray-600 hover:underline">
-                                                PDF Materi Ticked
+                                                Apa itu Algoritma?
                                             </a>
                                         </div>
                                     </li>
@@ -268,7 +268,7 @@
                                             </svg>
                                             <a href="/courses/2/video"
                                                 class="text-md ml-2 font-normal text-gray-600 hover:underline">
-                                                Video Materi Ticked
+                                                Pengenalan Mengenai Bahasa C
                                             </a>
                                         </div>
                                     </li>
@@ -284,7 +284,7 @@
 
                                             <a href="/courses/1/pdf"
                                                 class="text-md ml-2 font-normal text-gray-600 hover:underline">
-                                                PDF Materi not ticked
+                                                Software dan Program-Program yang Akan Digunakan
                                             </a>
                                         </div>
                                     </li>

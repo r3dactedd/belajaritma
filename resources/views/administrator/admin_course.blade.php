@@ -69,9 +69,9 @@
                     <thead class="bg-gray-200 leading-normal text-gray-600">
                         <tr class="text-md bg-gray-200 leading-normal text-gray-600 md:text-lg">
                             <th class="px-6 py-3 text-left">Nama Kursus</th>
-                            <th class="px-6 py-3 text-left">Jumlah Modul</th>
-                            <th class="px-6 py-3 text-left">Tingkat Pembelajaran</th>
-                            <th class="px-6 py-3 text-left">Estimasi Waktu</th>
+                            <th class="px-6 py-3 text-left">Diupload Oleh</th>
+                            <th class="px-6 py-3 text-left">Terakhir Diedit Oleh</th>
+                            <th class="px-6 py-3 text-left">Tanggal Edit Terakhir</th>
                             <th class="px-2 py-3 text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -81,13 +81,13 @@
                                 <p>Algoritma dan Pemrograman</p>
                             </td>
                             <td class="px-6 py-3">
-                                <p>21 Modul</p>
+                                <p>admin1</p>
                             </td>
                             <td class="px-6 py-3">
-                                <p>Dasar</p>
+                                <p>admin2</p>
                             </td>
                             <td class="px-6 py-3">
-                                <p>12 Jam</p>
+                                <p>date edit</p>
                             </td>
                             <td class="px-6 py-3 text-center">
                                 <div class="item-center flex justify-center">
@@ -113,13 +113,13 @@
                                 <p>Artificial Intelligence</p>
                             </td>
                             <td class="px-6 py-3">
-                                <p>21 Modul</p>
+                                <p>admin2</p>
                             </td>
                             <td class="px-6 py-3">
-                                <p>Dasar</p>
+                                <p>admin2</p>
                             </td>
                             <td class="px-6 py-3">
-                                <p>12 Jam</p>
+                                <p>date edit</p>
                             </td>
                             <td class="px-6 py-3 text-center">
                                 <div class="item-center flex justify-center">
@@ -146,14 +146,14 @@
                                 <p>Data Structure</p>
                             </td>
                             <td class="px-6 py-3">
-                                <p>21 Modul</p>
+                                <p>admin3</p>
                             </td>
                             <td class="px-6 py-3">
-                                <p>Dasar</p>
+                                <p>admin3</p>
 
                             </td>
                             <td class="px-6 py-3">
-                                <p>12 Jam</p>
+                                <p>date edit</p>
                             </td>
                             <td class="px-6 py-3 text-center">
                                 <div class="item-center flex justify-center">
