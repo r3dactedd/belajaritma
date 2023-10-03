@@ -24,7 +24,6 @@
         <div class="scroll-smooth bg-white px-5 sm:px-10">
             <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
                 <div>
-
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
                         <a onclick="history.back()" class="flex items-center" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -51,33 +50,25 @@
                             <div class="flex-1 rounded-lg px-4 pb-2 text-2xl leading-relaxed">
                                 <strong>User Name</strong> <span class="ml-2 text-xl text-gray-400">Date Create
                                     Thread</span>
-                                <p class="text-base">
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                    ullamco
-                                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in
-                                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                                    laborum."
+                                <p class="text-base" id="codeContainer">
                                 </p>
                             </div>
                         </div>
-                        <div class="flex w-full items-center md:ml-16">
+                        {{-- <div class="flex w-full items-center md:ml-16">
                             <img
                                 src="https://cdn.discordapp.com/attachments/699690186761830516/1136295687810723942/image.png">
-                        </div>
+                        </div> --}}
                         {{-- FORUM CONTENT END --}}
                         {{-- ADD COMMENTS --}}
                         <hr>
                         <div class="flex w-full items-center justify-center bg-white">
                             <div class="w-full">
 
-                                {{-- QUILL JS HERE --}}
-                                <div id="editor">
-                                </div>
-                                {{-- QUILL JS HERE --}}
+                                {{-- Input --}}
+
+                                <textarea id="input" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+
+
                                 <div class="my-4 flex justify-end">
                                     <button id="get-content-button"
                                         class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Balas</button>
@@ -122,8 +113,6 @@
                                             <ul class="ml-12 list-inside space-y-2 pb-4">
                                                 <div class="w-full" id="destination-reply-container">
 
-                                                    <div id="quill-container"></div>
-                                                    {{-- QUILL JS HERE --}}
                                                     <div class="my-4 flex justify-end">
                                                         <button id="get-content-button"
                                                             class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
@@ -173,7 +162,7 @@
                                                 <div class="w-full" id="reply-container">
 
                                                     <div id="quill-container2"></div>
-                                                    {{-- QUILL JS HERE --}}
+
                                                     <div class="my-4 flex justify-end">
                                                         <button id="get-content-button"
                                                             class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
@@ -218,7 +207,7 @@
                                                         <ul class="ml-12 list-inside space-y-2 pb-4">
                                                             <div class="w-full" id="destination-reply-container">
                                                                 <div id="quill-container3"></div>
-                                                                {{-- QUILL JS HERE --}}
+
                                                                 <div class="my-4 flex justify-end">
                                                                     <button id="get-content-button"
                                                                         class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
@@ -250,55 +239,35 @@
         }
     </style>
     <script>
-        var quill; // Declare quill in a higher scope
+        //Example for input be here :
+        var htmlCode =
+            `Ini contoh isi reply with code example <p>"Lorem ipsum dolor,, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<strong>herre</strong><em> consectetur adipiscing elit</em></p><pre class="language-c"><code>#include &lt;stdio.h&gt;
 
+int main() {
+    for (int i = 1; i &lt;= 5; i++) {
+        printf("%d\n", i);
+    }
+
+    return 0;
+}</code></pre>`;
+
+        var codeContainer = document.getElementById('codeContainer');
+
+        // Insert the HTML code into the placeholder
+        codeContainer.innerHTML = htmlCode;
+
+        tinymce.init({
+            selector: '#input',
+            height: 200,
+            menubar: false,
+            plugins: ' code codesample lists',
+
+            toolbar: ' wordcount | link image |code |bold italic underline| codesample|numlist bullist ',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+
+        })
         document.addEventListener("DOMContentLoaded", function(event) {
-            var toolbarOptions = [
-                ['bold', 'italic', 'underline', 'strike'],
-                ['blockquote', 'code-block'],
-                ['image'],
-            ];
 
-            quill = new Quill('#editor', {
-                modules: {
-                    syntax: false,
-                    toolbar: toolbarOptions
-                },
-                theme: 'snow'
-            });
-            // QUILL CONTAINERS FOR NOW
-            var quill2 = new Quill('#quill-container', {
-                modules: {
-                    syntax: false,
-                    toolbar: toolbarOptions
-                },
-                theme: 'snow'
-            });
-            var quill3 = new Quill('#quill-container2', {
-                modules: {
-                    syntax: false,
-                    toolbar: toolbarOptions
-                },
-                theme: 'snow'
-            });
-            var quill4 = new Quill('#quill-container3', {
-                modules: {
-                    syntax: false,
-                    toolbar: toolbarOptions
-                },
-                theme: 'snow'
-            });
-
-            var quillContent = quill.root.innerHTML;
-
-            document.getElementById('get-content-button').addEventListener('click', function() {
-                // Retrieve Quill content
-                var quillContent = quill.root.innerHTML;
-
-                // Perform actions with the content
-                console.log("Quill Content:");
-                console.log(quillContent); // Print content to the browser console
-            });
             const accordionHeader = document.querySelectorAll(".accordion-header");
             accordionHeader.forEach((header) => {
                 header.addEventListener("click", function() {

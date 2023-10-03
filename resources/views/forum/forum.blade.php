@@ -19,8 +19,7 @@
             overflow-y: visible !important;
         }
     </style>
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 </head>
 
 
@@ -182,22 +181,17 @@
                                             class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                             placeholder="Tulis Judul untuk Pertanyaan Anda..." required="">
                                     </div>
-                                    <div class="sm:col-span-2">
-                                        <label for="username"
-                                            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
-                                            Judul Diskusi</label>
-                                        <input type="text" name="username" id="inputUsername"
-                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                            placeholder="Tulis Pertanyaan Anda..." required="">
-                                    </div>
+
+                                    {{-- Input Area --}}
                                     <div class="sm:col-span-2">
                                         <label for="username"
                                             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                                             Pertanyaan</label>
 
-                                        <div id="editorcontainer" class="mt-2 h-32 min-h-full overflow-y-auto">
-                                            <div id="editor" style="min-height:60%; height:auto;"></div>
-                                        </div>
+
+                                        <form method="post" class="mt-2 h-32 min-h-full overflow-y-auto">
+                                            <textarea id="mytextarea" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                        </form>
                                     </div>
                                 </div>
                             </form>
@@ -213,8 +207,54 @@
                 </div>
             </div>
         </div>
-        {{-- CREATE FORUM MODAL + QUILLJS --}}
+
         <script>
+            //Input Area using TinyMCE
+            tinymce.init({
+                selector: '#mytextarea',
+                menubar: false,
+                // Image below, for further consideration
+                // plugins: 'image code codesample',
+                plugins: ' code codesample',
+                toolbar: ' wordcount | link image |code |bold italic underline| codesample ',
+                // Image below, for further consideration
+                // file_picker_types: 'image',
+                // /* enable automatic uploads of images represented by blob or data URIs*/
+                // automatic_uploads: true,
+                // file_picker_callback: (cb, value, meta) => {
+                //     const input = document.createElement('input');
+                //     input.setAttribute('type', 'file');
+                //     input.setAttribute('accept', 'image/*');
+
+                //     input.addEventListener('change', (e) => {
+                //         const file = e.target.files[0];
+
+                //         const reader = new FileReader();
+                //         reader.addEventListener('load', () => {
+                //             /*
+                //               Note: Now we need to register the blob in TinyMCEs image blob
+                //               registry. In the next release this part hopefully won't be
+                //               necessary, as we are looking to handle it internally.
+                //             */
+                //             const id = 'blobid' + (new Date()).getTime();
+                //             const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                //             const base64 = reader.result.split(',')[1];
+                //             const blobInfo = blobCache.create(id, file, base64);
+                //             blobCache.add(blobInfo);
+
+                //             /* call the callback and populate the Title field with the file name */
+                //             cb(blobInfo.blobUri(), {
+                //                 title: file.name
+                //             });
+                //         });
+                //         reader.readAsDataURL(file);
+                //     });
+
+                //     input.click();
+                // },
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+
+            })
             var openmodal = document.querySelectorAll('.modal-open')
             for (var i = 0; i < openmodal.length; i++) {
                 openmodal[i].addEventListener('click', function(event) {
@@ -252,34 +292,6 @@
                 modal.classList.toggle('pointer-events-none')
                 body.classList.toggle('modal-active')
             }
-            var quill; // Declare quill in a higher scope
-
-            document.addEventListener("DOMContentLoaded", function(event) {
-                var toolbarOptions = [
-                    ['bold', 'italic', 'underline', 'strike'],
-                    ['blockquote', 'code-block'],
-                    ['image'],
-                ];
-
-                quill = new Quill('#editor', {
-                    modules: {
-                        syntax: false,
-                        toolbar: toolbarOptions
-                    },
-                    theme: 'snow'
-                });
-
-                var quillContent = quill.root.innerHTML;
-
-                document.getElementById('get-content-button').addEventListener('click', function() {
-                    // Retrieve Quill content
-                    var quillContent = quill.root.innerHTML;
-
-                    // Perform actions with the content
-                    console.log("Quill Content:");
-                    console.log(quillContent); // Print content to the browser console
-                });
-            });
         </script>
 
         {{-- CREATE FORUM MODAL + QUILLJS --}}
