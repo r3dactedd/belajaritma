@@ -86,11 +86,17 @@ Route::get('/manager', function () {
 });
 
 Route::get('/manager/course', function () {
-    return view('administrator.admin_course');
+    return view('administrator.admin_courses.admin_course');
 });
 
 Route::get('/manager/course/create', function () {
-    return view('administrator.admin_course_create');
+    return view('administrator.admin_courses.admin_course_create');
+});
+Route::get('/manager/course/edit', function () {
+    return view('administrator.admin_courses.admin_course_edit');
+});
+Route::get('/manager/course/session/1/edit', function () {
+    return view('administrator.admin_courses.admin_course_session');
 });
 
 Route::get('/manager/certification', function () {

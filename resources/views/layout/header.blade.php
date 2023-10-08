@@ -51,29 +51,29 @@
                     @auth
                         <div class="relative flex w-full cursor-pointer items-center justify-end"
                             onclick="dropdownHandler(this)">
-                            <ul class="absolute left-0 top-0 mt-16 hidden w-40 rounded border-r bg-white p-2 shadow">
+                            <ul class="absolute left-0 top-0 mt-16 hidden w-40 rounded border-r bg-white shadow">
                                 <li
-                                    class="cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+                                    class="mt-2 flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
                                     <div class="flex items-center">
 
-                                        <a href="/profile/name"class="ml-2 font-semibold">Profil Saya</a>
+                                        <a href="/profile/name"class="ml-4 font-semibold">Profil Saya</a>
                                     </div>
                                 </li>
                                 <li
-                                    class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+                                    class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
 
-                                    <a href="/profile/name/edit" class="ml-2 font-semibold">Atur Profil</a>
+                                    <a href="/profile/name/edit" class="ml-4 font-semibold">Atur Profil</a>
                                 </li>
                                 <li
-                                    class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+                                    class="my-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
 
                                     <form method="POST" action="/logout">
                                         @csrf
-                                        <button type="submit" class="ml-2 font-semibold">Logout</button>
+                                        <button type="submit" class="ml-4 font-semibold">Logout</button>
                                     </form>
                                 </li>
                             </ul>
-                            <img class="h-10 w-10 rounded object-cover"
+                            <img class="h-10 w-10 rounded-full object-cover"
                                 src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
                                 alt="logo" />
                             <p class="text-md ml-2 font-semibold" id="profile-link">

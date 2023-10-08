@@ -41,9 +41,7 @@
                     <!-- Profile Card -->
                     <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
-                            <img class="h-64 p-4 md:px-0"
-                                src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
-                                alt="e" />
+                            <img class="h-64 p-4 md:px-0" src="/storage/image/courseimg.webp" alt="e" />
                         </div>
                     </div>
                 </div>
@@ -66,7 +64,7 @@
                                         <path
                                             d="M353.8 54.1L330.2 6.3c-3.9-8.3-16.1-8.6-20.4 0L286.2 54.1l-52.3 7.5c-9.3 1.4-13.3 12.9-6.4 19.8l38 37-9 52.1c-1.4 9.3 8.2 16.5 16.8 12.2l46.9-24.8 46.6 24.4c8.6 4.3 18.3-2.9 16.8-12.2l-9-52.1 38-36.6c6.8-6.8 2.9-18.3-6.4-19.8l-52.3-7.5zM256 256c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H384c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H256zM32 320c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H160c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32H32zm416 96v64c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32V416c0-17.7-14.3-32-32-32H480c-17.7 0-32 14.3-32 32z" />
                                     </svg>
-                                    <span class="p-2 text-base font-semibold text-gray-600">Pemula</span>
+                                    <span class="p-2 text-base font-semibold text-gray-600">Dasar</span>
                                 </div>
 
                                 <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
@@ -170,7 +168,6 @@
                                         <div class="text-xs text-gray-500">Linux, MacOS, dan Windows</div>
                                     </div>
                                 </div>
-
                             </div>
                             <div>
                                 <div
@@ -179,7 +176,7 @@
                                         <path
                                             d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z" />
                                     </svg>
-                                    <span class="text-xl tracking-wide">Tools dan Program yang Diperlukan</span>
+                                    <span class="text-xl tracking-wide">Program Lain yang Diperlukan</span>
                                 </div>
                                 <div class="flex text-sm md:w-3/4">
                                     <div class="block">
@@ -188,17 +185,13 @@
                                             C Language Compiler (seperti DevC dan onlinegdb), Web Browser (seperti Chrome
                                             atau Firefox).
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
             <h1 class="my-8 text-center text-3xl font-semibold">Materi Pembelajaran </h1>
             <div id="syllabus"class="my-4"></div>
 
@@ -222,14 +215,28 @@
                             students &
                             the range of ways you can deliver content online.
                         </p>
-                        <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <path
-                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
-                            </svg>
-                            <span class="text-sm font-semibold text-gray-600">45 Menit</span>
+                        <div
+                            class="grid grid-cols-2 items-start pb-6 pr-4 md:flex md:flex-col lg:flex-row lg:items-center">
+                            <div class="flex items-center">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                    <path
+                                        d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                </svg>
+                                <p class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">30 Menit
+                                </p>
+                            </div>
+                            <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                                    <path
+                                        d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
+                                </svg>
+                                <p class="ml-2 text-sm font-normal text-gray-600">
+                                    3 Modul
+                                </p>
+                            </div>
                         </div>
+
                         <div class="transition hover:bg-indigo-50">
                             <div class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
@@ -281,14 +288,12 @@
                                                 <path
                                                     d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
                                             </svg>
-
                                             <a href="/courses/1/pdf"
                                                 class="text-md ml-2 font-normal text-gray-600 hover:underline">
                                                 Software dan Program-Program yang Akan Digunakan
                                             </a>
                                         </div>
                                     </li>
-                                    <!-- Materi Module-->
                                 </ul>
                             </div>
                         </div>
@@ -306,7 +311,7 @@
                         </div>
 
                         <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            Materi 2
+                            Assignment 1 Name
                         </h2>
                         <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
                             We recommend this introduction as a starting point for how to move from face-to-face to
@@ -315,13 +320,79 @@
                             students &
                             the range of ways you can deliver content online.
                         </p>
-                        <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <path
-                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
-                            </svg>
-                            <span class="text-sm font-semibold text-gray-600">45 Menit</span>
+                        <div
+                            class="grid grid-cols-2 items-start pb-6 pr-4 md:flex md:flex-col lg:flex-row lg:items-center">
+                            <div class="flex items-center">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                    <path
+                                        d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                </svg>
+                                <p class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">15 Menit
+                                </p>
+                            </div>
+                            <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                                    <path
+                                        d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
+                                </svg>
+                                <p class="ml-2 text-sm font-normal text-gray-600">
+                                    12 Pertanyaaan
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="flex h-16 cursor-pointer items-center">
+
+                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                    <a href="/courses/3/asg"
+                                        class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Buka
+                                        Assignment</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                <div class="w-full px-4">
+                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                        <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
+                            <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-indigo-600">
+                                Sesi 3
+                            </h4>
+                        </div>
+
+                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                            Materi 3
+                        </h2>
+                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                            We recommend this introduction as a starting point for how to move from face-to-face to
+                            online
+                            teaching. In this 60-minute webinar, we discuss how to effectively communicate with your
+                            students &
+                            the range of ways you can deliver content online.
+                        </p>
+                        <div
+                            class="grid grid-cols-2 items-start pb-6 pr-4 md:flex md:flex-col lg:flex-row lg:items-center">
+                            <div class="flex items-center">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                    <path
+                                        d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                </svg>
+                                <p class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">45 Menit
+                                </p>
+                            </div>
+                            <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                                    <path
+                                        d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
+                                </svg>
+                                <p class="ml-2 text-sm font-normal text-gray-600">
+                                    4 Modul
+                                </p>
+                            </div>
                         </div>
                         <div class="transition hover:bg-indigo-50">
                             <div class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
@@ -407,7 +478,7 @@
                     <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                         <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
                             <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-indigo-600">
-                                Final Session
+                                Session 4
                             </h4>
                         </div>
 
@@ -417,13 +488,26 @@
                         <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
                             Memuat test akhir untuk kursus Algoritma dan Pemrograman
                         </p>
-                        <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <path
-                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
-                            </svg>
-                            <span class="text-sm font-semibold text-gray-600">45 Menit</span>
+                        <div
+                            class="grid grid-cols-2 items-start pb-6 pr-4 md:flex md:flex-col lg:flex-row lg:items-center">
+                            <div class="flex items-center">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                    <path
+                                        d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                </svg>
+                                <p class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">90 Menit
+                                </p>
+                            </div>
+                            <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                                    <path
+                                        d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
+                                </svg>
+                                <p class="ml-2 text-sm font-normal text-gray-600">
+                                    50 Pertanyaan
+                                </p>
+                            </div>
                         </div>
                         <div class="flex items-center">
                             <div class="flex h-16 cursor-pointer items-center">

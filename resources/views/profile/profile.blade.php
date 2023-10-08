@@ -38,8 +38,8 @@
             <div class="container mx-auto p-4">
                 <div class="my-4 px-4 md:flex">
                     <div class="w-full md:w-3/12">
-                        <div class="h-96 w-auto">
-                            <img class="max-h-full w-full" src="/storage/image/forumtest.png">
+                        <div class="h-80 w-auto">
+                            <img class="h-80 w-80 rounded-full object-cover" src="/storage/image/forumtest.png">
                         </div>
                     </div>
                     <div class="my-4"></div>
@@ -47,7 +47,7 @@
                     <div class="h-full w-full md:w-9/12">
                         <div class="rounded-xl bg-none p-3">
                             <div class="md:mx-2 md:w-3/4">
-                                <div class="rounded-xl bg-none px-4 py-2 md:px-8">
+                                <div class="rounded-xl bg-none px-4 py-2 md:pr-8">
                                     <h1
                                         class="d pr-2 pt-2 text-center text-xl font-bold tracking-normal text-white md:pr-4 md:pt-8 md:text-left lg:text-3xl">
                                         Username

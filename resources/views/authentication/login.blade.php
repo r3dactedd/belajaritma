@@ -19,7 +19,7 @@
 
 
                     <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Masuk</h1>
-                    <h1 class="text-md text-center font-light">Selamat datang kembali di Belajaritma!</h1>
+                    <h1 class="mb-4 text-md text-center font-light">Selamat datang kembali di Belajaritma!</h1>
                     @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}

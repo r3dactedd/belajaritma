@@ -33,122 +33,147 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto my-5 p-5">
+        <div class="container mx-auto my-5 w-9/12 p-5">
             {{-- EDIT PROFILE --}}
-            <div class="mx-auto rounded-xl bg-white px-4 py-8 md:w-11/12">
-                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Ubah Profil</h2>
-                <form action="/editProfile" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-2 w-full md:w-3/12">
-                        <div class="h-fit w-auto">
-                            <img class="max-h-full w-full" src="/storage/image/forumtest.png">
-                        </div>
+            <div class="my-4 justify-center rounded-xl md:grid md:grid-cols-3 md:gap-6">
+                <div class="col-span-1 w-full">
+                    <div class="h-full rounded-xl p-2 md:py-4 md:pl-8">
+                        <h1
+                            class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:pb-6 md:pr-4 md:text-left lg:text-3xl">
+                            Ubah Informasi Profil
+                        </h1>
+                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
+                            Anda dapat mengubah informasi akun anda serta alamat email disini.
+                        </p>
                     </div>
-                    <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
-                        <div class="max-w-md">
+                </div>
+                <div class="col-span-2 h-auto w-10/12 md:mx-2">
+                    <div class="rounded-xl bg-white px-6 py-8 md:px-12">
+                        <form action="/editProfile" method="post" enctype="multipart/form-data">
+                            @csrf
                             <label for="profilePicture"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Ubah Gambar
+                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Gambar
                                 Profil</label>
-                            <input type="file" name="profile_img" id="inputPicture"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                placeholder="Choose Image File" required="">
-                            {{-- @error('profile_img')
-                                <p>{{ $message }}</p>
-                            @enderror --}}
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label for="username" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
-                                Username</label>
-                            <input type="text" name="username" id="inputUsername"
-                                value="masukin current Usernamenya user"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                placeholder="Input Username" required="">
-                            {{-- @error('username')
-                                <p>{{ $message }}</p>
-                            @enderror --}}
+                            <div class="mb-2 w-full md:w-3/12">
+                                <div class="h-fit w-auto">
+                                    <img class="h-20 w-20 rounded-full object-cover" src="/storage/image/forumtest.png">
+                                </div>
+                            </div>
+                            <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
+                                <div class="max-w-md">
+                                    <label
+                                        class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label for="firstName" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Nama
-                                Lengkap</label>
-                            <input type="text" name="first_name" id="inputFirstName"
-                                value="masukin current Nama Lengkap user"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                placeholder="Input Nama Lengkap" required="">
-                            {{-- @error('first_name')
-                                <p>{{ $message }}</p>
-                            @enderror --}}
-
-                        </div>
-
-                        <div class="sm:col-span-2">
-                            <label for="email"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="text" name="email" id="inputEmail" value="masukin current Email user"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                placeholder="Email" required="">
-                            {{-- @error('email')
-                                <p>{{ $message }}</p>
-                            @enderror --}}
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label for="email"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Tentang Saya</label>
-                            <textarea id="myInfo"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                placeholder="Silahkan isi informasi mengenai anda." required="">INSERT TENTANG SAYA THINGS HERE
+                                        <span class="text-base leading-normal">Upload Foto Baru</span>
+                                        <input type='file' class="hidden" />
+                                    </label>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="username"
+                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                        Username</label>
+                                    <input type="text" name="username" id="inputUsername"
+                                        value="masukin current Usernamenya user"
+                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        placeholder="Input Username" required="">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="firstName"
+                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Nama
+                                        Lengkap</label>
+                                    <input type="text" name="first_name" id="inputFirstName"
+                                        value="masukin current Nama Lengkap user"
+                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        placeholder="Input Nama Lengkap" required="">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="email"
+                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                    <input type="text" name="email" id="inputEmail" value="masukin current Email user"
+                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        placeholder="Email" required="">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="email"
+                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Tentang
+                                        Saya</label>
+                                    <textarea id="myInfo"
+                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        placeholder="Silahkan isi informasi mengenai anda." required="">INSERT TENTANG SAYA THINGS HERE
                             </textarea>
-                            {{-- @error('email')
-                                <p>{{ $message }}</p>
-                            @enderror --}}
-                        </div>
-
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <button type="submit"
+                                    class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
+                                    Simpan Profil
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="flex items-center space-x-4">
-                        <button type="submit" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
-                            Simpan Profil
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
-            {{-- EDIT PASSWORD --}}
-            <div class="mt-8"></div>
-            <div class="mx-auto rounded-xl bg-white px-4 py-8 md:w-11/12">
-                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Ubah Password</h2>
-                <form action="/editProfile" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
-                        <div class="sm:col-span-2">
-                            <label for="email"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password Lama</label>
-                            <input type="password" name="oldPass" id="inputOldPass"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                placeholder="Masukkan Password Lama" required="">
-                            {{-- @error('password')
-                                <p>{{ $message }}</p>
-                            @enderror --}}
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label for="password"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password Baru</label>
-                            <input type="password" name="newPass" id="inputNewPass"
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                placeholder="Masukkan Password Baru" required="">
-                            {{-- @error('password')
-                                <p>{{ $message }}</p>
-                            @enderror --}}
-                        </div>
-
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <button type="submit"
-                            class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
-                            Ubah Password
-                        </button>
-                    </div>
-                </form>
+            <div class="py-8">
+                <div class="border-t border-gray-300">
+                </div>
             </div>
-            {{-- EDIT PASSWORD --}}
+            <div class="my-4 justify-center rounded-xl md:grid md:grid-cols-3 md:gap-6">
+                <div class="col-span-1 w-full">
+                    <div class="h-full rounded-xl p-2 md:py-4 md:pl-8">
+                        <h1
+                            class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:pb-6 md:pr-4 md:text-left lg:text-3xl">
+                            Ubah Password Akun
+                        </h1>
+                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
+                            Anda dapat mengubah informasi akun anda serta alamat email disini.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-span-2 h-auto w-10/12 md:mx-2">
+                    <div class="rounded-xl bg-white px-6 py-8 md:px-12">
+                        <form action="/editProfile" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
+                                <div class="sm:col-span-2">
+                                    <label for=""
+                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password
+                                        Lama</label>
+                                    <input type="password" name="oldPass" id="inputOldPass"
+                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        placeholder="Masukkan Password Lama" required="">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="password"
+                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password
+                                        Baru</label>
+                                    <input type="password" name="newPass" id="inputNewPass"
+                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        placeholder="Masukkan Password Baru" required="">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="password"
+                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Konfirmasi
+                                        Password
+                                        Baru</label>
+                                    <input type="password" name="newPass" id="inputNewPass"
+                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        placeholder="Masukkan Lagi Password Baru" required="">
+                                </div>
+
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <button type="submit"
+                                    class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+                                    Ubah Password
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         </div>
         {{--  --}}
     @endsection
