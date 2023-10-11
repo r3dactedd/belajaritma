@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rules\Password;
+use App\Http\Controllers\ValidationException;
 
 class ProfileController extends Controller
 {
@@ -27,7 +23,7 @@ class ProfileController extends Controller
     // }
     public function editProfile(){
         $searchUser = User::find(Auth::user()->id);
-        return view('profile.editProfile',['searchUser'=>$searchUser]);
+        return view('profile.profile_edit',['searchUser'=>$searchUser]);
     }
 
     public function viewProfile(){
@@ -70,24 +66,50 @@ class ProfileController extends Controller
     public function update(Request $request){
 
         $validateProfile = $request->validate([
-            'first_name' => 'required|max:25',
-            'last_name' => 'required|max:25',
+            'profile_img' => 'required|image|file',
+            'fullname' => 'required|string|max:255',
             'username' => 'required|max:25',
             'email' => 'required|email:dns',
-            'password' => ['required', 'alpha_num', Password::min(8)->numbers()->letters()],
-            'profile_img' => 'image|file'
+            'about_me' => 'max:150',
         ]);
+        $fullname = $request->input('fullname');
+        $nameParts = explode(' ', $fullname);
+
         $changeProfile = [
-            'first_name'=>$validateProfile['first_name'],
-            'last_name'=>$validateProfile['last_name'],
-            'username'=>$validateProfile['username'],
-            'email'=>$validateProfile['email'],
-            'password'=>bcrypt($validateProfile['password']),
             'profile_img'=>$validateProfile['profile_img'],
+            'username'=>$validateProfile['username'],
+            'first_name' => reset($nameParts),
+            'last_name' => end($nameParts),
+            'email'=>$validateProfile['email'],
+            'about_me'=>$validateProfile['about_me'],
         ];
+
         $changeProfile['profile_img'] = $request->file('profile_img')->getClientOriginalName();
         $imagePath = $request->file('profile_img')->storeAs('public/profile_img',$changeProfile['profile_img']);
         User::where('id',Auth::user()->id)->update($changeProfile);
-        return redirect('/profile')->with('success', 'User data has been updated!');
+        return redirect('/profile')->with('success', 'Data user sudah diupdate!');
     }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => ['required', 'alpha_num', 'min:8'],
+        ]);
+
+        $user = Auth::user();
+
+        // Verify the old password
+        if (!Hash::check($request->old_password, $user->password)) {
+            return redirect('/profile/edit')->with('error', 'Password change failed!');
+        }
+
+        User::where('id',Auth::user()->id)->update([
+            'password' => bcrypt($request->new_password),
+        ]);
+;
+
+        return redirect('/home')->with('success', 'Password changed successfully!');
+    }
+
 }

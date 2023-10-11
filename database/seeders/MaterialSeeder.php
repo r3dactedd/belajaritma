@@ -11,53 +11,35 @@ class MaterialSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-
     public function run(): void
     {
+        //
         Material::create([
-            'course_id' => 1,         // Ganti dengan course_id yang sesuai
-            'master_type_id' => 4,
-            'title' => 'PDF Materi 1',
-            'pdf_link' => '/path/to/pdf1.pdf',
-        ]);
-
-        // Contoh data Assignment Materi
-        Material::create([
-            'course_id' => 1,         // Ganti dengan course_id yang sesuai
-            'material_type_id' => 5,
-            'title' => 'Assignment Materi 1',
-            'description' => 'Ini isian konten materi 1 setelah tekan sidebar'
-        ]);
-
-        // Contoh data Video Materi
-        Material::create([
-            'course_id' => 1,         // Ganti dengan course_id yang sesuai
-            'material_type_id' => 6,
-            'title' => 'Video Materi 1',
-            'video_link' => 'https://www.youtube.com/watch?v=example1',
+            'course_id' => 1,
+            'master_type_id' => 1,
+            'material_title' => "Testing Material Basic Algo",
+            'material_description' => "Testing Material Basic Algo Description",
         ]);
 
         Material::create([
-            'course_id' => 2,         // Ganti dengan course_id yang sesuai
-            'master_type_id' => 4,
-            'title' => 'PDF Materi 2',
-            'pdf_link' => '/path/to/pdf1.pdf',
+            'course_id' => 1,
+            'master_type_id' => 1,
+            'material_title' => "Testing Material Basic Algo 2",
+            'material_description' => "Testing Material Basic Algo Description 2",
         ]);
 
-        // Contoh data Assignment Materi
         Material::create([
-            'course_id' => 2,         // Ganti dengan course_id yang sesuai
-            'material_type_id' => 5,
-            'title' => 'Assignment Materi 2',
-            'description' => 'Ini isian konten materi 2 setelah tekan sidebar'
+            'course_id' => 2,
+            'master_type_id' => 1,
+            'material_title' => "Testing Material Recursion Title",
+            'material_description' => "Testing Material Recursion Description",
         ]);
 
-        // Contoh data Video Materi
         Material::create([
-            'course_id' => 2,         // Ganti dengan course_id yang sesuai
-            'material_type_id' => 6,
-            'title' => 'Video Materi 1',
-            'video_link' => 'https://www.youtube.com/watch?v=example1',
+            'course_id' => 3,
+            'master_type_id' => 1,
+            'material_title' => "Testing Material Repetition Title",
+            'material_description' => "Testing Material Repetition Description",
         ]);
     }
 }

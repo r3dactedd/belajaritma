@@ -40,7 +40,7 @@
     <header class="relative z-50 h-24 w-full">
         <div class="container mx-auto flex h-full max-w-6xl items-center justify-center px-8 sm:justify-between xl:px-0">
 
-            <a href="/" class="relative inline-block flex h-5 h-full items-center font-black leading-none">
+            <a href="/" class="relative flex h-full items-center font-black leading-none">
                 <svg class="h-6 w-auto fill-current text-indigo-600" viewBox="0 0 194 116"
                     xmlns="http://www.w3.org/2000/svg">
                     <g fill-rule="evenodd">

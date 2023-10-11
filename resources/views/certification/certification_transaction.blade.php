@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
+    @vite('resources/css/app.css')
 </head>
 
 <body class="bg-gray-200 pb-12">
@@ -18,7 +19,7 @@
         @include('layout.header')
     @endsection
     @section('content')
-        <div class="bg-white px-5 sm:px-10">
+        <div class="scroll-smooth bg-white px-5 sm:px-10">
             <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
                 <div>
 
@@ -28,31 +29,44 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">{{$materials->title}} </span>
+                            <span class="mb-1 ml-2">Transaksi Pembayaran</span>
                         </a>
                 </div>
             </div>
         </div>
-        <div class="container mx-auto my-5 p-5">
-            <div class="no-wrap my-4 md:-mx-2 md:flex">
-                <div class="w-full md:mx-2 md:w-3/12">
-                    <!-- Sidebar, pass value courselistnya aja-->
-                    @include('courses.course_sidebar')
-                </div>
-                <div class="my-4"></div>
-                <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
+        <div class="container mx-auto my-auto p-6 md:w-8/12">
 
-                    <object data="{{ Storage::url('pdf_folder/test.pdf') }}" type="application/pdf" width="100%"
-                        height="1024">
-                        This browser does not support PDFs. Please download the PDF to view it: <a
-                            href="{{ asset('pdf_folder/test.pdf') }}">Download
-                            PDF</a>
-                    </object>
-
-                </div>
-            </div>
         </div>
     </body>
+    <style>
+        .accordion-content {
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+    </style>
+
+    <script>
+        const accordionHeader = document.querySelectorAll(".accordion-header");
+        accordionHeader.forEach((header) => {
+            header.addEventListener("click", function() {
+                const accordionContent = header.parentElement.querySelector(".accordion-content");
+                let accordionMaxHeight = accordionContent.style.maxHeight;
+
+                // Condition handling
+                if (accordionMaxHeight == "0px" || accordionMaxHeight.length == 0) {
+                    accordionContent.style.maxHeight = `${accordionContent.scrollHeight + 32}px`;
+                    header.querySelector(".fas").classList.remove("fa-plus");
+                    header.querySelector(".fas").classList.add("fa-minus");
+                    header.parentElement.classList.add("bg-indigo-50");
+                } else {
+                    accordionContent.style.maxHeight = `0px`;
+                    header.querySelector(".fas").classList.add("fa-plus");
+                    header.querySelector(".fas").classList.remove("fa-minus");
+                    header.parentElement.classList.remove("bg-indigo-50");
+                }
+            });
+        });
+    </script>
+
 @endsection
 @section('footer')
     @include('layout.footer')

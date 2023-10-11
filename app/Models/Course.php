@@ -22,4 +22,8 @@ class Course extends Model
     public function corseToMaterial(){
         return $this->hasMany(Material::class,'id','id');
     }
+
+    public function courseToMaterial(){
+        return $this->hasMany(Material::class, 'course_id','id');
+    }
 }

@@ -18,9 +18,9 @@ class Forum extends Model
         'forum_attachment'
     ];
     public function formToUser(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function formToMasterType(){
-        return $this->belongsTo(MasterType::class);
+        return $this->belongsTo(MasterType::class, 'master_type_id');
     }
 }

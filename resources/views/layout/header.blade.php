@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
@@ -16,12 +16,20 @@
 <div class="mx-auto w-full border-b border-gray-300 bg-white px-5 shadow-sm sm:px-10">
     <div class="container mx-auto flex h-16 items-center justify-between lg:items-stretch">
         <div class="flex h-full items-center">
-            <a href="/" class="">
-                <img src="{{ asset('/storage/images/belajaritma-logo-removebg-preview.png') }}" class="w-700 h-12 fill-current" alt="">
+            <a href="/" class="relative mr-10 flex h-full items-center font-black leading-none">
+                <svg class="h-6 w-auto fill-current text-indigo-600" viewBox="0 0 194 116"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g fill-rule="evenodd">
+                        <path
+                            d="M96.869 0L30 116h104l-9.88-17.134H59.64l47.109-81.736zM0 116h19.831L77 17.135 67.088 0z" />
+                        <path d="M87 68.732l9.926 17.143 29.893-51.59L174.15 116H194L126.817 0z" />
+                    </g>
+                </svg>
+                <span class="ml-4 text-2xl text-gray-800">Belajaritma</span>
             </a>
-            <ul class="hidden h-full items-center lg:flex ml-12">
+            <ul class="hidden h-full items-center lg:flex">
                 <li
-                    class="text-md flex h-full cursor-pointer items-center border-b-2 border-teal-400 font-bold tracking-normal text-teal-400">
+                    class="text-md flex h-full cursor-pointer items-center border-b-2 border-indigo-600 font-bold tracking-normal text-indigo-600">
                     <a href="/home">Home</a>
                 </li>
                 <li
@@ -30,11 +38,11 @@
                 </li>
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/students">Sertifikasi</a>
+                    <a href="/certifications">Sertifikasi</a>
                 </li>
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/manager">Admin Manager (only for admins lah ya)</a>
+                    <a href="/manager">Admin Management</a>
                 </li>
             </ul>
         </div>
@@ -49,20 +57,20 @@
                                     class="cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                     <div class="flex items-center">
 
-                                        <a href="/profile"class="ml-2">Profil Saya</a>
+                                        <a href="/profile"class="ml-2 font-semibold">Profil Saya</a>
                                     </div>
                                 </li>
                                 <li
                                     class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
 
-                                    <a href="/profile/edit" class="ml-2">Atur Profil</a>
+                                    <a href="/profile/edit" class="ml-2 font-semibold">Atur Profil</a>
                                 </li>
                                 <li
                                     class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
 
                                     <form method="POST" action="/logout">
                                         @csrf
-                                        <button type="submit" class="ml-2">Logout</button>
+                                        <button type="submit" class="ml-2 font-semibold">Logout</button>
                                     </form>
                                 </li>
                             </ul>
@@ -81,9 +89,9 @@
             </div>
             {{-- KALAU BLM ADA ACCOUNT --}}
             <a href="/login"
-                class="focus:shadow-outline my-2 rounded-lg border border-solid bg-teal-400 px-8 py-2 text-sm font-semibold text-white hover:bg-teal-800 focus:outline-none md:my-0 md:ml-4 md:mt-0">Login</a>
+                class="focus:shadow-outline my-2 rounded-lg border border-solid bg-indigo-600 px-8 py-2 text-sm font-semibold text-white hover:bg-teal-800 focus:outline-none md:my-0 md:ml-4 md:mt-0">Login</a>
             <a href="/signup"
-                class="focus:shadow-outline my-2 rounded-lg border border-solid bg-teal-400 px-8 py-2 text-sm font-semibold text-white hover:bg-teal-800 focus:outline-none md:my-0 md:ml-4 md:mt-0">Daftar</a>
+                class="focus:shadow-outline my-2 rounded-lg border border-solid bg-indigo-600 px-8 py-2 text-sm font-semibold text-white hover:bg-teal-800 focus:outline-none md:my-0 md:ml-4 md:mt-0">Daftar</a>
             {{-- KALAU BLM ADA ACCOUNT --}}
         </div>
 
@@ -94,18 +102,18 @@
                 <li
                     class="flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none lg:hidden">
                     <div class="flex items-center">
-                        <span class="ml-2 font-bold"><a href="/index">Home</a></span>
+                        <span class="ml-2 text-lg font-bold"><a href="/index">Home</a></span>
                     </div>
                 </li>
                 <li class="flex cursor-pointer flex-col justify-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none lg:hidden"
                     onclick="dropdownHandler(this)">
                     <div class="flex items-center">
-                        <span class="ml-2 font-bold"><a href="/courses">Kursus</a></span>
+                        <span class="ml-2 text-lg font-bold"><a href="/courses">Kursus</a></span>
                     </div>
                 </li>
                 <li
                     class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none lg:hidden">
-                    <span class="ml-2 font-bold"><a href="students.html">Sertifikasi</a></span>
+                    <span class="ml-2 text-lg font-bold"><a href="/certification">Sertifikasi</a></span>
                 </li>
                 {{-- IF USER SUDAH DAFTAR/LOGIN --}}
                 <li
@@ -132,9 +140,9 @@
                 <li
                     class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                     <div class="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24"
-                            height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
@@ -143,7 +151,7 @@
                     </div>
                 </li>
                 {{-- IF USER SUDAH DAFTAR/LOGIN --}}
-                {{-- IF USER BELUM DAFTAR/LOGIN --}}
+
                 <li
                     class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                     <a href="/login"

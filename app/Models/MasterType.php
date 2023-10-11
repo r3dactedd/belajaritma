@@ -19,7 +19,7 @@ class MasterType extends Model
         return $this->hasMany(Forum::class, 'master_type_id','id');
     }
 
-    public function masterTypeToSidebar(){
+    public function masterTypeToMaterial(){
         return $this->hasMany(Material::class, 'master_type_id','id');
     }
 }
