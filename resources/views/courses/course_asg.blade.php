@@ -28,7 +28,7 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Sesi x : Nama Materi </span>
+                            <span class="mb-1 ml-2">{{$materials->title}}</span>
                         </a>
                 </div>
             </div>
@@ -47,11 +47,11 @@
                         <div id="asg-top" class="space-y-4">
                             <h1
                                 class="text-md relative mx-6 block w-auto pt-6 font-semibold tracking-normal text-gray-800 lg:text-xl">
-                                Judul assignment
+                                {{$materials->title}}
                             </h1>
                             <h2
                                 class="text-md lg:text-md relative mx-6 mb-6 block w-auto pt-6 font-medium tracking-normal text-gray-800">
-                                Pilihlah jawaban yang menurut anda paling tepat!
+                                {{$materials->description}}
                             </h2>
                         </div>
                     </div>

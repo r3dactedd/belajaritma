@@ -26,5 +26,17 @@ class MasterTypeSeeder extends Seeder
             'master_type_code' => 'FORUM_TYPE',
             'master_type_name' => 'Database',
         ]);
+        MasterType::create([
+            'master_type_code' => 'MATERIAL_TYPE',
+            'master_type_name' => 'Pdf',
+        ]);
+        MasterType::create([
+            'master_type_code' => 'MATERIAL_TYPE',
+            'master_type_name' => 'Assignment',
+        ]);
+        MasterType::create([
+            'master_type_code' => 'MATERIAL_TYPE',
+            'master_type_name' => 'Video',
+        ]);
     }
 }

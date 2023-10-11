@@ -59,15 +59,7 @@ Route::get('/manager/1', function () {
 
 Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
 
-Route::get('/courses/1/pdf', function () {
-    return view('courses.course_pdf');
-});
-Route::get('/courses/2/video', function () {
-    return view('courses.course_video');
-});
-Route::get('/courses/3/asg', function () {
-    return view('courses.course_asg');
-});
+Route::get('/courses/{type}/{courseId}', 'SidebarController@showByType')->name('sidebar.showByType');
 
 Route::get('/profile', [ProfileController::class, 'viewProfile']);
 

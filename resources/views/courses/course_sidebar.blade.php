@@ -1,13 +1,12 @@
-<html>
+{{-- <html>
 <div class="hidden rounded-xl border-4 border-green-400 bg-white p-2 md:flex md:flex-col">
     <div class="flex flex-col overflow-hidden bg-white">
         <ul class="flex flex-col py-4">
             <li>
-                {{-- MODUL 1 --}}
                 <div class="transition hover:bg-indigo-50">
 
                     <div class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
-                        {{-- if sudah semua, add ini --}}
+
                         <div class="-ml-3 -mr-2">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
 
@@ -89,7 +88,7 @@
                         </ul>
                     </div>
                 </div>
-                {{-- MODUL 2 --}}
+
                 <div class="transition hover:bg-indigo-50">
                     <div class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
 
@@ -168,7 +167,7 @@
                     </div>
                 </div>
                 <div class="transition hover:bg-indigo-50">
-                    {{--  --}}
+
                     <div class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
                         <div class="-ml-3 -mr-2">
 
@@ -185,7 +184,6 @@
                         <h3 class="font-semibold">Konten Modul 3 locked gitu</h3>
                     </div>
 
-                    {{-- Kalau locked buat hidden --}}
                     <div class="accordion-content hidden max-h-0 overflow-hidden px-5 pt-0">
                         <ul class="ml-12 list-inside space-y-2 pb-4">
                             <!-- Materi Module-->
@@ -236,7 +234,7 @@
                             <li>
                                 <!-- If not done, add pointer-events-none -->
                                 <div class="pointer-events-none flex items-center">
-                                    <!-- If not done, add lock ini-->
+
                                     <svg id="lock" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
                                         height="1em" viewBox="0 0 448 512">
                                         <path
@@ -302,7 +300,7 @@
             const accordionContent = header.parentElement.querySelector(".accordion-content");
             let accordionMaxHeight = accordionContent.style.maxHeight;
 
-            // Condition handling
+
             if (accordionMaxHeight == "0px" || accordionMaxHeight.length == 0) {
                 accordionContent.style.maxHeight = `${accordionContent.scrollHeight + 32}px`;
                 header.querySelector(".fas").classList.remove("fa-plus");
@@ -318,4 +316,45 @@
     });
 </script>
 
-</html>
+</html> --}}
+
+<div class="w-64 bg-gray-200 h-screen">
+    <!-- Parent 1 -->
+    @foreach($sidebars as $sidebar)
+        @if($sidebar->type === 'has-sub' && $sidebar->parent_id === null)
+            <!-- Ini adalah parent -->
+            <div class="py-2 px-4">
+                <a href="#" class="block text-gray-700 hover:bg-gray-300">{{ $sidebar->title }}</a>
+                <ul class="pl-4">
+                    @foreach($sidebars as $child)
+                        @if($child->parent_id === $sidebar->id)
+                            <!-- Ini adalah child -->
+                            <li class="py-2">
+                                <a href="{{ route('course.showByType', ['type' => $child->type, 'courseId' => $child->course_id]) }}"
+                                    class="block text-gray-700 hover:bg-gray-300">{{ $child->title }}</a>
+                                @if(in_array($child->type, ['assignment', 'video', 'pdf']))
+                                    <!-- Ini adalah tipe material -->
+                                    <ul class="pl-4">
+                                        <li class="py-2">
+                                            <a href="{{ route('course.showByType', ['type' => $child->type, 'courseId' => $child->course_id]) }}"
+                                                class="block text-gray-700 hover:bg-gray-300">{{ $child->type }} Materi Ticked</a>
+                                        </li>
+                                    </ul>
+                                @endif
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
+        @else
+            <!-- Ini adalah child tanpa parent -->
+            <div class="py-2 px-4">
+                @if(in_array($sidebar->type, ['assignment', 'video', 'pdf']))
+                    <!-- Ini adalah tipe material -->
+                    <a href="{{ route('course.showByType', ['type' => $sidebar->type, 'courseId' => $sidebar->course_id]) }}"
+                        class="block text-gray-700 hover:bg-gray-300">{{ $sidebar->title }}</a>
+                @endif
+            </div>
+        @endif
+    @endforeach
+</div>

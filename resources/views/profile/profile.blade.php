@@ -40,8 +40,8 @@
                 <div class="w-full md:mx-2 md:w-3/12">
                     <!-- Profile Card -->
                     <div class="border-t-4 border-green-400 bg-white p-3">
-                        <div class="mx-auto w-full p-6">
-                            <img src="/storage/image/forumtest.png">
+                        <div class="mx-auto p-6 rounded-full">
+                            <img src="{{ asset($imagePath) }}">
                         </div>
                     </div>
                 </div>

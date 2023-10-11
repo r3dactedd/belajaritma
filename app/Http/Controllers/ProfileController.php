@@ -33,7 +33,8 @@ class ProfileController extends Controller
     public function viewProfile(){
         $searchUser = User::find(Auth::user()->id);
         $displayUser = User::all();
-        return view('profile.profile',['searchUser'=>$searchUser,'display'=>$displayUser]);
+        $imagePath = 'storage/profile_img/' . $searchUser->profile_img;
+        return view('profile.profile',['searchUser'=>$searchUser,'display'=>$displayUser, 'imagePath'=>$imagePath]);
     }
 
     // public function update(Request $request)
@@ -74,7 +75,7 @@ class ProfileController extends Controller
             'username' => 'required|max:25',
             'email' => 'required|email:dns',
             'password' => ['required', 'alpha_num', Password::min(8)->numbers()->letters()],
-            'profile_img' => 'required|image|file'
+            'profile_img' => 'image|file'
         ]);
         $changeProfile = [
             'first_name'=>$validateProfile['first_name'],
@@ -85,7 +86,7 @@ class ProfileController extends Controller
             'profile_img'=>$validateProfile['profile_img'],
         ];
         $changeProfile['profile_img'] = $request->file('profile_img')->getClientOriginalName();
-        $request->file('profile_img')->storeAs('public/profile_img',$changeProfile['profile_img']);
+        $imagePath = $request->file('profile_img')->storeAs('public/profile_img',$changeProfile['profile_img']);
         User::where('id',Auth::user()->id)->update($changeProfile);
         return redirect('/profile')->with('success', 'User data has been updated!');
     }

@@ -15,13 +15,15 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('material_id');
+            $table->unsignedBigInteger('material_id');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('title');
-            $table->string('path');
             $table->string('type');
 
             $table->foreign('course_id')->references('id')->on('courses')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('parent_id')->references('id')->on('sidebar')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('material_id')->references('id')->on('material')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
