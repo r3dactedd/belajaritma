@@ -76,7 +76,7 @@
     <tr>
         <td align="center">
             <img src="https://www.davidbenrimon.com/files-wide/uploads/logo-placeholder@2x.png" alt="logo">
-            <h3 class="marginBottom">BelajaRitma</h3>
+            <h3 class="marginBottom">Belajaritma</h3>
         </td>
     </tr>
 </table>

@@ -76,7 +76,9 @@
                         Selamat Datang di <br /> BelajaRitma
                     </h3>
                     <p class="pt-3 text-xl leading-tight text-white xl:w-10/12">
-                        Anywhere, anytime. Enjoy risk-free with our 30-day, money-back guarantee.
+                        Belajaritma adalah sebuah website pembelajaran pemrograman yang memberikan kelas pembelajaran
+                        yang gratis, sistem sertifikasi berbayar, serta sistem forum untuk berdiskusi dan berbincang
+                        dengan user lain.
                     </p>
                 </div>
                 <div class="absolute bottom-0 left-0 z-20 pb-3 pl-3 text-white">

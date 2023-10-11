@@ -222,7 +222,8 @@
                                             d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                     </svg>
                                 </a>
-                                <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
+                                    data-modal-target="popup-delete" data-modal-toggle="popup-delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -249,7 +250,8 @@
                                             d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                     </svg>
                                 </a>
-                                <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
+                                    data-modal-target="popup-delete" data-modal-toggle="popup-delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -276,7 +278,8 @@
                                             d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                     </svg>
                                 </a>
-                                <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
+                                    data-modal-target="popup-delete" data-modal-toggle="popup-delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -290,7 +293,8 @@
                         class="modal-open border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600 hover:bg-indigo-600 hover:text-white">
                         <td class="px-6 py-3 text-center font-semibold" colspan="4">
 
-                            <p class="inline-flex items-center align-middle">
+                            <p class="inline-flex items-center align-middle" data-modal-target="defaultModal"
+                                data-modal-toggle="defaultModal">
                                 <svg class="mr-4 fill-black hover:fill-white" xmlns="http://www.w3.org/2000/svg"
                                     height="1.5em" viewBox="0 0 512 512">
                                     <path
@@ -302,33 +306,18 @@
                     </tr>
                 </tbody>
             </table>
-            {{-- <div id="open-btn"
-                        class="modal-open container mx-auto mb-10 flex flex-col-reverse items-center rounded-xl bg-white px-4 py-2 align-middle text-sm font-semibold text-black shadow transition duration-150 ease-in-out hover:bg-indigo-600 hover:text-white focus:outline-none md:w-3/5 lg:flex-row">
-                        <div class="flex w-full px-4">
-                            <button class="inline-flex items-center px-4 py-2 align-middle text-xl">
 
-                                <svg class="mr-4 mt-0.5 fill-black hover:fill-white" xmlns="http://www.w3.org/2000/svg"
-                                    height="2em"viewBox="0 0 512 512">
-                                    <path
-                                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
-                                </svg>
-                                Buat Sesi Baru
-                            </button>
-                        </div>
-                    </div> --}}
-            {{-- New Session Modal --}}
-            <div
-                class="modal pointer-events-none fixed left-0 top-0 flex h-full w-full items-center justify-center opacity-0">
-                <div class="modal-overlay absolute h-full w-full bg-gray-900 opacity-50"></div>
-                <div class="modal-container z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
-
-                    <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
+            <!-- Main modal -->
+            <div id="defaultModal" tabindex="-1" aria-hidden="true"
+                class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+                <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
+                    <div class="overflow-y-auto px-2 py-2 text-left md:px-6">
                         <div class="container mx-auto my-5 p-5">
                             {{-- EDIT PROFILE --}}
                             <div class="flex justify-end">
                                 <button type="button"
-                                    class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                                    data-modal-toggle="authentication-modal">
+                                    class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                                    data-modal-hide="defaultModal">
                                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -388,9 +377,44 @@
                             <!--Footer-->
                             <div class="flex justify-end pt-2">
                                 <a href="/manager/course/session/1/edit"
-                                    class="modal-close mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                    class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
                                     Materi</a>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Delete Popup --}}
+            <div id="popup-delete" tabindex="-1"
+                class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+                <div class="relative max-h-full w-full max-w-md">
+                    <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+                        <button type="button"
+                            class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-hide="popup-delete">
+                            <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="p-6 text-center">
+                            <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin
+                                menghapus Sesi tersebut?</h3>
+                            <button data-modal-hide="popup-delete" type="button"
+                                class="mr-2 inline-flex items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                Ya, hapus
+                            </button>
+                            <button data-modal-hide="popup-delete" type="button"
+                                class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600">Tidak,
+                                batalkan</button>
                         </div>
                     </div>
                 </div>
@@ -398,44 +422,6 @@
     </body>
 
     <script>
-        var openmodal = document.querySelectorAll('.modal-open')
-        for (var i = 0; i < openmodal.length; i++) {
-            openmodal[i].addEventListener('click', function(event) {
-                event.preventDefault()
-                toggleModal()
-            })
-        }
-
-        const overlay = document.querySelector('.modal-overlay')
-        overlay.addEventListener('click', toggleModal)
-
-        var closemodal = document.querySelectorAll('.modal-close')
-        for (var i = 0; i < closemodal.length; i++) {
-            closemodal[i].addEventListener('click', toggleModal)
-        }
-
-        document.onkeydown = function(evt) {
-            evt = evt || window.event
-            var isEscape = false
-            if ("key" in evt) {
-                isEscape = (evt.key === "Escape" || evt.key === "Esc")
-            } else {
-                isEscape = (evt.keyCode === 27)
-            }
-            if (isEscape && document.body.classList.contains('modal-active')) {
-                toggleModal()
-            }
-        };
-
-
-        function toggleModal() {
-            const body = document.querySelector('body')
-            const modal = document.querySelector('.modal')
-            modal.classList.toggle('opacity-0')
-            modal.classList.toggle('pointer-events-none')
-            body.classList.toggle('modal-active')
-        }
-
         function previewImage() {
             const input = document.getElementById('imageUpload');
             const preview = document.getElementById('imagePreview');

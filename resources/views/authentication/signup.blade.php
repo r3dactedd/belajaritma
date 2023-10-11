@@ -15,26 +15,13 @@
     <section class="overflow-y-scroll bg-white xl:h-screen">
         <div class="mx-auto flex h-full flex-col justify-center lg:flex-row">
             <div class="flex w-full justify-center bg-white lg:w-1/2">
-                <div class="mx-4 mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
+                <div class="mx-4 mb-12 flex flex-col justify-center text-gray-800 sm:mb-0 md:w-1/2">
                     <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Daftar</h1>
-                    <h1 class="text-md text-center font-light">Mulailah perjalanan programming kamu sekarang juga.</h1>
+                    <h1 class="my-4 text-center text-lg font-light">Mulailah perjalanan programming kamu sekarang juga.
+                    </h1>
                     <main class="form-registration mt-5 px-5 sm:px-6">
                         <form action="/signup" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-floating mb-3">
-                                <label for="profile_img" class="font-semibold">Gambar Profil</label>
-                                <label for="first_name" class="text-sm leading-tight">(Optional)</label>
-                                <input id="profile_img"
-                                    class="form-control @error('profile_img') is-invalid @enderror mt-2 h-10 w-full border-gray-400 px-5 sm:px-6"
-                                    type="file" style="border-radius:10px;padding-top:6px" name="profile_img">
-
-                                @error('profile_img')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
                             <div class="form-floating mb-3">
                                 <label for="first_name" class="font-semibold">Nama Lengkap</label>
                                 <label for="first_name" class="text-sm leading-tight text-red-500"> (Input
@@ -118,28 +105,29 @@
 
                             <div class="px-5 sm:mb-16 sm:px-6">
                                 <button type="submit"
-                                    class="mt-6 w-full rounded bg-yellow-400 px-8 py-3 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 group-invalid:pointer-events-none group-invalid:opacity-30">
+                                    class="mt-6 w-full rounded bg-indigo-400 px-8 py-3 text-sm text-white transition duration-150 ease-in-out hover:bg-indigo-600 group-invalid:pointer-events-none group-invalid:opacity-30">
                                     Daftar Akun
                                 </button>
                                 <p class="mt-6 text-xs">
                                     Sudah memiliki akun?
-                                    <a class="text-yellow-400 underline" href="/login">Login</a>
+                                    <a class="text-indigo-400 underline" href="/login">Login</a>
                                 </p>
                             </div>
+                        </form>
                     </main>
 
 
                 </div>
             </div>
-            <div class="relative flex h-screen w-full flex-col justify-center bg-yellow-600 bg-cover bg-center bg-no-repeat px-5 py-40 sm:px-12 sm:py-48 lg:w-1/2"
-                style="background-image: url('https://miro.medium.com/v2/resize:fit:1400/0*0f5eeUtoLQbDw89b');opacity: 0.75;">
+            <div class="relative hidden h-screen w-full flex-col justify-center bg-indigo-600 bg-cover bg-center bg-no-repeat px-5 py-40 sm:px-12 sm:py-48 md:flex lg:w-1/2"
+                style="background-image: url('https://miro.medium.com/v2/resize:fit:1400/0*0f5eeUtoLQbDw89b');opacity:0.9">
                 <div class="absolute right-0 top-0 pr-3 pt-3 text-white">
                     <?xml version="1.0 " encoding="UTF-8 "?>
 
                 </div>
-                <div class="relative z-30 flex flex-col justify-center pl-4 md:pl-24 md:pr-12 xl:pr-12">
+                <div class="relative z-30 flex flex-col justify-center bg-gray-900 px-4 py-6">
                     <h3 class="text-5xl font-extrabold leading-tight text-white">
-                        Selamat Datang di <br /> BelajaRitma
+                        Selamat Datang di <br /> Belajaritma
                     </h3>
                     <p class="pt-3 text-xl leading-tight text-white xl:w-10/12">
                         Anywhere, anytime. Enjoy risk-free with our 30-day, money-back guarantee.

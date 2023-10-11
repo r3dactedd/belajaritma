@@ -171,7 +171,7 @@
                         <div class="flex justify-end">
                             <button type="button"
                                 class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                                data-modal-toggle="authentication-modal">
+                                data-modal-hide="defaultModal">
                                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
@@ -267,43 +267,6 @@
                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 
             })
-            var openmodal = document.querySelectorAll('.modal-open')
-            for (var i = 0; i < openmodal.length; i++) {
-                openmodal[i].addEventListener('click', function(event) {
-                    event.preventDefault()
-                    toggleModal()
-                })
-            }
-
-            const overlay = document.querySelector('.modal-overlay')
-            overlay.addEventListener('click', toggleModal)
-
-            var closemodal = document.querySelectorAll('.modal-close')
-            for (var i = 0; i < closemodal.length; i++) {
-                closemodal[i].addEventListener('click', toggleModal)
-            }
-
-            document.onkeydown = function(evt) {
-                evt = evt || window.event
-                var isEscape = false
-                if ("key" in evt) {
-                    isEscape = (evt.key === "Escape" || evt.key === "Esc")
-                } else {
-                    isEscape = (evt.keyCode === 27)
-                }
-                if (isEscape && document.body.classList.contains('modal-active')) {
-                    toggleModal()
-                }
-            };
-
-
-            function toggleModal() {
-                const body = document.querySelector('body')
-                const modal = document.querySelector('.modal')
-                modal.classList.toggle('opacity-0')
-                modal.classList.toggle('pointer-events-none')
-                body.classList.toggle('modal-active')
-            }
         </script>
 
         {{-- CREATE FORUM MODAL + QUILLJS --}}

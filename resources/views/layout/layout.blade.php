@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
     <script src="{{ asset('js/app.js') }}" defer></script>
     @vite('resources/css/app.css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
     {{-- Tiny for Forums --}}
     <script src="https://cdn.tiny.cloud/1/uxtcpbcit7xmgtv5qwxb0cqgz9z1foh3adbjq1hcqvzvvwv3/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
@@ -18,5 +19,6 @@
     @yield('header')
     @yield('content')
     @yield('footer')
-    <style>
-        </body>
+    {{-- Flowbite for Modal popup --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+</body>

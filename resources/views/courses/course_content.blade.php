@@ -329,16 +329,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="flex items-center">
-                            <div class="flex h-16 cursor-pointer items-center">
 
-                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                    <a href="/courses/3/asg"
-                                        class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Buka
-                                        Assignment</a>
-                                </p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -379,16 +370,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="flex items-center">
-                            <div class="flex h-16 cursor-pointer items-center">
 
-                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                    <a href="/courses/3/asg"
-                                        class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Buka
-                                        Test</a>
-                                </p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

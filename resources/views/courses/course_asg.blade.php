@@ -45,15 +45,11 @@
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
                             <h1
-                                class="text-md relative mx-6 block w-auto pt-6 font-bold tracking-normal text-gray-800 lg:text-xl">
+                                class="text-md relative mx-6 block w-auto py-4 font-bold tracking-normal text-gray-800 lg:text-xl">
                                 Judul Assignment
                             </h1>
-                            <h2
-                                class="text-md lg:text-md relative mx-6 block w-auto pt-6 font-medium tracking-normal text-gray-800">
-                                Pilihlah jawaban yang menurut anda paling tepat!
-                            </h2>
                             <h2 id="asgScore"
-                                class="text-md lg:text-md relative mx-6 mb-6 block w-auto pt-6 font-semibold tracking-normal text-gray-800">
+                                class="text-md lg:text-md relative mx-6 mb-6 hidden w-auto pt-6 font-semibold tracking-normal text-gray-800">
                                 Nilai Assignment : <span class="text-indigo-600">90</span>
                             </h2>
                         </div>
@@ -109,63 +105,7 @@
                         </div>
                     </div>
                     <hr>
-                    {{-- QUESTION WITH IMAGE --}}
-                    <div class="mx-auto p-6 antialiased">
-                        <div class="space-y-4">
-                            <h1
-                                class="text-md relative mx-6 mb-6 block w-auto pt-6 font-semibold tracking-normal text-gray-800 lg:text-xl">
-                                4. TEXT QUESTION with IMAGES "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                do eiusmod
-                                tempor
-                                incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris
-                                nisi ut aliquip ex ea commodo consequat.
-                            </h1>
-                            <div class="mx-12 mb-2 w-full md:w-4/12">
-                                <div class="h-fit w-auto">
-                                    <img class="max-h-full w-full" src="/storage/image/forumtest.png">
-                                </div>
-                            </div>
-                            <div class="pl-12">
-
-                                <div class="mb-4 mr-4 flex items-center">
-                                    <input id="radio1-a" type="radio" name="radio1" class="hidden" />
-                                    <label for="radio1-a" class="text-md flex cursor-pointer items-center">
-                                        <span
-                                            class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
-                                        Best choice</label>
-                                </div>
-
-                                <div class="mb-4 mr-4 flex items-center">
-                                    <input id="radio1-b" type="radio" name="radio1" class="hidden" />
-                                    <label for="radio1-b" class="text-md flex cursor-pointer items-center">
-                                        <span
-                                            class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
-                                        Second choice</label>
-                                </div>
-
-                                <div class="mb-4 mr-4 flex items-center">
-                                    <input id="radio1-c" type="radio" name="radio1" class="hidden" />
-                                    <label for="radio1-c" class="text-md flex cursor-pointer items-center">
-                                        <span
-                                            class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
-                                        Third choice</label>
-                                </div>
-
-                                <div class="mb-4 mr-4 flex items-center">
-                                    <input id="radio1-d" type="radio" name="radio1" class="hidden" />
-                                    <label for="radio1-d" class="text-md flex cursor-pointer items-center">
-                                        <span
-                                            class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
-                                        Fourth choice</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
                     {{-- QUESTION RESULT INCORRECT --}}
-
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
                             <h1
