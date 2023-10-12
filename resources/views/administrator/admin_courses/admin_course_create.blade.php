@@ -11,26 +11,25 @@
     <link href="style.css" rel="stylesheet" />
     @vite('resources/css/app.css')
 </head>
-<script>
-    function previewImage() {
-        const input = document.getElementById('imageUpload');
-        const preview = document.getElementById('imagePreview');
-        const area = document.getElementById('imageUploadArea');
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
 
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.classList.remove('hidden');
-                preview.classList.add('mt-4')
-                area.classList.add('hidden');
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
 
 <body class="bg-gray-200 pb-12">
+    <script>
+        function previewImage() {
+            const imageInput = document.getElementById('imageInput');
+            const imagePreview = document.getElementById('imagePreview');
+
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(imageInput.files[0]);
+            }
+        }
+    </script>
     @section('title', 'Homepage')
     @extends('layout.layout')
     @section('header')
@@ -73,27 +72,19 @@
                     <div class="w-full md:w-1/3">
                         <!-- Profile Card -->
                         <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
-                            <label>
-                                <img id="imagePreview" class="hidden h-64 p-4 md:px-0" src="#" alt="Image Preview" />
-                                <input type="file" class="h-0 opacity-0" id="imageUpload" onchange="previewImage()" />
-                            </label>
-                            <label id="imageUploadArea"
-                                class="flex h-36 w-full flex-col border-4 border-dashed border-blue-200 hover:border-gray-300 hover:bg-gray-100 md:h-64">
-                                <div class="flex flex-col items-center justify-center pt-7">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-8 w-8 text-gray-400 group-hover:text-gray-600" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                    </svg>
-                                    <p
-                                        class="align-center pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                                        Unduh Foto Kursus</p>
-                                </div>
-                                <input type="file" class="h-0 opacity-0" id="imageUpload" onchange="previewImage()" />
-                            </label>
+                            <div class="mx-auto w-full">
+                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
+                                    src="/storage/image/placeholder.webp" alt="Image Preview" />
+                            </div>
+                            <div class="max-w-md">
+                                <label
+                                    class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
-
+                                    <span class="text-base leading-normal">Unduh Foto Baru</span>
+                                    <input type='file' id='imageInput' class="hidden" accept="image/*"
+                                        onchange="previewImage()" />
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <!-- Right Side -->

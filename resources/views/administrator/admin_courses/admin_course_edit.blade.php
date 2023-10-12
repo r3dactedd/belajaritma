@@ -13,6 +13,22 @@
 </head>
 
 <body class="bg-gray-200 pb-12">
+    <script>
+        function previewImage() {
+            const imageInput = document.getElementById('imageInput');
+            const imagePreview = document.getElementById('imagePreview');
+
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(imageInput.files[0]);
+            }
+        }
+    </script>
     @section('title', 'Homepage')
     @extends('layout.layout')
     @section('header')
@@ -43,12 +59,18 @@
                     <div class="w-full md:w-1/3">
                         <!-- Profile Card -->
                         <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
-                            <div class="mx-auto h-full w-full">
+                            <div class="mx-auto w-full">
+                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
+                                    src="/storage/image/courseimg.webp" alt="Image Preview" />
+                            </div>
+                            <div class="max-w-md">
+                                <label
+                                    class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
-                                <img src="/storage/image/courseimg.webp" id="imagePreview" class="h-64 p-4 md:px-0"
-                                    src="#" alt="Image Preview" />
-                                <input type="file" class="h-0 opacity-0" id="imageUpload" onchange="previewImage()" />
-
+                                    <span class="text-base leading-normal">Unduh Foto Baru</span>
+                                    <input type='file' id='imageInput' class="hidden" accept="image/*"
+                                        onchange="previewImage()" />
+                                </label>
                             </div>
                         </div>
                     </div>

@@ -26,9 +26,7 @@
                                     <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                         Algoritma dan Pemrograman
                                     </h1>
-                                    <p class="mt-4 w-fit rounded-xl bg-green-400 px-6 py-1.5 text-sm text-white">
-                                        Kursus Selesai
-                                    </p>
+
                                 </div>
                             </div>
                         </div>
@@ -105,9 +103,7 @@
                                     <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                         Data Structures
                                     </h1>
-                                    <p class="mt-4 w-fit rounded-xl bg-yellow-500 px-6 py-1.5 text-sm text-white">
-                                        Lanjut Kursus
-                                    </p>
+
                                 </div>
                             </div>
                         </div>
@@ -185,9 +181,7 @@
                                     <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                         Artificial Intelligence
                                     </h1>
-                                    <p class="mt-4 w-fit rounded-xl bg-indigo-500 px-6 py-1.5 text-sm text-white">
-                                        Ambil Kursus
-                                    </p>
+
                                 </div>
                             </div>
                         </div>
@@ -267,9 +261,7 @@
                                     <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                         Course Name
                                     </h1>
-                                    <p class="mt-4 w-fit rounded-xl bg-green-400 px-6 py-1.5 text-sm text-white">
-                                        Course Status
-                                    </p>
+
                                 </div>
                             </div>
                         </div>

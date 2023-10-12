@@ -76,7 +76,7 @@
             </div>
 
         </div>
-        <div class="container mx-auto mt-4 flex h-full w-11/12 items-center">
+        <div class="container mx-auto mb-1 mt-4 flex h-full w-11/12 items-center border-b border-gray-300 px-2">
 
             <ul class="hidden h-full items-center lg:flex">
                 <li class="text-md flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
@@ -91,6 +91,7 @@
             </ul>
 
         </div>
+
         <div id="dashboard">
             @include('profile.profile_dashboard')
         </div>

@@ -12,6 +12,23 @@
 </head>
 
 <body class="bg-gray-200 pb-12">
+    {{-- Upload Function --}}
+    <script>
+        function previewImage() {
+            const imageInput = document.getElementById('imageInput');
+            const profilePreview = document.getElementById('profile-preview');
+
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    profilePreview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(imageInput.files[0]);
+            }
+        }
+    </script>
     @section('title', 'Edit Profile')
     @extends('layout.layout')
     @section('header')
@@ -56,7 +73,8 @@
                                 Profil</label>
                             <div class="mb-2 w-full md:w-3/12">
                                 <div class="h-fit w-auto">
-                                    <img class="h-20 w-20 rounded-full object-cover" src="/storage/image/forumtest.png">
+                                    <img id="profile-preview" class="h-32 w-32 rounded-full object-cover"
+                                        src="/storage/image/forumtest.png">
                                 </div>
                             </div>
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
@@ -65,7 +83,8 @@
                                         class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                         <span class="text-base leading-normal">Upload Foto Baru</span>
-                                        <input type='file' class="hidden" />
+                                        <input type='file' id='imageInput' class="hidden" accept="image/*"
+                                            onchange="previewImage()" />
                                     </label>
                                 </div>
                                 <div class="sm:col-span-2">
@@ -175,7 +194,7 @@
         </div>
 
         </div>
-        {{--  --}}
+
     @endsection
     @section('footer')
         @include('layout.footer')

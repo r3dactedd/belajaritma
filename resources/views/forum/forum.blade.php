@@ -52,17 +52,21 @@
                     <div class="relative m-4">
 
                         <form>
-                            <input type="text" placeholder="Cari Judul Diskusi..." required=""
-                                class="mt-4 w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                            <button type="submit"
-                                class="absolute right-0 top-0 mt-4 rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                <svg aria-hidden="true" class="h-5 w-5" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                                <span class="sr-only font-semibold">Search</span>
-                            </button>
+                            <label for="default-search"
+                                class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
+                            <div class="relative">
+                                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    </svg>
+                                </div>
+                                <input type="search" id="default-search"
+                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                                    placeholder="Cari Judul Diskusi" required>
+
+                            </div>
                         </form>
                     </div>
 
@@ -70,7 +74,7 @@
                         <div class="flex">
                             <select
                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                                <option value="">Filter berdasarkan Topik</option>
+                                <option value="">Filter berdasarkan Sesi</option>
                                 <option value="for-rent">Session 1 Name</option>
                                 <option value="for-sale">Session 2 Name</option>
                                 <option value="for-rent">Session 3 Name</option>
@@ -86,7 +90,8 @@
 
                     </div>
                     <button id="open-btn"
-                        class="modal-open my-4 ml-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                        class="my-4 ml-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
+                        data-modal-target="defaultModal" data-modal-toggle="defaultModal">
                         Buat Diskusi Baru
                     </button>
                     <div class="mx-auto p-6 antialiased">
@@ -161,9 +166,9 @@
             </div>
         </div>
         {{-- CREATE FORUM MODAL --}}
-        <div class="modal pointer-events-none fixed left-0 top-0 flex h-full w-full items-center justify-center opacity-0">
-            <div class="modal-overlay absolute h-full w-full bg-gray-900 opacity-50"></div>
-            <div class="modal-container z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
+        <div id="defaultModal" tabindex="-1" aria-hidden="true"
+            class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+            <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
                 <!-- Add margin if you want to see some of the overlay behind the modal-->
                 <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
                     <div class="container mx-auto my-5 p-5">

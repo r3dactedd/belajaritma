@@ -40,8 +40,8 @@
                 <div class="w-full md:w-1/3">
                     <!-- Profile Card -->
                     <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
-                        <div class="mx-auto h-full w-full">
-                            <img class="h-64 p-4 md:px-0" src="/storage/image/courseimg.webp" alt="e" />
+                        <div class="mx-auto w-full">
+                            <img class="max-max-h-64 p-4 md:px-0" src="/storage/image/courseimg.webp" alt="course image" />
                         </div>
                     </div>
                 </div>
