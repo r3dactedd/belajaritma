@@ -41,7 +41,8 @@
                     <!-- Profile Card -->
                     <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
                         <div class="mx-auto w-full">
-                            <img class="max-h-72 p-4 md:px-0" src="/storage/image/courseimg.webp" alt="course image" />
+                            <img class="max-h-72 w-full p-4 md:px-0" src="/storage/image/courseimg.webp"
+                                alt="course image" />
                         </div>
                     </div>
                 </div>

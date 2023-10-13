@@ -64,7 +64,7 @@
                                     Certification Name
                                 </h2>
                             </div>
-                            <p class="text-md mb-6 font-normal tracking-normal text-gray-600 md:w-3/4">
+                            <p class="text-md mb-2 font-normal tracking-normal text-gray-600 md:w-3/4">
                                 Certi Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
@@ -93,10 +93,9 @@
                 </a>
                 <div
                     class="flex flex-row items-center justify-between border-t border-gray-300 px-5 py-3 md:px-10 lg:px-5 lg:py-4">
-
                     <div class="flex items-center">
-                        <p class="w-fit rounded-xl bg-green-400 px-6 py-1.5 text-sm text-white">
-                            Selesai
+                        <p class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">
+                            Rp 120.000,00
                         </p>
                     </div>
                 </div>
@@ -117,7 +116,7 @@
                                 Certification Name
                             </h2>
                         </div>
-                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600 md:w-3/4">
+                        <p class="text-md mb-2 font-normal tracking-normal text-gray-600 md:w-3/4">
                             Certi Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex.

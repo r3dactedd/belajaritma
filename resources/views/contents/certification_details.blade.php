@@ -42,7 +42,7 @@
                     <!-- Profile Card -->
                     <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
-                            <img class="h-full p-4 md:px-0"
+                            <img class="max-h-72 w-full p-4 md:px-0"
                                 src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
                                 alt="e" />
                         </div>
@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
                                     <a href="/transaction"
-                                        class="inline-flex items-center rounded-md bg-indigo-500 px-4 py-2 align-middle text-sm font-semibold text-white hover:bg-indigo-600 md:w-36">
+                                        class="inline-flex items-center rounded-md bg-green-400 px-4 py-2 align-middle text-sm font-semibold text-white hover:bg-indigo-600 md:w-36">
                                         <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
                                             height="1.1em" viewBox="0 0 512 512">
                                             <path
