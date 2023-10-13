@@ -26,6 +26,9 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/signup', function () {
     return view('authentication.signup');
 });
+Route::get('/forgot', function () {
+    return view('authentication.forgot');
+});
 Route::post('/signup', [RegisterController::class, 'register']);
 
 Route::post('/logout', [LoginController::class, 'logout']);

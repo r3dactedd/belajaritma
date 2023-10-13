@@ -85,12 +85,12 @@
                     <div
                         class="min-h-max cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                         <div class="lg:w-3/2 w-full">
-                            <div class="pb-4 pl-4 pr-4 pt-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                            <div class="p-6">
                                 <div class="my-2 bg-white md:flex md:h-36">
                                     <!-- Left Side -->
-                                    <div class="w-full md:w-1/3">
+                                    <div class="w-full md:w-2/5">
                                         <!-- Profile Card -->
-                                        <div class="h-full bg-white py-2">
+                                        <div class="ml-4 h-full bg-white py-2">
                                             <div class="mx-auto h-full w-full">
                                                 <img class="h-full"
                                                     src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
@@ -100,7 +100,7 @@
                                     </div>
 
                                     <!-- Right Side -->
-                                    <div class="h-auto w-full md:mx-2 md:w-2/3">
+                                    <div class="h-auto w-full md:mx-2 md:w-3/5">
                                         <div class="bg-white px-4 py-2">
                                             <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                                 Algoritma dan Pemrograman
@@ -164,12 +164,12 @@
                     <div
                         class="min-h-max cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                         <div class="lg:w-3/2 w-full">
-                            <div class="pb-4 pl-4 pr-4 pt-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                            <div class="p-6">
                                 <div class="my-2 bg-white md:flex md:h-36">
                                     <!-- Left Side -->
-                                    <div class="w-full md:w-1/3">
+                                    <div class="w-full md:w-2/5">
                                         <!-- Profile Card -->
-                                        <div class="h-full bg-white py-2">
+                                        <div class="ml-4 h-full bg-white py-2">
                                             <div class="mx-auto h-full w-full">
                                                 <img class="h-full"
                                                     src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
@@ -179,7 +179,7 @@
                                     </div>
 
                                     <!-- Right Side -->
-                                    <div class="h-auto w-full md:mx-2 md:w-2/3">
+                                    <div class="h-auto w-full md:mx-2 md:w-3/5">
                                         <div class="rounded-sm bg-white px-4 py-2">
                                             <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                                 Data Structures
@@ -245,21 +245,18 @@
                     <div
                         class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                         <div class="lg:w-3/2 w-full">
-                            <div class="pb-4 pl-4 pr-4 pt-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                            <div class="p-6">
                                 <div class="my-2 bg-white md:flex md:h-36">
                                     <!-- Left Side -->
-                                    <div class="w-full md:w-1/3">
-                                        <!-- Profile Card -->
-                                        <div class="h-full bg-white py-2">
-                                            <div class="mx-auto h-full w-full">
-                                                <img class="h-full"
-                                                    src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
-                                                    alt="e" />
-                                            </div>
+                                    <div class="ml-4 h-full bg-white py-2">
+                                        <div class="mx-auto h-full w-full">
+                                            <img class="h-full"
+                                                src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
+                                                alt="e" />
                                         </div>
                                     </div>
                                     <!-- Right Side -->
-                                    <div class="h-auto w-full md:mx-2 md:w-2/3">
+                                    <div class="h-auto w-full md:mx-2 md:w-3/5">
                                         <div class="rounded-sm bg-white px-4 py-2">
                                             <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                                 Artificial Intelligence
@@ -326,22 +323,19 @@
                     <div
                         class="min-h-max cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                         <div class="lg:w-3/2 w-full">
-                            <div class="pb-4 pl-4 pr-4 pt-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                            <div class="p-6">
                                 <div class="my-2 bg-white md:flex md:h-36">
                                     <!-- Left Side -->
-                                    <div class="w-full md:w-1/3">
-                                        <!-- Profile Card -->
-                                        <div class="h-full bg-white py-2">
-                                            <div class="mx-auto h-full w-full">
-                                                <img class="h-full"
-                                                    src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
-                                                    alt="e" />
-                                            </div>
+                                    <div class="ml-4 h-full bg-white py-2">
+                                        <div class="mx-auto h-full w-full">
+                                            <img class="h-full"
+                                                src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
+                                                alt="e" />
                                         </div>
                                     </div>
 
                                     <!-- Right Side -->
-                                    <div class="h-auto w-full md:mx-2 md:w-2/3">
+                                    <div class="h-auto w-full md:mx-2 md:w-3/5">
                                         <div class="bg-white px-4 py-2">
                                             <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                                 Course Name

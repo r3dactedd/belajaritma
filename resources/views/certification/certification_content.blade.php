@@ -38,7 +38,7 @@
 
             <div class="my-4 rounded-xl bg-white md:flex">
                 <!-- Left Side -->
-                <div class="w-full md:w-1/3">
+                <div class="w-full md:w-2/5">
                     <!-- Profile Card -->
                     <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
@@ -50,7 +50,7 @@
                 </div>
 
                 <!-- Right Side -->
-                <div class="h-auto w-full md:mx-2 md:w-2/3">
+                <div class="h-auto w-full md:mx-2 md:w-3/5">
                     <!-- Profile tab -->
                     <!-- About Section -->
                     <div class="rounded-xl bg-white px-6 py-2 md:px-12">

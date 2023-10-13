@@ -69,11 +69,11 @@
                 @csrf
                 <div class="my-4 rounded-xl bg-white md:flex">
                     <!-- Left Side -->
-                    <div class="w-full md:w-1/3">
+                    <div class="w-full md:w-2/5">
                         <!-- Profile Card -->
                         <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
                             <div class="mx-auto w-full">
-                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
+                                <img id="imagePreview" class="max-h-72 w-full p-4 md:px-0"
                                     src="/storage/image/placeholder.webp" alt="Image Preview" />
                             </div>
                             <div class="max-w-md">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <!-- Right Side -->
-                    <div class="h-auto w-full md:mx-2 md:w-2/3">
+                    <div class="h-auto w-full md:mx-2 md:w-3/5">
                         <!-- Profile tab -->
                         <!-- About Section -->
                         <div class="rounded-xl bg-white px-6 pt-4 md:px-12">

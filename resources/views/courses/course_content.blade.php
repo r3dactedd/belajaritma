@@ -37,16 +37,16 @@
         <div class="container mx-auto my-auto w-full p-6 lg:w-9/12">
             <div class="my-4 rounded-xl bg-white md:flex">
                 <!-- Left Side -->
-                <div class="w-full md:w-1/3">
+                <div class="w-full md:w-2/5">
                     <!-- Profile Card -->
                     <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
                         <div class="mx-auto w-full">
-                            <img class="max-max-h-64 p-4 md:px-0" src="/storage/image/courseimg.webp" alt="course image" />
+                            <img class="max-h-72 p-4 md:px-0" src="/storage/image/courseimg.webp" alt="course image" />
                         </div>
                     </div>
                 </div>
 
-                <div class="h-auto w-full md:mx-2 md:w-2/3">
+                <div class="h-auto w-full md:mx-2 md:w-3/5">
                     <div class="rounded-xl bg-white px-6 py-2 md:px-12">
                         <h1
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-6 md:pr-4 md:text-left lg:text-3xl">

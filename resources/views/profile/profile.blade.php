@@ -76,7 +76,7 @@
             </div>
 
         </div>
-        <div class="container mx-auto mb-1 mt-4 flex h-full w-11/12 items-center border-b border-gray-300 px-2">
+        <div class="container mx-auto mb-1 mt-4 flex h-full w-11/12 items-center border-b-2 border-gray-300 px-2">
 
             <ul class="hidden h-full items-center lg:flex">
                 <li class="text-md flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
