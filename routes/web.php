@@ -44,6 +44,7 @@ Route::get('/home', function () {
 
 Route::get('/forum', [ForumController::class, 'showForumList']);
 
+
 // Route::get('/forum/1', function () {
 //     return view('forum.forum_content');
 // });
@@ -71,9 +72,12 @@ Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
 Route::get('/courses/1', function () {
     return view('courses.course_content');
 });
-Route::get('/courses/1/pdf', function () {
-    return view('courses.course_pdf');
-});
+// Route::get('/courses/1/pdf', function () {
+//     return view('courses.course_pdf');
+// });
+
+Route::get('/courses/{id}/pdf', [CourseController::class, 'materialDetail']);
+
 Route::get('/courses/2/video', function () {
     return view('courses.course_video');
 });

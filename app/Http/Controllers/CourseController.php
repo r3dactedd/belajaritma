@@ -33,4 +33,11 @@ class CourseController extends Controller
         return view('courses.course_content', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray]);
         // dd($contentArray);
     }
+
+    public function materialDetail($id, Request $request){
+        $data=Material::find($id);
+        $index = $request->input('index');
+        return view('courses.course_pdf', ['data' => $data, 'index' => $index]);
+        // dd($contentArray);
+    }
 }

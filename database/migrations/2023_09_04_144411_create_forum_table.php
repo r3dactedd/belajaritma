@@ -14,14 +14,15 @@ return new class extends Migration
         Schema::create('forum', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('master_type_id');
+            $table->unsignedBigInteger('course_id');
             $table->string('forum_title');
             $table->string('forum_message');
             $table->string('forum_attachment');
             $table->timestamps();
 
+
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('master_type_id')->references('id')->on('master_type')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

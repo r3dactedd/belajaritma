@@ -198,6 +198,10 @@
             <div id="syllabus"class="my-4"></div>
 
             {{-- MATERI LIST START --}}
+        @php
+            $index = 1;
+        @endphp
+
         @foreach ($material as $materialItem)
             <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
 
@@ -205,7 +209,7 @@
                     <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                         <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
                             <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-indigo-600">
-                                Sesi 1
+                                Sesi {{$index}}
                             </h4>
                         </div>
 
@@ -235,7 +239,7 @@
                                                 <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                                     <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
                                                 </svg>
-                                                <a href="/courses/1/pdf" class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                                <a href="/courses/{{$materialItem->id}}/pdf?index={{ $index }}" class="text-md ml-2 font-normal text-gray-600 hover:underline">
                                                      {{$moduleContent->content_title}}
                                                 </a>
                                             @else
@@ -248,7 +252,7 @@
                                                             d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
                                                     </svg>
 
-                                                    <a href="/courses/1/pdf"
+                                                    <a href="/courses/{{$materialItem->id}}/pdf"
                                                         class="text-md ml-2 font-normal text-gray-600 hover:underline">
                                                         {{$moduleContent->content_title}}
                                                     </a>
@@ -263,6 +267,9 @@
                     </div>
                 </div>
             </div>
+            @php
+                $index++;
+            @endphp
         @endforeach
 
             <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
