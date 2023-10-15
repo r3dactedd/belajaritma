@@ -12,9 +12,7 @@ class ForumController extends Controller
     //
     public function showForumList(){
         $data = Forum::all();
-        $master = MasterType::all();
-        $test = MasterType::all();
-        return view('forum.forum',['data'=>$data, 'master'=>$master, 'test'=>$test]);
+        return view('forum.forum',['data'=>$data]);
     }
 
     public function forumDetail($id){
