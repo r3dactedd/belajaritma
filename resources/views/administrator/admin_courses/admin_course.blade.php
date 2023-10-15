@@ -38,7 +38,7 @@
         <div class="container mx-auto my-4 pb-4">
             {{-- Search Bar --}}
             <div class="relative m-4">
-                <form>
+                <form class="px-4 lg:px-0">
                     <label for="default-search"
                         class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
                     <div class="relative">
@@ -50,13 +50,13 @@
                             </svg>
                         </div>
                         <input type="search" id="default-search"
-                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                            class="mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                             placeholder="Cari Kursus Yang Ingin Dipelajari" required>
 
                     </div>
                 </form>
                 <a href="/manager/course/create"
-                    class="modal-open my-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                    class="modal-open my-4 ml-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                     Buat Kursus Baru
                 </a>
             </div>

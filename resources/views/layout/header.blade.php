@@ -243,9 +243,7 @@
 
         // Check the current URL and add the active class accordingly
         switch (baseUrl) {
-            case "/home":
-                homeLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
-                break;
+
             case "/courses":
                 coursesLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
                 break;
@@ -262,6 +260,9 @@
                 break;
             case "/profile":
                 profileLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+                break;
+            default:
+                homeLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
                 break;
         }
     });

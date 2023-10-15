@@ -15,7 +15,7 @@
         <div class="ml-6">
             <h3 class="mb-1 text-2xl font-bold leading-5 text-gray-800">23</h3>
             <p class="text-sm font-normal leading-5 tracking-normal text-gray-600">
-                Mengambil Kursus
+                Kursus yang Telah Diambil
             </p>
         </div>
     </div>

@@ -49,9 +49,9 @@
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="my-4"></div>
                 <div class="mx-auto rounded-xl bg-white px-4 py-2">
-                    <div class="relative m-4">
+                    <div class="relative mt-4 lg:px-4">
 
-                        <form>
+                        <form class="px-4 lg:px-0">
                             <label for="default-search"
                                 class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
                             <div class="relative">
@@ -94,7 +94,7 @@
                         data-modal-target="defaultModal" data-modal-toggle="defaultModal">
                         Buat Diskusi Baru
                     </button>
-                    <div class="mx-auto p-6 antialiased">
+                    <div class="mx-auto px-2 py-4 antialiased">
                         <div class="space-y-4">
                             <!-- FORUM CONTENT -->
                             <a href="/forum/course/1/thread/1" class="flex px-2 hover:bg-gray-200">

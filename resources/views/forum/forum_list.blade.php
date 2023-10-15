@@ -61,7 +61,7 @@
 
         <div class="container mx-auto my-4 pb-4">
             {{-- Search Bar --}}
-            <form>
+            <form class="px-4 lg:px-0">
                 <label for="default-search"
                     class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
                 <div class="relative">
@@ -73,7 +73,7 @@
                         </svg>
                     </div>
                     <input type="search" id="default-search"
-                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                        class="mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                         placeholder="Cari Kursus Yang Ingin Dipelajari" required>
 
                 </div>
@@ -90,7 +90,7 @@
                                     <!-- Left Side -->
                                     <div class="w-full md:w-2/5">
                                         <!-- Profile Card -->
-                                        <div class="ml-4 h-full bg-white py-2">
+                                        <div class="h-full bg-white py-2 md:ml-4">
                                             <div class="mx-auto h-full w-full">
                                                 <img class="h-full"
                                                     src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
@@ -133,7 +133,7 @@
                                     <!-- Left Side -->
                                     <div class="w-full md:w-2/5">
                                         <!-- Profile Card -->
-                                        <div class="ml-4 h-full bg-white py-2">
+                                        <div class="h-full bg-white py-2 md:ml-4">
                                             <div class="mx-auto h-full w-full">
                                                 <img class="h-full"
                                                     src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
@@ -172,9 +172,9 @@
                             <div class="p-6">
                                 <div class="my-2 bg-white md:flex md:h-36">
                                     <!-- Left Side -->
-                                    <div class="ml-4 h-full bg-white py-2">
+                                    <div class="h-full bg-white py-2 md:ml-4">
                                         <div class="mx-auto h-full w-full">
-                                            <img class="h-full"
+                                            <img class="h-full w-full"
                                                 src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
                                                 alt="e" />
                                         </div>
@@ -210,9 +210,9 @@
                             <div class="p-6">
                                 <div class="my-2 bg-white md:flex md:h-36">
                                     <!-- Left Side -->
-                                    <div class="ml-4 h-full bg-white py-2">
+                                    <div class="h-full bg-white py-2 md:ml-4">
                                         <div class="mx-auto h-full w-full">
-                                            <img class="h-full"
+                                            <img class="h-full w-full"
                                                 src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
                                                 alt="e" />
                                         </div>

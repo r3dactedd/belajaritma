@@ -61,7 +61,7 @@
                                         Tentang Saya
                                     </h2>
                                     <h2
-                                        class="text-md mt-1 pr-2 pt-2 text-center font-light tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
+                                        class="text-md mt-4 pr-2 pt-2 text-center font-light tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
                                         INSERT TENTANG SAYA THINGS HERE Lorem ipsum dolor sit amet, consectetur adipiscing
                                         elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
                                         minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea

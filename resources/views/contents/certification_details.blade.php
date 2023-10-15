@@ -38,11 +38,11 @@
 
             <div class="my-4 rounded-xl bg-white md:flex">
                 <!-- Left Side -->
-                <div class="w-full md:w-2/5">
+                <div class="w-full md:w-1/3">
                     <!-- Profile Card -->
-                    <div class="h-full rounded-xl bg-white p-2 md:py-4 md:pl-8">
+                    <div class="h-full p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
-                            <img class="max-h-72 w-full p-4 md:px-0"
+                            <img class="max-h-64 w-full p-4 md:px-0"
                                 src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
                                 alt="e" />
                         </div>
@@ -50,7 +50,7 @@
                 </div>
 
                 <!-- Right Side -->
-                <div class="h-auto w-full md:mx-2 md:w-3/5">
+                <div class="h-auto w-full md:mx-2 md:w-2/3">
                     <!-- Profile tab -->
                     <!-- About Section -->
                     <div class="rounded-xl bg-white px-6 py-2 md:px-12">

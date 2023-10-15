@@ -48,10 +48,20 @@
                                 class="text-md relative mx-6 block w-auto py-4 font-bold tracking-normal text-gray-800 lg:text-xl">
                                 Penjelasan Assignment
                             </h1>
+                            <h2
+                                class="text-md lg:text-md relative mx-6 mb-6 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                Input Deskripsi Assignment here "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor
+                                incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation
+                                ullamco
+                            </h2>
                             <h2 id="asgScore"
                                 class="text-md lg:text-md relative mx-6 mb-6 hidden w-auto pt-6 font-semibold tracking-normal text-gray-800">
                                 Nilai Assignment : <span class="text-indigo-600">90</span>
                             </h2>
+
                         </div>
                     </div>
                     <hr>

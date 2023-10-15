@@ -52,13 +52,9 @@
                         <p class="text-lg font-bold">Aktivitas Anda</p>
                         <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
                             <div class="flex w-11/12">
-                                <div class="h-12 w-12 rounded-full bg-cover bg-center bg-no-repeat">
-                                    <img class="w-full rounded-full border-2 border-white object-cover shadow"
-                                        src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_2.png"
-                                        alt="" />
-                                </div>
+
                                 <div class="w-full px-4">
-                                    <p class="text-base font-bold text-gray-800">
+                                    <p class="text-base font-semibold">
                                         Data Structure
                                     </p>
 
@@ -85,13 +81,9 @@
                         </div>
                         <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
                             <div class="flex w-11/12">
-                                <div class="h-12 w-12 rounded-full bg-cover bg-center bg-no-repeat">
-                                    <img class="w-full rounded-full border-2 border-white object-cover shadow"
-                                        src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_2.png"
-                                        alt="" />
-                                </div>
+
                                 <div class="w-full px-4">
-                                    <p class="text-base font-bold text-gray-800">
+                                    <p class="text-base font-semibold">
                                         Data Structure
                                     </p>
 
@@ -119,14 +111,10 @@
 
                         <div class="relative pb-8 pt-6 sm:flex md:flex lg:flex xl:flex">
                             <div class="flex w-11/12">
-                                <div class="h-12 w-12 rounded-full bg-cover bg-center bg-no-repeat">
-                                    <img class="w-full rounded-full border-2 border-white object-cover shadow"
-                                        src="https://tuk-cdn.s3.amazonaws.com/assets/templates/Education-Portal/ep_5.png"
-                                        alt="" />
-                                </div>
+
                                 <div class="w-full px-4">
-                                    <p class="text-base font-bold text-gray-800">
-                                        Data Structure
+                                    <p class="text-base font-semibold">
+                                        Coursename
                                     </p>
 
                                     <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">

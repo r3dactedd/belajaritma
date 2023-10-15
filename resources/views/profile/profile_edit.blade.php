@@ -69,7 +69,7 @@
                         <form action="/editProfile" method="post" enctype="multipart/form-data">
                             @csrf
                             <label for="profilePicture"
-                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Gambar
+                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Gambar
                                 Profil</label>
                             <div class="mb-2 w-full md:w-3/12">
                                 <div class="h-fit w-auto">
@@ -89,32 +89,39 @@
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="username"
-                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                         Username</label>
                                     <input type="text" name="username" id="inputUsername"
                                         value="masukin current Usernamenya user"
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                         placeholder="Input Username" required="">
+                                    <div class="invalid-feedback my-1 text-sm text-red-500">
+                                        Error Message Design
+                                    </div>
                                 </div>
+
                                 <div class="sm:col-span-2">
                                     <label for="firstName"
-                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Nama
+                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Nama
                                         Lengkap</label>
                                     <input type="text" name="first_name" id="inputFirstName"
                                         value="masukin current Nama Lengkap user"
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                         placeholder="Input Nama Lengkap" required="">
+                                    <div class="invalid-feedback my-1 text-sm text-red-500">
+                                        Error Message Design
+                                    </div>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="email"
-                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Email</label>
                                     <input type="text" name="email" id="inputEmail" value="masukin current Email user"
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                         placeholder="Email" required="">
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="email"
-                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Tentang
+                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Tentang
                                         Saya</label>
                                     <textarea id="myInfo"
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -155,7 +162,7 @@
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                 <div class="sm:col-span-2">
                                     <label for=""
-                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password
+                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Password
                                         Lama</label>
                                     <input type="password" name="oldPass" id="inputOldPass"
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -163,7 +170,7 @@
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="password"
-                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password
+                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Password
                                         Baru</label>
                                     <input type="password" name="newPass" id="inputNewPass"
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -171,7 +178,7 @@
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="password"
-                                        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Konfirmasi
+                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Konfirmasi
                                         Password
                                         Baru</label>
                                     <input type="password" name="newPass" id="inputNewPass"
@@ -182,7 +189,7 @@
                             </div>
                             <div class="flex items-center space-x-4">
                                 <button type="submit"
-                                    class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+                                    class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
                                     Ubah Password
                                 </button>
                             </div>
