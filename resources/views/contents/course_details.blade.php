@@ -193,7 +193,7 @@
                     </div>
                 </div>
             </div>
-            <h1 id="syllabus" class="my-8 text-center text-3xl font-semibold">Materi Pembelajaran </h1>
+            <h1 id="syllabus" class="my-8 text-center text-3xl font-semibold">Daftar Materi </h1>
             <div class="my-4"></div>
 
             {{-- MATERI LIST START --}}

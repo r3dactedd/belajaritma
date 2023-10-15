@@ -184,8 +184,8 @@
                                             <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                                 Data Structures
                                             </h1>
-                                            <p class="mt-4 w-fit rounded-xl bg-yellow-500 px-6 py-1.5 text-sm text-white">
-                                                Lanjut Kursus
+                                            <p class="0 mt-4 w-fit rounded-xl bg-indigo-500 px-6 py-1.5 text-sm text-white">
+                                                Sedang Dipelajari
                                             </p>
                                         </div>
                                     </div>
@@ -261,8 +261,8 @@
                                             <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                                 Artificial Intelligence
                                             </h1>
-                                            <p class="mt-4 w-fit rounded-xl bg-indigo-500 px-6 py-1.5 text-sm text-white">
-                                                Ambil Kursus
+                                            <p class="mt-4 w-fit rounded-xl bg-red-500 px-6 py-1.5 text-sm text-white">
+                                                Belum Diambil
                                             </p>
                                         </div>
                                     </div>

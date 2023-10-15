@@ -29,6 +29,10 @@ Route::get('/signup', function () {
 Route::get('/forgot', function () {
     return view('authentication.forgot');
 });
+
+Route::get('/reset', function () {
+    return view('authentication.reset');
+});
 Route::post('/signup', [RegisterController::class, 'register']);
 
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -38,11 +42,14 @@ Route::get('/home', function () {
 });
 
 Route::get('/forum', function () {
+    return view('forum.forum_list');
+});
+Route::get('/forum/course/1', function () {
     return view('forum.forum');
 });
 
-Route::get('/forum/1', function () {
-    return view('forum.forum_content');
+Route::get('/forum/course/1/thread/1', function () {
+    return view('forum.forum_thread');
 });
 
 Route::get('/courses', function () {
@@ -81,7 +88,7 @@ Route::get('/certifications/1', function () {
 });
 
 Route::get('/courses/1/getcerti', function () {
-    return view('contents.certificate');
+    return view('contents.e-certi');
 });
 
 Route::get('/manager', function () {

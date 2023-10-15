@@ -215,7 +215,7 @@
                 </div>
             </form>
 
-            <h1 class="my-8 text-center text-3xl font-semibold">Materi Pembelajaran </h1>
+            <h1 class="my-8 text-center text-3xl font-semibold">Daftar Materi </h1>
             <div id="syllabus"class="my-4"></div>
 
             <table class="mx-auto w-9/12 overflow-x-auto text-xs text-white">
@@ -228,8 +228,8 @@
                 </colgroup>
                 <thead class="bg-gray-200 leading-normal text-gray-600">
                     <tr class="text-md bg-gray-200 leading-normal text-gray-600 md:text-lg">
-                        <th class="px-6 py-3 text-left">Nama Sesi</th>
-                        <th class="px-6 py-3 text-left">Jumlah Modul</th>
+                        <th class="px-4 py-2 text-left">Nama Sesi</th>
+                        <th class="px-4 py-2 text-left">Tipe Sesi</th>
                         <th class="px-2 py-3 text-center">Aksi</th>
                     </tr>
                 </thead>

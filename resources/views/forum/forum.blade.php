@@ -97,7 +97,7 @@
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
                             <!-- FORUM CONTENT -->
-                            <a href="forum/1" class="flex px-2 hover:bg-gray-200">
+                            <a href="/forum/course/1/thread/1" class="flex px-2 hover:bg-gray-200">
                                 <div class="mr-3 flex-shrink-0 py-2">
                                     <img class="mt-2 h-8 w-8 rounded-full sm:h-10 sm:w-10"
                                         src="https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"

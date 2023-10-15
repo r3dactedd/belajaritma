@@ -30,7 +30,7 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Forum</span>
+                            <span class="mb-1 ml-2">Forum Thread</span>
                         </a>
                 </div>
             </div>
@@ -241,7 +241,7 @@
     <script>
         //Example for input be here :
         var htmlCode =
-            `Ini contoh isi reply with code example <p>"Lorem ipsum dolor,, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<strong>herre</strong><em> consectetur adipiscing elit</em></p><pre class="language-c"><code>#include &lt;stdio.h&gt;
+            `Ini contoh isi reply with code example <p class="max-h-20 overflow-scroll">"Lorem ipsum dolor,, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<strong>herre</strong><em> consectetur adipiscing elit</em></p><pre class="language-c"><code>#include &lt;stdio.h&gt;
 
 int main() {
     for (int i = 1; i &lt;= 5; i++) {

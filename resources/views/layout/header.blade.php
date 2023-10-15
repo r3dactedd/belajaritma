@@ -41,6 +41,10 @@
                 </li>
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                    <a href="/forum" id="forums-link">Forum</a>
+                </li>
+                <li
+                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a href="/manager" id="manager-link">Admin Manager</a>
                 </li>
             </ul>
@@ -114,6 +118,10 @@
                 <li
                     class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
                     <span class="ml-2 font-bold"><a href="/certification">Sertifikasi</a></span>
+                </li>
+                <li
+                    class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
+                    <span class="ml-2 font-bold"><a href="/forum">Forum</a></span>
                 </li>
                 {{-- IF USER SUDAH DAFTAR/LOGIN --}}
                 <li
@@ -221,6 +229,7 @@
         var homeLink = document.getElementById("home-link");
         var coursesLink = document.getElementById("courses-link");
         var certificationsLink = document.getElementById("certifications-link");
+        var forumsLink = document.getElementById("forums-link");
         var managerLink = document.getElementById("manager-link");
         var profileLink = document.getElementById("profile-link");
         // Function to extract the base URL
@@ -233,17 +242,27 @@
         var baseUrl = getBaseUrl(currentUrl);
 
         // Check the current URL and add the active class accordingly
-        if (baseUrl === "/home") {
-            homeLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
-        } else if (baseUrl === "/courses") {
-            coursesLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
-        } else if (baseUrl === "/certifications") {
-            certificationsLink.parentElement.classList.add("border-b-2", "border-indigo-600",
-                "text-indigo-600");
-        } else if (baseUrl === "/manager") {
-            managerLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
-        } else if (baseUrl === "/profile") { // Add this condition
-            profileLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+        switch (baseUrl) {
+            case "/home":
+                homeLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+                break;
+            case "/courses":
+                coursesLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+                break;
+            case "/certifications":
+                certificationsLink.parentElement.classList.add("border-b-2", "border-indigo-600",
+                    "text-indigo-600");
+                break;
+            case "/forum":
+                forumsLink.parentElement.classList.add("border-b-2", "border-indigo-600",
+                    "text-indigo-600");
+                break;
+            case "/manager":
+                managerLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+                break;
+            case "/profile":
+                profileLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+                break;
         }
     });
 </script>

@@ -30,11 +30,11 @@
                             <div class="rounded-xl bg-none px-4 py-2 md:px-8">
                                 <h1
                                     class="pr-2 pt-2 text-center text-xl font-bold tracking-normal text-white md:pr-4 md:pt-4 md:text-left lg:text-4xl">
-                                    Selamat Datang,
+                                    Selamat Datang
                                 </h1>
                                 <h1
                                     class="pr-2 pt-2 text-center text-lg font-bold tracking-normal text-white md:pr-4 md:pt-8 md:text-left lg:text-3xl">
-                                    Username
+                                    di Belajaritma.
                                 </h1>
 
                             </div>

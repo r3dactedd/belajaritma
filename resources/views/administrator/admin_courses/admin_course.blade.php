@@ -74,26 +74,26 @@
                     </colgroup>
                     <thead class="bg-gray-200 leading-normal text-gray-600">
                         <tr class="text-md bg-gray-200 leading-normal text-gray-600 md:text-lg">
-                            <th class="px-6 py-3 text-left">Nama Kursus</th>
-                            <th class="px-6 py-3 text-left">Diupload Oleh</th>
-                            <th class="px-6 py-3 text-left">Terakhir Diedit Oleh</th>
-                            <th class="px-6 py-3 text-left">Tanggal Edit Terakhir</th>
+                            <th class="px-4 py-2 text-left">Nama Kursus</th>
+                            <th class="px-4 py-2 text-left">Diupload Oleh</th>
+                            <th class="px-4 py-2 text-left">Terakhir Diedit Oleh</th>
+                            <th class="px-4 py-2 text-left">Tanggal Edit Terakhir</th>
                             <th class="px-2 py-3 text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="text-md font-light text-gray-600 md:text-lg">
                         <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
-                            <td class="px-6 py-3">
-                                <p>Algoritma dan Pemrograman</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">Algoritma dan Pemrograman</p>
                             </td>
-                            <td class="px-6 py-3">
-                                <p>admin1</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">admin1</p>
                             </td>
-                            <td class="px-6 py-3">
-                                <p>admin2</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">admin2</p>
                             </td>
-                            <td class="px-6 py-3">
-                                <p>date edit</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">date edit</p>
                             </td>
                             <td class="px-6 py-3 text-center">
                                 <div class="item-center flex justify-center">
@@ -117,17 +117,17 @@
                             </td>
                         </tr>
                         <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
-                            <td class="px-6 py-3">
-                                <p>Artificial Intelligence</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">Artificial Intelligence</p>
                             </td>
-                            <td class="px-6 py-3">
-                                <p>admin2</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">admin2</p>
                             </td>
-                            <td class="px-6 py-3">
-                                <p>admin2</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">admin2</p>
                             </td>
-                            <td class="px-6 py-3">
-                                <p>date edit</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">date edit</p>
                             </td>
                             <td class="px-6 py-3 text-center">
                                 <div class="item-center flex justify-center">
@@ -151,18 +151,18 @@
                             </td>
                         </tr>
                         <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
-                            <td class="px-6 py-3">
-                                <p>Data Structure</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">Data Structure</p>
                             </td>
-                            <td class="px-6 py-3">
-                                <p>admin3</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">admin3</p>
                             </td>
-                            <td class="px-6 py-3">
-                                <p>admin3</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">admin3</p>
 
                             </td>
-                            <td class="px-6 py-3">
-                                <p>date edit</p>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">date edit</p>
                             </td>
                             <td class="px-6 py-3 text-center">
                                 <div class="item-center flex justify-center">

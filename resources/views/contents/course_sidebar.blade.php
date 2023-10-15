@@ -230,7 +230,7 @@
 
 </div>
 
-<a href='/forum'
+<a href='/forum/course/1'
     class="y-4 mx-auto mt-4 hidden w-6/12 min-w-[70%] items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:flex">
 
 

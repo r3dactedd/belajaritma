@@ -36,7 +36,7 @@
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="w-full md:mx-2 md:w-3/12">
                     <!-- Sidebar, pass value courselistnya aja-->
-                    @include('courses.course_sidebar')
+                    @include('contents.course_sidebar')
                 </div>
                 {{-- QUESTION  --}}
                 <div id="asg-top" class="my-4"></div>
@@ -46,7 +46,7 @@
                         <div class="space-y-4">
                             <h1
                                 class="text-md relative mx-6 block w-auto py-4 font-bold tracking-normal text-gray-800 lg:text-xl">
-                                Judul Assignment
+                                Penjelasan Assignment
                             </h1>
                             <h2 id="asgScore"
                                 class="text-md lg:text-md relative mx-6 mb-6 hidden w-auto pt-6 font-semibold tracking-normal text-gray-800">

@@ -37,7 +37,7 @@
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="w-full md:mx-2 md:w-3/12">
                     <!-- Sidebar, pass value courselistnya aja-->
-                    @include('courses.course_sidebar')
+                    @include('contents.course_sidebar')
                 </div>
                 <div class="my-4"></div>
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">

@@ -80,12 +80,12 @@
                                         class="mt-6 w-full rounded bg-indigo-400 px-8 py-3 text-sm text-white transition duration-150 ease-in-out hover:bg-indigo-600 group-invalid:pointer-events-none group-invalid:opacity-30">
                                         Login
                                     </button>
-                                    <p class="mt-6 text-xs">
+                                    <p class="mt-6 text-sm">
                                         Tidak memiliki akun?
                                         <a class="text-indigo-400 underline" href="/signup"> Daftar</a>
                                     </p>
-                                    <p class="mt-6 text-xs">
-                                        <a class="text-indigo-400 underline" href="/forgot"> Lupa Password Anda?</a>
+                                    <p class="mt-6 text-sm">
+                                        <a class="text-indigo-400 underline" href="/forgot"> Lupa Password?</a>
                                     </p>
                                 </div>
                             </div>
