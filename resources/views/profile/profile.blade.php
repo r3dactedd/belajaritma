@@ -65,7 +65,7 @@
                                     </h2>
 
                                     <textarea disabled="myInfo"
-                                        class="text-md mt-4 pr-2 pt-2 text-center font-light tracking-normal text-white md:pr-4 md:text-left lg:text-lg"
+                                        class="text-md mt-4 pr-2 pt-2 text-center font-light tracking-normal text-black md:pr-4 md:text-left lg:text-lg"
                                         placeholder="Silahkan isi informasi mengenai anda." required="">{{$searchUser->about_me}}
                                 </textarea>
                                 </div>

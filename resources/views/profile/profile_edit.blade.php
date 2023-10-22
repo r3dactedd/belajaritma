@@ -15,7 +15,7 @@
     {{-- Upload Function --}}
     <script>
         function previewImage() {
-            const imageInput = document.getElementById('imageInput');
+            const imageInput = document.getElementById('inputPicture');
             const profilePreview = document.getElementById('profile-preview');
 
             if (imageInput.files && imageInput.files[0]) {
@@ -74,7 +74,7 @@
                             <div class="mb-2 w-full md:w-3/12">
                                 <div class="h-fit w-auto">
                                     <img id="profile-preview" class="h-32 w-32 rounded-full object-cover"
-                                        src="/storage/image/forumtest.png">
+                                    src="{{ Auth::user()->profile_img ? '/storage/images/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}">
                                 </div>
                             </div>
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
@@ -83,7 +83,7 @@
                                         class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                         <span class="text-base leading-normal">Upload Foto Baru</span>
-                                        <input type='file' id='imageInput' class="hidden" accept="image/*"
+                                        <input type='file' name="profile_img" id="inputPicture" class="hidden" accept="image/*" value={{ Auth::user()->profile_img }}
                                             onchange="previewImage()" />
                                     </label>
                                 </div>
@@ -92,7 +92,7 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                         Username</label>
                                     <input type="text" name="username" id="inputUsername"
-                                        value="masukin current Usernamenya user"
+                                        value={{$searchUser->username}}
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                         placeholder="Input Username" required="">
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
@@ -104,8 +104,8 @@
                                     <label for="firstName"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Nama
                                         Lengkap</label>
-                                    <input type="text" name="first_name" id="inputFirstName"
-                                        value="masukin current Nama Lengkap user"
+                                    <input type="text" name="full_name" id="inputFullName"
+                                        value={{$searchUser->full_name}}
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                         placeholder="Input Nama Lengkap" required="">
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
@@ -115,7 +115,7 @@
                                 <div class="sm:col-span-2">
                                     <label for="email"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Email</label>
-                                    <input type="text" name="email" id="inputEmail" value="masukin current Email user"
+                                    <input type="text" name="email" id="inputEmail" value={{$searchUser->email}}
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                         placeholder="Email" required="">
                                 </div>
@@ -123,10 +123,10 @@
                                     <label for="email"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Tentang
                                         Saya</label>
-                                    <textarea id="myInfo"
+                                    <textarea name="about_me" id="inputAboutMe"
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                        placeholder="Silahkan isi informasi mengenai anda." required="">INSERT TENTANG SAYA THINGS HERE
-                            </textarea>
+                                        placeholder="Silahkan isi informasi mengenai anda."  required=""> {{$searchUser->about_me}}
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
@@ -157,14 +157,14 @@
                 </div>
                 <div class="col-span-2 h-auto w-10/12 md:mx-2">
                     <div class="rounded-xl bg-white px-6 py-8 md:px-12">
-                        <form action="/editProfile" method="post" enctype="multipart/form-data">
+                        <form action="/editProfile/password" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                 <div class="sm:col-span-2">
                                     <label for=""
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Password
                                         Lama</label>
-                                    <input type="password" name="oldPass" id="inputOldPass"
+                                    <input type="password" name="old_password" id="inputOldPass"
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                         placeholder="Masukkan Password Lama" required="">
                                 </div>
@@ -172,7 +172,7 @@
                                     <label for="password"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Password
                                         Baru</label>
-                                    <input type="password" name="newPass" id="inputNewPass"
+                                    <input type="password" name="new_password" id="inputNewPass"
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                         placeholder="Masukkan Password Baru" required="">
                                 </div>
@@ -181,7 +181,7 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Konfirmasi
                                         Password
                                         Baru</label>
-                                    <input type="password" name="newPass" id="inputNewPass"
+                                    <input type="password" name="confirm_password" id="inputConfirmPass"
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                         placeholder="Masukkan Lagi Password Baru" required="">
                                 </div>

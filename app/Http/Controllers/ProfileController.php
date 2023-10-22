@@ -67,17 +67,18 @@ class ProfileController extends Controller
 
         $validateProfile = $request->validate([
             'profile_img' => 'required|image|file',
-            'fullname' => 'required|string|max:255',
+            'full_name' => 'required|string|max:255',
             'username' => 'required|max:25',
             'email' => 'required|email:dns',
             'about_me' => 'required|max:150',
         ]);
-        $fullname = $request->input('fullname');
+        $fullname = $request->input('full_name');
         $nameParts = explode(' ', $fullname);
 
         $changeProfile = [
             'profile_img'=>$validateProfile['profile_img'],
             'username'=>$validateProfile['username'],
+            'full_name'=>$validateProfile['full_name'],
             'first_name' => reset($nameParts),
             'last_name' => end($nameParts),
             'email'=>$validateProfile['email'],
@@ -91,7 +92,7 @@ class ProfileController extends Controller
         }
 
         User::where('id',Auth::user()->id)->update($changeProfile);
-        return redirect('/profile')->with('success', 'Data user sudah diupdate!');
+        return redirect('/profile/name')->with('success', 'Data user sudah diupdate!');
     }
 
     public function changePassword(Request $request)
@@ -99,13 +100,14 @@ class ProfileController extends Controller
         $request->validate([
             'old_password' => 'required',
             'new_password' => ['required', 'alpha_num', 'min:8'],
+            'confirm_password' => ['required', 'alpha_num', 'min:8'],
         ]);
 
         $user = Auth::user();
 
         // Verify the old password
-        if (!Hash::check($request->old_password, $user->password)) {
-            return redirect('/profile/edit')->with('error', 'Password change failed!');
+        if (!Hash::check($request->old_password, $user->password) || $request->confirm_password!=$request->new_password) {
+            return redirect('/profile/name/edit')->with('error', 'Password change failed!');
         }
 
         User::where('id',Auth::user()->id)->update([
@@ -113,7 +115,7 @@ class ProfileController extends Controller
         ]);
 ;
 
-        return redirect('/home')->with('success', 'Password changed successfully!');
+        return redirect('/profile/name')->with('success', 'Password changed successfully!');
     }
 
 }

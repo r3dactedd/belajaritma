@@ -56,9 +56,7 @@ Route::get('/forum/course/1/thread/1', function () {
     return view('forum.forum_thread');
 });
 
-Route::get('/courses', function () {
-    return view('contents.courses');
-});
+Route::get('/courses', [CourseController::class, 'showData']);
 
 Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
 
@@ -84,13 +82,14 @@ Route::get('/courses/3/asg/results', function () {
     return view('contents.assignment_results');
 });
 
-Route::get('/profile/name', function () {
-    return view('profile.profile');
-});
+Route::get('/profile/name', [ProfileController::class, 'viewProfile']);
+Route::get('/profile/name/edit',[ProfileController::class, 'editProfile']);
+Route::post('/editProfile',[ProfileController::class, 'update']);
+Route::post('/editProfile/password',[ProfileController::class, 'changePassword']);
 
-Route::get('/profile/name/edit', function () {
-    return view('profile.profile_edit');
-});
+// Route::get('/profile/name/edit', function () {
+//     return view('profile.profile_edit');
+// });
 
 Route::get('/certifications', function () {
     return view('contents.certifications');

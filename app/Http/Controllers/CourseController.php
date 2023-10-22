@@ -14,11 +14,11 @@ class CourseController extends Controller
         $searchKeyword = $request->input('search');
         if($searchKeyword){
             $data = Course::where('course_name', 'like', "%$searchKeyword%")->get();
-            return view('courses.courses', compact('data'));
+            return view('contents.courses', compact('data'));
         }
         else{
             $data = Course::all();
-            return view('courses.courses',['data'=>$data]);
+            return view('contents.courses',['data'=>$data]);
         }
     }
 
@@ -30,7 +30,7 @@ class CourseController extends Controller
         foreach ($material as $materials) {
             $contentArray[$materials->id] = ModuleContent::where('material_id', $materials->id)->get();
         }
-        return view('courses.course_content', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray]);
+        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray]);
         // dd($contentArray);
     }
 
