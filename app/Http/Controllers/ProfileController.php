@@ -62,28 +62,21 @@ class ProfileController extends Controller
 
     //     return redirect('/profile')->with('success', 'User data has been updated!');
     // }
-
     public function update(Request $request){
 
         $validateProfile = $request->validate([
-            'profile_img' => 'required|image|file',
+            'profile_img' => 'image|file',
             'full_name' => 'required|string|max:255',
             'username' => 'required|max:25',
             'email' => 'required|email:dns',
             'about_me' => 'required|max:150',
         ]);
-        $fullname = $request->input('full_name');
-        $nameParts = explode(' ', $fullname);
 
-        $changeProfile = [
-            'profile_img'=>$validateProfile['profile_img'],
-            'username'=>$validateProfile['username'],
-            'full_name'=>$validateProfile['full_name'],
-            'first_name' => reset($nameParts),
-            'last_name' => end($nameParts),
-            'email'=>$validateProfile['email'],
-            'about_me'=>$validateProfile['about_me'],
-        ];
+        $full_name = $request->input('full_name');
+        $nameParts = preg_split('/\s+/', $full_name);
+
+        // Initialize $changeProfile as an empty array
+        $changeProfile = [];
 
         if ($request->hasFile('profile_img')) {
             $filename = Str::orderedUuid() . "." . $request->file('profile_img')->getClientOriginalExtension();
@@ -91,9 +84,25 @@ class ProfileController extends Controller
             $changeProfile['profile_img'] = $filename;
         }
 
-        User::where('id',Auth::user()->id)->update($changeProfile);
+        // Check if 'profile_img' exists in the validated data
+        if (array_key_exists('profile_img', $validateProfile)) {
+            unset($validateProfile['profile_img']);
+        }
+
+        $changeProfile += [
+            'username' => $validateProfile['username'],
+            'full_name' => $validateProfile['full_name'],
+            'first_name' => $nameParts[0],
+            'last_name' => end($nameParts),
+            'email' => $validateProfile['email'],
+            'about_me' => $validateProfile['about_me'],
+        ];
+
+        User::where('id', Auth::user()->id)->update($changeProfile);
         return redirect('/profile/name')->with('success', 'Data user sudah diupdate!');
     }
+
+
 
     public function changePassword(Request $request)
     {

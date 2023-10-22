@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('course_name');
             $table->string('course_desc');
-            // $table->string('course_img');
+            $table->string('course_img');
             $table->integer('total_module');
             $table->timestamps();
         });

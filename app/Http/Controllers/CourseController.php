@@ -11,7 +11,7 @@ class CourseController extends Controller
 {
     //
     public function showData(Request $request){
-        $searchKeyword = $request->input('search');
+        $searchKeyword = $request->input('searchKeyword');
         if($searchKeyword){
             $data = Course::where('course_name', 'like', "%$searchKeyword%")->get();
             return view('contents.courses', compact('data'));

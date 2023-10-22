@@ -90,7 +90,7 @@
                                 <div class="sm:col-span-2">
                                     <label for="username"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                        Username</label>
+                                        Username </label>
                                     <input type="text" name="username" id="inputUsername"
                                         value={{$searchUser->username}}
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -101,9 +101,9 @@
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <label for="firstName"
+                                    <label for="full_name"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Nama
-                                        Lengkap</label>
+                                        Lengkap </label>
                                     <input type="text" name="full_name" id="inputFullName"
                                         value={{$searchUser->full_name}}
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"

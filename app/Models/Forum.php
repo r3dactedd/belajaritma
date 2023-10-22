@@ -12,6 +12,7 @@ class Forum extends Model
     protected $guarded='id';
     protected $fillable = [
         'user_id',
+        'course_id',
         'master_type_id',
         'forum_title',
         'forum_message',
@@ -22,5 +23,8 @@ class Forum extends Model
     }
     public function formToMasterType(){
         return $this->belongsTo(MasterType::class, 'master_type_id');
+    }
+    public function formToCourse(){
+        return $this->hasMany(Course::class, 'course_id','id');
     }
 }

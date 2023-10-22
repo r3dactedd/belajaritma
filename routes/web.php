@@ -45,16 +45,16 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/forum', function () {
-    return view('forum.forum_list');
-});
-Route::get('/forum/course/1', function () {
-    return view('forum.forum');
-});
+Route::get('/forum', [ForumController::class, 'showCourseData']);
+Route::get('forum/course/{course_id}', [ForumController::class, 'showForumsByCourse']);
+Route::get('/forum/course/{course_id}/thread/{id}', [ForumController::class, 'forumDetail']);
 
-Route::get('/forum/course/1/thread/1', function () {
-    return view('forum.forum_thread');
-});
+// Route::get('/forum/course/1', function () {
+//     return view('forum.forum');
+// });
+// Route::get('/forum/course/1/thread/1', function () {
+//     return view('forum.forum_thread');
+// });
 
 Route::get('/courses', [CourseController::class, 'showData']);
 
@@ -124,9 +124,7 @@ Route::get('/manager/course/session/1/edit', function () {
 Route::get('/manager/certification', function () {
     return view('administrator.admin_certifications.admin_certification');
 });
-Route::get('/manager/forum', function () {
-    return view('administrator.admin_forum');
-});
+Route::get('/manager/forum', [ForumController::class, 'manageForumList']);
 
 Route::get('/transaction', function () {
     return view('transactions.transaction');
