@@ -24,14 +24,13 @@
         <div class="scroll-smooth bg-white px-5 sm:px-10">
             <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
                 <div>
-
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
                         <a onclick="history.back()" class="flex items-center" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Forum</span>
+                            <span class="mb-1 ml-2">Forum Thread</span>
                         </a>
                 </div>
             </div>
@@ -49,37 +48,27 @@
                                     alt="">
                             </div>
                             <div class="flex-1 rounded-lg px-4 pb-2 text-2xl leading-relaxed">
-                                <strong>{{$data->forum_title}}</strong> <span class="ml-2 text-xl text-gray-400">{{$data->created_at}}</span>
-
-                                <div>
-                                    <p class="text-sm inline">
-                                        Created By {{$data->formToUser->username}}
-                                    </p>
-                                    <p class="text-sm inline ml-5">
-                                        <b>
-                                            {{$data->formToMasterType->master_type_name}}
-                                        </b>
-                                    </p>
-                                </div>
-                                <p class="text-base mt-4">
-                                    {{$data->forum_message}}
+                                <strong>User Name</strong> <span class="ml-2 text-xl text-gray-400">Date Create
+                                    Thread</span>
+                                <p class="text-base" id="codeContainer">
                                 </p>
                             </div>
                         </div>
-                        <div class="flex w-full items-center md:ml-16">
+                        {{-- <div class="flex w-full items-center md:ml-16">
                             <img
                                 src="https://cdn.discordapp.com/attachments/699690186761830516/1136295687810723942/image.png">
-                        </div>
+                        </div> --}}
                         {{-- FORUM CONTENT END --}}
                         {{-- ADD COMMENTS --}}
                         <hr>
                         <div class="flex w-full items-center justify-center bg-white">
                             <div class="w-full">
 
-                                {{-- QUILL JS HERE --}}
-                                <div id="editor">
-                                </div>
-                                {{-- QUILL JS HERE --}}
+                                {{-- Input --}}
+
+                                <textarea id="input" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+
+
                                 <div class="my-4 flex justify-end">
                                     <button id="get-content-button"
                                         class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Balas</button>
@@ -105,7 +94,7 @@
                                     </p>
                                     <div class="transition">
                                         <div
-                                            class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-2 transition">
+                                            class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
                                             {{-- if sudah semua, add ini --}}
                                             <div class="flex -space-x-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="0.8em"
@@ -124,8 +113,6 @@
                                             <ul class="ml-12 list-inside space-y-2 pb-4">
                                                 <div class="w-full" id="destination-reply-container">
 
-                                                    <div id="quill-container"></div>
-                                                    {{-- QUILL JS HERE --}}
                                                     <div class="my-4 flex justify-end">
                                                         <button id="get-content-button"
                                                             class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
@@ -155,7 +142,7 @@
                                     </p>
                                     <div class="transition">
                                         <div
-                                            class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-2 transition">
+                                            class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
                                             {{-- if sudah semua, add ini --}}
                                             <div class="flex -space-x-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="0.8em"
@@ -175,7 +162,7 @@
                                                 <div class="w-full" id="reply-container">
 
                                                     <div id="quill-container2"></div>
-                                                    {{-- QUILL JS HERE --}}
+
                                                     <div class="my-4 flex justify-end">
                                                         <button id="get-content-button"
                                                             class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
@@ -202,7 +189,7 @@
                                                 </p>
                                                 <div class="transition">
                                                     <div
-                                                        class="accordion-header flex h-16 cursor-pointer items-center space-x-5 px-2 transition">
+                                                        class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
                                                         {{-- if sudah semua, add ini --}}
                                                         <div class="flex -space-x-2">
                                                             <svg xmlns="http://www.w3.org/2000/svg" height="0.8em"
@@ -220,7 +207,7 @@
                                                         <ul class="ml-12 list-inside space-y-2 pb-4">
                                                             <div class="w-full" id="destination-reply-container">
                                                                 <div id="quill-container3"></div>
-                                                                {{-- QUILL JS HERE --}}
+
                                                                 <div class="my-4 flex justify-end">
                                                                     <button id="get-content-button"
                                                                         class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
@@ -252,77 +239,56 @@
         }
     </style>
     <script>
-        var quill; // Declare quill in a higher scope
+        //Example for input be here :
+        var htmlCode =
+            `Ini contoh isi reply with code example <p class="max-h-20 overflow-scroll">"Lorem ipsum dolor,, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<strong>herre</strong><em> consectetur adipiscing elit</em></p><pre class="language-c"><code>#include &lt;stdio.h&gt;
 
+int main() {
+    for (int i = 1; i &lt;= 5; i++) {
+        printf("%d\n", i);
+    }
+
+    return 0;
+}</code></pre>`;
+
+        var codeContainer = document.getElementById('codeContainer');
+
+        // Insert the HTML code into the placeholder
+        codeContainer.innerHTML = htmlCode;
+
+        tinymce.init({
+            selector: '#input',
+            height: 200,
+            menubar: false,
+            plugins: ' code codesample lists',
+
+            toolbar: ' wordcount | link image |code |bold italic underline| codesample|numlist bullist ',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+
+        })
         document.addEventListener("DOMContentLoaded", function(event) {
-            var toolbarOptions = [
-                ['bold', 'italic', 'underline', 'strike'],
-                ['blockquote', 'code-block'],
-                ['image'],
-            ];
 
-            quill = new Quill('#editor', {
-                modules: {
-                    syntax: false,
-                    toolbar: toolbarOptions
-                },
-                theme: 'snow'
-            });
-            // QUILL CONTAINERS FOR NOW
-            var quill2 = new Quill('#quill-container', {
-                modules: {
-                    syntax: false,
-                    toolbar: toolbarOptions
-                },
-                theme: 'snow'
-            });
-            var quill3 = new Quill('#quill-container2', {
-                modules: {
-                    syntax: false,
-                    toolbar: toolbarOptions
-                },
-                theme: 'snow'
-            });
-            var quill4 = new Quill('#quill-container3', {
-                modules: {
-                    syntax: false,
-                    toolbar: toolbarOptions
-                },
-                theme: 'snow'
-            });
+            const accordionHeader = document.querySelectorAll(".accordion-header");
+            accordionHeader.forEach((header) => {
+                header.addEventListener("click", function() {
+                    const accordionContent = header.parentElement.querySelector(
+                        ".accordion-content");
+                    let accordionMaxHeight = accordionContent.style.maxHeight;
 
-            var quillContent = quill.root.innerHTML;
-
-            document.getElementById('get-content-button').addEventListener('click', function() {
-                // Retrieve Quill content
-                var quillContent = quill.root.innerHTML;
-
-                // Perform actions with the content
-                console.log("Quill Content:");
-                console.log(quillContent); // Print content to the browser console
-            });
-        });
-
-
-
-        const accordionHeader = document.querySelectorAll(".accordion-header");
-        accordionHeader.forEach((header) => {
-            header.addEventListener("click", function() {
-                const accordionContent = header.parentElement.querySelector(".accordion-content");
-                let accordionMaxHeight = accordionContent.style.maxHeight;
-
-                // Condition handling
-                if (accordionMaxHeight == "0px" || accordionMaxHeight.length == 0) {
-                    accordionContent.style.maxHeight = `${accordionContent.scrollHeight + 32}px`;
-                    header.querySelector(".fas").classList.remove("fa-plus");
-                    header.querySelector(".fas").classList.add("fa-minus");
-                    header.parentElement.classList.add("bg-indigo-50");
-                } else {
-                    accordionContent.style.maxHeight = `0px`;
-                    header.querySelector(".fas").classList.add("fa-plus");
-                    header.querySelector(".fas").classList.remove("fa-minus");
-                    header.parentElement.classList.remove("bg-indigo-50");
-                }
+                    // Condition handling
+                    if (accordionMaxHeight == "0px" || accordionMaxHeight.length == 0) {
+                        accordionContent.style.maxHeight =
+                            `${accordionContent.scrollHeight + 32}px`;
+                        header.querySelector(".fas").classList.remove("fa-plus");
+                        header.querySelector(".fas").classList.add("fa-minus");
+                        header.parentElement.classList.add("bg-indigo-50");
+                    } else {
+                        accordionContent.style.maxHeight = `0px`;
+                        header.querySelector(".fas").classList.add("fa-plus");
+                        header.querySelector(".fas").classList.remove("fa-minus");
+                        header.parentElement.classList.remove("bg-indigo-50");
+                    }
+                });
             });
         });
     </script>

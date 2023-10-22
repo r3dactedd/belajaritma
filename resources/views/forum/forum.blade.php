@@ -19,8 +19,7 @@
             overflow-y: visible !important;
         }
     </style>
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 </head>
 
 
@@ -50,20 +49,24 @@
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="my-4"></div>
                 <div class="mx-auto rounded-xl bg-white px-4 py-2">
-                    <div class="relative m-4">
+                    <div class="relative mt-4 lg:px-4">
 
-                        <form>
-                            <input type="text" placeholder="Cari Judul Diskusi..." required=""
-                                class="mt-4 w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                            <button type="submit"
-                                class="absolute right-0 top-0 mt-4 rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                <svg aria-hidden="true" class="h-5 w-5" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                                <span class="sr-only font-semibold">Search</span>
-                            </button>
+                        <form class="px-4 lg:px-0">
+                            <label for="default-search"
+                                class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
+                            <div class="relative">
+                                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    </svg>
+                                </div>
+                                <input type="search" id="default-search"
+                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                                    placeholder="Cari Judul Diskusi" required>
+
+                            </div>
                         </form>
                     </div>
 
@@ -71,7 +74,7 @@
                         <div class="flex">
                             <select
                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                                <option value="">Filter berdasarkan Topik</option>
+                                <option value="">Filter berdasarkan Sesi</option>
                                 <option value="for-rent">Session 1 Name</option>
                                 <option value="for-sale">Session 2 Name</option>
                                 <option value="for-rent">Session 3 Name</option>
@@ -87,13 +90,14 @@
 
                     </div>
                     <button id="open-btn"
-                        class="modal-open my-4 ml-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                        class="my-4 ml-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
+                        data-modal-target="defaultModal" data-modal-toggle="defaultModal">
                         Buat Diskusi Baru
                     </button>
-                    <div class="mx-auto p-6 antialiased">
+                    <div class="mx-auto px-2 py-4 antialiased">
                         <div class="space-y-4">
                             <!-- FORUM CONTENT -->
-                            <a href="forum/1" class="flex px-2 hover:bg-gray-200">
+                            <a href="/forum/course/1/thread/1" class="flex px-2 hover:bg-gray-200">
                                 <div class="mr-3 flex-shrink-0 py-2">
                                     <img class="mt-2 h-8 w-8 rounded-full sm:h-10 sm:w-10"
                                         src="https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
@@ -162,14 +166,26 @@
             </div>
         </div>
         {{-- CREATE FORUM MODAL --}}
-        <div class="modal pointer-events-none fixed left-0 top-0 flex h-full w-full items-center justify-center opacity-0">
-            <div class="modal-overlay absolute h-full w-full bg-gray-900 opacity-50"></div>
-            <div class="modal-container z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/4">
+        <div id="defaultModal" tabindex="-1" aria-hidden="true"
+            class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+            <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
                 <!-- Add margin if you want to see some of the overlay behind the modal-->
                 <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
                     <div class="container mx-auto my-5 p-5">
                         {{-- EDIT PROFILE --}}
-                        <div class="mx-auto rounded-xl bg-white px-2 py-8">
+                        <div class="flex justify-end">
+                            <button type="button"
+                                class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                                data-modal-hide="defaultModal">
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="mx-auto rounded-xl bg-white px-2 py-2">
                             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Diskusi Baru</h2>
                             <form action="/editProfile" method="post" enctype="multipart/form-data">
                                 @csrf
@@ -179,31 +195,26 @@
                                             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                                             Judul Diskusi</label>
                                         <input type="text" name="username" id="inputUsername"
-                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                             placeholder="Tulis Judul untuk Pertanyaan Anda..." required="">
                                     </div>
-                                    <div class="sm:col-span-2">
-                                        <label for="username"
-                                            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
-                                            Judul Diskusi</label>
-                                        <input type="text" name="username" id="inputUsername"
-                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                                            placeholder="Tulis Pertanyaan Anda..." required="">
-                                    </div>
+
+                                    {{-- Input Area --}}
                                     <div class="sm:col-span-2">
                                         <label for="username"
                                             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                                             Pertanyaan</label>
 
-                                        <div id="editorcontainer" class="mt-2 h-32 min-h-full overflow-y-auto">
-                                            <div id="editor" style="min-height:60%; height:auto;"></div>
-                                        </div>
+
+                                        <form method="post" class="mt-2 h-32 min-h-full overflow-y-auto">
+                                            <textarea id="mytextarea" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                        </form>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <!--Footer-->
-                        <div class="mt-8 flex justify-end pt-2">
+                        <div class="flex justify-end pt-2">
 
                             <button
                                 class="modal-close mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
@@ -213,73 +224,54 @@
                 </div>
             </div>
         </div>
-        {{-- CREATE FORUM MODAL + QUILLJS --}}
+
         <script>
-            var openmodal = document.querySelectorAll('.modal-open')
-            for (var i = 0; i < openmodal.length; i++) {
-                openmodal[i].addEventListener('click', function(event) {
-                    event.preventDefault()
-                    toggleModal()
-                })
-            }
+            //Input Area using TinyMCE
+            tinymce.init({
+                selector: '#mytextarea',
+                menubar: false,
+                // Image below, for further consideration
+                // plugins: 'image code codesample',
+                plugins: ' code codesample',
+                toolbar: ' wordcount | link image |code |bold italic underline| codesample ',
+                // Image below, for further consideration
+                // file_picker_types: 'image',
+                // /* enable automatic uploads of images represented by blob or data URIs*/
+                // automatic_uploads: true,
+                // file_picker_callback: (cb, value, meta) => {
+                //     const input = document.createElement('input');
+                //     input.setAttribute('type', 'file');
+                //     input.setAttribute('accept', 'image/*');
 
-            const overlay = document.querySelector('.modal-overlay')
-            overlay.addEventListener('click', toggleModal)
+                //     input.addEventListener('change', (e) => {
+                //         const file = e.target.files[0];
 
-            var closemodal = document.querySelectorAll('.modal-close')
-            for (var i = 0; i < closemodal.length; i++) {
-                closemodal[i].addEventListener('click', toggleModal)
-            }
+                //         const reader = new FileReader();
+                //         reader.addEventListener('load', () => {
+                //             /*
+                //               Note: Now we need to register the blob in TinyMCEs image blob
+                //               registry. In the next release this part hopefully won't be
+                //               necessary, as we are looking to handle it internally.
+                //             */
+                //             const id = 'blobid' + (new Date()).getTime();
+                //             const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                //             const base64 = reader.result.split(',')[1];
+                //             const blobInfo = blobCache.create(id, file, base64);
+                //             blobCache.add(blobInfo);
 
-            document.onkeydown = function(evt) {
-                evt = evt || window.event
-                var isEscape = false
-                if ("key" in evt) {
-                    isEscape = (evt.key === "Escape" || evt.key === "Esc")
-                } else {
-                    isEscape = (evt.keyCode === 27)
-                }
-                if (isEscape && document.body.classList.contains('modal-active')) {
-                    toggleModal()
-                }
-            };
+                //             /* call the callback and populate the Title field with the file name */
+                //             cb(blobInfo.blobUri(), {
+                //                 title: file.name
+                //             });
+                //         });
+                //         reader.readAsDataURL(file);
+                //     });
 
+                //     input.click();
+                // },
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 
-            function toggleModal() {
-                const body = document.querySelector('body')
-                const modal = document.querySelector('.modal')
-                modal.classList.toggle('opacity-0')
-                modal.classList.toggle('pointer-events-none')
-                body.classList.toggle('modal-active')
-            }
-            var quill; // Declare quill in a higher scope
-
-            document.addEventListener("DOMContentLoaded", function(event) {
-                var toolbarOptions = [
-                    ['bold', 'italic', 'underline', 'strike'],
-                    ['blockquote', 'code-block'],
-                    ['image'],
-                ];
-
-                quill = new Quill('#editor', {
-                    modules: {
-                        syntax: false,
-                        toolbar: toolbarOptions
-                    },
-                    theme: 'snow'
-                });
-
-                var quillContent = quill.root.innerHTML;
-
-                document.getElementById('get-content-button').addEventListener('click', function() {
-                    // Retrieve Quill content
-                    var quillContent = quill.root.innerHTML;
-
-                    // Perform actions with the content
-                    console.log("Quill Content:");
-                    console.log(quillContent); // Print content to the browser console
-                });
-            });
+            })
         </script>
 
         {{-- CREATE FORUM MODAL + QUILLJS --}}

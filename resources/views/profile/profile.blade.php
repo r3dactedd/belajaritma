@@ -19,7 +19,7 @@
     @endsection
     @section('content')
 
-        <div class="bg-white px-5 sm:px-10">
+        <div class="bg-white px-6 sm:px-12">
             <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
                 <div>
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
@@ -34,42 +34,38 @@
             </div>
         </div>
 
-        <div class="" style="background-image: url(/storage/image/bg2.svg)">
-            <div class="container mx-auto p-5">
+        <div class="" style="background-image: url(/storage/image/bg-profile.svg)">
+            <div class="container mx-auto p-4">
                 <div class="my-4 px-4 md:flex">
-                    <!-- Left Side -->
                     <div class="w-full md:w-3/12">
                         <!-- Profile Card -->
 
-                        <div class="h-120 w-auto">
-                            <img src="{{ Auth::user()->profile_img ? '/storage/images/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}"
+                        <div class="h-80 w-auto">
+                            <img class="h-80 w-80 rounded-full object-cover" src="{{ Auth::user()->profile_img ? '/storage/images/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}"
                             alt="{{ Auth::user()->username }}'s Profile Picture" />
                         </div>
-
                     </div>
                     <div class="my-4"></div>
                     <!-- Right Side -->
                     <div class="h-full w-full md:w-9/12">
-
-                        <div class="rounded-xl bg-none p-3 shadow-sm">
+                        <div class="rounded-xl bg-none p-3">
                             <div class="md:mx-2 md:w-3/4">
-                                <div class="rounded-xl bg-none px-4 py-2 md:px-8">
+                                <div class="rounded-xl bg-none px-4 py-2 md:pr-8">
                                     <h1
-                                        class="pr-2 pt-2 text-center text-xl font-bold tracking-normal text-white md:pr-4 md:pt-8 md:text-left lg:text-3xl">
+                                        class="d pr-2 pt-2 text-center text-xl font-bold tracking-normal text-white md:pr-4 md:pt-8 md:text-left lg:text-3xl">
                                         {{$searchUser->username}}
                                     </h1>
                                     <h2
                                         class="pr-2 pt-2 text-center text-lg tracking-normal text-white md:pr-4 md:pt-4 md:text-left lg:text-xl">
                                         {{$searchUser->email}}
                                     </h2>
-
                                     <h2
                                         class="text-md mt-8 pr-2 pt-2 text-center tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
                                         Tentang Saya
                                     </h2>
 
                                     <textarea disabled="myInfo"
-                                        class="focus:ring-primary-600 focus:border-primary-600 text-md mt-4 block w-full resize-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+                                        class="text-md mt-4 pr-2 pt-2 text-center font-light tracking-normal text-white md:pr-4 md:text-left lg:text-lg"
                                         placeholder="Silahkan isi informasi mengenai anda." required="">{{$searchUser->about_me}}
                                 </textarea>
                                 </div>
@@ -79,9 +75,83 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+        <div class="container mx-auto mb-1 mt-4 flex h-full w-11/12 items-center border-b-2 border-gray-300 px-2">
+
+            <ul class="hidden h-full items-center lg:flex">
+                <li class="text-md flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                    <a id="profileDashboard">Dashboard</a>
+                </li>
+                <li class="text-md mx-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                    <a id="profileCourses">Kursus</a>
+                </li>
+                <li class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                    <a id="profileCerti">Sertifikasi</a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div id="dashboard">
+            @include('profile.profile_dashboard')
+        </div>
+        <div id="courses" style="display: none;">
+            @include('profile.profile_courselist')
+        </div>
+        <div id="certifications" style="display: none;">
+            @include('profile.profile_certilist')
+        </div>
         </div>
 
     </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            var element = document.getElementById("profileDashboard");
+
+            // Add an event listener to run your onClick function when clicked
+            element.addEventListener("click", function() {
+                // Your onClick function logic here
+                // For example, alert a message when clicked
+                element.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+            });
+
+            // Simulate a click event on the element
+            element.click();
+
+            const anchorElements = document.querySelectorAll("ul li a");
+            // Add a click event listener to each anchor element
+            anchorElements.forEach((anchor) => {
+                anchor.addEventListener("click", function() {
+                    // Remove the class from all anchor elements
+                    anchorElements.forEach((a) => {
+                        a.classList.remove("border-b-2", "border-indigo-600",
+                            "text-indigo-600");
+                    });
+                    // Add the class to the clicked anchor element
+                    this.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+                });
+            });
+            $("#profileDashboard").click(function() {
+                $("#courses").hide();
+                $("#certifications").hide();
+                $("#dashboard").show();
+            });
+
+            $("#profileCourses").click(function() {
+                $("#dashboard").hide();
+                $("#certifications").hide();
+                $("#courses").show();
+            });
+
+            $("#profileCerti").click(function() {
+                $("#dashboard").hide();
+                $("#courses").hide();
+                $("#certifications").show();
+            });
+        });
+    </script>
 @endsection
 
 </html>
