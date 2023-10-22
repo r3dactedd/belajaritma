@@ -42,7 +42,8 @@
                         <!-- Profile Card -->
 
                         <div class="h-120 w-auto">
-                            <img src="/storage/image/forumtest.png">
+                            <img src="{{ Auth::user()->profile_img ? '/storage/images/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}"
+                            alt="{{ Auth::user()->username }}'s Profile Picture" />
                         </div>
 
                     </div>

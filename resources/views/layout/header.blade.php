@@ -74,9 +74,8 @@
                                     </form>
                                 </li>
                             </ul>
-                            <img class="h-10 w-10 rounded object-cover"
-                                src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
-                                alt="logo" />
+                            <img class="h-10 w-10 rounded object-cover" src="{{ Auth::user()->profile_img ? '/storage/images/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}"
+                            alt="{{ Auth::user()->username }}'s Profile Picture" />
                             <p class="text-md ml-2 font-semibold text-gray-800">{{ auth()->user()->username }}</p> <svg
                                 class="ml-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
 

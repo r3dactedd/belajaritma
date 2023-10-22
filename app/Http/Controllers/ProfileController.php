@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Str;
 use App\Http\Controllers\ValidationException;
 
 class ProfileController extends Controller
@@ -82,6 +83,12 @@ class ProfileController extends Controller
             'email'=>$validateProfile['email'],
             'about_me'=>$validateProfile['about_me'],
         ];
+
+        if ($request->hasFile('profile_img')) {
+            $filename = Str::orderedUuid() . "." . $request->file('profile_img')->getClientOriginalExtension();
+            $request->file('profile_img')->storeAs('public/images', $filename);
+            $changeProfile['profile_img'] = $filename;
+        }
 
         User::where('id',Auth::user()->id)->update($changeProfile);
         return redirect('/profile')->with('success', 'Data user sudah diupdate!');
