@@ -28,22 +28,8 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Sesi x : Nama Materi </span>
+                            <span class="mb-1 ml-2">Sesi [Material Number]: [Material Name]</span>
                         </a>
-                </div>
-
-                <div class="mt-6 md:mt-0">
-                    <button
-                        class="flex items-center rounded-xl bg-indigo-600 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
-                            height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <line x1="12" y1="5" x2="12" y2="19" />
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                        </svg>
-                        <div class="mx-2"> Tambah Materi </div>
-                    </button>
                 </div>
             </div>
         </div>
@@ -51,13 +37,17 @@
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="w-full md:mx-2 md:w-3/12">
                     <!-- Sidebar, pass value courselistnya aja-->
-                    @include('courses.course_sidebar')
+                    @include('contents.course_sidebar')
                 </div>
                 <div class="my-4"></div>
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
 
-                    <iframe width="100%" height="640" src="https://www.youtube.com/embed/fTczCpIaLAU" frameborder="0"
-                        allowfullscreen></iframe>
+                    <object data="{{ Storage::url('pdf_folder/test.pdf') }}" type="application/pdf" width="100%"
+                        height="1024">
+                        This browser does not support PDFs. Please download the PDF to view it: <a
+                            href="{{ asset('pdf_folder/test.pdf') }}">Download
+                            PDF</a>
+                    </object>
 
                 </div>
             </div>
