@@ -59,6 +59,116 @@
                         </ul>
                     </div>
                 </div>
+                <div class="transition hover:bg-indigo-50">
+
+                    <div class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
+                        {{-- if sudah semua, add ini --}}
+                        <div class="-ml-3 -mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+
+                                <path
+                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                            </svg>
+                        </div>
+                        <svg class="ml-4" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                            <path
+                                d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                        </svg>
+                        <h3 class="font-semibold">Pengenalan Algoritma dan Pemrograman</h3>
+
+                    </div>
+
+                    <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
+                        <ul class="ml-12 list-inside space-y-2 pb-4">
+                            <!-- Materi Module-->
+                            <li>
+                                <div class="flex items-center">
+                                    <!-- If done, add check-->
+                                    <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                        viewBox="0 0 512 512">
+
+                                        <path
+                                            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                    </svg>
+                                    <a href="/courses/1/pdf"
+                                        class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                        Materi PDF
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="flex items-center">
+                                    <!-- If done, add check-->
+                                    <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                        viewBox="0 0 512 512">
+                                        <path
+                                            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                    </svg>
+                                    <a href="/courses/2/video"
+                                        class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                        Materi Video
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="transition hover:bg-indigo-50">
+
+                    <div class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
+                        {{-- if sudah semua, add ini --}}
+                        <div class="-ml-3 -mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+
+                                <path
+                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                            </svg>
+                        </div>
+                        <svg class="ml-4" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                            <path
+                                d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                        </svg>
+                        <h3 class="font-semibold">Pengenalan Algoritma dan Pemrograman</h3>
+
+                    </div>
+
+                    <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
+                        <ul class="ml-12 list-inside space-y-2 pb-4">
+                            <!-- Materi Module-->
+                            <li>
+                                <div class="flex items-center">
+                                    <!-- If done, add check-->
+                                    <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                        viewBox="0 0 512 512">
+
+                                        <path
+                                            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                    </svg>
+                                    <a href="/courses/1/pdf"
+                                        class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                        Materi PDF
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="flex items-center">
+                                    <!-- If done, add check-->
+                                    <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                        viewBox="0 0 512 512">
+                                        <path
+                                            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                    </svg>
+                                    <a href="/courses/2/video"
+                                        class="text-md ml-2 font-normal text-gray-600 hover:underline">
+                                        Materi Video
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 {{-- MODUL 2 --}}
                 <div class="transition hover:bg-indigo-50">
                     <div class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
@@ -73,7 +183,8 @@
                             <path
                                 d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
                         </svg>
-                        <h3 class="font-semibold text-indigo-600 underline">Membuat Program Sederhana di C (current Sesi
+                        <h3 class="font-semibold text-indigo-600 underline">Membuat Program Sederhana di C (current
+                            Sesi
                             dihighlight gini)</h3>
                     </div>
 
@@ -83,8 +194,8 @@
                             <li>
                                 <div class="flex items-center">
                                     <!-- If done, add check-->
-                                    <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg" height="1em"
-                                        viewBox="0 0 512 512">
+                                    <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                        height="1em" viewBox="0 0 512 512">
 
                                         <path
                                             d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
@@ -144,7 +255,8 @@
                 <div class="transition hover:bg-indigo-50">
                     <div class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
                         <div class="-ml-3 -mr-2">
-                            <svg id="lock" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                            <svg id="lock" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 512 512">
                                 <path
                                     d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
                             </svg>
@@ -163,8 +275,8 @@
                             <li>
                                 <div class="flex items-center">
                                     <!-- If done, add check-->
-                                    <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg" height="1em"
-                                        viewBox="0 0 512 512">
+                                    <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                        height="1em" viewBox="0 0 512 512">
 
                                         <path
                                             d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
@@ -179,8 +291,8 @@
                             <li>
                                 <div class="flex items-center">
                                     <!-- If done, add check-->
-                                    <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg" height="1em"
-                                        viewBox="0 0 512 512">
+                                    <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
+                                        height="1em" viewBox="0 0 512 512">
                                         <path
                                             d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
                                     </svg>
@@ -531,7 +643,7 @@
         </li>
     </ul>
     <div>
-        <div class="show-m-menu lg:hidden" onclick="MenuHandler(this,true)">
+        <div class="show-m-menu mx-4 lg:hidden" onclick="MenuHandler(this,true)">
             <svg aria-haspopup="true" aria-label="Main Menu" xmlns="http://www.w3.org/2000/svg"
                 class="icon icon-tabler icon-tabler-menu" width="32" height="32" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="#2C3E50" fill="none" stroke-linecap="round">

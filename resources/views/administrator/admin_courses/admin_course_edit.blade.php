@@ -82,12 +82,12 @@
                             <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Judul Kursus</label>
                             <input type="text" name="username" id=""
-                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 md:text-left lg:text-xl"
+                                class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
                                 placeholder="Tulis Nama Kursus" required="" value="Algoritma dan Pemrograman ">
                             <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Deskripsi Singkat Kursus</label>
                             <textarea id="myInfo"
-                                class="mt-focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900"
+                                class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                 placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
                                 Course Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
                             </textarea>
@@ -134,7 +134,7 @@
                                 Mengenai Kursus</label>
                             <div class="px-4 py-2 font-semibold">
                                 <textarea id="myInfo"
-                                    class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                    class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                     placeholder="Input Penjelasan Mengenai Kursus, Materi Apa Yang Dipelajari, serta Tujuan Pembelajaran"
                                     required="">Kursus ini mengajarkan salah satu materi fundamental terpenting bagi Software Developer. Pembelajaran Algoritma dan Pemrograman ini akan menggunakan bahasa C, bahasa prosedural yang memiliki banyak kegunaan. Ia didesain untuk di-compile secara sederhana agar mendukung akses ke low-level memory, pendukung bahasa dalam instruksi mesin.
                                     Kursus ini akan mengajarkan anda mengenai konsep dasar seperti Array and Strings, Control Flow, Function, Pointers, Contoh-contoh Algoritma, dan lain-lainnya. Kursus ini Cocok bagi Anda yang belum pernah belajar bahasa pemrograman apa pun, dan ingin mempelajari dasar-dasar sistem pemrograman.
@@ -152,7 +152,7 @@
                                         <div class="rounded-lg bg-white p-4 shadow-md">
                                             <div class="text-indigo-500">Resolusi Layar</div>
                                             <input type="text" name="username" id=""
-                                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900"
+                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="ex: 1336 x 768" required=""
                                                 value="1366 x 768 (rec. 1920 x 1080)">
                                         </div>
@@ -160,20 +160,20 @@
                                         <div class="rounded-lg bg-white p-4 shadow-md">
                                             <div class="text-indigo-500">Minimum RAM</div>
                                             <input type="text" name="username" id=""
-                                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900"
+                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="ex: 1GB " required="" value="1GB (rec. 2GB keatas)">
                                         </div>
                                         <div class="rounded-lg bg-white p-4 shadow-md">
                                             <div class="text-indigo-500">Processor</div>
                                             <input type="text" name="username" id=""
-                                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900"
+                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="ex: Intel Celeron / Sekelas" required=""
                                                 value="Intel Celeron / Sekelas (rec. Intel i3 / Sekelas)">
                                         </div>
                                         <div class="rounded-lg bg-white p-4 shadow-md">
                                             <div class="text-indigo-500">Operating System</div>
                                             <input type="text" name="username" id=""
-                                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900"
+                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="ex: Linux, MacOS, dan Windows" required=""
                                                 value="Linux, MacOS, dan Windows">
                                         </div>
@@ -186,7 +186,7 @@
 
                                     <div class="px-4 py-2 font-semibold">
                                         <textarea id="myInfo"
-                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                            class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Input Tools serta Program-Program Lain yang Diperlukan dan dapat membantu dalam menjalankan kursus ini."
                                             required=""></textarea>
                                     </div>
@@ -355,35 +355,35 @@
                                     <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="username"
-                                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Judul Sesi</label>
                                             <input type="text" name="username" id="inputUsername"
-                                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="Tulis Judul untuk Materi ini..." required="">
                                         </div>
 
                                         {{-- Input Area --}}
                                         <div class="sm:col-span-2">
                                             <label for="username"
-                                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Deskripsi Singkat Sesi</label>
                                             <textarea id="myInfo"
-                                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                                class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="Input Penjelasan Singkat mengenai Sesi" required=""></textarea>
                                         </div>
 
                                         <div class="sm:col-span-1">
                                             <label for="username"
-                                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Estimasi Waktu Penyelesaian (dalam Menit)</label>
                                             <input type="number" name="username" id="inputUsername"
-                                                class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="Berikan estimasi waktu penyelesaian untuk sesi ini..."
                                                 required="">
                                         </div>
                                         <div class="sm:col-span-1">
                                             <label for="username"
-                                                class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Konten Sesi</label>
                                             <select
                                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">

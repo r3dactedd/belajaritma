@@ -51,8 +51,9 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Forum</span>
+                            <span class="mb-1 ml-2">Akses Forum Kursus</span>
                         </a>
+                    </h4>
                 </div>
             </div>
         </div>
@@ -60,186 +61,80 @@
 
 
         <div class="container mx-auto my-4 pb-4">
-            {{-- Search Bar --}}
-            <form class="px-4 lg:px-0">
-                <label for="default-search"
-                    class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
-                <div class="relative">
-                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                    </div>
-                    <input type="search" id="default-search"
-                        class="mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                        placeholder="Cari Kursus Yang Ingin Dipelajari" required>
 
+            <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-3">
+                {{-- Course Components --}}
+                <div>
+                    <a href="/forum/course/1">
+                        <div
+                            class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
+                            <div class="relative h-56 w-full">
+                                <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
+                                    src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
+                                    alt="banner" />
+                            </div>
+                            <div class="h-full w-full pt-5 md:h-48">
+
+                                <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
+                                    Algoritma dan Pemrograman
+                                </h4>
+                                <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                </p>
+
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </form>
-            {{-- Search Bar --}}
-            <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2">
-                {{-- Course Components --}}
-                <a href="/courses/1">
-                    <div
-                        class="min-h-max cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
-                        <div class="lg:w-3/2 w-full">
-                            <div class="p-6">
-                                <div class="my-2 bg-white md:flex md:h-36">
-                                    <!-- Left Side -->
-                                    <div class="w-full md:w-2/5">
-                                        <!-- Profile Card -->
-                                        <div class="h-full bg-white py-2 md:ml-4">
-                                            <div class="mx-auto h-full w-full">
-                                                <img class="h-full"
-                                                    src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
-                                                    alt="e" />
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <!-- Right Side -->
-                                    <div class="h-auto w-full md:mx-2 md:w-3/5">
-                                        <div class="bg-white px-4 py-2">
-                                            <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
-                                                Algoritma dan Pemrograman
-                                            </h1>
-                                            <p class="mt-4 w-fit rounded-xl bg-green-400 px-6 py-1.5 text-sm text-white">
-                                                Kursus Selesai
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="text-md mb-6 w-11/12 px-4 font-normal tracking-normal text-gray-600">
-                                    Course Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
-                                </p>
-
-
+                <div>
+                    <a href="/manager/certification">
+                        <div
+                            class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
+                            <div class="relative h-56 w-full">
+                                <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
+                                    src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
+                                    alt="banner" />
                             </div>
-                        </div>
-                    </div>
-                </a>
-                {{-- Course Components --}}
+                            <div class="h-full w-full pt-5 md:h-48">
 
-                <a href="/courses/4">
-                    <div
-                        class="min-h-max cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
-                        <div class="lg:w-3/2 w-full">
-                            <div class="p-6">
-                                <div class="my-2 bg-white md:flex md:h-36">
-                                    <!-- Left Side -->
-                                    <div class="w-full md:w-2/5">
-                                        <!-- Profile Card -->
-                                        <div class="h-full bg-white py-2 md:ml-4">
-                                            <div class="mx-auto h-full w-full">
-                                                <img class="h-full"
-                                                    src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
-                                                    alt="e" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Right Side -->
-                                    <div class="h-auto w-full md:mx-2 md:w-3/5">
-                                        <div class="rounded-sm bg-white px-4 py-2">
-                                            <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
-                                                Data Structures
-                                            </h1>
-                                            <p class="mt-4 w-fit rounded-xl bg-yellow-500 px-6 py-1.5 text-sm text-white">
-                                                Lanjut Kursus
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <p class="text-md mb-6 w-11/12 px-4 font-normal tracking-normal text-gray-600">
-                                    Course Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
+                                <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
+                                    Web Programming
+                                </h4>
+                                <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                 </p>
 
                             </div>
                         </div>
-                    </div>
-                </a>
-                <a href="/courses/4">
-                    <div
-                        class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
-                        <div class="lg:w-3/2 w-full">
-                            <div class="p-6">
-                                <div class="my-2 bg-white md:flex md:h-36">
-                                    <!-- Left Side -->
-                                    <div class="h-full bg-white py-2 md:ml-4">
-                                        <div class="mx-auto h-full w-full">
-                                            <img class="h-full w-full"
-                                                src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
-                                                alt="e" />
-                                        </div>
-                                    </div>
-                                    <!-- Right Side -->
-                                    <div class="h-auto w-full md:mx-2 md:w-3/5">
-                                        <div class="rounded-sm bg-white px-4 py-2">
-                                            <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
-                                                Artificial Intelligence
-                                            </h1>
-                                            <p class="mt-4 w-fit rounded-xl bg-indigo-500 px-6 py-1.5 text-sm text-white">
-                                                Ambil Kursus
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                    </a>
+                </div>
 
-                                <p class="text-md mb-6 w-11/12 px-4 font-normal tracking-normal text-gray-600">
-                                    Course Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
+                <div>
+                    <a href="/manager/forum">
+                        <div
+                            class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
+                            <div class="relative h-56 w-full">
+                                <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
+                                    src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
+                                    alt="banner" />
+                            </div>
+                            <div class="h-full w-full pt-5 md:h-48">
+
+                                <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
+                                    Data Structure
+                                </h4>
+                                <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
                                 </p>
-
-
                             </div>
                         </div>
-                    </div>
-                </a>
-                <a href="/courses/1">
-                    <div
-                        class="min-h-max cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
-                        <div class="lg:w-3/2 w-full">
-                            <div class="p-6">
-                                <div class="my-2 bg-white md:flex md:h-36">
-                                    <!-- Left Side -->
-                                    <div class="h-full bg-white py-2 md:ml-4">
-                                        <div class="mx-auto h-full w-full">
-                                            <img class="h-full w-full"
-                                                src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
-                                                alt="e" />
-                                        </div>
-                                    </div>
+                    </a>
+                </div>
 
-                                    <!-- Right Side -->
-                                    <div class="h-auto w-full md:mx-2 md:w-3/5">
-                                        <div class="bg-white px-4 py-2">
-                                            <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
-                                                Course Name
-                                            </h1>
-                                            <p class="mt-4 w-fit rounded-xl bg-green-400 px-6 py-1.5 text-sm text-white">
-                                                Course Status
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="text-md mb-6 w-11/12 px-4 font-normal tracking-normal text-gray-600">
-                                    Course Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-                </a>
             </div>
         @endsection
         @section('footer')

@@ -86,6 +86,7 @@
 
                                 <path
                                     d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+
                             </svg>
                         </div>
                     @endauth
@@ -101,8 +102,29 @@
 
         {{-- MOBILE DESIGN --}}
         <div
-            class="cursor-pointer text-gray-700 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none lg:hidden">
+            class="cursor-pointer text-gray-700 transition duration-300 ease-in-out hover:text-gray-700 focus:outline-none lg:hidden">
+
             <ul class="absolute left-0 right-0 top-0 z-40 mt-16 hidden rounded border-r bg-white p-2 shadow md:mt-16">
+                <a href="/profile/name" class="my-2 flex items-center">
+
+                    <div
+                        class="flex w-12 cursor-pointer rounded border-2 border-transparent text-sm transition duration-150 ease-in-out focus:border-white focus:outline-none">
+                        <img class="h-10 w-10 rounded object-cover"
+                            src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
+                            alt="logo" />
+                    </div>
+                    <p class="ml-1 cursor-pointer text-base leading-6">Jane Doe</p>
+                    <div class="relative text-white sm:ml-2">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="20"
+                            height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z"></path>
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+
+                </a>
                 <li
                     class="flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
                     <div class="flex items-center">
@@ -126,24 +148,7 @@
                 {{-- IF USER SUDAH DAFTAR/LOGIN --}}
                 <li
                     class="ml-2 mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
-                    <div class="flex items-center">
-                        <div
-                            class="flex w-12 cursor-pointer rounded border-2 border-transparent text-sm transition duration-150 ease-in-out focus:border-white focus:outline-none">
-                            <img class="h-10 w-10 rounded object-cover"
-                                src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
-                                alt="logo" />
-                        </div>
-                        <p class="ml-1 cursor-pointer text-base leading-6">Jane Doe</p>
-                        <div class="relative text-white sm:ml-2">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="20"
-                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z"></path>
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                    </div>
+
                 </li>
                 <li
                     class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
@@ -170,16 +175,15 @@
                 {{-- IF USER BELUM DAFTAR/LOGIN --}}
             </ul>
             <div>
-                <div class="show-m-menu lg:hidden" onclick="MenuHandler(this,true)">
+                <div class="show-m-menu mx-4 lg:hidden" onclick="MenuHandler(this,true)">
+
                     <svg aria-haspopup="true" aria-label="Main Menu" xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-menu" width="32" height="32" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="#2C3E50" fill="none" stroke-linecap="round">
-                        <path stroke="none" d="M0 0h24v24H0z" />
-                        <line x1="4" y1="8" x2="20" y2="8" />
-                        <line x1="4" y1="16" x2="20" y2="16" />
+                        height="1.5em" viewBox="0 0 512 512">
+                        <path
+                            d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
                     </svg>
                 </div>
-                <div onclick="MenuHandler(this,false)" class="close-m-menu hidden">
+                <div onclick="MenuHandler(this,false)" class="close-m-menu mx-4 hidden">
                     <svg aria-label="Close" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">

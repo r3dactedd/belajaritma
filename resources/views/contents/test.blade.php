@@ -27,26 +27,23 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Sesi x : Nama Materi </span>
+                            <span class="mb-1 ml-2">Final Test (or Certification Test)</span>
                         </a>
                 </div>
             </div>
         </div>
         <div class="container mx-auto my-4 p-4">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
-                <div class="w-full md:mx-2 md:w-3/12">
-                    <!-- Sidebar, pass value courselistnya aja-->
-                    @include('contents.course_sidebar')
-                </div>
+
                 {{-- QUESTION  --}}
                 <div id="asg-top" class="my-4"></div>
 
-                <div class="w-2xl mx-4 h-fit rounded-xl bg-white md:mx-12 md:w-9/12">
+                <div class="w-2xl mx-4 h-fit rounded-xl bg-white md:mx-12">
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
                             <h1
-                                class="text-md relative mx-6 block w-auto py-4 font-bold tracking-normal text-gray-800 lg:text-xl">
-                                Mengenai Assignment
+                                class="relative mx-6 block w-auto py-4 text-lg font-bold tracking-normal text-gray-800 lg:text-xl">
+                                Mengenai Test
                             </h1>
                             <h2
                                 class="text-md lg:text-md relative mx-6 mb-2 w-auto font-semibold tracking-normal text-gray-800">
@@ -70,11 +67,12 @@
                                 </div>
                             </div>
 
+
                         </div>
                         <a href='/courses/3/asg/questions'
                             class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                            <span class="mx-2 items-center">Mulai Assignment
+                            <span class="mx-2 items-center">Mulai Test
                             </span>
 
                         </a>
