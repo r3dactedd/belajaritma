@@ -387,8 +387,9 @@
                         <div class="flex items-center">
                             <div class="flex items-center">
 
-                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                    <a id="convertButton"
+                                <p onclick="downloadimage()"
+                                    class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                    <a
                                         class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
                                         Sertifikat</a>
                                 </p>
@@ -462,7 +463,7 @@
         }
     </style>
 
-    <table class="cert hidden bg-white">
+    <table id="certificate" class="cert hidden bg-white">
 
         <tr>
             <td align="center">
@@ -483,31 +484,25 @@
     </table>
 
     <script>
-        //Certification Upload to JPG
-        document.getElementById("convertButton").addEventListener("click", function() {
-            // Select the HTML element you want to convert to an image (your table)
-            const elementToCapture = document.querySelector(".cert");
-            elementToCapture.classList.remove("hidden")
-            // Use html2canvas to capture the element as an image
-            html2canvas(elementToCapture, {
+        function downloadimage() {
+            //var container = document.getElementById("image-wrap"); //specific element on page
+            var container = document.getElementById("certificate");
+            container.classList.remove("hidden") // full page
+            html2canvas(container, {
                 allowTaint: true,
                 useCORS: true
             }).then(function(canvas) {
-                // Create an image from the canvas
-                const image = new Image();
-                image.src = canvas.toDataURL("image/jpeg");
 
-                // Create a download link for the image
-                const a = document.createElement("a");
-                a.href = image.src;
-                a.download = "certificate.jpg";
-
-                // Simulate a click on the download link to trigger the download
-                a.click();
-
+                var link = document.createElement("a");
+                document.body.appendChild(link);
+                link.download = "certificate.jpg";
+                link.href = canvas.toDataURL();
+                link.target = '_blank';
+                link.click();
             });
-            elementToCapture.classList.add("hidden")
-        });
+            container.classList.add("hidden")
+        }
+
     </script>
 
 @endsection

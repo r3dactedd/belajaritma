@@ -60,11 +60,11 @@
 
                             <div
                                 class="grid w-full grid-cols-1 gap-4 py-4 pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-2">
-                                <div class="rounded-lg bg-white p-4">
+                                <div class="rounded-lg bg-white px-2 py-4">
                                     <div class="text-indigo-500">Waktu Pengerjaan</div>
                                     <div class="text-xs text-gray-500">60 Menit</div>
                                 </div>
-                                <div class="rounded-lg bg-white p-4">
+                                <div class="rounded-lg bg-white px-2 py-4">
                                     <div class="text-indigo-500">Nilai Minimum</div>
                                     <div class="text-xs text-gray-500">min. 75</div>
                                 </div>
