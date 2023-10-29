@@ -7,6 +7,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManageCourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SidebarController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,9 +65,9 @@ Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
 Route::get('/courses/1', function () {
     return view('contents.course_details');
 });
-Route::get('/courses/1/pdf', function () {
-    return view('contents.session_pdf');
-});
+// Route::get('/courses/1/pdf', function () {
+//     return view('contents.session_pdf');
+// });
 
 Route::get('/courses/2/video', function () {
     return view('contents.session_video');
@@ -102,6 +104,11 @@ Route::get('/certifications/1', function () {
 Route::get('/courses/1/getcerti', function () {
     return view('contents.e-certi');
 });
+
+Route::get('/material/{title}/{id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
+
+//show page spesifik
+Route::get('/materialContent/{title}/{id}', [SidebarController::class, 'showByType'])->name('sidebar.showByType');
 
 Route::get('/manager', function () {
     return view('administrator.admin_manager');

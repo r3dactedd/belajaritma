@@ -51,7 +51,7 @@ class ModuleContentSeeder extends Seeder
             'is_completed' => true,
         ]);
         ModuleContent::create([
-            'material_id' => 4,
+            'material_id' => 3,
             'content_title' => "Testing Repetition Content Title",
             'content_description' => "Testing Repetition Content Description",
             'is_completed' => true,

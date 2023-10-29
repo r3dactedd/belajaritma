@@ -11,13 +11,17 @@ class Sidebar extends Model
     public $table = "sidebar";
     protected $guarded='id';
     protected $fillable = [
-        'course_id',
         'parent_id',
+        'material_id',
         'title',
         'path',
         'type',
     ];
-    public function sidebarToCourse(){
-        return $this->hasMany(Course::class,'course_id','id');
+    public function sidebarToMaterial(){
+        return $this->belongsTo(Material::class,'material_id','id');
+    }
+
+    public function sidebarToMaterialContent(){
+        return $this->belongsTo(MaterialContent::class,'material_content_id','id');
     }
 }
