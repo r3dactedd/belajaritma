@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('material', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id');
-            $table->unsignedBigInteger('master_type_id');
-            $table->string('material_title');
-            $table->string('material_description')->nullable();
-
             $table->foreign('course_id')->references('id')->on('courses')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('master_type_id');
             $table->foreign('master_type_id')->references('id')->on('master_type')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->string('pdf_link')->nullable();
+            $table->string('video_link')->nullable();
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }
