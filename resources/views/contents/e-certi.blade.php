@@ -76,7 +76,27 @@
     <tr>
         <td align="center">
             <img src="https://www.davidbenrimon.com/files-wide/uploads/logo-placeholder@2x.png" alt="logo">
-            <h3 class="marginBottom">BelajaRitma</h3>
+            <h3 class="marginBottom">Belajaritma</h3>
         </td>
     </tr>
 </table>
+<script>
+    // Capture the certificate content and convert it to an image
+    document.addEventListener("DOMContentLoaded", function() {
+        const elementToCapture = document.querySelector(".cert");
+
+        html2canvas(elementToCapture).then(function(canvas) {
+            // Create an image from the canvas
+            const image = new Image();
+            image.src = canvas.toDataURL("image/jpeg");
+
+            // Create a download link for the image
+            const a = document.createElement("a");
+            a.href = image.src;
+            a.download = "certificate.jpg";
+
+            // Simulate a click on the download link to trigger the download
+            a.click();
+        });
+    });
+</script>

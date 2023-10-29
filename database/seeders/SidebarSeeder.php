@@ -16,20 +16,23 @@ class SidebarSeeder extends Seeder
         Sidebar::create([
             'course_id' => 1,
             'parent_id' => NULL,
+            'material_id' => 1,
             'title' => 'Module 1: Test Title 1',
-            'type' => 'has-sub',
+            'path' => '/materialContent/pdf'
         ]);
         Sidebar::create([
             'course_id' => 1,
             'parent_id' => 1,
-            'title' => 'Sub Module 1: Test Title 1',
-            'type' => 'no-sub',
+            'material_id' => 2,
+            'title' => 'Sub Module 1: Anggap aja ini sub menu',
+            'path' => '/materialcontent/video'
         ]);
         Sidebar::create([
             'course_id' => 1,
             'parent_id' => NULL,
-            'title' => 'Module 2: Test Title 2',
-            'type' => 'no-sub',
+            'material_id' => 3,
+            'title' => 'Module 2: Test Title Video',
+            'path' => '/materialcontent/asg'
         ]);
     }
 }

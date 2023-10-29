@@ -2,49 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MasterType;
 use App\Models\Material;
 use App\Models\Sidebar;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SidebarController extends Controller
 {
-
-    public function showSidebar(){
-        $sidebar = Sidebar::select('master_type.master_type_name', 'sidebar.course_id')
-        ->join('material', 'material.material_id', '=', 'sidebar.id')
-        ->join('master_type', 'material.material_type_id', '=', 'master_type.id')
+    //
+    public function showSidebar($title,$id){
+        $sidebars = Sidebar::select('sidebar.id', 'sidebar.material_id', 'sidebar.parent_id', 'sidebar.title')
+        ->join('material', 'material.id', '=', 'sidebar.material_id')
+        ->where('sidebar.course_id',$id)
         ->get();;
-        return view('courses.course_sidebar');
-        foreach($sidebar as $data){
-            $type = $data->master_type_name;
-            $courseId = $data->course_id;
-            $this->showByType($type,$courseId);
-        }
+
+       return view('contents.session_assignment', ['sidebars'=>$sidebars]);
+
+        // dd($sidebars);
 
     }
 
-    public function showByType($type, $courseId)
+    //ini buat ngebuka page spesifik
+    public function showByType($materialTitle, $id)
     {
-
+        $material = Material::find($id);
         // Lakukan pengambilan data materi berdasarkan tipe materi dan ID kursus
-        $materials = Material::where('type', $type)
-            ->where('course_id', $courseId)
-            ->get();
 
-        // Kemudian, kirimkan data materi ke tampilan yang sesuai berdasarkan tipe materi
-        // dan ID kursus
-        switch ($type) {
-            case 'assignment':
-                return view('courses.course_asg')->with('materials', $materials);
-            case 'video':
-                return view('courses.course_video')->with('materials', $materials);
-            case 'pdf':
-                return view('courses.course_pdf')->with('materials', $materials);
-            default:
-                // Tipe materi tidak valid, Anda dapat menangani ini sesuai kebutuhan Anda
-                break;
+        $type = MasterType::where('master_type_code', 'MATERIAL_TYPE')->get();
+
+        // Inisialisasi variabel $viewName dengan nama view default
+        $viewName = 'courses.course_default';
+
+        foreach ($type as $test) {
+            switch ($test->master_type_name) {
+                case 'Assignment':
+                    $viewName = 'courses.course_asg';
+                    break;
+                case 'Video':
+                    $viewName = 'courses.course_video';
+                    break;
+                case 'Pdf':
+                    $viewName = 'courses.course_pdf';
+                    break;
+                // Tipe materi lainnya bisa ditambahkan sesuai kebutuhan
+            }
         }
-    }
 
+        return view($viewName, ['material' => $material]);
+    }
 }

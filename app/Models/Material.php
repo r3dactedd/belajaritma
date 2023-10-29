@@ -8,27 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Material extends Model
 {
     use HasFactory;
+
     public $table = "material";
     protected $guarded='id';
     protected $fillable = [
-        'course_id',
+        'material_id',
         'master_type_id',
-        'material_title',
-        'material_description',
-        'question',
-        'answer',
+        'title',
+        'description',
         'pdf_link',
-        'video_link',
+        'video_link'
     ];
+
 
     public function materialToCourse(){
         return $this->belongsTo(Course::class, 'course_id');
     }
-    public function materialToMaster(){
+    public function materialContentToMasterType(){
         return $this->belongsTo(MasterType::class, 'master_type_id');
-    }
-
-    public function materialToModuleContent(){
-        return $this->hasMany(ModuleContent::class, 'material_id','id');
     }
 }

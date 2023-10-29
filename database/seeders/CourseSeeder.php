@@ -18,18 +18,21 @@ class CourseSeeder extends Seeder
             'course_name' => 'Basic Algorithm',
             'course_desc' => 'Kursus ini akan mengarjakan dasar-dasar dari algoritma.',
             'total_module' => 7,
+            'course_img' => 'luca.png'
         ]);
 
         Course::create([
             'course_name' => 'Recursion',
             'course_desc' => 'Kursus ini akan mengarjakan tentang recursions.',
             'total_module' => 8,
+            'course_img' => 'Majima Defuses Bomb.png'
         ]);
 
         Course::create([
             'course_name' => 'Repetition',
             'course_desc' => 'Kursus ini akan mengarjakan tentang repetition dengan menggunakan for, do, and while.',
             'total_module' => 9,
+            'course_img' => 'Majima Kensetsu.png'
         ]);
     }
 }

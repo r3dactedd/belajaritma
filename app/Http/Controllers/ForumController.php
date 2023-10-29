@@ -6,20 +6,57 @@ use App\Models\Forum;
 use App\Models\MasterType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Course;
 
 class ForumController extends Controller
 {
     //
-    public function showForumList(){
-        $data = Forum::all();
-        $master = MasterType::all();
-        $test = MasterType::all();
-        return view('forum.forum',['data'=>$data, 'master'=>$master, 'test'=>$test]);
+    public function showCourseData(Request $request){
+        $searchKeyword = $request->input('searchKeyword');
+        if($searchKeyword){
+            $data = Course::where('course_name', 'like', "%$searchKeyword%")->get();
+            return view('forum.forum_list', compact('data'));
+        }
+        else{
+            $data = Course::all();
+            return view('forum.forum_list',['data'=>$data]);
+        }
     }
 
-    public function forumDetail($id){
+    public function showForumsByCourse($course_id, Request $request){
+        $searchKeyword = $request->input('searchKeyword');
+        if($searchKeyword){
+            $forums = Forum::where('course_id', $course_id)->
+            where('forum_title', 'like', "%$searchKeyword%")
+            ->get();
+            $course = Course::find($course_id);
+            return view('forum.forum', ['forums' => $forums, 'course' => $course]);
+        }
+        else{
+            $forums = Forum::where('course_id', $course_id)->get();
+            $course = Course::find($course_id);
+            return view('forum.forum', ['forums' => $forums, 'course' => $course]);
+        }
+        // dd($course);
+        // dd($forums);
+    }
+
+    public function manageForumList(Request $request){
+        $searchKeyword = $request->input('searchKeyword');
+        if($searchKeyword){
+            $data = Forum::where('forum_title', 'like', "%$searchKeyword%")->get();
+            return view('administrator.admin_forum',['data'=>$data]);
+        }
+        else{
+            $data = Forum::all();
+            return view('administrator.admin_forum',['data'=>$data]);
+        }
+
+    }
+
+    public function forumDetail($course_id,$id){
         $data=Forum::find($id);
-        return view('forum.forum_content',['data'=>$data]);
+        return view('forum.forum_thread',['data'=>$data]);
     }
 
     public function createForum(Request $request){
