@@ -99,7 +99,7 @@
                             </td>
                             <td class="px-6 py-3 text-center">
                                 <div class="item-center flex justify-center">
-                                    <a href="/manager/course/edit"
+                                    <a href="/manager/certification/edit"
                                         class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">

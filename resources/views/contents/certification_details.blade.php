@@ -56,7 +56,7 @@
                     <div class="rounded-xl bg-white px-6 py-2 md:px-12">
                         <h1
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-6 md:pr-4 md:text-left lg:text-3xl">
-                            Algoritma dan Pemrograman
+                            Security, Compliance, and Identity Fundamentals
                         </h1>
                         <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
                             Certi Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -65,7 +65,8 @@
                         </p>
                         <div class="grid-row-2 grid md:grid-cols-2">
                             <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
-                                <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                                <div
+                                    class="mb-3 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 640 512">
                                         <path
                                             d="M353.8 54.1L330.2 6.3c-3.9-8.3-16.1-8.6-20.4 0L286.2 54.1l-52.3 7.5c-9.3 1.4-13.3 12.9-6.4 19.8l38 37-9 52.1c-1.4 9.3 8.2 16.5 16.8 12.2l46.9-24.8 46.6 24.4c8.6 4.3 18.3-2.9 16.8-12.2l-9-52.1 38-36.6c6.8-6.8 2.9-18.3-6.4-19.8l-52.3-7.5zM256 256c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H384c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H256zM32 320c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H160c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32H32zm416 96v64c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32V416c0-17.7-14.3-32-32-32H480c-17.7 0-32 14.3-32 32z" />
@@ -73,7 +74,8 @@
                                     <span class="p-2 text-base font-semibold text-gray-600">Sertifikasi</span>
                                 </div>
 
-                                <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                                <div
+                                    class="mb-3 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 640 512">
                                         <path
                                             d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z" />
@@ -124,21 +126,22 @@
 
                                     <span class="px-2 text-xl tracking-wide">Informasi Test</span>
                                 </div>
-                                <ul class="list-inside space-y-2">
-                                    <li>
-                                        <div class="text-in px-4 text-indigo-500">Waktu Test</div>
-                                        <div class="px-4 text-sm font-semibold text-gray-500">120 menit </div>
 
-                                    </li>
-                                    <li>
-                                        <div class="px-4 text-indigo-500">Format Test</div>
-                                        <div class="px-4 text-sm font-semibold text-gray-500">50 Pilihan Ganda</div>
-                                    </li>
-                                    <li>
-                                        <div class="px-4 text-indigo-500">Biaya Sertifikasi</div>
-                                        <div class="px-4 text-sm font-semibold text-gray-500">Rp 250.000,00</div>
-                                    </li>
-                                </ul>
+                                <div class="grid grid-cols-1 gap-4 py-4 pl-4 pr-8 font-semibold md:grid-cols-3">
+                                    <div class="rounded-lg bg-white p-4 shadow-md">
+                                        <div class="text-indigo-500">Waktu Test</div>
+                                        <div class="text-xs text-gray-500">120 menit</div>
+                                    </div>
+                                    <div class="rounded-lg bg-white p-4 shadow-md">
+                                        <div class="text-indigo-500">Jumlah Pertanyaan</div>
+                                        <div class="text-xs text-gray-500">50 Pilihan Ganda</div>
+                                    </div>
+                                    <div class="rounded-lg bg-white p-4 shadow-md">
+                                        <div class="text-indigo-500">Biaya Sertifikasi</div>
+                                        <div class="text-xs text-gray-500">Rp 250.000,00</div>
+                                    </div>
+
+                                </div>
                             </div>
                             <div>
                                 <div

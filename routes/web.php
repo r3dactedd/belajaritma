@@ -123,6 +123,16 @@ Route::get('/manager/course/session/1/edit', function () {
 Route::get('/manager/certification', function () {
     return view('administrator.admin_certifications.admin_certification');
 });
+
+Route::get('/manager/certification/create', function () {
+    return view('administrator.admin_certifications.admin_certification_create');
+});
+Route::get('/manager/certification/edit', function () {
+    return view('administrator.admin_certifications.admin_certification_edit');
+});
+Route::get('/manager/certification/edit/test', function () {
+    return view('administrator.admin_certifications.admin_certification_test');
+});
 Route::get('/manager/forum', function () {
     return view('administrator.admin_forum');
 });

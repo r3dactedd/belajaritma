@@ -59,7 +59,7 @@
                             <line x1="12" y1="5" x2="12" y2="19" />
                             <line x1="5" y1="12" x2="19" y2="12" />
                         </svg>
-                        <div class="mx-2"> Publish Kursus </div>
+                        <div class="mx-2"> Finalize Kursus </div>
                     </button>
                 </div>
             </div>
@@ -106,7 +106,8 @@
 
                             <div class="grid-row-2 grid md:grid-cols-2">
                                 <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
-                                    <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                                    <div
+                                        class="mb-3 mt-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
 
                                         <select
                                             class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
@@ -118,7 +119,8 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-row items-center justify-between md:ml-8 lg:flex-col lg:items-start">
-                                    <div class="mb-3 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                                    <div
+                                        class="mb-3 mt-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
                                         <a href="#syllabus"
                                             class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none md:w-40">
                                             <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +128,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
                                             </svg>
-                                            Simpan Data [yg atas]
+                                            Simpan Data
                                         </a>
                                     </div>
                                 </div>
@@ -142,7 +144,7 @@
                     <div class="h-auto w-full md:mx-2">
                         <div class="rounded-t-xl bg-white p-4 shadow-sm">
                             <label for="username"
-                                class="text-md mb-3 ml-4 block font-semibold text-gray-900 dark:text-white">
+                                class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
                                 Mengenai Kursus</label>
                             <div class="px-4 py-2 font-semibold">
                                 <textarea id="myInfo"
@@ -155,10 +157,10 @@
                             <div class="grid grid-cols-1 md:grid-cols-2">
                                 <div>
                                     <label for="username"
-                                        class="text-md mb-3 ml-4 block font-semibold text-gray-900 dark:text-white">
+                                        class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
                                         Spesifikasi Minimum</label>
 
-                                    <div class="grid grid-cols-2 gap-4 py-4 pl-4 pr-8">
+                                    <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-2">
                                         <div class="rounded-lg bg-white p-4 shadow-md">
                                             <div class="text-indigo-500">Resolusi Layar</div>
                                             <input type="text" name="username" id=""
@@ -187,7 +189,7 @@
                                 </div>
                                 <div>
                                     <label for="username"
-                                        class="text-md mb-3 ml-4 block font-semibold text-gray-900 dark:text-white">
+                                        class="text-md my-4 ml-4 block font-semibold text-gray-900 dark:text-white">
                                         Program Lain yang Diperlukan</label>
 
                                     <div class="px-4 py-2 font-semibold">
@@ -206,7 +208,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
                                         </svg>
-                                        Simpan Data [yg bawah]
+                                        Simpan Data
                                     </a>
                                 </div>
                             </div>
@@ -218,38 +220,43 @@
             <h1 class="my-8 text-center text-3xl font-semibold">Daftar Materi </h1>
             <div id="syllabus"class="my-4"></div>
 
-            <table class="mx-auto w-9/12 overflow-x-auto text-xs text-white">
-                <colgroup>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                </colgroup>
-                <thead class="bg-gray-200 leading-normal text-gray-600">
-                    <tr class="text-md bg-gray-200 leading-normal text-gray-600 md:text-lg">
-                        <th class="px-4 py-2 text-left">Nama Sesi</th>
-                        <th class="px-4 py-2 text-left">Tipe Sesi</th>
-                        <th class="px-2 py-3 text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="text-md font-light text-gray-600 md:text-lg">
-                    <tr
-                        class="modal-open border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600 hover:bg-indigo-600 hover:text-white">
-                        <td class="px-6 py-3 text-center font-semibold" colspan="4">
-                            <p class="inline-flex items-center align-middle" data-modal-target="defaultModal"
-                                data-modal-toggle="defaultModal">
-                                <svg class="mr-4 fill-black hover:fill-white" xmlns="http://www.w3.org/2000/svg"
-                                    height="1.5em" viewBox="0 0 512 512">
-                                    <path
-                                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0-13.3-10.7 24-24 24s-24-10.7-24-24z" />
-                                </svg>
-                                Buat Sesi Baru
-                            </p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="relative overflow-x-auto">
+                <table
+                    class="text-md mx-auto w-full text-left font-semibold text-gray-500 shadow-md sm:rounded-lg md:w-10/12">
+                    <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Nama Materi
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Tipe Konten
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Aksi
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr
+                            class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
+                            <td class="px-6 py-3 text-center font-semibold" colspan="4">
+
+                                <p class="inline-flex items-center align-middle" data-modal-target="defaultModal"
+                                    data-modal-toggle="defaultModal">
+                                    <svg class="mr-4 fill-black hover:fill-white" xmlns="http://www.w3.org/2000/svg"
+                                        height="1.5em" viewBox="0 0 512 512">
+                                        <path
+                                            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0-13.3-10.7 24-24 24s-24-10.7-24-24z" />
+                                    </svg>
+                                    Buat Materi Baru
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             {{-- New Session Modal --}}
             <div id="defaultModal" tabindex="-1" aria-hidden="true"
@@ -270,27 +277,27 @@
                                 </button>
                             </div>
                             <div class="mx-auto rounded-xl bg-white px-2 py-2">
-                                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Sesi Baru</h2>
+                                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Materi Baru</h2>
                                 <form action="/editProfile" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="username"
                                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                                Judul Sesi</label>
+                                                Judul Materi</label>
                                             <input type="text" name="username" id="inputUsername"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="Tulis Judul untuk Materi ini..." required="">
+                                                placeholder="Tulis Judul untuk Materi ini " required="">
                                         </div>
 
                                         {{-- Input Area --}}
                                         <div class="sm:col-span-2">
                                             <label for="username"
                                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                                Deskripsi Singkat Sesi</label>
+                                                Deskripsi Singkat Materi</label>
                                             <textarea id="myInfo"
                                                 class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="Input Penjelasan Singkat mengenai Sesi" required=""></textarea>
+                                                placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                         </div>
 
                                         <div class="sm:col-span-1">
@@ -299,16 +306,16 @@
                                                 Estimasi Waktu Penyelesaian (dalam Menit)</label>
                                             <input type="number" name="username" id="inputUsername"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="Berikan estimasi waktu penyelesaian untuk sesi ini..."
+                                                placeholder="Berikan estimasi waktu penyelesaian untuk materi ini "
                                                 required="">
                                         </div>
                                         <div class="sm:col-span-1">
                                             <label for="username"
                                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                                Konten Sesi</label>
+                                                Tipe Konten</label>
                                             <select
                                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                                                <option value="">Pilih Tipe Konten untuk Sesi Ini</option>
+                                                <option value="">Pilih Tipe Konten untuk Materi Ini</option>
                                                 <option value="for-rent">PDF</option>
                                                 <option value="for-rent">Video</option>
                                                 <option value="for-rent">Assignment</option>

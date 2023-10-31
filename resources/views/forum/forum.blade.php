@@ -262,7 +262,7 @@
                                             Judul Diskusi</label>
                                         <input type="text" name="username" id="inputUsername"
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Tulis Judul untuk Diskusi Anda..." required="">
+                                            placeholder="Tulis Judul untuk Diskusi Anda " required="">
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="username"
