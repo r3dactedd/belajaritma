@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-span-2 h-auto w-10/12 md:mx-2">
                     <div class="rounded-xl bg-white px-6 py-8 md:px-12">
-                        <form action="/editProfile" method="post" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data">
                             @csrf
                             <label for="profilePicture"
                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Gambar
@@ -93,7 +93,7 @@
                                         Username</label>
                                     <input type="text" name="username" id="inputUsername"
                                         value="masukin current Usernamenya user"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Input Username" required="">
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
                                         Error Message Design
@@ -106,17 +106,17 @@
                                         Lengkap</label>
                                     <input type="text" name="first_name" id="inputFirstName"
                                         value="masukin current Nama Lengkap user"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Input Nama Lengkap" required="">
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
-                                        Error Message Design
+                                        {{-- Error Message Design --}}
                                     </div>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="email"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Email</label>
                                     <input type="text" name="email" id="inputEmail" value="masukin current Email user"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Email" required="">
                                 </div>
                                 <div class="sm:col-span-2">
@@ -124,16 +124,20 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Tentang
                                         Saya</label>
                                     <textarea id="myInfo"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Silahkan isi informasi mengenai anda." required="">INSERT TENTANG SAYA THINGS HERE
                             </textarea>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
-                                <button type="submit"
+                                <button type="submit" data-modal-target="popup-save" data-modal-toggle="popup-save"
                                     class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
                                     Simpan Profil
                                 </button>
+                                <a data-modal-target="popup-save" data-modal-toggle="popup-save"
+                                    class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
+                                    Simpan Profil (popuptest)
+                                </a>
                             </div>
                         </form>
                     </div>
@@ -157,7 +161,7 @@
                 </div>
                 <div class="col-span-2 h-auto w-10/12 md:mx-2">
                     <div class="rounded-xl bg-white px-6 py-8 md:px-12">
-                        <form action="/editProfile" method="post" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                 <div class="sm:col-span-2">
@@ -165,7 +169,7 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Password
                                         Lama</label>
                                     <input type="password" name="oldPass" id="inputOldPass"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Password Lama" required="">
                                 </div>
                                 <div class="sm:col-span-2">
@@ -173,7 +177,7 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Password
                                         Baru</label>
                                     <input type="password" name="newPass" id="inputNewPass"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Password Baru" required="">
                                 </div>
                                 <div class="sm:col-span-2">
@@ -182,7 +186,7 @@
                                         Password
                                         Baru</label>
                                     <input type="password" name="newPass" id="inputNewPass"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Lagi Password Baru" required="">
                                 </div>
 
@@ -199,7 +203,7 @@
                 </div>
             </div>
         </div>
-
+        @include('modals.success_save')
         </div>
 
     @endsection

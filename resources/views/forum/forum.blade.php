@@ -253,7 +253,7 @@
                         </div>
                         <div class="mx-auto rounded-xl bg-white px-2 py-2">
                             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Diskusi Baru</h2>
-                            <form action="/editProfile" method="post" enctype="multipart/form-data">
+                            <form method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                     <div class="sm:col-span-2">

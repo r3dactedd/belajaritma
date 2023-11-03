@@ -99,7 +99,7 @@
                     <div>
                         <button
                             class="text-ceenter w-full rounded-md bg-blue-500 px-4 py-3 font-semibold text-white shadow-md">
-                            Lanjut Pembayaran
+                            Bayar
                         </button>
                     </div>
                 </div>
