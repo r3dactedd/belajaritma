@@ -77,6 +77,10 @@ Route::get('/courses/3/asg', function () {
     return view('contents.session_assignment');
 });
 
+Route::get('/test', function () {
+    return view('contents.test');
+});
+
 Route::get('/courses/3/asg/questions', function () {
     return view('contents.assignment_questions');
 });

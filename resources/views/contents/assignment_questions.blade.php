@@ -13,14 +13,12 @@
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
     @extends('layout.layout')
-    @section('header')
-        @include('layout.header')
-    @endsection
+
     @section('content')
 
         <div class="container mx-auto my-4 p-4">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
-                <div class="w-full md:mx-2 md:w-4/12">
+                <div class="md:mx-2 md:w-4/12">
                     <!-- Sidebar, pass value courselistnya aja-->
                     <div class="rounded-xl border-4 border-green-400 bg-white p-2 md:flex md:flex-col">
                         <div class="flex flex-col overflow-hidden bg-white">
@@ -171,7 +169,7 @@
                 </div>
             </div>
 
-
+        </div>
     </body>
 @endsection
 @section('footer')

@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-3">
+        <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2">
             <div>
                 <a href="/manager/course">
                     <div
@@ -105,7 +105,7 @@
                 </a>
             </div>
 
-            <div>
+            {{-- <div>
                 <a href="/manager/forum">
                     <div
                         class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> --}}
 
         </div>
     @endsection
