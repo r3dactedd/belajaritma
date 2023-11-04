@@ -62,7 +62,7 @@ class ManageCourseController extends Controller
 
         $course->save();
         // dd($course);
-        return redirect('/manage/course')->with('success', 'Course creation successfull!');
+        return redirect('/manager/course')->with('success', 'Course creation successfull!');
     }
 
     public function editCoursePage($id){
