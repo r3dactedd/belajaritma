@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-            <form method="post" action ="/manager/course" enctype="multipart/form-data">
+            <form method="post" action ="/manager/course/create" enctype="multipart/form-data">
                 @csrf
                 <div class="my-4 rounded-xl bg-white md:flex">
                     <!-- Left Side -->
