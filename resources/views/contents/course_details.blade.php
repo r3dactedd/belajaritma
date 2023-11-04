@@ -54,7 +54,7 @@
                             {{$data->course_name}}
                         </h1>
                         <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
-                            {{$data->course_desc}}
+                            {{$data->short_desc}}
                         </p>
                         <div class="grid-row-2 grid md:grid-cols-2">
                             <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
@@ -133,20 +133,19 @@
                                 <div class="grid grid-cols-1 gap-4 py-4 pl-4 pr-8 font-semibold md:grid-cols-2">
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Resolusi Layar</div>
-                                        <div class="text-xs text-gray-500">1366 x 768 (rec. 1920 x 1080)</div>
+                                        <div class="text-xs text-gray-500">{{$data->screen_resolution}}</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Minimum RAM</div>
-                                        <div class="text-xs text-gray-500">1GB (rec. 2GB keatas)</div>
+                                        <div class="text-xs text-gray-500">{{$data->minimum_ram}}</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Processor</div>
-                                        <div class="text-xs text-gray-500">Intel Celeron / Sekelas (rec. Intel i3 /
-                                            Sekelas)</div>
+                                        <div class="text-xs text-gray-500">{{$data->processor}}</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Operating System</div>
-                                        <div class="text-xs text-gray-500">Linux, MacOS, dan Windows</div>
+                                        <div class="text-xs text-gray-500">{{$data->operating_system}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -158,10 +157,7 @@
                                 </div>
                                 <div class="flex text-sm md:w-3/4">
                                     <div class="block">
-                                        <div class="px-4 py-2 font-semibold">Untuk kursus ini diperlukan beberapa program
-                                            seperti
-                                            C Language Compiler (seperti DevC dan onlinegdb), Web Browser (seperti Chrome
-                                            atau Firefox).
+                                        <div class="px-4 py-2 font-semibold">{{$data->other_programs}}
                                         </div>
                                     </div>
                                 </div>

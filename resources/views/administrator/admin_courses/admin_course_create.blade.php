@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-            <form id="editTop" method="post" enctype="multipart/form-data">
+            <form method="post" action ="/manager/course" enctype="multipart/form-data">
                 @csrf
                 <div class="my-4 rounded-xl bg-white md:flex">
                     <!-- Left Side -->
@@ -81,7 +81,7 @@
                                     class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                     <span class="text-base leading-normal">Unduh Foto Baru</span>
-                                    <input type='file' id='imageInput' class="hidden" accept="image/*"
+                                    <input type='file' id='imageInput' name="course_img"  class="hidden" accept="image/*"
                                         onchange="previewImage()" />
                                 </label>
                             </div>
@@ -92,14 +92,14 @@
                         <!-- Profile tab -->
                         <!-- About Section -->
                         <div class="rounded-xl bg-white px-6 pt-4 md:px-12">
-                            <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                            <label for="courseTitle" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Judul Kursus</label>
-                            <input type="text" name="username" id=""
+                            <input type="text" name="course_name" id="inputCourseName"
                                 class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
                                 placeholder="Tulis Nama Kursus" required="">
-                            <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                            <label for="shortDesc" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Deskripsi Singkat Kursus</label>
-                            <textarea id="myInfo"
+                            <textarea name="short_desc" id="inputShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                 placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
                             </textarea>
@@ -109,12 +109,12 @@
                                     <div
                                         class="mb-3 mt-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
 
-                                        <select
+                                        <select  name="level"
                                             class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                                             <option value="">Pilih Tingkat Kursus</option>
-                                            <option value="for-rent">Dasar</option>
-                                            <option value="for-rent">Menengah</option>
-                                            <option value="for-sale">Mahir</option>
+                                            <option value="Dasar" id="inputLevelDasar">Dasar</option>
+                                            <option value="Menengah"  id="inputLevelMenengah">Menengah</option>
+                                            <option value="Mahir" id="inputLevelMahir">Mahir</option>
                                         </select>
                                     </div>
                                 </div>
@@ -136,83 +136,90 @@
                         </div>
                     </div>
                 </div>
-            </form>
-            <div class="my-4"></div>
-            <form id="editBottom" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="mx-auto my-auto md:-mx-2 md:flex">
-                    <div class="h-auto w-full md:mx-2">
-                        <div class="rounded-t-xl bg-white p-4 shadow-sm">
-                            <label for="username"
+                <div class="rounded-t-xl bg-white p-4 shadow-sm">
+                    <label for="courseDesc"
+                        class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                        Mengenai Kursus</label>
+                    <div class="px-4 py-2 font-semibold">
+                        <textarea name="course_desc" id="inputCourseDesc"
+                            class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                            placeholder="Input Penjelasan Mengenai Kursus, Materi Apa Yang Dipelajari, serta Tujuan Pembelajaran"
+                            required=""></textarea>
+                    </div>
+                </div>
+                <div class="rounded-b-xl bg-white p-4 shadow-sm">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div>
+                            <label for="minSpec"
                                 class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
-                                Mengenai Kursus</label>
+                                Spesifikasi Minimum</label>
+
+                            <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-2">
+                                <div class="rounded-lg bg-white p-4 shadow-md">
+                                    <div class="text-indigo-500">Resolusi Layar</div>
+                                    <input type="text" name="screen_resolution" id="inputScreenRes"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                        placeholder="ex: 1336 x 768" required="">
+                                </div>
+                                <div class="rounded-lg bg-white p-4 shadow-md">
+                                    <div class="text-indigo-500">Minimum RAM</div>
+                                    <input type="text" name="minimum_ram" id="inputMinRAM"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                        placeholder="ex: 1GB " required="">
+                                </div>
+                                <div class="rounded-lg bg-white p-4 shadow-md">
+                                    <div class="text-indigo-500">Processor</div>
+                                    <input type="text" name="processor" id="inputProcessor"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                        placeholder="ex: Intel Celeron / Sekelas" required="">
+                                </div>
+                                <div class="rounded-lg bg-white p-4 shadow-md">
+                                    <div class="text-indigo-500">Operating System</div>
+                                    <input type="text" name="operating_system" id="inputOperatingSystem"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                        placeholder="ex: Linux, MacOS, dan Windows" required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="username"
+                                class="text-md my-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                                Program Lain yang Diperlukan</label>
+
                             <div class="px-4 py-2 font-semibold">
-                                <textarea id="myInfo"
+                                <textarea name="other_programs" id="inputOtherPrograms"
                                     class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                    placeholder="Input Penjelasan Mengenai Kursus, Materi Apa Yang Dipelajari, serta Tujuan Pembelajaran"
-                                    required=""></textarea>
+                                    placeholder="Input Tools serta Program-Program Lain yang diperlukan dalam menjalankan kursus ini." required=""></textarea>
                             </div>
                         </div>
-                        <div class="rounded-b-xl bg-white p-4 shadow-sm">
-                            <div class="grid grid-cols-1 md:grid-cols-2">
-                                <div>
-                                    <label for="username"
-                                        class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
-                                        Spesifikasi Minimum</label>
-
-                                    <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-2">
-                                        <div class="rounded-lg bg-white p-4 shadow-md">
-                                            <div class="text-indigo-500">Resolusi Layar</div>
-                                            <input type="text" name="username" id=""
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="ex: 1336 x 768" required="">
-                                        </div>
-                                        <div class="rounded-lg bg-white p-4 shadow-md">
-                                            <div class="text-indigo-500">Minimum RAM</div>
-                                            <input type="text" name="username" id=""
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="ex: 1GB " required="">
-                                        </div>
-                                        <div class="rounded-lg bg-white p-4 shadow-md">
-                                            <div class="text-indigo-500">Processor</div>
-                                            <input type="text" name="username" id=""
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="ex: Intel Celeron / Sekelas" required="">
-                                        </div>
-                                        <div class="rounded-lg bg-white p-4 shadow-md">
-                                            <div class="text-indigo-500">Operating System</div>
-                                            <input type="text" name="username" id=""
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="ex: Linux, MacOS, dan Windows" required="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="username"
-                                        class="text-md my-4 ml-4 block font-semibold text-gray-900 dark:text-white">
-                                        Program Lain yang Diperlukan</label>
-
-                                    <div class="px-4 py-2 font-semibold">
-                                        <textarea id="myInfo"
-                                            class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Input Tools serta Program-Program Lain yang diperlukan dalam menjalankan kursus ini." required=""></textarea>
-                                    </div>
-                                </div>
-                                <div
-                                    class="mb-3 ml-4 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
-
-                                    <a href="#syllabus"
-                                        class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none md:w-40">
-                                        <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
-                                            height="1.1em" viewBox="0 0 576 512" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-                                        </svg>
-                                        Simpan Data
-                                    </a>
-                                </div>
+                        <button type="submit"
+                            class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Upload Kursus
+                        </button>
+                        <div class="flex flex-row items-center justify-between md:ml-8 lg:flex-col lg:items-start">
+                            <div
+                                class="mb-3 mt-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
+                                <a href="#syllabus"
+                                    class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none md:w-40">
+                                    <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
+                                        height="1.1em" viewBox="0 0 576 512" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                                    </svg>
+                                    Simpan Data
+                                </a>
                             </div>
                         </div>
+                        {{-- <div
+                            class="mb-3 ml-4 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+
+                            <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
+                                    height="1.1em" viewBox="0 0 576 512" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                            </svg>
+                            <button type="submit"
+                            class="absolute bottom-2.5 right-2.5 rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Upload Kursus</button>
+                        </div> --}}
                     </div>
                 </div>
             </form>

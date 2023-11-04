@@ -12,7 +12,17 @@ class Course extends Model
     protected $guarded='id';
     protected $fillable = [
         'course_name',
+        'short_desc',
         'course_desc',
+        'level',
+        'course_img',
+        'screen_resolution',
+        'minimum_ram',
+        'processor',
+        'operating_system',
+        'other_programs',
+        'created_by',
+        'updated_by'
     ];
 
     public function courseToSidebar(){
@@ -21,5 +31,16 @@ class Course extends Model
 
     public function courseToMaterial(){
         return $this->hasMany(Material::class, 'course_id','id');
+    }
+
+    public function materialToCourse(){
+        return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    public function findUpdatedBy(){
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+    public function findCreatedBy(){
+        return $this->belongsTo(User::class, 'created_by');
     }
 }
