@@ -30,7 +30,7 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Transaksi Pembayaran</span>
+                            <span class="mb-1 ml-2">Registrasi Sertifikasi</span>
                         </a>
                 </div>
             </div>
@@ -45,10 +45,10 @@
                         Nama Sertificate here
                     </h1>
                     <div class="mb-6 text-left">
-                        <div class="text-left text-lg font-semibold">Biaya Sertifikasi </div>
-                        <span class="text-lg font-bold text-indigo-500">Rp. 199.999,00</span>
+                        <div class="text-left text-lg font-semibold">Biaya Sertifikasi</div>
+                        <span class="text-lg font-bold text-indigo-500">Rp. 250.000,00</span>
                     </div>
-                    <div class="mb-6">
+                    {{-- <div class="mb-6">
                         <label class="mb-3 block" for="">Nama di Kartu</label>
                         <input type="text"
                             class="inline-block w-full rounded-md border border-gray-500 px-3 py-2 tracking-wider text-gray-600" />
@@ -57,7 +57,7 @@
                         <label class="mb-3 block" for="">Nomor Kartu</label>
                         <input type="tel"
                             class="inline-block w-full rounded-md border border-gray-500 px-3 py-2 tracking-wide text-gray-600" />
-                    </div>
+                    </div> --}}
                     {{-- <div class="mb-6 flex w-full flex-wrap">
                         <div class="mb-6 pr-3 md:w-2/3">
                             <label class="mb-3 block text-gray-600" for="">Tanggal Expire</label>
@@ -83,6 +83,13 @@
                         </div>
                     </div> --}}
                     <div class="mb-6">
+                        <label class="mb-3 block" for="">Other inputs</label>
+                        <input type="text" id="myInfo"
+                            class="inline-block w-full rounded-md border border-gray-500 px-3 py-2 tracking-wide text-gray-600"
+                            placeholder="" required="">
+                    </div>
+
+                    <div class="mb-6">
                         <label class="mb-3 block" for="">Pesan Transaksi (opsional)</label>
                         <textarea id="myInfo"
                             class="inline-block w-full rounded-md border border-gray-500 px-3 py-2 tracking-wide text-gray-600" placeholder=""
@@ -92,7 +99,7 @@
                     <div>
                         <button
                             class="text-ceenter w-full rounded-md bg-blue-500 px-4 py-3 font-semibold text-white shadow-md">
-                            Konfirmasi Pembayaran
+                            Bayar
                         </button>
                     </div>
                 </div>

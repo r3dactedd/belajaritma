@@ -28,114 +28,21 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Edit Sesi Kursus</span>
+                            <span class="mb-1 ml-2">Akses Tes Sertifikasi</span>
                         </a>
                 </div>
             </div>
         </div>
         <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-            <form id="" method="post" enctype="multipart/form-data">
-                @csrf
 
-                <div class="mx-auto my-4 md:-mx-2 md:flex">
-                    <div class="h-auto w-full md:mx-2">
-                        <div class="rounded-xl bg-white p-4 shadow-sm">
-
-                            <div class="px-4 font-semibold">
-                                <label for="username"
-                                    class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                    Judul Materi</label>
-                                <input type="text" name="username" id=""
-                                    class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-lg text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left"
-                                    placeholder="Tulis Nama Materi" required="" value="Algoritma dan Pemrograman ">
-                            </div>
-                            <div class="px-4 font-semibold">
-                                <label for="username"
-                                    class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                    Deskripsi Singkat Materi</label>
-                                <textarea id="myInfo"
-                                    class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                    placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
-                                Course Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
-                            </textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="my-4"></div>
-            <form id="" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="mx-auto my-auto md:-mx-2 md:flex">
-                    <div class="h-auto w-full md:mx-2">
-                        <div class="rounded-xl bg-white p-4 shadow-sm">
-
-                            <div class="px-4 font-semibold">
-                                <label for="username"
-                                    class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                    (muncul kalau content typenya PDF) </label>
-
-
-                                <label
-                                    class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
-
-                                    <span class="text-base leading-normal">Upload File PDF</span>
-                                    <input type='file' id="pdfInput" class="hidden" onchange="previewImage()" />
-                                </label>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="my-4"></div>
-            <div class="mx-auto my-auto md:-mx-2 md:flex">
-                <div class="h-auto w-full md:mx-2">
-                    <div class="rounded-xl bg-white p-4 shadow-sm">
-
-                        <div class="px-4 font-semibold">
-                            <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                (muncul kalau content typenya Video) </label>
-                            <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                Upload Link Video</label>
-                            <input type="text" name="username" id="videoLink"
-                                class="mt-focus:ring-primary-600 mb-6 block h-12 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:w-1/2"
-                                placeholder="Isi Link Video" required="">
-                        </div>
-                        <div id="videoPreview"
-                            class="mb-3 flex items-center space-x-2 px-4 font-semibold leading-8 text-gray-900">
-                            <button onclick="embedVideo()"
-                                class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none md:w-40">
-                                <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg" height="1.1em"
-                                    viewBox="0 0 576 512" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-                                </svg>
-                                Simpan Link
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="my-4"></div>
             <div class="mx-auto my-auto md:-mx-2 md:flex">
                 <div class="h-auto w-full md:mx-2">
                     <div class="rounded-xl bg-white p-4 shadow-sm">
                         <div class="mx-auto px-4">
+
                             <div class="font-semibold">
-                                <label for="username"
-                                    class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                    (muncul kalau content typenya Assignment) </label>
-                            </div>
-                            <div class="font-semibold">
-                                <label for="username"
-                                    class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                    Penjelasan Assignment</label>
-                                <textarea id="myInfo"
-                                    class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                    placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
-                                Course Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
-                            </textarea>
+
                                 <div class="mb-6 font-semibold">
                                     <div class="grid grid-cols-1 md:grid-cols-2">
 
@@ -145,7 +52,7 @@
                                                 Nilai Minimum</label>
                                             <input type="number" name="username" id="inputUsername"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="Input nilai minimum untuk menyelesaikan assignment"
+                                                placeholder="Input nilai minimum untuk lulus tes sertifikasi"
                                                 required="">
                                         </div>
                                     </div>
@@ -154,7 +61,7 @@
                                     class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                     List Pertanyaan </label>
                                 <div class="relative overflow-x-auto">
-                                    <table
+                                    <table id="my-table"
                                         class="text-md mx-auto w-full border-x text-left font-semibold text-gray-500 shadow-md sm:rounded-lg">
                                         <thead class="bg-gray-200 text-xs uppercase text-gray-700">
                                             <tr>
@@ -273,40 +180,33 @@
                                                             <path
                                                                 d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0-13.3-10.7 24-24 24s-24-10.7-24-24z" />
                                                         </svg>
-                                                        Buat Materi Baru
+                                                        Tambah Pertanyaan Baru
                                                     </p>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div
+                                        class="mb-3 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
+                                        <a href="#syllabus"
+                                            class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none md:w-40">
+                                            <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
+                                                height="1.1em" viewBox="0 0 576 512" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                                            </svg>
+                                            Simpan Data
+                                        </a>
+                                    </div>
                                 </div>
 
                             </div>
                         </div>
+
                     </div>
                 </div>
 
             </div>
-
-            <div class="container mx-auto my-5 p-5">
-                <div class="no-wrap my-4 md:-mx-2 md:flex">
-                    <div class="my-4"></div>
-                    <div id="pdfPreviewContainer" class="hidden w-full rounded bg-white shadow md:mx-2">
-                        <!-- PDF preview will be displayed here -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="container mx-auto my-5 p-5">
-                <div class="no-wrap my-4 md:-mx-2 md:flex">
-                    <div class="my-4"></div>
-                    <div id="videoContainer" class="container mx-auto my-5 p-5">
-                        <!-- YouTube video will be embedded here -->
-                    </div>
-                </div>
-            </div>
-
-
             <div id="defaultModal" tabindex="-1" aria-hidden="true"
                 class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
                 <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
@@ -387,68 +287,91 @@
             </div>
             {{-- Delete Popup --}}
             @include('modals.delete')
-            {{-- Delete Popup --}}
     </body>
     <script>
-        // Get references to the file input and preview container
-        const pdfInput = document.getElementById('pdfInput');
-        const pdfPreviewContainer = document.getElementById('pdfPreviewContainer');
+        function() {
+            // Get the table and its rows
+            var table = document.getElementById('my-table');
+            var rows = table.rows;
+            // Initialize the drag source element to null
+            var dragSrcEl = null;
 
-        // Add an event listener to the file input to detect changes
-        pdfInput.addEventListener('change', function() {
-            // Check if a file is selected
-            if (pdfInput.files.length > 0) {
-                const file = pdfInput.files[0];
+            // Loop through each row (skipping the first row which contains the table headers)
+            for (var i = 1; i < rows.length; i++) {
+                var row = rows[i];
+                // Make each row draggable
+                row.draggable = true;
 
-                // Check if the selected file is a PDF
-                if (file.type === 'application/pdf') {
-                    // Create a URL for the selected PDF
-                    const pdfURL = URL.createObjectURL(file);
-                    pdfPreviewContainer.classList.remove('hidden');
-                    // Create an <object> element to display the PDF
-                    const pdfObject = document.createElement('object');
-                    pdfObject.data = pdfURL;
-                    pdfObject.type = 'application/pdf';
-                    pdfObject.width = '100%';
-                    pdfObject.height = '1024';
+                // Add an event listener for when the drag starts
+                row.addEventListener('dragstart', function(e) {
+                    // Set the drag source element to the current row
+                    dragSrcEl = this;
+                    // Set the drag effect to "move"
+                    e.dataTransfer.effectAllowed = 'move';
+                    // Set the drag data to the outer HTML of the current row
+                    e.dataTransfer.setData('text/html', this.outerHTML);
+                    // Add a class to the current row to indicate it is being dragged
+                    this.classList.add('bg-gray-100');
+                });
 
-                    // Replace the content of the preview container with the PDF
-                    pdfPreviewContainer.innerHTML = '';
-                    pdfPreviewContainer.appendChild(pdfObject);
-                } else {
-                    // Display an error message if the selected file is not a PDF
-                    pdfPreviewContainer.innerHTML = 'Selected file is not a PDF.';
-                }
-            } else {
-                // Clear the preview container if no file is selected
-                pdfPreviewContainer.innerHTML = '';
+                // Add an event listener for when the drag ends
+                row.addEventListener('dragend', function(e) {
+                    // Remove the class indicating the row is being dragged
+                    this.classList.remove('bg-gray-100');
+                    // Remove the border classes from all table rows
+                    table.querySelectorAll('.border-t-2', '.border-blue-300').forEach(function(el) {
+                        el.classList.remove('border-t-2', 'border-blue-300');
+                    });
+                });
+
+                // Add an event listener for when the dragged row is over another row
+                row.addEventListener('dragover', function(e) {
+                    // Prevent the default dragover behavior
+                    e.preventDefault();
+                    // Add border classes to the current row to indicate it is a drop target
+                    this.classList.add('border-t-2', 'border-blue-300');
+                });
+
+                // Add an event listener for when the dragged row enters another row
+                row.addEventListener('dragenter', function(e) {
+                    // Prevent the default dragenter behavior
+                    e.preventDefault();
+                    // Add border classes to the current row to indicate it is a drop target
+                    this.classList.add('border-t-2', 'border-blue-300');
+                });
+
+                // Add an event listener for when the dragged row leaves another row
+                row.addEventListener('dragleave', function(e) {
+                    // Remove the border classes from the current row
+                    this.classList.remove('border-t-2', 'border-blue-300');
+                });
+
+                // Add an event listener for when the dragged row is dropped onto another row
+                row.addEventListener('drop', function(e) {
+                    // Prevent the default drop behavior
+                    e.preventDefault();
+                    // If the drag source element is not the current row
+                    if (dragSrcEl != this) {
+                        // Get the index of the drag source element
+                        var sourceIndex = dragSrcEl.rowIndex;
+                        // Get the index of the target row
+                        var targetIndex = this.rowIndex;
+                        // If the source index is less than the target index
+                        if (sourceIndex < targetIndex) {
+                            // Insert the drag source element after the target row
+                            table.tBodies[0].insertBefore(dragSrcEl, this.nextSibling);
+                        } else {
+                            // Insert the drag source element before the target row
+                            table.tBodies[0].insertBefore(dragSrcEl, this);
+                        }
+                    }
+                    // Remove the border classes from all table rows
+                    table.querySelectorAll('.border-t-2', '.border-blue-300').forEach(function(el) {
+                        el.classList.remove('border-t-2', 'border-blue-300');
+                    });
+                });
             }
-        });
-
-        function embedVideo() {
-            const videoLink = document.getElementById('videoLink').value;
-            const videoContainer = document.getElementById('videoContainer');
-
-            // Extract the video ID from the YouTube link
-            const videoId = extractVideoId(videoLink);
-
-            // Create and set the iframe element
-            const iframe = document.createElement('iframe');
-            iframe.width = '100%';
-            iframe.height = '640';
-            iframe.src = `https://www.youtube.com/embed/${videoId}`;
-            iframe.allowfullscreen = true;
-
-            // Clear previous content and append the iframe
-            videoContainer.innerHTML = '';
-            videoContainer.appendChild(iframe);
-        }
-
-        // Function to extract the video ID from a YouTube link
-        function extractVideoId(link) {
-            const videoIdMatch = link.match(/[?&]v=([^&#]+)/);
-            return videoIdMatch && videoIdMatch[1];
-        }
+        })();
     </script>
 
 @endsection

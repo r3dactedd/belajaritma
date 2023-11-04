@@ -62,7 +62,18 @@
                         </div> --}}
                         {{-- FORUM CONTENT END --}}
                         {{-- ADD COMMENTS --}}
+                        <div class="mt-4 flex items-center">
+
+
+                            <button id="open-btn" data-modal-target="popup-delete" data-modal-toggle="popup-delete"
+                                class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
+                                data-modal-target="defaultModal" data-modal-toggle="defaultModal">
+                                Hapus Diskusi
+                            </button>
+                        </div>
+
                         <hr>
+
                         <div class="flex w-full items-center justify-center bg-white">
                             <div class="w-full">
 
@@ -73,7 +84,7 @@
 
                                 <div class="my-4 flex justify-end">
                                     <button id="get-content-button"
-                                        class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Balas</button>
+                                        class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
                                 </div>
                             </div>
                         </div>
@@ -234,6 +245,9 @@
             </div>
         </div>
         </div>
+        {{-- Delete Popup Modal --}}
+        @include('modals.delete')
+        {{-- Delete Popup Modal --}}
     </body>
     <style>
         .accordion-content {

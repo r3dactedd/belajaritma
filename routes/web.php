@@ -77,6 +77,10 @@ Route::get('/courses/3/asg', function () {
     return view('contents.session_assignment');
 });
 
+Route::get('/test', function () {
+    return view('contents.test');
+});
+
 Route::get('/courses/3/asg/questions', function () {
     return view('contents.assignment_questions');
 });
@@ -108,22 +112,29 @@ Route::get('/courses/1/getcerti', function () {
 Route::get('/material/{title}/{id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
 
 //show page spesifik
-Route::get('/materialContent/{title}/{id}', [SidebarController::class, 'showByType'])->name('sidebar.showByType');
+Route::get('/materialContent/{title}/{id}', [SidebarController::class, 'showByType']);
 
 Route::get('/manager', function () {
     return view('administrator.admin_manager');
 });
 
-Route::get('/manager/course', function () {
-    return view('administrator.admin_courses.admin_course');
-});
+Route::get('/manager/course', [ManageCourseController::class, 'showCourseAdmin']);
+
+// Route::get('/manager/course', function () {
+//     return view('administrator.admin_courses.admin_course');
+// });
+
 
 Route::get('/manager/course/create', function () {
     return view('administrator.admin_courses.admin_course_create');
 });
-Route::get('/manager/course/edit', function () {
-    return view('administrator.admin_courses.admin_course_edit');
-});
+Route::post('/manager/course/create', [ManageCourseController::class, 'createCourse']);
+Route::delete('/manager/course/delete/{id}', [ManageCourseController::class, 'deleteCourse'])->name('modals.delete');
+
+Route::get('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePage']);
+Route::post('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePOST']);
+
+
 Route::get('/manager/course/session/1/edit', function () {
     return view('administrator.admin_courses.admin_course_session');
 });

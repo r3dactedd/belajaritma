@@ -73,7 +73,8 @@
                         <div class="flex">
                             <select
                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                                <option value="">Filter berdasarkan Sesi</option>
+                                <option value="">Filter Forum</option>
+
                                 <option value="for-rent">Session 1 Name</option>
                                 <option value="for-sale">Session 2 Name</option>
                                 <option value="for-rent">Session 3 Name</option>
@@ -81,13 +82,20 @@
                             </select>
 
                         </div>
-
-                        <button
+                        <div class="flex w-fit items-center rounded border border-gray-200 px-4 pl-4 dark:border-gray-700">
+                            <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox"
+                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600">
+                            <label for="bordered-checkbox-1"
+                                class="mx-4 w-full py-4 text-sm font-medium text-gray-900 dark:text-gray-300">Hanya
+                                Tampilkan Diskusi Saya</label>
+                        </div>
+                        {{-- <button
                             class="rounded-md bg-gray-100 px-4 py-3 text-sm font-semibold text-gray-800 hover:bg-gray-200">
                             Reset Filter
-                        </button>
+                        </button> --}}
 
                     </div>
+
                     <button id="open-btn"
                         class="my-4 ml-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
                         data-modal-target="defaultModal" data-modal-toggle="defaultModal">
@@ -155,22 +163,35 @@
                         </div>
                         <div class="mx-auto rounded-xl bg-white px-2 py-2">
                             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Diskusi Baru</h2>
-                            <form action="/editProfile" method="post" enctype="multipart/form-data">
+                            <form method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                     <div class="sm:col-span-2">
                                         <label for="username"
-                                            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Judul Diskusi</label>
                                         <input type="text" name="username" id="inputUsername"
-                                            class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                            placeholder="Tulis Judul untuk Pertanyaan Anda..." required="">
+                                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                            placeholder="Tulis Judul untuk Diskusi Anda " required="">
                                     </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="username"
+                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            Sesi Kursus</label>
+                                        <select
+                                            class="w-full rounded-md border-transparent bg-gray-50 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
+                                            <option value="">Pilih Sesi</option>
+                                            <option value="for-rent">Session 1 Name</option>
+                                            <option value="for-sale">Session 2 Name</option>
+                                            <option value="for-rent">Session 3 Name</option>
+                                            <option value="for-sale">Session 4 Name</option>
+                                        </select>
 
+                                    </div>
                                     {{-- Input Area --}}
                                     <div class="sm:col-span-2">
                                         <label for="username"
-                                            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Pertanyaan</label>
 
 

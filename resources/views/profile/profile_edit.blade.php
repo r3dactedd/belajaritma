@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-span-2 h-auto w-10/12 md:mx-2">
                     <div class="rounded-xl bg-white px-6 py-8 md:px-12">
-                        <form action="/editProfile" method="post" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data">
                             @csrf
                             <label for="profilePicture"
                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Gambar
@@ -109,7 +109,7 @@
                                         class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                                         placeholder="Input Nama Lengkap" required="">
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
-                                        Error Message Design
+                                        {{-- Error Message Design --}}
                                     </div>
                                 </div>
                                 <div class="sm:col-span-2">
@@ -130,10 +130,14 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
-                                <button type="submit"
+                                <button type="submit" data-modal-target="popup-save" data-modal-toggle="popup-save"
                                     class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
                                     Simpan Profil
                                 </button>
+                                <a data-modal-target="popup-save" data-modal-toggle="popup-save"
+                                    class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
+                                    Simpan Profil (popuptest)
+                                </a>
                             </div>
                         </form>
                     </div>
@@ -199,7 +203,7 @@
                 </div>
             </div>
         </div>
-
+        @include('modals.success_save')
         </div>
 
     @endsection
