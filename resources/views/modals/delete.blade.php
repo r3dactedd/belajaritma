@@ -19,14 +19,16 @@
                         d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
                 <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin menghapus?</h3>
-                <form method="POST" action="/manager/course/delete/{{$data->id}}" data-course-id="">
-                    @csrf
-                    @method('DELETE')
-                    <button data-modal-hide="popup-delete" type="submit" class="mr-2 inline-flex items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
-                        Ya, hapus
-                    </button>
-                </form>
-                <button data-modal-hide="popup-delete" type="button" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Tidak, batalkan</button>
+                <div class="text-center flex justify-center">
+                    <form method="POST" action="/manager/course/delete/{{$data->id}}" data-course-id="">
+                        @csrf
+                        @method('DELETE')
+                        <button data-modal-hide="popup-delete" type="submit" class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                            Ya, hapus
+                        </button>
+                    </form>
+                    <button data-modal-hide="popup-delete" type="button" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Tidak, batalkan</button>
+                </div>
             </div>
         </div>
     </div>
