@@ -41,8 +41,8 @@
                     <!-- Profile Card -->
                     <div class="h-full p-2 md:py-4 md:pl-8">
                         <div class="mx-auto w-full">
-                            <img class="max-h-64 w-full p-4 md:px-0" src="/storage/image/courseimg.webp"
-                                alt="course image" />
+                            <img class="max-h-64 w-full p-4 md:px-0" src="{{ asset('storage/images/' . $data->course_img) }}"
+                            alt="Course Image"  />
                         </div>
                     </div>
                 </div>
