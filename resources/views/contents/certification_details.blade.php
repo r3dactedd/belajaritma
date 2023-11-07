@@ -43,8 +43,8 @@
                     <div class="h-full p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
                             <img class="max-h-64 w-full p-4 md:px-0"
-                                src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
-                                alt="e" />
+                            src="{{ asset('storage/images/' . $data->certif_img) }}"
+                            alt="Certification Image" />
                         </div>
                     </div>
                 </div>
@@ -56,12 +56,10 @@
                     <div class="rounded-xl bg-white px-6 py-2 md:px-12">
                         <h1
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-6 md:pr-4 md:text-left lg:text-3xl">
-                            Security, Compliance, and Identity Fundamentals
+                            {{$data->certif_title}}
                         </h1>
                         <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
-                            Certi Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                            {{$data->certif_short_desc}}
                         </p>
                         <div class="grid-row-2 grid md:grid-cols-2">
                             <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
@@ -100,16 +98,7 @@
                             <div class="flex text-sm">
                                 <div class="block">
                                     <div class="px-4 py-2 font-semibold">
-                                        <p>Whether you're a student, business user, or IT professional, this certification
-                                            ensures you have a firm grasp of a range of topicsin the rapidly growing field
-                                            of cybersecurity. This fundamentals certification can serve as a stepping stone
-                                            if you're interested in advancing to role-based certifications in security
-                                            operations, identity and access management, and information
-                                            protection.<br><br>The Microsoft Certified: Security,Compliance, and Identity
-                                            Fundamentals certification could be a great fit for you if you'd like
-                                            to:<br><br>- Demonstrate your knowledge of Microsoft Security, compliance, and
-                                            identity (SCI) solutions.<br>- Highlight your understanding of how Microsoft SCI
-                                            solutions provide holistic,end-to-end cybersecurity capabilities.</p>
+                                        <p> {{$data->certif_desc}}</p>
                                     </div>
 
 
@@ -130,7 +119,7 @@
                                 <div class="grid grid-cols-1 gap-4 py-4 pl-4 pr-8 font-semibold md:grid-cols-3">
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Waktu Test</div>
-                                        <div class="text-xs text-gray-500">120 menit</div>
+                                        <div class="text-xs text-gray-500">{{$data->certif_duration}} menit</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Jumlah Pertanyaan</div>
@@ -138,7 +127,7 @@
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Biaya Sertifikasi</div>
-                                        <div class="text-xs text-gray-500">Rp 250.000,00</div>
+                                        <div class="text-xs text-gray-500">Rp {{$data->certif_cost}}</div>
                                     </div>
 
                                 </div>
@@ -150,16 +139,7 @@
                                     <span class="px-2 text-xl tracking-wide">Outline Test</span>
                                 </div>
                                 <div class="px-4 py-2 text-sm font-semibold text-gray-700">
-                                    <p>Berikut merupakan outline materi yang dalam test sertifikasi ini :
-                                        <br><br>1. HLorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed
-                                        do<br>2. HLorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed
-                                        do<br>3. HLorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed
-                                        do<br>4. HLorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed
-                                        do
+                                    <p>{{$data->certif_outline}}
                                     </p>
                                 </div>
                             </div>

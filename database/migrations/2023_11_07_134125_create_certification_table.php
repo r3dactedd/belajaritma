@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('certification', function (Blueprint $table) {
+            $table->id();
+            $table->string('certif_title');
+            $table->string('certif_short_desc');
+            $table->string('certif_desc');
+            $table->string('certif_img');
+            $table->unsignedBigInteger('certif_duration');
+            $table->unsignedBigInteger('certif_cost');
+            $table->string('certif_outline');
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by');
+            $table->timestamps();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('certification');
+    }
+};

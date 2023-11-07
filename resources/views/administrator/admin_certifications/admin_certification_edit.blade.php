@@ -15,7 +15,7 @@
 <body class="bg-gray-200 pb-12">
     <script>
         function previewImage() {
-            const imageInput = document.getElementById('imageInput');
+            const imageInput = document.getElementById('inputCertifImg');
             const imagePreview = document.getElementById('imagePreview');
 
             if (imageInput.files && imageInput.files[0]) {
@@ -44,7 +44,7 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Upload Sertifikasi Baru</span>
+                            <span class="mb-1 ml-2">Edit Sertifikasi</span>
                         </a>
 
                 </div>
@@ -73,14 +73,14 @@
                         <div class="h-full p-2 md:py-4 md:pl-8">
                             <div class="mx-auto w-full">
                                 <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
-                                    src="/storage/image/courseimg.webp" alt="Image Preview" />
+                                    src="/storage/image/placeholder.webp" alt="Image Preview" />
                             </div>
                             <div class="max-w-md">
                                 <label
                                     class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                     <span class="text-base leading-normal">Unduh Foto Baru</span>
-                                    <input type='file' id='imageInput' class="hidden" accept="image/*"
+                                    <input type='file' name="certif_img" id="inputCertifImg" class="hidden" accept="image/*"
                                         onchange="previewImage()" />
                                 </label>
                             </div>
@@ -93,44 +93,21 @@
                         <div class="rounded-xl bg-white px-6 pt-4 md:px-12">
                             <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Judul Sertifikasi</label>
-                            <input type="text" name="username" id=""
+                            <input type="text"  name="certif_title" id="inputCertifTitle"
                                 class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
-                                placeholder="Tulis Nama Sertifikasi" required=""
-                                value="Security, Compliance, and Identity Fundamentals">
+                                placeholder="Tulis Nama Sertifikasi" required="">
                             <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Deskripsi Singkat Sertifikasi</label>
-                            <textarea id="myInfo"
+                            <textarea id="myInfo" name="certif_short_desc" id="inputCertifShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                 placeholder="Input Deskripsi Singkat mengenai Sertifikasi" required="">
-                                Certi Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
                             </textarea>
 
                             <div class="grid-row-2 grid md:grid-cols-2">
-
-                                <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
-                                    <div
-                                        class="mb-3 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
-                                        <a href="#syllabus"
-                                            class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none md:w-40">
-                                            <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
-                                                height="1.1em" viewBox="0 0 576 512" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-                                            </svg>
-                                            Simpan Data
-                                        </a>
-                                    </div>
-                                </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-            <div class="my-4"></div>
-            <form id="editBottom" method="post" enctype="multipart/form-data">
-                @csrf
                 <div class="mx-auto my-auto md:-mx-2 md:flex">
                     <div class="h-auto w-full md:mx-2">
                         <div class="rounded-t-xl bg-white p-4 shadow-sm">
@@ -138,15 +115,10 @@
                                 class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
                                 Mengenai Sertifikasi</label>
                             <div class="px-4 py-2 font-semibold">
-                                <textarea id="myInfo"
+                                <textarea id="myInfo" id="inputCertifDesc" name="certif_desc"
                                     class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                     placeholder="Input Penjelasan Mengenai Sertifikasi, Sertifikasi Apa Yang Dipelajari, serta Tujuan Pembelajaran"
-                                    required="">Whether you're a student, business user, or IT professional, this certification ensures you have a firm grasp of a range of topics in the rapidly growing field of cybersecurity. This fundamentals certification can serve as a stepping stone if you're interested in advancing to role-based certifications in security operations, identity and access management, and information protection.
-
-                                    The Microsoft Certified: Security,Compliance, and Identity Fundamentals certification could be a great fit for you if you'd like to:
-
-                                    - Demonstrate your knowledge of Microsoft Security, compliance, and identity (SCI) solutions.
-                                    - Highlight your understanding of how Microsoft SCI solutions provide holistic,end-to-end cybersecurity capabilities.</textarea>
+                                    required=""></textarea>
                             </div>
                         </div>
                         <div class="rounded-b-xl bg-white p-4 shadow-sm">
@@ -159,17 +131,18 @@
                                     <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-1">
                                         <div class="rounded-lg bg-white p-4 shadow-md">
                                             <div class="text-indigo-500">Waktu Test (dalam menit)</div>
-                                            <input type="number" name="username" id=""
+                                            <input type="number" id="inputCertifDuration" name="certif_duration"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="ex: 60" required="" value="120">
+                                                placeholder="ex: 60" required="">
                                         </div>
 
                                         <div class="rounded-lg bg-white p-4 shadow-md">
                                             <div class="text-indigo-500">Biaya Sertifikasi (dalam Rupiah)</div>
-                                            <input type="text" name="username" id=""
+                                            <input type="text" id="inputCertifCost" name="certif_cost"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="ex: Rp 200.000,00" required="" value="Rp 250.000,00">
+                                                placeholder="ex: Rp 200.000,00" required="">
                                         </div>
+
                                     </div>
                                 </div>
                                 <div>
@@ -178,32 +151,20 @@
                                         Outline Test</label>
 
                                     <div class="px-4 py-2 font-semibold">
-                                        <textarea id="myInfo"
+                                        <textarea id="inputCertifOutline" name="certif_outline"
                                             class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Input outline materi yang terdapat dalam test sertifikasi" required="">Berikut merupakan outline materi yang dalam test sertifikasi ini :
-1. HLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-2. HLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-3. HLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-4. HLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </textarea>
+                                            placeholder="Input outline materi yang terdapat dalam test sertifikasi ." required=""></textarea>
                                     </div>
                                 </div>
-                                <div
-                                    class="mb-3 ml-4 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
-                                    <a href="#syllabus"
-                                        class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none md:w-40">
-                                        <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
-                                            height="1.1em" viewBox="0 0 576 512" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-                                        </svg>
-                                        Simpan Data
-                                    </a>
-                                </div>
+                                <button type="submit"
+                                    class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Edit Sertifikasi
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
+            <div class="my-4"></div>
 
             <div id="syllabus"class="my-4"></div>
             <div class="relative overflow-x-auto">

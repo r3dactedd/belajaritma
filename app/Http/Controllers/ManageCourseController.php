@@ -69,7 +69,7 @@ class ManageCourseController extends Controller
         $data=Course::find($id);
         return view('administrator.admin_courses.admin_course_edit', ['data' => $data]);
     }
-    public function editCoursePOST(Request $request){
+    public function editCoursePOST(Request $request, $id){
         $validateCourse=$request->validate([
             'course_name' => 'required|string',
             'short_desc' => 'required|string',
@@ -109,7 +109,7 @@ class ManageCourseController extends Controller
             'updated_by' => Auth()->user()->id,
         ];
 
-        Course::where('id', Auth::user()->id)->update($changeProfile);
+        Course::where('id', $id)->update($changeProfile);
         return redirect('/manager/course')->with('success', 'Course edit successfull!');
     }
     public function deleteCourse($id){
