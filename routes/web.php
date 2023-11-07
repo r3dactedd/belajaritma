@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ManageCertificationController;
 use App\Http\Controllers\ManageCourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -97,13 +99,12 @@ Route::post('/editProfile/password',[ProfileController::class, 'changePassword']
 //     return view('profile.profile_edit');
 // });
 
-Route::get('/certifications', function () {
-    return view('contents.certifications');
-});
+Route::get('/certifications', [CertificationController::class, 'showCertificationList']);
+Route::get('/certifications/{id}', [CertificationController::class, 'certifDetail']);
 
-Route::get('/certifications/1', function () {
-    return view('contents.certification_details');
-});
+// Route::get('/certifications/1', function () {
+//     return view('contents.certification_details');
+// });
 
 Route::get('/courses/1/getcerti', function () {
     return view('contents.e-certi');
@@ -139,10 +140,18 @@ Route::get('/manager/course/session/1/edit', function () {
     return view('administrator.admin_courses.admin_course_session');
 });
 
-Route::get('/manager/certification', function () {
-    return view('administrator.admin_certifications.admin_certification');
+Route::get('/manager/certification',[ManageCertificationController::class, 'showCertificationData']);
+
+Route::get('/manager/certification/create', function () {
+    return view('administrator.admin_certifications.admin_certification_create');
 });
+Route::post('/manager/certification/create', [ManageCertificationController::class, 'createCertification']);
+Route::get('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPage']);
+Route::post('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPOST']);
+
+
 Route::get('/manager/forum', [ForumController::class, 'manageForumList']);
+
 
 Route::get('/transaction', function () {
     return view('transactions.transaction');
