@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SidebarSeeder::class);
         $this->call(ForumSeeder::class);
         $this->call(ModuleContentSeeder::class);
+        $this->call(CertificationSeeder::class);
     }
 }

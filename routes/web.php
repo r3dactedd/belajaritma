@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ManageCertificationController;
 use App\Http\Controllers\ManageCourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -77,6 +79,10 @@ Route::get('/courses/3/asg', function () {
     return view('contents.session_assignment');
 });
 
+Route::get('/test', function () {
+    return view('contents.test');
+});
+
 Route::get('/courses/3/asg/questions', function () {
     return view('contents.assignment_questions');
 });
@@ -93,13 +99,12 @@ Route::post('/editProfile/password',[ProfileController::class, 'changePassword']
 //     return view('profile.profile_edit');
 // });
 
-Route::get('/certifications', function () {
-    return view('contents.certifications');
-});
+Route::get('/certifications', [CertificationController::class, 'showCertificationList']);
+Route::get('/certifications/{id}', [CertificationController::class, 'certifDetail']);
 
-Route::get('/certifications/1', function () {
-    return view('contents.certification_details');
-});
+// Route::get('/certifications/1', function () {
+//     return view('contents.certification_details');
+// });
 
 Route::get('/courses/1/getcerti', function () {
     return view('contents.e-certi');
@@ -108,30 +113,45 @@ Route::get('/courses/1/getcerti', function () {
 Route::get('/material/{title}/{id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
 
 //show page spesifik
-Route::get('/materialContent/{title}/{id}', [SidebarController::class, 'showByType'])->name('sidebar.showByType');
+Route::get('/materialContent/{title}/{id}', [SidebarController::class, 'showByType']);
 
 Route::get('/manager', function () {
     return view('administrator.admin_manager');
 });
 
-Route::get('/manager/course', function () {
-    return view('administrator.admin_courses.admin_course');
-});
+Route::get('/manager/course', [ManageCourseController::class, 'showCourseAdmin']);
+
+// Route::get('/manager/course', function () {
+//     return view('administrator.admin_courses.admin_course');
+// });
+
 
 Route::get('/manager/course/create', function () {
     return view('administrator.admin_courses.admin_course_create');
 });
-Route::get('/manager/course/edit', function () {
-    return view('administrator.admin_courses.admin_course_edit');
-});
+Route::post('/manager/course/create', [ManageCourseController::class, 'createCourse']);
+Route::delete('/manager/course/delete/{id}', [ManageCourseController::class, 'deleteCourse'])->name('modals.delete');
+
+Route::get('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePage']);
+Route::post('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePOST']);
+
+
 Route::get('/manager/course/session/1/edit', function () {
     return view('administrator.admin_courses.admin_course_session');
 });
 
-Route::get('/manager/certification', function () {
-    return view('administrator.admin_certifications.admin_certification');
+Route::get('/manager/certification',[ManageCertificationController::class, 'showCertificationData']);
+
+Route::get('/manager/certification/create', function () {
+    return view('administrator.admin_certifications.admin_certification_create');
 });
+Route::post('/manager/certification/create', [ManageCertificationController::class, 'createCertification']);
+Route::get('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPage']);
+Route::post('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPOST']);
+
+
 Route::get('/manager/forum', [ForumController::class, 'manageForumList']);
+
 
 Route::get('/transaction', function () {
     return view('transactions.transaction');

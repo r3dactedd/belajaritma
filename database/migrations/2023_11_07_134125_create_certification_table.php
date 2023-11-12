@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('certification', function (Blueprint $table) {
             $table->id();
-            $table->string('course_name');
-            $table->string('short_desc');
-            $table->string('course_desc');
-            $table->string('level');
-            $table->string('course_img');
-            $table->string('screen_resolution');
-            $table->string('minimum_ram');
-            $table->string('processor');
-            $table->string('operating_system');
-            $table->string('other_programs');
-            $table->integer('total_module');
+            $table->string('certif_title');
+            $table->string('certif_short_desc');
+            $table->string('certif_desc');
+            $table->string('certif_img');
+            $table->unsignedBigInteger('certif_duration');
+            $table->unsignedBigInteger('certif_cost');
+            $table->string('certif_outline');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
             $table->timestamps();
@@ -37,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('certification');
     }
 };

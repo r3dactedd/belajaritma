@@ -36,7 +36,8 @@
         </div>
         <div class="container mx-auto my-4 pb-4">
             {{-- Search Bar --}}
-            <form class="px-4 lg:px-0">
+            <form action="/certifications" method="get" class="px-4 lg:px-0">
+                @csrf
                 <label for="default-search"
                     class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
                 <div class="relative">
@@ -47,17 +48,18 @@
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" id="default-search"
+                    <input type="search" name="searchKeyword" id="inputKeyword"
                         class="mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                        placeholder="Cari Kursus Yang Ingin Dipelajari" required>
-
+                        placeholder="Cari Nama Sertifikasi" required>
+                    <button type="submit"
+                        class="absolute bottom-2.5 right-2.5 rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
             </form>
 
 
             <div class="container mx-auto my-12 grid w-11/12 grid-cols-1 gap-8 pb-12">
-                {{-- Certi Component --}}
-                <a href="/courses/1">
+                @foreach ($data as $data)
+                <a href="/certifications/{{$data->id}}">
                     <div
                         class="min-h-max cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                         <div class="lg:w-3/2 w-full">
@@ -69,8 +71,8 @@
                                         <div class="h-full bg-white py-2 md:ml-4">
                                             <div class="mx-auto h-full w-full">
                                                 <img class="max-h-36 w-full md:h-full lg:max-h-64"
-                                                    src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
-                                                    alt="e" />
+                                                src="{{ asset('storage/images/' . $data->certif_img) }}"
+                                                alt="Certification Image"/>
                                             </div>
                                         </div>
                                     </div>
@@ -82,19 +84,14 @@
                                                 class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
                                                 <h2
                                                     class="text-xl font-bold tracking-normal text-gray-800 md:my-4 lg:text-2xl">
-                                                    Certification Name
+                                                    {{$data->certif_title}}
                                                 </h2>
                                             </div>
                                             <h2 class="mb-4 text-lg font-bold tracking-normal text-gray-800">
-                                                Rp 250.000,00
+                                                Rp {{$data->certif_cost}}
                                             </h2>
                                             <p class="text-md mb-2 font-normal tracking-normal text-gray-600 md:w-3/4">
-                                                Certi Desc max 300 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                sed
-                                                do
-                                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                veniam,
-                                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
+                                                {{$data->certif_desc}}
                                             </p>
                                             <div
                                                 class="my-6 grid grid-cols-2 items-start md:flex md:flex-col lg:flex-row lg:items-center">
@@ -107,8 +104,7 @@
                                                     </svg>
                                                     <p
                                                         class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">
-                                                        120
-                                                        Menit
+                                                        {{$data->certif_duration}} Menit
                                                     </p>
                                                 </div>
                                                 <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
@@ -119,8 +115,7 @@
                                                     </svg>
                                                     <p
                                                         class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">
-                                                        120
-                                                        Siswa
+                                                        50 Pertanyaan
                                                     </p>
                                                 </div>
                                             </div>
@@ -131,7 +126,9 @@
                         </div>
                     </div>
                 </a>
-                {{-- Certi Component --}}
+                @endforeach()
+
+
             </div>
         </div>
 

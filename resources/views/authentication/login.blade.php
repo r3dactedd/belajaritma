@@ -19,7 +19,7 @@
 
 
                     <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Masuk</h1>
-                    <h1 class="my-4 text-center text-lg font-light">Selamat datang kembali di Belajaritma!</h1>
+                    <h1 class="my-4 text-center text-lg font-light">Selamat datang di Belajaritma!</h1>
                     @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}
@@ -83,6 +83,9 @@
                                     <p class="mt-6 text-sm">
                                         Tidak memiliki akun?
                                         <a class="text-indigo-400 underline" href="/signup"> Daftar</a>
+                                    </p>
+                                    <p class="mt-6 text-sm">
+                                        <a class="text-indigo-400 underline" href="/">Masuk sebagai Tamu</a>
                                     </p>
                                     <p class="mt-6 text-sm">
                                         <a class="text-indigo-400 underline" href="/forgot"> Lupa Password?</a>
