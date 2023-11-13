@@ -60,7 +60,7 @@
                             Ubah Informasi Profil
                         </h1>
                         <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
-                            Anda dapat mengubah informasi akun anda serta alamat email disini.
+                            Anda dapat mengubah informasi akun anda disini.
                         </p>
                     </div>
                 </div>
@@ -113,14 +113,7 @@
                                     </div>
                                 </div>
                                 <div class="sm:col-span-2">
-                                    <label for="email"
-                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Email</label>
-                                    <input type="text" name="email" id="inputEmail" value={{$searchUser->email}}
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                        placeholder="Email" required="">
-                                </div>
-                                <div class="sm:col-span-2">
-                                    <label for="email"
+                                    <label for="aboutMe"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Tentang
                                         Saya</label>
                                     <textarea name="about_me" id="inputAboutMe"
@@ -155,7 +148,7 @@
                             Ubah Password Akun
                         </h1>
                         <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
-                            Anda dapat mengubah informasi akun anda serta alamat email disini.
+                            Anda dapat mengubah password akun anda disini.
                         </p>
                     </div>
                 </div>
