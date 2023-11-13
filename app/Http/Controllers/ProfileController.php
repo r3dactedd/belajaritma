@@ -68,12 +68,8 @@ class ProfileController extends Controller
             'profile_img' => 'image|file',
             'full_name' => 'required|string|max:255',
             'username' => 'required|max:25',
-            'email' => 'required|email:dns',
             'about_me' => 'required|max:150',
         ]);
-
-        $full_name = $request->input('full_name');
-        $nameParts = preg_split('/\s+/', $full_name);
 
         // Initialize $changeProfile as an empty array
         $changeProfile = [];
@@ -92,9 +88,6 @@ class ProfileController extends Controller
         $changeProfile += [
             'username' => $validateProfile['username'],
             'full_name' => $validateProfile['full_name'],
-            'first_name' => $nameParts[0],
-            'last_name' => end($nameParts),
-            'email' => $validateProfile['email'],
             'about_me' => $validateProfile['about_me'],
         ];
 
