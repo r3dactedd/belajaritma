@@ -92,8 +92,6 @@ class ProfileController extends Controller
         $changeProfile += [
             'username' => $validateProfile['username'],
             'full_name' => $validateProfile['full_name'],
-            'first_name' => $nameParts[0],
-            'last_name' => end($nameParts),
             'email' => $validateProfile['email'],
             'about_me' => $validateProfile['about_me'],
         ];

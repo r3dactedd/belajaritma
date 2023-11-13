@@ -25,15 +25,15 @@
                         <form action="/signup" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-floating mb-3">
-                                <label for="first_name" class="font-semibold">Nama Lengkap</label>
-                                <label for="first_name" class="text-sm leading-tight"> (3-60 Karakter)</label>
+                                <label for="full_name" class="font-semibold">Nama Lengkap</label>
+                                <label for="full_name" class="text-sm leading-tight"> (3-60 Karakter)</label>
                                 <input type="text" name="full_name"
                                     class="form-control mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
-                                    id="first_name" style=" border-radius:10px;" placeholder="Input nama lengkap anda"
-                                    required value="{{ old('first_name') }}" autofocus>
+                                    id="full_name" style=" border-radius:10px;" placeholder="Input nama lengkap anda"
+                                    required value="{{ old('full_name') }}" autofocus>
 
-                                {{-- @error('first_name') is-invalid @enderror
-                                    @error('first_name')
+                                {{-- @error('full_name') is-invalid @enderror
+                                    @error('full_name')
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
                                         {{ $message }}
                                     </div>
@@ -43,7 +43,7 @@
 
                             <div class="form-floating mb-3">
                                 <label for="username" class="font-semibold">Username</label>
-                                <label for="first_name" class="text-sm leading-tight"> (3-30 Karakter)</label>
+                                <label for="full_name" class="text-sm leading-tight"> (3-30 Karakter)</label>
                                 <input type="text" name="username"
                                     class="form-control @error('last_name') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
                                     id="username" style=" border-radius:10px;"
@@ -59,7 +59,7 @@
 
                             <div class="form-floating mb-3">
                                 <label for="email" class="font-semibold">Email</label>
-                                <label for="first_name" class="text-sm leading-tight"> (Input
+                                <label for="full_name" class="text-sm leading-tight"> (Input
                                     email yang valid)</label>
                                 <input type="email" name="email"
                                     class="form-control @error('email') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
@@ -75,7 +75,7 @@
 
                             <div class="form-floating mb-3">
                                 <label for="password" class="font-semibold">Password</label>
-                                <label for="first_name" class="text-sm leading-tight"> (6-30
+                                <label for="full_name" class="text-sm leading-tight"> (6-30
                                     Karakter)</label>
                                 <input type="password" name="password"
                                     class="form-control @error('password') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
@@ -91,7 +91,7 @@
 
                             <div class="form-floating mb-3">
                                 <label for="password_confirmation" class="font-semibold">Konfirmasi Password</label>
-                                <label for="first_name" class="text-sm leading-tight"> (Harus sama dengan
+                                <label for="full_name" class="text-sm leading-tight"> (Harus sama dengan
                                     password)</label>
                                 <input type="password" name="password_confirmation"
                                     class="form-control @error('password') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"

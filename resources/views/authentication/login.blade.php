@@ -40,8 +40,6 @@
                     <main class="form-signin mt-5 w-fit px-5 sm:px-6">
                         <form method="post" action="/login">
                             @csrf
-
-
                             <div class="form-floating mb-3">
                                 <label for="email" class="font-semibold">Email</label>
 

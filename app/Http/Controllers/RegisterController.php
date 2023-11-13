@@ -17,8 +17,7 @@ class RegisterController extends Controller
 {
     public function register(Request $request){
         $rules = [
-            'first_name' => 'required|string|min:5|max:25',
-            'last_name' => 'required|string|min:5|max:25',
+            'full_name' => 'required|string|min:5|max:25',
             'username' => 'required|string|min:5|max:25',
             'email' => 'required|string',
             'password' => 'required|string|min:5|max:20',
@@ -35,8 +34,6 @@ class RegisterController extends Controller
         $request->profile_img->storeAs('storage/images', $imageName);
 
         $user = new User();
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
