@@ -74,7 +74,7 @@
                             <div class="mb-2 w-full md:w-3/12">
                                 <div class="h-fit w-auto">
                                     <img id="profile-preview" class="h-32 w-32 rounded-full object-cover"
-                                    src="{{ Auth::user()->profile_img ? '/storage/images/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}">
+                                        src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : '/profile_img/placeholder.webp' }}">
                                 </div>
                             </div>
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
@@ -83,7 +83,8 @@
                                         class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                         <span class="text-base leading-normal">Upload Foto Baru</span>
-                                        <input type='file' name="profile_img" id="inputPicture" class="hidden" accept="image/*" value={{ Auth::user()->profile_img }}
+                                        <input type='file' name="profile_img" id="inputPicture" class="hidden"
+                                            accept="image/*" value={{ Auth::user()->profile_img }}
                                             onchange="previewImage()" />
                                     </label>
                                 </div>
@@ -92,8 +93,8 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                         Username </label>
                                     <input type="text" name="username" id="inputUsername"
-                                        value={{$searchUser->username}}
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        value="{{ $searchUser->username }}"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Input Username" required="">
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
                                         Error Message Design
@@ -105,8 +106,8 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Nama
                                         Lengkap </label>
                                     <input type="text" name="full_name" id="inputFullName"
-                                        value={{$searchUser->full_name}}
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        value="{{ $searchUser->full_name }}"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Input Nama Lengkap" required="">
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
                                         {{-- Error Message Design --}}
@@ -115,8 +116,8 @@
                                 <div class="sm:col-span-2">
                                     <label for="email"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Email</label>
-                                    <input type="text" name="email" id="inputEmail" value={{$searchUser->email}}
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                    <input type="text" name="email" id="inputEmail" value="{{ $searchUser->email }}"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Email" required="">
                                 </div>
                                 <div class="sm:col-span-2">
@@ -124,8 +125,9 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Tentang
                                         Saya</label>
                                     <textarea name="about_me" id="inputAboutMe"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                        placeholder="Silahkan isi informasi mengenai anda."  required=""> {{$searchUser->about_me}}
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                        placeholder="Silahkan isi informasi mengenai anda." required=""> {{ $searchUser->about_me }}
+
                                     </textarea>
                                 </div>
                             </div>
@@ -169,7 +171,7 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Password
                                         Lama</label>
                                     <input type="password" name="old_password" id="inputOldPass"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Password Lama" required="">
                                 </div>
                                 <div class="sm:col-span-2">
@@ -177,7 +179,7 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Password
                                         Baru</label>
                                     <input type="password" name="new_password" id="inputNewPass"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Password Baru" required="">
                                 </div>
                                 <div class="sm:col-span-2">
@@ -186,7 +188,7 @@
                                         Password
                                         Baru</label>
                                     <input type="password" name="confirm_password" id="inputConfirmPass"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Lagi Password Baru" required="">
                                 </div>
 
