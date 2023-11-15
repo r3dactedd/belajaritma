@@ -73,9 +73,6 @@ class ProfileController extends Controller
             'about_me' => 'max:150',
         ]);
 
-        $full_name = $request->input('full_name');
-        $nameParts = preg_split('/\s+/', $full_name);
-
         // Initialize $changeProfile as an empty array
         $changeProfile = [];
 
@@ -93,9 +90,6 @@ class ProfileController extends Controller
         $changeProfile += [
             'username' => $validateProfile['username'],
             'full_name' => $validateProfile['full_name'],
-            'first_name' => $nameParts[0],
-            'last_name' => end($nameParts),
-            'email' => $validateProfile['email'],
             'about_me' => $validateProfile['about_me'],
         ];
 
