@@ -60,12 +60,30 @@
                             Ubah Informasi Profil
                         </h1>
                         <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
-                            Anda dapat mengubah informasi akun anda serta alamat email disini.
+                            Anda dapat mengubah informasi akun anda disini.
                         </p>
                     </div>
                 </div>
                 <div class="col-span-2 h-auto w-10/12 md:mx-2">
                     <div class="rounded-xl bg-white px-6 py-8 md:px-12">
+                        @if (session('success'))
+                            <div id="toast-default"
+                                class="flex w-full items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400"
+                                role="alert">
+                                <div class="mr-8 ms-3 text-sm font-semibold text-indigo-400">Registrasi Akun Anda Berhasil.
+                                </div>
+                                <button type="button"
+                                    class="-mx-1.5 -my-1.5 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    data-dismiss-target="#toast-default" aria-label="Close">
+                                    <span class="sr-only">Close</span>
+                                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                </button>
+                            </div>
+                        @endif
                         <form method="post" enctype="multipart/form-data">
                             @csrf
                             <label for="profilePicture"
@@ -91,14 +109,17 @@
                                 <div class="sm:col-span-2">
                                     <label for="username"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                        Username </label>
-                                    <input type="text" name="username" id="inputUsername"
-                                        value="{{ $searchUser->username }}"
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="Input Username" required="">
-                                    <div class="invalid-feedback my-1 text-sm text-red-500">
-                                        Error Message Design
-                                    </div>
+                                        Username (3-50 Karakter)</label>
+                                    <label for="username"
+                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                        </ </label>
+                                        <input type="text" name="username" id="inputUsername"
+                                            value="{{ $searchUser->username }}"
+                                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                            placeholder="Input Username" required="">
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            Error Message Design
+                                        </div>
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -113,13 +134,7 @@
                                         {{-- Error Message Design --}}
                                     </div>
                                 </div>
-                                <div class="sm:col-span-2">
-                                    <label for="email"
-                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Email</label>
-                                    <input type="text" name="email" id="inputEmail" value="{{ $searchUser->email }}"
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="Email" required="">
-                                </div>
+
                                 <div class="sm:col-span-2">
                                     <label for="email"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Tentang
@@ -132,14 +147,11 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
-                                <button type="submit" data-modal-target="popup-save" data-modal-toggle="popup-save"
+                                <button type="submit"
                                     class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
                                     Simpan Profil
                                 </button>
-                                <a data-modal-target="popup-save" data-modal-toggle="popup-save"
-                                    class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
-                                    Simpan Profil (popuptest)
-                                </a>
+
                             </div>
                         </form>
                     </div>
@@ -157,7 +169,7 @@
                             Ubah Password Akun
                         </h1>
                         <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
-                            Anda dapat mengubah informasi akun anda serta alamat email disini.
+                            Anda dapat mengubah password akun anda disini.
                         </p>
                     </div>
                 </div>
