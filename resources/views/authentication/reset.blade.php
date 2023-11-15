@@ -25,7 +25,7 @@
                                 @csrf
                                 <div class="form-floating mb-3">
                                     <label for="password" class="font-semibold">Password Baru</label>
-                                    <label for="first_name" class="text-sm leading-tight"> (6-30
+                                    <label for="password" class="text-sm leading-tight"> (6-30
                                         Karakter)</label>
                                     <input type="password" name="password"
                                         class="form-control @error('password') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
@@ -41,7 +41,7 @@
 
                                 <div class="form-floating mb-3">
                                     <label for="password_confirmation" class="font-semibold">Konfirmasi Password</label>
-                                    <label for="first_name" class="text-sm leading-tight"> (Harus sama dengan
+                                    <label for="password_confirmation" class="text-sm leading-tight"> (Harus sama dengan
                                         password)</label>
                                     <input type="password" name="password_confirmation"
                                         class="form-control @error('password') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"
