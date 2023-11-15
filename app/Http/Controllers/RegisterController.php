@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\User;
@@ -15,42 +14,34 @@ use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $rules = [
-            'first_name' => 'required|string|min:5|max:25',
-            'last_name' => 'required|string|min:5|max:25',
-            'username' => 'required|string|min:5|max:25',
+            'full_name' => 'required|string|min:3|max:50',
+            'username' => 'required|string|min:3|max:20',
             'email' => 'required|string',
-            'password' => 'required|string|min:5|max:20',
+            'password' => 'required|string|min:6|max:30',
             'password_confirmation' => 'same:password',
-            'profile_img' => 'image|file'
+            'profile_img' => 'image|file',
         ];
 
         $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()){
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
 
-        $imageName = $request->profile_img->getClientOriginalName();
-        $request->profile_img->storeAs('storage/images', $imageName);
+        // $request->profile_img->storeAs('public/profile_img/placeholder.webp');
 
         $user = new User();
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
+        $user->full_name = $request->full_name;
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role_id = 2;
-
-        $filename = Str::orderedUuid() . "." . $request->profile_img->getClientOriginalExtension();
-
-        $user->profile_img = $filename;
-
-        Storage::putFileAs('public/images/', $request->profile_img, $filename);
-
+        //give default placeholder instead
+        $user->profile_img = 'placeholder.webp';
+        $user->about_me = ' ';
         $user->save();
-
-
         return redirect('/login')->with('success', 'Registration successfull! Please login');
-        }
+    }
 }

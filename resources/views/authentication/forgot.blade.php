@@ -27,7 +27,7 @@
                                 @csrf
                                 <div class="form-floating mb-3">
                                     <label for="email" class="font-semibold">Email</label>
-                                    <label for="first_name" class="text-sm leading-tight"> (Input
+                                    <label for="email" class="text-sm leading-tight"> (Input
                                         email yang valid)</label>
                                     <input type="email" name="email"
                                         class="form-control @error('email') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"

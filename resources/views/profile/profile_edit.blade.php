@@ -66,6 +66,24 @@
                 </div>
                 <div class="col-span-2 h-auto w-10/12 md:mx-2">
                     <div class="rounded-xl bg-white px-6 py-8 md:px-12">
+                        @if (session('success'))
+                            <div id="toast-default"
+                                class="flex w-full items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400"
+                                role="alert">
+                                <div class="mr-8 ms-3 text-sm font-semibold text-indigo-400">Registrasi Akun Anda Berhasil.
+                                </div>
+                                <button type="button"
+                                    class="-mx-1.5 -my-1.5 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    data-dismiss-target="#toast-default" aria-label="Close">
+                                    <span class="sr-only">Close</span>
+                                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                </button>
+                            </div>
+                        @endif
                         <form method="post" enctype="multipart/form-data">
                             @csrf
                             <label for="profilePicture"
@@ -74,7 +92,7 @@
                             <div class="mb-2 w-full md:w-3/12">
                                 <div class="h-fit w-auto">
                                     <img id="profile-preview" class="h-32 w-32 rounded-full object-cover"
-                                    src="{{ Auth::user()->profile_img ? '/storage/images/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}">
+                                        src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : '/profile_img/placeholder.webp' }}">
                                 </div>
                             </div>
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
@@ -83,21 +101,25 @@
                                         class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                         <span class="text-base leading-normal">Upload Foto Baru</span>
-                                        <input type='file' name="profile_img" id="inputPicture" class="hidden" accept="image/*" value={{ Auth::user()->profile_img }}
+                                        <input type='file' name="profile_img" id="inputPicture" class="hidden"
+                                            accept="image/*" value={{ Auth::user()->profile_img }}
                                             onchange="previewImage()" />
                                     </label>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="username"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                        Username </label>
-                                    <input type="text" name="username" id="inputUsername"
-                                        value={{$searchUser->username}}
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                        placeholder="Input Username" required="">
-                                    <div class="invalid-feedback my-1 text-sm text-red-500">
-                                        Error Message Design
-                                    </div>
+                                        Username (3-50 Karakter)</label>
+                                    <label for="username"
+                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                        </ </label>
+                                        <input type="text" name="username" id="inputUsername"
+                                            value="{{ $searchUser->username }}"
+                                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                            placeholder="Input Username" required="">
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            Error Message Design
+                                        </div>
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -105,8 +127,8 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Nama
                                         Lengkap </label>
                                     <input type="text" name="full_name" id="inputFullName"
-                                        value={{$searchUser->full_name}}
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        value="{{ $searchUser->full_name }}"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Input Nama Lengkap" required="">
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
                                         {{-- Error Message Design --}}
@@ -117,20 +139,18 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Tentang
                                         Saya</label>
                                     <textarea name="about_me" id="inputAboutMe"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                                        placeholder="Silahkan isi informasi mengenai anda."  required=""> {{$searchUser->about_me}}
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                        placeholder="Silahkan isi informasi mengenai anda." required=""> {{ $searchUser->about_me }}
+
                                     </textarea>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
-                                <button type="submit" data-modal-target="popup-save" data-modal-toggle="popup-save"
+                                <button type="submit"
                                     class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
                                     Simpan Profil
                                 </button>
-                                <a data-modal-target="popup-save" data-modal-toggle="popup-save"
-                                    class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
-                                    Simpan Profil (popuptest)
-                                </a>
+
                             </div>
                         </form>
                     </div>
@@ -162,7 +182,7 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Password
                                         Lama</label>
                                     <input type="password" name="old_password" id="inputOldPass"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Password Lama" required="">
                                 </div>
                                 <div class="sm:col-span-2">
@@ -170,7 +190,7 @@
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Password
                                         Baru</label>
                                     <input type="password" name="new_password" id="inputNewPass"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Password Baru" required="">
                                 </div>
                                 <div class="sm:col-span-2">
@@ -179,7 +199,7 @@
                                         Password
                                         Baru</label>
                                     <input type="password" name="confirm_password" id="inputConfirmPass"
-                                        class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Lagi Password Baru" required="">
                                 </div>
 
