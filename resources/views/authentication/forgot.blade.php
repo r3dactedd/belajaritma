@@ -23,7 +23,8 @@
 
                             <h1 class="mb-8 text-center text-lg font-light">Lupa Password? Isi Email akun anda terlebih
                                 dahulu.</h1>
-                            <form method="post" action="/login">
+
+                            <form action="{{ route('forgetPost') }}" method="POST">
                                 @csrf
                                 <div class="form-floating mb-3">
                                     <label for="email" class="font-semibold">Email</label>
@@ -89,7 +90,7 @@
             </div>
         </div>
     </section>
-    <script>
+    {{-- <script>
         function resend() {
             const input = document.getElementById('inputEmail');
             const resend = document.getElementById('resendEmail');
@@ -98,7 +99,7 @@
             resend.classList.remove('hidden')
 
         }
-    </script>
+    </script> --}}
 </body>
 
 </html>
