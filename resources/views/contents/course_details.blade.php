@@ -41,8 +41,8 @@
                     <!-- Profile Card -->
                     <div class="h-full p-2 md:py-4 md:pl-8">
                         <div class="mx-auto w-full">
-                            <img class="max-h-64 w-full p-4 md:px-0" src="{{ asset('storage/images/' . $data->course_img) }}"
-                            alt="Course Image"  />
+                            <img class="max-h-64 w-full p-4 md:px-0"
+                                src="{{ asset('storage/images/' . $data->course_img) }}" alt="Course Image" />
                         </div>
                     </div>
                 </div>
@@ -51,10 +51,10 @@
                     <div class="rounded-xl bg-white px-6 py-2 md:px-12">
                         <h1
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-6 md:pr-4 md:text-left lg:text-3xl">
-                            {{$data->course_name}}
+                            {{ $data->course_name }}
                         </h1>
                         <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
-                            {{$data->short_desc}}
+                            {{ $data->short_desc }}
                         </p>
                         <div class="grid-row-2 grid md:grid-cols-2">
                             <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
@@ -64,7 +64,7 @@
                                         <path
                                             d="M353.8 54.1L330.2 6.3c-3.9-8.3-16.1-8.6-20.4 0L286.2 54.1l-52.3 7.5c-9.3 1.4-13.3 12.9-6.4 19.8l38 37-9 52.1c-1.4 9.3 8.2 16.5 16.8 12.2l46.9-24.8 46.6 24.4c8.6 4.3 18.3-2.9 16.8-12.2l-9-52.1 38-36.6c6.8-6.8 2.9-18.3-6.4-19.8l-52.3-7.5zM256 256c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H384c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H256zM32 320c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H160c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32H32zm416 96v64c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32V416c0-17.7-14.3-32-32-32H480c-17.7 0-32 14.3-32 32z" />
                                     </svg>
-                                    <span class="p-2 text-base font-semibold text-gray-600">Dasar</span>
+                                    <span class="p-2 text-base font-semibold text-gray-600">{{ $data->level }}</span>
                                 </div>
 
                                 <div
@@ -89,8 +89,9 @@
                                         Lihat Materi
                                     </a>
                                 </div>
-                                <div class="mb-3 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
-                                    <a href="/material/{{$data->course_name}}/{{$data->id}}"
+                                <div
+                                    class="mb-3 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
+                                    <a href="/courses/material/{{ $data->course_name }}/{{ $data->id }}"
                                         class="inline-flex items-center rounded-md bg-green-400 px-4 py-2 align-middle text-sm font-semibold text-white hover:bg-indigo-600 md:w-36">
                                         <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
                                             height="1.1em" viewBox="0 0 512 512">
@@ -116,7 +117,7 @@
                         <div class="text-gray-700">
                             <div class="flex text-sm">
                                 <div class="block">
-                                    <div class="px-4 py-2 font-semibold">{{$data->course_desc}}
+                                    <div class="px-4 py-2 font-semibold">{{ $data->course_desc }}
                                     </div>
                                 </div>
                             </div>
@@ -133,19 +134,19 @@
                                 <div class="grid grid-cols-1 gap-4 py-4 pl-4 pr-8 font-semibold md:grid-cols-2">
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Resolusi Layar</div>
-                                        <div class="text-xs text-gray-500">{{$data->screen_resolution}}</div>
+                                        <div class="text-xs text-gray-500">{{ $data->screen_resolution }}</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Minimum RAM</div>
-                                        <div class="text-xs text-gray-500">{{$data->minimum_ram}}</div>
+                                        <div class="text-xs text-gray-500">{{ $data->minimum_ram }}</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Processor</div>
-                                        <div class="text-xs text-gray-500">{{$data->processor}}</div>
+                                        <div class="text-xs text-gray-500">{{ $data->processor }}</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Operating System</div>
-                                        <div class="text-xs text-gray-500">{{$data->operating_system}}</div>
+                                        <div class="text-xs text-gray-500">{{ $data->operating_system }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -157,7 +158,7 @@
                                 </div>
                                 <div class="flex text-sm md:w-3/4">
                                     <div class="block">
-                                        <div class="px-4 py-2 font-semibold">{{$data->other_programs}}
+                                        <div class="px-4 py-2 font-semibold">{{ $data->other_programs }}
                                         </div>
                                     </div>
                                 </div>
@@ -170,74 +171,74 @@
             <div class="my-4"></div>
 
             {{-- MATERI LIST START --}}
-        @php
-            $index = 1;
-        @endphp
+            @php
+                $index = 1;
+            @endphp
 
-        @foreach ($material as $materialItem)
-            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+            @foreach ($material as $materialItem)
+                <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
 
-                <div class="w-full px-4">
-                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                        <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
-                            <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-indigo-600">
-                                Sesi {{$index}}
-                            </h4>
-                        </div>
-
-                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            {{$materialItem->title}}
-                        </h2>
-                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                            {{$materialItem->description}}
-                        </p>
-                        <div
-                            class="grid grid-cols-2 items-start pb-6 pr-4 md:flex md:flex-col lg:flex-row lg:items-center">
-                            <div class="flex items-center">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                                    <path
-                                        d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
-                                </svg>
-                                <p class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">10 Menit
-                                </p>
+                    <div class="w-full px-4">
+                        <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                            <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
+                                <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-indigo-600">
+                                    Sesi {{ $index }}
+                                </h4>
                             </div>
-                            <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
-                                @if ($materialItem->materialContentToMasterType->master_type_name == "PDF")
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
-                                        <path
-                                            d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
-                                    </svg>
-                                @endif
-                                @if ($materialItem->materialContentToMasterType->master_type_name == "Video")
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                                        <path
-                                            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
-                                    </svg>
-                                @endif
 
-                                @if ($materialItem->materialContentToMasterType->master_type_name == "Assignment")
+                            <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                                {{ $materialItem->title }}
+                            </h2>
+                            <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                                {{ $materialItem->description }}
+                            </p>
+                            <div
+                                class="grid grid-cols-2 items-start pb-6 pr-4 md:flex md:flex-col lg:flex-row lg:items-center">
+                                <div class="flex items-center">
+
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                         <path
-                                            d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                                            d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
                                     </svg>
-                                @endif
+                                    <p class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">10 Menit
+                                    </p>
+                                </div>
+                                <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
+                                    @if ($materialItem->materialContentToMasterType->master_type_name == 'PDF')
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                                            <path
+                                                d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
+                                        </svg>
+                                    @endif
+                                    @if ($materialItem->materialContentToMasterType->master_type_name == 'Video')
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                                            <path
+                                                d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
+                                        </svg>
+                                    @endif
 
-                                <p class="ml-2 text-sm font-normal text-gray-600">
-                                    {{$materialItem->materialContentToMasterType->master_type_name}}
-                                </p>
+                                    @if ($materialItem->materialContentToMasterType->master_type_name == 'Assignment')
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                            <path
+                                                d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                                        </svg>
+                                    @endif
+
+                                    <p class="ml-2 text-sm font-normal text-gray-600">
+                                        {{ $materialItem->materialContentToMasterType->master_type_name }}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="transition hover:bg-indigo-50">
+                            <div class="transition hover:bg-indigo-50">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            @php
-                $index++;
-            @endphp
-        @endforeach
+                @php
+                    $index++;
+                @endphp
+            @endforeach
             <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
                 <div class="w-full px-4">
                     <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">

@@ -117,9 +117,7 @@
                                             value="{{ $searchUser->username }}"
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Input Username" required="">
-                                        <div class="invalid-feedback my-1 text-sm text-red-500">
-                                            Error Message Design
-                                        </div>
+
                                 </div>
 
                                 <div class="sm:col-span-2">
