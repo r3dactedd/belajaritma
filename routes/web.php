@@ -6,6 +6,7 @@ use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManageCertificationController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ManageCourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -44,6 +45,14 @@ Route::get('/reset', function () {
 Route::post('/signup', [RegisterController::class, 'register']);
 
 Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/forgot', [ForgotPasswordController::class, 'showForgetPassword']);
+
+Route::post('/forgot', [ForgotPasswordController::class, 'submitForgetPassword'])->name('forgetPost');
+
+Route::get('reset-password/{token}/{email}', [ForgotPasswordController::class, 'showResetPassword'])->name('resetGet');
+
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPassword'])->name('resetPost');
 
 Route::get('/home', function () {
     return view('home');

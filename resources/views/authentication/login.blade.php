@@ -21,14 +21,11 @@
             <div class="mx-auto flex h-full flex-col justify-center lg:flex-row">
                 <div class="flex w-full justify-center bg-white lg:w-1/2">
                     <div class="mx-4 mb-12 mt-4 flex flex-col justify-center text-gray-800 sm:mb-0 md:w-1/2">
-
-
-
                         @if (session('success'))
                             <div id="toast-default"
                                 class="flex w-full items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400"
                                 role="alert">
-                                <div class="mr-8 ms-3 text-sm font-semibold text-indigo-400">Registrasi Akun Anda Berhasil.
+                                <div class="mr-8 ms-3 text-sm font-semibold text-indigo-400"> {{ session('success') }}
                                 </div>
                                 <button type="button"
                                     class="-mx-1.5 -my-1.5 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white"
