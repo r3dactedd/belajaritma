@@ -42,6 +42,6 @@ class RegisterController extends Controller
         $user->profile_img = 'placeholder.webp';
         $user->about_me = ' ';
         $user->save();
-        return redirect('/login')->with('success', 'Registration successfull! Please login');
+        return redirect('/login')->with('success', 'Registrasi Akun Berhasil.');
     }
 }

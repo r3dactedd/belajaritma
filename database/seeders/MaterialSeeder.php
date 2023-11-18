@@ -16,7 +16,7 @@ class MaterialSeeder extends Seeder
         //
         Material::create([
             'course_id' => 1,
-            'master_type_id' => 4,
+            'master_type_id' => 6,
             'title' => 'Ini Title untuk Video',
             'description' => 'Anak-anak, marilah nonton video sialan ini!',
             'video_link' => 'https://youtu.be/OMF8th2oMUU?si=rsRR26liLYDxivI_',
@@ -25,7 +25,7 @@ class MaterialSeeder extends Seeder
 
         Material::create([
             'course_id' => 1,
-            'master_type_id' => 5,
+            'master_type_id' => 4,
             'title' => 'Ini Title untuk PDF (Child)',
             'description' => 'Anak-anak, marilah baca PDF biji sialan ini!',
             'video_link' => 'https://youtu.be/OMF8th2oMUU?si=rsRR26liLYDxivI_',
@@ -34,7 +34,7 @@ class MaterialSeeder extends Seeder
 
         Material::create([
             'course_id' => 1,
-            'master_type_id' => 6,
+            'master_type_id' => 5,
             'title' => 'Ini Title untuk Assignment',
             'description' => 'Anak-anak, marilah kerjakan assignment sialan ini!',
             'video_link' => 'https://youtu.be/OMF8th2oMUU?si=rsRR26liLYDxivI_',
