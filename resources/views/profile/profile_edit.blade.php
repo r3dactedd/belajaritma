@@ -123,7 +123,7 @@
                                 <div class="sm:col-span-2">
                                     <label for="full_name"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Nama
-                                        Lengkap </label>
+                                        Lengkap (3-20 Karakter)</label>
                                     <input type="text" name="full_name" id="inputFullName"
                                         value="{{ $searchUser->full_name }}"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -135,7 +135,7 @@
                                 <div class="sm:col-span-2">
                                     <label for="aboutMe"
                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Tentang
-                                        Saya</label>
+                                        Saya (maks. 150 Karakter)</label>
                                     <textarea name="about_me" id="inputAboutMe"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Silahkan isi informasi mengenai anda." required=""> {{ $searchUser->about_me }}

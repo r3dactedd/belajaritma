@@ -13,7 +13,7 @@ class LoginController extends Controller
     {
         return view('authentication.login', [
             'title' => 'Login',
-            'active' => 'login'
+            'active' => 'login',
         ]);
     }
 
@@ -47,28 +47,31 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email:dns',
-            'password' => 'required'
+            'password' => 'required',
         ]);
         $remember = $request->remember ? true : false;
 
         // KALAU PASSWORD & EMAILNYA BENER
-        if(Auth::attempt($credentials,$remember)) {
-
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended('/home');
         }
 
         // kalo salah
-        return back()->with('loginError', 'Login failed!');
+        return back()->with('loginError', 'Email atau Password yang anda berikan salah.');
     }
 
     public function logout()
     {
         Auth::logout();
 
-        request()->session()->invalidate();
+        request()
+            ->session()
+            ->invalidate();
 
-        request()->session()->regenerateToken();
+        request()
+            ->session()
+            ->regenerateToken();
 
         return redirect('/');
     }
