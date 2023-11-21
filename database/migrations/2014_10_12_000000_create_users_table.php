@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('username');
-            $table->string('about_me');
+            $table->string('about_me')->nullable();;
             $table->unsignedBigInteger('role_id')->default(2);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
