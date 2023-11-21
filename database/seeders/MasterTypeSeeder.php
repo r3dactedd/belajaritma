@@ -28,7 +28,7 @@ class MasterTypeSeeder extends Seeder
         ]);
         MasterType::create([
             'master_type_code' => 'MATERIAL_TYPE',
-            'master_type_name' => 'Pdf',
+            'master_type_name' => 'PDF',
         ]);
         MasterType::create([
             'master_type_code' => 'MATERIAL_TYPE',

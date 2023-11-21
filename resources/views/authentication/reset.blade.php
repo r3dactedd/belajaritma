@@ -21,8 +21,20 @@
                         <h1 class="my-4 text-center text-lg font-light">Anda dapat melakukan reset password disini.</h1>
 
                         <main class="form-reset mt-5 w-fit px-5 sm:px-6">
-                            <form method="post" action="/login">
+                            <form action="{{ route('resetPost') }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="token" value="{{ $token }}">
+                                <div class="form-floating mb-3">
+                                    <label for="email" class="font-semibold">Email Akun</label>
+                                    <input id="email-input" type="text" name="email"
+                                        class="form-control @error('email') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 text-gray-600 sm:px-6"
+                                        id="email" style="border-radius:10px;" value="{{ $email ?? old('email') }}">
+                                    @error('email')
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                                 <div class="form-floating mb-3">
                                     <label for="password" class="font-semibold">Password Baru</label>
                                     <label for="password" class="text-sm leading-tight"> (6-30
@@ -54,10 +66,9 @@
                                         </div>
                                     @enderror
 
-                                    <div class="invalid-feedback my-1 text-sm text-red-500">
-                                        Error Message Design
-                                    </div>
+
                                 </div>
+
                                 <div class="form-floating mb-3">
                                     <div class="px-5 sm:mb-16 sm:px-6">
                                         <button type="submit"
@@ -75,5 +86,8 @@
         </div>
     </section>
 </body>
+<script>
+    document.getElementById("email-input").value = {{ $email }};
+</script>
 
 </html>
