@@ -20,10 +20,8 @@
                         <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Reset Password</h1>
 
                         <main class="form-reset mt-5 w-fit px-5 sm:px-6">
-
-                            <h1 class="mb-8 text-center text-lg font-light">Lupa Password? Isi Email akun anda terlebih
-                                dahulu.</h1>
-
+                            <h1 class="mb-8 text-center text-lg font-light">Lupa Password? Isi Email akun anda untuk
+                                melakukan reset.</h1>
                             <form action="{{ route('forgetPost') }}" method="POST">
                                 @csrf
                                 <div class="form-floating mb-3">

@@ -9,13 +9,14 @@ use Illuminate\Http\Request;
 class SidebarController extends Controller
 {
     //
-    public function showSidebar($title,$id){
-        $sidebars = Sidebar::select('sidebar.id', 'sidebar.material_id', 'sidebar.parent_id', 'sidebar.title')
+    public function showSidebar($title,$id, $material_id){
+        $material = Material::find($material_id);
+        $sidebars = Sidebar::select('sidebar.id', 'sidebar.material_id', 'sidebar.parent_id', 'sidebar.title', 'sidebar.course_id')
         ->join('material', 'material.id', '=', 'sidebar.material_id')
         ->where('sidebar.course_id',$id)
         ->get();;
 
-       return view('contents.session_assignment', ['sidebars'=>$sidebars]);
+       return view('contents.session_assignment', ['sidebars'=>$sidebars, 'material'=>$material, 'id'=>$id]);
 
         // dd($sidebars);
 
@@ -41,7 +42,7 @@ class SidebarController extends Controller
                 case 'Video':
                     $viewName = 'courses.course_video';
                     break;
-                case 'Pdf':
+                case 'PDF':
                     $viewName = 'courses.course_pdf';
                     break;
                 // Tipe materi lainnya bisa ditambahkan sesuai kebutuhan

@@ -120,10 +120,10 @@ Route::get('/courses/1/getcerti', function () {
     return view('contents.e-certi');
 });
 
-Route::get('/material/{title}/{id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
+Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
 
 //show page spesifik
-Route::get('/materialContent/{title}/{id}', [SidebarController::class, 'showByType']);
+Route::get('/courses/materialContent/{title}/{id}', [SidebarController::class, 'showByType']);
 
 Route::get('/manager', function () {
     return view('administrator.admin_manager');
