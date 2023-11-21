@@ -120,7 +120,7 @@ Route::get('/courses/1/getcerti', function () {
     return view('contents.e-certi');
 });
 
-Route::get('/courses/material/{title}/{id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
+Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
 
 //show page spesifik
 Route::get('/courses/materialContent/{title}/{id}', [SidebarController::class, 'showByType']);
