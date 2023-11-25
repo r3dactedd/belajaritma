@@ -95,12 +95,12 @@
                                 Judul Sertifikasi</label>
                             <input type="text"  name="certif_title" id="inputCertifTitle"
                                 class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
-                                placeholder="Tulis Nama Sertifikasi" required="">
+                                value="{{ htmlspecialchars($data->certif_title) }}" required="">
                             <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Deskripsi Singkat Sertifikasi</label>
                             <textarea id="myInfo" name="certif_short_desc" id="inputCertifShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Input Deskripsi Singkat mengenai Sertifikasi" required="">
+                                placeholder="Input Deskripsi Singkat mengenai Sertifikasi" required=""> {{ htmlspecialchars($data->certif_short_desc) }}
                             </textarea>
 
                             <div class="grid-row-2 grid md:grid-cols-2">
@@ -117,8 +117,7 @@
                             <div class="px-4 py-2 font-semibold">
                                 <textarea id="myInfo" id="inputCertifDesc" name="certif_desc"
                                     class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                    placeholder="Input Penjelasan Mengenai Sertifikasi, Sertifikasi Apa Yang Dipelajari, serta Tujuan Pembelajaran"
-                                    required=""></textarea>
+                                    required=""> {{ htmlspecialchars($data->certif_desc) }}</textarea>
                             </div>
                         </div>
                         <div class="rounded-b-xl bg-white p-4 shadow-sm">
@@ -133,14 +132,14 @@
                                             <div class="text-indigo-500">Waktu Test (dalam menit)</div>
                                             <input type="number" id="inputCertifDuration" name="certif_duration"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="ex: 60" required="">
+                                                value={{ ($data->certif_duration) }} required="">
                                         </div>
 
                                         <div class="rounded-lg bg-white p-4 shadow-md">
                                             <div class="text-indigo-500">Biaya Sertifikasi (dalam Rupiah)</div>
                                             <input type="text" id="inputCertifCost" name="certif_cost"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="ex: Rp 200.000,00" required="">
+                                                value={{($data->certif_cost)}} required="">
                                         </div>
 
                                     </div>
@@ -153,7 +152,9 @@
                                     <div class="px-4 py-2 font-semibold">
                                         <textarea id="inputCertifOutline" name="certif_outline"
                                             class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Input outline materi yang terdapat dalam test sertifikasi ." required=""></textarea>
+                                            required="">
+                                            {{ htmlspecialchars($data->certif_outline) }}
+                                        </textarea>
                                     </div>
                                 </div>
                                 <button type="submit"

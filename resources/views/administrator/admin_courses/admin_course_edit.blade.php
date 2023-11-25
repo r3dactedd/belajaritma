@@ -83,12 +83,12 @@
                                 Judul Kursus</label>
                             <input type="text" name="course_name" id="inputCourseName"
                                 class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
-                                placeholder="Tulis Nama Kursus" required="">
+                                value="{{ htmlspecialchars($data->course_name) }}" required="">
                             <label for="shortDesc" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Deskripsi Singkat Kursus</label>
                             <textarea name="short_desc" id="inputShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
+                                placeholder="Input Deskripsi Singkat mengenai Kursus" required=""> {{ htmlspecialchars($data->short_desc) }}
                             </textarea>
 
                             <div class="grid-row-2 grid md:grid-cols-2">
@@ -98,10 +98,9 @@
 
                                         <select  name="level"
                                             class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                                            <option value="">Pilih Tingkat Kursus</option>
-                                            <option value="Dasar" id="inputLevelDasar">Dasar</option>
-                                            <option value="Menengah"  id="inputLevelMenengah">Menengah</option>
-                                            <option value="Mahir" id="inputLevelMahir">Mahir</option>
+                                            <option value="Dasar" {{ $data->level == 'Dasar' ? 'selected' : '' }} id="inputLevelDasar">Dasar</option>
+                                            <option value="Menengah" {{ $data->level == 'Menengah' ? 'selected' : '' }} id="inputLevelMenengah">Menengah</option>
+                                            <option value="Mahir" {{ $data->level == 'Mahir' ? 'selected' : '' }} id="inputLevelMahir">Mahir</option>
                                         </select>
                                     </div>
                                 </div>
@@ -118,7 +117,7 @@
                         <textarea name="course_desc" id="inputCourseDesc"
                             class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                             placeholder="Input Penjelasan Mengenai Kursus, Materi Apa Yang Dipelajari, serta Tujuan Pembelajaran"
-                            required=""></textarea>
+                            required="">{{ htmlspecialchars($data->course_desc) }}</textarea>
                     </div>
                 </div>
                 <div class="rounded-b-xl bg-white p-4 shadow-sm">
@@ -131,27 +130,25 @@
                             <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-2">
                                 <div class="rounded-lg bg-white p-4 shadow-md">
                                     <div class="text-indigo-500">Resolusi Layar</div>
-                                    <input type="text" name="screen_resolution" id="inputScreenRes"
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="ex: 1336 x 768" required="">
+                                    <input type="text" name="screen_resolution" id="inputScreenRes" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="{{ htmlspecialchars($data->screen_resolution) }}" required="">
                                 </div>
                                 <div class="rounded-lg bg-white p-4 shadow-md">
                                     <div class="text-indigo-500">Minimum RAM</div>
                                     <input type="text" name="minimum_ram" id="inputMinRAM"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="ex: 1GB " required="">
+                                        value="{{ htmlspecialchars($data->minimum_ram) }}" required="">
                                 </div>
                                 <div class="rounded-lg bg-white p-4 shadow-md">
                                     <div class="text-indigo-500">Processor</div>
                                     <input type="text" name="processor" id="inputProcessor"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="ex: Intel Celeron / Sekelas" required="">
+                                        value="{{ htmlspecialchars($data->processor) }}" required="">
                                 </div>
                                 <div class="rounded-lg bg-white p-4 shadow-md">
                                     <div class="text-indigo-500">Operating System</div>
                                     <input type="text" name="operating_system" id="inputOperatingSystem"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        placeholder="ex: Linux, MacOS, dan Windows" required="">
+                                        value="{{ htmlspecialchars($data->operating_system) }}"required="">
                                 </div>
                             </div>
                         </div>
@@ -163,7 +160,7 @@
                             <div class="px-4 py-2 font-semibold">
                                 <textarea name="other_programs" id="inputOtherPrograms"
                                     class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                    placeholder="Input Tools serta Program-Program Lain yang diperlukan dalam menjalankan kursus ini." required=""></textarea>
+                                    placeholder="Input Tools serta Program-Program Lain yang diperlukan dalam menjalankan kursus ini." required="">{{ htmlspecialchars($data->other_programs) }}</textarea>
                             </div>
                         </div>
                         <button type="submit"
@@ -204,65 +201,39 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                    @foreach ($material as $materialItem)
                         <tr class="border-b border-opacity-20 bg-white dark:border-gray-700">
-                            <td scope="row"
-                                class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                Pengenalan Algoritma dan Pemrograman
-                            </td>
-                            <td class="px-6 py-4">
-                                PDF
-                            </td>
 
-                            <td class="px-6 py-4">
-                                <div class="item-center flex justify-start">
-                                    <a href="/manager/course/session/1/edit"
-                                        class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                        </svg>
-                                    </a>
-                                    <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
-                                        data-modal-target="popup-delete" data-modal-toggle="popup-delete">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
+                                <td scope="row"
+                                    class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                    {{$materialItem->title}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{$materialItem->materialContentToMasterType->master_type_name}}
+                                </td>
+
+                                <td class="px-6 py-4">
+                                    <div class="item-center flex justify-start">
+                                        <a href="/manager/course/session/1/edit"
+                                            class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            </svg>
+                                        </a>
+                                        <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
+                                            data-modal-target="popup-delete" data-modal-toggle="popup-delete">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
                         </tr>
-                        <tr class="border-b border-opacity-20 bg-gray-50 dark:border-gray-700 dark:bg-gray-800">
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                Type 2
-                            </td>
-                            <td class="px-6 py-4">
-                                Video
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="item-center flex justify-start">
-                                    <a href="/manager/course/session/1/edit"
-                                        class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                        </svg>
-                                    </a>
-                                    <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
-                                        data-modal-target="popup-delete" data-modal-toggle="popup-delete">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                    @endforeach
                         <tr
                             class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
                             <td class="px-6 py-3 text-center font-semibold" colspan="4">
