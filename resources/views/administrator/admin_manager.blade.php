@@ -66,14 +66,14 @@
                                 src="https://cdn.elearningindustry.com/wp-content/uploads/2022/01/shutterstock_525008128.jpg"
                                 alt="banner" />
                         </div>
-                        <div class="h-full w-full pt-5 md:h-48">
-
+                        <div class="h-full w-full pt-5 md:h-32">
                             <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                 Manage Kursus
                             </h4>
                             <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                Anda dapat melakukan pengaturan untuk detail kursus, materi kursus, dan tes akhir kursus
+                                disini.
+
                             </p>
 
                         </div>
@@ -90,14 +90,13 @@
                                 src="https://viewjobnow.com/wp-content/uploads/2023/05/free-business-certifications.png"
                                 alt="banner" />
                         </div>
-                        <div class="h-full w-full pt-5 md:h-48">
+                        <div class="h-full w-full pt-5 md:h-32">
 
                             <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                 Manage Sertifikasi
                             </h4>
                             <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                Anda dapat melakukan pengaturan untuk detail dan tes sertifikasi disini.
                             </p>
 
                         </div>

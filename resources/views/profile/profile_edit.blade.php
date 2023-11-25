@@ -45,12 +45,12 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Pengaturan</span>
+                            <span class="mb-1 ml-2">Pengaturan Profil</span>
                         </a>
                 </div>
             </div>
         </div>
-        <div class="container mx-auto my-5 w-9/12 p-5">
+        <div class="container mx-auto my-5 p-5">
             {{-- EDIT PROFILE --}}
             <div class="my-4 justify-center rounded-xl md:grid md:grid-cols-3 md:gap-6">
                 <div class="col-span-1 w-full">
@@ -64,7 +64,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-span-2 h-auto w-10/12 md:mx-2">
+                <div class="col-span-2 h-auto md:mx-2 md:w-10/12">
                     <div class="rounded-xl bg-white px-6 py-8 md:px-12">
                         @if (session('success'))
                             <div id="toast-default"
@@ -154,7 +154,7 @@
                     </div>
                 </div>
             </div>
-            <div class="py-8">
+            <div class="py-4">
                 <div class="border-t border-gray-300">
                 </div>
             </div>
@@ -170,7 +170,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-span-2 h-auto w-10/12 md:mx-2">
+                <div class="col-span-2 h-auto md:mx-2 md:w-10/12">
                     <div class="rounded-xl bg-white px-6 py-8 md:px-12">
                         <form action="/editProfile/password" method="post" enctype="multipart/form-data">
                             @csrf

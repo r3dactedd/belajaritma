@@ -81,7 +81,7 @@
                                     class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                     <span class="text-base leading-normal">Unduh Foto Baru</span>
-                                    <input type='file' id='imageInput' name="course_img"  class="hidden" accept="image/*"
+                                    <input type='file' id='imageInput' name="course_img" class="hidden" accept="image/*"
                                         onchange="previewImage()" />
                                 </label>
                             </div>
@@ -109,11 +109,11 @@
                                     <div
                                         class="mb-3 mt-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
 
-                                        <select  name="level"
+                                        <select name="level"
                                             class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                                             <option value="">Pilih Tingkat Kursus</option>
                                             <option value="Dasar" id="inputLevelDasar">Dasar</option>
-                                            <option value="Menengah"  id="inputLevelMenengah">Menengah</option>
+                                            <option value="Menengah" id="inputLevelMenengah">Menengah</option>
                                             <option value="Mahir" id="inputLevelMahir">Mahir</option>
                                         </select>
                                     </div>
@@ -124,8 +124,7 @@
                     </div>
                 </div>
                 <div class="rounded-t-xl bg-white p-4 shadow-sm">
-                    <label for="courseDesc"
-                        class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                    <label for="courseDesc" class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
                         Mengenai Kursus</label>
                     <div class="px-4 py-2 font-semibold">
                         <textarea name="course_desc" id="inputCourseDesc"
@@ -179,9 +178,9 @@
                                     placeholder="Input Tools serta Program-Program Lain yang diperlukan dalam menjalankan kursus ini." required=""></textarea>
                             </div>
                         </div>
-                        <button type="submit"
+                        {{-- <button type="submit"
                             class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Upload Kursus
-                        </button>
+                        </button> --}}
                         {{-- <div
                             class="mb-3 ml-4 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
 

@@ -66,7 +66,7 @@
                                     </h2>
                                     @if ($searchUser->about_me != null)
                                         <h2
-                                            class="text-md mt-8 pr-2 pt-2 text-center tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
+                                            class="text-md mt-12 pr-2 pt-2 text-center tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
                                             Tentang Saya
                                         </h2>
 
@@ -87,11 +87,12 @@
         </div>
         <div class="container mx-auto mb-1 mt-4 flex h-full w-11/12 items-center border-b-2 border-gray-300 px-2">
 
-            <ul class="hidden h-full items-center lg:flex">
+            <ul class="h-full items-center lg:flex">
                 <li class="text-md flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a id="profileDashboard">Dashboard</a>
                 </li>
-                <li class="text-md mx-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                <li
+                    class="text-md ml-0 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:ml-10">
                     <a id="profileCourses">Kursus</a>
                 </li>
                 <li class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
@@ -104,12 +105,13 @@
         <div id="dashboard">
             @include('profile.profile_dashboard')
         </div>
-        <div id="courses" style="display: none;">
-            @include('profile.profile_courselist')
-        </div>
         <div id="certifications" style="display: none;">
             @include('profile.profile_certilist')
         </div>
+        <div id="courses" style="display: none;">
+            @include('profile.profile_courselist')
+        </div>
+
         </div>
 
     </body>
@@ -160,6 +162,9 @@
             });
         });
     </script>
+@endsection
+@section('footer')
+    @include('layout.footer')
 @endsection
 
 </html>
