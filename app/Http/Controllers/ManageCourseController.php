@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -67,7 +68,8 @@ class ManageCourseController extends Controller
 
     public function editCoursePage($id){
         $data=Course::find($id);
-        return view('administrator.admin_courses.admin_course_edit', ['data' => $data]);
+        $material = Material::where('course_id', $id)->get();
+        return view('administrator.admin_courses.admin_course_edit', ['data' => $data, 'material'=>$material]);
     }
     public function editCoursePOST(Request $request, $id){
         $validateCourse=$request->validate([
