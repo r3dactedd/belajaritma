@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MasterType;
 use App\Models\Material;
 use App\Models\Sidebar;
 use Illuminate\Http\Request;
@@ -15,9 +16,18 @@ class SidebarController extends Controller
         ->join('material', 'material.id', '=', 'sidebar.material_id')
         ->where('sidebar.course_id',$id)
         ->get();;
-
-       return view('contents.session_assignment', ['sidebars'=>$sidebars, 'material'=>$material, 'id'=>$id]);
-
+        $master_type = MasterType::find($material->master_type_id);
+        switch ($master_type->master_type_name) {
+            case 'Assignment':
+                return view('contents.session_assignment', ['sidebars'=>$sidebars, 'material'=>$material, 'id'=>$id]);
+                break;
+            case 'Video':
+                return view('contents.session_video', ['sidebars'=>$sidebars, 'material'=>$material, 'id'=>$id]);
+                break;
+            case 'PDF':
+                return view('contents.session_pdf', ['sidebars'=>$sidebars, 'material'=>$material, 'id'=>$id]);
+                break;
+        }
         // dd($sidebars);
 
     }
