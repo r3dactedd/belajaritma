@@ -57,7 +57,7 @@
                     <div class="h-full rounded-xl p-2 md:py-4 md:pl-8">
                         <h1
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:pb-6 md:pr-4 md:text-left lg:text-3xl">
-                            Ubah Informasi Profil
+                            Ubah Data Profil
                         </h1>
                         <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
                             Anda dapat mengubah informasi akun anda disini.
