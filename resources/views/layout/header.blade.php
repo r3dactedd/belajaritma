@@ -58,13 +58,12 @@
                 <div class="flex h-full w-full">
                     @if (Auth::check())
                         @auth
-                            <div class="relative flex w-full cursor-pointer items-center justify-end"
+                            <div id='profile-link' class="relative flex w-full cursor-pointer items-center justify-end"
                                 onclick="dropdownHandler(this)">
                                 <ul class="absolute left-0 top-0 mt-16 hidden w-40 rounded border-r bg-white shadow">
                                     <li
                                         class="mt-2 flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
                                         <div class="flex items-center">
-
                                             <a href="/profile/name"class="ml-4 font-semibold">Profil Saya</a>
                                         </div>
                                     </li>
@@ -74,7 +73,7 @@
                                         <a href="/profile/name/edit" class="ml-4 font-semibold">Atur Profil</a>
                                     </li>
                                     <li
-                                        class="my-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+                                        class="my-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-red-600 focus:text-indigo-600 focus:outline-none">
 
                                         <form method="POST" action="/logout">
                                             @csrf
@@ -83,7 +82,7 @@
                                     </li>
                                 </ul>
                                 <img class="h-10 w-10 rounded-full object-cover"
-                                    src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}"
+                                    src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : 'profile_img/placeholder.webp' }}"
                                     alt="{{ Auth::user()->username }}'s Profile Picture" />
                                 <p class="text-md ml-2 font-semibold text-gray-800">{{ auth()->user()->username }}</p> <svg
                                     class="ml-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
@@ -113,73 +112,90 @@
     class="cursor-pointer text-gray-700 transition duration-300 ease-in-out hover:text-gray-700 focus:outline-none lg:hidden">
 
     <ul class="absolute left-0 right-0 top-0 z-40 mt-16 hidden rounded border-r bg-white p-2 shadow md:mt-16">
-        <a href="/profile/name" class="my-2 flex items-center">
-
-            <div
-                class="flex w-12 cursor-pointer rounded border-2 border-transparent text-sm transition duration-150 ease-in-out focus:border-white focus:outline-none">
-                <img class="h-10 w-10 rounded object-cover"
-                    src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
-                    alt="logo" />
-            </div>
-            <p class="ml-1 cursor-pointer text-base leading-6">Jane Doe</p>
-            <div class="relative text-white sm:ml-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down cursor-pointer"
-                    width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </div>
-
-        </a>
         <li
             class="flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
             <div class="flex items-center">
-                <span class="ml-2 font-bold"><a href="/index">Home</a></span>
+                <span class="my-1 ml-2 font-bold"><a href="/#">Home</a></span>
             </div>
         </li>
         <li class="flex cursor-pointer flex-col justify-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden"
             onclick="dropdownHandler(this)">
             <div class="flex items-center">
-                <span class="ml-2 font-bold"><a href="/courses">Kursus</a></span>
+                <span class="my-1 ml-2 font-bold"><a href="/courses">Kursus</a></span>
             </div>
         </li>
         <li
             class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
-            <span class="ml-2 font-bold"><a href="/certification">Sertifikasi</a></span>
+            <span class="my-1 ml-2 font-bold"><a href="/certifications">Sertifikasi</a></span>
         </li>
         <li
             class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
-            <span class="ml-2 font-bold"><a href="/forum">Forum</a></span>
+            <span class="my-1 ml-2 font-bold"><a href="/forum">Forum</a></span>
         </li>
+        @if (Auth::check())
+            @if (Auth::user()->role_id == '1')
+                <li
+                    class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
+                    <span class="my-1 ml-2 font-bold"><a href="/manager">Admin Manager</a></span>
+                </li>
+            @endif
+        @endif
         {{-- IF USER SUDAH DAFTAR/LOGIN --}}
         <li
             class="ml-2 mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
 
         </li>
-        <li
-            class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
-            <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24"
-                    height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                </svg>
-                <span class="ml-2 leading-6">Profil Saya</span>
+        @if (Auth::check())
+            @auth
+                <a href="/profile/name" class="my-2 flex items-center">
+
+                    <div
+                        class="ml-2 flex w-12 cursor-pointer rounded border-2 border-transparent text-sm transition duration-150 ease-in-out focus:border-white focus:outline-none">
+                        <img class="h-10 w-10 rounded object-cover"
+                            src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : 'profile_img/placeholder.webp' }}"
+                            alt="{{ Auth::user()->username }}'s Profile Picture" />
+                    </div>
+                    <p class="ml-2 cursor-pointer text-base leading-6">{{ auth()->user()->username }}</p>
+                    <div class="relative text-white sm:ml-2">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="20" height="20"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z"></path>
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </a>
+            @endauth
+            <div class="grid grid-cols-2 items-start px-4 pb-2 md:flex md:flex-col lg:flex-row lg:items-center">
+                <div class="flex w-full items-center">
+                    <li
+                        class="mx-auto flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
+                        <span class="my-1 px-2 font-bold"><a href="/profile/name/edit">Profil Saya</a></span>
+                    </li>
+
+                </div>
+                <div class="ml-0 flex w-full items-end lg:ml-12 lg:mt-0">
+                    <li
+                        class="mx-auto flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+                        <form method="POST" action="/logout">
+                            @csrf
+                            <button type="submit" class="my-1 px-2 font-bold">Logout</button>
+                        </form>
+                    </li>
+                </div>
             </div>
-        </li>
-        {{-- IF USER SUDAH DAFTAR/LOGIN --}}
-        {{-- IF USER BELUM DAFTAR/LOGIN --}}
-        <li
-            class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
-            <a href="/login"
-                class="hover:bg-selected focus:bg-selected focus:shadow-outline my-2 rounded-lg border border-solid bg-transparent px-8 py-2 text-sm font-semibold hover:text-gray-900 focus:text-gray-900 focus:outline-none md:my-0 md:ml-4 md:mt-0">Login</a>
-            <a href="/signup"
-                class="hover:bg-selected focus:bg-selected focus:shadow-outline my-2 rounded-lg border border-solid bg-transparent px-8 py-2 text-sm font-semibold hover:text-gray-900 focus:text-gray-900 focus:outline-none md:my-0 md:ml-4 md:mt-0">Daftar</a>
-        </li>
-        {{-- IF USER BELUM DAFTAR/LOGIN --}}
+        @else
+            {{-- IF USER SUDAH DAFTAR/LOGIN --}}
+
+            <li
+                class="ml-2 cursor-pointer pb-4 pt-2 text-base leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+                <a href="/login"
+                    class="hover:bg-selected focus:bg-selected focus:shadow-outline my-2 rounded-lg border border-solid bg-transparent px-8 py-2 text-sm font-semibold hover:text-gray-900 focus:text-gray-900 focus:outline-none md:my-0 md:ml-4 md:mt-0">Login</a>
+                <a href="/signup"
+                    class="hover:bg-selected focus:bg-selected focus:shadow-outline my-2 rounded-lg border border-solid bg-transparent px-8 py-2 text-sm font-semibold hover:text-gray-900 focus:text-gray-900 focus:outline-none md:my-0 md:ml-4 md:mt-0">Daftar</a>
+            </li>
+        @endif
     </ul>
     <div>
         <div class="show-m-menu mx-4 lg:hidden" onclick="MenuHandler(this,true)">

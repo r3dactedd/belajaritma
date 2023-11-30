@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-            <form method="post" action ="/manager/course/edit/{{$data->id}}" enctype="multipart/form-data">
+            <form method="post" action ="/manager/course/edit/{{ $data->id }}" enctype="multipart/form-data">
                 @csrf
                 <div class="my-4 rounded-xl bg-white md:flex">
                     <!-- Left Side -->
@@ -68,7 +68,7 @@
                                     class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                     <span class="text-base leading-normal">Unduh Foto Baru</span>
-                                    <input type='file' id='imageInput' name="course_img"  class="hidden" accept="image/*"
+                                    <input type='file' id='imageInput' name="course_img" class="hidden" accept="image/*"
                                         onchange="previewImage()" />
                                 </label>
                             </div>
@@ -96,7 +96,7 @@
                                     <div
                                         class="mb-3 mt-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
 
-                                        <select  name="level"
+                                        <select name="level"
                                             class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                                             <option value="Dasar" {{ $data->level == 'Dasar' ? 'selected' : '' }} id="inputLevelDasar">Dasar</option>
                                             <option value="Menengah" {{ $data->level == 'Menengah' ? 'selected' : '' }} id="inputLevelMenengah">Menengah</option>
@@ -110,8 +110,7 @@
                     </div>
                 </div>
                 <div class="rounded-t-xl bg-white p-4 shadow-sm">
-                    <label for="courseDesc"
-                        class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                    <label for="courseDesc" class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
                         Mengenai Kursus</label>
                     <div class="px-4 py-2 font-semibold">
                         <textarea name="course_desc" id="inputCourseDesc"
@@ -336,7 +335,47 @@
             </div>
 
             {{-- Delete Popup --}}
-            @include('modals.delete')
+            <div id="popup-delete" tabindex="-1"
+                class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+                <div class="relative max-h-full w-full max-w-md">
+                    <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+                        <button type="button"
+                            class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-hide="popup-delete">
+                            <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="p-6 text-center">
+                            <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin menghapus materi tersebut?
+                            </h3>
+                            <div class="flex justify-center text-center">
+                                {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
+                                <form method="POST" action="#" data-course-id="">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button data-modal-hide="popup-delete" type="submit"
+                                        class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                        Ya, hapus
+                                    </button>
+                                </form>
+                                <button data-modal-hide="popup-delete" type="button"
+                                    class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Tidak,
+                                    batalkan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {{-- Delete Popup --}}
     </body>
 

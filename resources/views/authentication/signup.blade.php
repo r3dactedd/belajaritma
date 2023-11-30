@@ -14,13 +14,14 @@
 </head>
 
 <body>
-    @section('title', 'Homepage')
-    @extends('layout.layout')
 
-    @section('content')
-        <section class="overflow-y-scroll bg-white xl:h-screen">
+    <section class="overflow-y-scroll bg-white xl:h-screen">
+        @section('title', 'Homepage')
+        @extends('layout.layout')
+
+        @section('content')
             <div class="mx-auto flex h-full flex-col justify-center lg:flex-row">
-                <div class="flex w-full justify-center bg-white lg:w-1/2">
+                <div class="mt-12 flex w-full justify-center bg-white lg:w-1/2">
                     <div class="mx-4 mb-12 flex flex-col justify-center text-gray-800 sm:mb-0 md:w-1/2">
                         <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Daftar</h1>
                         <h1 class="my-4 text-center text-lg font-light">Mulailah perjalanan programming kamu sekarang juga.

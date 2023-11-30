@@ -1,4 +1,4 @@
-<div class="container mx-auto mt-6 grid w-11/12 gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+<div class="container mx-auto mt-6 grid w-11/12 gap-8 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
     <div class="flex items-center rounded bg-white px-8 py-6 shadow">
         <div class="rounded bg-indigo-600 p-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-discount" width="32"

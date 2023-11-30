@@ -1,5 +1,24 @@
+<div class="container mx-auto my-4 pb-4">
+    <div
+        class="mx-auto grid w-5/6 grid-cols-2 items-start pb-6 pr-4 md:ml-20 md:flex md:w-full md:flex-col lg:flex-row lg:items-center">
+        <div class="flex items-center">
 
-    <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2">
+            <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                <a id="convertButton"
+                    class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Kursus
+                    Sedang Dipelajari</a>
+            </p>
+        </div>
+        <div class="flex items-center">
+
+            <p class="ml-4 text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                <a id="convertButton"
+                    class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Kursus
+                    Sudah Selesai</a>
+            </p>
+        </div>
+    </div>
+    <div class="container mx-auto mb-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2">
         {{-- Course Components --}}
         <a href="/courses/1">
             <div
@@ -302,3 +321,4 @@
         </a>
 
     </div>
+</div>

@@ -191,17 +191,7 @@
                     </tbody>
                 </table>
             </div>
-
-            {{-- Delete Popup Modal --}}
-            {{-- Publish Modal --}}
-
-                @include('modals.delete')
-
-            {{-- Delete Popup Modal --}}
     </body>
-
-
-
     </body>
 @endsection
 @section('footer')

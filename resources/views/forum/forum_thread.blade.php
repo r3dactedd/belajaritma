@@ -44,15 +44,15 @@
                         <div class="flex">
                             <div class="mr-3 flex-shrink-0">
                                 <img class="mt-2 h-8 w-8 rounded-full sm:h-10 sm:w-10"
-                                src="{{ asset('storage/images/' . $data->formToUser->profile_img) }}"
-                                    alt="">
+                                    src="{{ asset('storage/images/' . $data->formToUser->profile_img) }}" alt="">
                             </div>
                             <div class="flex-1 rounded-lg px-4 pb-2 text-2xl leading-relaxed">
-                                <strong>{{$data->forum_title}}</strong> <span class="ml-2 text-xl text-gray-400">{{$data->created_at->format('Y-m-d') }}</span>
-                                <p class="text-sm mb-5">
-                                    Created by: {{$data->formToUser->username}}
-                                 </p>
-                                <p class="text-base" id="codeContainer">
+                                <strong>{{ $data->forum_title }}</strong> <span
+                                    class="ml-2 text-xl text-gray-400">{{ $data->created_at->format('Y-m-d') }}</span>
+                                <p class="mb-5 text-sm">
+                                    Created by: {{ $data->formToUser->username }}
+                                </p>
+                                <p class="w-fit text-base" id="codeContainer">
                                 </p>
                             </div>
                         </div>
@@ -257,15 +257,7 @@
     <script>
         //Example for input be here :
         var htmlCode =
-            `Ini contoh isi reply with code example <p class="max-h-20 overflow-scroll">"Lorem ipsum dolor,, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<strong>herre</strong><em> consectetur adipiscing elit</em></p><pre class="language-c"><code>#include &lt;stdio.h&gt;
-
-int main() {
-    for (int i = 1; i &lt;= 5; i++) {
-        printf("%d\n", i);
-    }
-
-    return 0;
-}</code></pre>`;
+            `Ini contoh isi reply with code example "Lorem ipsum dolor,, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<strong>herre</strong><em> consectetur adipiscing elit</em> `;
 
         var codeContainer = document.getElementById('codeContainer');
 
@@ -294,12 +286,17 @@ int main() {
                     // Condition handling
                     if (accordionMaxHeight == "0px" || accordionMaxHeight.length == 0) {
                         accordionContent.style.maxHeight =
-                            `${accordionContent.scrollHeight + 32}px`;
+                            `
+        $ {
+            accordionContent.scrollHeight + 32
+        }
+        px`;
                         header.querySelector(".fas").classList.remove("fa-plus");
                         header.querySelector(".fas").classList.add("fa-minus");
                         header.parentElement.classList.add("bg-indigo-50");
                     } else {
-                        accordionContent.style.maxHeight = `0px`;
+                        accordionContent.style.maxHeight = `
+        0 px`;
                         header.querySelector(".fas").classList.add("fa-plus");
                         header.querySelector(".fas").classList.remove("fa-minus");
                         header.parentElement.classList.remove("bg-indigo-50");
