@@ -42,7 +42,7 @@
 
                         <div class="h-80 w-auto">
                             <img class="h-80 w-80 rounded-full object-cover"
-                                src="{{ Auth::user()->profile_img ? '/storage/images/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}"
+                                src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}"
                                 alt="{{ Auth::user()->username }}'s Profile Picture" />
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                                         class="pr-2 pt-2 text-center text-lg tracking-normal text-white md:pr-4 md:pt-4 md:text-left lg:text-xl">
                                         {{ $searchUser->email }}
                                     </h2>
-                                    @if ($searchUser->about_me!= null)
+                                    @if ($searchUser->about_me != null)
                                         <h2
                                             class="text-md mt-8 pr-2 pt-2 text-center tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
                                             Tentang Saya

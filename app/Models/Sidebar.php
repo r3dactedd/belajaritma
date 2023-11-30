@@ -12,12 +12,21 @@ class Sidebar extends Model
     protected $guarded='id';
     protected $fillable = [
         'parent_id',
+        'course_id',
         'material_id',
         'title',
         'path',
         'type',
     ];
+    public function sidebarToMaterial(){
+        return $this->belongsTo(Material::class,'material_id','id');
+    }
+
     public function sidebarToCourse(){
-        return $this->hasMany(Course::class,'course_id','id');
+        return $this->belongsTo(Course::class,'course_id','id');
+    }
+
+    public function sidebarToMaterialContent(){
+        return $this->belongsTo(MaterialContent::class,'material_content_id','id');
     }
 }

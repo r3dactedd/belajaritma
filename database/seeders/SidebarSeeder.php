@@ -15,24 +15,24 @@ class SidebarSeeder extends Seeder
     {
         Sidebar::create([
             'course_id' => 1,
-            'parent_id' => NULL,
+            'parent_id' => null,
             'material_id' => 1,
             'title' => 'Module 1: Test Title 1',
-            'path' => '/materialContent/pdf'
+            'path' => '/courses/materialContent/pdf',
         ]);
         Sidebar::create([
             'course_id' => 1,
             'parent_id' => 1,
             'material_id' => 2,
             'title' => 'Sub Module 1: Anggap aja ini sub menu',
-            'path' => '/materialcontent/video'
+            'path' => '/courses/materialcontent/video',
         ]);
         Sidebar::create([
             'course_id' => 1,
-            'parent_id' => NULL,
+            'parent_id' => null,
             'material_id' => 3,
             'title' => 'Module 2: Test Title Video',
-            'path' => '/materialcontent/asg'
+            'path' => '/courses/materialcontent/asg',
         ]);
     }
 }

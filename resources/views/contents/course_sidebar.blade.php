@@ -21,7 +21,7 @@
                                     <path
                                         d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
                                 </svg>
-                                <a href="/material/{{ $sidebar->title }}/{{ $sidebar->material_id }}"
+                                <a href="/courses/material/{{ $sidebar->title }}/{{ $sidebar->course_id }}/{{$sidebar->material_id }}"
                                     class="text-md ml-2 font-normal text-gray-600 hover:underline">{{ $sidebar->title }}</a>
                             </div>
 
@@ -39,7 +39,7 @@
                                                         <path
                                                             d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
                                                     </svg>
-                                                    <a href="/material/{{ $child->title }}/{{ $child->material_content_id }}"
+                                                    <a href="/courses/material/{{ $child->title }}/{{ $child->course_id }}/{{$child->material_id }}"
                                                         class="text-md ml-4 font-normal text-gray-600 hover:underline">
                                                         {{ $child->title }}
                                                     </a>
@@ -55,7 +55,7 @@
             @endforeach
         </ul>
     </div>
-    <a href='/forum/course/1'
+    <a href='/forum/course/{{$id}}'
         class="y-4 mx-auto mt-4 hidden w-6/12 min-w-[70%] items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:flex">
 
 
@@ -99,7 +99,7 @@
                                 <path
                                     d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
                             </svg>
-                            <a href="/material/{{ $sidebar->title }}/{{ $sidebar->material_id }}"
+                            <a href="/courses/material/{{ $sidebar->title }}/{{ $sidebar->material_id }}"
                                 class="text-md ml-2 font-normal text-gray-600 hover:underline">{{ $sidebar->title }}</a>
 
                         </div>
@@ -118,7 +118,7 @@
                                                     <path
                                                         d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
                                                 </svg>
-                                                <a href="/material/{{ $child->title }}/{{ $child->material_content_id }}"
+                                                <a href="/courses/material/{{ $child->title }}/{{ $child->material_content_id }}"
                                                     class="text-md ml-4 font-normal text-gray-600 hover:underline">
                                                     {{ $child->title }}
                                                 </a>

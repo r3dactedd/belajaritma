@@ -40,7 +40,7 @@ class ProfileController extends Controller
         $validateProfile = $request->validate([
             'profile_img' => 'image|file',
             'full_name' => 'required|string|min:3|max:50',
-            'username' => 'required|string|min:3|max:20',
+            'username' => 'required|string|min:3|max:30',
             'about_me' => 'max:150',
         ]);
 
