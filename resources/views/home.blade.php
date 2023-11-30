@@ -49,7 +49,7 @@
             <div class="flex flex-wrap">
                 <div class="mb-12 w-full lg:w-3/5 lg:pr-8">
                     <div class="rounded bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
-                        <p class="text-lg font-bold">Aktivitas Anda</p>
+                        <p class="text-lg font-bold">Aktivitas Pembelajaran Anda</p>
                         <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
                             <div class="flex w-11/12">
 
@@ -72,11 +72,12 @@
                                 </div>
                             </div>
                             <div
-                                class="right-0 top-0 mt-0 block pl-12 sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
-                                <button
-                                    class="ml-2 mt-8 rounded-full bg-green-400 px-6 py-2 text-xs font-semibold text-white focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
-                                    Selesai
-                                </button>
+                                class="right-0 top-0 mt-4 block sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
+                                <a href="/course"
+                                    class="rounded-full px-6 py-2 text-base font-semibold text-indigo-600 hover:underline focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
+                                    Lanjutkan
+                                </a>
+
                             </div>
                         </div>
                         <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">

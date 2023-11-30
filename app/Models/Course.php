@@ -26,7 +26,11 @@ class Course extends Model
     ];
 
     public function courseToSidebar(){
-        return $this->belongsTo(Sidebar::class,'id','id');
+        return $this->hasMany(Sidebar::class,'id','id');
+    }
+
+    public function corseToMaterial(){
+        return $this->hasMany(Material::class,'id','id');
     }
 
     public function courseToMaterial(){

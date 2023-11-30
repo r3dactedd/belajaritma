@@ -280,7 +280,7 @@
 
                                 <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
                                     <a href="/transaction" id="convertButton"
-                                        class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
+                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
                                         Test</a>
                                 </p>
                             </div>
@@ -305,7 +305,7 @@
                                 <p onclick="downloadimage()"
                                     class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
                                     <a
-                                        class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
+                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
                                         Sertifikat</a>
                                 </p>
                             </div>

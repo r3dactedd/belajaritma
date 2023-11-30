@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <section class="overflow-y-scroll bg-white xl:h-screen">
+    <section class="h-screen overflow-y-scroll bg-white">
         @section('title', 'Homepage')
         @extends('layout.layout')
 
@@ -23,12 +23,21 @@
                     <div class="mx-4 mb-12 mt-4 flex flex-col justify-center text-gray-800 sm:mb-0 md:w-1/2">
                         @if (session('success'))
                             <div id="toast-default"
-                                class="flex w-full items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400"
+                                class="mx-auto flex items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400"
                                 role="alert">
-                                <div class="mr-8 ms-3 text-sm font-semibold text-indigo-400"> {{ session('success') }}
+                                <div>
+                                    <svg class="h-6 w-6 fill-current text-blue-500" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                        <path
+                                            d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <h2 class="font-semibold text-indigo-400">{{ session('success') }}</h2>
                                 </div>
                                 <button type="button"
-                                    class="-mx-1.5 -my-1.5 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white"
                                     data-dismiss-target="#toast-default" aria-label="Close">
                                     <span class="sr-only">Close</span>
                                     <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

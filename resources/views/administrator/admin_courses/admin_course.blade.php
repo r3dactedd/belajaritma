@@ -84,23 +84,23 @@
                         </tr>
                     </thead>
                     <tbody class="text-md font-light text-gray-600 md:text-lg">
-                        @foreach ($data as $data)
+                        @foreach ($data as $item)
                             <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{$data->course_name}}</p>
+                                    <p class="max-h-20 overflow-scroll">{{ $item->course_name }}</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{$data->findUpdatedBy->username}}</p>
+                                    <p class="max-h-20 overflow-scroll">{{ $item->findUpdatedBy->username }}</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{$data->findCreatedBy->username}}</p>
+                                    <p class="max-h-20 overflow-scroll">{{ $item->findCreatedBy->username }}</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{$data->updated_at->format('Y-m-d') }}</p>
+                                    <p class="max-h-20 overflow-scroll">{{ $item->updated_at->format('Y-m-d') }}</p>
                                 </td>
                                 <td class="px-6 py-3 text-center">
                                     <div class="item-center flex justify-center">
-                                        <a href="/manager/course/edit/{{$data->id}}"
+                                        <a href="/manager/course/edit/{{ $item->id }}"
                                             class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke="currentColor">
@@ -109,7 +109,8 @@
                                             </svg>
                                         </a>
                                         <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
-                                            data-modal-target="popup-delete" data-modal-toggle="popup-delete">
+                                            data-modal-target="popup-delete" data-modal-toggle="popup-delete"
+                                            data-course-id="{{ $item->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -127,7 +128,72 @@
         </div>
     </body>
     {{-- Delete Popup Modal --}}
-    @include('modals.delete')
+
+    <div id="popup-delete" tabindex="-1"
+        class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+        <div class="relative max-h-full w-full max-w-md">
+            <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+                <button type="button"
+                    class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="popup-delete">
+                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-6 text-center">
+                    <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin menghapus
+                        kursus tersebut?
+                    </h3>
+                    <div class="flex justify-center text-center">
+                        {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
+                        <form method="POST" action="/manager/course/delete/{id}" data-course-id="{{ $item->id }}">
+                            @csrf
+                            @method('DELETE')
+                            <button data-modal-hide="popup-delete" type="submit"
+                                class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                Ya, hapus
+                            </button>
+                        </form>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                console.log('Script loaded');
+
+                                const deleteButtons = document.querySelectorAll('[data-modal-toggle="popup-delete"]');
+
+                                deleteButtons.forEach(button => {
+                                    button.addEventListener('click', function() {
+                                        console.log('Button clicked');
+                                        const courseId = this.getAttribute('data-course-id');
+                                        console.log('Course ID:', courseId);
+
+                                        const form = document.querySelector('#popup-delete form');
+                                        console.log('Form:', form);
+
+                                        // Update the form's action attribute directly
+                                        form.action = `/manager/course/delete/${courseId}`;
+                                        form.setAttribute('data-course-id', courseId);
+                                    });
+                                });
+                            });
+                        </script>
+                        <button data-modal-hide="popup-delete" type="button"
+                            class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Tidak,
+                            batalkan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- Delete Popup Modal --}}
 @endsection
 @section('footer')

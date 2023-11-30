@@ -56,7 +56,7 @@
                 <div class="my-4"></div>
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
 
-                    <iframe width="100%" height="640" src="https://www.youtube.com/embed/fTczCpIaLAU" frameborder="0"
+                    <iframe width="100%" height="640" src="{{$materials->video_link}}" frameborder="0"
                         allowfullscreen></iframe>
 
                 </div>

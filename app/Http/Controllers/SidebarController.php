@@ -37,7 +37,6 @@ class SidebarController extends Controller
     {
         $material = Material::find($id);
         // Lakukan pengambilan data materi berdasarkan tipe materi dan ID kursus
-        $materialContent = MaterialContent::where('id', $id)->first();
 
         $type = MasterType::where('master_type_code', 'MATERIAL_TYPE')->get();
 
@@ -59,6 +58,6 @@ class SidebarController extends Controller
             }
         }
 
-        return view($viewName, ['materialContent' => $materialContent]);
+        return view($viewName, ['material' => $material]);
     }
 }

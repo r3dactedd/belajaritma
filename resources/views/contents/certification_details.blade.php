@@ -43,8 +43,7 @@
                     <div class="h-full p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
                             <img class="max-h-64 w-full p-4 md:px-0"
-                            src="{{ asset('storage/images/' . $data->certif_img) }}"
-                            alt="Certification Image" />
+                                src="{{ asset('storage/images/' . $data->certif_img) }}" alt="Certification Image" />
                         </div>
                     </div>
                 </div>
@@ -56,10 +55,10 @@
                     <div class="rounded-xl bg-white px-6 py-2 md:px-12">
                         <h1
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-6 md:pr-4 md:text-left lg:text-3xl">
-                            {{$data->certif_title}}
+                            {{ $data->certif_title }}
                         </h1>
                         <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
-                            {{$data->certif_short_desc}}
+                            {{ $data->certif_short_desc }}
                         </p>
                         <div class="grid-row-2 grid md:grid-cols-2">
                             <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
@@ -98,7 +97,7 @@
                             <div class="flex text-sm">
                                 <div class="block">
                                     <div class="px-4 py-2 font-semibold">
-                                        <p> {{$data->certif_desc}}</p>
+                                        <p> {{ $data->certif_desc }}</p>
                                     </div>
 
 
@@ -119,7 +118,7 @@
                                 <div class="grid grid-cols-1 gap-4 py-4 pl-4 pr-8 font-semibold md:grid-cols-3">
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Waktu Test</div>
-                                        <div class="text-xs text-gray-500">{{$data->certif_duration}} menit</div>
+                                        <div class="text-xs text-gray-500">{{ $data->certif_duration }} menit</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Jumlah Pertanyaan</div>
@@ -127,7 +126,7 @@
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Biaya Sertifikasi</div>
-                                        <div class="text-xs text-gray-500">Rp {{$data->certif_cost}}</div>
+                                        <div class="text-xs text-gray-500">Rp {{ $data->certif_cost }}</div>
                                     </div>
 
                                 </div>
@@ -139,7 +138,7 @@
                                     <span class="px-2 text-xl tracking-wide">Outline Test</span>
                                 </div>
                                 <div class="px-4 py-2 text-sm font-semibold text-gray-700">
-                                    <p>{{$data->certif_outline}}
+                                    <p>{{ $data->certif_outline }}
                                     </p>
                                 </div>
                             </div>
@@ -166,7 +165,7 @@
 
                                 <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
                                     <a href="/transaction" id="convertButton"
-                                        class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Registrasi</a>
+                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Registrasi</a>
                                 </p>
                             </div>
                         </div>
@@ -188,7 +187,7 @@
 
                                 <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
                                     <a href="/test" id="convertButton"
-                                        class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
+                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
                                         Test</a>
                                 </p>
                             </div>
@@ -203,7 +202,7 @@
                             Bukti Penyelesaian Sertifikasi (MUNCULIN ABIS SELESAI FINAL TEST)
                         </h2>
                         <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                            Selamat! Anda telah menyelesaikan kursus ini. Silahkan mengunduh sertifikat anda.
+                            Selamat! Anda telah lulus tes sertifikasi ini. Silahkan mengunduh bukti sertifikasi anda.
                         </p>
 
                         <div class="flex items-center">
@@ -211,8 +210,8 @@
 
                                 <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
                                     <a id="convertButton"
-                                        class="bg-selected inline-block rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
-                                        Sertifikat</a>
+                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
+                                        Bukti Sertifikasi</a>
                                 </p>
                             </div>
                         </div>
