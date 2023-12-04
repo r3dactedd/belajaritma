@@ -167,104 +167,104 @@
                         </div>
                         <div class="mx-auto rounded-xl bg-white px-2 py-2">
                             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Diskusi Baru</h2>
-                            <form method="post" enctype="multipart/form-data">
+                            <form id="myForm" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                     <div class="sm:col-span-2">
-                                        <label for="username"
+                                        <label for="discussiontitle"
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Judul Diskusi</label>
-                                        <input type="text" name="username" id="inputUsername"
+                                        <input type="text" name="discussiontitle" id="discussiontitle"
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Tulis Judul untuk Diskusi Anda " required="">
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="username"
+                                        <label for="coursession"
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Sesi Kursus</label>
                                         <select
                                             class="w-full rounded-md border-transparent bg-gray-50 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                                             <option value="">Pilih Sesi</option>
-                                            <option value="for-rent">Session 1 Name</option>
-                                            <option value="for-sale">Session 2 Name</option>
-                                            <option value="for-rent">Session 3 Name</option>
-                                            <option value="for-sale">Session 4 Name</option>
+                                            @foreach ($materials as $material)
+                                                <option value="{{ $material->title }}">{{ $material->title }}</option>
+                                            @endforeach
                                         </select>
 
                                     </div>
                                     {{-- Input Area --}}
                                     <div class="sm:col-span-2">
-                                        <label for="username"
+                                        <label for="question"
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                            Pertanyaan</label>
-
-
+                                            Pertanyaan
+                                        </label>
                                         <form method="post" class="mt-2 h-32 min-h-full overflow-y-auto">
-                                            <textarea id="mytextarea" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                            <textarea id="question" name="question" placeholder="Input Pertanyaan Anda disini."></textarea>
                                         </form>
+                                        <input type="hidden" id="courseId" name="course_id"
+                                            value="{{ $course->course_id }}">
+                                    </div>
+
+                                    <div class="flex justify-start pt-2">
+                                        <button type="button" onclick="showPreview()"
+                                            class="modal-close mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                            Diskusi</button>
                                     </div>
                                 </div>
                             </form>
+
+                            <div id="preview">
+                                <!-- Tempat untuk menampilkan hasil preview -->
+                            </div>
                         </div>
                         <!--Footer-->
-                        <div class="flex justify-end pt-2">
 
-                            <button
-                                class="modal-close mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
-                                Diskusi</button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <script>
-            //Input Area using TinyMCE
             tinymce.init({
-                selector: '#mytextarea',
-                menubar: false,
-                // Image below, for further consideration
-                // plugins: 'image code codesample',
-                plugins: ' code codesample',
-                toolbar: ' wordcount | link image |code |bold italic underline| codesample ',
-                // Image below, for further consideration
-                // file_picker_types: 'image',
-                // /* enable automatic uploads of images represented by blob or data URIs*/
-                // automatic_uploads: true,
-                // file_picker_callback: (cb, value, meta) => {
-                //     const input = document.createElement('input');
-                //     input.setAttribute('type', 'file');
-                //     input.setAttribute('accept', 'image/*');
+                selector: '#question',
+                plugins: 'code codesample | image',
+                toolbar: 'wordcount | link | image | bold italic underline | codesample',
+                image_list: [{
+                        title: 'My image 1',
+                        value: 'https://www.example.com/my1.gif'
+                    },
+                    {
+                        title: 'My image 2',
+                        value: 'http://www.moxiecode.com/my2.gif'
+                    }
+                ],
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
+                tidy: false
+            });
 
-                //     input.addEventListener('change', (e) => {
-                //         const file = e.target.files[0];
+            document.getElementById('myForm').addEventListener('submit', function() {
+                prepareFormForSubmission();
+            });
 
-                //         const reader = new FileReader();
-                //         reader.addEventListener('load', () => {
-                //             /*
-                //               Note: Now we need to register the blob in TinyMCEs image blob
-                //               registry. In the next release this part hopefully won't be
-                //               necessary, as we are looking to handle it internally.
-                //             */
-                //             const id = 'blobid' + (new Date()).getTime();
-                //             const blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                //             const base64 = reader.result.split(',')[1];
-                //             const blobInfo = blobCache.create(id, file, base64);
-                //             blobCache.add(blobInfo);
+            function showPreview() {
+                var editor = tinymce.get('question').getContent();
+                // var questionValue = editor.getContent({
+                //     format: 'text'
+                // }); // Menggunakan format: 'text' untuk mendapatkan teks biasa
 
-                //             /* call the callback and populate the Title field with the file name */
-                //             cb(blobInfo.blobUri(), {
-                //                 title: file.name
-                //             });
-                //         });
-                //         reader.readAsDataURL(file);
-                //     });
+                // Mengatasi konversi HTML yang tidak diinginkan
+                // var tempDiv = document.createElement('div');
+                // tempDiv.innerHTML = questionValue;
+                // var plainText = tempDiv.textContent || tempDiv.innerText;
 
-                //     input.click();
-                // },
-                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+                document.getElementById('preview').innerHTML = '<strong>Isi TinyMCE:</strong><br><pre>' + editor + '</pre>';
+            }
 
-            })
+            function prepareFormForSubmission() {
+                var questionValue = tinymce.get('mytextarea').getContent();
+                console.log("ini isian tinyMCE", questionValue)
+                document.getElementById('myForm').insertAdjacentHTML('beforeend',
+                    '<input type="hidden" name="question" value="' + questionValue + '">');
+            }
         </script>
 
         {{-- CREATE FORUM MODAL + QUILLJS --}}

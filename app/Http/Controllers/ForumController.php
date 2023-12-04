@@ -7,6 +7,7 @@ use App\Models\MasterType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Course;
+use App\Models\Material;
 
 class ForumController extends Controller
 {
@@ -35,7 +36,8 @@ class ForumController extends Controller
         else{
             $forums = Forum::where('course_id', $course_id)->get();
             $course = Course::find($course_id);
-            return view('forum.forum', ['forums' => $forums, 'course' => $course]);
+            $materials = Material::where('course_id', $course_id)->get();
+            return view('forum.forum', ['forums' => $forums, 'course' => $course, 'materials'=>$materials]);
         }
         // dd($course);
         // dd($forums);
@@ -62,19 +64,17 @@ class ForumController extends Controller
     public function createForum(Request $request){
         $request->validate([
             'forum_title' => 'required|string|max:255',
-            'forum_message' => 'required|string',
-            'forum_attachment' => 'nullable|file|max:2048',
+            'forum_message' => 'required|string'
         ]);
 
         $validator = Validator::make($request->all(), [
             'forum_title' => 'required|string|max:255',
-            'forum_message' => 'required|string',
-            'forum_attachment' => 'nullable|file|max:2048',
+            'forum_message' => 'required|string'
         ]);
 
         $forum = new Forum([
             'user_id' => auth()->user()->id,
-            'master_type_id' => $request->input('master_type_id'),
+            'course_id' => $request->input('course_id'),
             'forum_title' => $request->input('forum_title'),
             'forum_message' => $request->input('forum_message'),
         ]);

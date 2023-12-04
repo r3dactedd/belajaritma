@@ -60,6 +60,7 @@ Route::get('/home', function () {
 
 Route::get('/forum', [ForumController::class, 'showCourseData']);
 Route::get('forum/course/{course_id}', [ForumController::class, 'showForumsByCourse']);
+Route::post('forum/course/{course_id}', [ForumController::class, 'createForum']);
 Route::get('/forum/course/{course_id}/thread/{id}', [ForumController::class, 'forumDetail']);
 
 // Route::get('/forum/course/1', function () {
