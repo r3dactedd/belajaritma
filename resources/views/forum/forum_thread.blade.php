@@ -268,7 +268,7 @@
             selector: '#input',
             height: 200,
             menubar: false,
-            plugins: ' code codesample lists',
+            plugins: ' code codesample lists ',
 
             toolbar: ' wordcount | link image |code |bold italic underline| codesample|numlist bullist ',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'

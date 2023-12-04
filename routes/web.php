@@ -150,6 +150,9 @@ Route::get('/manager/course/session/1/edit', function () {
 });
 
 Route::get('/manager/certification', [ManageCertificationController::class, 'showCertificationData']);
+Route::get('/manager/transaction', function () {
+    return view('administrator.admin_transaction');
+});
 
 Route::get('/manager/certification/create', function () {
     return view('administrator.admin_certifications.admin_certification_create');

@@ -83,23 +83,31 @@
                         </div>
                     </div> --}}
                     <div class="mb-6">
-                        <label class="mb-3 block" for="">Other inputs</label>
-                        <input type="text" id="myInfo"
-                            class="inline-block w-full rounded-md border border-gray-500 px-3 py-2 tracking-wide text-gray-600"
-                            placeholder="" required="">
+                        <label class="my-4 font-semibold" for="">Tahap Transaksi</label>
+
+                        <div class="my-4 rounded-lg border border-gray-600 bg-white p-4 shadow-md">
+                            <div class="text-base font-medium">Anda dapat melakukan transfer pada nomor <span
+                                    class="font-semibold text-indigo-600">12345678 A.N Name Here</span></div>
+                            <div class="text-base font-medium">1. Cantumkan blablabla pada </div>
+                            <div class="text-base font-medium">2. Waktu konfirmasi blabla</div>
+                            <div class="text-base font-medium">3. Apabila bukti transfer valid, anda dapat</div>
+                            <div class="text-base font-medium">4. Apabila bukti transfer tidak valid, anda dapat</div>
+                        </div>
                     </div>
 
                     <div class="mb-6">
-                        <label class="mb-3 block" for="">Pesan Transaksi (opsional)</label>
-                        <textarea id="myInfo"
-                            class="inline-block w-full rounded-md border border-gray-500 px-3 py-2 tracking-wide text-gray-600" placeholder=""
-                            required=""></textarea>
+                        <label class="my-4 font-semibold" for="">Upload Bukti Pembayaran</label>
+
+
+                        <input
+                            class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                            id="file_input" type="file">
                     </div>
 
                     <div>
                         <button
                             class="text-ceenter w-full rounded-md bg-blue-500 px-4 py-3 font-semibold text-white shadow-md">
-                            Bayar
+                            Kirim Bukti Pembayaran
                         </button>
                     </div>
                 </div>
