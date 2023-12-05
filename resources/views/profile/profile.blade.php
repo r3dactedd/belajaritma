@@ -98,6 +98,9 @@
                 <li class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a id="profileCerti">Sertifikasi</a>
                 </li>
+                <li class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                    <a id="profileHistory">Riwayat Transaksi</a>
+                </li>
             </ul>
 
         </div>
@@ -110,6 +113,9 @@
         </div>
         <div id="courses" style="display: none;">
             @include('profile.profile_courselist')
+        </div>
+        <div id="history" style="display: none;">
+            @include('profile.profile_history')
         </div>
 
         </div>
@@ -146,19 +152,28 @@
             $("#profileDashboard").click(function() {
                 $("#courses").hide();
                 $("#certifications").hide();
+                $("#history").hide();
                 $("#dashboard").show();
             });
 
             $("#profileCourses").click(function() {
                 $("#dashboard").hide();
                 $("#certifications").hide();
+                $("#history").hide();
                 $("#courses").show();
             });
 
             $("#profileCerti").click(function() {
                 $("#dashboard").hide();
                 $("#courses").hide();
+                $("#history").hide();
                 $("#certifications").show();
+            });
+            $("#profileHistory").click(function() {
+                $("#dashboard").hide();
+                $("#courses").hide();
+                $("#certifications").hide();
+                $("#history").show();
             });
         });
     </script>
