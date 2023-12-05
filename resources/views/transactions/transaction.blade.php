@@ -101,7 +101,7 @@
 
                         <input
                             class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                            id="file_input" type="file">
+                            id="file_input" type="file" accept="image/*">
                     </div>
 
                     <div>

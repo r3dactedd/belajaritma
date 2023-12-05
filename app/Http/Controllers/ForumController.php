@@ -58,7 +58,9 @@ class ForumController extends Controller
 
     public function forumDetail($course_id,$id){
         $data=Forum::find($id);
-        return view('forum.forum_thread',['data'=>$data]);
+        $getReply = Forum::all();
+        // $replies = Forum::where('reply_id', 'like', $id)->get();
+        return view('forum.forum_thread',['data'=>$data, 'getReply'=>$getReply]);
     }
 
     public function createForum(Request $request){
