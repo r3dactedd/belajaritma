@@ -29,40 +29,14 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Manage Sertifikasi</span>
+                            <span class="mb-1 ml-2">Manage Transaksi Pembayaran</span>
                         </a>
                 </div>
             </div>
         </div>
 
         <div class="container mx-auto my-4 pb-4">
-            {{-- Search Bar --}}
-            <div class="relative m-4">
-                <form action="/manager/certification" method="get" class="px-4 lg:px-0">
-                    @csrf
-                    <label for="default-search"
-                        class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
-                    <div class="relative">
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                            </svg>
-                        </div>
-                        <input type="search" name="searchKeyword" id="inputKeyword"
-                            class="mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                            placeholder="Cari Nama Sertifikasi" required>
-                        <button type="submit"
-                            class="absolute bottom-2.5 right-2.5 rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-                    </div>
-                </form>
-                <a href="/manager/certification/create"
-                    class="modal-open my-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                    Buat Sertifikasi Baru
-                </a>
-            </div>
-            {{-- Search Bar --}}
+
 
             <div class="container mx-auto w-11/12 overflow-x-auto">
 
@@ -76,50 +50,65 @@
                     </colgroup>
                     <thead class="bg-gray-200 leading-normal text-gray-600">
                         <tr class="text-md bg-gray-200 leading-normal text-gray-600 md:text-lg">
-                            <th class="px-4 py-2 text-left">Nama Sertifikasi</th>
-                            <th class="px-4 py-2 text-left">Diupload Oleh</th>
-                            <th class="px-4 py-2 text-left">Terakhir Diedit Oleh</th>
-                            <th class="px-4 py-2 text-left">Tanggal Edit Terakhir</th>
+                            <th class="px-4 py-2 text-left">Nama User</th>
+                            <th class="px-4 py-2 text-left">Sertifikasi</th>
+                            <th class="px-4 py-2 text-left">Kode Pembayaran</th>
+                            <th class="px-4 py-2 text-left">Tanggal Upload Bukti</th>
+                            <th class="px-2 py-3 text-center">Foto Bukti</th>
                             <th class="px-2 py-3 text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="text-md font-light text-gray-600 md:text-lg">
-                        @foreach ($data as $data)
-                            <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
-                                <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $data->certif_title }}</p>
-                                </td>
-                                <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $data->findUpdatedBy->username }}</p>
-                                </td>
-                                <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $data->findCreatedBy->username }}</p>
-                                </td>
-                                <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $data->updated_at->format('Y-m-d') }}</p>
-                                </td>
-                                <td class="px-6 py-3 text-center">
-                                    <div class="item-center flex justify-center">
-                                        <a href="/manager/certification/edit/{{ $data->id }}"
-                                            class="mx-2 w-4 transform hover:scale-110 hover:text-purple-500">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                            </svg>
-                                        </a>
-                                        <div class="mr-2 w-4 transform hover:scale-110 hover:text-red-500"
-                                            data-modal-target="popup-delete" data-modal-toggle="popup-delete">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
+
+                        <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">a</p>
+                            </td>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">b</p>
+                            </td>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">c</p>
+                            </td>
+                            <td class="px-4 py-2">
+                                <p class="max-h-20 overflow-scroll">d</p>
+                            </td>
+                            <td class="px-6 py-3 text-center">
+                                <div class="item-center flex justify-center">
+                                    {{-- Image here --}}
+                                    <a href="#" class="mr-2 w-4 transform hover:scale-110 hover:text-green-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="18"
+                                            viewBox="0 0 576 512">
+                                            <path
+                                                d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="px-6 py-3 text-center">
+                                <div class="item-center flex justify-center">
+                                    {{-- Yes --}}
+                                    <a href="#" class="mx-2 w-4 transform hover:scale-110 hover:fill-green-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"
+                                            viewBox="0 0 448 512">
+                                            <path
+                                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                        </svg>
+
+                                    </a>
+                                    {{-- No --}}
+                                    <a href="#" class="mr-2 w-4 transform hover:scale-110 hover:fill-red-500"
+                                        data-modal-target="popup-delete" data-modal-toggle="popup-delete">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"
+                                            viewBox="0 0 384 512">
+                                            <path
+                                                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
             </div>

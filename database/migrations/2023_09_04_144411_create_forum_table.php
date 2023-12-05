@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('reply_id')->nullable();
             $table->string('forum_title');
             $table->string('forum_message');
             $table->string('forum_attachment');
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('reply_id')->references('id')->on('forum')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

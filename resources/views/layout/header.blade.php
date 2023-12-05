@@ -17,37 +17,39 @@
     <div class="container mx-auto flex h-16 items-center justify-between lg:items-stretch">
         <div class="flex h-full items-center">
             <a href="/" class="relative mr-10 flex h-full items-center font-black leading-none">
-                <svg class="h-6 w-auto fill-current text-indigo-600" viewBox="0 0 194 116"
+                {{-- <svg class="h-6 w-auto fill-current text-indigo-600" viewBox="0 0 194 116"
                     xmlns="http://www.w3.org/2000/svg">
                     <g fill-rule="evenodd">
                         <path
                             d="M96.869 0L30 116h104l-9.88-17.134H59.64l47.109-81.736zM0 116h19.831L77 17.135 67.088 0z" />
                         <path d="M87 68.732l9.926 17.143 29.893-51.59L174.15 116H194L126.817 0z" />
                     </g>
-                </svg>
+                </svg> --}}
                 <span class="ml-4 text-2xl text-gray-800">Belajaritma</span>
             </a>
             <ul class="hidden h-full items-center lg:flex">
                 <li class="text-md flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/home" id="home-link">Home</a>
+                    <a href="/home" id="home-link"class="hover:text-indigo-600 hover:underline">Home</a>
                 </li>
                 <li
                     class="text-md mx-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/courses" id="courses-link">Kursus</a>
+                    <a href="/courses" id="courses-link" class="hover:text-indigo-600 hover:underline">Kursus</a>
                 </li>
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/certifications" id="certifications-link">Sertifikasi</a>
+                    <a href="/certifications" id="certifications-link"
+                        class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
                 </li>
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/forum" id="forums-link">Forum</a>
+                    <a href="/forum" id="forums-link"class="hover:text-indigo-600 hover:underline">Forum</a>
                 </li>
                 @if (Auth::check())
                     @if (Auth::user()->role_id == '1')
                         <li
                             class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                            <a href="/manager" id="manager-link">Admin Manager</a>
+                            <a href="/manager" id="manager-link"class="hover:text-indigo-600 hover:underline">Admin
+                                Manager</a>
                         </li>
                     @endif
                 @endif
@@ -83,7 +85,7 @@
                                 </ul>
                                 <img class="h-10 w-10 rounded-full object-cover"
                                     src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : 'profile_img/placeholder.webp' }}"
-                                    alt="{{ Auth::user()->username }}'s Profile Picture" />
+                                    alt="" />
                                 <p class="text-md ml-2 font-semibold text-gray-800">{{ auth()->user()->username }}</p> <svg
                                     class="ml-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
 

@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2">
+        <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-3">
             <div>
                 <a href="/manager/course">
                     <div
@@ -66,16 +66,13 @@
                                 src="https://cdn.elearningindustry.com/wp-content/uploads/2022/01/shutterstock_525008128.jpg"
                                 alt="banner" />
                         </div>
-                        <div class="h-full w-full pt-5 md:h-32">
+                        <div class="h-full w-full pt-5 md:h-36">
                             <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                 Manage Kursus
                             </h4>
                             <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Anda dapat melakukan pengaturan untuk detail kursus, materi kursus, dan tes akhir kursus
-                                disini.
-
+                                Anda dapat melakukan pengaturan untuk detail kursus, materi kursus, dan tes akhir kursus.
                             </p>
-
                         </div>
                     </div>
                 </a>
@@ -90,13 +87,35 @@
                                 src="https://viewjobnow.com/wp-content/uploads/2023/05/free-business-certifications.png"
                                 alt="banner" />
                         </div>
-                        <div class="h-full w-full pt-5 md:h-32">
+                        <div class="h-full w-full pt-5 md:h-36">
 
                             <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                 Manage Sertifikasi
                             </h4>
                             <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Anda dapat melakukan pengaturan untuk detail dan tes sertifikasi disini.
+                                Anda dapat melakukan pengaturan untuk detail dan tes sertifikasi.
+                            </p>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a href="/manager/transaction">
+                    <div
+                        class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
+                        <div class="relative h-56 w-full">
+                            <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
+                                src="https://www.paper.id/blog/wp-content/uploads/2020/10/due-upon-receipt-method.png"
+                                alt="banner" />
+                        </div>
+                        <div class="h-full w-full pt-5 md:h-36">
+
+                            <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
+                                Manage Transaksi Pembayaran
+                            </h4>
+                            <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
+                                Anda dapat melakukan pengaturan untuk pembayaran sertifikasi.
                             </p>
 
                         </div>
@@ -104,28 +123,6 @@
                 </a>
             </div>
 
-            {{-- <div>
-                <a href="/manager/forum">
-                    <div
-                        class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
-                        <div class="relative h-56 w-full">
-                            <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
-                                src="https://www.ala.org/acrl/sites/ala.org.acrl/files/content/discussion%20forum%20fb.jpg"
-                                alt="banner" />
-                        </div>
-                        <div class="h-full w-full pt-5 md:h-48">
-
-                            <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
-                                Manage Forum
-                            </h4>
-                            <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div> --}}
 
         </div>
     @endsection
