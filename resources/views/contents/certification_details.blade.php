@@ -164,7 +164,7 @@
                             <div class="flex items-center">
 
                                 <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                    <a href="/transaction" id="convertButton"
+                                    <a href="/transaction/{{ $data->id }}" id="convertButton"
                                         class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Registrasi</a>
                                 </p>
                             </div>

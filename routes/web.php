@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManageCertificationController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ManageCourseController;
+use App\Http\Controllers\ManageTransactionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SidebarController;
@@ -149,9 +150,7 @@ Route::get('/manager/course/session/1/edit', function () {
 });
 
 Route::get('/manager/certification', [ManageCertificationController::class, 'showCertificationData']);
-Route::get('/manager/transaction', function () {
-    return view('administrator.admin_transaction');
-});
+Route::get('/manager/transaction', [ManageTransactionController::class, 'showTransactionList']);
 
 Route::get('/manager/certification/create', function () {
     return view('administrator.admin_certifications.admin_certification_create');
@@ -162,9 +161,8 @@ Route::post('/manager/certification/edit/{id}', [ManageCertificationController::
 
 Route::get('/manager/forum', [ForumController::class, 'manageForumList']);
 
-Route::get('/transaction', function () {
-    return view('transactions.transaction');
-});
+
+Route::get('/transaction/{id}', [CertificationController::class, 'registerCertification']);
 
 Route::get('/profile/name/dashboard', function () {
     return view('profile.profile_dashboard');
