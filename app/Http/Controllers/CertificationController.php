@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Certification;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class CertificationController extends Controller
 {
@@ -27,5 +30,26 @@ class CertificationController extends Controller
     public function registerCertification($id){
         $data=Certification::find($id);
         return view('transactions.transaction', ['data' => $data]);
+    }
+    public function createTransaction(Request $request){
+        $request->validate([
+            'transaction_proof' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        $imageName = $request->transaction_proof->getClientOriginalName();
+        $request->transaction_proof->storeAs('storage/images', $imageName);
+
+        $transaction = new Transaction();
+        $transaction->user_id = Auth()->user()->id;
+        $transaction->certif_id =  $request->certif_id;
+        $transaction->payment_code = Str::uuid();
+
+        $filename = Str::orderedUuid() . "." . $request->transaction_proof->getClientOriginalExtension();
+        $transaction->transaction_proof = $filename;
+
+        Storage::putFileAs('public/images/', $request->transaction_proof, $filename);
+
+        $transaction->save();
+        // transaction_proof
+        return redirect("/certifications/{$request->certif_id}");
     }
 }

@@ -94,22 +94,25 @@
                             <div class="text-base font-medium">4. Apabila bukti transfer tidak valid, anda dapat</div>
                         </div>
                     </div>
+                    <form method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-6">
+                            <label class="my-4 font-semibold" for="">Upload Bukti Pembayaran</label>
 
-                    <div class="mb-6">
-                        <label class="my-4 font-semibold" for="">Upload Bukti Pembayaran</label>
+                            <input name="transaction_proof" id="transaction_proof"
+                                class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                type="file" accept="image/*">
+                            <input type="hidden" id="certifId" name="certif_id" value="{{ $data->id }}">
+                        </div>
 
+                        <div>
+                            <button type="submit"
+                                class="text-ceenter w-full rounded-md bg-blue-500 px-4 py-3 font-semibold text-white shadow-md">
+                                Kirim Bukti Pembayaran
+                            </button>
+                        </div>
+                    </form>
 
-                        <input
-                            class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                            id="file_input" type="file" accept="image/*">
-                    </div>
-
-                    <div>
-                        <button
-                            class="text-ceenter w-full rounded-md bg-blue-500 px-4 py-3 font-semibold text-white shadow-md">
-                            Kirim Bukti Pembayaran
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
