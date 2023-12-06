@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('certif_id');
-            $table->string('payment_code');
+            $table->string('payment_code')->unique();;
             $table->string('transaction_proof');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('certif_id')->references('id')->on('certification')->onUpdate('cascade')->onDelete('cascade');

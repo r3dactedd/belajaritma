@@ -16,7 +16,8 @@ class Forum extends Model
         'master_type_id',
         'forum_title',
         'forum_message',
-        'forum_attachment'
+        'forum_attachment',
+        'reply_id',
     ];
     public function formToUser(){
         return $this->belongsTo(User::class, 'user_id');
