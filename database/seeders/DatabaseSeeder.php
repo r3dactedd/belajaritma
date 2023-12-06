@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ForumSeeder::class);
         $this->call(ModuleContentSeeder::class);
         $this->call(CertificationSeeder::class);
+        $this->call(TransactionSeeder::class);
     }
 }

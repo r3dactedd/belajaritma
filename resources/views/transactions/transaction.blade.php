@@ -42,11 +42,11 @@
                 <div class="rounded-xl bg-white p-8 shadow-md">
                     <h1
                         class="mb-4 text-center text-lg font-bold tracking-normal text-gray-800 md:py-2 md:pr-4 md:text-left lg:text-2xl">
-                        Nama Sertificate here
+                        {{ $data->certif_title }}
                     </h1>
                     <div class="mb-6 text-left">
                         <div class="text-left text-lg font-semibold">Biaya Sertifikasi</div>
-                        <span class="text-lg font-bold text-indigo-500">Rp. 250.000,00</span>
+                        <span class="text-lg font-bold text-indigo-500">Rp. {{ $data->certif_cost }}</span>
                     </div>
                     {{-- <div class="mb-6">
                         <label class="mb-3 block" for="">Nama di Kartu</label>

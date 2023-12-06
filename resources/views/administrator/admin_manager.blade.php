@@ -112,10 +112,10 @@
                         <div class="h-full w-full pt-5 md:h-36">
 
                             <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
-                                Manage Transaksi Pembayaran
+                                Verifikasi Pembayaran Sertifikasi
                             </h4>
                             <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Anda dapat melakukan pengaturan untuk pembayaran sertifikasi.
+                                Anda dapat melakukan verifikasi untuk transaksi pembayaran sertifikasi.
                             </p>
 
                         </div>

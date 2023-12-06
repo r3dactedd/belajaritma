@@ -23,6 +23,9 @@ class CertificationController extends Controller
     public function certifDetail($id){
         $data=Certification::find($id);
         return view('contents.certification_details', ['data' => $data]);
-        // dd($contentArray);
+    }
+    public function registerCertification($id){
+        $data=Certification::find($id);
+        return view('transactions.transaction', ['data' => $data]);
     }
 }

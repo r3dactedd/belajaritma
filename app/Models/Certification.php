@@ -27,4 +27,7 @@ class Certification extends Model
     public function findCreatedBy(){
         return $this->belongsTo(User::class, 'created_by');
     }
+    public function certifToTransaction(){
+        return $this->hasMany(Transaction::class, 'certif_id','id');
+    }
 }
