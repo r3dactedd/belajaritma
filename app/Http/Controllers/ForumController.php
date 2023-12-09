@@ -111,6 +111,6 @@ class ForumController extends Controller
         $forum->save();
 
         // Redirect to the forum view with the forum ID
-        return Redirect::route('forum.forum', ['id' => $forum->id])->with('success', 'Forum topic created successfully!');
+        return Redirect::route('forum.forum', ['course_id' => $forum->course_id])->with('success', 'Forum topic created successfully!');
     }
 }
