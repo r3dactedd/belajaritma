@@ -54,6 +54,7 @@
                                     Created by: {{ $data->formToUser->username }}
                                 </p>
                                 <p class="w-fit text-base" id="codeContainer">
+                                    {{ $data->forum_message }}
                                 </p>
                             </div>
                         </div>
@@ -221,7 +222,55 @@
         </div>
         </div>
         {{-- Delete Popup Modal --}}
-        @include('modals.delete')
+
+        <div id="popup-delete" tabindex="-1" aria-hidden="true"
+            class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+            <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
+                <!-- Add margin if you want to see some of the overlay behind the modal-->
+                <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
+                    <div class="container mx-auto my-5 p-5">
+                        {{-- EDIT PROFILE --}}
+                        <div class="flex justify-end">
+                            <button type="button"
+                                class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                                data-modal-hide="defaultModal">
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="mx-auto rounded-xl bg-white px-2 py-2">
+                            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
+                            <p class="text-md my-4">
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </p>
+                            <form method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
+                                    <div class="sm:col-span-2">
+                                        <form method="post" class="mt-2 h-32 min-h-full overflow-y-auto">
+                                            <textarea id="input" class="h-24" placeholder="Input Balasan Anda disini."></textarea>
+                                        </form>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--Footer-->
+                        <div class="flex justify-end pt-2">
+                            <button
+                                class="modal-close mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Balas
+                                Forum</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{-- Delete Popup Modal --}}
     </body>
     <style>
@@ -231,8 +280,6 @@
     </style>
     <script>
         //Example for input be here :
-        var htmlCode =
-            `Ini contoh isi reply with code example "Lorem ipsum dolor,, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<strong>herre</strong><em> consectetur adipiscing elit</em> `;
 
         var codeContainer = document.getElementById('codeContainer');
 
@@ -243,9 +290,43 @@
             selector: '#input',
             height: 200,
             menubar: false,
-            plugins: ' code codesample lists ',
+            plugins: ' code codesample image',
+            toolbar: ' wordcount | link image |code |bold italic underline| codesample ',
+            // Image below, for further consideration
+            file_picker_types: 'image',
+            /* enable automatic uploads of images represented by blob or data URIs*/
+            automatic_uploads: true,
+            file_picker_callback: (cb, value, meta) => {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
 
-            toolbar: ' wordcount | link image |code |bold italic underline| codesample|numlist bullist ',
+                input.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+
+                    const reader = new FileReader();
+                    reader.addEventListener('load', () => {
+                        /*
+                          Note: Now we need to register the blob in TinyMCEs image blob
+                          registry. In the next release this part hopefully won't be
+                          necessary, as we are looking to handle it internally.
+                        */
+                        const id = 'blobid' + (new Date()).getTime();
+                        const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        const base64 = reader.result.split(',')[1];
+                        const blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        /* call the callback and populate the Title field with the file name */
+                        cb(blobInfo.blobUri(), {
+                            title: file.name
+                        });
+                    });
+                    reader.readAsDataURL(file);
+                });
+
+                input.click();
+            },
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 
         })

@@ -7,6 +7,7 @@ use App\Models\MasterType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Course;
+use App\Models\Material;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
@@ -37,7 +38,8 @@ class ForumController extends Controller
         else{
             $forums = Forum::where('course_id', $course_id)->get();
             $course = Course::find($course_id);
-            return view('forum.forum', ['forums' => $forums, 'course' => $course]);
+            $materials = Material::where('course_id', $course_id)->get();
+            return view('forum.forum', ['forums' => $forums, 'course' => $course, 'materials'=>$materials]);
         }
         // dd($course);
         // dd($forums);
@@ -63,35 +65,52 @@ class ForumController extends Controller
     }
 
     public function createForum(Request $request){
+        Log::info('Request Data:', $request->all());
         $request->validate([
+            'course_session' => 'required|string|max:255',
             'forum_title' => 'required|string|max:255',
-            'forum_message' => 'required|string',
-            'forum_attachment' => 'nullable|file|max:2048',
+            'forum_message' => 'required|string'
         ]);
 
         $validator = Validator::make($request->all(), [
+            'course_session' => 'required|string|max:255',
             'forum_title' => 'required|string|max:255',
-            'forum_message' => 'required|string',
-            'forum_attachment' => 'nullable|file|max:2048',
-        ]);
-
-        $forum = new Forum([
-            'user_id' => auth()->user()->id,
-            'master_type_id' => $request->input('master_type_id'),
-            'forum_title' => $request->input('forum_title'),
-            'forum_message' => $request->input('forum_message'),
+            'forum_message' => 'required|string'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+            return response()->json(['error' => 'Validation failed'], 422);
         }
+
+        $forum = new Forum([
+            'user_id' => auth()->user()->id,
+            'course_id' => $request->input('course_id'),
+            'forum_title' => $request->input('forum_title'),
+            'course_session' => $request->input('course_session'),
+            'forum_message' => $request->input('forum_message')
+        ]);
+
+
+        if ($request->input('forum_attachment')) {
+            // Get the uploaded file
+            $file = $request->input('forum_attachment');
+
+            // Set a unique filename for the image
+            $filename = time().
+            '_'.$file->getClientOriginalName();
+
+            // Move the file to the storage directory
+            $file->move(public_path('forum_attachments'), $filename);
+
+            // Save the filename to the 'forum_attachment' column
+            $forum->forum_attachment = $filename;
+        }
+
         // Save the forum to the database
         $forum->save();
 
-        return redirect()->route('forum.forum', ['id' => $forum->id])
-            ->with('success', 'Forum topic created successfully!');
+        // Redirect to the forum view with the forum ID
+        return Redirect::route('forum.forum', ['course_id' => $forum->course_id])->with('success', 'Forum topic created successfully!');
     }
 
     public function createReply(Request $request){
@@ -121,5 +140,6 @@ class ForumController extends Controller
         // return Redirect::route('forumDetail', ['id' => $request->input('reply_id'),'course_id' => $request->input('course_id')])->with('success', 'Forum topic created successfully!');
         return response()->json(['message' => 'Forum reply created successfully']);
     }
+
 
 }

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
@@ -89,10 +90,7 @@
                                 class="mx-4 w-full py-4 text-sm font-medium text-gray-900 dark:text-gray-300">Hanya
                                 Tampilkan Diskusi Saya</label>
                         </div>
-                        {{-- <button
-                            class="rounded-md bg-gray-100 px-4 py-3 text-sm font-semibold text-gray-800 hover:bg-gray-200">
-                            Reset Filter
-                        </button> --}}
+
 
                     </div>
 
@@ -121,7 +119,7 @@
                                             Created by: {{ $forumData->formToUser->username }}
                                         </p>
                                         <p class="text-sm">
-                                            {{ $forumData->forum_message }}
+                                            {{ strip_tags($forumData->forum_message) }}
                                         </p>
                                         <div class="mt-4 flex items-center">
                                             <div class="mr-2 flex -space-x-2">
@@ -145,14 +143,14 @@
                 </div>
             </div>
         </div>
-        {{-- CREATE FORUM MODAL --}}
+
         <div id="defaultModal" tabindex="-1" aria-hidden="true"
             class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
             <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
                 <!-- Add margin if you want to see some of the overlay behind the modal-->
                 <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
                     <div class="container mx-auto my-5 p-5">
-                        {{-- EDIT PROFILE --}}
+
                         <div class="flex justify-end">
                             <button type="button"
                                 class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
@@ -167,61 +165,67 @@
                         </div>
                         <div class="mx-auto rounded-xl bg-white px-2 py-2">
                             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Diskusi Baru</h2>
-                            <form method="post" enctype="multipart/form-data">
+                            <form id="myForm" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                     <div class="sm:col-span-2">
-                                        <label for="username"
+                                        <label for="forum_title"
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Judul Diskusi</label>
-                                        <input type="text" name="username" id="inputUsername"
+                                        <input type="text" name="forum_title" id="forum_title"
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Tulis Judul untuk Diskusi Anda " required="">
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="username"
+                                        <label for="course_session"
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Sesi Kursus</label>
-                                        <select
+                                        <select id="course_session"
                                             class="w-full rounded-md border-transparent bg-gray-50 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                                             <option value="">Pilih Sesi</option>
-                                            <option value="for-rent">Session 1 Name</option>
-                                            <option value="for-sale">Session 2 Name</option>
-                                            <option value="for-rent">Session 3 Name</option>
-                                            <option value="for-sale">Session 4 Name</option>
+                                            @foreach ($materials as $material)
+                                                <option value="{{ $material->title }}">{{ $material->title }}</option>
+                                            @endforeach
                                         </select>
 
                                     </div>
-                                    {{-- Input Area --}}
+
                                     <div class="sm:col-span-2">
-                                        <label for="username"
+                                        <label for="forum_message"
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                            Pertanyaan</label>
-
-
+                                            Pertanyaan
+                                        </label>
                                         <form method="post" class="mt-2 h-32 min-h-full overflow-y-auto">
-                                            <textarea id="mytextarea" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                            @csrf
+                                            <textarea id="forum_message" name="forum_message" placeholder="Input Pertanyaan Anda disini."></textarea>
                                         </form>
+                                        <input type="hidden" id="courseId" name="course_id"
+                                            value="{{ $forums[0]['course_id'] }}">
+
+                                    </div>
+
+                                    <div class="flex justify-start pt-2">
+                                        <button type="submit"
+                                            class="modal-close mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                            Diskusi</button>
                                     </div>
                                 </div>
                             </form>
+
+                            <div id="preview">
+                                <!-- Tempat untuk menampilkan hasil preview -->
+                            </div>
                         </div>
                         <!--Footer-->
-                        <div class="flex justify-end pt-2">
 
-                            <button
-                                class="modal-close mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
-                                Diskusi</button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <script>
-            //Input Area using TinyMCE
             tinymce.init({
-                selector: '#mytextarea',
+                selector: '#forum_message',
                 menubar: false,
                 // Image below, for further consideration
                 plugins: ' code codesample image',
@@ -264,6 +268,67 @@
                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 
             })
+            document.getElementById('myForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Menghentikan perilaku bawaan formulir
+                submitForm();
+            });
+
+            function showPreview() {
+                var editorContent = tinymce.get('question').getContent();
+                document.getElementById('preview').innerHTML = '<strong>Isi TinyMCE:</strong><br><pre>' + editorContent +
+                    '</pre>';
+            }
+
+            function submitForm() {
+                var editorContent = tinymce.get('forum_message').getContent();
+                console.log("ini isian editorContent", editorContent)
+                var hasImages = editorContent.includes('<img');
+                var fileInput = document.getElementById('forum_attachment');
+                var courseId = document.getElementById('courseId').value;
+                console.log("ini isian courseId", courseId)
+                var discussionTitle = document.getElementById('forum_title').value;
+                console.log("ini isian discussionTitle", discussionTitle)
+                var courseSession = document.getElementById('course_session').value;
+                console.log("ini isian courseSession", courseSession)
+
+                console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+                var formData = new FormData();
+                formData.append('course_id', courseId);
+                formData.append('course_session', courseSession);
+                formData.append('forum_title', discussionTitle);
+                formData.append('forum_message', editorContent);
+
+
+                if (hasImages) {
+                    var file = fileInput.files[0];
+                    formData.append('forum_attachment', file);
+                }
+
+                fetch('/forum/course/' + courseId, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            // Include any necessary headers, such as CSRF token
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        },
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // If the response status is in the range of 200 to 299, treat it as successful
+                            window.location.href = '/forum/course/' + courseId; // Redirect to the desired URL
+                        } else {
+                            // If the response status indicates an error, handle it
+                            console.error('Error:', response.statusText);
+                            // You can display an error message to the user or take other appropriate actions
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Handle other types of errors, such as network issues
+                    });
+
+
+            }
         </script>
 
     </body>

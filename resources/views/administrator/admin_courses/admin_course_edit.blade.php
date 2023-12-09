@@ -232,7 +232,6 @@
                                     </div>
                                 </td>
                         </tr>
-                    @endforeach
                         <tr
                             class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
                             <td class="px-6 py-3 text-center font-semibold" colspan="4">
