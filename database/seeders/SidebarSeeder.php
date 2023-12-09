@@ -19,6 +19,7 @@ class SidebarSeeder extends Seeder
             'material_id' => 1,
             'title' => 'Module 1: Test Title 1',
             'path' => '/courses/materialContent/pdf',
+            'is_locked' => false
         ]);
         Sidebar::create([
             'course_id' => 1,
@@ -26,6 +27,7 @@ class SidebarSeeder extends Seeder
             'material_id' => 2,
             'title' => 'Sub Module 1: Anggap aja ini sub menu',
             'path' => '/courses/materialcontent/video',
+            'is_locked' => false
         ]);
         Sidebar::create([
             'course_id' => 1,
@@ -33,6 +35,7 @@ class SidebarSeeder extends Seeder
             'material_id' => 3,
             'title' => 'Module 2: Test Title Video',
             'path' => '/courses/materialcontent/asg',
+            'is_locked' => true
         ]);
     }
 }

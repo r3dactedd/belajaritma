@@ -59,7 +59,7 @@ Route::get('/home', function () {
 });
 
 Route::get('/forum', [ForumController::class, 'showCourseData']);
-Route::get('forum/course/{course_id}', [ForumController::class, 'showForumsByCourse']);
+Route::get('forum/course/{course_id}', [ForumController::class, 'showForumsByCourse'])->name('forum.forum');
 Route::post('forum/course/{course_id}', [ForumController::class, 'createForum']);
 Route::get('/forum/course/{course_id}/thread/{id}', [ForumController::class, 'forumDetail']);
 
@@ -121,7 +121,11 @@ Route::get('/courses/1/getcerti', function () {
     return view('contents.e-certi');
 });
 
+//sidebar route
 Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
+Route::get('/courses/material/next/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'nextMaterial'])->name('sidebar.nextMaterial');;
+Route::get('/courses/material/previous/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'previousMaterial'])->name('sidebar.previousMaterial');;
+
 
 //show page spesifik
 Route::get('/courses/materialContent/{title}/{id}', [SidebarController::class, 'showByType']);

@@ -42,12 +42,12 @@
                 <div class="my-4"></div>
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
 
-                    <object data="{{ Storage::url('pdf_folder/test.pdf') }}" type="application/pdf" width="100%"
+                    <iframe src="{{ Storage::url('pdf_folder/test.pdf') }}" type="application/pdf" width="100%"
                         height="1024">
                         This browser does not support PDFs. Please download the PDF to view it: <a
                             href="{{ asset('pdf_folder/test.pdf') }}">Download
                             PDF</a>
-                    </object>
+                    </iframe>
 
                 </div>
             </div>

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Course;
 use App\Models\Material;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 
 class ForumController extends Controller
 {
@@ -64,32 +66,51 @@ class ForumController extends Controller
     }
 
     public function createForum(Request $request){
+        Log::info('Request Data:', $request->all());
         $request->validate([
+            'course_session' => 'required|string|max:255',
             'forum_title' => 'required|string|max:255',
             'forum_message' => 'required|string'
         ]);
 
         $validator = Validator::make($request->all(), [
+            'course_session' => 'required|string|max:255',
             'forum_title' => 'required|string|max:255',
             'forum_message' => 'required|string'
         ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => 'Validation failed'], 422);
+        }
 
         $forum = new Forum([
             'user_id' => auth()->user()->id,
             'course_id' => $request->input('course_id'),
             'forum_title' => $request->input('forum_title'),
-            'forum_message' => $request->input('forum_message'),
+            'course_session' => $request->input('course_session'),
+            'forum_message' => $request->input('forum_message')
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+
+        if ($request->input('forum_attachment')) {
+            // Get the uploaded file
+            $file = $request->input('forum_attachment');
+
+            // Set a unique filename for the image
+            $filename = time().
+            '_'.$file->getClientOriginalName();
+
+            // Move the file to the storage directory
+            $file->move(public_path('forum_attachments'), $filename);
+
+            // Save the filename to the 'forum_attachment' column
+            $forum->forum_attachment = $filename;
         }
+
         // Save the forum to the database
         $forum->save();
 
-        return redirect()->route('forum.forum', ['id' => $forum->id])
-            ->with('success', 'Forum topic created successfully!');
+        // Redirect to the forum view with the forum ID
+        return Redirect::route('forum.forum', ['id' => $forum->id])->with('success', 'Forum topic created successfully!');
     }
 }
