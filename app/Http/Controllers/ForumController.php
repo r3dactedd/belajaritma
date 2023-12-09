@@ -61,7 +61,6 @@ class ForumController extends Controller
     public function forumDetail($course_id,$id){
         $data=Forum::find($id);
         $getReply = Forum::all();
-        // $replies = Forum::where('reply_id', 'like', $id)->get();
         return view('forum.forum_thread',['data'=>$data, 'getReply'=>$getReply]);
     }
 
@@ -113,4 +112,34 @@ class ForumController extends Controller
         // Redirect to the forum view with the forum ID
         return Redirect::route('forum.forum', ['course_id' => $forum->course_id])->with('success', 'Forum topic created successfully!');
     }
+
+    public function createReply(Request $request){
+        Log::info('Request Data:', $request->all());
+        $request->validate([
+            'forum_message' => 'required|string',
+        ]);
+
+        $validator = Validator::make($request->all(), [
+            'forum_message' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => 'Validation failed'], 422);
+        }
+
+        $parentForum = Forum::find($request->input('reply_id'));
+
+        $forum = new Forum([
+            'user_id' => auth()->user()->id,
+            'course_id' => $request->input('course_id'),
+            'forum_message' => $request->input('forum_message'),
+            'reply_id' => $parentForum->id,
+        ]);
+
+        $forum->save();
+        // return Redirect::route('forumDetail', ['id' => $request->input('reply_id'),'course_id' => $request->input('course_id')])->with('success', 'Forum topic created successfully!');
+        return response()->json(['message' => 'Forum reply created successfully']);
+    }
+
+
 }

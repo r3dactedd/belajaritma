@@ -42,11 +42,11 @@
                 <div class="rounded-xl bg-white p-8 shadow-md">
                     <h1
                         class="mb-4 text-center text-lg font-bold tracking-normal text-gray-800 md:py-2 md:pr-4 md:text-left lg:text-2xl">
-                        Nama Sertificate here
+                        {{ $data->certif_title }}
                     </h1>
                     <div class="mb-6 text-left">
                         <div class="text-left text-lg font-semibold">Biaya Sertifikasi</div>
-                        <span class="text-lg font-bold text-indigo-500">Rp. 250.000,00</span>
+                        <span class="text-lg font-bold text-indigo-500">Rp. {{ $data->certif_cost }}</span>
                     </div>
                     {{-- <div class="mb-6">
                         <label class="mb-3 block" for="">Nama di Kartu</label>
@@ -94,22 +94,25 @@
                             <div class="text-base font-medium">4. Apabila bukti transfer tidak valid, anda dapat</div>
                         </div>
                     </div>
+                    <form method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-6">
+                            <label class="my-4 font-semibold" for="">Upload Bukti Pembayaran</label>
 
-                    <div class="mb-6">
-                        <label class="my-4 font-semibold" for="">Upload Bukti Pembayaran</label>
+                            <input name="transaction_proof" id="transaction_proof"
+                                class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                type="file" accept="image/*">
+                            <input type="hidden" id="certifId" name="certif_id" value="{{ $data->id }}">
+                        </div>
 
+                        <div>
+                            <button type="submit"
+                                class="text-ceenter w-full rounded-md bg-blue-500 px-4 py-3 font-semibold text-white shadow-md">
+                                Kirim Bukti Pembayaran
+                            </button>
+                        </div>
+                    </form>
 
-                        <input
-                            class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                            id="file_input" type="file" accept="image/*">
-                    </div>
-
-                    <div>
-                        <button
-                            class="text-ceenter w-full rounded-md bg-blue-500 px-4 py-3 font-semibold text-white shadow-md">
-                            Kirim Bukti Pembayaran
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>

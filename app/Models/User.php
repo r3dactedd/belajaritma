@@ -55,4 +55,8 @@ class User extends Authenticatable
     public function userToForum(){
         return $this->hasMany(User::class,'id','user_id');
     }
+
+    public function userToTransaction(){
+        return $this->hasMany(Transaction::class, 'user_id','id');
+    }
 }

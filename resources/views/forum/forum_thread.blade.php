@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
@@ -75,12 +76,18 @@
 
                         <div class="flex w-full items-center justify-center bg-white">
                             <div class="w-full">
-                                {{-- Input --}}
-                                <textarea id="input" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
-                                <div class="my-4 flex justify-end">
-                                    <button id="get-content-button"
-                                        class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
-                                </div>
+                                <form id="myForm" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                    <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
+                                    <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
+
+
+                                    <div class="my-4 flex justify-end">
+                                        <button id="get-content-button" type="submit"
+                                            class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <h3 class="mb-4 text-lg font-semibold text-gray-900">Comments</h3>
@@ -98,9 +105,7 @@
                                         <div class="flex-1 rounded-lg border px-4 py-2 leading-relaxed sm:px-6 sm:py-4">
                                             <strong>{{ $reply->formToUser->username }}</strong> <span
                                                 class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
-                                            <p class="text-md">
-                                                {{ $reply->forum_message }}
-                                            </p>
+                                            <p class="text-md">{{ strip_tags($reply->forum_message) }}</p>
 
                                             <div class="transition">
                                                 <div
@@ -124,7 +129,12 @@
                                                         <div class="w-full" id="reply-container">
 
                                                             <div id="quill-container2"></div>
-                                                            <textarea id="input" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                                            <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                                            <input type="hidden" id="replyId" name="reply_id"
+                                                                value="{{ $data->id }}">
+                                                            <input type="hidden" id="courseId" name="course_id"
+                                                                value="{{ $data->course_id }}">
+
                                                             <div class="my-4 flex justify-end">
                                                                 <button id="get-content-button"
                                                                     class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
@@ -175,7 +185,14 @@
                                                                                 <div class="w-full"
                                                                                     id="destination-reply-container">
                                                                                     <div id="quill-container3"></div>
-                                                                                    <textarea id="input" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                                                                    <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                                                                    <input type="hidden" id="replyId"
+                                                                                        name="reply_id"
+                                                                                        value="{{ $data->id }}">
+                                                                                    <input type="hidden" id="courseId"
+                                                                                        name="course_id"
+                                                                                        value="{{ $data->course_id }}">
+
                                                                                     <div class="my-4 flex justify-end">
                                                                                         <button id="get-content-button"
                                                                                             class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
@@ -344,7 +361,118 @@
             });
         });
     </script>
+    <script>
+        tinymce.init({
+            selector: '#forum_message',
+            menubar: false,
+            // Image below, for further consideration
+            plugins: ' code codesample image',
+            toolbar: ' wordcount | link image |code |bold italic underline| codesample ',
+            // Image below, for further consideration
+            file_picker_types: 'image',
+            /* enable automatic uploads of images represented by blob or data URIs*/
+            automatic_uploads: true,
+            file_picker_callback: (cb, value, meta) => {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
 
+                input.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+
+                    const reader = new FileReader();
+                    reader.addEventListener('load', () => {
+                        /*
+                          Note: Now we need to register the blob in TinyMCEs image blob
+                          registry. In the next release this part hopefully won't be
+                          necessary, as we are looking to handle it internally.
+                        */
+                        const id = 'blobid' + (new Date()).getTime();
+                        const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        const base64 = reader.result.split(',')[1];
+                        const blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        /* call the callback and populate the Title field with the file name */
+                        cb(blobInfo.blobUri(), {
+                            title: file.name
+                        });
+                    });
+                    reader.readAsDataURL(file);
+                });
+
+                input.click();
+            },
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+
+        })
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            submitForm();
+        });
+
+        function showPreview() {
+            var editorContent = tinymce.get('question').getContent();
+            document.getElementById('preview').innerHTML = '<strong>Isi TinyMCE:</strong><br><pre>' + editorContent +
+                '</pre>';
+        }
+
+        function submitForm() {
+            var editorContent = tinymce.get('forum_message').getContent();
+            console.log("ini isian editorContent", editorContent)
+            var hasImages = editorContent.includes('<img');
+            var fileInput = document.getElementById('forum_attachment');
+            var courseId = document.getElementById('courseId').value;
+            console.log("ini isian courseId", courseId)
+            var replyId = document.getElementById('replyId').value;
+            console.log("ini isian replyId", replyId)
+
+
+            console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+            var formData = new FormData();
+            formData.append('course_id', courseId);
+            formData.append('forum_message', editorContent);
+            formData.append('reply_id', replyId);
+
+
+            // if (hasImages) {
+            //     var file = fileInput.files[0];
+            //     formData.append('forum_attachment', file);
+            // }
+
+            fetch('/forum/course/' + courseId + '/thread/' + replyId, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    },
+                })
+                .then(response => {
+                    if (response.ok) {
+                        try {
+                            return response.json();
+                        } catch (error) {
+                            console.error('Error parsing JSON:', error);
+                            return null; // or handle the error in an appropriate way
+                        }
+                    } else {
+                        console.error('Request failed with status:', response.status);
+                        return null; // or handle the error in an appropriate way
+                    }
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                    // Redirect to a new page using JavaScript
+                    window.location.href = '/forum/course/' + courseId + '/thread/' + replyId;
+                })
+                .catch(error => {
+                    // Handle errors, including non-JSON responses
+                    console.error('Error:', error);
+                });
+
+
+        }
+    </script>
 @endsection
 
 </html>
