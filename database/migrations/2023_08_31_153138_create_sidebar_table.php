@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('title');
             // $table->foreign('material_content_id')->references('id')->on('material_content')->onUpdate('cascade')->onDelete('cascade');
             $table->string('path');
+            $table->boolean('is_locked');
         });
     }
 

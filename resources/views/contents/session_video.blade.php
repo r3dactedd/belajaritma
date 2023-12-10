@@ -30,6 +30,7 @@
                             </svg>
                             <span class="mb-1 ml-2">Sesi x : {{$material->title}}</span>
                         </a>
+
                 </div>
 
                 <div class="mt-6 md:mt-0">
@@ -56,10 +57,19 @@
                 <div class="my-4"></div>
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
 
-                    <iframe width="100%" height="640" src="{{$materials->video_link}}" frameborder="0"
+                    <iframe width="100%" height="640" src="{{$material->video_link}}" frameborder="0"
                         allowfullscreen></iframe>
 
                 </div>
+            </div>
+        </div>
+        <div class="hidden rounded-xl border-4 bg-white px-4 pb-8 md:flex md:flex-col">
+            <!-- ... (your existing content) ... -->
+
+            <!-- Navigation buttons -->
+            <div class="flex justify-between mt-4">
+                <button onclick="navigate('back')" class="bg-gray-300 px-4 py-2 rounded-md">Back</button>
+                <button onclick="navigate('next')" class="bg-indigo-600 px-4 py-2 rounded-md text-white">Next</button>
             </div>
         </div>
     </body>
@@ -68,4 +78,37 @@
     @include('layout.footer')
 @endsection
 
+<script>
+    console.log("SCRIPT LOADED")
+    let currentIndex = 0;
+    const sidebars = @json($sidebars); // Assuming you pass the data from Laravel to JavaScript
+
+    function navigate(direction) {
+        if (direction === 'next') {
+            currentIndex = Math.min(currentIndex + 1, sidebars.length - 1);
+        } else if (direction === 'back') {
+            currentIndex = Math.max(currentIndex - 1, 0);
+        }
+
+        console.log("ini current index", currentIndex)
+
+        const url = direction === 'next'
+            ? `/courses/material/next/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`
+            : `/courses/material/previous/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`;
+
+        console.log("ini url", url)
+
+        // // Make a request to the backend using the constructed URL
+        // fetch(url)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         // TODO: Handle the response data
+        //         // You may want to update the content based on the data received from the backend.
+        //         updateContent(data);
+        //     })
+        //     .catch(error => console.error('Error:', error));
+    }
+
+
+</script>
 </html>
