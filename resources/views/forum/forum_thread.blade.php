@@ -285,11 +285,11 @@
                             <p class="text-md my-4">
                                 {{ $data->forum_message }}
                             </p>
-                            <form id="myForm" method="post" enctype="multipart/form-data">
+                            <form id="myForm2" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
                                 <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
-                                <input type="hidden" id="courseId" name="course_id" value="{{ $reply->course_id }}">
+                                <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
 
 
                                 <div class="my-4 flex justify-end">
@@ -402,6 +402,11 @@
         });
 
         document.getElementById('myForm').addEventListener('submit', function(event) {
+            console.log("Hi, ini code getElementnya jalan!")
+            event.preventDefault(); // Prevent the default form submission behavior
+            submitForm();
+        });
+        document.getElementById('myForm2').addEventListener('submit', function(event) {
             console.log("Hi, ini code getElementnya jalan!")
             event.preventDefault(); // Prevent the default form submission behavior
             submitForm();
