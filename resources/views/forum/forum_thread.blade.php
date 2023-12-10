@@ -54,7 +54,6 @@
                                     Created by: {{ $data->formToUser->username }}
                                 </p>
                                 <p class="w-fit text-base" id="codeContainer">
-                                    {{ $data->forum_message }}
                                 </p>
                             </div>
                         </div>
@@ -290,7 +289,7 @@
                                 @csrf
                                 <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
                                 <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
-                                <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
+                                <input type="hidden" id="courseId" name="course_id" value="{{ $reply->course_id }}">
 
 
                                 <div class="my-4 flex justify-end">
@@ -319,6 +318,8 @@
     </style>
     <script>
         //Example for input be here :
+        var htmlCode =
+            `Ini contoh isi reply with code example "Lorem ipsum dolor,, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<strong>herre</strong><em> consectetur adipiscing elit</em> `;
 
         var codeContainer = document.getElementById('codeContainer');
 
