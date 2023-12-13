@@ -23,7 +23,9 @@
 
 </head>
 
-
+@php
+    use Illuminate\Support\Str;
+@endphp
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
     @extends('layout.layout')
@@ -120,7 +122,7 @@
                                                 Created by: {{ $forumData->formToUser->username }}
                                             </p>
                                             <p class="text-sm">
-                                                {{ strip_tags($forumData->forum_message) }}
+                                                {{ Str::limit(strip_tags($forumData->forum_message), 50) }}
                                             </p>
                                             <div class="mt-4 flex items-center">
                                                 <div class="mr-2 flex -space-x-2">
