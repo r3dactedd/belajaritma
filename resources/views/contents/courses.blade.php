@@ -83,8 +83,8 @@
             {{-- Search Bar --}}
             <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-2">
                 {{-- Course Components --}}
-                @foreach ($data as $data)
-                    <a href="/courses/{{$data->id}}">
+                @foreach ($data as $course)
+                    <a href="/courses/{{ $course->id }}">
                         <div
                             class="min-h-max cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                             <div class="lg:w-3/2 w-full">
@@ -96,8 +96,7 @@
                                             <div class="h-full bg-white py-2 md:ml-4">
                                                 <div class="mx-auto h-full w-full">
                                                     <img class="max-h-36 w-full md:h-full"
-                                                        src="{{ asset('storage/images/' . $data->course_img) }}"
-                                                        alt="Course Image" />
+                                                        src="{{ $course->course_img_url }}" alt="Course Image" />
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +105,7 @@
                                         <div class="h-auto w-full md:mx-2 md:w-3/5">
                                             <div class="rounded-sm bg-white px-4 py-2">
                                                 <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
-                                                    {{$data->course_name}}
+                                                    {{ $course->course_name }}
                                                 </h1>
                                                 {{-- <p class="mt-4 w-fit rounded-xl bg-green-400 px-6 py-1.5 text-sm text-white">
                                                     Kursus Selesai
@@ -122,7 +121,7 @@
                                     </div>
 
                                     <p class="text-md mb-6 w-11/12 px-4 font-normal tracking-normal text-gray-600">
-                                        {{$data->course_desc}}
+                                        {{ $course->course_desc }}
                                     </p>
                                     <div
                                         class="grid grid-cols-2 items-start px-4 pb-6 md:flex md:flex-col lg:flex-row lg:items-center">
@@ -132,7 +131,7 @@
                                                     d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
                                             </svg>
                                             <p class="ml-2 text-sm font-normal text-gray-600">
-                                                {{$data->total_module}} Modul
+                                                {{ $course->total_module }} Modul
                                             </p>
                                         </div>
                                         <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
@@ -141,7 +140,7 @@
                                                     d="M353.8 54.1L330.2 6.3c-3.9-8.3-16.1-8.6-20.4 0L286.2 54.1l-52.3 7.5c-9.3 1.4-13.3 12.9-6.4 19.8l38 37-9 52.1c-1.4 9.3 8.2 16.5 16.8 12.2l46.9-24.8 46.6 24.4c8.6 4.3 18.3-2.9 16.8-12.2l-9-52.1 38-36.6c6.8-6.8 2.9-18.3-6.4-19.8l-52.3-7.5zM256 256c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H384c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H256zM32 320c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H160c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32H32zm416 96v64c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32V416c0-17.7-14.3-32-32-32H480c-17.7 0-32 14.3-32 32z" />
                                             </svg>
                                             <p class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">
-                                                {{$data->level}}
+                                                {{ $course->level }}
                                             </p>
                                         </div>
                                         <div class="ml-0 mt-4 flex items-end lg:ml-12 lg:mt-0">

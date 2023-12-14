@@ -42,7 +42,7 @@
                     <div class="h-full p-2 md:py-4 md:pl-8">
                         <div class="mx-auto w-full">
                             <img class="max-h-64 w-full p-4 md:px-0"
-                                src="{{ asset('storage/images/' . $data->course_img) }}" alt="Course Image" />
+                                src="{{ asset('uploads/course_images/' . $data->course_img) }}"alt="Course Image" />
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                                 </div>
                                 <div
                                     class="mb-3 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
-                                    <a href="/courses/material/{{ $data->course_name }}/{{ $data->id }}/{{$data->last_accessed_material}}"
+                                    <a href="/courses/material/{{ $data->course_name }}/{{ $data->id }}/{{ $data->last_accessed_material }}"
                                         class="inline-flex items-center rounded-md bg-green-400 px-4 py-2 align-middle text-sm font-semibold text-white hover:bg-indigo-600 md:w-36">
                                         <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
                                             height="1.1em" viewBox="0 0 512 512">

@@ -12,14 +12,19 @@ class CourseController extends Controller
     //
     public function showData(Request $request){
         $searchKeyword = $request->input('searchKeyword');
-        if($searchKeyword){
+
+        if ($searchKeyword) {
             $data = Course::where('course_name', 'like', "%$searchKeyword%")->get();
-            return view('contents.courses', compact('data'));
-        }
-        else{
+        } else {
             $data = Course::all();
-            return view('contents.courses',['data'=>$data]);
         }
+
+        $data = $data->map(function ($course) {
+            $course->course_img_url = asset('uploads/course_images/' . $course->course_img);
+            return $course;
+        });
+
+        return view('contents.courses', compact('data'));
     }
 
     public function courseDetail($id){

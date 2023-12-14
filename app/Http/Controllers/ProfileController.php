@@ -32,7 +32,8 @@ class ProfileController extends Controller
     {
         $searchUser = User::find(Auth::user()->id);
         $displayUser = User::all();
-        return view('profile.profile', ['searchUser' => $searchUser, 'display' => $displayUser]);
+        $profileImageUrl = asset('uploads/profile_images/' . $searchUser->profile_img);
+        return view('profile.profile', ['searchUser' => $searchUser, 'display' => $displayUser, 'profileImageUrl' => $profileImageUrl]);
     }
 
     public function update(Request $request)
@@ -49,7 +50,7 @@ class ProfileController extends Controller
 
         if ($request->hasFile('profile_img')) {
             $filename = Str::orderedUuid() . '.' . $request->file('profile_img')->getClientOriginalExtension();
-            $request->file('profile_img')->storeAs('public/images', $filename);
+            $request->file('profile_img')->storeAs('profile_images', $filename, 'profile_images');
             $changeProfile['profile_img'] = $filename;
         }
 

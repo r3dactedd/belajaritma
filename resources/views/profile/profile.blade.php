@@ -41,9 +41,9 @@
                         <!-- Profile Card -->
 
                         <div class="h-80 w-auto">
-                            <img class="h-80 w-80 rounded-full object-cover"
-                                src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : 'https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png' }}"
+                            <img class="h-80 w-80 rounded-full object-cover" src="{{ $profileImageUrl }}" id="pfp"
                                 alt="{{ Auth::user()->username }}'s Profile Picture" />
+
                         </div>
                     </div>
                     <div class="my-4"></div>
@@ -125,6 +125,8 @@
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             var element = document.getElementById("profileDashboard");
+            var pfp = document.getElementById("pfp").src;
+            console.log(pfp)
 
             // Add an event listener to run your onClick function when clicked
             element.addEventListener("click", function() {
