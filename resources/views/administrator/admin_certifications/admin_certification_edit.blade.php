@@ -51,7 +51,7 @@
 
                     </div>
                     <div class="mt-6 md:mt-0">
-                        <button
+                        <button type="submit"
                             class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
                                 height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
