@@ -79,7 +79,7 @@
                                     <div class="item-center flex justify-center">
                                         {{-- Image here --}}
                                         <a href="#" class="mr-2 w-4 transform hover:scale-110 hover:text-green-500"
-                                            onclick="showImagePopup('{{ $transaction->transaction_proof }}')">
+                                            onclick="showImagePopup('{{ asset('uploads/transaction_images/' . $transaction->transaction_proof) }}')">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="18"
                                                 viewBox="0 0 576 512">
                                                 <path
@@ -183,11 +183,11 @@
 <script>
     function showImagePopup(imageUrl) {
         var popup = document.getElementById('image-popup');
-
+        console.log(imageUrl);
         var image = popup.querySelector('img');
+
         image.src = imageUrl;
 
-        // Show the popup
         popup.style.display = 'block';
     }
 
@@ -197,4 +197,5 @@
         popup.style.display = 'none';
     }
 </script>
+
 </html>

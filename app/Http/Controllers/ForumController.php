@@ -16,33 +16,39 @@ class ForumController extends Controller
     //
     public function showCourseData(Request $request){
         $searchKeyword = $request->input('searchKeyword');
-        if($searchKeyword){
+
+        if ($searchKeyword) {
             $data = Course::where('course_name', 'like', "%$searchKeyword%")->get();
-            return view('forum.forum_list', compact('data'));
-        }
-        else{
+        } else {
             $data = Course::all();
-            return view('forum.forum_list',['data'=>$data]);
         }
+
+        $data = $data->map(function ($course) {
+            $course->course_img_url = asset('uploads/course_images/' . $course->course_img);
+            return $course;
+        });
+
+        return view('forum.forum_list', compact('data'));
     }
 
     public function showForumsByCourse($course_id, Request $request){
         $searchKeyword = $request->input('searchKeyword');
         if($searchKeyword){
-            $forums = Forum::where('course_id', $course_id)->
-            where('forum_title', 'like', "%$searchKeyword%")
-            ->get();
+            $forums = Forum::where('course_id', $course_id)
+                ->where('forum_title', 'like', "%$searchKeyword%")
+                ->with('formToUser')
+                ->get();
             $course = Course::find($course_id);
             return view('forum.forum', ['forums' => $forums, 'course' => $course]);
         }
         else{
-            $forums = Forum::where('course_id', $course_id)->get();
+            $forums = Forum::where('course_id', $course_id)
+                ->with('formToUser')
+                ->get();
             $course = Course::find($course_id);
             $materials = Material::where('course_id', $course_id)->get();
             return view('forum.forum', ['forums' => $forums, 'course' => $course, 'materials'=>$materials]);
         }
-        // dd($course);
-        // dd($forums);
     }
 
     public function manageForumList(Request $request){
@@ -60,8 +66,9 @@ class ForumController extends Controller
 
     public function forumDetail($course_id,$id){
         $data=Forum::find($id);
+        $profileImageUrl = asset('uploads/profile_images/' . $data->formToUser->profile_img);
         $getReply = Forum::all();
-        return view('forum.forum_thread',['data'=>$data, 'getReply'=>$getReply]);
+        return view('forum.forum_thread',['data'=>$data, 'getReply'=>$getReply, 'profileImageUrl'=>$profileImageUrl]);
     }
 
     public function createForum(Request $request){

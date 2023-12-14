@@ -33,25 +33,20 @@ class ManageCertificationController extends Controller
             'certif_cost'=> 'required|integer|min:0',
             'certif_outline' => 'required|string',
         ]);
-        $imageName = $request->certif_img->getClientOriginalName();
-        $request->certif_img->storeAs('storage/images', $imageName);
+        $filename = Str::orderedUuid() . "." . $request->file('certif_img')->getClientOriginalExtension();
+        $request->certif_img->storeAs('certif_images', $filename, 'certif_images');
 
         $certif = new Certification();
         $certif->certif_title = $request->certif_title;
         $certif->certif_short_desc = $request->certif_short_desc;
         $certif->certif_desc = $request->certif_desc;
         $certif->certif_duration = $request->certif_duration;
-        $certif->certif_img = $request->certif_img;
+        $certif->certif_img = $filename;
         $certif->certif_cost = $request->certif_cost;
         $certif->certif_outline = $request->certif_outline;
 
         $certif->created_by = Auth()->user()->id;
         $certif->updated_by = Auth()->user()->id;
-
-        $filename = Str::orderedUuid() . "." . $request->certif_img->getClientOriginalExtension();
-        $certif->certif_img = $filename;
-
-        Storage::putFileAs('public/images/', $request->certif_img, $filename);
 
         $certif->save();
         // dd($certif);
@@ -71,12 +66,12 @@ class ManageCertificationController extends Controller
             'certif_cost'=> 'required|integer|min:0',
             'certif_outline' => 'required|string',
         ]);
-        $changeProfile = [];
+        $changeCertif = [];
 
         if ($request->hasFile('certif_img')) {
             $filename = Str::orderedUuid() . "." . $request->file('certif_img')->getClientOriginalExtension();
-            $request->file('certif_img')->storeAs('public/images', $filename);
-            $changeProfile['certif_img'] = $filename;
+            $request->file('certif_img')->storeAs('certif_images', $filename, 'certif_images');
+            $changeCertif['certif_img'] = $filename;
         }
 
         // Check if 'certif_img' exists in the validated data
@@ -84,7 +79,7 @@ class ManageCertificationController extends Controller
             unset($validateProfile['certif_img']);
         }
 
-        $changeProfile += [
+        $changeCertif += [
             'certif_title' => $validateCertif['certif_title'],
             'certif_short_desc' => $validateCertif['certif_short_desc'],
             'certif_desc' => $validateCertif['certif_desc'],
@@ -95,7 +90,7 @@ class ManageCertificationController extends Controller
             'updated_by' => Auth()->user()->id,
         ];
 
-        Certification::where('id', $id)->update($changeProfile);
+        Certification::where('id', $id)->update($changeCertif);
         return redirect('/manager/certification')->with('success', 'Certification edit successfull!');
     }
 }

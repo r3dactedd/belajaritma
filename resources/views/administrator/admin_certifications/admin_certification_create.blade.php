@@ -36,37 +36,38 @@
         @include('layout.header')
     @endsection
     @section('content')
-        <div class="scroll-smooth bg-white px-5 sm:px-10">
-            <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
-                <div>
-                    <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
-                        <a onclick="history.back()" class="flex items-center" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                                <path
-                                    d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
-                            </svg>
-                            <span class="mb-1 ml-2">Upload Sertifikasi Baru</span>
-                        </a>
+        <form id="editTop" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="scroll-smooth bg-white px-5 sm:px-10">
+                <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
+                    <div>
+                        <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
+                            <a onclick="history.back()" class="flex items-center" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                    <path
+                                        d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
+                                </svg>
+                                <span class="mb-1 ml-2">Upload Sertifikasi Baru</span>
+                            </a>
 
-                </div>
-                <div class="mt-6 md:mt-0">
-                    <button
-                        class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
-                            height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <line x1="12" y1="5" x2="12" y2="19" />
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                        </svg>
-                        <div class="mx-2"> Finalize Sertifikasi </div>
-                    </button>
+                    </div>
+                    <div class="mt-6 md:mt-0">
+                        <button type="submit"
+                            class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
+                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                            <div class="mx-2"> Finalize Sertifikasi </div>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-            <form id="editTop" method="post" enctype="multipart/form-data">
-                @csrf
+            <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
+
                 <div class="my-4 rounded-xl bg-white md:flex">
                     <!-- Left Side -->
                     <div class="w-full md:w-1/3">
@@ -81,8 +82,8 @@
                                     class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                     <span class="text-base leading-normal">Unduh Foto Baru</span>
-                                    <input type='file' name="certif_img" id="inputCertifImg" class="hidden" accept="image/*"
-                                        onchange="previewImage()" />
+                                    <input type='file' name="certif_img" id="inputCertifImg" class="hidden"
+                                        accept="image/*" onchange="previewImage()" />
                                 </label>
                             </div>
                         </div>
@@ -94,7 +95,7 @@
                         <div class="rounded-xl bg-white px-6 pt-4 md:px-12">
                             <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Judul Sertifikasi</label>
-                            <input type="text"  name="certif_title" id="inputCertifTitle"
+                            <input type="text" name="certif_title" id="inputCertifTitle"
                                 class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
                                 placeholder="Tulis Nama Sertifikasi" required="">
                             <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
@@ -158,39 +159,41 @@
                                     </div>
                                 </div>
                                 <button type="submit"
-                                    class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Upload Sertifikasi
+                                    class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Upload
+                                    Sertifikasi
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-            <div class="my-4"></div>
+                <div class="my-4"></div>
 
-            <div id="syllabus"class="my-4"></div>
-            <div class="relative overflow-x-auto">
-                <table
-                    class="text-md mx-auto w-full text-left font-semibold text-gray-500 shadow-md sm:rounded-lg md:w-10/12">
-                    <tbody>
-                        <tr
-                            class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
-                            <td class="px-6 py-3 text-center font-semibold" colspan="4">
-                                <a class="block" href="/manager/certification/edit/test">
-                                    <p class="inline-flex items-center align-middle" data-modal-target="defaultModal"
-                                        data-modal-toggle="defaultModal">
-                                        <svg class="mr-4 fill-black hover:fill-white" xmlns="http://www.w3.org/2000/svg"
-                                            height="1.5em" viewBox="0 0 512 512">
-                                            <path
-                                                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0-13.3-10.7 24-24 24s-24-10.7-24-24z" />
-                                        </svg>
-                                        Akses Tes Sertifikasi
-                                    </p>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="syllabus"class="my-4"></div>
+                <div class="relative overflow-x-auto">
+                    <table
+                        class="text-md mx-auto w-full text-left font-semibold text-gray-500 shadow-md sm:rounded-lg md:w-10/12">
+                        <tbody>
+                            <tr
+                                class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
+                                <td class="px-6 py-3 text-center font-semibold" colspan="4">
+                                    <a class="block" href="/manager/certification/edit/test">
+                                        <p class="inline-flex items-center align-middle" data-modal-target="defaultModal"
+                                            data-modal-toggle="defaultModal">
+                                            <svg class="mr-4 fill-black hover:fill-white"
+                                                xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512">
+                                                <path
+                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0-13.3-10.7 24-24 24s-24-10.7-24-24z" />
+                                            </svg>
+                                            Akses Tes Sertifikasi
+                                        </p>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+        </form>
     </body>
     </body>
 @endsection

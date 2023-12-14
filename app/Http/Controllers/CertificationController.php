@@ -35,18 +35,16 @@ class CertificationController extends Controller
         $request->validate([
             'transaction_proof' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-        $imageName = $request->transaction_proof->getClientOriginalName();
-        $request->transaction_proof->storeAs('storage/images', $imageName);
+
+        $filename = Str::orderedUuid() . "." . $request->file('transaction_proof')->getClientOriginalExtension();
+        $request->transaction_proof->storeAs('transaction_images', $filename, 'transaction_images');
 
         $transaction = new Transaction();
         $transaction->user_id = Auth()->user()->id;
         $transaction->certif_id =  $request->certif_id;
         $transaction->payment_code = Str::uuid();
-
-        $filename = Str::orderedUuid() . "." . $request->transaction_proof->getClientOriginalExtension();
         $transaction->transaction_proof = $filename;
 
-        Storage::putFileAs('public/images/', $request->transaction_proof, $filename);
 
         $transaction->save();
         // transaction_proof

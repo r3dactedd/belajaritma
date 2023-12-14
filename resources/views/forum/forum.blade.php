@@ -108,7 +108,7 @@
                                         class="flex px-2 hover:bg-gray-200">
                                         <div class="mr-3 flex-shrink-0 py-2">
                                             <img class="mt-2 h-8 w-8 rounded-full sm:h-10 sm:w-10"
-                                                src="{{ asset('/profile_img/' . $forumData->formToUser->profile_img) }}"
+                                                src="{{ asset('uploads/profile_images/' . $forumData->formToUser->profile_img) }}"
                                                 alt="">
                                         </div>
                                         <div class="flex-1 rounded-lg px-4 py-2 text-2xl leading-relaxed">
