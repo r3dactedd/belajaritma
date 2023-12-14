@@ -158,10 +158,6 @@
                                             placeholder="Input outline materi yang terdapat dalam test sertifikasi ." required=""></textarea>
                                     </div>
                                 </div>
-                                <button type="submit"
-                                    class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Upload
-                                    Sertifikasi
-                                </button>
                             </div>
                         </div>
                     </div>
