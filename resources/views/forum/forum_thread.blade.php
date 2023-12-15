@@ -84,7 +84,8 @@
                                     <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
                                     <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
                                     <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
-
+                                    <input type="hidden" id="materialId" name="material_id"
+                                        value="{{ $data->material_id }}">
 
                                     <div class="my-4 flex justify-end">
                                         <button id="get-content-button" type="submit"
@@ -257,6 +258,8 @@
                                 <textarea id="forum_message2" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
                                 <input type="hidden" id="replyId" name="reply_id" value="{{ $reply->id }}">
                                 <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
+                                <input type="hidden" id="materialId" name="material_id"
+                                    value="{{ $data->material_id }}">
                                 <input type="hidden" id="original_forum_id" name="forum_id"
                                     value="{{ $data->id }}">
 
@@ -453,6 +456,8 @@
             console.log("ini isian courseId", courseId)
             var replyId = document.getElementById('replyId').value;
             console.log("ini isian replyId", replyId)
+            var materialId = document.getElementById('materialId').value;
+            console.log("ini isian materialId", materialId);
 
 
             console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
@@ -460,7 +465,7 @@
             formData.append('course_id', courseId);
             formData.append('forum_message', editorContent);
             formData.append('reply_id', replyId);
-
+            formData.append('material_id', materialId);
 
             // if (hasImages) {
             //     var file = fileInput.files[0];
@@ -509,6 +514,8 @@
             console.log("ini isian replyId", replyId)
             var forumId = document.getElementById('original_forum_id').value;
             console.log("ini forum id asli", forumId)
+            var materialId = document.getElementById('materialId').value;
+            console.log("ini isian materialId", materialId);
 
 
             console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
@@ -516,7 +523,7 @@
             formData.append('course_id', courseId);
             formData.append('forum_message', editorContent);
             formData.append('reply_id', replyId);
-
+            formData.append('material_id', materialId);
 
             // if (hasImages) {
             //     var file = fileInput.files[0];
