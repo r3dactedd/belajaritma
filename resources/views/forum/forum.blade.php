@@ -193,10 +193,9 @@
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Pertanyaan
                                         </label>
-                                        <form method="post" class="mt-2 h-32 min-h-full overflow-y-auto">
-                                            @csrf
-                                            <textarea id="forum_message" name="forum_message" placeholder="Input Pertanyaan Anda disini."></textarea>
-                                        </form>
+
+                                        <textarea id="forum_message" name="forum_message" placeholder="Input Pertanyaan Anda disini."></textarea>
+
                                         <input type="hidden" id="courseId" name="course_id"
                                             value="{{ count($forums) > 0 ? $forums[0]['course_id'] : '' }}">
 
@@ -281,6 +280,10 @@
             function submitForm() {
                 var editorContent = tinymce.get('forum_message').getContent();
                 console.log("ini isian editorContent", editorContent)
+                if (editorContent === '') {
+                    alert('Error: Forum message cannot be empty.');
+                    return;
+                }
                 var hasImages = editorContent.includes('<img');
                 var fileInput = document.getElementById('forum_attachment');
                 var courseId = document.getElementById('courseId').value;
@@ -313,6 +316,7 @@
                     })
                     .then(response => {
                         if (response.ok) {
+                            alert('Success! Your form has been uploaded.');
                             // If the response status is in the range of 200 to 299, treat it as successful
                             window.location.href = '/forum/course/' + courseId; // Redirect to the desired URL
                         } else {

@@ -450,6 +450,10 @@
         function submitForm() {
             var editorContent = tinymce.get('forum_message').getContent();
             console.log("ini isian editorContent", editorContent)
+            if (editorContent === '') {
+                alert('Error: Forum message cannot be empty.');
+                return;
+            }
             var hasImages = editorContent.includes('<img');
             var fileInput = document.getElementById('forum_attachment');
             var courseId = document.getElementById('courseId').value;
@@ -494,6 +498,7 @@
                 })
                 .then(data => {
                     console.log('Success:', data);
+                    alert('Success! Your form has been uploaded.');
                     // Redirect to a new page using JavaScript
                     window.location.href = '/forum/course/' + courseId + '/thread/' + replyId;
                 })
@@ -506,6 +511,10 @@
         function submitForm2() {
             var editorContent = tinymce.get('forum_message2').getContent();
             console.log("ini isian editorContent", editorContent)
+            if (editorContent === '') {
+                alert('Error: Forum message cannot be empty.');
+                return;
+            }
             // var hasImages = editorContent.includes('<img');
             // var fileInput = document.getElementById('forum_attachment');
             var courseId = document.getElementById('courseId').value;
@@ -553,6 +562,7 @@
                 .then(data => {
                     console.log('Success:', data);
                     // Redirect to a new page using JavaScript
+                    alert('Success! Your form has been uploaded.');
                     window.location.href = '/forum/course/' + courseId + '/thread/' + forumId;
                 })
                 .catch(error => {
