@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('material_id');
             $table->unsignedBigInteger('reply_id')->nullable();
-            $table->string('course_session')->nullable();
+            // $table->string('course_session')->nullable();
             $table->string('forum_title')->nullable();
             $table->string('forum_message');
             $table->string('forum_attachment')->nullable();
@@ -24,6 +25,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('reply_id')->references('id')->on('forum')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('material_id')->references('id')->on('material')->onUpdate('cascade')->onDelete('cascade');
+
         });
     }
 

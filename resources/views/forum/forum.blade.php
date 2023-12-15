@@ -67,19 +67,17 @@
                                     class="mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                                     placeholder="Cari Judul Diskusi Forum">
                             </div>
-                        </form>
+
                     </div>
 
                     <div class="mt-4 flex items-center justify-between px-4">
                         <div class="flex">
-                            <select
+                            <select name="selectedMaterial"
                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                                 <option value="">Filter Forum</option>
-
-                                <option value="for-rent">Session 1 Name</option>
-                                <option value="for-sale">Session 2 Name</option>
-                                <option value="for-rent">Session 3 Name</option>
-                                <option value="for-sale">Session 4 Name</option>
+                                @foreach ($materials as $forum_material)
+                                    <option value="{{ $forum_material->title }}">{{ $forum_material->title }}</option>
+                                @endforeach
                             </select>
 
                         </div>
@@ -90,9 +88,8 @@
                                 class="mx-4 w-full py-4 text-sm font-medium text-gray-900 dark:text-gray-300">Hanya
                                 Tampilkan Diskusi Saya</label>
                         </div>
-
-
                     </div>
+                    </form>
 
                     <button id="open-btn"
                         class="my-4 ml-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
@@ -179,17 +176,16 @@
                                             placeholder="Tulis Judul untuk Diskusi Anda " required="">
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="course_session"
+                                        <label for="material_id"
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                            Sesi Kursus</label>
-                                        <select id="course_session"
+                                            Pilih Materi</label>
+                                        <select id="material_id" name="material_id"
                                             class="w-full rounded-md border-transparent bg-gray-50 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                                            <option value="">Pilih Sesi</option>
+                                            <option value="">Pilih Materi</option>
                                             @foreach ($materials as $material)
-                                                <option value="{{ $material->title }}">{{ $material->title }}</option>
+                                                <option value="{{ $material->id }}">{{ $material->title }}</option>
                                             @endforeach
                                         </select>
-
                                     </div>
 
                                     <div class="sm:col-span-2">
@@ -202,7 +198,8 @@
                                             <textarea id="forum_message" name="forum_message" placeholder="Input Pertanyaan Anda disini."></textarea>
                                         </form>
                                         <input type="hidden" id="courseId" name="course_id"
-                                            value="{{ $forums[0]['course_id'] }}">
+                                            value="{{ count($forums) > 0 ? $forums[0]['course_id'] : '' }}">
+
 
                                     </div>
 
@@ -290,13 +287,13 @@
                 console.log("ini isian courseId", courseId)
                 var discussionTitle = document.getElementById('forum_title').value;
                 console.log("ini isian discussionTitle", discussionTitle)
-                var courseSession = document.getElementById('course_session').value;
-                console.log("ini isian courseSession", courseSession)
+                var materialId = document.getElementById('material_id').value;
+                console.log("ini isian materialId", materialId);
 
                 console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
                 var formData = new FormData();
                 formData.append('course_id', courseId);
-                formData.append('course_session', courseSession);
+                formData.append('material_id', materialId);
                 formData.append('forum_title', discussionTitle);
                 formData.append('forum_message', editorContent);
 

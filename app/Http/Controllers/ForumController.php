@@ -33,23 +33,38 @@ class ForumController extends Controller
 
     public function showForumsByCourse($course_id, Request $request){
         $searchKeyword = $request->input('searchKeyword');
-        if($searchKeyword){
-            $forums = Forum::where('course_id', $course_id)
-                ->where('forum_title', 'like', "%$searchKeyword%")
-                ->with('formToUser')
-                ->get();
-            $course = Course::find($course_id);
-            return view('forum.forum', ['forums' => $forums, 'course' => $course]);
+        $onlyUserForums = $request->has('bordered-checkbox');
+        $selectedMaterial = $request->input('selectedMaterial');
+
+        $query = Forum::where('course_id', $course_id);
+
+        if ($searchKeyword) {
+            $query->where('forum_title', 'like', "%$searchKeyword%");
         }
-        else{
-            $forums = Forum::where('course_id', $course_id)
-                ->with('formToUser')
-                ->get();
-            $course = Course::find($course_id);
-            $materials = Material::where('course_id', $course_id)->get();
-            return view('forum.forum', ['forums' => $forums, 'course' => $course, 'materials'=>$materials]);
+
+        if ($onlyUserForums) {
+            $userId = auth()->id();
+            $query->where('user_id', $userId);
         }
+
+        if ($selectedMaterial) {
+            $query->whereHas('formToMaterial', function ($subquery) use ($selectedMaterial) {
+                $subquery->where('title', $selectedMaterial);
+            });
+        }
+
+        $forums = $query->with('formToUser')->get();
+        $course = Course::find($course_id);
+        $materials = Material::where('course_id', $course_id)->get();
+
+        return view('forum.forum', [
+            'forums' => $forums,
+            'course' => $course,
+            'materials' => $materials,
+        ]);
     }
+
+
 
     public function manageForumList(Request $request){
         $searchKeyword = $request->input('searchKeyword');
@@ -74,13 +89,11 @@ class ForumController extends Controller
     public function createForum(Request $request){
         Log::info('Request Data:', $request->all());
         $request->validate([
-            'course_session' => 'required|string|max:255',
             'forum_title' => 'required|string|max:255',
             'forum_message' => 'required|string'
         ]);
 
         $validator = Validator::make($request->all(), [
-            'course_session' => 'required|string|max:255',
             'forum_title' => 'required|string|max:255',
             'forum_message' => 'required|string'
         ]);
@@ -93,7 +106,7 @@ class ForumController extends Controller
             'user_id' => auth()->user()->id,
             'course_id' => $request->input('course_id'),
             'forum_title' => $request->input('forum_title'),
-            'course_session' => $request->input('course_session'),
+            'material_id' => $request->input('material_id'),
             'forum_message' => $request->input('forum_message')
         ]);
 
@@ -123,11 +136,11 @@ class ForumController extends Controller
     public function createReply(Request $request){
         Log::info('Request Data:', $request->all());
         $request->validate([
-            'forum_message' => 'required|string',
+            'forum_message' => 'required|string|max:255',
         ]);
 
         $validator = Validator::make($request->all(), [
-            'forum_message' => 'required|string'
+            'forum_message' => 'required|string|max:255'
         ]);
 
         if ($validator->fails()) {
@@ -141,6 +154,7 @@ class ForumController extends Controller
             'course_id' => $request->input('course_id'),
             'forum_message' => $request->input('forum_message'),
             'reply_id' => $parentForum->id,
+            'material_id' => $request->input('material_id'),
         ]);
 
         $forum->save();

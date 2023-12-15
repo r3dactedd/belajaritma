@@ -40,5 +40,14 @@ class MaterialSeeder extends Seeder
             'video_link' => 'https://youtu.be/OMF8th2oMUU?si=rsRR26liLYDxivI_',
             'is_completed' => false
         ]);
+
+        Material::create([
+            'course_id' => 2,
+            'master_type_id' => 5,
+            'title' => 'Ini Title untuk Assignment (Course 2)',
+            'description' => 'Anak-anak, marilah kerjakan assignment sialan ini!',
+            'video_link' => 'https://youtu.be/OMF8th2oMUU?si=rsRR26liLYDxivI_',
+            'is_completed' => false
+        ]);
     }
 }
