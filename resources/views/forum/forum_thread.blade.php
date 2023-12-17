@@ -281,6 +281,15 @@
                             <form id="myForm2" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <textarea id="forum_message2" class="h-24" placeholder="Input Balasan Anda disini."></textarea>
+                                <div class="mt-7">
+                                    <label class="mb-2 block text-sm font-bold text-gray-900 dark:text-white">Upload
+                                        Image</label>
+
+                                    <input name="forum_attachment2" id="forum_attachment2"
+                                        class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                        type="file" accept="image/*">
+
+                                </div>
                                 <input type="hidden" id="replyId" name="reply_id" value="{{ $reply->id }}">
                                 <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
                                 <input type="hidden" id="materialId" name="material_id"
