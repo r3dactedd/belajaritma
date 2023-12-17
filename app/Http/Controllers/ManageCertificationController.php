@@ -76,7 +76,7 @@ class ManageCertificationController extends Controller
 
         // Check if 'certif_img' exists in the validated data
         if (array_key_exists('certif_img', $validateCertif)) {
-            unset($validateProfile['certif_img']);
+            unset($validateCertif['certif_img']);
         }
 
         $changeCertif += [

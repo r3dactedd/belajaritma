@@ -37,9 +37,9 @@
                         @if ($transactions->isApproved === null)
                             <p class="max-h-20 overflow-scroll text-yellow-500">Pending</p>
                         @elseif ($transactions->isApproved === 1)
-                            <p class="max-h-20 overflow-scroll text-green-500">Berhasil</p>
+                            <p class="max-h-20 overflow-scroll text-green-500">Diterima</p>
                         @elseif ($transactions->isApproved === 0)
-                            <p class="max-h-20 overflow-scroll text-red-500">Gagal</p>
+                            <p class="max-h-20 overflow-scroll text-red-500">Ditolak</p>
                             {{-- @else
                             <p class="max-h-20 overflow-scroll text-purple-500">Unknown Status:
                                 {{ $transactions->isApproved }}</p> --}}

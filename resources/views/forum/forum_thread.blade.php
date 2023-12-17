@@ -53,11 +53,15 @@
                                 <p class="mb-5 text-sm">
                                     Created by: {{ $data->formToUser->username }}
                                 </p>
-                                <p class="w-fit text-base" id="codeContainer">
-                                <div class="text-base">
+                                <p class="w-fit text-base mb-7" id="codeContainer">
+                                <div class="text-base mb-7">
                                     {!! $data->forum_message !!}
                                 </div>
                                 </p>
+                                @if ($data->forum_attachment != null)
+                                    <img src="{{ asset('uploads/forum_attachments/' . $data->forum_attachment) }}"
+                                        alt="Forum Attachment" class="max-w-75 max-h-75 mt-8" />
+                                @endif
                             </div>
                         </div>
                         {{-- <div class="flex w-full items-center md:ml-16">
@@ -85,6 +89,15 @@
                                 <form id="myForm" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                    <div class="mt-7">
+                                        <label class="mb-2 block text-sm font-bold text-gray-900 dark:text-white">Upload
+                                            Image</label>
+
+                                        <input name="forum_attachment" id="forum_attachment"
+                                            class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                            type="file" accept="image/*">
+
+                                    </div>
                                     <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
                                     <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
                                     <input type="hidden" id="materialId" name="material_id"
@@ -117,6 +130,10 @@
                                             <span class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}
                                             </span>
                                             <p class="text-md">{{ strip_tags($reply->forum_message) }}</p>
+                                            @if ($reply->forum_attachment != null)
+                                                <img src="{{ asset('uploads/forum_attachments/' . $reply->forum_attachment) }}"
+                                                    alt="Forum Attachment" class="max-w-55 max-h-55 mt-8" />
+                                            @endif
                                             <div class="transition">
                                                 <div
                                                     class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
@@ -135,6 +152,7 @@
                                                         class="accordion-header font-semibold text-gray-500 hover:underline">
                                                         Balas
                                                     </a>
+
                                                 </div>
 
                                                 <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
@@ -171,6 +189,11 @@
                                                                 <p class="text-md">
                                                                     {{ strip_tags($nestedReply->forum_message) }}
                                                                 </p>
+                                                                @if ($nestedReply->forum_attachment != null)
+                                                                    <img src="{{ asset('uploads/forum_attachments/' . $nestedReply->forum_attachment) }}"
+                                                                        alt="Forum Attachment"
+                                                                        class="max-w-35 max-h-35 mt-8" />
+                                                                @endif
                                                                 <div class="transition">
                                                                     <div
                                                                         class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
@@ -230,53 +253,53 @@
         </div>
         {{-- Reply Popup Modal --}}
 
-       <div id="popup-reply" tabindex="-1" aria-hidden="true"
-       class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-       <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
-           <!-- Add margin if you want to see some of the overlay behind the modal-->
-           <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
-               <div class="container mx-auto my-5 p-5">
-                   {{-- EDIT PROFILE --}}
-                   <div class="flex justify-end">
-                       <button type="button"
-                           class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                           data-modal-hide="defaultModal">
-                           <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                               xmlns="http://www.w3.org/2000/svg">
-                               <path fill-rule="evenodd"
-                                   d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                   clip-rule="evenodd"></path>
-                           </svg>
-                       </button>
-                   </div>
+        <div id="popup-reply" tabindex="-1" aria-hidden="true"
+            class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+            <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
+                <!-- Add margin if you want to see some of the overlay behind the modal-->
+                <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
+                    <div class="container mx-auto my-5 p-5">
+                        {{-- EDIT PROFILE --}}
+                        <div class="flex justify-end">
+                            <button type="button"
+                                class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                                data-modal-hide="defaultModal">
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </div>
 
-                   <div class="mx-auto rounded-xl bg-white px-2 py-2">
-                       <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
-                       <p class="text-md my-4" id="showComment">
+                        <div class="mx-auto rounded-xl bg-white px-2 py-2">
+                            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
+                            <p class="text-md my-4" id="showComment">
 
-                       </p>
-                       <form id="myForm2" method="post" enctype="multipart/form-data">
-                           @csrf
-                           <textarea id="forum_message2" class="h-24" placeholder="Input Balasan Anda disini."></textarea>
-                           <input type="hidden" id="replyId" name="reply_id" value="{{ $reply->id }}">
-                           <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
-                           <input type="hidden" id="materialId" name="material_id"
-                               value="{{ $data->material_id }}">
-                           <input type="hidden" id="original_forum_id" name="forum_id"
-                               value="{{ $data->id }}">
+                            </p>
+                            <form id="myForm2" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <textarea id="forum_message2" class="h-24" placeholder="Input Balasan Anda disini."></textarea>
+                                <input type="hidden" id="replyId" name="reply_id" value="{{ $reply->id }}">
+                                <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
+                                <input type="hidden" id="materialId" name="material_id"
+                                    value="{{ $data->material_id }}">
+                                <input type="hidden" id="original_forum_id" name="forum_id"
+                                    value="{{ $data->id }}">
 
-                           <div class="my-4 flex justify-end">
-                               <button id="get-content-button" type="submit"
-                                   class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Balas
-                                   Forum</button>
-                           </div>
-                       </form>
-                   </div>
+                                <div class="my-4 flex justify-end">
+                                    <button id="get-content-button" type="submit"
+                                        class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Balas
+                                        Forum</button>
+                                </div>
+                            </form>
+                        </div>
 
-               </div>
-           </div>
-       </div>
-   </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {{-- Reply Popup Modal --}}
 
@@ -308,11 +331,28 @@
                             {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
                             <form method="POST" action="#" data-course-id="">
                                 @csrf
-                                @method('DELETE')
-                                <button data-modal-hide="popup-delete" type="submit"
-                                    class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
-                                    Ya, hapus
-                                </button>
+                                <textarea id="forum_message2" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                <div class="mt-7">
+                                    <label class="mb-2 block text-sm font-bold text-gray-900 dark:text-white">Upload
+                                        Image</label>
+
+                                    <input name="forum_attachment2" id="forum_attachment2"
+                                        class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                        type="file" accept="image/*">
+
+                                </div>
+                                <input type="hidden" id="replyId" name="reply_id" value="{{ $reply->id }}">
+                                <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
+                                <input type="hidden" id="materialId" name="material_id"
+                                    value="{{ $data->material_id }}">
+                                <input type="hidden" id="original_forum_id" name="forum_id"
+                                    value="{{ $data->id }}">
+
+                                <div class="my-4 flex justify-end">
+                                    <button id="get-content-button" type="submit"
+                                        class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Balas
+                                        Forum</button>
+                                </div>
                             </form>
                             <button data-modal-hide="popup-delete" type="button"
                                 class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Tidak,
@@ -564,8 +604,10 @@
                 alert('Error: Pesan Tidak bisa kosong.');
                 return;
             }
-            var hasImages = editorContent.includes('<img');
             var fileInput = document.getElementById('forum_attachment');
+            var file = fileInput.files[0];
+            console.log("ini isian fileInput", fileInput);
+            console.log("ini isian file", file);
             var courseId = document.getElementById('courseId').value;
             console.log("ini isian courseId", courseId)
             var replyId = document.getElementById('replyId').value;
@@ -580,6 +622,7 @@
             formData.append('forum_message', editorContent);
             formData.append('reply_id', replyId);
             formData.append('material_id', materialId);
+            formData.append('forum_attachment', file);
 
             // if (hasImages) {
             //     var file = fileInput.files[0];
@@ -625,6 +668,10 @@
                 alert('Error: Forum message cannot be empty.');
                 return;
             }
+            var fileInput = document.getElementById('forum_attachment2');
+            var file = fileInput.files[0];
+            console.log("ini isian fileInput", fileInput);
+            console.log("ini isian file", file);
             // var hasImages = editorContent.includes('<img');
             // var fileInput = document.getElementById('forum_attachment');
             var courseId = document.getElementById('courseId').value;
@@ -643,6 +690,7 @@
             formData.append('forum_message', editorContent);
             formData.append('reply_id', replyId);
             formData.append('material_id', materialId);
+            formData.append('forum_attachment', file);
 
             // if (hasImages) {
             //     var file = fileInput.files[0];
