@@ -53,7 +53,11 @@
                                 <p class="mb-5 text-sm">
                                     Created by: {{ $data->formToUser->username }}
                                 </p>
-                                <p class="w-fit text-base" id="codeContainer" value={{ $data->forum_message }}></p>
+                                <p class="w-fit text-base mb-7" id="codeContainer">
+                                <div class="text-base mb-7">
+                                    {!! $data->forum_message !!}
+                                </div>
+                                </p>
                                 @if ($data->forum_attachment != null)
                                     <img src="{{ asset('uploads/forum_attachments/' . $data->forum_attachment) }}"
                                         alt="Forum Attachment" class="max-w-75 max-h-75 mt-8" />
