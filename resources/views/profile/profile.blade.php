@@ -85,20 +85,20 @@
             </div>
 
         </div>
-        <div class="container mx-auto mb-1 mt-4 flex h-full w-11/12 items-center border-b-2 border-gray-300 px-2">
+        <div class="container mx-auto mb-1 flex h-full w-11/12 items-center border-b-2 border-gray-300 px-2">
 
             <ul class="h-full items-center lg:flex">
-                <li class="text-md flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a id="profileDashboard">Dashboard</a>
+                <li class="my-4 md:my-1  text-md flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                    <a id="profileDashboard">Statistika</a>
                 </li>
                 <li
-                    class="text-md ml-0 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:ml-10">
+                    class="my-4 md:my-1text-md ml-0 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:ml-10">
                     <a id="profileCourses">Kursus</a>
                 </li>
-                <li class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                <li class="my-4 md:my-1 text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a id="profileCerti">Sertifikasi</a>
                 </li>
-                <li class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                <li class="my-4 md:my-1 text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a id="profileHistory">Riwayat Transaksi</a>
                 </li>
             </ul>
