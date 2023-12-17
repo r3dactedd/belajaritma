@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Http\Controllers\ValidationException;
+use App\Models\Transaction;
 
 class ProfileController extends Controller
 {
@@ -33,7 +34,9 @@ class ProfileController extends Controller
         $searchUser = User::find(Auth::user()->id);
         $displayUser = User::all();
         $profileImageUrl = asset('uploads/profile_images/' . $searchUser->profile_img);
-        return view('profile.profile', ['searchUser' => $searchUser, 'display' => $displayUser, 'profileImageUrl' => $profileImageUrl]);
+        $transactionHistory = Transaction::where('user_id', $searchUser->id)->get();
+
+        return view('profile.profile', ['searchUser' => $searchUser, 'display' => $displayUser, 'profileImageUrl' => $profileImageUrl, 'transactionHistory'=>$transactionHistory]);
     }
 
     public function update(Request $request)

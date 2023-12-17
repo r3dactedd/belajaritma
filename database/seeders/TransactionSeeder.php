@@ -18,7 +18,8 @@ class TransactionSeeder extends Seeder
             'user_id' => 1,
             'certif_id' => 1,
             'payment_code' => "Testing Code",
-            'transaction_proof' => 'luca.png',
+            'transaction_proof' => '9ad91221-5d80-4428-a2d3-74f9bf0e3edb.jpg',
+            'isApproved' => null,
         ]);
     }
 }

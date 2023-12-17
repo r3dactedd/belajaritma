@@ -91,7 +91,10 @@
                                 <td class="px-6 py-3 text-center">
                                     <div class="item-center flex justify-center">
                                         {{-- Yes --}}
-                                        <a href="#" class="mx-2 w-4 transform hover:scale-110 hover:fill-green-500">
+                                        <a href="#" class="mx-2 w-4 transform hover:scale-110 hover:fill-green-500"
+                                            onclick="showConfirmationPopup('approve', '{{ $transaction->id }}')">
+
+
                                             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"
                                                 viewBox="0 0 448 512">
                                                 <path
@@ -101,7 +104,10 @@
                                         </a>
                                         {{-- No --}}
                                         <a href="#" class="mr-2 w-4 transform hover:scale-110 hover:fill-red-500"
-                                            data-modal-target="popup-delete" data-modal-toggle="popup-delete">
+                                            onclick="showConfirmationPopup('decline', '{{ $transaction->id }}')">
+
+
+
                                             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"
                                                 viewBox="0 0 384 512">
                                                 <path
@@ -111,29 +117,29 @@
                                     </div>
                                 </td>
                             </tr>
+                            <div id="image-popup"
+                                class="fixed left-0 right-0 top-0 z-50 hidden h-full w-full bg-gray-800 bg-opacity-75">
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <button type="button" onclick="hideImagePopup()"
+                                        class="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-gray-300">
+                                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                    <img src="{{ $transaction->transaction_proof }}" alt="Transaction Proof"
+                                        class="max-w-full max-h-full" />
+                                </div>
+                            </div>
                         @endforeach
                     </tbody>
                 </table>
-                <div id="image-popup"
-                    class="fixed left-0 right-0 top-0 z-50 hidden h-full w-full bg-gray-800 bg-opacity-75">
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <button type="button" onclick="hideImagePopup()"
-                            class="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-gray-300">
-                            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                        <img src="{{ $transaction->transaction_proof }}" alt="Transaction Proof"
-                            class="max-w-full max-h-full" />
-                    </div>
-                </div>
             </div>
         </div>
     </body>
     {{-- Delete Popup Modal --}}
-    <div id="popup-delete" tabindex="-1"
+    {{-- <div id="popup-delete" tabindex="-1"
         class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
         <div class="relative max-h-full w-full max-w-md">
             <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
@@ -157,9 +163,9 @@
                         Sertifikasi tersebut?
                     </h3>
                     <div class="flex justify-center text-center">
-                        {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
-                        <form method="POST" action="#" data-course-id="">
-                            @csrf
+                        <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
+    {{-- <form method="POST" action="#" data-course-id=""> --}}
+    {{-- @csrf
                             @method('DELETE')
                             <button data-modal-hide="popup-delete" type="submit"
                                 class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
@@ -173,7 +179,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- Delete Popup Modal --}}
 @endsection
@@ -196,6 +202,86 @@
 
         popup.style.display = 'none';
     }
+
+    function showConfirmationPopup(action, transactionId) {
+        var popup = document.getElementById('confirmation-popup');
+        console.log(action);
+        var confirmationText = (action === 'approve') ? 'approve' : 'decline';
+
+        popup.querySelector('form').action = `/manager/transaction/${action}/${transactionId}`;
+
+        popup.querySelector('.confirmation-text').innerText =
+            `Are you sure you want to ${confirmationText} this transaction?`;
+
+        popup.style.display = 'block';
+    }
+
+    function hideConfirmationPopup() {
+        var popup = document.getElementById('confirmation-popup');
+        popup.style.display = 'none';
+    }
+
+    function approveTransaction(transactionId) {
+        fetch(`/manager/transaction/accept/${transactionId}`)
+            .then(response => response.json())
+            .then(data => {
+                alert('Success: Transaction approved successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function declineTransaction(transactionId) {
+        fetch(`/manager/transaction/decline/${transactionId}`)
+            .then(response => response.json())
+            .then(data => {
+                alert('Success: Transaction declined successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 </script>
+<!-- Confirmation Popup Modal -->
+<div id="confirmation-popup" tabindex="-1"
+    class="fixed left-0 right-0 top-0 z-50 hidden h-full w-full bg-gray-800 bg-opacity-75">
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <button type="button" onclick="hideConfirmationPopup()"
+            class="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-gray-300">
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="bg-white p-6 rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal Content Goes Here -->
+            <div class="flex justify-center text-center">
+                <div class="flex flex-col items-center text-center">
+                    <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400 confirmation-text"></h3>
+                    <div class="flex">
+                        <form method="POST" action="#" data-transaction-id="">
+                            @csrf
+                            <button data-modal-hide="confirmation-popup" type="submit"
+                                class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                Yes, proceed
+                            </button>
+                        </form>
+                        <button onclick="hideConfirmationPopup()" type="button"
+                            class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">
+                            No, cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </html>

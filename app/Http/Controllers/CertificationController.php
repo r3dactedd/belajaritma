@@ -29,6 +29,9 @@ class CertificationController extends Controller
     }
     public function registerCertification($id){
         $data=Certification::find($id);
+        if ($data) {
+            session()->flash('success', 'Transaction Sent');
+        }
         return view('transactions.transaction', ['data' => $data]);
     }
     public function createTransaction(Request $request){
