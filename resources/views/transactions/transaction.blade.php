@@ -106,7 +106,7 @@
                         </div>
 
                         <div>
-                            <button type="submit"
+                            <button type="submit" onclick="validateFile()"
                                 class="text-ceenter w-full rounded-md bg-blue-500 px-4 py-3 font-semibold text-white shadow-md">
                                 Kirim Bukti Pembayaran
                             </button>
@@ -117,7 +117,18 @@
             </div>
         </div>
     </body>
-
+    <script>
+        function validateFile() {
+            var fileInput = document.getElementById('transaction_proof').value;
+            console.log("ini isian input gambar", fileInput)
+            if (fileInput === '') {
+                alert('Error: You must send the Transaction Proof!');
+                return;
+            } else {
+                alert('Success: Transaction Proof has been successfully sent!');
+            }
+        }
+    </script>
 
 @endsection
 @section('footer')

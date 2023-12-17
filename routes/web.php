@@ -157,6 +157,8 @@ Route::get('/manager/course/session/1/edit', function () {
 
 Route::get('/manager/certification', [ManageCertificationController::class, 'showCertificationData']);
 Route::get('/manager/transaction', [ManageTransactionController::class, 'showTransactionList']);
+Route::post('/manager/transaction/approve/{id}', [ManageTransactionController::class, 'approveTransaction']);
+Route::post('/manager/transaction/decline/{id}', [ManageTransactionController::class, 'declineTransaction']);
 
 Route::get('/manager/certification/create', function () {
     return view('administrator.admin_certifications.admin_certification_create');
@@ -174,6 +176,7 @@ Route::post('/transaction/{id}', [CertificationController::class, 'createTransac
 Route::get('/profile/name/dashboard', function () {
     return view('profile.profile_dashboard');
 });
+Route::get('/profile/name/transaction', [ProfileController::class, 'showTransactionList']);
 
 Route::get('/profile/name/courses', function () {
     return view('profile.profile_courselist');
