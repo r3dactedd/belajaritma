@@ -88,7 +88,7 @@ class ManageCourseController extends Controller
 
         // Check if 'course_img' exists in the validated data
         if (array_key_exists('course_img', $validateCourse)) {
-            unset($validateProfile['course_img']);
+            unset($validateCourse['course_img']);
         }
 
         $changeCourse += [

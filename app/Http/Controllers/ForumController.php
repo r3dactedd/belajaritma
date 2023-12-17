@@ -10,6 +10,7 @@ use App\Models\Course;
 use App\Models\Material;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class ForumController extends Controller
 {
@@ -86,16 +87,18 @@ class ForumController extends Controller
         return view('forum.forum_thread',['data'=>$data, 'getReply'=>$getReply, 'profileImageUrl'=>$profileImageUrl]);
     }
 
-    public function createForum(Request $request){
+    public function createForum(Request $request)
+    {
         Log::info('Request Data:', $request->all());
+
         $request->validate([
             'forum_title' => 'required|string|max:255',
-            'forum_message' => 'required|string'
+            'forum_message' => 'required|string',
         ]);
 
         $validator = Validator::make($request->all(), [
             'forum_title' => 'required|string|max:255',
-            'forum_message' => 'required|string'
+            'forum_message' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -107,31 +110,24 @@ class ForumController extends Controller
             'course_id' => $request->input('course_id'),
             'forum_title' => $request->input('forum_title'),
             'material_id' => $request->input('material_id'),
-            'forum_message' => $request->input('forum_message')
+            'forum_message' => $request->input('forum_message'),
         ]);
-
-
-        if ($request->input('forum_attachment')) {
-            // Get the uploaded file
-            $file = $request->input('forum_attachment');
-
-            // Set a unique filename for the image
-            $filename = time().
-            '_'.$file->getClientOriginalName();
-
-            // Move the file to the storage directory
-            $file->move(public_path('forum_attachments'), $filename);
-
-            // Save the filename to the 'forum_attachment' column
-            $forum->forum_attachment = $filename;
-        }
 
         // Save the forum to the database
         $forum->save();
 
+        // Handle file upload
+        if ($request->hasFile('forum_attachment')) {
+            $filename = Str::orderedUuid() . '.' . $request->file('forum_attachment')->getClientOriginalExtension();
+            $request->file('forum_attachment')->storeAs('forum_attachments', $filename, 'forum_attachments');
+            $forum->forum_attachment = $filename;
+            $forum->save();
+        }
+
         // Redirect to the forum view with the forum ID
         return Redirect::route('forum.forum', ['course_id' => $forum->course_id])->with('success', 'Forum topic created successfully!');
     }
+
 
     public function createReply(Request $request){
         Log::info('Request Data:', $request->all());
@@ -158,6 +154,13 @@ class ForumController extends Controller
         ]);
 
         $forum->save();
+
+        if ($request->hasFile('forum_attachment')) {
+            $filename = Str::orderedUuid() . '.' . $request->file('forum_attachment')->getClientOriginalExtension();
+            $request->file('forum_attachment')->storeAs('forum_attachments', $filename, 'forum_attachments');
+            $forum->forum_attachment = $filename;
+            $forum->save();
+        }
         // return Redirect::route('forumDetail', ['id' => $request->input('reply_id'),'course_id' => $request->input('course_id')])->with('success', 'Forum topic created successfully!');
         return response()->json(['message' => 'Forum reply created successfully']);
     }

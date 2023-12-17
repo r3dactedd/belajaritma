@@ -53,8 +53,11 @@
                                 <p class="mb-5 text-sm">
                                     Created by: {{ $data->formToUser->username }}
                                 </p>
-                                <p class="w-fit text-base" id="codeContainer">
-                                </p>
+                                <p class="w-fit text-base" id="codeContainer" value={{ $data->forum_message }}></p>
+                                @if ($data->forum_attachment != null)
+                                    <img src="{{ asset('uploads/forum_attachments/' . $data->forum_attachment) }}"
+                                        alt="Forum Attachment" class="max-w-75 max-h-75 mt-8" />
+                                @endif
                             </div>
                         </div>
                         {{-- <div class="flex w-full items-center md:ml-16">
@@ -82,6 +85,15 @@
                                 <form id="myForm" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                    <div class="mt-7">
+                                        <label class="mb-2 block text-sm font-bold text-gray-900 dark:text-white">Upload
+                                            Image</label>
+
+                                        <input name="forum_attachment" id="forum_attachment"
+                                            class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                            type="file" accept="image/*">
+
+                                    </div>
                                     <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
                                     <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
                                     <input type="hidden" id="materialId" name="material_id"
@@ -114,6 +126,10 @@
                                             <span class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}
                                             </span>
                                             <p class="text-md">{{ strip_tags($reply->forum_message) }}</p>
+                                            @if ($reply->forum_attachment != null)
+                                                <img src="{{ asset('uploads/forum_attachments/' . $reply->forum_attachment) }}"
+                                                    alt="Forum Attachment" class="max-w-55 max-h-55 mt-8" />
+                                            @endif
                                             <div class="transition">
                                                 <div
                                                     class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
@@ -132,6 +148,7 @@
                                                         class="accordion-header font-semibold text-gray-500 hover:underline">
                                                         Balas
                                                     </a>
+
                                                 </div>
 
                                                 <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
@@ -168,6 +185,11 @@
                                                                 <p class="text-md">
                                                                     {{ strip_tags($nestedReply->forum_message) }}
                                                                 </p>
+                                                                @if ($nestedReply->forum_attachment != null)
+                                                                    <img src="{{ asset('uploads/forum_attachments/' . $nestedReply->forum_attachment) }}"
+                                                                        alt="Forum Attachment"
+                                                                        class="max-w-35 max-h-35 mt-8" />
+                                                                @endif
                                                                 <div class="transition">
                                                                     <div
                                                                         class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
@@ -256,6 +278,15 @@
                             <form id="myForm2" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <textarea id="forum_message2" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                <div class="mt-7">
+                                    <label class="mb-2 block text-sm font-bold text-gray-900 dark:text-white">Upload
+                                        Image</label>
+
+                                    <input name="forum_attachment2" id="forum_attachment2"
+                                        class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                        type="file" accept="image/*">
+
+                                </div>
                                 <input type="hidden" id="replyId" name="reply_id" value="{{ $reply->id }}">
                                 <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
                                 <input type="hidden" id="materialId" name="material_id"
@@ -454,8 +485,10 @@
                 alert('Error: Forum message cannot be empty.');
                 return;
             }
-            var hasImages = editorContent.includes('<img');
             var fileInput = document.getElementById('forum_attachment');
+            var file = fileInput.files[0];
+            console.log("ini isian fileInput", fileInput);
+            console.log("ini isian file", file);
             var courseId = document.getElementById('courseId').value;
             console.log("ini isian courseId", courseId)
             var replyId = document.getElementById('replyId').value;
@@ -470,6 +503,7 @@
             formData.append('forum_message', editorContent);
             formData.append('reply_id', replyId);
             formData.append('material_id', materialId);
+            formData.append('forum_attachment', file);
 
             // if (hasImages) {
             //     var file = fileInput.files[0];
@@ -515,6 +549,10 @@
                 alert('Error: Forum message cannot be empty.');
                 return;
             }
+            var fileInput = document.getElementById('forum_attachment2');
+            var file = fileInput.files[0];
+            console.log("ini isian fileInput", fileInput);
+            console.log("ini isian file", file);
             // var hasImages = editorContent.includes('<img');
             // var fileInput = document.getElementById('forum_attachment');
             var courseId = document.getElementById('courseId').value;
@@ -533,6 +571,7 @@
             formData.append('forum_message', editorContent);
             formData.append('reply_id', replyId);
             formData.append('material_id', materialId);
+            formData.append('forum_attachment', file);
 
             // if (hasImages) {
             //     var file = fileInput.files[0];

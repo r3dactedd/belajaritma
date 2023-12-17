@@ -196,9 +196,21 @@
 
                                         <textarea id="forum_message" name="forum_message" placeholder="Input Pertanyaan Anda disini."></textarea>
 
+
+
                                         <input type="hidden" id="courseId" name="course_id"
                                             value="{{ count($forums) > 0 ? $forums[0]['course_id'] : '' }}">
 
+
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label
+                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Upload
+                                            Image</label>
+
+                                        <input name="forum_attachment" id="forum_attachment"
+                                            class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                            type="file" accept="image/*">
 
                                     </div>
 
@@ -286,6 +298,9 @@
                 }
                 var hasImages = editorContent.includes('<img');
                 var fileInput = document.getElementById('forum_attachment');
+                var file = fileInput.files[0];
+                console.log("ini isian fileInput", fileInput);
+                console.log("ini isian file", file);
                 var courseId = document.getElementById('courseId').value;
                 console.log("ini isian courseId", courseId)
                 var discussionTitle = document.getElementById('forum_title').value;
@@ -299,12 +314,11 @@
                 formData.append('material_id', materialId);
                 formData.append('forum_title', discussionTitle);
                 formData.append('forum_message', editorContent);
+                formData.append('forum_attachment', file);
 
-
-                if (hasImages) {
-                    var file = fileInput.files[0];
-                    formData.append('forum_attachment', file);
-                }
+                // if (file) {
+                //     formData.append('forum_attachment', file);
+                // }
 
                 fetch('/forum/course/' + courseId, {
                         method: 'POST',
