@@ -54,6 +54,9 @@
                                     Created by: {{ $data->formToUser->username }}
                                 </p>
                                 <p class="w-fit text-base" id="codeContainer">
+                                <div class="text-base">
+                                    {!! $data->forum_message !!}
+                                </div>
                                 </p>
                             </div>
                         </div>
@@ -226,53 +229,55 @@
         </div>
         </div>
         {{-- Reply Popup Modal --}}
-        <div id="popup-reply" tabindex="-1" aria-hidden="true"
-            class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-            <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
-                <!-- Add margin if you want to see some of the overlay behind the modal-->
-                <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
-                    <div class="container mx-auto my-5 p-5">
-                        {{-- EDIT PROFILE --}}
-                        <div class="flex justify-end">
-                            <button type="button"
-                                class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                                data-modal-hide="popup-reply">
-                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                        </div>
 
-                        <div class="mx-auto rounded-xl bg-white px-2 py-2">
-                            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
-                            <p class="text-md my-4">
-                                [insert text messagenya disini]
-                            </p>
-                            <form method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
-                                    <div class="sm:col-span-2">
-                                        <form method="post" class="mt-2 h-32 min-h-full overflow-y-auto">
+       <div id="popup-reply" tabindex="-1" aria-hidden="true"
+       class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+       <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
+           <!-- Add margin if you want to see some of the overlay behind the modal-->
+           <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
+               <div class="container mx-auto my-5 p-5">
+                   {{-- EDIT PROFILE --}}
+                   <div class="flex justify-end">
+                       <button type="button"
+                           class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                           data-modal-hide="defaultModal">
+                           <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                               xmlns="http://www.w3.org/2000/svg">
+                               <path fill-rule="evenodd"
+                                   d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                   clip-rule="evenodd"></path>
+                           </svg>
+                       </button>
+                   </div>
 
-                                            <textarea id="forum_reply" class="h-24" placeholder="Input Balasan Anda disini."></textarea>
-                                        </form>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!--Footer-->
-                        <div class="flex justify-end pt-2">
-                            <button
-                                class="modal-close mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Balas
-                                Forum</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                   <div class="mx-auto rounded-xl bg-white px-2 py-2">
+                       <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
+                       <p class="text-md my-4" id="showComment">
+
+                       </p>
+                       <form id="myForm2" method="post" enctype="multipart/form-data">
+                           @csrf
+                           <textarea id="forum_message2" class="h-24" placeholder="Input Balasan Anda disini."></textarea>
+                           <input type="hidden" id="replyId" name="reply_id" value="{{ $reply->id }}">
+                           <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
+                           <input type="hidden" id="materialId" name="material_id"
+                               value="{{ $data->material_id }}">
+                           <input type="hidden" id="original_forum_id" name="forum_id"
+                               value="{{ $data->id }}">
+
+                           <div class="my-4 flex justify-end">
+                               <button id="get-content-button" type="submit"
+                                   class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Balas
+                                   Forum</button>
+                           </div>
+                       </form>
+                   </div>
+
+               </div>
+           </div>
+       </div>
+   </div>
+
         {{-- Reply Popup Modal --}}
 
         {{-- Delete Popup Modal --}}
@@ -556,7 +561,7 @@
             var editorContent = tinymce.get('forum_message').getContent();
             console.log("ini isian editorContent", editorContent)
             if (editorContent === '') {
-                alert('Error: Forum message cannot be empty.');
+                alert('Error: Pesan Tidak bisa kosong.');
                 return;
             }
             var hasImages = editorContent.includes('<img');
@@ -603,7 +608,7 @@
                 })
                 .then(data => {
                     console.log('Success:', data);
-                    alert('Success! Your form has been uploaded.');
+                    alert('Thread forum baru berhasil dibuat!');
                     // Redirect to a new page using JavaScript
                     window.location.href = '/forum/course/' + courseId + '/thread/' + replyId;
                 })
@@ -667,7 +672,7 @@
                 .then(data => {
                     console.log('Success:', data);
                     // Redirect to a new page using JavaScript
-                    alert('Success! Your form has been uploaded.');
+                    alert('Balasan anda berhasil dikirim.');
                     window.location.href = '/forum/course/' + courseId + '/thread/' + forumId;
                 })
                 .catch(error => {
