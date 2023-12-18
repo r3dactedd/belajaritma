@@ -64,6 +64,7 @@ Route::get('forum/course/{course_id}', [ForumController::class, 'showForumsByCou
 Route::post('forum/course/{course_id}', [ForumController::class, 'createForum']);
 Route::get('/forum/course/{course_id}/thread/{id}', [ForumController::class, 'forumDetail'])->name('forumDetail');
 Route::post('/forum/course/{course_id}/thread/{id}', [ForumController::class, 'createReply']);
+Route::delete('/forum/course/{course_id}/thread/{id}/delete', [ForumController::class, 'deleteThread']);
 
 // Route::get('/forum/course/1', function () {
 //     return view('forum.forum');
