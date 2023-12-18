@@ -127,7 +127,14 @@ class ForumController extends Controller
         // Redirect to the forum view with the forum ID
         return Redirect::route('forum.forum', ['course_id' => $forum->course_id])->with('success', 'Forum topic created successfully!');
     }
+    public function deleteThread($courseId, $id)
+    {
+        $thread = Forum::findOrFail($id);
 
+        $thread->delete();
+
+        return redirect()->route('forum.forum', ['course_id' => $courseId])->with('success', 'Thread deleted successfully.');
+    }
 
     public function createReply(Request $request){
         Log::info('Request Data:', $request->all());

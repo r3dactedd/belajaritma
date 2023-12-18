@@ -68,15 +68,17 @@
                         </div> --}}
                         {{-- FORUM CONTENT END --}}
                         {{-- ADD COMMENTS --}}
-                        <div class="mt-4 flex items-center">
+                        @if (Auth::user()->id == $data->formToUser->id)
+                            <div class="mt-4 flex items-center">
 
 
-                            <button id="open-btn" data-modal-target="popup-delete" data-modal-toggle="popup-delete"
-                                class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
-                                data-modal-target="defaultModal" data-modal-toggle="defaultModal">
-                                Hapus Diskusi
-                            </button>
-                        </div>
+                                <button id="open-btn" data-modal-target="popup-delete" data-modal-toggle="popup-delete"
+                                    class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
+                                    data-modal-target="defaultModal" data-modal-toggle="defaultModal">
+                                    Hapus Diskusi
+                                </button>
+                            </div>
+                        @endif
 
                         <hr>
 
@@ -88,6 +90,8 @@
                                     @csrf
                                     <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
                                     <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
+                                    <input type="hidden" id="original_forum_id" name="forum_id"
+                                        value="{{ $data->id }}">
                                     <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
                                     <input type="hidden" id="materialId" name="material_id"
                                         value="{{ $data->material_id }}">
@@ -119,53 +123,7 @@
         </div>
         {{-- Reply Popup Modal --}}
 
-        <div id="popup-reply" tabindex="-1" aria-hidden="true"
-            class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-            <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
-                <!-- Add margin if you want to see some of the overlay behind the modal-->
-                <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
-                    <div class="container mx-auto my-5 p-5">
-                        {{-- EDIT PROFILE --}}
-                        <div class="flex justify-end">
-                            <button type="button"
-                                class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                                data-modal-hide="defaultModal">
-                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                        </div>
 
-                        <div class="mx-auto rounded-xl bg-white px-2 py-2">
-                            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
-                            <p class="text-md my-4" id="showComment">
-
-                            </p>
-                            <form id="myForm2" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <textarea id="forum_reply" class="h-24" placeholder="Input Balasan Anda disini."></textarea>
-                                <input type="hidden" id="replyId" name="reply_id" value="{{ $reply->id }}">
-                                <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
-                                <input type="hidden" id="materialId" name="material_id"
-                                    value="{{ $data->material_id }}">
-                                <input type="hidden" id="original_forum_id" name="forum_id"
-                                    value="{{ $data->id }}">
-
-                                <div class="my-4 flex justify-end">
-                                    <button id="get-content-button" type="submit"
-                                        class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Balas
-                                        Forum</button>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
 
         {{-- Reply Popup Modal --}}
 
@@ -195,7 +153,9 @@
                         </h3>
                         <div class="flex justify-center text-center">
                             {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
-                            <form method="POST" action="#" data-course-id="">
+                            <form method="POST"
+                                action="/forum/course/{{ $data->course_id }}/thread/{{ $data->id }}/delete"
+                                data-course-id="">
                                 @csrf
                                 @method('DELETE')
                                 <button data-modal-hide="popup-delete" type="submit"
@@ -263,51 +223,7 @@
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 
         })
-        // For reply
-        tinymce.init({
-            selector: '#forum_reply',
-            menubar: false,
-            // Image below, for further consideration
-            plugins: ' code codesample image',
-            toolbar: ' wordcount | link image |code |bold italic underline| codesample ',
-            // Image below, for further consideration
-            file_picker_types: 'image',
-            /* enable automatic uploads of images represented by blob or data URIs*/
-            automatic_uploads: true,
-            file_picker_callback: (cb, value, meta) => {
-                const input = document.createElement('input');
-                input.setAttribute('type', 'file');
-                input.setAttribute('accept', 'image/*');
 
-                input.addEventListener('change', (e) => {
-                    const file = e.target.files[0];
-
-                    const reader = new FileReader();
-                    reader.addEventListener('load', () => {
-                        /*
-                          Note: Now we need to register the blob in TinyMCEs image blob
-                          registry. In the next release this part hopefully won't be
-                          necessary, as we are looking to handle it internally.
-                        */
-                        const id = 'blobid' + (new Date()).getTime();
-                        const blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                        const base64 = reader.result.split(',')[1];
-                        const blobInfo = blobCache.create(id, file, base64);
-                        blobCache.add(blobInfo);
-
-                        /* call the callback and populate the Title field with the file name */
-                        cb(blobInfo.blobUri(), {
-                            title: file.name
-                        });
-                    });
-                    reader.readAsDataURL(file);
-                });
-
-                input.click();
-            },
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
-
-        })
         document.addEventListener("DOMContentLoaded", function(event) {
 
             const accordionHeader = document.querySelectorAll(".accordion-header");
@@ -377,29 +293,7 @@
             submitForm();
         });
 
-        document.getElementById('myForm2').addEventListener('submit', function(event) {
-            console.log("Hi, ini code getElementnya jalan Versi Reply Comment!")
-            event.preventDefault(); // Prevent the default form submission behavior
-            submitForm2();
-        });
 
-        function setReplyId(element) {
-            var replyIdValue = element.getAttribute('data-reply-id');
-            document.getElementById('replyId').value = replyIdValue;
-
-            var replyMSGValue = element.getAttribute('data-reply-message');
-            // Create a temporary element
-            var tempElement = document.createElement('div');
-
-            // Set the HTML content to the reply message
-            tempElement.innerHTML = replyMSGValue;
-
-            // Get the text content from the temporary element
-            var textContent = tempElement.innerText;
-
-            // Set the text content to the 'showComment' element
-            document.getElementById('showComment').innerText = textContent;
-        }
 
         function submitForm() {
             var editorContent = tinymce.get('forum_message').getContent();
@@ -451,70 +345,6 @@
                 })
                 .catch(error => {
                     // Handle other errors, including non-2xx status codes
-                    console.error('Error:', error);
-                });
-        }
-
-        function submitForm2() {
-            var editorContent = tinymce.get('forum_reply').getContent();
-            console.log("ini isian editorContent", editorContent)
-            if (editorContent === '') {
-                alert('Error: Forum message cannot be empty.');
-                return;
-            }
-
-            // var hasImages = editorContent.includes('<img');
-            // var fileInput = document.getElementById('forum_attachment');
-            var courseId = document.getElementById('courseId').value;
-            console.log("ini isian courseId", courseId)
-            var replyId = document.getElementById('replyId').value;
-            console.log("ini isian replyId", replyId)
-            var forumId = document.getElementById('original_forum_id').value;
-            console.log("ini forum id asli", forumId)
-            var materialId = document.getElementById('materialId').value;
-            console.log("ini isian materialId", materialId);
-
-
-            console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
-            var formData = new FormData();
-            formData.append('course_id', courseId);
-            formData.append('forum_message', editorContent);
-            formData.append('reply_id', replyId);
-            formData.append('material_id', materialId);
-
-            // if (hasImages) {
-            //     var file = fileInput.files[0];
-            //     formData.append('forum_attachment', file);
-            // }
-
-            fetch('/forum/course/' + courseId + '/thread/' + forumId, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    },
-                })
-                .then(response => {
-                    if (response.ok) {
-                        try {
-                            return response.json();
-                        } catch (error) {
-                            console.error('Error parsing JSON:', error);
-                            return null; // or handle the error in an appropriate way
-                        }
-                    } else {
-                        console.error('Request failed with status:', response.status);
-                        return null; // or handle the error in an appropriate way
-                    }
-                })
-                .then(data => {
-                    console.log('Success:', data);
-                    // Redirect to a new page using JavaScript
-                    alert('Balasan anda berhasil dikirim.');
-                    window.location.href = '/forum/course/' + courseId + '/thread/' + forumId;
-                })
-                .catch(error => {
-                    // Handle errors, including non-JSON responses
                     console.error('Error:', error);
                 });
         }
