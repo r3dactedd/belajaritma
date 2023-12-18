@@ -32,4 +32,10 @@ class Forum extends Model
     public function formToMaterial(){
         return $this->belongsTo(Material::class, 'material_id');
     }
+    public function nestedReplies(){
+        return $this->hasMany(Forum::class, 'reply_id');
+    }
+    public function replies(){
+        return $this->hasMany(Forum::class, 'reply_id');
+    }
 }

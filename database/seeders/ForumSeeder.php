@@ -46,26 +46,7 @@ class ForumSeeder extends Seeder
             'forum_attachment' => 'Test Attachment Ketiga.png',
             'reply_id'=>null,
         ]);
-        Forum::create([
-            'user_id' => 1,
-            'course_id' => 1,
-            'material_id'=>1,
-            // 'course_session' => 'Test 1 Video',
-            'forum_title' => 'Reply Test Title',
-            'forum_message' => 'Test Reply Gimana Ya?',
-            'forum_attachment' => 'Reply Attachment.png',
-            'reply_id'=>1,
-        ]);
-        Forum::create([
-            'user_id' => 1,
-            'course_id' => 1,
-            'material_id'=>1,
-            // 'course_session' => 'Test 1 Video',
-            'forum_title' => 'Reply of Reply Test Title',
-            'forum_message' => 'Test Reply of Reply Gimana Ya?',
-            'forum_attachment' => 'Reply of Reply Attachment.png',
-            'reply_id'=>4,
-        ]);
+
         Forum::create([
             'user_id' => 3,
             'course_id' => 2,
@@ -77,15 +58,5 @@ class ForumSeeder extends Seeder
             'reply_id'=>null,
         ]);
 
-        Forum::create([
-            'user_id' => 1,
-            'course_id' => 1,
-            'material_id'=>1,
-            // 'course_session' => 'Test 1 Video',
-            'forum_title' => 'Reply Test 2 Title',
-            'forum_message' => 'Test Reply 2 Gimana Ya?',
-            'forum_attachment' => 'Reply 2 Attachment.png',
-            'reply_id'=>1,
-        ]);
     }
 }

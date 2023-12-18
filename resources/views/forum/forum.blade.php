@@ -206,16 +206,6 @@
 
 
                                     </div>
-                                    <div class="sm:col-span-2">
-                                        <label
-                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Upload
-                                            Image</label>
-
-                                        <input name="forum_attachment" id="forum_attachment"
-                                            class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                                            type="file" accept="image/*">
-
-                                    </div>
 
                                     <div class="flex justify-start pt-2">
                                         <button type="submit"
@@ -294,22 +284,20 @@
 
             function submitForm() {
                 var editorContent = tinymce.get('forum_message').getContent();
-                console.log("ini isian editorContent", editorContent)
+                console.log("Editor Content:", editorContent);
+
                 if (editorContent === '') {
                     alert('Error: Forum message cannot be empty.');
                     return;
                 }
-                var hasImages = editorContent.includes('<img');
-                var fileInput = document.getElementById('forum_attachment');
-                var file = fileInput.files[0];
-                console.log("ini isian fileInput", fileInput);
-                console.log("ini isian file", file);
+
                 var courseId = document.getElementById('courseId').value;
-                console.log("ini isian courseId", courseId)
                 var discussionTitle = document.getElementById('forum_title').value;
-                console.log("ini isian discussionTitle", discussionTitle)
                 var materialId = document.getElementById('material_id').value;
-                console.log("ini isian materialId", materialId);
+
+                // Append image tag with the asset URL to the content
+                var assetUrl = "{{ asset('uploads/forum_attachments/') }}"; // Laravel asset function
+                editorContent += `<br><img src="${assetUrl}" alt="Uploaded Image">`;
 
                 console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
                 var formData = new FormData();
@@ -317,37 +305,25 @@
                 formData.append('material_id', materialId);
                 formData.append('forum_title', discussionTitle);
                 formData.append('forum_message', editorContent);
-                formData.append('forum_attachment', file);
-
-                // if (file) {
-                //     formData.append('forum_attachment', file);
-                // }
 
                 fetch('/forum/course/' + courseId, {
                         method: 'POST',
                         body: formData,
                         headers: {
-                            // Include any necessary headers, such as CSRF token
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                         },
                     })
                     .then(response => {
                         if (response.ok) {
                             alert('Success! Your form has been uploaded.');
-                            // If the response status is in the range of 200 to 299, treat it as successful
-                            window.location.href = '/forum/course/' + courseId; // Redirect to the desired URL
+                            window.location.href = '/forum/course/' + courseId;
                         } else {
-                            // If the response status indicates an error, handle it
                             console.error('Error:', response.statusText);
-                            // You can display an error message to the user or take other appropriate actions
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        // Handle other types of errors, such as network issues
                     });
-
-
             }
         </script>
 
