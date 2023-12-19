@@ -15,6 +15,7 @@ class Material extends Model
         'material_id',
         'master_type_id',
         'title',
+        'course_id',
         'description',
         'pdf_link',
         'video_link'
