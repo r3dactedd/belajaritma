@@ -293,7 +293,16 @@
 
                 var courseId = document.getElementById('courseId').value;
                 var discussionTitle = document.getElementById('forum_title').value;
+                if (discussionTitle === '') {
+                    alert('Error: Forum Title cannot be empty.');
+                    return;
+                }
+
                 var materialId = document.getElementById('material_id').value;
+                if (materialId === '') {
+                    alert('Error: Forum Session cannot be empty.');
+                    return;
+                }
 
                 // Append image tag with the asset URL to the content
                 var assetUrl = "{{ asset('uploads/forum_attachments/') }}"; // Laravel asset function
