@@ -109,7 +109,14 @@
                             @foreach ($getReply as $reply)
                                 @if ($reply->reply_id == $data->id)
                                     {{-- COMMENTS LIST W/REPLY --}}
-                                    @include('forum.reply', ['reply' => $reply, 'data' => $data])
+                                    @php
+                                        $repliedTo = $data->formToUser->username;
+                                    @endphp
+                                    @include('forum.reply', [
+                                        'reply' => $reply,
+                                        'data' => $data,
+                                        'repliedTo' => $repliedTo,
+                                    ])
                                     {{-- COMMENTS LIST W/REPLY --}}
                                 @endif
                             @endforeach
@@ -340,7 +347,7 @@
                 })
                 .then(data => {
                     console.log('Success:', data);
-                    alert('Thread forum baru berhasil dibuat!');
+                    alert('Balasan forum baru berhasil dibuat!');
                     window.location.href = '/forum/course/' + courseId + '/thread/' + forumId;
                 })
                 .catch(error => {
