@@ -35,15 +35,15 @@ class ManageCourseController extends Controller
             'operating_system' => 'required|string',
             'other_programs'=> 'required|string',
         ]);
-        $imageName = $request->course_img->getClientOriginalName();
-        $request->course_img->storeAs('storage/images', $imageName);
+        $filename = Str::orderedUuid() . '.' . $request->file('course_img')->getClientOriginalExtension();
+        $request->file('course_img')->storeAs('course_images', $filename, 'course_images');
 
         $course = new Course();
         $course->course_name = $request->course_name;
         $course->short_desc = $request->short_desc;
         $course->course_desc = $request->course_desc;
         $course->level = $request->level;
-        $course->course_img = $request->course_img;
+        $course->course_img = $filename;
         $course->screen_resolution = $request->screen_resolution;
         $course->minimum_ram = $request->minimum_ram;
         $course->processor = $request->processor;
@@ -55,11 +55,6 @@ class ManageCourseController extends Controller
         //-----------------------
         $course->created_by = Auth()->user()->id;
         $course->updated_by = Auth()->user()->id;
-
-        $filename = Str::orderedUuid() . "." . $request->course_img->getClientOriginalExtension();
-        $course->course_img = $filename;
-
-        Storage::putFileAs('public/images/', $request->course_img, $filename);
 
         $course->save();
         // dd($course);
@@ -83,20 +78,20 @@ class ManageCourseController extends Controller
             'operating_system' => 'required|string',
             'other_programs'=> 'required|string',
         ]);
-        $changeProfile = [];
+        $changeCourse = [];
 
         if ($request->hasFile('course_img')) {
             $filename = Str::orderedUuid() . "." . $request->file('course_img')->getClientOriginalExtension();
-            $request->file('course_img')->storeAs('public/images', $filename);
-            $changeProfile['course_img'] = $filename;
+            $request->file('course_img')->storeAs('course_images', $filename, 'course_images');
+            $changeCourse['course_img'] = $filename;
         }
 
         // Check if 'course_img' exists in the validated data
         if (array_key_exists('course_img', $validateCourse)) {
-            unset($validateProfile['course_img']);
+            unset($validateCourse['course_img']);
         }
 
-        $changeProfile += [
+        $changeCourse += [
             'course_name' => $validateCourse['course_name'],
             'short_desc' => $validateCourse['short_desc'],
             'course_desc' => $validateCourse['course_desc'],
@@ -111,7 +106,7 @@ class ManageCourseController extends Controller
             'updated_by' => Auth()->user()->id,
         ];
 
-        Course::where('id', $id)->update($changeProfile);
+        Course::where('id', $id)->update($changeCourse);
         return redirect('/manager/course')->with('success', 'Course edit successfull!');
     }
     public function deleteCourse($id){

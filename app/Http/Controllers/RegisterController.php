@@ -30,8 +30,6 @@ class RegisterController extends Controller
             return back()->withErrors($validator);
         }
 
-        // $request->profile_img->storeAs('public/profile_img/placeholder.webp');
-
         $user = new User();
         $user->full_name = $request->full_name;
         $user->username = $request->username;
@@ -39,7 +37,6 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
         $user->role_id = 2;
         //give default placeholder instead
-        $user->profile_img = 'placeholder.webp';
         $user->about_me = ' ';
         $user->save();
         return redirect('/login')->with('success', 'Registrasi Akun Berhasil.');

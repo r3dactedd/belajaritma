@@ -48,125 +48,137 @@
                         </a></h4>
 
                 </div>
-
+                <form method="post" action ="/manager/course/edit/{{ $data->id }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mt-6 md:mt-0">
+                        <button type="submit"
+                            class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
+                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                            <div class="mx-2"> Finalize Kursus </div>
+                        </button>
+                    </div>
             </div>
         </div>
         <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-            <form method="post" action ="/manager/course/edit/{{ $data->id }}" enctype="multipart/form-data">
-                @csrf
-                <div class="my-4 rounded-xl bg-white md:flex">
-                    <!-- Left Side -->
-                    <div class="w-full md:w-1/3">
-                        <!-- Profile Card -->
-                        <div class="h-full p-2 md:py-4 md:pl-8">
-                            <div class="mx-auto w-full">
-                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
-                                    src="/storage/image/placeholder.webp" alt="Image Preview" />
-                            </div>
-                            <div class="max-w-md">
-                                <label
-                                    class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
-                                    <span class="text-base leading-normal">Unduh Foto Baru</span>
-                                    <input type='file' id='imageInput' name="course_img" class="hidden" accept="image/*"
-                                        onchange="previewImage()" />
-                                </label>
-                            </div>
+            <div class="my-4 rounded-xl bg-white md:flex">
+                <!-- Left Side -->
+                <div class="w-full md:w-1/3">
+                    <!-- Profile Card -->
+                    <div class="h-full p-2 md:py-4 md:pl-8">
+                        <div class="mx-auto w-full">
+                            <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0" src="/storage/image/placeholder.webp"
+                                alt="Image Preview" />
+                        </div>
+                        <div class="max-w-md">
+                            <label
+                                class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
+
+                                <span class="text-base leading-normal">Unduh Foto Baru</span>
+                                <input type='file' id='imageInput' name="course_img" class="hidden" accept="image/*"
+                                    onchange="previewImage()" />
+                            </label>
                         </div>
                     </div>
-                    <!-- Right Side -->
-                    <div class="h-auto w-full md:mx-2 md:w-2/3">
-                        <!-- Profile tab -->
-                        <!-- About Section -->
-                        <div class="rounded-xl bg-white px-6 pt-4 md:px-12">
-                            <label for="courseTitle" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                Judul Kursus</label>
-                            <input type="text" name="course_name" id="inputCourseName"
-                                class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
-                                value="{{ htmlspecialchars($data->course_name) }}" required="">
-                            <label for="shortDesc" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                Deskripsi Singkat Kursus</label>
-                            <textarea name="short_desc" id="inputShortDesc"
-                                class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Input Deskripsi Singkat mengenai Kursus" required=""> {{ htmlspecialchars($data->short_desc) }}
+                </div>
+                <!-- Right Side -->
+                <div class="h-auto w-full md:mx-2 md:w-2/3">
+                    <!-- Profile tab -->
+                    <!-- About Section -->
+                    <div class="rounded-xl bg-white px-6 pt-4 md:px-12">
+                        <label for="courseTitle" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                            Judul Kursus</label>
+                        <input type="text" name="course_name" id="inputCourseName"
+                            class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
+                            value="{{ htmlspecialchars($data->course_name) }}" required="">
+                        <label for="shortDesc" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                            Deskripsi Singkat Kursus</label>
+                        <textarea name="short_desc" id="inputShortDesc"
+                            class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                            placeholder="Input Deskripsi Singkat mengenai Kursus" required=""> {{ htmlspecialchars($data->short_desc) }}
                             </textarea>
 
-                            <div class="grid-row-2 grid md:grid-cols-2">
-                                <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
-                                    <div
-                                        class="mb-3 mt-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
+                        <div class="grid-row-2 grid md:grid-cols-2">
+                            <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
+                                <div
+                                    class="mb-3 mt-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
 
-                                        <select name="level"
-                                            class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                                            <option value="Dasar" {{ $data->level == 'Dasar' ? 'selected' : '' }} id="inputLevelDasar">Dasar</option>
-                                            <option value="Menengah" {{ $data->level == 'Menengah' ? 'selected' : '' }} id="inputLevelMenengah">Menengah</option>
-                                            <option value="Mahir" {{ $data->level == 'Mahir' ? 'selected' : '' }} id="inputLevelMahir">Mahir</option>
-                                        </select>
-                                    </div>
+                                    <select name="level"
+                                        class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
+                                        <option value="Dasar" {{ $data->level == 'Dasar' ? 'selected' : '' }}
+                                            id="inputLevelDasar">Dasar</option>
+                                        <option value="Menengah" {{ $data->level == 'Menengah' ? 'selected' : '' }}
+                                            id="inputLevelMenengah">Menengah</option>
+                                        <option value="Mahir" {{ $data->level == 'Mahir' ? 'selected' : '' }}
+                                            id="inputLevelMahir">Mahir</option>
+                                    </select>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="rounded-t-xl bg-white p-4 shadow-sm">
-                    <label for="courseDesc" class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
-                        Mengenai Kursus</label>
-                    <div class="px-4 py-2 font-semibold">
-                        <textarea name="course_desc" id="inputCourseDesc"
-                            class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                            placeholder="Input Penjelasan Mengenai Kursus, Materi Apa Yang Dipelajari, serta Tujuan Pembelajaran"
-                            required="">{{ htmlspecialchars($data->course_desc) }}</textarea>
-                    </div>
+            </div>
+            <div class="rounded-t-xl bg-white p-4 shadow-sm">
+                <label for="courseDesc" class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                    Mengenai Kursus</label>
+                <div class="px-4 py-2 font-semibold">
+                    <textarea name="course_desc" id="inputCourseDesc"
+                        class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                        placeholder="Input Penjelasan Mengenai Kursus, Materi Apa Yang Dipelajari, serta Tujuan Pembelajaran"
+                        required="">{{ htmlspecialchars($data->course_desc) }}</textarea>
                 </div>
-                <div class="rounded-b-xl bg-white p-4 shadow-sm">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div>
-                            <label for="minSpec"
-                                class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
-                                Spesifikasi Minimum</label>
+            </div>
+            <div class="rounded-b-xl bg-white p-4 shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div>
+                        <label for="minSpec" class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                            Spesifikasi Minimum</label>
 
-                            <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-2">
-                                <div class="rounded-lg bg-white p-4 shadow-md">
-                                    <div class="text-indigo-500">Resolusi Layar</div>
-                                    <input type="text" name="screen_resolution" id="inputScreenRes" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500" value="{{ htmlspecialchars($data->screen_resolution) }}" required="">
-                                </div>
-                                <div class="rounded-lg bg-white p-4 shadow-md">
-                                    <div class="text-indigo-500">Minimum RAM</div>
-                                    <input type="text" name="minimum_ram" id="inputMinRAM"
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        value="{{ htmlspecialchars($data->minimum_ram) }}" required="">
-                                </div>
-                                <div class="rounded-lg bg-white p-4 shadow-md">
-                                    <div class="text-indigo-500">Processor</div>
-                                    <input type="text" name="processor" id="inputProcessor"
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        value="{{ htmlspecialchars($data->processor) }}" required="">
-                                </div>
-                                <div class="rounded-lg bg-white p-4 shadow-md">
-                                    <div class="text-indigo-500">Operating System</div>
-                                    <input type="text" name="operating_system" id="inputOperatingSystem"
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                        value="{{ htmlspecialchars($data->operating_system) }}"required="">
-                                </div>
+                        <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-2">
+                            <div class="rounded-lg bg-white p-4 shadow-md">
+                                <div class="text-indigo-500">Resolusi Layar</div>
+                                <input type="text" name="screen_resolution" id="inputScreenRes"
+                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                    value="{{ htmlspecialchars($data->screen_resolution) }}" required="">
+                            </div>
+                            <div class="rounded-lg bg-white p-4 shadow-md">
+                                <div class="text-indigo-500">Minimum RAM</div>
+                                <input type="text" name="minimum_ram" id="inputMinRAM"
+                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                    value="{{ htmlspecialchars($data->minimum_ram) }}" required="">
+                            </div>
+                            <div class="rounded-lg bg-white p-4 shadow-md">
+                                <div class="text-indigo-500">Processor</div>
+                                <input type="text" name="processor" id="inputProcessor"
+                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                    value="{{ htmlspecialchars($data->processor) }}" required="">
+                            </div>
+                            <div class="rounded-lg bg-white p-4 shadow-md">
+                                <div class="text-indigo-500">Operating System</div>
+                                <input type="text" name="operating_system" id="inputOperatingSystem"
+                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                    value="{{ htmlspecialchars($data->operating_system) }}"required="">
                             </div>
                         </div>
-                        <div>
-                            <label for="username"
-                                class="text-md my-4 ml-4 block font-semibold text-gray-900 dark:text-white">
-                                Program Lain yang Diperlukan</label>
+                    </div>
+                    <div>
+                        <label for="username" class="text-md my-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                            Program Lain yang Diperlukan</label>
 
-                            <div class="px-4 py-2 font-semibold">
-                                <textarea name="other_programs" id="inputOtherPrograms"
-                                    class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                    placeholder="Input Tools serta Program-Program Lain yang diperlukan dalam menjalankan kursus ini." required="">{{ htmlspecialchars($data->other_programs) }}</textarea>
-                            </div>
+                        <div class="px-4 py-2 font-semibold">
+                            <textarea name="other_programs" id="inputOtherPrograms"
+                                class="block h-40 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                placeholder="Input Tools serta Program-Program Lain yang diperlukan dalam menjalankan kursus ini." required="">{{ htmlspecialchars($data->other_programs) }}</textarea>
                         </div>
-                        <button type="submit"
-                            class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Edit Kursus
-                        </button>
-
-                        {{-- <div
+                    </div>
+                    {{-- <div
                             class="mb-3 ml-4 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
 
                             <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
@@ -177,8 +189,8 @@
                             <button type="submit"
                             class="absolute bottom-2.5 right-2.5 rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Upload Kursus</button>
                         </div> --}}
-                    </div>
                 </div>
+            </div>
             </form>
             <h1 class="my-8 text-center text-3xl font-semibold">Daftar Materi </h1>
             <div id="syllabus"class="my-4"></div>
@@ -200,15 +212,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($material as $materialItem)
-                        <tr class="border-b border-opacity-20 bg-white dark:border-gray-700">
+                        @foreach ($material as $materialItem)
+                            <tr class="border-b border-opacity-20 bg-white dark:border-gray-700">
 
                                 <td scope="row"
                                     class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                    {{$materialItem->title}}
+                                    {{ $materialItem->title }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{$materialItem->materialContentToMasterType->master_type_name}}
+                                    {{ $materialItem->materialContentToMasterType->master_type_name }}
                                 </td>
 
                                 <td class="px-6 py-4">
@@ -231,11 +243,11 @@
                                         </div>
                                     </div>
                                 </td>
-                        </tr>
+                            </tr>
+                        @endforeach
                         <tr
                             class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
                             <td class="px-6 py-3 text-center font-semibold" colspan="4">
-
                                 <p class="inline-flex items-center align-middle" data-modal-target="defaultModal"
                                     data-modal-toggle="defaultModal">
                                     <svg class="mr-4 fill-black hover:fill-white" xmlns="http://www.w3.org/2000/svg"
@@ -355,7 +367,8 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
-                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin menghapus materi tersebut?
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin
+                                menghapus materi tersebut?
                             </h3>
                             <div class="flex justify-center text-center">
                                 {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}

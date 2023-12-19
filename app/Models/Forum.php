@@ -14,6 +14,7 @@ class Forum extends Model
         'user_id',
         'course_id',
         'master_type_id',
+        'material_id',
         'forum_title',
         'forum_message',
         'forum_attachment',
@@ -27,5 +28,14 @@ class Forum extends Model
     }
     public function formToCourse(){
         return $this->hasMany(Course::class, 'course_id','id');
+    }
+    public function formToMaterial(){
+        return $this->belongsTo(Material::class, 'material_id');
+    }
+    public function nestedReplies(){
+        return $this->hasMany(Forum::class, 'reply_id');
+    }
+    public function replies(){
+        return $this->hasMany(Forum::class, 'reply_id');
     }
 }

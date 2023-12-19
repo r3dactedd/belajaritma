@@ -3,47 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\Forum;
-use App\Models\MasterType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Course;
 use App\Models\Material;
+use App\Models\NestedReply;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class ForumController extends Controller
 {
     //
     public function showCourseData(Request $request){
         $searchKeyword = $request->input('searchKeyword');
-        if($searchKeyword){
+
+        if ($searchKeyword) {
             $data = Course::where('course_name', 'like', "%$searchKeyword%")->get();
-            return view('forum.forum_list', compact('data'));
-        }
-        else{
+        } else {
             $data = Course::all();
-            return view('forum.forum_list',['data'=>$data]);
         }
+
+        $data = $data->map(function ($course) {
+            $course->course_img_url = asset('uploads/course_images/' . $course->course_img);
+            return $course;
+        });
+
+        return view('forum.forum_list', compact('data'));
     }
 
     public function showForumsByCourse($course_id, Request $request){
         $searchKeyword = $request->input('searchKeyword');
-        if($searchKeyword){
-            $forums = Forum::where('course_id', $course_id)->
-            where('forum_title', 'like', "%$searchKeyword%")
-            ->get();
-            $course = Course::find($course_id);
-            return view('forum.forum', ['forums' => $forums, 'course' => $course]);
+        $onlyUserForums = $request->has('bordered-checkbox');
+        $selectedMaterial = $request->input('selectedMaterial');
+
+        $query = Forum::where('course_id', $course_id);
+
+        if ($searchKeyword) {
+            $query->where('forum_title', 'like', "%$searchKeyword%");
         }
-        else{
-            $forums = Forum::where('course_id', $course_id)->get();
-            $course = Course::find($course_id);
-            $materials = Material::where('course_id', $course_id)->get();
-            return view('forum.forum', ['forums' => $forums, 'course' => $course, 'materials'=>$materials]);
+
+        if ($onlyUserForums) {
+            $userId = auth()->id();
+            $query->where('user_id', $userId);
         }
-        // dd($course);
-        // dd($forums);
+
+        if ($selectedMaterial) {
+            $query->whereHas('formToMaterial', function ($subquery) use ($selectedMaterial) {
+                $subquery->where('title', $selectedMaterial);
+            });
+        }
+
+        $forums = $query->with('formToUser')->get();
+        $course = Course::find($course_id);
+        $materials = Material::where('course_id', $course_id)->get();
+
+        return view('forum.forum', [
+            'forums' => $forums,
+            'course' => $course,
+            'materials' => $materials,
+        ]);
     }
+
+
 
     public function manageForumList(Request $request){
         $searchKeyword = $request->input('searchKeyword');
@@ -58,24 +80,25 @@ class ForumController extends Controller
 
     }
 
-    public function forumDetail($course_id,$id){
-        $data=Forum::find($id);
-        $getReply = Forum::all();
-        return view('forum.forum_thread',['data'=>$data, 'getReply'=>$getReply]);
+    public function forumDetail($course_id, $id){
+        $data = Forum::with('replies')->find($id);
+        $getReply = $data ? $data->replies : [];
+
+        return view('forum.forum_thread', ['data' => $data, 'getReply' => $getReply]);
     }
 
-    public function createForum(Request $request){
+    public function createForum(Request $request)
+    {
         Log::info('Request Data:', $request->all());
+
         $request->validate([
-            'course_session' => 'required|string|max:255',
             'forum_title' => 'required|string|max:255',
-            'forum_message' => 'required|string'
+            'forum_message' => 'required|string',
         ]);
 
         $validator = Validator::make($request->all(), [
-            'course_session' => 'required|string|max:255',
             'forum_title' => 'required|string|max:255',
-            'forum_message' => 'required|string'
+            'forum_message' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -86,60 +109,65 @@ class ForumController extends Controller
             'user_id' => auth()->user()->id,
             'course_id' => $request->input('course_id'),
             'forum_title' => $request->input('forum_title'),
-            'course_session' => $request->input('course_session'),
-            'forum_message' => $request->input('forum_message')
+            'material_id' => $request->input('material_id'),
+            'forum_message' => $request->input('forum_message'),
         ]);
-
-
-        if ($request->input('forum_attachment')) {
-            // Get the uploaded file
-            $file = $request->input('forum_attachment');
-
-            // Set a unique filename for the image
-            $filename = time().
-            '_'.$file->getClientOriginalName();
-
-            // Move the file to the storage directory
-            $file->move(public_path('forum_attachments'), $filename);
-
-            // Save the filename to the 'forum_attachment' column
-            $forum->forum_attachment = $filename;
-        }
 
         // Save the forum to the database
         $forum->save();
 
+        // Handle file upload
+        if ($request->hasFile('forum_attachment')) {
+            $filename = Str::orderedUuid() . '.' . $request->file('forum_attachment')->getClientOriginalExtension();
+            $request->file('forum_attachment')->storeAs('forum_attachments', $filename, 'forum_attachments');
+            $forum->forum_attachment = $filename;
+            $forum->save();
+        }
+
         // Redirect to the forum view with the forum ID
         return Redirect::route('forum.forum', ['course_id' => $forum->course_id])->with('success', 'Forum topic created successfully!');
+    }
+    public function deleteThread($courseId, $id)
+    {
+        $thread = Forum::findOrFail($id);
+
+        $thread->delete();
+
+        return redirect()->route('forum.forum', ['course_id' => $courseId])->with('success', 'Thread deleted successfully.');
     }
 
     public function createReply(Request $request){
         Log::info('Request Data:', $request->all());
         $request->validate([
-            'forum_message' => 'required|string',
+            'forum_message' => 'required|string|max:255',
         ]);
 
         $validator = Validator::make($request->all(), [
-            'forum_message' => 'required|string'
+            'forum_message' => 'required|string|max:255'
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => 'Validation failed'], 422);
-        }
+            return response()->json(['error' => $validator->errors()], 422);
 
-        $parentForum = Forum::find($request->input('reply_id'));
+        }
 
         $forum = new Forum([
             'user_id' => auth()->user()->id,
             'course_id' => $request->input('course_id'),
             'forum_message' => $request->input('forum_message'),
-            'reply_id' => $parentForum->id,
+            'reply_id' => $request->input('reply_id'),
+            'material_id' => $request->input('material_id'),
         ]);
 
         $forum->save();
+
+        if ($request->hasFile('forum_attachment')) {
+            $filename = Str::orderedUuid() . '.' . $request->file('forum_attachment')->getClientOriginalExtension();
+            $request->file('forum_attachment')->storeAs('forum_attachments', $filename, 'forum_attachments');
+            $forum->forum_attachment = $filename;
+            $forum->save();
+        }
         // return Redirect::route('forumDetail', ['id' => $request->input('reply_id'),'course_id' => $request->input('course_id')])->with('success', 'Forum topic created successfully!');
         return response()->json(['message' => 'Forum reply created successfully']);
     }
-
-
 }

@@ -81,21 +81,21 @@
             {{-- Search Bar --}}
             <div class="container mx-auto my-12 grid w-11/12 gap-8 pb-12 sm:grid-cols-1 md:grid-cols-3">
                 {{-- Course Components --}}
-                @foreach ($data as $data)
-                    <a href="forum/course/{{ $data->id }}">
+                @foreach ($data as $course)
+                    <a href="forum/course/{{ $course->id }}">
                         <div
                             class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                             <div class="relative h-56 w-full">
                                 <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
-                                    src="{{ asset('storage/images/' . $data->course_img) }}" alt="banner" />
+                                    src="{{ $course->course_img_url }}" alt="banner" />
                             </div>
                             <div class="h-full w-full pt-5 md:h-40">
 
                                 <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
-                                    {{ $data->course_name }}
+                                    {{ $course->course_name }}
                                 </h4>
                                 <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                    {{ $data->course_desc }}
+                                    {{ $course->course_desc }}
                                 </p>
 
                             </div>

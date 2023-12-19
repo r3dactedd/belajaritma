@@ -43,7 +43,8 @@
                     <div class="h-full p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
                             <img class="max-h-64 w-full p-4 md:px-0"
-                                src="{{ asset('storage/images/' . $data->certif_img) }}" alt="Certification Image" />
+                                src= "{{ asset('uploads/certif_images/' . $data->certif_img) }}"
+                                alt="Certification Image" />
                         </div>
                     </div>
                 </div>

@@ -23,6 +23,9 @@
 
 </head>
 
+@php
+    use Illuminate\Support\Str;
+@endphp
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
@@ -67,19 +70,17 @@
                                     class="mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                                     placeholder="Cari Judul Diskusi Forum">
                             </div>
-                        </form>
+
                     </div>
 
                     <div class="mt-4 flex items-center justify-between px-4">
                         <div class="flex">
-                            <select
+                            <select name="selectedMaterial"
                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                                 <option value="">Filter Forum</option>
-
-                                <option value="for-rent">Session 1 Name</option>
-                                <option value="for-sale">Session 2 Name</option>
-                                <option value="for-rent">Session 3 Name</option>
-                                <option value="for-sale">Session 4 Name</option>
+                                @foreach ($materials as $forum_material)
+                                    <option value="{{ $forum_material->title }}">{{ $forum_material->title }}</option>
+                                @endforeach
                             </select>
 
                         </div>
@@ -90,9 +91,8 @@
                                 class="mx-4 w-full py-4 text-sm font-medium text-gray-900 dark:text-gray-300">Hanya
                                 Tampilkan Diskusi Saya</label>
                         </div>
-
-
                     </div>
+                    </form>
 
                     <button id="open-btn"
                         class="my-4 ml-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
@@ -102,41 +102,43 @@
                     <div class="mx-auto px-2 py-4 antialiased">
                         <div class="space-y-4">
                             @foreach ($forums as $forumData)
-                                <!-- FORUM CONTENT -->
-                                <a href="/forum/course/{{ $forumData->course_id }}/thread/{{ $forumData->id }}"
-                                    class="flex px-2 hover:bg-gray-200">
-                                    <div class="mr-3 flex-shrink-0 py-2">
-                                        <img class="mt-2 h-8 w-8 rounded-full sm:h-10 sm:w-10"
-                                            src="{{ asset('/profile_img/' . $forumData->formToUser->profile_img) }}"
-                                            alt="">
-                                    </div>
-                                    <div class="flex-1 rounded-lg px-4 py-2 text-2xl leading-relaxed">
-                                        <strong>{{ $forumData->forum_title }}</strong> <span
-                                            class="ml-2 text-lg text-gray-400">
-                                            {{ $forumData->created_at->format('Y-m-d') }}
-                                        </span>
-                                        <p class="mb-5 text-sm">
-                                            Created by: {{ $forumData->formToUser->username }}
-                                        </p>
-                                        <p class="text-sm">
-                                            {{ strip_tags($forumData->forum_message) }}
-                                        </p>
-                                        <div class="mt-4 flex items-center">
-                                            <div class="mr-2 flex -space-x-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" height="0.8em"
-                                                    viewBox="0 0 640 512">
-                                                    <path
-                                                        d="M32 176c0-74.8 73.7-144 176-144s176 69.2 176 144s-73.7 144-176 144c-15.3 0-30.6-1.9-46.3-5c-3.5-.7-7.1-.2-10.2 1.4c-6.1 3.1-12 6-18 8.7c-28.4 12.9-60.2 23.1-91.5 26c14.9-19 26.8-39.7 37.6-59.9c3.3-6.1 2.3-13.6-2.5-18.6C50 244.2 32 213.1 32 176zM208 0C93.1 0 0 78.9 0 176c0 44.2 19.8 80.1 46 110c-11.7 21-24 40.6-39.5 57.5l0 0-.1 .1c-6.5 7-8.2 17.1-4.4 25.8C5.8 378.3 14.4 384 24 384c43 0 86.5-13.3 122.7-29.7c4.9-2.2 9.6-4.5 14.3-6.8c15.3 2.8 30.9 4.6 47 4.6c114.9 0 208-78.9 208-176S322.9 0 208 0zM447.4 160.5C541.6 167 608 233 608 304c0 37.1-18 68.2-45.1 96.6c-4.8 5-5.8 12.5-2.5 18.6c10.9 20.2 22.7 40.8 37.6 59.9c-31.3-3-63.2-13.2-91.5-26c-6-2.7-11.9-5.6-18-8.7c-3.2-1.6-6.8-2.1-10.2-1.4c-15.6 3.1-30.9 5-46.3 5c-68.2 0-123.6-30.7-153.1-73.3c-11 3-22.3 5.2-33.8 6.8C279 439.8 349.9 480 432 480c16.1 0 31.7-1.8 47-4.6c4.6 2.3 9.4 4.6 14.3 6.8C529.5 498.7 573 512 616 512c9.6 0 18.2-5.7 22-14.5c3.8-8.7 2-18.9-4.4-25.8l-.1-.1 0 0c-15.5-17-27.8-36.5-39.5-57.5c26.2-29.9 46-65.8 46-110c0-94.4-87.8-171.5-198.2-175.8c2.8 10.4 4.7 21.2 5.6 32.3z" />
-                                                </svg>
-                                            </div>
-                                            <div class="text-sm font-semibold text-gray-500">
-                                                5 Replies
+                                @if ($forumData->forum_title != null)
+                                    <!-- FORUM CONTENT -->
+                                    <a href="/forum/course/{{ $forumData->course_id }}/thread/{{ $forumData->id }}"
+                                        class="flex px-2 hover:bg-gray-200">
+                                        <div class="mr-3 flex-shrink-0 py-2">
+                                            <img class="mt-2 h-8 w-8 rounded-full sm:h-10 sm:w-10"
+                                                src="{{ asset('uploads/profile_images/' . $forumData->formToUser->profile_img) }}"
+                                                alt="">
+                                        </div>
+                                        <div class="flex-1 rounded-lg px-4 py-2 text-2xl leading-relaxed">
+                                            <strong>{{ $forumData->forum_title }}</strong> <span
+                                                class="ml-2 text-lg text-gray-400">
+                                                {{ $forumData->created_at->format('Y-m-d') }}
+                                            </span>
+                                            <p class="mb-5 text-sm">
+                                                Created by: {{ $forumData->formToUser->username }}
+                                            </p>
+                                            <p class="text-sm">
+                                                {{ Str::limit(strip_tags($forumData->forum_message), 50) }}
+                                            </p>
+                                            <div class="mt-4 flex items-center">
+                                                <div class="mr-2 flex -space-x-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="0.8em"
+                                                        viewBox="0 0 640 512">
+                                                        <path
+                                                            d="M32 176c0-74.8 73.7-144 176-144s176 69.2 176 144s-73.7 144-176 144c-15.3 0-30.6-1.9-46.3-5c-3.5-.7-7.1-.2-10.2 1.4c-6.1 3.1-12 6-18 8.7c-28.4 12.9-60.2 23.1-91.5 26c14.9-19 26.8-39.7 37.6-59.9c3.3-6.1 2.3-13.6-2.5-18.6C50 244.2 32 213.1 32 176zM208 0C93.1 0 0 78.9 0 176c0 44.2 19.8 80.1 46 110c-11.7 21-24 40.6-39.5 57.5l0 0-.1 .1c-6.5 7-8.2 17.1-4.4 25.8C5.8 378.3 14.4 384 24 384c43 0 86.5-13.3 122.7-29.7c4.9-2.2 9.6-4.5 14.3-6.8c15.3 2.8 30.9 4.6 47 4.6c114.9 0 208-78.9 208-176S322.9 0 208 0zM447.4 160.5C541.6 167 608 233 608 304c0 37.1-18 68.2-45.1 96.6c-4.8 5-5.8 12.5-2.5 18.6c10.9 20.2 22.7 40.8 37.6 59.9c-31.3-3-63.2-13.2-91.5-26c-6-2.7-11.9-5.6-18-8.7c-3.2-1.6-6.8-2.1-10.2-1.4c-15.6 3.1-30.9 5-46.3 5c-68.2 0-123.6-30.7-153.1-73.3c-11 3-22.3 5.2-33.8 6.8C279 439.8 349.9 480 432 480c16.1 0 31.7-1.8 47-4.6c4.6 2.3 9.4 4.6 14.3 6.8C529.5 498.7 573 512 616 512c9.6 0 18.2-5.7 22-14.5c3.8-8.7 2-18.9-4.4-25.8l-.1-.1 0 0c-15.5-17-27.8-36.5-39.5-57.5c26.2-29.9 46-65.8 46-110c0-94.4-87.8-171.5-198.2-175.8c2.8 10.4 4.7 21.2 5.6 32.3z" />
+                                                    </svg>
+                                                </div>
+                                                <div class="text-sm font-semibold text-gray-500">
+                                                    5 Replies
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <hr>
-                                <!-- FORUM CONTENT END-->
+                                    </a>
+                                    <hr>
+                                    <!-- FORUM CONTENT END-->
+                                @endif
                             @endforeach
                         </div>
                     </div>
@@ -177,17 +179,16 @@
                                             placeholder="Tulis Judul untuk Diskusi Anda " required="">
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="course_session"
+                                        <label for="material_id"
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                            Sesi Kursus</label>
-                                        <select id="course_session"
+                                            Pilih Materi</label>
+                                        <select id="material_id" name="material_id"
                                             class="w-full rounded-md border-transparent bg-gray-50 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                                            <option value="">Pilih Sesi</option>
+                                            <option value="">Pilih Materi</option>
                                             @foreach ($materials as $material)
-                                                <option value="{{ $material->title }}">{{ $material->title }}</option>
+                                                <option value="{{ $material->id }}">{{ $material->title }}</option>
                                             @endforeach
                                         </select>
-
                                     </div>
 
                                     <div class="sm:col-span-2">
@@ -195,12 +196,14 @@
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Pertanyaan
                                         </label>
-                                        <form method="post" class="mt-2 h-32 min-h-full overflow-y-auto">
-                                            @csrf
-                                            <textarea id="forum_message" name="forum_message" placeholder="Input Pertanyaan Anda disini."></textarea>
-                                        </form>
+
+                                        <textarea id="forum_message" name="forum_message" placeholder="Input Pertanyaan Anda disini."></textarea>
+
+
+
                                         <input type="hidden" id="courseId" name="course_id"
-                                            value="{{ $forums[0]['course_id'] }}">
+                                            value="{{ count($forums) > 0 ? $forums[0]['course_id'] : '' }}">
+
 
                                     </div>
 
@@ -281,53 +284,55 @@
 
             function submitForm() {
                 var editorContent = tinymce.get('forum_message').getContent();
-                console.log("ini isian editorContent", editorContent)
-                var hasImages = editorContent.includes('<img');
-                var fileInput = document.getElementById('forum_attachment');
+                console.log("Editor Content:", editorContent);
+
+                if (editorContent === '') {
+                    alert('Error: Forum message cannot be empty.');
+                    return;
+                }
+
                 var courseId = document.getElementById('courseId').value;
-                console.log("ini isian courseId", courseId)
                 var discussionTitle = document.getElementById('forum_title').value;
-                console.log("ini isian discussionTitle", discussionTitle)
-                var courseSession = document.getElementById('course_session').value;
-                console.log("ini isian courseSession", courseSession)
+                if (discussionTitle === '') {
+                    alert('Error: Forum Title cannot be empty.');
+                    return;
+                }
+
+                var materialId = document.getElementById('material_id').value;
+                if (materialId === '') {
+                    alert('Error: Forum Session cannot be empty.');
+                    return;
+                }
+
+                // Append image tag with the asset URL to the content
+                var assetUrl = "{{ asset('uploads/forum_attachments/') }}"; // Laravel asset function
+                editorContent += `<br><img src="${assetUrl}" alt="Uploaded Image">`;
 
                 console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
                 var formData = new FormData();
                 formData.append('course_id', courseId);
-                formData.append('course_session', courseSession);
+                formData.append('material_id', materialId);
                 formData.append('forum_title', discussionTitle);
                 formData.append('forum_message', editorContent);
-
-
-                if (hasImages) {
-                    var file = fileInput.files[0];
-                    formData.append('forum_attachment', file);
-                }
 
                 fetch('/forum/course/' + courseId, {
                         method: 'POST',
                         body: formData,
                         headers: {
-                            // Include any necessary headers, such as CSRF token
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                         },
                     })
                     .then(response => {
                         if (response.ok) {
-                            // If the response status is in the range of 200 to 299, treat it as successful
-                            window.location.href = '/forum/course/' + courseId; // Redirect to the desired URL
+                            alert('Success! Your form has been uploaded.');
+                            window.location.href = '/forum/course/' + courseId;
                         } else {
-                            // If the response status indicates an error, handle it
                             console.error('Error:', response.statusText);
-                            // You can display an error message to the user or take other appropriate actions
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        // Handle other types of errors, such as network issues
                     });
-
-
             }
         </script>
 
