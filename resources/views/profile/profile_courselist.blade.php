@@ -5,16 +5,14 @@
 
             <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
                 <a id="convertButton"
-                    class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Kursus
-                    Sedang Dipelajari</a>
+                    class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Sedang Dipelajari</a>
             </p>
         </div>
         <div class="flex items-center">
 
             <p class="ml-4 text-lg font-bold leading-5 tracking-normal text-indigo-600">
                 <a id="convertButton"
-                    class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Kursus
-                    Sudah Selesai</a>
+                    class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Kursus Selesai</a>
             </p>
         </div>
     </div>

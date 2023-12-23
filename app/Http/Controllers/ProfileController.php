@@ -33,10 +33,10 @@ class ProfileController extends Controller
     {
         $searchUser = User::find(Auth::user()->id);
         $displayUser = User::all();
-        $profileImageUrl = asset('uploads/profile_images/' . $searchUser->profile_img);
+        $profileImageUrl = asset('/profile_img/' . $searchUser->profile_img);
         $transactionHistory = Transaction::where('user_id', $searchUser->id)->get();
 
-        return view('profile.profile', ['searchUser' => $searchUser, 'display' => $displayUser, 'profileImageUrl' => $profileImageUrl, 'transactionHistory'=>$transactionHistory]);
+        return view('profile.profile', ['searchUser' => $searchUser, 'display' => $displayUser, 'profileImageUrl' => $profileImageUrl, 'transactionHistory' => $transactionHistory]);
     }
 
     public function update(Request $request)

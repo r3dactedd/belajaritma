@@ -18,7 +18,7 @@
         @include('layout.header')
     @endsection
     @section('content')
-        <div class="" style="background-image: url(/storage/image/bg-home.svg);">
+        <div class="" style="background-image: url('/background_image/bg-home.svg')">
             <div class="container mx-auto p-5">
                 <div class="my-4 md:-mx-2 md:flex">
 
