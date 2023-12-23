@@ -26,6 +26,7 @@
 @php
     use Illuminate\Support\Str;
 @endphp
+
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
     @extends('layout.layout')
