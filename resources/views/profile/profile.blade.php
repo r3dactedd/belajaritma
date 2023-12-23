@@ -34,7 +34,8 @@
             </div>
         </div>
 
-        <div class="" style="background-image: url(/storage/image/bg-profile.svg)">
+        <div class="" style="background-image: url('/background_image/bg-profile.svg')">
+
             <div class="container mx-auto p-4">
                 <div class="my-4 px-4 md:flex">
                     <div class="w-full md:w-3/12">
@@ -85,20 +86,23 @@
             </div>
 
         </div>
-        <div class="container mx-auto mb-1 mt-4 flex h-full w-11/12 items-center border-b-2 border-gray-300 px-2">
+        <div class="container mx-auto mb-1 flex h-full w-11/12 items-center border-b-2 border-gray-300 px-2">
 
             <ul class="h-full items-center lg:flex">
-                <li class="text-md flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a id="profileDashboard">Dashboard</a>
+                <li
+                    class="text-md my-4 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:my-1">
+                    <a id="profileDashboard">Statistika</a>
                 </li>
                 <li
-                    class="text-md ml-0 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:ml-10">
+                    class="md:my-1text-md my-4 ml-0 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:ml-10">
                     <a id="profileCourses">Kursus</a>
                 </li>
-                <li class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                <li
+                    class="text-md my-4 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:my-1">
                     <a id="profileCerti">Sertifikasi</a>
                 </li>
-                <li class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                <li
+                    class="text-md my-4 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:my-1">
                     <a id="profileHistory">Riwayat Transaksi</a>
                 </li>
             </ul>

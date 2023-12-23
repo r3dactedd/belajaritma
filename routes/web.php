@@ -125,12 +125,9 @@ Route::get('/courses/1/getcerti', function () {
 });
 
 //sidebar route
-Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showMaterial'])->name('sidebar.showSidebar');
-
-Route::get('/courses/material/{title}/{course_id}/{current_material_id}/{direction}', [SidebarController::class, 'handleMaterialNavigation']);
-Route::get('/courses/material/next/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'nextMaterial'])->name('sidebar.nextMaterial');;
-Route::get('/courses/material/previous/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'previousMaterial'])->name('sidebar.previousMaterial');;
-
+Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
+Route::get('/courses/material/next/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'nextMaterial'])->name('sidebar.nextMaterial');
+Route::get('/courses/material/previous/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'previousMaterial'])->name('sidebar.previousMaterial');
 
 //show page spesifik
 Route::get('/courses/materialContent/{title}/{id}', [SidebarController::class, 'showByType']);
@@ -147,6 +144,9 @@ Route::get('/manager/course', [ManageCourseController::class, 'showCourseAdmin']
 
 Route::get('/manager/course/create', function () {
     return view('administrator.admin_courses.admin_course_create');
+});
+Route::get('/manager/course/list', function () {
+    return view('administrator.admin_courses.admin_course_list');
 });
 Route::post('/manager/course/create', [ManageCourseController::class, 'createCourse']);
 Route::delete('/manager/course/delete/{id}', [ManageCourseController::class, 'deleteCourse'])->name('modals.delete');
@@ -171,7 +171,6 @@ Route::get('/manager/certification/edit/{id}', [ManageCertificationController::c
 Route::post('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPOST']);
 
 Route::get('/manager/forum', [ForumController::class, 'manageForumList']);
-
 
 Route::get('/transaction/{id}', [CertificationController::class, 'registerCertification']);
 Route::post('/transaction/{id}', [CertificationController::class, 'createTransaction']);

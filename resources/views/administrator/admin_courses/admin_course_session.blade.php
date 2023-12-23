@@ -28,12 +28,58 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Edit Sesi Kursus</span>
+                            <span class="mb-1 ml-2">Edit Materi Kursus</span>
                         </a>
                 </div>
             </div>
         </div>
         <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
+            <div class="mx-auto flex">
+                <ol
+                    class="flex w-full items-center space-x-2 p-3 text-center text-sm font-medium text-gray-500 rtl:space-x-reverse sm:space-x-4 sm:p-4 sm:text-base">
+                    <li class="flex items-center text-blue-600 dark:text-blue-500">
+
+                        <span
+                            class="me-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-blue-600 text-xs dark:border-blue-500">
+                            1
+                        </span>
+                        <a href="/manager/course/create">
+                            Pengisian Data Kursus
+                        </a>
+                        <svg class="ms-2 h-3 w-3 rtl:rotate-180 sm:ms-4" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m7 9 4-4-4-4M1 9l4-4-4-4" />
+                        </svg>
+
+                    </li>
+                    <li class="flex items-center text-blue-600 dark:text-blue-500">
+                        <span
+                            class="me-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-blue-600 text-xs dark:border-blue-500">
+                            2
+                        </span>
+                        <a href="/manager/course/list">
+                            Daftar Materi Kursus
+                        </a>
+                        <svg class="ms-2 h-3 w-3 rtl:rotate-180 sm:ms-4" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m7 9 4-4-4-4M1 9l4-4-4-4" />
+                        </svg>
+                    </li>
+                    <li class="flex items-center text-blue-600 dark:text-blue-500">
+                        <span
+                            class="me-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-blue-600 text-xs dark:border-blue-500">
+                            3
+                        </span>
+                        <a href="/manager/course/session/1/edit">
+                            Pengaturan Materi Kursus
+                        </a>
+
+                    </li>
+                </ol>
+
+            </div>
             <form id="" method="post" enctype="multipart/form-data">
                 @csrf
 
@@ -406,7 +452,8 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
-                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin menghapus pertanyaan tersebut?
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin
+                                menghapus pertanyaan tersebut?
                             </h3>
                             <div class="flex justify-center text-center">
                                 {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
