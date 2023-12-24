@@ -28,7 +28,7 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Sesi x : {{$material->title}}</span>
+                            <span class="mb-1 ml-2">Sesi x : {{ $material->title }}</span>
                         </a>
 
                 </div>
@@ -57,21 +57,26 @@
                 <div class="my-4"></div>
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
 
-                    <iframe width="100%" height="640" src="{{$material->video_link}}" frameborder="0"
+                    <iframe width="100%" height="640" src="{{ $material->video_link }}" frameborder="0"
                         allowfullscreen></iframe>
 
                 </div>
             </div>
         </div>
         <div class="hidden rounded-xl border-4 bg-white px-4 pb-8 md:flex md:flex-col">
-            <!-- ... (your existing content) ... -->
-
-            <!-- Navigation buttons -->
             <div class="flex justify-between mt-4">
-                <button onclick="navigate('back')" class="bg-gray-300 px-4 py-2 rounded-md">Back</button>
-                <button onclick="navigate('next')" class="bg-indigo-600 px-4 py-2 rounded-md text-white">Next</button>
+                @if ($previousMaterial)
+                    <a href="{{ url('/courses/' . 'material/' . $material->title  . '/' . $material->course_id  . '/' .  $previousMaterial->material_id) }}"
+                        class="bg-gray-300 px-4 py-2 rounded-md">Back</a>
+                @endif
+
+                @if ($nextMaterial)
+                    <a href="{{ url('/courses/' . 'material/' . $material->title  . '/' . $material->course_id  . '/' .  $nextMaterial->material_id) }}"
+                        class="bg-indigo-600 px-4 py-2 rounded-md text-white">Next</a>
+                @endif
             </div>
         </div>
+
     </body>
 @endsection
 @section('footer')
@@ -90,25 +95,28 @@
             currentIndex = Math.max(currentIndex - 1, 0);
         }
 
-        console.log("ini current index", currentIndex)
+        const url = direction === 'next' ?
+            `/courses/material/next/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}` :
+            `/courses/material/previous/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`;
+        console.log("ini isi url", url)
 
-        const url = direction === 'next'
-            ? `/courses/material/next/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`
-            : `/courses/material/previous/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`;
-
-        console.log("ini url", url)
-
-        // // Make a request to the backend using the constructed URL
-        // fetch(url)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // TODO: Handle the response data
-        //         // You may want to update the content based on the data received from the backend.
-        //         updateContent(data);
-        //     })
-        //     .catch(error => console.error('Error:', error));
+        // Fetch the URL or update content based on your requirements
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    // If the response status is in the range of 200 to 299, treat it as successful
+                    console.log("ini isian response", response)
+                } else {
+                    // If the response status indicates an error, handle it
+                    console.error('Error:', response.statusText);
+                    // You can display an error message to the user or take other appropriate actions
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle other types of errors, such as network issues
+            });
     }
-
-
 </script>
+
 </html>

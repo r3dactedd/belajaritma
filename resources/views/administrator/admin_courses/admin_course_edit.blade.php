@@ -45,7 +45,8 @@
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
                             <span class="mb-1 ml-2">Edit Kursus</span>
-                        </a>
+                        </a></h4>
+
                 </div>
                 <form method="post" action ="/manager/course/edit/{{ $data->id }}" enctype="multipart/form-data">
                     @csrf
@@ -258,6 +259,7 @@
                                 </p>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -386,12 +388,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+</body>
 
-            {{-- Delete Popup --}}
-    </body>
-
-
-    </body>
 @endsection
 @section('footer')
     @include('layout.footer')
