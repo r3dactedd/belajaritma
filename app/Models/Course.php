@@ -22,7 +22,8 @@ class Course extends Model
         'operating_system',
         'other_programs',
         'created_by',
-        'updated_by'
+        'updated_by',
+        'total_module',
     ];
 
     public function courseToSidebar(){

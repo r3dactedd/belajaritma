@@ -107,15 +107,31 @@
                                                 <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
                                                     {{ $course->course_name }}
                                                 </h1>
-                                                {{-- <p class="mt-4 w-fit rounded-xl bg-green-400 px-6 py-1.5 text-sm text-white">
-                                                    Kursus Selesai
-                                                </p>
-                                                <p class="0 mt-4 w-fit rounded-xl bg-indigo-500 px-6 py-1.5 text-sm text-white">
-                                                    Sedang Dipelajari
-                                                </p> --}}
-                                                <p class="mt-4 w-fit rounded-xl bg-red-500 px-6 py-1.5 text-sm text-white">
-                                                    Belum Diambil
-                                                </p>
+                                                @if (auth()->check())
+                                                    @if (auth()->user()->isEnrolled($course->id))
+                                                        @if (auth()->user()->hasCompletedCourse($course->id))
+                                                            <p
+                                                                class="mt-4 w-fit rounded-xl bg-green-400 px-6 py-1.5 text-sm text-white">
+                                                                Kursus Selesai
+                                                            </p>
+                                                        @else
+                                                            <p
+                                                                class="mt-4 w-fit rounded-xl bg-indigo-500 px-6 py-1.5 text-sm text-white">
+                                                                Sedang Dipelajari
+                                                            </p>
+                                                        @endif
+                                                    @else
+                                                        <p
+                                                            class="mt-4 w-fit rounded-xl bg-red-500 px-6 py-1.5 text-sm text-white">
+                                                            Belum Diambil
+                                                        </p>
+                                                    @endif
+                                                @else
+                                                    <p
+                                                        class="mt-4 w-fit rounded-xl bg-red-500 px-6 py-1.5 text-sm text-white">
+                                                        Belum Diambil
+                                                    </p>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
