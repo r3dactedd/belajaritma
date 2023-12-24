@@ -59,4 +59,39 @@ class User extends Authenticatable
     public function userToTransaction(){
         return $this->hasMany(Transaction::class, 'user_id','id');
     }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
+    public function isEnrolled($courseId)
+    {
+        return $this->enrollments->contains('course_id', $courseId);
+    }
+
+    public function hasCompletedCourse($courseId)
+    {
+        $enrollment = $this->enrollments->where('course_id', $courseId)->first();
+
+        return $enrollment && $enrollment->completed;
+    }
+
+
+    public function registerCertifications()
+    {
+        return $this->hasMany(RegistrationCertification::class);
+    }
+
+    public function isRegistered($certif_id)
+    {
+        return $this->registerCertifications->contains('certif_id', $certif_id);
+    }
+
+    public function hasPassedCerification($certif_id)
+    {
+        $certification = $this->registerCertifications->where('certif_id', $certif_id)->first();
+
+        return $certification && $certification->passed;
+    }
 }

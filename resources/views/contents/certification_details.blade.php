@@ -149,76 +149,89 @@
             </div>
 
             <div class="my-4"></div>
-            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
-                <div class="w-full px-4">
-                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            Registrasi Sertifikasi (muncul kalau belum registered)
-                        </h2>
-                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                            Anda belum melakukan registrasi untuk sertifikasi ini. Untuk mengakses tes sertifikasi,
-                            selesaikan
-                            pembayaran terlebih dahulu.
-                        </p>
+            @if (auth()->check())
+                @if (auth()->user()->isRegistered($data->id))
+                    @if (auth()->user()->hasPassedCerification($data->id))
+                        <div
+                            class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                            <div class="w-full px-4">
+                                <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                                    <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                                        Bukti Penyelesaian Sertifikasi (MUNCULIN ABIS SELESAI FINAL TEST)
+                                    </h2>
+                                    <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                                        Selamat! Anda telah lulus tes sertifikasi ini. Silahkan mengunduh bukti sertifikasi
+                                        anda.
+                                    </p>
 
-                        <div class="flex items-center">
-                            <div class="flex items-center">
+                                    <div class="flex items-center">
+                                        <div class="flex items-center">
 
-                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                    <a href="/transaction/{{ $data->id }}" id="convertButton"
-                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Registrasi</a>
+                                            <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                                <a id="convertButton"
+                                                    class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
+                                                    Bukti Sertifikasi</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div
+                            class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                            <div class="w-full px-4">
+                                <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                                    <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                                        Ambil Test Sertifikasi (muncul kalau sudah registered)
+                                    </h2>
+                                    <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                                        Anda telah berhasil registrasi untuk sertifikasi ini. Silahkan memulai test ini.
+                                    </p>
+
+                                    <div class="flex items-center">
+                                        <div class="flex items-center">
+
+                                            <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                                <a href="/test" id="convertButton"
+                                                    class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
+                                                    Test</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @else
+                    <div
+                        class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                        <div class="w-full px-4">
+                            <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                                <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                                    Registrasi Sertifikasi (muncul kalau belum registered)
+                                </h2>
+                                <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                                    Anda belum melakukan registrasi untuk sertifikasi ini. Untuk mengakses tes sertifikasi,
+                                    selesaikan
+                                    pembayaran terlebih dahulu.
                                 </p>
+
+                                <div class="flex items-center">
+                                    <div class="flex items-center">
+
+                                        <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                            <a href="/transaction/{{ $data->id }}" id="convertButton"
+                                                class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Registrasi</a>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
-                <div class="w-full px-4">
-                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            Ambil Test Sertifikasi (muncul kalau sudah registered)
-                        </h2>
-                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                            Anda telah berhasil registrasi untuk sertifikasi ini. Silahkan memulai test ini.
-                        </p>
-
-                        <div class="flex items-center">
-                            <div class="flex items-center">
-
-                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                    <a href="/test" id="convertButton"
-                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
-                                        Test</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
-                <div class="w-full px-4">
-                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            Bukti Penyelesaian Sertifikasi (MUNCULIN ABIS SELESAI FINAL TEST)
-                        </h2>
-                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                            Selamat! Anda telah lulus tes sertifikasi ini. Silahkan mengunduh bukti sertifikasi anda.
-                        </p>
-
-                        <div class="flex items-center">
-                            <div class="flex items-center">
-
-                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                    <a id="convertButton"
-                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
-                                        Bukti Sertifikasi</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                @endif
+            @else
+            @endif
     </body>
 @endsection
 @section('footer')

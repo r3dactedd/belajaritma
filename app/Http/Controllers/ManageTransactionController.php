@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RegistrationCertification;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -19,6 +20,12 @@ class ManageTransactionController extends Controller
         $transaction = Transaction::find($id);
         $transaction->isApproved = true;
         $transaction->save();
+
+        $registerTransaction = new RegistrationCertification();
+        $registerTransaction->user_id = $transaction->transactionToUser->id;
+        $registerTransaction->certif_id = $transaction->transactionToCertification->id;
+        $registerTransaction->registered = true;
+        $registerTransaction->save();
 
         return redirect('/manager/transaction')->with('success', 'Transaction approved successfully!');
     }
