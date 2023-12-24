@@ -52,10 +52,65 @@
                 </div>
             </div>
         </div>
+        <div class="hidden rounded-xl border-4 bg-white px-4 pb-8 md:flex md:flex-col">
+            <div class="flex justify-between mt-4">
+                @if ($previousMaterial)
+                    <a href="{{ url('/courses/' . 'material/' . $material->title  . '/' . $material->course_id  . '/' .  $previousMaterial->material_id) }}"
+                        class="bg-gray-300 px-4 py-2 rounded-md">Back</a>
+                @endif
+
+                @if ($nextMaterial)
+                    <a href="{{ url('/courses/' . 'material/' . $material->title  . '/' . $material->course_id  . '/' .  $nextMaterial->material_id) }}"
+                        class="bg-indigo-600 px-4 py-2 rounded-md text-white">Next</a>
+                @endif
+            </div>
+        </div>
     </body>
 @endsection
 @section('footer')
     @include('layout.footer')
 @endsection
+<script>
+    console.log("SCRIPT LOADED")
+    let currentIndex = 0;
+    const sidebars = @json($sidebars); // Assuming you pass the data from Laravel to JavaScript
 
+    function navigate(direction) {
+        if (direction === 'next') {
+            currentIndex = Math.min(currentIndex + 1, sidebars.length - 1);
+        } else if (direction === 'back') {
+            currentIndex = Math.max(currentIndex - 1, 0);
+        }
+
+        const url = direction === 'next'
+            ? `/courses/material/next/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`
+            : `/courses/material/previous/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`;
+        console.log("ini isi url", url)
+
+        // Fetch the URL or update content based on your requirements
+        fetch(url)
+            .then(response => {
+                console.log('Response:', response);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new Error('Response is not in JSON format');
+                }
+
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+
+                // TODO: Handle the response data
+                // You may want to update the content based on the data received from the backend.
+
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
 </html>

@@ -13,6 +13,7 @@ class Sidebar extends Model
     protected $fillable = [
         'parent_id',
         'course_id',
+        'order',
         'material_id',
         'title',
         'path',
