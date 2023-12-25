@@ -29,6 +29,21 @@ class ProfileController extends Controller
         return view('profile.profile_edit', ['searchUser' => $searchUser]);
     }
 
+    public function homePage() {
+        $searchUser = null;
+        $enrolledCourses = [];
+
+        if (Auth::check()) {
+            $searchUser = User::find(Auth::user()->id);
+            $enrolledCourses = $searchUser->enrollments()->with('course')
+            ->latest()
+            ->take(3)
+            ->get();
+        }
+
+        return view('home', ['searchUser' => $searchUser, 'enrolledCourses' => $enrolledCourses]);
+    }
+
     public function viewProfile() {
         $searchUser = User::find(Auth::user()->id);
         $displayUser = User::all();

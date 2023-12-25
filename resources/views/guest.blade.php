@@ -25,7 +25,6 @@
                     <!-- Right Side -->
                     <div class="h-full w-full">
 
-
                         <div class="md:mx-2 md:w-3/4">
                             <div class="rounded-xl bg-none px-4 py-2 md:px-8">
                                 <h1
@@ -115,30 +114,39 @@
                 <div class="mb-12 w-full lg:w-2/5">
                     <div class="rounded border border-gray-300 bg-white p-8 shadow">
                         <p class="mb-4 text-lg font-bold">Forum untuk Kursus Anda</p>
-                        @if (auth()->check())
-                            @foreach ($enrolledCourses as $enCor)
-                                <div class="flex items-center border-b border-gray-300 py-4">
-                                    <div class="flex h-12 w-12 items-center justify-center rounded-lg text-gray-700">
-                                        {{-- Course image here --}}
-                                        <img src="{{ asset('uploads/course_images/' . $enCor->course->course_img) }}"
-                                            alt="course image" class="h-full w-full object-cover" />
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="text-lg font-semibold leading-5 tracking-normal text-gray-700">
-                                            {{ $enCor->course->course_name }}
-                                        </p>
-                                        <a href="/forum/course/{{ $enCor->course->id }}">
-                                            <h3 class="mt-1 text-sm font-bold leading-6 text-indigo-600 hover:underline">
-                                                Akses
-                                                Forum</h3>
-                                        </a>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @else
-                            <p><strong>ERROR IN PROFILE RECOGNITION</strong></p>
-                        @endif
+                        <div class="flex items-center border-b border-gray-300 py-4">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg text-gray-700">
+                                {{-- Course image here --}}
+                                <img src="/storage/image/courseimg.webp" alt="course image"
+                                    class="h-full w-full object-cover" />
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-lg font-semibold leading-5 tracking-normal text-gray-700">
+                                    Course Name here
+                                </p>
+                                <a href="/course">
+                                    <h3 class="mt-1 text-sm font-bold leading-6 text-indigo-600 hover:underline">Akses Forum
+                                    </h3>
+                                </a>
+                            </div>
 
+                        </div>
+                        <div class="flex items-center border-b border-gray-300 py-4">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg text-gray-700">
+                                {{-- Course image here --}}
+                                <img src="/storage/image/courseimg.webp" alt="course image"
+                                    class="h-full w-full object-cover" />
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-lg font-semibold leading-5 tracking-normal text-gray-700">
+                                    Course Name here
+                                </p>
+                                <a href="/course">
+                                    <h3 class="mt-1 text-sm font-bold leading-6 text-indigo-600 hover:underline">Akses Forum
+                                    </h3>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
