@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -25,8 +26,9 @@ use App\Http\Controllers\SidebarController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('guest');
 });
+Route::get('/home', [ProfileController::class, 'homePage']);
 
 //USER-RELATED ROUTE
 Route::get('/login', [LoginController::class, 'index'])
@@ -55,10 +57,6 @@ Route::get('reset-password/{token}/{email}', [ForgotPasswordController::class, '
 
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPassword'])->name('resetPost');
 
-Route::get('/home', function () {
-    return view('home');
-});
-
 Route::get('/forum', [ForumController::class, 'showCourseData']);
 Route::get('forum/course/{course_id}', [ForumController::class, 'showForumsByCourse'])->name('forum.forum');
 Route::post('forum/course/{course_id}', [ForumController::class, 'createForum']);
@@ -76,6 +74,7 @@ Route::delete('/forum/course/{course_id}/thread/{id}/delete', [ForumController::
 Route::get('/courses', [CourseController::class, 'showData']);
 
 Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
+Route::post('/courses/enroll/{id}', [EnrollmentController::class, 'enrollCourse']);
 
 Route::get('/courses/1', function () {
     return view('contents.course_details');
@@ -125,6 +124,9 @@ Route::get('/courses/1/getcerti', function () {
 });
 
 //sidebar route
+Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showMaterial'])->name('sidebar.showSidebar');
+
+Route::get('/courses/material/{title}/{course_id}/{current_material_id}/{direction}', [SidebarController::class, 'handleMaterialNavigation']);
 Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
 Route::get('/courses/material/next/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'nextMaterial'])->name('sidebar.nextMaterial');
 Route::get('/courses/material/previous/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'previousMaterial'])->name('sidebar.previousMaterial');

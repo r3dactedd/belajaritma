@@ -91,15 +91,29 @@
                                 </div>
                                 <div
                                     class="mb-3 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
-                                    <a href="/courses/material/{{ $data->course_name }}/{{ $data->id }}/{{ $data->last_accessed_material }}"
-                                        class="inline-flex items-center rounded-md bg-green-400 px-4 py-2 align-middle text-sm font-semibold text-white hover:bg-indigo-600 md:w-36">
-                                        <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
-                                            height="1.1em" viewBox="0 0 512 512">
-                                            <path
-                                                d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z" />
-                                        </svg>
-                                        Lanjut Kelas
-                                    </a>
+                                    @if (auth()->check() &&
+                                            auth()->user()->isEnrolled($data->id))
+                                        <a href="/courses/material/{{ $data->course_name }}/{{ $data->id }}/{{ $data->last_accessed_material }}"
+                                            class="inline-flex items-center rounded-md bg-green-400 px-4 py-2 align-middle text-sm font-semibold text-white hover:bg-indigo-600 md:w-36">
+                                            <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
+                                                height="1.1em" viewBox="0 0 512 512">
+                                                <path
+                                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z" />
+                                            </svg>
+                                            Lanjut Kelas
+                                        </a>
+                                    @else
+                                        <a data-modal-target="popup-enroll" data-modal-toggle="popup-enroll"
+                                            class="inline-flex items-center rounded-md bg-green-400 px-4 py-2 align-middle text-sm font-semibold text-white hover:bg-indigo-600 md:w-36">
+                                            <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
+                                                height="1.1em" viewBox="0 0 512 512">
+                                                <path
+                                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z" />
+                                            </svg>
+                                            Daftar Kelas
+                                        </a>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
@@ -313,7 +327,53 @@
                     </div>
                 </div>
             </div>
+            <div id="popup-enroll" tabindex="-1"
+                class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+                <div class="relative max-h-full w-full max-w-md">
+                    <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+                        <button type="button"
+                            class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-hide="popup-enroll">
+                            <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="p-6 text-center">
+                            <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin ingin
+                                mendaftar kelas ini?</h3>
+                            <div class="flex justify-center text-center">
+                                <form method="POST" action="/courses/enroll/{{ $data->id }}"
+                                    data-course-id="{{ $data->id }}">
+                                    @csrf
+                                    <button type="submit"
+                                        class="mr-2 items-center rounded-lg bg-green-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800">
+                                        Ya, daftar
+                                    </button>
+                                </form>
+                                <button type="button"
+                                    class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
+                                    data-modal-hide="popup-enroll">
+                                    Tidak, batalkan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </body>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     {{-- CERTIFICATION HERE --}}
     <style>
         .cert {
