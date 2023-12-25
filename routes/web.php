@@ -26,8 +26,9 @@ use App\Http\Controllers\SidebarController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('guest');
 });
+Route::get('/home', [ProfileController::class, 'homePage']);
 
 //USER-RELATED ROUTE
 Route::get('/login', [LoginController::class, 'index'])
@@ -55,10 +56,6 @@ Route::post('/forgot', [ForgotPasswordController::class, 'submitForgetPassword']
 Route::get('reset-password/{token}/{email}', [ForgotPasswordController::class, 'showResetPassword'])->name('resetGet');
 
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPassword'])->name('resetPost');
-
-Route::get('/home', function () {
-    return view('home');
-});
 
 Route::get('/forum', [ForumController::class, 'showCourseData']);
 Route::get('forum/course/{course_id}', [ForumController::class, 'showForumsByCourse'])->name('forum.forum');

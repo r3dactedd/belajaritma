@@ -48,4 +48,7 @@ class Course extends Model
     public function findCreatedBy(){
         return $this->belongsTo(User::class, 'created_by');
     }
+    public function enrollments() {
+        return $this->hasMany(Enrollment::class);
+    }
 }
