@@ -50,64 +50,39 @@
                 <div class="mb-12 w-full lg:w-3/5 lg:pr-8">
                     <div class="rounded bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
                         <p class="text-lg font-bold">Aktivitas Pembelajaran Anda</p>
-                        <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
-                            <div class="flex w-11/12">
-                                <div class="w-full px-4">
-                                    <p class="text-lg font-semibold">
-                                        Data Structure
-                                    </p>
-                                    <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">
-                                        <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
+                        @if (auth()->check())
+                            @foreach ($enrolledCourses as $ongoCor)
+                                <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
+                                    <div class="flex w-11/12">
+                                        <div class="w-full px-4">
+                                            <p class="text-lg font-semibold">
+                                                {{ $ongoCor->course->course_name }}
+                                            </p>
+                                            <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">
+                                                <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
 
-                                            <span class="font-bold text-indigo-600">Kemajuan Pembelajaran :</span>
-                                        </p>
-                                    </div>
-                                    <div class="mt-6 max-w-xl rounded-xl bg-gray-600">
-                                        <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
-                                            style="width: 45%;padding-left:2px">45%
+                                                    <span class="font-bold text-indigo-600">Kemajuan Pembelajaran :</span>
+                                                </p>
+                                            </div>
+                                            <div class="mt-6 max-w-xl rounded-xl bg-gray-600">
+                                                <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
+                                                    style="width: 45%;padding-left:2px">45%
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div
-                                class="right-0 top-0 mt-4 block sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
-                                <a href="/course"
-                                    class="rounded-full px-6 py-2 text-base font-semibold text-indigo-600 hover:underline focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
-                                    Lanjutkan
-                                </a>
+                                    <div
+                                        class="right-0 top-0 mt-4 block sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
+                                        <a href="/courses/{{ $ongoCor->course->id }}"
+                                            class="rounded-full px-6 py-2 text-base font-semibold text-indigo-600 hover:underline focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
+                                            Lanjutkan
+                                        </a>
 
-                            </div>
-                        </div>
-                        <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
-                            <div class="flex w-11/12">
-                                <div class="w-full px-4">
-                                    <p class="text-lg font-semibold">
-                                        Course Name here
-                                    </p>
-                                    <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">
-                                        <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-
-                                            <span class="font-bold text-indigo-600">Kemajuan Pembelajaran :</span>
-                                        </p>
-                                    </div>
-                                    <div class="mt-6 max-w-xl rounded-xl bg-gray-600">
-                                        <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
-                                            style="width: 5%;padding-left:2px">0%
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div
-                                class="right-0 top-0 mt-4 block sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
-                                <a href="/course"
-                                    class="rounded-full px-6 py-2 text-base font-semibold text-indigo-600 hover:underline focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
-                                    Lanjutkan
-                                </a>
-
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 

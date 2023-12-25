@@ -37,7 +37,6 @@ class ProfileController extends Controller
             $searchUser = User::find(Auth::user()->id);
             $enrolledCourses = $searchUser->enrollments()->with('course')
             ->latest()
-            ->take(3)
             ->get();
         }
 
