@@ -20,6 +20,7 @@ class Certification extends Model
         'certif_outline',
         'created_by',
         'updated_by',
+        'students_registered',
     ];
     public function findUpdatedBy(){
         return $this->belongsTo(User::class, 'updated_by');

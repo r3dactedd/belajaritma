@@ -17,6 +17,7 @@ class Material extends Model
         'title',
         'course_id',
         'description',
+        'material_duration',
         'pdf_link',
         'video_link'
     ];
