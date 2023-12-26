@@ -156,9 +156,13 @@ Route::delete('/manager/course/delete/{id}', [ManageCourseController::class, 'de
 Route::get('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePage']);
 Route::post('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePOST']);
 
-Route::get('/manager/course/session/1/edit', function () {
-    return view('administrator.admin_courses.admin_course_session');
-});
+// Route::get('/manager/course/session/1/edit', function () {
+//     return view('administrator.admin_courses.admin_course_session');
+// });
+
+Route::get('/manager/course/session/{id}/edit',[ManageCourseController::class, 'editMaterialGET']);
+
+Route::delete('/manager/course/session/delete/{id}',[ManageCourseController::class, 'deleteMaterial']);
 
 Route::get('/manager/certification', [ManageCertificationController::class, 'showCertificationData']);
 Route::get('/manager/transaction', [ManageTransactionController::class, 'showTransactionList']);
@@ -172,6 +176,9 @@ Route::post('/manager/certification/create', [ManageCertificationController::cla
 Route::get('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPage']);
 Route::post('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPOST']);
 
+// Route::get('/manager/certification/editTest', function () {
+//     return view('administrator.admin_certifications.admin_certification_test');
+// });
 Route::get('/manager/forum', [ForumController::class, 'manageForumList']);
 
 Route::get('/transaction/{id}', [CertificationController::class, 'registerCertification']);
