@@ -66,7 +66,7 @@
                             class="me-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-blue-600 text-xs dark:border-blue-500">
                             1
                         </span>
-                        <a href="/manager/course/create">
+                        <a href="{{ route('manage.course.editcourse', ['id' => $courseId ]) }}">
                             Pengisian Data Kursus
                         </a>
                         <svg class="ms-2 h-3 w-3 rtl:rotate-180 sm:ms-4" aria-hidden="true"

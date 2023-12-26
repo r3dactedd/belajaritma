@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Material;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -34,9 +35,15 @@ class ManageCourseController extends Controller
             'processor'=> 'required|string',
             'operating_system' => 'required|string',
             'other_programs'=> 'required|string',
+            'course_img' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
-        $filename = Str::orderedUuid() . '.' . $request->file('course_img')->getClientOriginalExtension();
-        $request->file('course_img')->storeAs('course_images', $filename, 'course_images');
+
+        $filename = '';
+        if ($request->hasFile('course_img')) {
+            // Proses upload file dan simpan ke storage atau folder yang diinginkan
+            $filename = Str::orderedUuid() . '.' . $request->file('course_img')->getClientOriginalExtension();
+            $request->file('course_img')->storeAs('course_images', $filename, 'course_images');
+        }
 
         $course = new Course();
         $course->course_name = $request->course_name;
@@ -45,6 +52,7 @@ class ManageCourseController extends Controller
         $course->level = $request->level;
         $course->course_img = $filename;
         $course->screen_resolution = $request->screen_resolution;
+        $course->total_module = 0;
         $course->minimum_ram = $request->minimum_ram;
         $course->processor = $request->processor;
         $course->operating_system = $request->operating_system;
@@ -57,14 +65,23 @@ class ManageCourseController extends Controller
         $course->updated_by = Auth()->user()->id;
 
         $course->save();
+        $courseId = $course->id;
+
         // dd($course);
-        return redirect('/manager/course')->with('success', 'Course creation successfull!');
+        // return response()->json(['courseId' => $course->id]);
+        // return response()->json(['courseId' => $course->id]);
+        return Redirect::route('manager.course.materiallist', ['courseId' => $courseId])
+        ->with('success', 'Course created successfully!')
+        ->with('courseId', $courseId)
+        ->with('course', $course);
+        // return (string)$course->id;
     }
+
 
     public function editCoursePage($id){
         $data=Course::find($id);
         $material = Material::where('course_id', $id)->get();
-        return view('administrator.admin_courses.admin_course_edit', ['data' => $data, 'material'=>$material]);
+        return view('administrator.admin_courses.admin_course_edit', ['data' => $data, 'material'=>$material, 'courseId'=> $id]);
     }
     public function editCoursePOST(Request $request, $id){
         $validateCourse=$request->validate([
@@ -109,6 +126,11 @@ class ManageCourseController extends Controller
         Course::where('id', $id)->update($changeCourse);
         return redirect('/manager/course')->with('success', 'Course edit successfull!');
     }
+
+    public function showMaterialList($id){
+        return view('administrator.admin_courses.admin_course_list', ['courseId'=> $id]);
+    }
+
     public function deleteCourse($id){
         $course = Course::find($id);
 

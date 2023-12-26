@@ -147,13 +147,16 @@ Route::get('/manager/course', [ManageCourseController::class, 'showCourseAdmin']
 Route::get('/manager/course/create', function () {
     return view('administrator.admin_courses.admin_course_create');
 });
-Route::get('/manager/course/list', function () {
-    return view('administrator.admin_courses.admin_course_list');
-});
+// Route::get('/manager/course/materiallist/{id}', function () {
+//     return view('administrator.admin_courses.admin_course_list');
+// });
+
+Route::get('/manager/course/materiallist/{courseId}', [ManageCourseController::class, 'showMaterialList'])
+    ->name('manager.course.materiallist');
 Route::post('/manager/course/create', [ManageCourseController::class, 'createCourse']);
 Route::delete('/manager/course/delete/{id}', [ManageCourseController::class, 'deleteCourse'])->name('modals.delete');
 
-Route::get('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePage']);
+Route::get('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePage'])->name('manage.course.editcourse');
 Route::post('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePOST']);
 
 Route::get('/manager/course/session/1/edit', function () {
