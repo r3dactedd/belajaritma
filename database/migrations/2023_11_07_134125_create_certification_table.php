@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('certif_duration');
             $table->unsignedBigInteger('certif_cost');
             $table->string('certif_outline');
+            $table->unsignedBigInteger('students_registered')->default(0);
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
             $table->timestamps();

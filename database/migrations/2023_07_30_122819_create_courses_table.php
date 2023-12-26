@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('operating_system');
             $table->string('other_programs');
             $table->integer('total_module');
+            $table->unsignedBigInteger('students_enrolled')->default(0);
             $table->integer('last_accessed_material')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');

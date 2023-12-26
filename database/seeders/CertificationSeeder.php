@@ -23,6 +23,7 @@ class CertificationSeeder extends Seeder
             'certif_outline' => 'Outline Basic Algo',
             'created_by'=> 1,
             'updated_by'=> 1,
+            'students_registered'=>1,
         ]);
     }
 }
