@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('master_type_id')->references('id')->on('master_type')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title')->nullable();
             $table->string('description')->nullable();
+            $table->unsignedBigInteger('course_duration');
             $table->string('pdf_link')->nullable();
             $table->string('video_link')->nullable();
             $table->boolean('is_completed')->default(false);

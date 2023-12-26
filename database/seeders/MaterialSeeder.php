@@ -19,6 +19,7 @@ class MaterialSeeder extends Seeder
             'master_type_id' => 6,
             'title' => 'Ini Title untuk Video',
             'description' => 'Anak-anak, marilah nonton video sialan ini!',
+            'course_duration' => 15,
             'video_link' => 'https://youtu.be/OMF8th2oMUU?si=rsRR26liLYDxivI_',
             'is_completed' => true
         ]);
@@ -28,6 +29,7 @@ class MaterialSeeder extends Seeder
             'master_type_id' => 4,
             'title' => 'Ini Title untuk PDF (Child)',
             'description' => 'Anak-anak, marilah baca PDF biji sialan ini!',
+            'course_duration' => 7,
             'video_link' => 'https://youtu.be/OMF8th2oMUU?si=rsRR26liLYDxivI_',
             'is_completed' => false
         ]);
@@ -37,6 +39,7 @@ class MaterialSeeder extends Seeder
             'master_type_id' => 5,
             'title' => 'Ini Title untuk Assignment',
             'description' => 'Anak-anak, marilah kerjakan assignment sialan ini!',
+            'course_duration' => 8,
             'video_link' => 'https://youtu.be/OMF8th2oMUU?si=rsRR26liLYDxivI_',
             'is_completed' => false
         ]);
@@ -46,6 +49,7 @@ class MaterialSeeder extends Seeder
             'master_type_id' => 5,
             'title' => 'Ini Title untuk Assignment (Course 2)',
             'description' => 'Anak-anak, marilah kerjakan assignment sialan ini!',
+            'course_duration' => 9,
             'video_link' => 'https://youtu.be/OMF8th2oMUU?si=rsRR26liLYDxivI_',
             'is_completed' => false
         ]);
