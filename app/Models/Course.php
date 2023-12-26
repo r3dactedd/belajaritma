@@ -24,6 +24,7 @@ class Course extends Model
         'created_by',
         'updated_by',
         'total_module',
+        'students_enrolled',
     ];
 
     public function courseToSidebar(){

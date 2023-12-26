@@ -29,6 +29,7 @@ class CourseSeeder extends Seeder
             'course_img' => 'luca.png',
             'created_by'=> 1,
             'updated_by'=> 1,
+            'students_enrolled'=>1,
         ]);
 
         Course::create([
@@ -46,6 +47,7 @@ class CourseSeeder extends Seeder
             'course_img' => 'Majima Defuses Bomb.png',
             'created_by'=> 1,
             'updated_by'=> 1,
+            'students_enrolled'=>1,
         ]);
 
         Course::create([

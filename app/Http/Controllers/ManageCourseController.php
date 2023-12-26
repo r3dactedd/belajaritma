@@ -140,4 +140,19 @@ class ManageCourseController extends Controller
         $course->delete();
         return redirect('/manager/course')->with('success', 'Course deleted successfully.');
     }
+    public function editMaterialGET($id){
+        $material = Material::find($id);
+        return view('administrator.admin_courses.admin_course_session', ['material'=>$material]);
+        // dd($material);
+    }
+    public function deleteMaterial($id){
+        $material = Material::find($id);
+
+        if (!$material) {
+            return redirect()->back()->with('error', 'Material not found.');
+        }
+        // dd($material);
+        $material->delete();
+        return redirect('/manager/course')->with('success', 'Material deleted successfully.');
+    }
 }
