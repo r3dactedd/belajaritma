@@ -127,9 +127,9 @@ Route::get('/courses/1/getcerti', function () {
 Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showMaterial'])->name('sidebar.showSidebar');
 
 Route::get('/courses/material/{title}/{course_id}/{current_material_id}/{direction}', [SidebarController::class, 'handleMaterialNavigation']);
+// Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
 Route::get('/courses/material/next/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'nextMaterial'])->name('sidebar.nextMaterial');
 Route::get('/courses/material/previous/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'previousMaterial'])->name('sidebar.previousMaterial');
-
 
 //show page spesifik
 Route::get('/courses/materialContent/{title}/{id}', [SidebarController::class, 'showByType']);
@@ -147,13 +147,16 @@ Route::get('/manager/course', [ManageCourseController::class, 'showCourseAdmin']
 Route::get('/manager/course/create', function () {
     return view('administrator.admin_courses.admin_course_create');
 });
-Route::get('/manager/course/list', function () {
-    return view('administrator.admin_courses.admin_course_list');
-});
+// Route::get('/manager/course/materiallist/{id}', function () {
+//     return view('administrator.admin_courses.admin_course_list');
+// });
+
+Route::get('/manager/course/materiallist/{courseId}', [ManageCourseController::class, 'showMaterialList'])
+    ->name('manager.course.materiallist');
 Route::post('/manager/course/create', [ManageCourseController::class, 'createCourse']);
 Route::delete('/manager/course/delete/{id}', [ManageCourseController::class, 'deleteCourse'])->name('modals.delete');
 
-Route::get('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePage']);
+Route::get('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePage'])->name('manage.course.editcourse');
 Route::post('/manager/course/edit/{id}', [ManageCourseController::class, 'editCoursePOST']);
 
 // Route::get('/manager/course/session/1/edit', function () {

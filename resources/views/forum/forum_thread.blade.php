@@ -41,6 +41,7 @@
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="mx-auto w-full rounded bg-white px-8 py-4 antialiased shadow">
+                <div class="mx-auto w-full rounded bg-white px-8 py-4 antialiased shadow">
                     <div class="mt-4 space-y-4">
                         {{-- FORUM CONTENT --}}
                         <div class="flex">
@@ -305,6 +306,7 @@
             var editorContent = tinymce.get('forum_message').getContent();
             console.log("ini isian editorContent", editorContent)
             if (editorContent === '') {
+                alert('Error: Pesan Tidak bisa kosong.');
                 alert('Error: Pesan Tidak bisa kosong.');
                 return;
             }

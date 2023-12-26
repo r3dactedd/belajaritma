@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
@@ -36,7 +37,7 @@
         @include('layout.header')
     @endsection
     @section('content')
-        <form method="post" action ="/manager/course/create" enctype="multipart/form-data">
+        <form id="myForm" method="post" enctype="multipart/form-data">
             @csrf
             <div class="scroll-smooth bg-white px-5 sm:px-10">
                 <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
@@ -67,11 +68,8 @@
                 </div>
             </div>
             <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-                {{-- <form method="post" action ="/manager/course/create" enctype="multipart/form-data">
-                    @csrf --}}
-
-
-
+                {{-- <form id="myForm" method="post" enctype="multipart/form-data">
+                @csrf --}}
                 <div class="mx-auto flex">
                     <ol
                         class="flex w-full items-center space-x-2 p-3 text-center text-sm font-medium text-gray-500 rtl:space-x-reverse sm:space-x-4 sm:p-4 sm:text-base">
@@ -144,13 +142,13 @@
                             <label for="courseTitle" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Judul Kursus</label>
                             <input type="text" name="course_name" id="inputCourseName"
-                                class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
+                                class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-left text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
                                 placeholder="Tulis Nama Kursus" required="">
                             <label for="shortDesc" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                 Deskripsi Singkat Kursus</label>
                             <textarea name="short_desc" id="inputShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
+                                placeholder="" required="">
                             </textarea>
 
                             <div class="grid-row-2 grid md:grid-cols-2">
@@ -158,7 +156,7 @@
                                     <div
                                         class="mb-3 mt-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
 
-                                        <select name="level"
+                                        <select name="level" id="level"
                                             class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                                             <option value="">Pilih Tingkat Kursus</option>
                                             <option value="Dasar" id="inputLevelDasar">Dasar</option>
@@ -230,14 +228,99 @@
 
                     </div>
 
+
+                    <button type="submit"
+                        class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses Materi
+                        Kursus
+                    </button>
+
                 </div>
         </form>
+        {{-- <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var courseNameInput = document.getElementById('inputCourseName');
+                var shortDescInput = document.getElementById('inputShortDesc');
+                var levelSelect = document.getElementById('inputLevelDasar'); // Ganti dengan ID yang benar
+                var courseDescInput = document.getElementById('inputCourseDesc');
+                var screenResInput = document.getElementById('inputScreenRes');
+                var minRAMInput = document.getElementById('inputMinRAM');
+                var processorInput = document.getElementById('inputProcessor');
+                var operatingSystemInput = document.getElementById('inputOperatingSystem');
+                var otherProgramsInput = document.getElementById('inputOtherPrograms');
+                var courseImg = document.getElementById('imageInput').files[0];
 
-        <h1 class="my-8 text-center text-xl font-semibold">
-            <a href="/manager/course/list"
-                class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses Materi Kursus
-            </a>
-        </h1>
+                var myForm = document.getElementById('myForm');
+
+                if (myForm) {
+                    myForm.addEventListener('submit', function(event) {
+                        event.preventDefault();
+
+                        var courseName = courseNameInput.value;
+                        var shortDesc = shortDescInput.value;
+                        var level = levelSelect.value;
+                        var courseDesc = courseDescInput.value;
+                        var screenRes = screenResInput.value;
+                        var minRAM = minRAMInput.value;
+                        var processor = processorInput.value;
+                        var operatingSystem = operatingSystemInput.value;
+                        var otherPrograms = otherProgramsInput.value;
+
+                        console.log('Course Name:', courseName);
+                        console.log('Short Description:', shortDesc);
+                        console.log('Level:', level);
+                        console.log('Course Description:', courseDesc);
+                        console.log('Screen Resolution:', screenRes);
+                        console.log('Minimum RAM:', minRAM);
+                        console.log('Processor:', processor);
+                        console.log('Operating System:', operatingSystem);
+                        console.log('Other Programs:', otherPrograms);
+
+                        var formData = new FormData();
+                        formData.append('course_name', courseName);
+                        formData.append('short_desc', shortDesc);
+                        formData.append('level', level);
+                        formData.append('course_desc', courseDesc);
+                        formData.append('screen_resolution', screenRes);
+                        formData.append('minimum_ram', minRAM);
+                        formData.append('processor', processor);
+                        formData.append('operating_system', operatingSystem);
+                        formData.append('other_programs', otherPrograms);
+                        formData.append('course_img', courseImg);
+
+                        // ... Lanjutkan dengan logika formulir atau kirim data ke server ...
+
+                        // Setelah selesai, jika perlu, pindahkan ke halaman baru
+                        // window.location.href = '/manager/course/materiallist/' + courseId;
+
+                        fetch('/manager/course/create', {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                        .getAttribute('content'),
+                                },
+                            })
+                            .then(data => {
+                                // Sekarang, data berisi courseId yang dikembalikan oleh backend
+                                console.log("Course ID:", data);
+
+                                if (data) {
+                                    alert('Success! Your course data has been saved');
+                                    window.location.href = '/manager/course/materiallist/' + data;
+                                } else {
+                                    console.error('Error:', 'Course ID not found in the response.');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    })
+
+                } else {
+                    console.error('Elemen dengan ID "myForm" tidak ditemukan.');
+                }
+            });
+        </script> --}}
 
         {{-- Publish Modal --}}
         <div id="popup-publish" tabindex="-1"
@@ -281,10 +364,10 @@
 
 
 
-    </body>
 @endsection
 @section('footer')
     @include('layout.footer')
 @endsection
+
 
 </html>
