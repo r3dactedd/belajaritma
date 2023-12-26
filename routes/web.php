@@ -162,6 +162,8 @@ Route::post('/manager/course/edit/{id}', [ManageCourseController::class, 'editCo
 
 Route::get('/manager/course/session/{id}/edit',[ManageCourseController::class, 'editMaterialGET']);
 
+Route::delete('/manager/course/session/delete/{id}',[ManageCourseController::class, 'deleteMaterial']);
+
 Route::get('/manager/certification', [ManageCertificationController::class, 'showCertificationData']);
 Route::get('/manager/transaction', [ManageTransactionController::class, 'showTransactionList']);
 Route::post('/manager/transaction/approve/{id}', [ManageTransactionController::class, 'approveTransaction']);

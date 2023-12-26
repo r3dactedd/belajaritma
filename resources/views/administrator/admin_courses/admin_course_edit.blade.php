@@ -234,7 +234,8 @@
                                             </svg>
                                         </a>
                                         <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
-                                            data-modal-target="popup-delete" data-modal-toggle="popup-delete">
+                                            data-modal-target="popup-delete" data-modal-toggle="popup-delete"
+                                            data-material-id="{{ $materialItem->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -371,7 +372,8 @@
                             </h3>
                             <div class="flex justify-center text-center">
                                 {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
-                                <form method="POST" action="#" data-course-id="">
+                                <form method="POST" action="/manager/course/session/delete/{id}"
+                                    data-material-id="{{ $materialItem->id }}">
                                     @csrf
                                     @method('DELETE')
                                     <button data-modal-hide="popup-delete" type="submit"
@@ -379,6 +381,28 @@
                                         Ya, hapus
                                     </button>
                                 </form>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        console.log('Script loaded');
+
+                                        const deleteButtons = document.querySelectorAll('[data-modal-toggle="popup-delete"]');
+
+                                        deleteButtons.forEach(button => {
+                                            button.addEventListener('click', function() {
+                                                console.log('Button clicked');
+                                                const materialId = this.getAttribute('data-material-id');
+                                                console.log('Course ID:', materialId);
+
+                                                const form = document.querySelector('#popup-delete form');
+                                                console.log('Form:', form);
+
+                                                // Update the form's action attribute directly
+                                                form.action = `/manager/course/session/delete/${materialId}`;
+                                                form.setAttribute('data-material-id', materialId);
+                                            });
+                                        });
+                                    });
+                                </script>
                                 <button data-modal-hide="popup-delete" type="button"
                                     class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Tidak,
                                     batalkan</button>
