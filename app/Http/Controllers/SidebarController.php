@@ -56,11 +56,11 @@ class SidebarController extends Controller
 
         $master_type = MasterType::find($material->master_type_id);
         if ($master_type->master_type_name == 'Video') {
-            return view('contents.session_video', compact('material', 'previousMaterial', 'nextMaterial', 'sidebars', 'id'));
+            return view('contents.session_video', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id'));
         } elseif ($master_type->master_type_name == 'PDF') {
-            return view('contents.session_pdf', compact('material', 'previousMaterial', 'nextMaterial', 'sidebars', 'id'));
+            return view('contents.session_pdf', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id'));
         } elseif ($master_type->master_type_name == 'Assignment') {
-            return view('contents.session_assignment', compact('material', 'previousMaterial', 'nextMaterial', 'sidebars', 'id'));
+            return view('contents.session_assignment', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id'));
         }
 
     }

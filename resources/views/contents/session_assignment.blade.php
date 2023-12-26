@@ -27,7 +27,7 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Sesi x : {{$material->title}}</span>
+                            <span class="mb-1 ml-2">Sesi {{ $currentMaterialIndex + 1 }} : {{ $material->title }}</span>
                         </a>
                 </div>
             </div>
@@ -84,12 +84,12 @@
             <div class="hidden rounded-xl border-4 bg-white px-4 pb-8 md:flex md:flex-col">
                 <div class="flex justify-between mt-4">
                     @if ($previousMaterial)
-                        <a href="{{ url('/courses/' . 'material/' . $material->title  . '/' . $material->course_id  . '/' .  $previousMaterial->material_id) }}"
+                        <a href="{{ url('/courses/' . 'material/' . $material->title . '/' . $material->course_id . '/' . $previousMaterial->material_id) }}"
                             class="bg-gray-300 px-4 py-2 rounded-md">Back</a>
                     @endif
 
                     @if ($nextMaterial)
-                        <a href="{{ url('/courses/' . 'material/' . $material->title  . '/' . $material->course_id  . '/' .  $nextMaterial->material_id) }}"
+                        <a href="{{ url('/courses/' . 'material/' . $material->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
                             class="bg-indigo-600 px-4 py-2 rounded-md text-white">Next</a>
                     @endif
                 </div>
@@ -111,9 +111,9 @@
             currentIndex = Math.max(currentIndex - 1, 0);
         }
 
-        const url = direction === 'next'
-            ? `/courses/material/next/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`
-            : `/courses/material/previous/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`;
+        const url = direction === 'next' ?
+            `/courses/material/next/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}` :
+            `/courses/material/previous/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`;
         console.log("ini isi url", url)
         // Fetch the URL or update content based on your requirements
         fetch(url)
@@ -136,4 +136,5 @@
             .catch(error => console.error('Error:', error));
     }
 </script>
+
 </html>
