@@ -45,7 +45,8 @@
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
                             <span class="mb-1 ml-2">Edit Kursus</span>
-                        </a></h4>
+                        </a>
+                    </h4>
 
                 </div>
                 <form method="post" action ="/manager/course/edit/{{ $data->id }}" enctype="multipart/form-data">
@@ -208,7 +209,6 @@
                             <th scope="col" class="px-6 py-3">
                                 Aksi
                             </th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -225,7 +225,7 @@
 
                                 <td class="px-6 py-4">
                                     <div class="item-center flex justify-start">
-                                        <a href="/manager/course/session/1/edit"
+                                        <a href="/manager/course/session/{{ $materialItem->id }}/edit"
                                             class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke="currentColor">
@@ -388,7 +388,7 @@
                 </div>
             </div>
         </div>
-</body>
+    </body>
 
 @endsection
 @section('footer')
