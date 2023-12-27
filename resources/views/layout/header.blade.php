@@ -13,7 +13,7 @@
 </head>
 <!-- nav -->
 
-<div class="mx-auto w-full border-b border-gray-300 bg-white px-5 shadow-sm sm:px-10">
+<div class="fixed mx-auto w-full border-b border-gray-300 bg-white px-5 shadow-sm sm:px-10">
     <div class="container mx-auto flex h-16 items-center justify-between lg:items-stretch">
         <div class="flex h-full items-center">
             <a href="/" class="relative mr-10 flex h-full items-center font-black leading-none">

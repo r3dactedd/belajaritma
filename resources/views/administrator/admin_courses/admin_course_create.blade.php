@@ -120,8 +120,8 @@
                         <!-- Profile Card -->
                         <div class="h-full p-2 md:py-4 md:pl-8">
                             <div class="mx-auto w-full">
-                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
-                                    src="/storage/image/placeholder.webp" alt="Image Preview" />
+                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0" src="/placeholder.webp"
+                                    alt="Image Preview" />
                             </div>
                             <div class="max-w-md">
                                 <label
@@ -229,13 +229,19 @@
                     </div>
 
 
-                    <button type="submit"
-                        class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses Materi
-                        Kursus
-                    </button>
+
 
                 </div>
         </form>
+        {{-- <button type="submit" class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses
+            Materi
+            Kursus
+        </button> --}}
+        <h1 class="my-8 text-center text-xl font-semibold">
+            <a href="/manager/course/list"
+                class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses Materi Kursus
+            </a>
+        </h1>
         {{-- <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var courseNameInput = document.getElementById('inputCourseName');
