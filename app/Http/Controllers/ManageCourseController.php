@@ -81,9 +81,8 @@ class ManageCourseController extends Controller
 
     public function editCoursePage($id){
         $data=Course::find($id);
-        $material = Material::where('course_id', $id)->get();
         $type_list = MasterType::all();
-        return view('administrator.admin_courses.admin_course_edit', ['data' => $data, 'material'=>$material, 'courseId'=> $id, 'type_list'=>$type_list]);
+        return view('administrator.admin_courses.admin_course_edit', ['data' => $data, 'courseId'=> $id, 'type_list'=>$type_list]);
     }
     public function editCoursePOST(Request $request, $id){
         $validateCourse=$request->validate([
@@ -131,7 +130,8 @@ class ManageCourseController extends Controller
 
     public function showMaterialList($id){
         $type_list = MasterType::all();
-        $material_list = Material::find($id);
+        $material_list =Material::where('course_id', $id)->get();
+
         return view('administrator.admin_courses.admin_course_list', ['courseId'=> $id, 'type_list'=>$type_list, 'material_list'=>$material_list]);
     }
 
