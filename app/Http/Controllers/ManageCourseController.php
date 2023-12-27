@@ -170,7 +170,6 @@ class ManageCourseController extends Controller
         // dd($material);
     }
     public function editMaterialPOST(Request $request, $id){
-        $material = Material::find($id);
         $validateMaterialData = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -198,7 +197,7 @@ class ManageCourseController extends Controller
                 'video_link'=> $validateVideo['video_link'],
             ];
             Material::where('id', $id)->update($changeMaterialDetail);
-            return redirect('/manager/course')->with('success', 'Material details created successfully.');
+            return Redirect::to("/manager/course/materiallist/{$material->materialToCourse->id}");
         }
         if($material->materialContentToMasterType->master_type_name == 'PDF'){
             $validatePDF = $request->validate([
@@ -214,7 +213,7 @@ class ManageCourseController extends Controller
             $request->file('pdf_link')->storeAs('material_pdf', $filename, 'material_pdf');
 
             Material::where('id', $id)->update($changeMaterialDetail);
-            return redirect('/manager/course')->with('success', 'Material details created successfully.');
+            return Redirect::to("/manager/course/materiallist/{$material->materialToCourse->id}");
         }
 
     }
