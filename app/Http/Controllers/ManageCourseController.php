@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\MasterType;
 use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -81,7 +82,8 @@ class ManageCourseController extends Controller
     public function editCoursePage($id){
         $data=Course::find($id);
         $material = Material::where('course_id', $id)->get();
-        return view('administrator.admin_courses.admin_course_edit', ['data' => $data, 'material'=>$material, 'courseId'=> $id]);
+        $type_list = MasterType::all();
+        return view('administrator.admin_courses.admin_course_edit', ['data' => $data, 'material'=>$material, 'courseId'=> $id, 'type_list'=>$type_list]);
     }
     public function editCoursePOST(Request $request, $id){
         $validateCourse=$request->validate([
@@ -128,7 +130,29 @@ class ManageCourseController extends Controller
     }
 
     public function showMaterialList($id){
-        return view('administrator.admin_courses.admin_course_list', ['courseId'=> $id]);
+        $type_list = MasterType::all();
+        $material_list = Material::find($id);
+        return view('administrator.admin_courses.admin_course_list', ['courseId'=> $id, 'type_list'=>$type_list, 'material_list'=>$material_list]);
+    }
+
+    public function createMaterial(Request $request, $id){
+        $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'material_duration'=>'required|integer',
+            'master_type_id'=>'required|integer',
+        ]);
+        $createMaterial = new Material();
+        $createMaterial->title = $request->title;
+        $createMaterial->description = $request->description;
+        $createMaterial->material_duration = $request->material_duration;
+        $createMaterial->master_type_id = $request->master_type_id;
+        $createMaterial->course_id = $id;
+
+        $createMaterial->save();
+        $material_id = $createMaterial->id;
+        // dd($createMaterial);
+        return Redirect::to("/manager/course/session/{$material_id}/edit");
     }
 
     public function deleteCourse($id){
@@ -144,6 +168,55 @@ class ManageCourseController extends Controller
         $material = Material::find($id);
         return view('administrator.admin_courses.admin_course_session', ['material'=>$material]);
         // dd($material);
+    }
+    public function editMaterialPOST(Request $request, $id){
+        $material = Material::find($id);
+        $validateMaterialData = $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+        ]);
+        $changeMaterialData = [];
+
+        $changeMaterialData += [
+            'title'=> $validateMaterialData['title'],
+            'description'=> $validateMaterialData['description'],
+        ];
+        Material::where('id', $id)->update($changeMaterialData);
+        return Redirect::to("/manager/course/session/{$id}/edit");
+        // dd($changeMaterialData);
+    }
+
+    public function editMaterialDetail(Request $request, $id){
+        $material = Material::find($id);
+        if($material->materialContentToMasterType->master_type_name == 'Video'){
+            $validateVideo = $request->validate([
+                'video_link'=>'required|string',
+            ]);
+            $changeMaterialDetail = [];
+
+            $changeMaterialDetail += [
+                'video_link'=> $validateVideo['video_link'],
+            ];
+            Material::where('id', $id)->update($changeMaterialDetail);
+            return redirect('/manager/course')->with('success', 'Material details created successfully.');
+        }
+        if($material->materialContentToMasterType->master_type_name == 'PDF'){
+            $validatePDF = $request->validate([
+                'pdf_link'=>'file|mimes:pdf|max:2048',
+            ]);
+            $changeMaterialDetail = [];
+
+            $changeMaterialDetail += [
+                'pdf_link'=> $validatePDF['pdf_link'],
+            ];
+
+            $filename = Str::orderedUuid() . '.' . $request->file('pdf_link')->getClientOriginalExtension();
+            $request->file('pdf_link')->storeAs('material_pdf', $filename, 'material_pdf');
+
+            Material::where('id', $id)->update($changeMaterialDetail);
+            return redirect('/manager/course')->with('success', 'Material details created successfully.');
+        }
+
     }
     public function deleteMaterial($id){
         $material = Material::find($id);

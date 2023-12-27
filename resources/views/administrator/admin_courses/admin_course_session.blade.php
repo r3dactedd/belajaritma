@@ -80,7 +80,8 @@
                 </ol>
 
             </div>
-            <form id="" method="post" enctype="multipart/form-data">
+            <form id="" method="POST" method="post" action="/manager/course/session/{{ $material->id }}/edit"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="mx-auto my-4 md:-mx-2 md:flex">
@@ -91,7 +92,7 @@
                                 <label for="username"
                                     class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                     Judul Materi</label>
-                                <input type="text" name="username" id=""
+                                <input type="text" name="title" id="inputTitle"
                                     class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-lg text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left"
                                     placeholder="Tulis Nama Materi" required=""
                                     value="{{ htmlspecialchars($material->title) }}">
@@ -100,51 +101,65 @@
                                 <label for="username"
                                     class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                     Deskripsi Singkat Materi</label>
-                                <textarea id="myInfo"
+                                <textarea name="description" id="inputDescription"
                                     class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                     placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
                                     {{ htmlspecialchars($material->description) }}
                             </textarea>
                             </div>
+                            <div class="flex justify-end pt-2">
+                                <button type="submit"
+                                    class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                                    <div class="mx-2"> Finalize Material Data</div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </form>
             <div class="my-4"></div>
-            <form id="" method="post" enctype="multipart/form-data">
+            <form id="" method="post" action="/manager/course/session/{{ $material->id }}/edit/detail"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="mx-auto my-auto md:-mx-2 md:flex">
                     <div class="h-auto w-full md:mx-2">
                         <div class="rounded-xl bg-white p-4 shadow-sm">
                             @if ($material->materialContentToMasterType->master_type_name == 'PDF')
                                 <div class="px-4 font-semibold">
-                                    <label for="username"
+                                    {{-- <label for="username"
                                         class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                        (muncul kalau content typenya PDF) </label>
+                                        (muncul kalau content typenya PDF) </label> --}}
 
 
                                     <label
                                         class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                         <span class="text-base leading-normal">Upload File PDF</span>
-                                        <input type='file' id="pdfInput" class="hidden" onchange="previewImage()" />
+                                        <input type='file' id="pdfInput" name="pdf_link" class="hidden"
+                                            onchange="previewImage()" />
                                     </label>
+                                    <div class="my-4"></div>
+                                    <button type="submit"
+                                        class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                                        <div class="mx-2"> Finalize PDF</div>
+                                    </button>
                                 </div>
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Video')
                                 <div class="px-4 font-semibold">
-                                    <label for="username"
+                                    {{-- <label for="username"
                                         class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                        (muncul kalau content typenya Video) </label>
+                                        (muncul kalau content typenya Video) </label> --}}
                                     <label for="username"
                                         class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                         Upload Link Video</label>
-                                    <input type="text" name="username" id="videoLink"
+                                    <input type="text" name="video_link" id="inputVideoLink"
                                         class="mt-focus:ring-primary-600 mb-6 block h-12 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:w-1/2"
                                         placeholder="Isi Link Video" required="">
                                 </div>
                                 <div id="videoPreview"
                                     class="mb-3 flex items-center space-x-2 px-4 font-semibold leading-8 text-gray-900">
-                                    <button onclick="embedVideo()"
+                                    <button onclick="embedVideo()" type="button"
                                         class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 align-middle text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-teal-800 focus:outline-none md:w-40">
                                         <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
                                             height="1.1em" viewBox="0 0 576 512" stroke="currentColor">
@@ -152,6 +167,12 @@
                                                 d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
                                         </svg>
                                         Simpan Link
+                                    </button>
+                                </div>
+                                <div class="flex justify-end pt-2">
+                                    <button type="submit"
+                                        class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                                        <div class="mx-2"> Finalize Video</div>
                                     </button>
                                 </div>
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment')
@@ -324,22 +345,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="my-4"></div>
-                <table
-                    class="text-md mx-auto w-full border-x text-left font-semibold text-gray-500 shadow-md sm:rounded-lg">
-                    <tbody>
-                        <tr
-                            class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
-                            <td class="px-6 py-3 text-center font-semibold" colspan="4">
-
-                                <p class="inline-flex items-center align-middle" data-modal-target="defaultModal"
-                                    data-modal-toggle="defaultModal">
-                                    Finalize Edit Materi
-                                </p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </form>
 
 
@@ -384,7 +389,7 @@
                                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Tambah Pertanyaan Baru (/
                                     Edit Pertanyaan kalau edit)
                                 </h2>
-                                <form method="post" enctype="multipart/form-data">
+                                <form method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                         {{-- Input Area --}}
@@ -522,7 +527,7 @@
         });
 
         function embedVideo() {
-            const videoLink = document.getElementById('videoLink').value;
+            const videoLink = document.getElementById('inputVideoLink').value;
             const videoContainer = document.getElementById('videoContainer');
 
             // Extract the video ID from the YouTube link

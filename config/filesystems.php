@@ -75,6 +75,12 @@ return [
             'url' => env('APP_URL').'/uploads',
             'visibility' => 'public',
         ],
+        'material_pdf' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'url' => env('APP_URL').'/uploads',
+            'visibility' => 'public',
+        ],
 
 
         's3' => [

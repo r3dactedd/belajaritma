@@ -289,14 +289,15 @@
                             </div>
                             <div class="mx-auto rounded-xl bg-white px-2 py-2">
                                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Materi Baru</h2>
-                                <form method="post" enctype="multipart/form-data">
+                                <form method="POST" action = "/manager/course/materiallist/{{ $courseId }}"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="username"
                                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Judul Materi</label>
-                                            <input type="text" name="username" id="inputUsername"
+                                            <input type="text" name="title" id="inputTitle"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="Tulis Judul untuk Materi ini " required="">
                                         </div>
@@ -306,7 +307,7 @@
                                             <label for="username"
                                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Deskripsi Singkat Materi</label>
-                                            <textarea id="myInfo"
+                                            <textarea name="description" id="inputDescription"
                                                 class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                         </div>
@@ -315,32 +316,48 @@
                                             <label for="username"
                                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Estimasi Waktu Penyelesaian (dalam Menit)</label>
-                                            <input type="number" name="username" id="inputUsername"
+                                            <input type="number" name="material_duration" id="inputMatDuration"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="Berikan estimasi waktu penyelesaian untuk materi ini"
+                                                placeholder="Berikan estimasi waktu penyelesaian untuk materi ini "
                                                 required="">
                                         </div>
                                         <div class="sm:col-span-1">
                                             <label for="username"
                                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Tipe Konten</label>
-                                            <select
+                                            <select name="master_type_id" id="inputType"
                                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                                                 <option value="">Pilih Tipe Konten untuk Materi Ini</option>
-                                                <option value="for-rent">PDF</option>
-                                                <option value="for-rent">Video</option>
-                                                <option value="for-rent">Assignment</option>
+                                                @foreach ($type_list as $type)
+                                                    <option name="master_type_id" id="inputType"
+                                                        value={{ $type->id }}>{{ $type->master_type_name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="flex justify-end pt-2">
+                                        <button type="submit"
+                                            class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-plus" width="20" height="20"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" />
+                                                <line x1="12" y1="5" x2="12" y2="19" />
+                                                <line x1="5" y1="12" x2="19" y2="12" />
+                                            </svg>
+                                            <div class="mx-2"> Buat Materi</div>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
                             <!--Footer-->
-                            <div class="flex justify-end pt-2">
+                            {{-- <div class="flex justify-end pt-2">
                                 <a href="/manager/course/session/1/edit"
                                     class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
                                     Materi</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

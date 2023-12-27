@@ -153,6 +153,8 @@ Route::get('/manager/course/create', function () {
 
 Route::get('/manager/course/materiallist/{courseId}', [ManageCourseController::class, 'showMaterialList'])
     ->name('manager.course.materiallist');
+Route::post('/manager/course/materiallist/{courseId}', [ManageCourseController::class, 'createMaterial']);
+
 Route::post('/manager/course/create', [ManageCourseController::class, 'createCourse']);
 Route::delete('/manager/course/delete/{id}', [ManageCourseController::class, 'deleteCourse'])->name('modals.delete');
 
@@ -164,6 +166,8 @@ Route::post('/manager/course/edit/{id}', [ManageCourseController::class, 'editCo
 // });
 
 Route::get('/manager/course/session/{id}/edit',[ManageCourseController::class, 'editMaterialGET']);
+Route::post('/manager/course/session/{id}/edit',[ManageCourseController::class, 'editMaterialPOST']);
+Route::post('/manager/course/session/{id}/edit/detail',[ManageCourseController::class, 'editMaterialDetail']);
 
 Route::delete('/manager/course/session/delete/{id}',[ManageCourseController::class, 'deleteMaterial']);
 
