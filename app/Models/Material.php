@@ -17,9 +17,11 @@ class Material extends Model
         'title',
         'course_id',
         'description',
+        'detailed_description',
+        'minimum_score',
         'material_duration',
         'pdf_link',
-        'video_link'
+        'video_link',
     ];
 
 
@@ -28,5 +30,8 @@ class Material extends Model
     }
     public function materialContentToMasterType(){
         return $this->belongsTo(MasterType::class, 'master_type_id');
+    }
+    public function materialToAssgnmentQuestion() {
+        return $this->hasMany(AssignmentQuestions::class);
     }
 }
