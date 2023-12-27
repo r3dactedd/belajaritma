@@ -168,6 +168,10 @@ Route::post('/manager/course/edit/{id}', [ManageCourseController::class, 'editCo
 Route::get('/manager/course/session/{id}/edit',[ManageCourseController::class, 'editMaterialGET']);
 Route::post('/manager/course/session/{id}/edit',[ManageCourseController::class, 'editMaterialPOST']);
 Route::post('/manager/course/session/{id}/edit/detail',[ManageCourseController::class, 'editMaterialDetail']);
+Route::post('/manager/course/session/{id}/edit/detail/create/assignments',[ManageCourseController::class, 'createAssignmentQuestions']);
+
+Route::delete('/manager/delete/assignments/{id}',[ManageCourseController::class, 'deleteQuestion']);
+Route::post('/manager/edit/assignments/{id}',[ManageCourseController::class, 'editAssignmentQuestions']);
 
 Route::delete('/manager/course/session/delete/{id}',[ManageCourseController::class, 'deleteMaterial']);
 

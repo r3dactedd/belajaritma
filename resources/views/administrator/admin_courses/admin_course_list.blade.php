@@ -124,7 +124,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($material_list != null)
+                        @if (!$material_list->isEmpty())
                             @foreach ($material_list as $mat)
                                 <tr class="border-b border-opacity-20 bg-white dark:border-gray-700">
 
@@ -269,10 +269,18 @@
                                     class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
                                     Materi</a>
                             </div> --}}
+
                         </div>
                     </div>
                 </div>
             </div>
+            @if (!$material_list->isEmpty())
+                <h1 class="my-8 text-center text-xl font-semibold">
+                    <a href="/manager/course"
+                        class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700"> Selesai
+                    </a>
+                </h1>
+            @endif
 
             {{-- Delete Popup Modal --}}
             <div id="popup-delete" tabindex="-1"
