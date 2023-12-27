@@ -124,6 +124,43 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($material_list != null)
+                            @foreach ($material_list as $mat)
+                                <tr class="border-b border-opacity-20 bg-white dark:border-gray-700">
+
+                                    <td scope="row"
+                                        class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                        <p>{{ $mat->title }}</p>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $mat->materialContentToMasterType->master_type_name }}
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <div class="item-center flex justify-start">
+                                            <a href="/manager/course/session/{{ $mat->id }}/edit"
+                                                class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                </svg>
+                                            </a>
+                                            <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
+                                                data-modal-target="popup-delete" data-modal-toggle="popup-delete"
+                                                data-material-id="{{ $mat->id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        @endif
                         <tr
                             class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
                             <td class="px-6 py-3 text-center font-semibold" colspan="4">
