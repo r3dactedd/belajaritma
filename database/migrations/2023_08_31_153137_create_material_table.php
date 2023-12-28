@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('detailed_description')->nullable();
-            $table->unsignedBigInteger('minimum_score')->nullable();
+            $table->unsignedBigInteger('minimum_score')->default(0);
             $table->unsignedBigInteger('material_duration');
             $table->string('pdf_link')->nullable();
             $table->string('video_link')->nullable();
