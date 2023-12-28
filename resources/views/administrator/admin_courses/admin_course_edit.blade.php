@@ -74,7 +74,7 @@
                     <!-- Profile Card -->
                     <div class="h-full p-2 md:py-4 md:pl-8">
                         <div class="mx-auto w-full">
-                            <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0" src="/storage/image/placeholder.webp"
+                            <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0" src="{{ asset('./uploads/course_images/' . $data->course_img) }}"
                                 alt="Image Preview" />
                         </div>
                         <div class="max-w-md">
@@ -221,6 +221,9 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $materialItem->materialContentToMasterType->master_type_name }}
+                                </td>
+                                <td>
+                                    <p hidden id="data-material-id">{{$materialItem->id}}</p>
                                 </td>
 
                                 <td class="px-6 py-4">
@@ -373,7 +376,7 @@
                             <div class="flex justify-center text-center">
                                 {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
                                 <form method="POST" action="/manager/course/session/delete/{id}"
-                                    data-material-id="{{ $materialItem->id }}">
+                                    data-material-id="">
                                     @csrf
                                     @method('DELETE')
                                     <button data-modal-hide="popup-delete" type="submit"
@@ -390,7 +393,7 @@
                                         deleteButtons.forEach(button => {
                                             button.addEventListener('click', function() {
                                                 console.log('Button clicked');
-                                                const materialId = this.getAttribute('data-material-id');
+                                                const materialId = this.getElementById('data-material-id');
                                                 console.log('Course ID:', materialId);
 
                                                 const form = document.querySelector('#popup-delete form');
