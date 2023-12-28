@@ -32,5 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TransactionSeeder::class);
         $this->call(EnrollmentSeeder::class);
         $this->call(RegistrationCertificationSeeder::class);
+        $this->call(AssignmentQuestionsSeeder::class);
+        $this->call(FinalTestQuestionsSeeder::class);
     }
 }

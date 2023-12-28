@@ -154,6 +154,13 @@ class ManageCourseController extends Controller
 
         $createMaterial->save();
         $material_id = $createMaterial->id;
+
+        $addTimeAndModule= [];
+        $addTimeAndModule = [
+            'total_time' => \DB::raw('total_time + ' . $request->material_duration),
+            'total_module' => \DB::raw('total_module + 1'),
+        ];
+        Course::where('id', $createMaterial->course_id)->update($addTimeAndModule);
         // dd($createMaterial);
         return Redirect::to("/manager/course/session/{$material_id}/edit");
     }
@@ -243,7 +250,12 @@ class ManageCourseController extends Controller
     }
     public function deleteMaterial($id){
         $material = Material::find($id);
-
+        $decreaseTimeAndModule= [];
+        $decreaseTimeAndModule = [
+            'total_time' => \DB::raw('total_time - ' . $material->material_duration),
+            'total_module' => \DB::raw('total_module - 1'),
+        ];
+        Course::where('id', $material->course_id)->update($decreaseTimeAndModule);
         if (!$material) {
             return redirect()->back()->with('error', 'Material not found.');
         }
@@ -261,6 +273,7 @@ class ManageCourseController extends Controller
             'jawaban_c'=>'required|string',
             'jawaban_d'=>'required|string',
             'jawaban_benar'=>'required|string',
+            'question_img'=>'image|file',
         ]);
         $createAssignment = new AssignmentQuestions();
         $createAssignment->questions = $request->questions;
@@ -271,6 +284,18 @@ class ManageCourseController extends Controller
         $createAssignment->jawaban_benar = $request->jawaban_benar;
         $createAssignment->material_id = $id;
 
+        $filename = '';
+        if ($request->hasFile('question_img')) {
+            // Proses upload file dan simpan ke storage atau folder yang diinginkan
+            $filename = Str::orderedUuid() . '.' . $request->file('question_img')->getClientOriginalExtension();
+            $request->file('question_img')->storeAs('asg_question_img', $filename, 'asg_question_img');
+            $createAssignment->question_img =  $filename;
+        }
+        $addTotalQuestions = [];
+        $addTotalQuestions = [
+            'total_questions' => \DB::raw('total_questions + 1'),
+        ];
+        Material::where('id', $createAssignment->material_id)->update($addTotalQuestions);
         // dd($createAssignment);
 
         $createAssignment->save();
@@ -286,9 +311,20 @@ class ManageCourseController extends Controller
             'jawaban_c'=>'required|string',
             'jawaban_d'=>'required|string',
             'jawaban_benar'=>'required|string',
+            'question_img'=>'image|file',
         ]);
-
         $changeAssignment = [];
+        $filename = '';
+        if ($request->hasFile('question_img')) {
+            $filename = Str::orderedUuid() . '.' . $request->file('question_img')->getClientOriginalExtension();
+            $request->file('question_img')->storeAs('asg_question_img', $filename, 'asg_question_img');
+            $changeAssignment['question_img'] = $filename;
+        }
+
+        if (array_key_exists('question_img', $validateAssignment)) {
+            unset($validateAssignment['question_img']);
+        }
+
 
         $changeAssignment += [
             'questions'=> $validateAssignment['questions'],
@@ -312,7 +348,11 @@ class ManageCourseController extends Controller
         if (!$assignment_questions) {
             return redirect()->back()->with('error', 'Assignment not found.');
         }
-
+        $decreaseTotalQuestions = [];
+        $decreaseTotalQuestions = [
+            'total_questions' => \DB::raw('total_questions - 1'),
+        ];
+        Material::where('id', $material_id)->update($decreaseTotalQuestions);
         $assignment_questions->delete();
         // dd($assignment_questions);
         return Redirect::to("/manager/course/session/{$material_id}/edit");
@@ -327,19 +367,32 @@ class ManageCourseController extends Controller
             'jawaban_c'=>'required|string',
             'jawaban_d'=>'required|string',
             'jawaban_benar'=>'required|string',
+            'question_img'=>'image|file',
         ]);
-        $createAssignment = new FinalTestQuestions();
-        $createAssignment->questions = $request->questions;
-        $createAssignment->jawaban_a = $request->jawaban_a;
-        $createAssignment->jawaban_b = $request->jawaban_b;
-        $createAssignment->jawaban_c = $request->jawaban_c;
-        $createAssignment->jawaban_d = $request->jawaban_d;
-        $createAssignment->jawaban_benar = $request->jawaban_benar;
-        $createAssignment->material_id = $id;
+        $createFinalTest = new FinalTestQuestions();
+        $createFinalTest->questions = $request->questions;
+        $createFinalTest->jawaban_a = $request->jawaban_a;
+        $createFinalTest->jawaban_b = $request->jawaban_b;
+        $createFinalTest->jawaban_c = $request->jawaban_c;
+        $createFinalTest->jawaban_d = $request->jawaban_d;
+        $createFinalTest->jawaban_benar = $request->jawaban_benar;
+        $createFinalTest->material_id = $id;
+        $filename = '';
+        if ($request->hasFile('question_img')) {
+            // Proses upload file dan simpan ke storage atau folder yang diinginkan
+            $filename = Str::orderedUuid() . '.' . $request->file('question_img')->getClientOriginalExtension();
+            $request->file('question_img')->storeAs('final_question_img', $filename, 'final_question_img');
+            $createFinalTest->question_img =  $filename;
+        }
 
         // dd($createAssignment);
+        $addTotalQuestions = [];
+        $addTotalQuestions = [
+            'total_questions' => \DB::raw('total_questions + 1'),
+        ];
+        Material::where('id', $createFinalTest->material_id)->update($addTotalQuestions);
 
-        $createAssignment->save();
+        $createFinalTest->save();
         return Redirect::to("/manager/course/session/{$id}/edit");
     }
 
@@ -352,9 +405,19 @@ class ManageCourseController extends Controller
             'jawaban_c'=>'required|string',
             'jawaban_d'=>'required|string',
             'jawaban_benar'=>'required|string',
+            'question_img'=>'image|file',
         ]);
-
         $changeFinal = [];
+        $filename = '';
+        if ($request->hasFile('question_img')) {
+            $filename = Str::orderedUuid() . '.' . $request->file('question_img')->getClientOriginalExtension();
+            $request->file('question_img')->storeAs('final_question_img', $filename, 'final_question_img');
+            $changeAssignment['question_img'] = $filename;
+        }
+
+        if (array_key_exists('question_img', $validateFinal)) {
+            unset($validateFinal['question_img']);
+        }
 
         $changeFinal += [
             'questions'=> $validateFinal['questions'],
@@ -377,7 +440,11 @@ class ManageCourseController extends Controller
         if (!$final_test_questions) {
             return redirect()->back()->with('error', 'Assignment not found.');
         }
-
+        $decreaseTotalQuestions = [];
+        $decreaseTotalQuestions = [
+            'total_questions' => \DB::raw('total_questions - 1'),
+        ];
+        Material::where('id', $material_id)->update($decreaseTotalQuestions);
         $final_test_questions->delete();
         // dd($assignment_questions);
         return Redirect::to("/manager/course/session/{$material_id}/edit");

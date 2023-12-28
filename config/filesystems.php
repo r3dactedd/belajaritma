@@ -81,7 +81,24 @@ return [
             'url' => env('APP_URL').'/uploads',
             'visibility' => 'public',
         ],
-
+        'asg_question_img' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'url' => env('APP_URL').'/uploads',
+            'visibility' => 'public',
+        ],
+        'final_question_img' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'url' => env('APP_URL').'/uploads',
+            'visibility' => 'public',
+        ],
+        'certif_question_img' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'url' => env('APP_URL').'/uploads',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',
