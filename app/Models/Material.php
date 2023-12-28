@@ -31,7 +31,7 @@ class Material extends Model
     public function materialContentToMasterType(){
         return $this->belongsTo(MasterType::class, 'master_type_id');
     }
-    public function materialToAssgnmentQuestion() {
+    public function materialToAssignmentQuestion() {
         return $this->hasMany(AssignmentQuestions::class);
     }
 }

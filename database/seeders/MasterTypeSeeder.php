@@ -13,19 +13,6 @@ class MasterTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        MasterType::create([
-            'master_type_code' => 'FORUM_TYPE',
-            'master_type_name' => 'C Language',
-        ]);
-        MasterType::create([
-            'master_type_code' => 'FORUM_TYPE',
-            'master_type_name' => 'Artificial Inteligence',
-        ]);
-        MasterType::create([
-            'master_type_code' => 'FORUM_TYPE',
-            'master_type_name' => 'Database',
-        ]);
         MasterType::create([
             'master_type_code' => 'MATERIAL_TYPE',
             'master_type_name' => 'PDF',
@@ -37,6 +24,10 @@ class MasterTypeSeeder extends Seeder
         MasterType::create([
             'master_type_code' => 'MATERIAL_TYPE',
             'master_type_name' => 'Video',
+        ]);
+        MasterType::create([
+            'master_type_code' => 'MATERIAL_TYPE',
+            'master_type_name' => 'Final Test',
         ]);
     }
 }

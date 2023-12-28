@@ -58,7 +58,7 @@
                             class="me-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-blue-600 text-xs dark:border-blue-500">
                             2
                         </span>
-                        <a href="/manager/course/list">
+                        <a href="/manager/course/materiallist/{{ $material->materialToCourse->id }}">
                             Daftar Materi Kursus
                         </a>
                         <svg class="ms-2 h-3 w-3 rtl:rotate-180 sm:ms-4" aria-hidden="true"
@@ -205,6 +205,13 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="flex justify-end pt-2">
+                                            <button type="submit"
+                                                class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                                                <div class="mx-2"> Finalize Assignment</div>
+                                            </button>
+                                        </div>
                                         <label for="username"
                                             class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
                                             List Pertanyaan </label>
@@ -307,12 +314,149 @@
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                    </div>
+                                </div>
+                            @elseif ($material->materialContentToMasterType->master_type_name == 'Final Test')
+                                <div class="mx-auto px-4">
+                                    {{-- <div class="font-semibold">
+                                        <label for="username"
+                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                            (muncul kalau content typenya Assignment) </label>
+                                    </div> --}}
+                                    <div class="font-semibold">
+                                        <label for="username"
+                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                            Penjelasan Final Test</label>
+                                        <textarea name="detailed_description" id="inputDetDesc"
+                                            class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                            placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
+                                            {{ htmlspecialchars($material->detailed_description) }}
+                                        </textarea>
+                                        <div class="mb-6 font-semibold">
+                                            <div class="grid grid-cols-1 md:grid-cols-2">
+
+                                                <div>
+                                                    <label for="username"
+                                                        class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                                        Nilai Minimum</label>
+                                                    <input type="number" name="minimum_score" id="inputMinScore"
+                                                        value="{{ $material->minimum_score }}"
+                                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Input nilai minimum untuk menyelesaikan assignment"
+                                                        value="" required="">
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="flex justify-end pt-2">
                                             <button type="submit"
                                                 class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                                                <div class="mx-2"> Finalize Assignment</div>
+                                                <div class="mx-2"> Finalize Final Test</div>
                                             </button>
                                         </div>
+                                        <label for="username"
+                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                            List Pertanyaan </label>
+                                        <div class="relative overflow-x-auto">
+                                            <table
+                                                class="text-md mx-auto w-full border-x text-left font-semibold text-gray-500 shadow-md sm:rounded-lg">
+                                                <thead class="bg-gray-200 text-xs uppercase text-gray-700">
+                                                    <tr>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            No
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Pertanyaan
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Jawaban Tepat
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Aksi
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($final_test_questions as $final_test)
+                                                        <tr
+                                                            class="border-b border-opacity-20 bg-white dark:border-gray-700">
+                                                            <td scope="row"
+                                                                class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                                {{ $loop->iteration }}
+                                                            </td>
+                                                            <td scope="row" class="px-6 py-4 text-gray-800">
+                                                                {{ $final_test->questions }}
+                                                            </td>
+                                                            @if ($final_test->jawaban_benar == 'A')
+                                                                <td class="px-6 py-4 text-gray-800">
+                                                                    A | {{ $final_test->jawaban_a }}
+                                                                </td>
+                                                            @elseif ($final_test->jawaban_benar == 'B')
+                                                                <td class="px-6 py-4 text-gray-800">
+                                                                    B | {{ $final_test->jawaban_b }}
+                                                                </td>
+                                                            @elseif ($final_test->jawaban_benar == 'C')
+                                                                <td class="px-6 py-4 text-gray-800">
+                                                                    C | {{ $final_test->jawaban_c }}
+                                                                </td>
+                                                            @elseif ($final_test->jawaban_benar == 'D')
+                                                                <td class="px-6 py-4 text-gray-800">
+                                                                    D | {{ $final_test->jawaban_d }}
+                                                                </td>
+                                                            @endif
+
+                                                            <td class="px-6 py-4">
+                                                                <div class="item-center flex justify-center">
+                                                                    <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
+                                                                        data-modal-target="modal-edit-final-{{ $final_test->id }}"
+                                                                        data-modal-toggle="modal-edit-final-{{ $final_test->id }}"
+                                                                        data-final-id="{{ $final_test->id }}">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            fill="none" viewBox="0 0 24 24"
+                                                                            stroke="currentColor">
+                                                                            <path stroke-linecap="round"
+                                                                                stroke-linejoin="round" stroke-width="2"
+                                                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="mr-2 w-4 transform hover:scale-110 hover:text-red-500"
+                                                                        data-modal-target="popup-final-delete-{{ $final_test->id }}"
+                                                                        data-modal-toggle="popup-final-delete-{{ $final_test->id }}"
+                                                                        data-final-id="{{ $final_test->id }}">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            fill="none" viewBox="0 0 24 24"
+                                                                            stroke="currentColor">
+                                                                            <path stroke-linecap="round"
+                                                                                stroke-linejoin="round" stroke-width="2"
+                                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    <tr
+                                                        class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
+                                                        <td class="px-6 py-3 text-center font-semibold" colspan="4">
+
+                                                            <p class="inline-flex items-center align-middle"
+                                                                data-modal-target="modal-create-final"
+                                                                data-modal-toggle="modal-create-final">
+                                                                <svg class="mr-4 fill-black hover:fill-white"
+                                                                    xmlns="http://www.w3.org/2000/svg" height="1.5em"
+                                                                    viewBox="0 0 512 512">
+                                                                    <path
+                                                                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0-13.3-10.7 24-24 24s-24-10.7-24-24z" />
+                                                                </svg>
+                                                                Buat Pertanyaan Baru
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                     </div>
                                 </div>
                             @endif
@@ -365,6 +509,87 @@
                                 </h2>
                                 <form method="POST"
                                     action="/manager/course/session/{{ $material->id }}/edit/detail/create/assignments"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
+                                        {{-- Input Area --}}
+                                        <div class="sm:col-span-2">
+                                            <label for="username"
+                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                Input Pertanyaan</label>
+                                            <textarea id="myInfo" name="questions" id="inputQuestions"
+                                                class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
+                                        </div>
+
+                                        <div class="sm:col-span-2">
+                                            <label for="username"
+                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                Pilihan Jawaban</label>
+                                            <input type="text" name="jawaban_a" id="inputJawabanA"
+                                                class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                placeholder="Jawaban A" required="">
+                                            <input type="text" name="jawaban_b" id="inputJawabanB"
+                                                class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                placeholder="Jawaban B" required="">
+                                            <input type="text" name="jawaban_c" id="inputJawabanC"
+                                                class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                placeholder="Jawaban C" required="">
+                                            <input type="text" name="jawaban_d" id="inputJawabanD"
+                                                class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                placeholder="Jawaban D" required="">
+                                        </div>
+                                        <div class="sm:col-span-1">
+                                            <label for="username"
+                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                Pilihan Jawaban Tepat</label>
+                                            <select name="jawaban_benar" id="inputJawabanBenar"
+                                                class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
+                                                <option value="">Pilih Jawaban Yang Tepat untuk Pertanyaan</option>
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                                <option value="D">D</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-end pt-2">
+                                        <button type="submit"
+                                            class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                            Pertanyaan
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal-create-final" tabindex="-1" aria-hidden="true"
+                class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+                <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
+                    <div class="overflow-y-auto px-2 py-2 text-left md:px-6">
+                        <div class="container mx-auto my-5 p-5">
+                            {{-- EDIT PROFILE --}}
+                            <div class="flex justify-end">
+                                <button type="button"
+                                    class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                                    data-modal-hide="modal-create-final">
+                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="mx-auto rounded-xl bg-white px-2 py-2">
+                                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Tambah Pertanyaan Baru
+                                    (Final Test)
+                                </h2>
+                                <form method="POST"
+                                    action="/manager/course/session/{{ $material->id }}/edit/detail/create/final"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
@@ -517,7 +742,154 @@
                 @endif
             @endforeach
 
+            @foreach ($final_test_questions as $final_test)
+                @if (!$final_test_questions->isEmpty())
+                    <div id="modal-edit-final-{{ $final_test->id }}" tabindex="-1" aria-hidden="true"
+                        class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+                        <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
+                            <div class="overflow-y-auto px-2 py-2 text-left md:px-6">
+                                <div class="container mx-auto my-5 p-5">
+                                    {{-- EDIT PROFILE --}}
+                                    <div class="flex justify-end">
+                                        <button type="button"
+                                            class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                                            data-modal-hide="modal-edit-final-{{ $final_test->id }}">
+                                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="mx-auto rounded-xl bg-white px-2 py-2">
+                                        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+                                            Edit Pertanyaan (Final Test)
+                                        </h2>
+                                        <form method="POST" action="/manager/edit/final/{{ $final_test->id }}"
+                                            data-final-id="{{ $final_test->id }}" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
+                                                {{-- Input Area --}}
+                                                <div class="sm:col-span-2">
+                                                    <label for="username"
+                                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                        Input Pertanyaan</label>
+                                                    <textarea id="myInfo" name="questions" id="inputQuestions"
+                                                        class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
+                                                </div>
+                                                <input type="hidden" name="final_test_id"
+                                                    value="{{ $final_test->id }}">
+                                                <input type="hidden" name="material_id"
+                                                    value="{{ $final_test->material_id }}">
+                                                <div class="sm:col-span-2">
+                                                    <label for="username"
+                                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                        Pilihan Jawaban</label>
+                                                    <input type="text" name="jawaban_a" id="inputJawabanA"
+                                                        class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Jawaban A" required="">
+                                                    <input type="text" name="jawaban_b" id="inputJawabanB"
+                                                        class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Jawaban B" required="">
+                                                    <input type="text" name="jawaban_c" id="inputJawabanC"
+                                                        class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Jawaban C" required="">
+                                                    <input type="text" name="jawaban_d" id="inputJawabanD"
+                                                        class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Jawaban D" required="">
+                                                </div>
+                                                <div class="sm:col-span-1">
+                                                    <label for="username"
+                                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                        Pilihan Jawaban
+                                                        Tepat</label>
+                                                    <select name="jawaban_benar" id="inputJawabanBenar"
+                                                        class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
+                                                        <option value="">
+                                                            Pilih Jawaban Yang Tepat
+                                                            untuk Pertanyaan
+                                                        </option>
+                                                        <option value="A">A
+                                                        </option>
+                                                        <option value="B">B
+                                                        </option>
+                                                        <option value="C">C
+                                                        </option>
+                                                        <option value="D">D
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-end pt-2">
+                                                <button type="submit"
+                                                    class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                                    Pertanyaan
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+
+
+
             {{-- Delete Popup --}}
+            @foreach ($final_test_questions as $final_test)
+                @if (!$final_test_questions->isEmpty())
+                    <div id="popup-final-delete-{{ $final_test->id }}" tabindex="-1"
+                        class="fixed left-0 right-0 top-0 z-50 hidden h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+                        <div class="flex items-center justify-center min-h-screen">
+                            <div class="relative rounded-lg bg-white shadow dark:bg-gray-700 w-full max-w-md">
+                                <button type="button"
+                                    class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    data-modal-hide="popup-final-delete-{{ $final_test->id }}">
+                                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                                <div class="p-6 text-center">
+                                    <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin
+                                        ingin
+                                        menghapus pertanyaan tersebut? (Final Test)
+                                    </h3>
+                                    <div class="flex justify-center text-center">
+                                        <form method="POST" action="/manager/delete/final/{{ $final_test->id }}"
+                                            data-final_test-id="{{ $final_test->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="final_test_id" value="{{ $final_test->id }}">
+                                            <button data-modal-hide="popup-final-delete-{{ $final_test->id }}e"
+                                                type="submit"
+                                                class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                                Ya, hapus
+                                            </button>
+                                        </form>
+                                        <button data-modal-hide="popup-final-delete-{{ $final_test->id }}" type="button"
+                                            class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Tidak,
+                                            batalkan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+
             @foreach ($assignment_questions as $assignment)
                 @if (!$assignment_questions->isEmpty())
                     <div id="popup-delete-{{ $assignment->id }}" tabindex="-1"
@@ -571,6 +943,19 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var modalButtons = document.querySelectorAll('[data-modal-toggle="modal-edit"]');
+
+            modalButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var modalId = button.getAttribute('data-modal-target');
+
+                    var modal = document.getElementById(modalId);
+
+                    modal.classList.toggle('hidden');
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalButtons = document.querySelectorAll('[data-modal-toggle="modal-edit-final"]');
 
             modalButtons.forEach(function(button) {
                 button.addEventListener('click', function() {

@@ -169,9 +169,12 @@ Route::get('/manager/course/session/{id}/edit',[ManageCourseController::class, '
 Route::post('/manager/course/session/{id}/edit',[ManageCourseController::class, 'editMaterialPOST']);
 Route::post('/manager/course/session/{id}/edit/detail',[ManageCourseController::class, 'editMaterialDetail']);
 Route::post('/manager/course/session/{id}/edit/detail/create/assignments',[ManageCourseController::class, 'createAssignmentQuestions']);
-
 Route::delete('/manager/delete/assignments/{id}',[ManageCourseController::class, 'deleteQuestion']);
 Route::post('/manager/edit/assignments/{id}',[ManageCourseController::class, 'editAssignmentQuestions']);
+
+Route::post('/manager/course/session/{id}/edit/detail/create/final',[ManageCourseController::class, 'createFinalTestQuestions']);
+Route::post('/manager/edit/final/{id}',[ManageCourseController::class, 'editFinalTestQuestions']);
+Route::delete('/manager/delete/final/{id}',[ManageCourseController::class, 'deleteFinalTestQuestion']);
 
 Route::delete('/manager/course/session/delete/{id}',[ManageCourseController::class, 'deleteMaterial']);
 

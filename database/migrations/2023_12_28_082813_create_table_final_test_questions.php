@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('certification_questions', function (Blueprint $table) {
+        Schema::create('final_test_questions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('certification_id');
+            $table->unsignedBigInteger('material_id');
             $table->string('questions');
             $table->string('jawaban_a');
             $table->string('jawaban_b');
@@ -22,8 +22,7 @@ return new class extends Migration
             $table->string('jawaban_benar');
             $table->timestamps();
 
-            $table->foreign('certification_id')->references('id')->on('certification')->onUpdate('cascade')->onDelete('cascade');
-
+            $table->foreign('material_id')->references('id')->on('material')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('certification_questions');
+        Schema::dropIfExists('final_test_questions');
     }
 };
