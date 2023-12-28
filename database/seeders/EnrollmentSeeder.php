@@ -14,16 +14,6 @@ class EnrollmentSeeder extends Seeder
     public function run(): void
     {
         //
-        Enrollment::create([
-            'user_id' => 1,
-            'course_id' => 1,
-            'completed'=>true
-        ]);
 
-        Enrollment::create([
-            'user_id' => 1,
-            'course_id' => 2,
-            'completed'=>false
-        ]);
     }
 }

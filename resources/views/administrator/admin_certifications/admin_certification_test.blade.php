@@ -210,6 +210,14 @@
                                         <textarea id="myInfo" name="questions" id="inputQuestions"
                                             class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
+                                        <div class="my-4"></div>
+                                        <label for="username"
+                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                            Upload Gambar (Tidak Wajib)</label>
+
+                                        <input name="question_img" id="question_img"
+                                            class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                            type="file" accept="image/*">
                                     </div>
 
                                     <div class="sm:col-span-2">
@@ -291,6 +299,14 @@
                                                 <textarea id="myInfo" name="questions" id="inputQuestions"
                                                     class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                     placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
+                                                <div class="my-4"></div>
+                                                <label for="username"
+                                                    class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                                    Upload Gambar (Tidak Wajib)</label>
+
+                                                <input name="question_img" id="question_img"
+                                                    class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                                    type="file" accept="image/*">
                                             </div>
 
                                             <div class="sm:col-span-2">

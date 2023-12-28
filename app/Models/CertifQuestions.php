@@ -12,6 +12,7 @@ class CertifQuestions extends Model
     protected $guarded='id';
     protected $fillable = [
         'certification_id',
+        'question_img',
         'questions',
         'jawaban_a',
         'jawaban_b',
