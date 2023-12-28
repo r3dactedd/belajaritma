@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AssignmentQuestions;
 use App\Models\Course;
+use App\Models\FinalTestQuestions;
 use App\Models\MasterType;
 use App\Models\Material;
 use Illuminate\Http\Request;
@@ -169,7 +170,8 @@ class ManageCourseController extends Controller
     public function editMaterialGET($id){
         $material = Material::find($id);
         $assignment_questions = AssignmentQuestions::where('material_id', $id)->get();
-        return view('administrator.admin_courses.admin_course_session', ['material'=>$material, 'assignment_questions'=>$assignment_questions]);
+        $final_test_questions = FinalTestQuestions::where('material_id', $id)->get();
+        return view('administrator.admin_courses.admin_course_session', ['material'=>$material, 'assignment_questions'=>$assignment_questions, 'final_test_questions'=>$final_test_questions]);
         // dd($material);
     }
 
@@ -220,7 +222,7 @@ class ManageCourseController extends Controller
             Material::where('id', $id)->update($changeMaterialDetail);
             return Redirect::to("/manager/course/materiallist/{$material->materialToCourse->id}");
         }
-        if($material->materialContentToMasterType->master_type_name == 'Assignment'){
+        if($material->materialContentToMasterType->master_type_name == 'Assignment' || $material->materialContentToMasterType->master_type_name == 'Final Test'){
             Log::info('Request Data:', $request->all());
 
             // dd($request);
@@ -236,7 +238,7 @@ class ManageCourseController extends Controller
             ];
             // dd($changeMaterialDetail);
             Material::where('id', $id)->update($changeMaterialDetail);
-            return Redirect::to("/manager/course/materiallist/{$material->materialToCourse->id}");
+            return Redirect::to("/manager/course/session/{$id}/edit");
         }
     }
     public function deleteMaterial($id){
@@ -316,5 +318,69 @@ class ManageCourseController extends Controller
         return Redirect::to("/manager/course/session/{$material_id}/edit");
     }
 
+    public function createFinalTestQuestions(Request $request, $id){
+        Log::info('Request Data:', $request->all());
+        $request->validate([
+            'questions'=>'required|string',
+            'jawaban_a'=>'required|string',
+            'jawaban_b'=>'required|string',
+            'jawaban_c'=>'required|string',
+            'jawaban_d'=>'required|string',
+            'jawaban_benar'=>'required|string',
+        ]);
+        $createAssignment = new FinalTestQuestions();
+        $createAssignment->questions = $request->questions;
+        $createAssignment->jawaban_a = $request->jawaban_a;
+        $createAssignment->jawaban_b = $request->jawaban_b;
+        $createAssignment->jawaban_c = $request->jawaban_c;
+        $createAssignment->jawaban_d = $request->jawaban_d;
+        $createAssignment->jawaban_benar = $request->jawaban_benar;
+        $createAssignment->material_id = $id;
+
+        // dd($createAssignment);
+
+        $createAssignment->save();
+        return Redirect::to("/manager/course/session/{$id}/edit");
+    }
+
+    public function editFinalTestQuestions(Request $request){
+        Log::info('Request Data:', $request->all());
+        $validateFinal=$request->validate([
+            'questions'=>'required|string',
+            'jawaban_a'=>'required|string',
+            'jawaban_b'=>'required|string',
+            'jawaban_c'=>'required|string',
+            'jawaban_d'=>'required|string',
+            'jawaban_benar'=>'required|string',
+        ]);
+
+        $changeFinal = [];
+
+        $changeFinal += [
+            'questions'=> $validateFinal['questions'],
+            'jawaban_a'=>$validateFinal['jawaban_a'],
+            'jawaban_b'=>$validateFinal['jawaban_b'],
+            'jawaban_c'=>$validateFinal['jawaban_c'],
+            'jawaban_d'=>$validateFinal['jawaban_d'],
+            'jawaban_benar'=>$validateFinal['jawaban_benar'],
+        ];
+        FinalTestQuestions::where('id', $request->final_test_id)->update($changeFinal);
+
+        // dd($request->assignment_id);
+        // dd($request->material_id);
+        return Redirect::to("/manager/course/session/{$request->material_id}/edit");
+        // return redirect('/manager/course')->with('success', 'Course deleted successfully.');
+    }
+    public function deleteFinalTestQuestion(Request $request){
+        $final_test_questions = FinalTestQuestions::find($request->final_test_id);
+        $material_id = $final_test_questions->questionToMaterial->id;
+        if (!$final_test_questions) {
+            return redirect()->back()->with('error', 'Assignment not found.');
+        }
+
+        $final_test_questions->delete();
+        // dd($assignment_questions);
+        return Redirect::to("/manager/course/session/{$material_id}/edit");
+    }
 
 }

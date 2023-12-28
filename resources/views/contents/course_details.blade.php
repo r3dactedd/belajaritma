@@ -240,15 +240,39 @@
                                                 d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
                                         </svg>
                                     @endif
-
-                                    <p class="ml-2 text-sm font-normal text-gray-600">
-                                        {{ $materialItem->materialContentToMasterType->master_type_name }}
-                                    </p>
+                                    @if ($materialItem->materialContentToMasterType->master_type_name != 'Final Test')
+                                        <p class="ml-2 text-sm font-normal text-gray-600">
+                                            {{ $materialItem->materialContentToMasterType->master_type_name }}
+                                        </p>
+                                    @endif
+                                    @if ($materialItem->materialContentToMasterType->master_type_name == 'Final Test')
+                                        <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                                                <path
+                                                    d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
+                                            </svg>
+                                            <p class="ml-2 text-sm font-normal text-gray-600">
+                                                50 Pertanyaan
+                                            </p>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="transition hover:bg-indigo-50">
                             </div>
+                            @if ($materialItem->materialContentToMasterType->master_type_name == 'Final Test')
+                                <div class="flex items-center">
+                                    <div class="flex items-center">
+
+                                        <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                            <a href="/transaction" id="convertButton"
+                                                class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
+                                                Test</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -256,7 +280,7 @@
                     $index++;
                 @endphp
             @endforeach
-            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+            {{-- <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
                 <div class="w-full px-4">
                     <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                         <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
@@ -305,7 +329,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
                 <div class="w-full px-4">
                     <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
