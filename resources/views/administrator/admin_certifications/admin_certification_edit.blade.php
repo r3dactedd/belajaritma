@@ -173,7 +173,7 @@
                             <tr
                                 class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
                                 <td class="px-6 py-3 text-center font-semibold" colspan="4">
-                                    <a class="block" href="/manager/certification/edit/test">
+                                    <a class="block" href="/manager/certification/edit/test/{{ $data->id }}">
                                         <p class="inline-flex items-center align-middle" data-modal-target="defaultModal"
                                             data-modal-toggle="defaultModal">
                                             <svg class="mr-4 fill-black hover:fill-white"

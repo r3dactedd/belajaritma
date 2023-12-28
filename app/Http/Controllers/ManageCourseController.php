@@ -275,9 +275,8 @@ class ManageCourseController extends Controller
         return Redirect::to("/manager/course/session/{$id}/edit");
     }
 
-    public function editAssignmentQuestions(Request $request, $id){
+    public function editAssignmentQuestions(Request $request){
         Log::info('Request Data:', $request->all());
-        $material = Material::find($id);
         $validateAssignment=$request->validate([
             'questions'=>'required|string',
             'jawaban_a'=>'required|string',
@@ -297,14 +296,16 @@ class ManageCourseController extends Controller
             'jawaban_d'=>$validateAssignment['jawaban_d'],
             'jawaban_benar'=>$validateAssignment['jawaban_benar'],
         ];
-        AssignmentQuestions::where('id', $id)->update($changeAssignment);
+        AssignmentQuestions::where('id', $request->assignment_id)->update($changeAssignment);
 
-        // dd($createAssignment);
-        return redirect('/manager/course')->with('success', 'Course deleted successfully.');
+        // dd($request->assignment_id);
+        // dd($request->material_id);
+        return Redirect::to("/manager/course/session/{$request->material_id}/edit");
+        // return redirect('/manager/course')->with('success', 'Course deleted successfully.');
     }
 
-    public function deleteQuestion($id){
-        $assignment_questions = AssignmentQuestions::find($id);
+    public function deleteQuestion(Request $request){
+        $assignment_questions = AssignmentQuestions::find($request->assignment_id);
         $material_id = $assignment_questions->questionToMaterial->id;
         if (!$assignment_questions) {
             return redirect()->back()->with('error', 'Assignment not found.');

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Certification;
+use App\Models\CertifQuestions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -92,5 +95,90 @@ class ManageCertificationController extends Controller
 
         Certification::where('id', $id)->update($changeCertif);
         return redirect('/manager/certification')->with('success', 'Certification edit successfull!');
+    }
+
+    public function editCertifTestPage($id){
+        $data=Certification::find($id);
+        $certif_questions = CertifQuestions::where('certification_id', $id)->get();
+        return view('administrator.admin_certifications.admin_certification_test', ['data' => $data, 'certif_questions' => $certif_questions]);
+    }
+
+    public function setScore(Request $request){
+        Log::info('Request Data:', $request->all());
+
+        // dd($request);
+        $validateScore = $request->validate([
+            'minimum_score'=>'required|integer|max:100',
+        ]);
+        $changeScore= [];
+
+        $changeScore += [
+            'minimum_score'=> $validateScore['minimum_score'],
+        ];
+        // dd($changeMaterialDetail);
+        Certification::where('id',$request->certification_id)->update($changeScore);
+        return Redirect::to("/manager/certification/edit/test/{$request->certification_id}");
+    }
+
+    public function createCertifQuestions(Request $request, $id){
+        Log::info('Request Data:', $request->all());
+        $request->validate([
+            'questions'=>'required|string',
+            'jawaban_a'=>'required|string',
+            'jawaban_b'=>'required|string',
+            'jawaban_c'=>'required|string',
+            'jawaban_d'=>'required|string',
+            'jawaban_benar'=>'required|string',
+        ]);
+        $createCertifQuestions = new CertifQuestions();
+        $createCertifQuestions->questions = $request->questions;
+        $createCertifQuestions->jawaban_a = $request->jawaban_a;
+        $createCertifQuestions->jawaban_b = $request->jawaban_b;
+        $createCertifQuestions->jawaban_c = $request->jawaban_c;
+        $createCertifQuestions->jawaban_d = $request->jawaban_d;
+        $createCertifQuestions->jawaban_benar = $request->jawaban_benar;
+        $createCertifQuestions->certification_id = $id;
+
+        // dd($createAssignment);
+
+        $createCertifQuestions->save();
+        return Redirect::to("/manager/certification/edit/test/{$id}");
+    }
+
+    public function editCertifQuestions(Request $request){
+        Log::info('Request Data:', $request->all());
+        $validateQuestions=$request->validate([
+            'questions'=>'required|string',
+            'jawaban_a'=>'required|string',
+            'jawaban_b'=>'required|string',
+            'jawaban_c'=>'required|string',
+            'jawaban_d'=>'required|string',
+            'jawaban_benar'=>'required|string',
+        ]);
+
+        $changeCertTest = [];
+
+        $changeCertTest += [
+            'questions'=> $validateQuestions['questions'],
+            'jawaban_a'=>$validateQuestions['jawaban_a'],
+            'jawaban_b'=>$validateQuestions['jawaban_b'],
+            'jawaban_c'=>$validateQuestions['jawaban_c'],
+            'jawaban_d'=>$validateQuestions['jawaban_d'],
+            'jawaban_benar'=>$validateQuestions['jawaban_benar'],
+        ];
+        CertifQuestions::where('id', $request->certif_test_id)->update($changeCertTest);
+        return Redirect::to("/manager/certification/edit/test/{$request->certification_id}");
+        // return redirect('/manager/course')->with('success', 'Course deleted successfully.');
+    }
+
+    public function deleteCertifQuestion(Request $request){
+        $certif_test_questions = CertifQuestions::find($request->certif_test_id);
+        if (!$certif_test_questions) {
+            return redirect()->back()->with('error', 'Assignment not found.');
+        }
+
+        $certif_test_questions->delete();
+        // dd($assignment_questions);
+        return Redirect::to("/manager/certification/edit/test/{$request->certification_id}");
     }
 }

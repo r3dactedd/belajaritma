@@ -187,9 +187,13 @@ Route::post('/manager/certification/create', [ManageCertificationController::cla
 Route::get('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPage']);
 Route::post('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPOST']);
 
-// Route::get('/manager/certification/editTest', function () {
-//     return view('administrator.admin_certifications.admin_certification_test');
-// });
+Route::get('/manager/certification/edit/test/{id}', [ManageCertificationController::class, 'editCertifTestPage']);
+Route::post('/manager/certification/edit/test/{id}/set/score', [ManageCertificationController::class, 'setScore']);
+Route::post('/manager/certification/edit/test/{id}/create/questions',[ManageCertificationController::class, 'createCertifQuestions']);
+Route::post('/manager/certification/edit/test/{id}/edit/question', [ManageCertificationController::class, 'editCertifQuestions']);
+Route::delete('/manager/certification/edit/test/{id}/delete/question', [ManageCertificationController::class, 'deleteCertifQuestion']);
+
+
 Route::get('/manager/forum', [ForumController::class, 'manageForumList']);
 
 Route::get('/transaction/{id}', [CertificationController::class, 'registerCertification']);

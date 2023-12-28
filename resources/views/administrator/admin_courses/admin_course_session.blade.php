@@ -260,8 +260,8 @@
                                                             <td class="px-6 py-4">
                                                                 <div class="item-center flex justify-center">
                                                                     <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
-                                                                        data-modal-target="modal-edit"
-                                                                        data-modal-toggle="modal-edit"
+                                                                        data-modal-target="modal-edit-{{ $assignment->id }}"
+                                                                        data-modal-toggle="modal-edit-{{ $assignment->id }}"
                                                                         data-assignment-id="{{ $assignment->id }}">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             fill="none" viewBox="0 0 24 24"
@@ -272,8 +272,8 @@
                                                                         </svg>
                                                                     </div>
                                                                     <div class="mr-2 w-4 transform hover:scale-110 hover:text-red-500"
-                                                                        data-modal-target="popup-delete"
-                                                                        data-modal-toggle="popup-delete"
+                                                                        data-modal-target="popup-delete-{{ $assignment->id }}"
+                                                                        data-modal-toggle="popup-delete-{{ $assignment->id }}"
                                                                         data-assignment-id="{{ $assignment->id }}">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             fill="none" viewBox="0 0 24 24"
@@ -421,138 +421,180 @@
                     </div>
                 </div>
             </div>
-            @if (!$assignment_questions->isEmpty())
-                <div id="modal-edit" tabindex="-1" aria-hidden="true"
-                    class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-                    <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
-                        <div class="overflow-y-auto px-2 py-2 text-left md:px-6">
-                            <div class="container mx-auto my-5 p-5">
-                                {{-- EDIT PROFILE --}}
-                                <div class="flex justify-end">
-                                    <button type="button"
-                                        class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                                        data-modal-hide="modal-edit">
-                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="mx-auto rounded-xl bg-white px-2 py-2">
-                                    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit Pertanyaan
-                                    </h2>
-                                    <form method="POST" action="/manager/edit/assignments/{{ $assignment->id }}"
-                                        data-assignment-id="{{ $assignment->id }}" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
-                                            {{-- Input Area --}}
-                                            <div class="sm:col-span-2">
-                                                <label for="username"
-                                                    class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                                    Input Pertanyaan</label>
-                                                <textarea id="myInfo" name="questions" id="inputQuestions"
-                                                    class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
-                                            </div>
 
-                                            <div class="sm:col-span-2">
-                                                <label for="username"
-                                                    class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                                    Pilihan Jawaban</label>
-                                                <input type="text" name="jawaban_a" id="inputJawabanA"
-                                                    class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Jawaban A" required="">
-                                                <input type="text" name="jawaban_b" id="inputJawabanB"
-                                                    class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Jawaban B" required="">
-                                                <input type="text" name="jawaban_c" id="inputJawabanC"
-                                                    class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Jawaban C" required="">
-                                                <input type="text" name="jawaban_d" id="inputJawabanD"
-                                                    class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Jawaban D" required="">
+            @foreach ($assignment_questions as $assignment)
+                @if (!$assignment_questions->isEmpty())
+                    <div id="modal-edit-{{ $assignment->id }}" tabindex="-1" aria-hidden="true"
+                        class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+                        <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
+                            <div class="overflow-y-auto px-2 py-2 text-left md:px-6">
+                                <div class="container mx-auto my-5 p-5">
+                                    {{-- EDIT PROFILE --}}
+                                    <div class="flex justify-end">
+                                        <button type="button"
+                                            class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                                            data-modal-hide="modal-edit-{{ $assignment->id }}">
+                                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="mx-auto rounded-xl bg-white px-2 py-2">
+                                        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+                                            Edit Pertanyaan
+                                        </h2>
+                                        <form method="POST" action="/manager/edit/assignments/{{ $assignment->id }}"
+                                            data-assignment-id="{{ $assignment->id }}" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
+                                                {{-- Input Area --}}
+                                                <div class="sm:col-span-2">
+                                                    <label for="username"
+                                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                        Input Pertanyaan</label>
+                                                    <textarea id="myInfo" name="questions" id="inputQuestions"
+                                                        class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
+                                                </div>
+                                                <input type="hidden" name="assignment_id"
+                                                    value="{{ $assignment->id }}">
+                                                <input type="hidden" name="material_id"
+                                                    value="{{ $assignment->material_id }}">
+                                                <div class="sm:col-span-2">
+                                                    <label for="username"
+                                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                        Pilihan Jawaban</label>
+                                                    <input type="text" name="jawaban_a" id="inputJawabanA"
+                                                        class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Jawaban A" required="">
+                                                    <input type="text" name="jawaban_b" id="inputJawabanB"
+                                                        class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Jawaban B" required="">
+                                                    <input type="text" name="jawaban_c" id="inputJawabanC"
+                                                        class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Jawaban C" required="">
+                                                    <input type="text" name="jawaban_d" id="inputJawabanD"
+                                                        class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Jawaban D" required="">
+                                                </div>
+                                                <div class="sm:col-span-1">
+                                                    <label for="username"
+                                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                        Pilihan Jawaban
+                                                        Tepat</label>
+                                                    <select name="jawaban_benar" id="inputJawabanBenar"
+                                                        class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
+                                                        <option value="">
+                                                            Pilih Jawaban Yang Tepat
+                                                            untuk Pertanyaan
+                                                        </option>
+                                                        <option value="A">A
+                                                        </option>
+                                                        <option value="B">B
+                                                        </option>
+                                                        <option value="C">C
+                                                        </option>
+                                                        <option value="D">D
+                                                        </option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="sm:col-span-1">
-                                                <label for="username"
-                                                    class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                                    Pilihan Jawaban Tepat</label>
-                                                <select name="jawaban_benar" id="inputJawabanBenar"
-                                                    class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                                                    <option value="">Pilih Jawaban Yang Tepat untuk Pertanyaan
-                                                    </option>
-                                                    <option value="A">A</option>
-                                                    <option value="B">B</option>
-                                                    <option value="C">C</option>
-                                                    <option value="D">D</option>
-                                                </select>
+                                            <div class="flex justify-end pt-2">
+                                                <button type="submit"
+                                                    class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                                    Pertanyaan
+                                                </button>
                                             </div>
-                                        </div>
-                                        <div class="flex justify-end pt-2">
-                                            <button type="submit"
-                                                class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
-                                                Pertanyaan
-                                            </button>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endif
-
+                @endif
+            @endforeach
 
             {{-- Delete Popup --}}
-            @if (!$assignment_questions->isEmpty())
-                <div id="popup-delete" tabindex="-1"
-                    class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-                    <div class="relative max-h-full w-full max-w-md">
-                        <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
-                            <button type="button"
-                                class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="popup-delete">
-                                <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                </svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                            <div class="p-6 text-center">
-                                <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin
-                                    ingin
-                                    menghapus pertanyaan tersebut?
-                                </h3>
-                                <div class="flex justify-center text-center">
-                                    <form method="POST" action="/manager/delete/assignments/{{ $assignment->id }}"
-                                        data-assignment-id="{{ $assignment->id }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button data-modal-hide="popup-delete" type="submit"
-                                            class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
-                                            Ya, hapus
-                                        </button>
-                                    </form>
-                                    <button data-modal-hide="popup-delete" type="button"
-                                        class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Tidak,
-                                        batalkan</button>
+            @foreach ($assignment_questions as $assignment)
+                @if (!$assignment_questions->isEmpty())
+                    <div id="popup-delete-{{ $assignment->id }}" tabindex="-1"
+                        class="fixed left-0 right-0 top-0 z-50 hidden h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+                        <div class="flex items-center justify-center min-h-screen">
+                            <div class="relative rounded-lg bg-white shadow dark:bg-gray-700 w-full max-w-md">
+                                <button type="button"
+                                    class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    data-modal-hide="popup-delete-{{ $assignment->id }}">
+                                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                                <div class="p-6 text-center">
+                                    <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin
+                                        ingin
+                                        menghapus pertanyaan tersebut?
+                                    </h3>
+                                    <div class="flex justify-center text-center">
+                                        <form method="POST" action="/manager/delete/assignments/{{ $assignment->id }}"
+                                            data-assignment-id="{{ $assignment->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="assignment_id" value="{{ $assignment->id }}">
+                                            <button data-modal-hide="popup-delete" type="submit"
+                                                class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                                Ya, hapus
+                                            </button>
+                                        </form>
+                                        <button data-modal-hide="popup-delete" type="button"
+                                            class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Tidak,
+                                            batalkan</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endif
-
+                @endif
+            @endforeach
             {{-- Delete Popup --}}
     </body>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalButtons = document.querySelectorAll('[data-modal-toggle="modal-edit"]');
+
+            modalButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var modalId = button.getAttribute('data-modal-target');
+
+                    var modal = document.getElementById(modalId);
+
+                    modal.classList.toggle('hidden');
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalButtons = document.querySelectorAll('[data-modal-toggle="popup-delete"]');
+
+            modalButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var modalId = button.getAttribute('data-modal-target');
+
+                    var modal = document.getElementById(modalId);
+
+                    modal.classList.toggle('hidden');
+                });
+            });
+        });
         // Get references to the file input and preview container
         const pdfInput = document.getElementById('pdfInput');
         const pdfPreviewContainer = document.getElementById('pdfPreviewContainer');
