@@ -17,7 +17,9 @@
 
 <body class="mb-12 bg-gray-100">
     @yield('header')
-    @yield('content')
+    <div class="pt-16">
+        @yield('content') <!-- Your page content -->
+    </div>
     @yield('footer')
     {{-- Flowbite for Modal popup --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>

@@ -52,7 +52,7 @@
                             </a>
 
                     </div>
-                    <div class="mt-6 md:mt-0">
+                    {{-- <div class="mt-6 md:mt-0">
                         <button type="submit"
                             class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
@@ -64,7 +64,7 @@
                             </svg>
                             <div class="mx-2"> Finalize Kursus </div>
                         </button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
@@ -120,8 +120,8 @@
                         <!-- Profile Card -->
                         <div class="h-full p-2 md:py-4 md:pl-8">
                             <div class="mx-auto w-full">
-                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
-                                    src="/storage/image/placeholder.webp" alt="Image Preview" />
+                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0" src="/placeholder.webp"
+                                    alt="Image Preview" />
                             </div>
                             <div class="max-w-md">
                                 <label
@@ -229,13 +229,21 @@
                     </div>
 
 
+
+
+                </div>
+                <h1 class="my-8 text-center text-xl font-semibold">
                     <button type="submit"
                         class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses Materi
                         Kursus
                     </button>
-
-                </div>
+                </h1>
         </form>
+        {{-- <button type="submit" class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses
+            Materi
+            Kursus
+        </button> --}}
+
         {{-- <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var courseNameInput = document.getElementById('inputCourseName');
