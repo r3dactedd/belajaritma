@@ -138,8 +138,18 @@ class ManageCertificationController extends Controller
         $createCertifQuestions->jawaban_d = $request->jawaban_d;
         $createCertifQuestions->jawaban_benar = $request->jawaban_benar;
         $createCertifQuestions->certification_id = $id;
-
+        $filename = '';
+        if ($request->hasFile('question_img')) {
+            $filename = Str::orderedUuid() . '.' . $request->file('question_img')->getClientOriginalExtension();
+            $request->file('question_img')->storeAs('certif_question_img', $filename, 'certif_question_img');
+            $createCertifQuestions->question_img =  $filename;
+        }
         // dd($createAssignment);
+        $addTotalQuestions = [];
+        $addTotalQuestions = [
+            'total_questions' => \DB::raw('total_questions + 1'),
+        ];
+        Certification::where('id', $createCertifQuestions->certification_id)->update($addTotalQuestions);
 
         $createCertifQuestions->save();
         return Redirect::to("/manager/certification/edit/test/{$id}");
@@ -154,10 +164,20 @@ class ManageCertificationController extends Controller
             'jawaban_c'=>'required|string',
             'jawaban_d'=>'required|string',
             'jawaban_benar'=>'required|string',
+            'question_img'=>'image|file',
         ]);
 
         $changeCertTest = [];
+        $filename = '';
+        if ($request->hasFile('question_img')) {
+            $filename = Str::orderedUuid() . '.' . $request->file('question_img')->getClientOriginalExtension();
+            $request->file('question_img')->storeAs('certif_question_img', $filename, 'certif_question_img');
+            $changeCertTest['question_img'] = $filename;
+        }
 
+        if (array_key_exists('question_img', $validateQuestions)) {
+            unset($validateQuestions['question_img']);
+        }
         $changeCertTest += [
             'questions'=> $validateQuestions['questions'],
             'jawaban_a'=>$validateQuestions['jawaban_a'],
@@ -176,6 +196,11 @@ class ManageCertificationController extends Controller
         if (!$certif_test_questions) {
             return redirect()->back()->with('error', 'Assignment not found.');
         }
+        $decreaseTotalQuestions = [];
+        $decreaseTotalQuestions = [
+            'total_questions' => \DB::raw('total_questions - 1'),
+        ];
+        Certification::where('id', $request->certification_id)->update($decreaseTotalQuestions);
 
         $certif_test_questions->delete();
         // dd($assignment_questions);

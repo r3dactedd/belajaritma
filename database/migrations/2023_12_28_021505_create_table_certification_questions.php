@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('certification_questions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('certification_id');
+            $table->string('question_img')->nullable();
             $table->string('questions');
             $table->string('jawaban_a');
             $table->string('jawaban_b');

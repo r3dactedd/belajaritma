@@ -19,11 +19,12 @@ class Course extends Model
         'screen_resolution',
         'minimum_ram',
         'processor',
+        'total_time',
+        'total_module',
         'operating_system',
         'other_programs',
         'created_by',
         'updated_by',
-        'total_module',
         'students_enrolled',
     ];
 

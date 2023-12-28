@@ -12,6 +12,7 @@ class FinalTestQuestions extends Model
     protected $guarded='id';
     protected $fillable = [
         'material_id',
+        'question_img',
         'questions',
         'jawaban_a',
         'jawaban_b',

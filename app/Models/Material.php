@@ -19,6 +19,7 @@ class Material extends Model
         'description',
         'detailed_description',
         'minimum_score',
+        'total_questions',
         'material_duration',
         'pdf_link',
         'video_link',
@@ -33,5 +34,8 @@ class Material extends Model
     }
     public function materialToAssignmentQuestion() {
         return $this->hasMany(AssignmentQuestions::class);
+    }
+    public function materialToFinalQuestions() {
+        return $this->hasMany(FinalTestQuestions::class);
     }
 }
