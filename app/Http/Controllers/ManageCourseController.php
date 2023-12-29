@@ -46,9 +46,12 @@ class ManageCourseController extends Controller
 
         $filename = '';
         if ($request->hasFile('course_img')) {
-            // Proses upload file dan simpan ke storage atau folder yang diinginkan
             $filename = Str::orderedUuid() . '.' . $request->file('course_img')->getClientOriginalExtension();
             $request->file('course_img')->storeAs('course_images', $filename, 'course_images');
+        }
+
+        else{
+            $filename = 'placeholder.webp';
         }
 
         $course = new Course();

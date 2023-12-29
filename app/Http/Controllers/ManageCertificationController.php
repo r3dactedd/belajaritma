@@ -40,8 +40,16 @@ class ManageCertificationController extends Controller
             'certif_cost'=> 'required|integer|min:0',
             'certif_outline' => 'required|string',
         ]);
-        $filename = Str::orderedUuid() . "." . $request->file('certif_img')->getClientOriginalExtension();
-        $request->certif_img->storeAs('certif_images', $filename, 'certif_images');
+
+        $filename = '';
+        if ($request->hasFile('certif_img')) {
+            $filename = Str::orderedUuid() . '.' . $request->file('certif_img')->getClientOriginalExtension();
+            $request->file('certif_img')->storeAs('certif_images', $filename, 'certif_images');
+        }
+
+        else{
+            $filename = 'placeholder.webp';
+        }
 
         $certif = new Certification();
         $certif->certif_title = $request->certif_title;
@@ -57,7 +65,7 @@ class ManageCertificationController extends Controller
 
         $certif->save();
         // dd($certif);
-        return redirect('/manager/certification')->with('success', 'Certification creation successfull!');
+        return Redirect::to("/manager/certification/edit/test/{$certif->id}");
     }
 
     public function editCertifPage($id){

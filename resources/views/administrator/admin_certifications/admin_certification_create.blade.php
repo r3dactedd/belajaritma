@@ -51,19 +51,7 @@
                             </a>
 
                     </div>
-                    <div class="mt-6 md:mt-0">
-                        <button type="submit"
-                            class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
-                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <line x1="12" y1="5" x2="12" y2="19" />
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                            </svg>
-                            <div class="mx-2"> Finalize Sertifikasi </div>
-                        </button>
-                    </div>
+
                 </div>
             </div>
             <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
@@ -163,31 +151,13 @@
                     </div>
                 </div>
                 <div class="my-4"></div>
-
+                <h1 class="my-8 text-center text-xl font-semibold">
+                    <button type="submit"
+                        class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses Tes
+                        Sertifikasi
+                    </button>
+                </h1>
                 <div id="syllabus"class="my-4"></div>
-                <div class="relative overflow-x-auto">
-                    <table
-                        class="text-md mx-auto w-full text-left font-semibold text-gray-500 shadow-md sm:rounded-lg md:w-10/12">
-                        <tbody>
-                            <tr
-                                class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
-                                <td class="px-6 py-3 text-center font-semibold" colspan="4">
-                                    <a class="block" href="/manager/certification/edit/test">
-                                        <p class="inline-flex items-center align-middle" data-modal-target="defaultModal"
-                                            data-modal-toggle="defaultModal">
-                                            <svg class="mr-4 fill-black hover:fill-white"
-                                                xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512">
-                                                <path
-                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0-13.3-10.7 24-24 24s-24-10.7-24-24z" />
-                                            </svg>
-                                            Akses Tes Sertifikasi
-                                        </p>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </form>
     </body>
