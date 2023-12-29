@@ -153,7 +153,7 @@
                     <div
                         class="ml-2 flex w-12 cursor-pointer rounded border-2 border-transparent text-sm transition duration-150 ease-in-out focus:border-white focus:outline-none">
                         <img class="h-10 w-10 rounded object-cover"
-                            src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : 'profile_img/placeholder.webp' }}"
+                            src={{ asset('uploads/profile_images/' . Auth::user()->profile_img) }}
                             alt="{{ Auth::user()->username }}'s Profile Picture" />
                     </div>
                     <p class="ml-2 cursor-pointer text-base leading-6">{{ auth()->user()->username }}</p>
