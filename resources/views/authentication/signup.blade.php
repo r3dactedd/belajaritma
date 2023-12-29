@@ -19,7 +19,6 @@
         @section('title', 'Homepage')
         @extends('layout.layout')
 
-        @section('content')
             <div class="mx-auto flex h-full flex-col justify-center lg:flex-row">
                 <div class="mt-12 flex w-full justify-center bg-white lg:w-1/2">
                     <div class="mx-4 mb-12 flex flex-col justify-center text-gray-800 sm:mb-0 md:w-1/2">
@@ -136,7 +135,7 @@
 
 
     </body>
-@endsection
+
 
 @section('footer')
     @include('layout.footer')
