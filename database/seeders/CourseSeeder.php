@@ -26,7 +26,6 @@ class CourseSeeder extends Seeder
             'other_programs'=> 'VS Code',
             'total_module' => 11,
             'total_time' => 142,
-            'last_accessed_material' => 1,
             'created_by'=> 1,
             'updated_by'=> 1,
         ]);

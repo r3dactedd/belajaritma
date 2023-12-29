@@ -71,6 +71,10 @@ class User extends Authenticatable
         return $enrollment && $enrollment->ready_for_final;
     }
 
+    public function userCourseDetail() {
+        return $this->hasMany(userCourseDetail::class);
+    }
+
     public function isEnrolled($courseId)
     {
         return $this->enrollments->contains('course_id', $courseId);

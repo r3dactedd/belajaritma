@@ -7,6 +7,8 @@ use App\Models\Course;
 use App\Models\FinalTestQuestions;
 use App\Models\MasterType;
 use App\Models\Material;
+use App\Models\Sidebar;
+use App\Models\UserCourseDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
@@ -68,9 +70,16 @@ class ManageCourseController extends Controller
         $course->created_by = Auth()->user()->id;
         $course->updated_by = Auth()->user()->id;
 
+
         $course->save();
         $courseId = $course->id;
 
+        $userCourseDetail = new UserCourseDetail();
+        $userCourseDetail->user_id = Auth()->User()->id;
+        $userCourseDetail->course_id = $course->id;
+        $userCourseDetail->last_accessed_material = 0;
+
+        $userCourseDetail->save();
         // dd($course);
         // return response()->json(['courseId' => $course->id]);
         // return response()->json(['courseId' => $course->id]);
@@ -154,6 +163,23 @@ class ManageCourseController extends Controller
 
         $createMaterial->save();
         $material_id = $createMaterial->id;
+
+        $sidebarCount = Sidebar::where('course_id', $id)->count();
+
+        $newSidebar = new Sidebar();
+        $newSidebar->title = $createMaterial->title;
+        $newSidebar->course_id = $id;
+        $newSidebar->material_id = $material_id;
+        $newSidebar->is_locked = false;
+        $newSidebar->order = ($sidebarCount > 0) ? Sidebar::where('course_id', $id)->max('order') + 1 : 1;
+        $newSidebar->path = '';
+        $newSidebar->save();
+
+        $updateUserCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $id)->first();
+        if ($updateUserCourseDetail->last_accessed_material === 0) {
+            $updateUserCourseDetail->last_accessed_material = $material_id;
+            $updateUserCourseDetail->save();
+        }
 
         $addTimeAndModule= [];
         $addTimeAndModule = [

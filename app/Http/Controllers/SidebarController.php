@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\MasterType;
 use App\Models\Material;
 use App\Models\Sidebar;
+use App\Models\UserCourseDetail;
 use Illuminate\Http\Request;
 
 class SidebarController extends Controller
@@ -51,6 +53,24 @@ class SidebarController extends Controller
         $previousMaterial = $sidebars[$currentMaterialIndex - 1] ?? null;
         $nextMaterial = $sidebars[$currentMaterialIndex + 1] ?? null;
 
+        if ($previousMaterial || $nextMaterial) {
+            // Assuming you have a UserCourse model that represents the user's progress in a course
+            $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
+
+            if ($enrollment) {
+                $userCourse = UserCourseDetail::find($enrollment->course_id);
+
+                if ($userCourse) {
+                    $userCourse->last_accessed_material = $previousMaterial ? $previousMaterial->material_id : $nextMaterial->material_id;
+                    $userCourse->save();
+                    if ($nextMaterial && $nextMaterial->is_locked) {
+                        // Unlock the next material if it is currently locked
+                        $nextMaterial->is_locked = false;
+                        $nextMaterial->save();
+                    }
+                }
+            }
+        }
         // Load the corresponding material view based on the material type
         $material = Material::findOrFail($material_id);
 

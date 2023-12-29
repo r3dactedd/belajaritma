@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RegistrationCertificationSeeder::class);
         $this->call(AssignmentQuestionsSeeder::class);
         $this->call(FinalTestQuestionsSeeder::class);
+        $this->call(UserCourseDetailSeeder::class);
     }
 }

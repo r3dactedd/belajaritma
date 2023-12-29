@@ -34,7 +34,7 @@ Route::get('/home', [ProfileController::class, 'homePage']);
 //USER-RELATED ROUTE
 Route::get('/login', [LoginController::class, 'index'])
     ->name('login')
-    ->middleware('guest');
+    ->middleware('web','guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/signup', function () {
     return view('authentication.signup');
