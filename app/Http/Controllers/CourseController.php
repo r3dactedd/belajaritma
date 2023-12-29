@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\ModuleContent;
 use App\Models\Material;
+use App\Models\UserCourseDetail;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -31,11 +32,12 @@ class CourseController extends Controller
         $data=Course::find($id);
         $material = Material::where('course_id', $id)->get();
         $contentArray = [];
+        $userCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $id)->first();
 
         foreach ($material as $materials) {
             $contentArray[$materials->id] = ModuleContent::where('material_id', $materials->id)->get();
         }
-        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray]);
+        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray, 'userCourseDetail'=> $userCourseDetail]);
         // dd($contentArray);
     }
 

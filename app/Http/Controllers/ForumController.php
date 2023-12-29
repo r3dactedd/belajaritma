@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Course;
 use App\Models\Material;
 use App\Models\NestedReply;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
@@ -89,6 +90,10 @@ class ForumController extends Controller
 
     public function createForum(Request $request)
     {
+        if (!Auth::check()) {
+            // Jika pengguna belum masuk, redirect ke halaman login dengan pesan peringatan
+            return redirect()->route('login')->with('warning', 'Anda perlu masuk terlebih dahulu untuk membuat forum.');
+        }
         Log::info('Request Data:', $request->all());
 
         $request->validate([
@@ -137,6 +142,10 @@ class ForumController extends Controller
     }
 
     public function createReply(Request $request){
+        if (!Auth::check()) {
+            // Jika pengguna belum masuk, redirect ke halaman login dengan pesan peringatan
+            return redirect()->route('login')->with('warning', 'Anda perlu masuk terlebih dahulu untuk bisa melakukan reply forum.');
+        }
         Log::info('Request Data:', $request->all());
         $request->validate([
             'forum_message' => 'required|string|max:255',

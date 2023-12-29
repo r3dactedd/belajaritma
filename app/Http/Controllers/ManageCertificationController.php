@@ -28,6 +28,10 @@ class ManageCertificationController extends Controller
     }
 
     public function createCertification(Request $request){
+        if (!Auth::check()) {
+            // Jika pengguna belum masuk, redirect ke halaman login dengan pesan peringatan
+            return redirect()->route('login')->with('warning', 'Anda perlu masuk terlebih dahulu untuk mendaftar sertifikasi.');
+        }
         $request->validate([
             'certif_title' => 'required|string',
             'certif_short_desc' => 'required|string',

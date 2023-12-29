@@ -26,7 +26,6 @@ return new class extends Migration
             $table->unsignedBigInteger('total_module')->default(0);
             $table->unsignedBigInteger('total_time')->default(0);
             $table->unsignedBigInteger('students_enrolled')->default(0);
-            $table->integer('last_accessed_material')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
             $table->timestamps();
