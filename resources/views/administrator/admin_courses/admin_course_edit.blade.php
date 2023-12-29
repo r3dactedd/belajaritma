@@ -226,6 +226,9 @@
                                 <td class="px-6 py-4">
                                     {{ $materialItem->materialContentToMasterType->master_type_name }}
                                 </td>
+                                <td>
+                                    <p hidden id="data-material-id">{{$materialItem->id}}</p>
+                                </td>
 
                                 <td class="px-6 py-4">
                                     <div class="item-center flex justify-start">
