@@ -84,7 +84,7 @@
                                     </li>
                                 </ul>
                                 <img class="h-10 w-10 rounded-full object-cover"
-                                    src={{ asset('/profile_img/' . Auth::user()->profile_img) }} alt="" />
+                                    src={{ asset('uploads/profile_images/' . Auth::user()->profile_img) }} alt="" />
                                 <p class="text-md ml-2 font-semibold text-gray-800">{{ auth()->user()->username }}</p> <svg
                                     class="ml-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
 

@@ -25,9 +25,10 @@ use App\Http\Controllers\SidebarController;
 |
 */
 
-Route::get('/', function () {
-    return view('guest');
-});
+// Route::get('/', function () {
+//     return view('guest');
+// });
+Route::redirect('/', '/home');
 Route::get('/home', [ProfileController::class, 'homePage']);
 
 //USER-RELATED ROUTE
