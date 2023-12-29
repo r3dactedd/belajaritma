@@ -68,7 +68,7 @@ class User extends Authenticatable
     public function isReadyForFinal($courseId)
     {
         $enrollment = $this->enrollments->where('course_id', $courseId)->first();
-        return $enrollment && $enrollment->completed && $enrollment->ready_for_final;
+        return $enrollment && $enrollment->ready_for_final;
     }
 
     public function isEnrolled($courseId)
@@ -80,7 +80,22 @@ class User extends Authenticatable
     {
         $enrollment = $this->enrollments->where('course_id', $courseId)->first();
 
-        return $enrollment && $enrollment->completed;
+        return $enrollment && $enrollment->ready_for_final && $enrollment->completed;
+    }
+
+    public function updateTimestampForCourse($courseId)
+    {
+        $enrollment = $this->enrollments()->where('course_id', $courseId)->first();
+
+        if ($enrollment) {
+            $course = $enrollment->course;
+
+            if ($course) {
+                return $course->updated_at->format('Y-m-d');
+            }
+        }
+
+        return null; // Course not found or not enrolled
     }
 
 
