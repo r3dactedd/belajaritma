@@ -103,13 +103,13 @@ Route::get('/courses/3/asg/results', function () {
     return view('contents.assignment_results');
 });
 
-Route::get('/profile/name', [ProfileController::class, 'viewProfile']);
-Route::get('/profile/name/edit', [ProfileController::class, 'editProfile']);
-Route::post('/profile/name/edit', [ProfileController::class, 'update']);
+Route::get('/profile', [ProfileController::class, 'viewProfile']);
+Route::get('/profile/edit', [ProfileController::class, 'editProfile']);
+Route::post('/profile/edit', [ProfileController::class, 'update']);
 Route::post('/editProfile', [ProfileController::class, 'update']);
 Route::post('/editProfile/password', [ProfileController::class, 'changePassword']);
 
-// Route::get('/profile/name/edit', function () {
+// Route::get('/profile/edit', function () {
 //     return view('profile.profile_edit');
 // });
 
@@ -152,8 +152,7 @@ Route::get('/manager/course/create', function () {
 //     return view('administrator.admin_courses.admin_course_list');
 // });
 
-Route::get('/manager/course/materiallist/{courseId}', [ManageCourseController::class, 'showMaterialList'])
-    ->name('manager.course.materiallist');
+Route::get('/manager/course/materiallist/{courseId}', [ManageCourseController::class, 'showMaterialList'])->name('manager.course.materiallist');
 Route::post('/manager/course/materiallist/{courseId}', [ManageCourseController::class, 'createMaterial']);
 
 Route::post('/manager/course/create', [ManageCourseController::class, 'createCourse']);
@@ -166,18 +165,18 @@ Route::post('/manager/course/edit/{id}', [ManageCourseController::class, 'editCo
 //     return view('administrator.admin_courses.admin_course_session');
 // });
 
-Route::get('/manager/course/session/{id}/edit',[ManageCourseController::class, 'editMaterialGET']);
-Route::post('/manager/course/session/{id}/edit',[ManageCourseController::class, 'editMaterialPOST']);
-Route::post('/manager/course/session/{id}/edit/detail',[ManageCourseController::class, 'editMaterialDetail']);
-Route::post('/manager/course/session/{id}/edit/detail/create/assignments',[ManageCourseController::class, 'createAssignmentQuestions']);
-Route::delete('/manager/delete/assignments/{id}',[ManageCourseController::class, 'deleteQuestion']);
-Route::post('/manager/edit/assignments/{id}',[ManageCourseController::class, 'editAssignmentQuestions']);
+Route::get('/manager/course/session/{id}/edit', [ManageCourseController::class, 'editMaterialGET']);
+Route::post('/manager/course/session/{id}/edit', [ManageCourseController::class, 'editMaterialPOST']);
+Route::post('/manager/course/session/{id}/edit/detail', [ManageCourseController::class, 'editMaterialDetail']);
+Route::post('/manager/course/session/{id}/edit/detail/create/assignments', [ManageCourseController::class, 'createAssignmentQuestions']);
+Route::delete('/manager/delete/assignments/{id}', [ManageCourseController::class, 'deleteQuestion']);
+Route::post('/manager/edit/assignments/{id}', [ManageCourseController::class, 'editAssignmentQuestions']);
 
-Route::post('/manager/course/session/{id}/edit/detail/create/final',[ManageCourseController::class, 'createFinalTestQuestions']);
-Route::post('/manager/edit/final/{id}',[ManageCourseController::class, 'editFinalTestQuestions']);
-Route::delete('/manager/delete/final/{id}',[ManageCourseController::class, 'deleteFinalTestQuestion']);
+Route::post('/manager/course/session/{id}/edit/detail/create/final', [ManageCourseController::class, 'createFinalTestQuestions']);
+Route::post('/manager/edit/final/{id}', [ManageCourseController::class, 'editFinalTestQuestions']);
+Route::delete('/manager/delete/final/{id}', [ManageCourseController::class, 'deleteFinalTestQuestion']);
 
-Route::delete('/manager/course/session/delete/{id}',[ManageCourseController::class, 'deleteMaterial']);
+Route::delete('/manager/course/session/delete/{id}', [ManageCourseController::class, 'deleteMaterial']);
 
 Route::get('/manager/certification', [ManageCertificationController::class, 'showCertificationData']);
 Route::get('/manager/transaction', [ManageTransactionController::class, 'showTransactionList']);
@@ -193,25 +192,24 @@ Route::post('/manager/certification/edit/{id}', [ManageCertificationController::
 
 Route::get('/manager/certification/edit/test/{id}', [ManageCertificationController::class, 'editCertifTestPage']);
 Route::post('/manager/certification/edit/test/{id}/set/score', [ManageCertificationController::class, 'setScore']);
-Route::post('/manager/certification/edit/test/{id}/create/questions',[ManageCertificationController::class, 'createCertifQuestions']);
+Route::post('/manager/certification/edit/test/{id}/create/questions', [ManageCertificationController::class, 'createCertifQuestions']);
 Route::post('/manager/certification/edit/test/{id}/edit/question', [ManageCertificationController::class, 'editCertifQuestions']);
 Route::delete('/manager/certification/edit/test/{id}/delete/question', [ManageCertificationController::class, 'deleteCertifQuestion']);
-
 
 Route::get('/manager/forum', [ForumController::class, 'manageForumList']);
 
 Route::get('/transaction/{id}', [CertificationController::class, 'registerCertification']);
 Route::post('/transaction/{id}', [CertificationController::class, 'createTransaction']);
 
-Route::get('/profile/name/dashboard', function () {
+Route::get('/profile/dashboard', function () {
     return view('profile.profile_dashboard');
 });
-Route::get('/profile/name/transaction', [ProfileController::class, 'showTransactionList']);
+Route::get('/profile/transaction', [ProfileController::class, 'showTransactionList']);
 
-Route::get('/profile/name/courses', function () {
+Route::get('/profile/courses', function () {
     return view('profile.profile_courselist');
 });
 
-Route::get('/profile/name/certifications', function () {
+Route::get('/profile/certifications', function () {
     return view('profile.profile_certilist');
 });

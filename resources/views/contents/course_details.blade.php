@@ -280,56 +280,7 @@
                     $index++;
                 @endphp
             @endforeach
-            {{-- <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
-                <div class="w-full px-4">
-                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                        <div class="flex items-center justify-between pt-4 lg:flex-col lg:items-start">
-                            <h4 class="text-md text-base font-semibold leading-4 tracking-normal text-indigo-600">
-                                Session 4
-                            </h4>
-                        </div>
 
-                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            Final Test
-                        </h2>
-                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                            Memuat test akhir untuk kursus Algoritma dan Pemrograman
-                        </p>
-                        <div
-                            class="grid grid-cols-2 items-start pb-6 pr-4 md:flex md:flex-col lg:flex-row lg:items-center">
-                            <div class="flex items-center">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                                    <path
-                                        d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
-                                </svg>
-                                <p class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">90 Menit
-                                </p>
-                            </div>
-                            <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
-                                    <path
-                                        d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
-                                </svg>
-                                <p class="ml-2 text-sm font-normal text-gray-600">
-                                    50 Pertanyaan
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex items-center">
-
-                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                    <a href="/transaction" id="convertButton"
-                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
-                                        Test</a>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> --}}
             <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
                 <div class="w-full px-4">
                     <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
@@ -343,7 +294,7 @@
                         <div class="flex items-center">
                             <div class="flex items-center">
 
-                                <p onclick="downloadimage()"
+                                <p onclick="downloadImage()"
                                     class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
                                     <a
                                         class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
@@ -407,7 +358,8 @@
             border: 15px solid #0072c6;
             border-right: 15px solid #0894fb;
             border-left: 15px solid #0894fb;
-            width: 700px;
+            width: 5.83in; /* Set width to 8.27 inches for A4 size */
+            height: 8.27in; /* Set height to 11.69 inches for A4 size */
             font-family: arial;
             color: #383737;
         }
@@ -415,7 +367,8 @@
         .crt_title {
             margin-top: 60px;
             font-size: 40px;
-            letter-spacing: 1px;
+            font-style: bold;
+            letter-spacing: 0.5px;
             color: #0060a9;
         }
 
@@ -436,7 +389,6 @@
             padding: 5px 25px;
             margin-bottom: 0px;
             padding-bottom: 0px;
-
             font-size: 40px;
             border-bottom: 1px dashed #cecece;
         }
@@ -466,27 +418,22 @@
     </style>
 
     <table id="certificate" class="cert hidden bg-white">
-
         <tr>
             <td align="center">
-                <h1 class="crt_title">Certificate Of Completion
-                    <h2 class="afterName my-6 font-semibold">Sertifikat ini Diberikan Kepada</h2>
-                    <h1 class="colorGreen crt_user">Insert Name Here</h1>
-                    <h3 class="afterName mt-8">Dalam Menyelesaikan Kursus</h3>
-                    <h2 class="afterName mt-4">Insert Course Name Here</h2>
-                    <h3 class="mb-12 mt-4">Pada Tanggal <span class="font-semibold"> {{ date('Y-m-d') }}</span></h3>
+                <h1 class="crt_title">Certificate Of Completion</h1>
+                <h2 class="afterName my-6 font-semibold">Sertifikat ini Diberikan Kepada</h2>
+                <h1 class="colorGreen crt_user">Insert Name Here</h1>
+                <h3 class="afterName mt-8">Dalam Menyelesaikan Kursus</h3>
+                <h2 class="afterName mt-4">Insert Course Name Here</h2>
+                <h3 class="mb-12 mt-4">Pada Tanggal <span class="font-semibold"> {{ date('Y-m-d') }}</span></h3>
+                <h1 class="mb-12 ml-4 text-2xl font-black text-gray-800">Belajaritma</h1>
             </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <img class="mb-16" src="/storage/image/logo.png" alt="logo">
 
-            </td>
         </tr>
     </table>
 
     <script>
-        function downloadimage() {
+        function downloadImage() {
             //var container = document.getElementById("image-wrap"); //specific element on page
             var container = document.getElementById("certificate");
             container.classList.remove("hidden") // full page

@@ -66,13 +66,13 @@
                                     <li
                                         class="mt-2 flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
                                         <div class="flex items-center">
-                                            <a href="/profile/name"class="ml-4 font-semibold">Profil Saya</a>
+                                            <a href="/profile"class="ml-4 font-semibold">Profil Saya</a>
                                         </div>
                                     </li>
                                     <li
                                         class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
 
-                                        <a href="/profile/name/edit" class="ml-4 font-semibold">Atur Profil</a>
+                                        <a href="/profile/edit" class="ml-4 font-semibold">Atur Profil</a>
                                     </li>
                                     <li
                                         class="my-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-red-600 focus:text-indigo-600 focus:outline-none">
@@ -148,7 +148,7 @@
         </li>
         @if (Auth::check())
             @auth
-                <a href="/profile/name" class="my-2 flex items-center">
+                <a href="/profile" class="my-2 flex items-center">
 
                     <div
                         class="ml-2 flex w-12 cursor-pointer rounded border-2 border-transparent text-sm transition duration-150 ease-in-out focus:border-white focus:outline-none">
@@ -172,7 +172,7 @@
                 <div class="flex w-full items-center">
                     <li
                         class="mx-auto flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
-                        <span class="my-1 px-2 font-bold"><a href="/profile/name/edit">Profil Saya</a></span>
+                        <span class="my-1 px-2 font-bold"><a href="/profile/edit">Profil Saya</a></span>
                     </li>
 
                 </div>
