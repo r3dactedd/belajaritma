@@ -115,7 +115,7 @@
                                                         </svg>
                                                         <p
                                                             class="ml-2 text-center text-sm font-normal tracking-normal text-gray-600">
-                                                            50 Pertanyaan
+                                                            {{ $data->total_questions }} Pertanyaan
                                                         </p>
                                                     </div>
                                                 </div>

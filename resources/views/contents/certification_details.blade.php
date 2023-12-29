@@ -125,7 +125,7 @@
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Jumlah Pertanyaan</div>
-                                        <div class="text-xs text-gray-500">50 Pilihan Ganda</div>
+                                        <div class="text-xs text-gray-500">{{ $data->total_questions }} Pilihan Ganda</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Biaya Sertifikasi</div>
