@@ -65,6 +65,12 @@ class User extends Authenticatable
         return $this->hasMany(Enrollment::class);
     }
 
+    public function isReadyForFinal($courseId)
+    {
+        $enrollment = $this->enrollments->where('course_id', $courseId)->first();
+        return $enrollment && $enrollment->completed && $enrollment->ready_for_final;
+    }
+
     public function isEnrolled($courseId)
     {
         return $this->enrollments->contains('course_id', $courseId);

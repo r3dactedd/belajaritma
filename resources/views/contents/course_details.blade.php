@@ -261,7 +261,9 @@
 
                             <div class="transition hover:bg-indigo-50">
                             </div>
-                            @if ($materialItem->materialContentToMasterType->master_type_name == 'Final Test')
+                            @if (
+                                $materialItem->materialContentToMasterType->master_type_name == 'Final Test' &&
+                                    auth()->user()->isReadyForFinal($data->id))
                                 <div class="flex items-center">
                                     <div class="flex items-center">
 
@@ -330,30 +332,34 @@
                     </div>
                 </div>
             </div> --}}
-            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
-                <div class="w-full px-4">
-                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            Sertifikasi Penyelesaian Kursus (MUNCULIN ABIS SELESAI FINAL TEST)
-                        </h2>
-                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                            Selamat! Anda telah menyelesaikan kursus ini. Silahkan mengunduh sertifikat anda.
-                        </p>
+            @if (auth()->user()->isReadyForFinal($data->id) &&
+                    auth()->user()->isCompleted($data->id))
+                <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                    <div class="w-full px-4">
+                        <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                            <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                                Sertifikasi Penyelesaian Kursus (MUNCULIN ABIS SELESAI FINAL TEST)
+                            </h2>
+                            <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                                Selamat! Anda telah menyelesaikan kursus ini. Silahkan mengunduh sertifikat anda.
+                            </p>
 
-                        <div class="flex items-center">
                             <div class="flex items-center">
+                                <div class="flex items-center">
 
-                                <p onclick="downloadimage()"
-                                    class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                    <a
-                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
-                                        Sertifikat</a>
-                                </p>
+                                    <p onclick="downloadimage()"
+                                        class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                        <a
+                                            class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
+                                            Sertifikat</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
+
             <div id="popup-enroll" tabindex="-1"
                 class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
                 <div class="relative max-h-full w-full max-w-md">
