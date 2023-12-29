@@ -84,7 +84,7 @@
                                     </li>
                                 </ul>
                                 <img class="h-10 w-10 rounded-full object-cover"
-                                    src={{ asset('/profile_img/' . Auth::user()->profile_img) }} alt="" />
+                                    src={{ asset('uploads/profile_images/' . Auth::user()->profile_img) }} alt="" />
                                 <p class="text-md ml-2 font-semibold text-gray-800">{{ auth()->user()->username }}</p> <svg
                                     class="ml-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
 
@@ -153,7 +153,7 @@
                     <div
                         class="ml-2 flex w-12 cursor-pointer rounded border-2 border-transparent text-sm transition duration-150 ease-in-out focus:border-white focus:outline-none">
                         <img class="h-10 w-10 rounded object-cover"
-                            src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : 'profile_img/placeholder.webp' }}"
+                            src={{ asset('uploads/profile_images/' . Auth::user()->profile_img) }}
                             alt="{{ Auth::user()->username }}'s Profile Picture" />
                     </div>
                     <p class="ml-2 cursor-pointer text-base leading-6">{{ auth()->user()->username }}</p>

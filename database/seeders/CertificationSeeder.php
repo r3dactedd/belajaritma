@@ -17,7 +17,6 @@ class CertificationSeeder extends Seeder
             'certif_title' => 'Algoritma dan Pemrograman',
             'certif_short_desc' => 'Deskripsi Pendek 1',
             'certif_desc' => 'Kursus ini akan mengarjakan dasar-dasar dari algoritma.',
-            'certif_img' => 'luca.png',
             'certif_duration'=>120,
             'certif_cost'=> 500000,
             'certif_outline' => 'Outline Algoritma dan Pemrograman',

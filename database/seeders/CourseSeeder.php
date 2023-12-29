@@ -27,7 +27,6 @@ class CourseSeeder extends Seeder
             'total_module' => 11,
             'total_time' => 142,
             'last_accessed_material' => 1,
-            'course_img' => 'luca.png',
             'created_by'=> 1,
             'updated_by'=> 1,
         ]);
