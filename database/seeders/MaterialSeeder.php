@@ -113,6 +113,8 @@ class MaterialSeeder extends Seeder
             'description' => 'Berikut adalah Final Test dari kursus Algoritma dan Pemograman',
             'material_duration' => 7,
             'minimum_score' => 70,
+            'total_questions'=> 15,
+
         ]);
 
 
