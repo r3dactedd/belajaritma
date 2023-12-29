@@ -74,7 +74,7 @@
                         <div class="h-full p-2 md:py-4 md:pl-8">
                             <div class="mx-auto w-full">
                                 <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
-                                    src="/storage/image/placeholder.webp" alt="Image Preview" />
+                                    src={{ asset('uploads/certif_images/' . $data->certif_img) }} alt="Image Preview" />
                             </div>
                             <div class="max-w-md">
                                 <label

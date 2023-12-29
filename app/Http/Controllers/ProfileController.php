@@ -29,30 +29,41 @@ class ProfileController extends Controller
         return view('profile.profile_edit', ['searchUser' => $searchUser]);
     }
 
-    public function homePage() {
+    public function homePage()
+    {
         $searchUser = null;
         $enrolledCourses = [];
 
         if (Auth::check()) {
             $searchUser = User::find(Auth::user()->id);
-            $enrolledCourses = $searchUser->enrollments()->with('course')
-            ->latest()
-            ->get();
+            $enrolledCourses = $searchUser
+                ->enrollments()
+                ->with('course')
+                ->latest()
+                ->get();
         }
 
         return view('home', ['searchUser' => $searchUser, 'enrolledCourses' => $enrolledCourses]);
     }
 
-    public function viewProfile() {
+    public function viewProfile()
+    {
         $searchUser = User::find(Auth::user()->id);
         $displayUser = User::all();
         $profileImageUrl = asset('uploads/profile_images/' . $searchUser->profile_img);
         $transactionHistory = Transaction::where('user_id', $searchUser->id)->get();
 
-        $enrolledCourses = $searchUser->enrollments()->with('course')->get()->pluck('course');
+        $enrolledCourses = $searchUser
+            ->enrollments()
+            ->with('course')
+            ->get()
+            ->pluck('course');
         $completedCourses = $searchUser->enrollments->where('completed', true);
 
-        $registeredCertification = $searchUser->registerCertifications()->with('certification')->get();
+        $registeredCertification = $searchUser
+            ->registerCertifications()
+            ->with('certification')
+            ->get();
         $passedCertification = $searchUser->registerCertifications->where('passed', true);
 
         return view('profile.profile', [
@@ -63,7 +74,7 @@ class ProfileController extends Controller
             'enrolledCourses' => $enrolledCourses,
             'completedCourses' => $completedCourses,
             'registeredCertification' => $registeredCertification,
-            'passedCertification'=> $passedCertification,
+            'passedCertification' => $passedCertification,
         ]);
     }
 
@@ -97,7 +108,7 @@ class ProfileController extends Controller
         ];
 
         User::where('id', Auth::user()->id)->update($changeProfile);
-        return redirect('/profile/name')->with('success', 'Data user sudah diupdate!');
+        return redirect('/profile')->with('success', 'Data user sudah diupdate!');
     }
 
     public function changePassword(Request $request)
@@ -112,12 +123,12 @@ class ProfileController extends Controller
 
         // Verify the old password
         if (!Hash::check($request->old_password, $user->password) || $request->confirm_password != $request->new_password) {
-            return redirect('/profile/name/edit')->with('error', 'Password change failed!');
+            return redirect('/profile/edit')->with('error', 'Password change failed!');
         }
 
         User::where('id', Auth::user()->id)->update([
             'password' => bcrypt($request->new_password),
         ]);
-        return redirect('/profile/name')->with('success', 'Password changed successfully!');
+        return redirect('/profile')->with('success', 'Password changed successfully!');
     }
 }

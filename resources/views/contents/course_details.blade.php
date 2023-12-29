@@ -261,7 +261,9 @@
 
                             <div class="transition hover:bg-indigo-50">
                             </div>
-                            @if ($materialItem->materialContentToMasterType->master_type_name == 'Final Test')
+                            @if (
+                                $materialItem->materialContentToMasterType->master_type_name == 'Final Test' &&
+                                    auth()->user()->isReadyForFinal($data->id))
                                 <div class="flex items-center">
                                     <div class="flex items-center">
 
@@ -339,9 +341,19 @@
                         <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
                             Selamat! Anda telah menyelesaikan kursus ini. Silahkan mengunduh sertifikat anda.
                         </p>
+            @if (auth()->user()->hasCompletedCourse($data->id))
+                <div class="container flex flex-col-reverse mx-auto mb-10 bg-white shadow rounded-xl md:w-3/5 lg:flex-row">
+                    <div class="w-full px-4">
+                        <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                            <h2 class="mt-4 mb-2 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                                Sertifikasi Penyelesaian Kursus (MUNCULIN ABIS SELESAI FINAL TEST)
+                            </h2>
+                            <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                                Selamat! Anda telah menyelesaikan kursus ini. Silahkan mengunduh sertifikat anda.
+                            </p>
 
-                        <div class="flex items-center">
                             <div class="flex items-center">
+                                <div class="flex items-center">
 
                                 <p onclick="downloadimage()"
                                     class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
@@ -374,7 +386,8 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
-                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin ingin
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin
+                                ingin
                                 mendaftar kelas ini?</h3>
                             <div class="flex justify-center text-center">
                                 <form method="POST" action="/courses/enroll/{{ $data->id }}"
@@ -407,7 +420,10 @@
             border: 15px solid #0072c6;
             border-right: 15px solid #0894fb;
             border-left: 15px solid #0894fb;
-            width: 700px;
+            width: 5.83in;
+            /* Set width to 8.27 inches for A4 size */
+            height: 8.27in;
+            /* Set height to 11.69 inches for A4 size */
             font-family: arial;
             color: #383737;
         }
@@ -415,7 +431,8 @@
         .crt_title {
             margin-top: 60px;
             font-size: 40px;
-            letter-spacing: 1px;
+            font-style: bold;
+            letter-spacing: 0.5px;
             color: #0060a9;
         }
 
@@ -436,7 +453,6 @@
             padding: 5px 25px;
             margin-bottom: 0px;
             padding-bottom: 0px;
-
             font-size: 40px;
             border-bottom: 1px dashed #cecece;
         }
@@ -476,17 +492,12 @@
                     <h2 class="mt-4 afterName">Insert Course Name Here</h2>
                     <h3 class="mt-4 mb-12">Pada Tanggal <span class="font-semibold"> {{ date('Y-m-d') }}</span></h3>
             </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <img class="mb-16" src="/storage/image/logo.png" alt="logo">
 
-            </td>
         </tr>
     </table>
 
     <script>
-        function downloadimage() {
+        function downloadImage() {
             //var container = document.getElementById("image-wrap"); //specific element on page
             var container = document.getElementById("certificate");
             container.classList.remove("hidden") // full page

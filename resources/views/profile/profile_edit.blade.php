@@ -92,7 +92,7 @@
                             <div class="mb-2 w-full md:w-3/12">
                                 <div class="h-fit w-auto">
                                     <img id="profile-preview" class="h-32 w-32 rounded-full object-cover"
-                                        src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : '/profile_img/placeholder.webp' }}">
+                                        src={{ asset('uploads/profile_images/' . Auth::user()->profile_img) }}>
                                 </div>
                             </div>
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
