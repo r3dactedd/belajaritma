@@ -41,11 +41,12 @@ class UserSeeder extends Seeder
 
         User::create([
             'role_id' => '2',
-            'full_name' => 'Ryan Gosling',
-            'about_me' => 'I am User 1',
-            'username' => 'literally_me123',
-            'email' => 'rgosling@gmail.com',
+            'full_name' => 'Default Tester',
+            'about_me' => 'I am the default test account.',
+            'username' => 'User Test Account',
+            'email' => 'dogesquad37@gmail.com',
             'password' => bcrypt('user123'),
+            'profile_img' => 'placeholder.webp',
         ]);
     }
 }
