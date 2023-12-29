@@ -46,7 +46,7 @@ class ProfileController extends Controller
     public function viewProfile() {
         $searchUser = User::find(Auth::user()->id);
         $displayUser = User::all();
-        $profileImageUrl = asset('/profile_img/' . $searchUser->profile_img);
+        $profileImageUrl = asset('uploads/profile_images/' . $searchUser->profile_img);
         $transactionHistory = Transaction::where('user_id', $searchUser->id)->get();
 
         $enrolledCourses = $searchUser->enrollments()->with('course')->get()->pluck('course');

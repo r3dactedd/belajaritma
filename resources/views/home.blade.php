@@ -111,7 +111,6 @@
                                 </div>
                             @endforeach
                         @else
-                            <p><strong>ERROR IN PROFILE RECOGNITION</strong></p>
                         @endif
 
                     </div>

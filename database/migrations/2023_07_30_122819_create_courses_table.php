@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('short_desc');
             $table->string('course_desc');
             $table->string('level');
-            $table->string('course_img');
+            $table->string('course_img')->default('placeholder.webp');;
             $table->string('screen_resolution');
             $table->string('minimum_ram');
             $table->string('processor');

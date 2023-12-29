@@ -19,7 +19,6 @@ class UserSeeder extends Seeder
             'username' => 'admin1',
             'email' => 'suma@gmail.com',
             'password' => bcrypt('admin123'),
-            'profile_img' => '',
         ]);
 
         User::create([
@@ -29,7 +28,6 @@ class UserSeeder extends Seeder
             'username' => 'admin2',
             'email' => 'vito@gmail.com',
             'password' => bcrypt('admin123'),
-            'profile_img' => 'test_img1.png',
         ]);
 
         User::create([
@@ -39,7 +37,6 @@ class UserSeeder extends Seeder
             'username' => 'admin3',
             'email' => 'azzel@gmail.com',
             'password' => bcrypt('admin123'),
-            'profile_img' => '',
         ]);
 
         User::create([
@@ -49,7 +46,6 @@ class UserSeeder extends Seeder
             'username' => 'literally_me123',
             'email' => 'rgosling@gmail.com',
             'password' => bcrypt('user123'),
-            'profile_img' => '',
         ]);
     }
 }
