@@ -28,22 +28,29 @@
                 <span class="ml-4 text-2xl text-gray-800">Belajaritma</span>
             </a>
             <ul class="hidden h-full items-center lg:flex">
-                <li class="text-md flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                <li class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a href="/home" id="home-link"class="hover:text-indigo-600 hover:underline">Home</a>
                 </li>
-                <li
-                    class="text-md mx-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/courses" id="courses-link" class="hover:text-indigo-600 hover:underline">Kursus</a>
-                </li>
-                <li
-                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/certifications" id="certifications-link"
-                        class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
-                </li>
-                <li
-                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/forum" id="forums-link"class="hover:text-indigo-600 hover:underline">Forum</a>
-                </li>
+                @if (Auth::check())
+                    @if (Auth::user()->role_id != '1' )
+                        <li
+                            class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                            <a href="/courses" id="courses-link"
+                                class="hover:text-indigo-600 hover:underline">Kursus</a>
+                        </li>
+                        <li
+                            class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                            <a href="/certifications" id="certifications-link"
+                                class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
+                        </li>
+                    @endif
+                @endif
+                @if (Auth::check())
+                    <li
+                        class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                        <a href="/forum" id="forums-link"class="hover:text-indigo-600 hover:underline">Forum</a>
+                    </li>
+                @endif
                 @if (Auth::check())
                     @if (Auth::user()->role_id == '1')
                         <li
