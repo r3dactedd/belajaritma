@@ -49,9 +49,24 @@ class ProfileController extends Controller
     public function viewProfile()
     {
         $searchUser = User::find(Auth::user()->id);
+        $wholeCourses = $searchUser
+                ->enrollments()
+                ->with('course')
+                ->latest()
+                ->get();
+
+        $totalDuration = $searchUser
+                ->enrollments()
+                ->with('course')
+                ->latest()
+                ->sum('total_duration_count');
+        $totalMaterialComplete = $searchUser
+                ->materialComplete()
+                ->get();
         $displayUser = User::all();
         $profileImageUrl = asset('uploads/profile_images/' . $searchUser->profile_img);
         $transactionHistory = Transaction::where('user_id', $searchUser->id)->get();
+
 
         $enrolledCourses = $searchUser
             ->enrollments()
@@ -75,6 +90,9 @@ class ProfileController extends Controller
             'completedCourses' => $completedCourses,
             'registeredCertification' => $registeredCertification,
             'passedCertification' => $passedCertification,
+            'totalMaterialComplete' => $totalMaterialComplete,
+            'wholeCourses' => $wholeCourses,
+            'totalDuration' => $totalDuration,
         ]);
     }
 

@@ -55,6 +55,9 @@
                                 <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
                                     <div class="flex w-11/12">
                                         <div class="w-full px-4">
+                                            @php
+                                                $progressPercentage = ceil(($ongoCor->material_completed_count / $ongoCor->course->total_module) * 100);
+                                            @endphp
                                             <p class="text-lg font-semibold">
                                                 {{ $ongoCor->course->course_name }}
                                             </p>
@@ -65,8 +68,13 @@
                                                 </p>
                                             </div>
                                             <div class="mt-6 max-w-xl rounded-xl bg-gray-600">
+                                                @php
+                                                    $progressPercentage = ceil(($ongoCor->material_completed_count / $ongoCor->course->total_module) * 100);
+                                                    $barWidth = ($progressPercentage / 100) * 600;
+                                                @endphp
                                                 <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
-                                                    style="width: 45%;padding-left:2px">45%
+                                                    style="width: {{ $barWidth }}px; padding-left: 2px">
+                                                    {{ $progressPercentage }}%
                                                 </div>
                                             </div>
                                         </div>
