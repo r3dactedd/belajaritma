@@ -103,7 +103,7 @@ Route::get('/courses/3/asg/results', function () {
     return view('contents.assignment_results');
 });
 
-Route::get('/profile', [ProfileController::class, 'viewProfile']);
+Route::get('/profile/{id}', [ProfileController::class, 'viewProfile']);
 Route::get('/profile/edit', [ProfileController::class, 'editProfile']);
 Route::post('/profile/edit', [ProfileController::class, 'update']);
 Route::post('/editProfile', [ProfileController::class, 'update']);
@@ -189,6 +189,7 @@ Route::get('/manager/certification/create', function () {
 Route::post('/manager/certification/create', [ManageCertificationController::class, 'createCertification']);
 Route::get('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPage']);
 Route::post('/manager/certification/edit/{id}', [ManageCertificationController::class, 'editCertifPOST']);
+Route::delete('/manager/certification/delete/{id}', [ManageCertificationController::class, 'deleteCertification']);
 
 Route::get('/manager/certification/edit/test/{id}', [ManageCertificationController::class, 'editCertifTestPage']);
 Route::post('/manager/certification/edit/test/{id}/set/score', [ManageCertificationController::class, 'setScore']);

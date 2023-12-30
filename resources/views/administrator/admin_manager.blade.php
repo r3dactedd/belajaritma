@@ -71,7 +71,7 @@
                                 Manage Kursus
                             </h4>
                             <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Anda dapat melakukan pengaturan untuk detail kursus, materi kursus, dan tes akhir kursus.
+                                Melakukan pengaturan untuk detail kursus, materi kursus, dan tes akhir kursus.
                             </p>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                 Manage Sertifikasi
                             </h4>
                             <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Anda dapat melakukan pengaturan untuk detail dan tes sertifikasi.
+                                Melakukan pengaturan untuk detail dan tes sertifikasi.
                             </p>
 
                         </div>
@@ -110,20 +110,17 @@
                                 alt="banner" />
                         </div>
                         <div class="h-full w-full pt-5 md:h-36">
-
                             <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                 Verifikasi Pembayaran Sertifikasi
                             </h4>
                             <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Anda dapat melakukan verifikasi untuk transaksi pembayaran sertifikasi.
+                                Melakukan verifikasi untuk transaksi pembayaran sertifikasi.
                             </p>
 
                         </div>
                     </div>
                 </a>
             </div>
-
-
         </div>
     @endsection
     @section('footer')

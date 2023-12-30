@@ -43,9 +43,6 @@
                 </div>
                 <div class="my-4"></div>
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
-
-                  {{-- Contents here --}}
-
                 </div>
             </div>
         </div>
@@ -82,7 +79,7 @@
                 </button>
             </div>
 
-
+        </div>
     </body>
 @endsection
 @section('footer')

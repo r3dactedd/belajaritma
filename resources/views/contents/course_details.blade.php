@@ -94,6 +94,17 @@
                                 <div
                                     class="flex items-center mt-6 mb-3 space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
                                     @if (auth()->check() &&
+                                            !auth()->user()->isEnrolled($data->id))
+                                        <a data-modal-target="popup-enroll" data-modal-toggle="popup-enroll"
+                                            class="inline-flex items-center px-4 py-2 text-sm font-semibold text-white align-middle bg-green-400 rounded-md hover:bg-indigo-600 md:w-36">
+                                            <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
+                                                height="1.1em" viewBox="0 0 512 512">
+                                                <path
+                                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z" />
+                                            </svg>
+                                            Daftar Kelas
+                                        </a>
+                                    @elseif (auth()->check() &&
                                             auth()->user()->isEnrolled($data->id))
                                         <a href="/courses/material/{{ $data->course_name }}/{{ $data->id }}/{{ $userCourseDetail->last_accessed_material }}"
                                             class="inline-flex items-center px-4 py-2 text-sm font-semibold text-white align-middle bg-green-400 rounded-md hover:bg-indigo-600 md:w-36">
@@ -104,17 +115,9 @@
                                             </svg>
                                             Lanjut Kelas
                                         </a>
-                                    @else
-                                        <a data-modal-target="popup-enroll" data-modal-toggle="popup-enroll"
-                                            class="inline-flex items-center px-4 py-2 text-sm font-semibold text-white align-middle bg-green-400 rounded-md hover:bg-indigo-600 md:w-36">
-                                            <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
-                                                height="1.1em" viewBox="0 0 512 512">
-                                                <path
-                                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z" />
-                                            </svg>
-                                            Daftar Kelas
-                                        </a>
                                     @endif
+
+
 
                                 </div>
                             </div>
@@ -261,20 +264,23 @@
 
                             <div class="transition hover:bg-indigo-50">
                             </div>
-                            @if (
-                                $materialItem->materialContentToMasterType->master_type_name == 'Final Test' &&
-                                    auth()->user()->isReadyForFinal($data->id))
-                                <div class="flex items-center">
+                            @if (auth()->user()->isEnrolled($data->id) != null)
+                                @if (
+                                    $materialItem->materialContentToMasterType->master_type_name == 'Final Test' &&
+                                        auth()->user()->isReadyForFinal($data->id))
                                     <div class="flex items-center">
+                                        <div class="flex items-center">
 
-                                        <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                            <a href="/transaction" id="convertButton"
-                                                class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 bg-selected rounded-xl hover:bg-green-400">Ambil
-                                                Test</a>
-                                        </p>
+                                            <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                                <a href="/transaction" id="convertButton"
+                                                    class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 bg-selected rounded-xl hover:bg-green-400">Ambil
+                                                    Test</a>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             @endif
+
                         </div>
                     </div>
                 </div>
