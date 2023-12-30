@@ -14,12 +14,10 @@
 </head>
 
 
-<body class="bg-gray-200 pb-12">
+<body class="bg-gray-600 pb-12">
     @section('title', 'Homepage')
     @extends('layout.layout')
     <div class="container mx-auto my-12 grid w-11/12 grid-cols-1 gap-8 px-4 pb-12">
-
-
         <div
             class="min-h-max cursor-pointer rounded-xl border border-gray-200 bg-white py-8 shadow transition duration-150 ease-in-out hover:shadow-lg">
             <div class="flex flex-col items-center">
