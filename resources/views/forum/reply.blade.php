@@ -8,7 +8,8 @@
             <strong>{{ $reply->formToUser->username }}</strong>
             <span class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
             <p class="text-md">
-                <strong style="color: blue;">{{ '@' . $repliedTo }}</strong>
+                <a href="/profile/{{ $repliedProfile }}"><strong style="color: blue;">{{ '@' . $repliedTo }}</strong></a>
+
                 {{ strip_tags($reply->forum_message) }}
             </p>
             <div class="transition">
@@ -41,6 +42,7 @@
     </div>
     @php
         $repliedTo = $reply->formToUser->username;
+        $repliedProfile = $reply->formToUser->id;
     @endphp
 @else()
     <hr class="my-2">
@@ -53,7 +55,9 @@
             <strong>{{ $reply->formToUser->username }}</strong>
             <span class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
             <p class="text-md">
-                <strong style="color: blue;">{{ '@' . $repliedTo }}</strong>
+                <a href="/profile/{{ $repliedProfile }}"><strong
+                        style="color: blue;">{{ '@' . $repliedTo }}</strong></a>
+
                 {{ strip_tags($reply->forum_message) }}
             </p>
             <div class="transition">
@@ -86,6 +90,8 @@
     </div>
     @php
         $repliedTo = $reply->formToUser->username;
+        $repliedProfile = $reply->formToUser->id;
+
     @endphp
 @endif
 
