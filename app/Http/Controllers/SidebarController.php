@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\MasterType;
 use App\Models\Material;
+use App\Models\MaterialCompleted;
 use App\Models\Sidebar;
 use App\Models\UserCourseDetail;
 use Illuminate\Http\Request;
@@ -52,10 +53,41 @@ class SidebarController extends Controller
         // Determine the previous and next material
         $previousMaterial = $sidebars[$currentMaterialIndex - 1] ?? null;
         $nextMaterial = $sidebars[$currentMaterialIndex + 1] ?? null;
+        $material = Material::findOrFail($material_id);
+        $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
+        $course = Course::find($id);
+        $excludeFinal = $course->total_module-1;
+
+        if ($enrollment){
+            $materialCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
+                ->where('material_id', $material_id)
+                ->where('enrollment_id', $enrollment->id)
+                ->exists();
+
+                if (!$materialCompleted && $enrollment->material_completed_count < $excludeFinal) {
+                    MaterialCompleted::create([
+                        'user_id' => auth()->id(),
+                        'course_id' => $id,
+                        'material_id' => $material_id,
+                        'enrollment_id' => $enrollment->id,
+                    ]);
+
+                    // Update material_completed field in the enrollment table
+                    $enrollment->material_completed_count += 1;
+                    $enrollment->total_duration_count+=$material->material_duration;
+                    $enrollment->save();
+                }
+
+                if ($enrollment->material_completed_count == $excludeFinal) {
+                    $enrollment->ready_for_final = true;
+                    $enrollment->save();
+                }
+
+        }
 
         if ($previousMaterial || $nextMaterial) {
             // Assuming you have a UserCourse model that represents the user's progress in a course
-            $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
+            // $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
 
             if ($enrollment) {
                 $userCourse = UserCourseDetail::find($enrollment->course_id);
@@ -72,15 +104,15 @@ class SidebarController extends Controller
             }
         }
         // Load the corresponding material view based on the material type
-        $material = Material::findOrFail($material_id);
+        // $material = Material::findOrFail($material_id);
 
         $master_type = MasterType::find($material->master_type_id);
         if ($master_type->master_type_name == 'Video') {
-            return view('contents.session_video', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id'));
+            return view('contents.session_video', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal'));
         } elseif ($master_type->master_type_name == 'PDF') {
-            return view('contents.session_pdf', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id'));
+            return view('contents.session_pdf', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal'));
         } elseif ($master_type->master_type_name == 'Assignment') {
-            return view('contents.session_assignment', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id'));
+            return view('contents.session_assignment', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal'));
         }
 
     }

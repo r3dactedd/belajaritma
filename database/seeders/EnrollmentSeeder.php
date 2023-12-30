@@ -37,5 +37,14 @@ class EnrollmentSeeder extends Seeder
         //     'completed'=>true,
         // ]);
 
+        //One More Material To Go
+        Enrollment::create([
+            'user_id' => 1,
+            'course_id' => 1,
+            'ready_for_final'=>false,
+            'completed'=>false,
+            'material_completed_count'=>9,
+        ]);
+
     }
 }
