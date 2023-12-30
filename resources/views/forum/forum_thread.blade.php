@@ -41,93 +41,94 @@
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="mx-auto w-full rounded bg-white px-8 py-4 antialiased shadow">
-                <div class="mx-auto w-full rounded bg-white px-8 py-4 antialiased shadow">
-                    <div class="mt-4 space-y-4">
-                        {{-- FORUM CONTENT --}}
-                        <div class="flex">
-                            <div class="mr-3 flex-shrink-0">
-                                <img class="mt-2 h-8 w-8 rounded-full sm:h-10 sm:w-10"
-                                    src={{ asset('uploads/profile_images/' . $data->formToUser->profile_img) }}
-                                    alt="">
-                            </div>
-                            <div class="flex-1 rounded-lg px-4 pb-2 text-2xl leading-relaxed">
-                                <strong>{{ $data->forum_title }}</strong> <span
-                                    class="ml-2 text-xl text-gray-400">{{ $data->created_at->format('Y-m-d') }}</span>
-                                <p class="mb-5 text-sm">
-                                    Created by: {{ $data->formToUser->username }}
-                                </p>
-                                <p class="w-fit text-base mb-7" id="codeContainer">
-                                <div class="text-base mb-7">
-                                    {!! $data->forum_message !!}
+                    <div class="mx-auto w-full rounded bg-white px-8 py-4 antialiased shadow">
+                        <div class="mt-4 space-y-4">
+                            {{-- FORUM CONTENT --}}
+                            <div class="flex">
+                                <div class="mr-3 flex-shrink-0">
+                                    <img class="mt-2 h-8 w-8 rounded-full sm:h-10 sm:w-10"
+                                        src={{ asset('uploads/profile_images/' . $data->formToUser->profile_img) }}
+                                        alt="">
                                 </div>
-                                </p>
+                                <div class="flex-1 rounded-lg px-4 pb-2 text-2xl leading-relaxed">
+                                    <strong>{{ $data->forum_title }}</strong> <span
+                                        class="ml-2 text-xl text-gray-400">{{ $data->created_at->format('Y-m-d') }}</span>
+                                    <p class="mb-5 text-sm">
+                                        Created by: {{ $data->formToUser->username }}
+                                    </p>
+                                    <p class="w-fit text-base mb-7" id="codeContainer">
+                                    <div class="text-base mb-7">
+                                        {!! $data->forum_message !!}
+                                    </div>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        {{-- <div class="flex w-full items-center md:ml-16">
+                            {{-- <div class="flex w-full items-center md:ml-16">
                             <img
                                 src="https://cdn.discordapp.com/attachments/699690186761830516/1136295687810723942/image.png">
                         </div> --}}
-                        {{-- FORUM CONTENT END --}}
-                        {{-- ADD COMMENTS --}}
-                        @if (Auth::user()->id == $data->formToUser->id)
-                            <div class="mt-4 flex items-center">
+                            {{-- FORUM CONTENT END --}}
+                            {{-- ADD COMMENTS --}}
+                            @if (Auth::user()->id == $data->formToUser->id)
+                                <div class="mt-4 flex items-center">
 
 
-                                <button id="open-btn" data-modal-target="popup-delete" data-modal-toggle="popup-delete"
-                                    class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
-                                    data-modal-target="defaultModal" data-modal-toggle="defaultModal">
-                                    Hapus Diskusi
-                                </button>
+                                    <button id="open-btn" data-modal-target="popup-delete" data-modal-toggle="popup-delete"
+                                        class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
+                                        data-modal-target="defaultModal" data-modal-toggle="defaultModal">
+                                        Hapus Diskusi
+                                    </button>
+                                </div>
+                            @endif
+
+                            <hr>
+
+                            <div class="flex w-full items-center justify-center bg-white">
+                                <div class="w-full">
+                                    {{-- Input --}}
+
+                                    <form id="myForm" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                        <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
+                                        <input type="hidden" id="original_forum_id" name="forum_id"
+                                            value="{{ $data->id }}">
+                                        <input type="hidden" id="courseId" name="course_id"
+                                            value="{{ $data->course_id }}">
+                                        <input type="hidden" id="materialId" name="material_id"
+                                            value="{{ $data->material_id }}">
+                                        <input type="hidden" id="parent_id" name="parent_id" value="{{ $data->id }}">
+                                        <div class="my-4 flex justify-end">
+                                            <button id="get-content-button" type="submit"
+                                                class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        @endif
 
-                        <hr>
-
-                        <div class="flex w-full items-center justify-center bg-white">
-                            <div class="w-full">
-                                {{-- Input --}}
-
-                                <form id="myForm" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
-                                    <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
-                                    <input type="hidden" id="original_forum_id" name="forum_id"
-                                        value="{{ $data->id }}">
-                                    <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
-                                    <input type="hidden" id="materialId" name="material_id"
-                                        value="{{ $data->material_id }}">
-
-                                    <div class="my-4 flex justify-end">
-                                        <button id="get-content-button" type="submit"
-                                            class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
-                                    </div>
-                                </form>
+                            <h3 class="mb-4 text-lg font-semibold text-gray-900">Comments</h3>
+                            <div class="space-y-4">
+                                @foreach ($getReply as $reply)
+                                    @if ($reply->reply_id == $data->id)
+                                        {{-- COMMENTS LIST W/REPLY --}}
+                                        @php
+                                            $repliedTo = $data->formToUser->username;
+                                        @endphp
+                                        @include('forum.reply', [
+                                            'reply' => $reply,
+                                            'data' => $data,
+                                            'repliedTo' => $repliedTo,
+                                        ])
+                                        {{-- COMMENTS LIST W/REPLY --}}
+                                    @endif
+                                @endforeach
                             </div>
+                            {{-- COMMENTS LIST END --}}
                         </div>
-
-                        <h3 class="mb-4 text-lg font-semibold text-gray-900">Comments</h3>
-                        <div class="space-y-4">
-                            @foreach ($getReply as $reply)
-                                @if ($reply->reply_id == $data->id)
-                                    {{-- COMMENTS LIST W/REPLY --}}
-                                    @php
-                                        $repliedTo = $data->formToUser->username;
-                                    @endphp
-                                    @include('forum.reply', [
-                                        'reply' => $reply,
-                                        'data' => $data,
-                                        'repliedTo' => $repliedTo,
-                                    ])
-                                    {{-- COMMENTS LIST W/REPLY --}}
-                                @endif
-                            @endforeach
-                        </div>
-                        {{-- COMMENTS LIST END --}}
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
         </div>
         {{-- Reply Popup Modal --}}
 
@@ -318,6 +319,8 @@
             console.log("ini isian replyId", replyId)
             var materialId = document.getElementById('materialId').value;
             console.log("ini isian materialId", materialId);
+            var parentId = document.getElementById('parent_id').value;
+            console.log("ini forum id asli", parentId)
 
 
             console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));

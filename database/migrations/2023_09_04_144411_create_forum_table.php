@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('material_id');
+            $table->unsignedBigInteger('parent_id')->nullable();;
             $table->unsignedBigInteger('reply_id')->nullable();
             // $table->string('course_session')->nullable();
             $table->string('forum_title')->nullable();

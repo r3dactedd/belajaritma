@@ -14,17 +14,17 @@ use Illuminate\Support\Facades\Storage;
 class ManageCertificationController extends Controller
 {
     //
-    public function showCertificationData(Request $request){
+    public function showCertificationData(Request $request)
+    {
         $searchKeyword = $request->input('searchKeyword');
-        if($searchKeyword){
-            // dd($searchKeyword);
+
+        if ($searchKeyword) {
             $data = Certification::where('certif_title', 'like', "%$searchKeyword%")->get();
-            return view('administrator.admin_certifications.admin_certification', compact('data'));
-        }
-        else{
+        } else {
             $data = Certification::all();
-            return view('administrator.admin_certifications.admin_certification',['data'=>$data]);
         }
+
+        return view('administrator.admin_certifications.admin_certification', compact('data'));
     }
 
     public function createCertification(Request $request){
@@ -66,6 +66,16 @@ class ManageCertificationController extends Controller
         $certif->save();
         // dd($certif);
         return Redirect::to("/manager/certification/edit/test/{$certif->id}");
+    }
+
+    public function deleteCertification($id){
+        $data=Certification::find($id);
+
+        if (!$data) {
+            return redirect()->back()->with('error', 'Course not found.');
+        }
+        $data->delete();
+        return redirect('/manager/certification')->with('success', 'Course deleted successfully.');
     }
 
     public function editCertifPage($id){

@@ -166,6 +166,7 @@ class ForumController extends Controller
             'forum_message' => $request->input('forum_message'),
             'reply_id' => $request->input('reply_id'),
             'material_id' => $request->input('material_id'),
+            'parent_id'=> $request->input('parent_id'),
         ]);
 
         $forum->save();

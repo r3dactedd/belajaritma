@@ -119,7 +119,7 @@
                         {{-- <input type="hidden" id="replyId" name="reply_id" value="{{ $reply->id }}"> --}}
                         <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
                         <input type="hidden" id="materialId" name="material_id" value="{{ $data->material_id }}">
-                        <input type="hidden" id="original_forum_id" name="forum_id" value="{{ $data->id }}">
+                        <input type="hidden" id="parent_id" name="parent_id" value="{{ $reply->id }}">
 
                         <div class="my-4 flex justify-end">
                             <button id="get-content-button" type="submit"
@@ -228,6 +228,9 @@
         console.log("ini forum id asli", forumId)
         var materialId = document.getElementById('materialId').value;
         console.log("ini isian materialId", materialId);
+        var parentId = document.getElementById('parent_id').value;
+        console.log("ini forum parent", parentId)
+
 
 
         console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
@@ -236,6 +239,7 @@
         formData.append('forum_message', editorContent);
         formData.append('reply_id', replyId);
         formData.append('material_id', materialId);
+        formData.append('parent_id', parentId);
 
         // if (hasImages) {
         //     var file = fileInput.files[0];

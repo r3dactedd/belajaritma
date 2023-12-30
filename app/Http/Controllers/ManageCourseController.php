@@ -53,10 +53,6 @@ class ManageCourseController extends Controller
             $filename = 'placeholder.webp';
         }
 
-        else{
-            $filename = 'placeholder.webp';
-        }
-
         $course = new Course();
         $course->course_name = $request->course_name;
         $course->short_desc = $request->short_desc;

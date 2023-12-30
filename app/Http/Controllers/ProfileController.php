@@ -46,9 +46,9 @@ class ProfileController extends Controller
         return view('home', ['searchUser' => $searchUser, 'enrolledCourses' => $enrolledCourses]);
     }
 
-    public function viewProfile()
+    public function viewProfile($id)
     {
-        $searchUser = User::find(Auth::user()->id);
+        $searchUser = User::find($id);
         $wholeCourses = $searchUser
                 ->enrollments()
                 ->with('course')
@@ -126,7 +126,8 @@ class ProfileController extends Controller
         ];
 
         User::where('id', Auth::user()->id)->update($changeProfile);
-        return redirect('/profile')->with('success', 'Data user sudah diupdate!');
+        $userId = Auth::user()->id;
+        return Redirect::to("/profile/{$userId}");
     }
 
     public function changePassword(Request $request)
@@ -147,6 +148,7 @@ class ProfileController extends Controller
         User::where('id', Auth::user()->id)->update([
             'password' => bcrypt($request->new_password),
         ]);
-        return redirect('/profile')->with('success', 'Password changed successfully!');
+        $userId = Auth::user()->id;
+        return Redirect::to("/profile/{$userId}");
     }
 }

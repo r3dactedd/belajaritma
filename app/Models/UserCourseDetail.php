@@ -14,7 +14,7 @@ class UserCourseDetail extends Model
     protected $fillable = [
         'user_id',
         'course_id',
-        'completed'
+        'last_accessed_material'
     ];
 
     public function user(){

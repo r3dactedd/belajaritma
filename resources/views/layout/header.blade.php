@@ -28,11 +28,12 @@
                 <span class="ml-4 text-2xl text-gray-800">Belajaritma</span>
             </a>
             <ul class="hidden h-full items-center lg:flex">
-                <li class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                <li
+                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a href="/home" id="home-link"class="hover:text-indigo-600 hover:underline">Home</a>
                 </li>
                 @if (Auth::check())
-                    @if (Auth::user()->role_id != '1' )
+                    @if (Auth::user()->role_id != '1')
                         <li
                             class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                             <a href="/courses" id="courses-link"
@@ -73,7 +74,8 @@
                                     <li
                                         class="mt-2 flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
                                         <div class="flex items-center">
-                                            <a href="/profile"class="ml-4 font-semibold">Profil Saya</a>
+                                            <a href="/profile/{{ auth()->user()->id }}"class="ml-4 font-semibold">Profil
+                                                Saya</a>
                                         </div>
                                     </li>
                                     <li
@@ -155,7 +157,7 @@
         </li>
         @if (Auth::check())
             @auth
-                <a href="/profile" class="my-2 flex items-center">
+                <a href="/profile/{{ auth()->user()->id }}" class="my-2 flex items-center">
 
                     <div
                         class="ml-2 flex w-12 cursor-pointer rounded border-2 border-transparent text-sm transition duration-150 ease-in-out focus:border-white focus:outline-none">

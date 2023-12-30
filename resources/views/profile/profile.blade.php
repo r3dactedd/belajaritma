@@ -101,10 +101,12 @@
                     class="text-md my-4 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:my-1">
                     <a id="profileCerti">Sertifikasi</a>
                 </li>
-                <li
-                    class="text-md my-4 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:my-1">
-                    <a id="profileHistory">Riwayat Transaksi</a>
-                </li>
+                @if ($searchUser->id == auth()->user()->id)
+                    <li
+                        class="text-md my-4 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:my-1">
+                        <a id="profileHistory">Riwayat Transaksi</a>
+                    </li>
+                @endif
             </ul>
 
         </div>

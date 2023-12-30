@@ -105,6 +105,9 @@ class SidebarController extends Controller
         }
         // Load the corresponding material view based on the material type
         // $material = Material::findOrFail($material_id);
+        $userCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $id)->first();
+        $userCourseDetail->last_accessed_material = $material_id;
+        $userCourseDetail->save();
 
         $master_type = MasterType::find($material->master_type_id);
         if ($master_type->master_type_name == 'Video') {
