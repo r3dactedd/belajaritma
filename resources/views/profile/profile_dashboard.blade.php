@@ -13,7 +13,7 @@
             </svg>
         </div>
         <div class="ml-6">
-            <h3 class="mb-1 text-2xl font-bold leading-5 text-gray-800">5</h3>
+            <h3 class="mb-1 text-2xl font-bold leading-5 text-gray-800">{{ count($wholeCourses) }}</h3>
             <p class="text-sm font-normal leading-5 tracking-normal text-gray-600">
                 Kursus yang Telah Diambil
             </p>
@@ -33,8 +33,20 @@
                 <path d="M12 12l9 3l-4 2l-2 4l-3 -9" />
             </svg>
         </div>
+        @php
+            $totalProgress = 0;
+            $totalCourses = count($wholeCourses);
+
+            foreach ($wholeCourses as $ongoCor) {
+                if ($ongoCor->course) {
+                    $totalProgress += ceil(($ongoCor->material_completed_count / $ongoCor->course->total_module) * 100);
+                }
+            }
+
+            $averageProgress = $totalCourses > 0 ? ceil($totalProgress / $totalCourses) : 0;
+        @endphp
         <div class="ml-6">
-            <h3 class="mb-1 text-2xl font-bold leading-5 text-gray-800">65%</h3>
+            <h3 class="mb-1 text-2xl font-bold leading-5 text-gray-800">{{ $averageProgress }}%</h3>
             <p class="text-sm font-normal leading-5 tracking-normal text-gray-600">
                 Rata-Rata Penyelesaian Kursus
             </p>
@@ -51,7 +63,7 @@
             </svg>
         </div>
         <div class="ml-6">
-            <h3 class="mb-1 text-2xl font-bold leading-5 text-gray-800">68</h3>
+            <h3 class="mb-1 text-2xl font-bold leading-5 text-gray-800">{{ count($totalMaterialComplete) }}</h3>
             <p class="text-sm font-normal leading-5 tracking-normal text-gray-600">
                 Jumlah Materi Selesai
             </p>
@@ -71,7 +83,7 @@
         </div>
         <div class="ml-6">
             <h3 class="mb-1 text-2xl font-bold leading-5 text-gray-800">
-                30 jam
+                {{ $totalDuration }} Menit
             </h3>
             <p class="text-sm font-normal leading-5 tracking-normal text-gray-600">
                 Estimasi Waktu Pembelajaran
@@ -79,4 +91,3 @@
         </div>
     </div>
 </div>
-

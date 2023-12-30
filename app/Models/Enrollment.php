@@ -14,7 +14,8 @@ class Enrollment extends Model
         'user_id',
         'course_id',
         'completed',
-        'ready_for_final'
+        'ready_for_final',
+        'material_completed_count',
     ];
 
     public function user(){
@@ -23,5 +24,14 @@ class Enrollment extends Model
 
     public function course(){
         return $this->belongsTo(Course::class);
+    }
+
+    public function materialComplete()
+    {
+        return $this->hasMany(MaterialCompleted::class);
+    }
+
+    public function material(){
+        return $this->belongsTo(Material::class);
     }
 }

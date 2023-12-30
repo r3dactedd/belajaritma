@@ -14,6 +14,7 @@ class MaterialCompleted extends Model
         'user_id',
         'course_id',
         'material_id',
+        'enrollment_id',
     ];
 
     public function user(){
@@ -26,5 +27,9 @@ class MaterialCompleted extends Model
 
     public function material(){
         return $this->belongsTo(Material::class, 'material_id');
+    }
+
+    public function enrollment(){
+        return $this->belongsTo(Enrollment::class, 'enrollment_id');
     }
 }

@@ -119,4 +119,8 @@ class User extends Authenticatable
 
         return $certification && $certification->passed;
     }
+
+    public function materialComplete(){
+        return $this->hasMany(MaterialCompleted::class);
+    }
 }

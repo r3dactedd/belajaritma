@@ -61,15 +61,10 @@ class ManageCourseController extends Controller
         $course->level = $request->level;
         $course->course_img = $filename;
         $course->screen_resolution = $request->screen_resolution;
-        $course->total_module = 0;
         $course->minimum_ram = $request->minimum_ram;
         $course->processor = $request->processor;
         $course->operating_system = $request->operating_system;
         $course->other_programs = $request->other_programs;
-        //Dummy Untuk Sementara
-        //-----------------------
-        $course->total_module = 1;
-        //-----------------------
         $course->created_by = Auth()->user()->id;
         $course->updated_by = Auth()->user()->id;
 
