@@ -53,9 +53,15 @@
                                 <div class="flex-1 rounded-lg px-4 pb-2 text-2xl leading-relaxed">
                                     <strong>{{ $data->forum_title }}</strong> <span
                                         class="ml-2 text-xl text-gray-400">{{ $data->created_at->format('Y-m-d') }}</span>
-                                    <p class="mb-5 text-sm">
-                                        Created by: {{ $data->formToUser->username }}
-                                    </p>
+                                    <div class="flex">
+                                        <p class="mb-3 text-sm">
+                                            Created by:
+                                        </p>
+                                        <a class="mb-3 text-sm" href="/profile/{{ $data->formToUser->id }}">
+                                            {{ $data->formToUser->username }}
+                                        </a>
+                                    </div>
+
                                     <p class="w-fit text-base mb-7" id="codeContainer">
                                     <div class="text-base mb-7">
                                         {!! $data->forum_message !!}
@@ -113,11 +119,13 @@
                                         {{-- COMMENTS LIST W/REPLY --}}
                                         @php
                                             $repliedTo = $data->formToUser->username;
+                                            $repliedProfile = $data->formToUser->id;
                                         @endphp
                                         @include('forum.reply', [
                                             'reply' => $reply,
                                             'data' => $data,
                                             'repliedTo' => $repliedTo,
+                                            'repliedProfile' => $repliedProfile,
                                         ])
                                         {{-- COMMENTS LIST W/REPLY --}}
                                     @endif

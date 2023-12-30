@@ -61,10 +61,12 @@
                                         class="pr-2 pt-2 text-center text-lg tracking-normal text-white md:pr-4 md:pt-4 md:text-left lg:text-xl">
                                         {{ $searchUser->full_name }}
                                     </h2>
-                                    <h2
-                                        class="pr-2 pt-2 text-center text-lg tracking-normal text-white md:pr-4 md:pt-4 md:text-left lg:text-xl">
-                                        {{ $searchUser->email }}
-                                    </h2>
+                                    @if ($searchUser->id == auth()->user()->id)
+                                        <h2
+                                            class="pr-2 pt-2 text-center text-lg tracking-normal text-white md:pr-4 md:pt-4 md:text-left lg:text-xl">
+                                            {{ $searchUser->email }}
+                                        </h2>
+                                    @endif
                                     @if ($searchUser->about_me != null)
                                         <h2
                                             class="text-md mt-12 pr-2 pt-2 text-center tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
