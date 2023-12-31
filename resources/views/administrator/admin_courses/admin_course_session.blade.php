@@ -86,7 +86,6 @@
                 <div class="mx-auto my-4 md:-mx-2 md:flex">
                     <div class="h-auto w-full md:mx-2">
                         <div class="rounded-xl bg-white p-4 shadow-sm">
-
                             <div class="px-4 font-semibold">
                                 <label for="username"
                                     class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
@@ -102,8 +101,7 @@
                                     Deskripsi Singkat Materi</label>
                                 <textarea name="description" id="inputDescription"
                                     class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                    placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
-                                    {{ htmlspecialchars($material->description) }}
+                                    placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->description) }}
                             </textarea>
                             </div>
                             <div class="flex justify-end pt-2">

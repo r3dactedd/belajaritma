@@ -1,5 +1,5 @@
 <div class="relative hidden h-screen w-full flex-col justify-center bg-indigo-600 bg-cover bg-center bg-no-repeat px-5 py-40 sm:px-12 sm:py-48 md:flex lg:w-1/2"
-    style="background-image: url('https://miro.medium.com/v2/resize:fit:1400/0*0f5eeUtoLQbDw89b');opacity:0.9">
+    style="background-image:url('/background_image/bg-auth.png');opacity:0.9">
     <div class="absolute right-0 top-0 pr-3 pt-3 text-white">
         <?xml version="1.0 " encoding="UTF-8 "?>
 
