@@ -34,15 +34,27 @@
                 </li>
                 {{-- @if (Auth::check())
                     @if (Auth::user()->role_id != '1') --}}
-                <li
-                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/courses" id="courses-link" class="hover:text-indigo-600 hover:underline">Kursus</a>
-                </li>
-                <li
-                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                    <a href="/certifications" id="certifications-link"
-                        class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
-                </li>
+                @if (!Auth::user())
+                    <li
+                        class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                        <a href="/courses" id="courses-link" class="hover:text-indigo-600 hover:underline">Kursus</a>
+                    </li>
+                    <li
+                        class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                        <a href="/certifications" id="certifications-link"
+                            class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
+                    </li>
+                @elseif (Auth::user()->role_id == '2')
+                    <li
+                        class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                        <a href="/courses" id="courses-link" class="hover:text-indigo-600 hover:underline">Kursus</a>
+                    </li>
+                    <li
+                        class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                        <a href="/certifications" id="certifications-link"
+                            class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
+                    </li>
+                @endif
                 {{-- @endif
                 @endif --}}
                 @if (Auth::check())
@@ -73,7 +85,7 @@
                                     <li
                                         class="mt-2 flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
                                         <div class="flex items-center">
-                                            <a href="/profile/{{ auth()->user()->id }}"class="ml-4 font-semibold">Profil
+                                            <a href="/profile/{{ auth()->user()->username }}"class="ml-4 font-semibold">Profil
                                                 Saya</a>
                                         </div>
                                     </li>
@@ -157,7 +169,7 @@
         </li>
         @if (Auth::check())
             @auth
-                <a href="/profile/{{ auth()->user()->id }}" class="my-2 flex items-center">
+                <a href="/profile/{{ auth()->user()->username }}" class="my-2 flex items-center">
 
                     <div
                         class="ml-2 flex w-12 cursor-pointer rounded border-2 border-transparent text-sm transition duration-150 ease-in-out focus:border-white focus:outline-none">
@@ -168,8 +180,8 @@
                     <p class="ml-2 cursor-pointer text-base leading-6">{{ auth()->user()->username }}</p>
                     <div class="relative text-white sm:ml-2">
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="20" height="20"
-                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                            class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="20"
+                            height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z"></path>
                             <polyline points="6 9 12 15 18 9"></polyline>

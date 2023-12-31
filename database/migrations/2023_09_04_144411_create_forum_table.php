@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('forum_title')->nullable();
             $table->text('forum_message');
             $table->string('forum_attachment')->nullable();
+            $table->boolean('deleted_by_admin')->default(false);
+            $table->string('reason_delete')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onUpdate('cascade')->onDelete('cascade');
