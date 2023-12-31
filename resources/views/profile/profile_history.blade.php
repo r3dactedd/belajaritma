@@ -8,7 +8,7 @@
             <col>
         </colgroup>
         <thead class="bg-gray-200 leading-normal text-gray-600">
-            <tr class="text-md bg-gray-200 leading-normal text-gray-600 md:text-lg">
+            <tr class="bg-gray-200 text-base leading-normal text-gray-600 md:text-lg">
                 <th class="px-4 py-2 text-left">Nama Sertifikasi</th>
                 <th class="px-4 py-2 text-left">Kode Pembayaran</th>
                 <th class="px-4 py-2 text-left">Tanggal Upload Bukti</th>
@@ -17,7 +17,7 @@
 
             </tr>
         </thead>
-        <tbody class="text-md font-light text-gray-600 md:text-lg">
+        <tbody class="text-base font-light text-gray-600 md:text-lg">
 
             @foreach ($transactionHistory as $transactions)
                 <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
@@ -60,7 +60,7 @@
                     </td>
                     <div id="image-popup"
                         class="fixed left-0 right-0 top-0 z-50 hidden h-full w-full bg-gray-800 bg-opacity-75">
-                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                             <button type="button" onclick="hideImagePopup()"
                                 class="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-gray-300">
                                 <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -70,7 +70,7 @@
                                 </svg>
                             </button>
                             <img src="{{ $transactions->transaction_proof }}" alt="Transaction Proof"
-                                class="max-w-full max-h-full" />
+                                class="max-h-full max-w-full" />
                         </div>
                 </tr>
             @endforeach

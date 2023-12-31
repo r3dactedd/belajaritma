@@ -136,7 +136,7 @@
                                         </div>
                                     </div>
 
-                                    <p class="text-md mb-6 w-11/12 px-4 font-normal tracking-normal text-gray-600">
+                                    <p class="mb-6 w-11/12 px-4 text-base font-normal tracking-normal text-gray-600">
                                         {{ $course->course_desc }}
                                     </p>
                                     <div

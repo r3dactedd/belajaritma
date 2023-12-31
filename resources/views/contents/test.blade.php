@@ -46,7 +46,7 @@
                                 Mengenai Test
                             </h1>
                             <h2
-                                class="text-md lg:text-md relative mx-6 mb-2 w-auto font-semibold tracking-normal text-gray-800">
+                                class="relative mx-6 mb-2 w-auto text-base font-semibold tracking-normal text-gray-800 lg:text-base">
                                 Input Deskripsi Assignment here "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                                 sed do eiusmod tempor
                                 incididunt

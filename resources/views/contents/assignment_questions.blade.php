@@ -91,7 +91,7 @@
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
                             <h1
-                                class="text-md relative mx-6 mb-6 block w-auto pt-6 font-semibold tracking-normal text-gray-800 lg:text-xl">
+                                class="relative mx-6 mb-6 block w-auto pt-6 text-base font-semibold tracking-normal text-gray-800 lg:text-xl">
                                 1. TEXT QUESTION "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod
                                 tempor
@@ -106,7 +106,7 @@
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio1-a" type="radio" name="radio1" class="hidden" />
-                                    <label for="radio1-a" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio1-a" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Best choice</label>
@@ -114,7 +114,7 @@
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio1-b" type="radio" name="radio1" class="hidden" />
-                                    <label for="radio1-b" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio1-b" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Second choice</label>
@@ -122,7 +122,7 @@
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio1-c" type="radio" name="radio1" class="hidden" />
-                                    <label for="radio1-c" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio1-c" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Third choice</label>
@@ -130,7 +130,7 @@
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio1-d" type="radio" name="radio1" class="hidden" />
-                                    <label for="radio1-d" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio1-d" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Fourth choice</label>

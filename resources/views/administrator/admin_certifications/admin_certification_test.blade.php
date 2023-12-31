@@ -49,7 +49,7 @@
 
                                             <div>
                                                 <label for="username"
-                                                    class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                     Nilai Minimum</label>
                                                 <input type="number" name="minimum_score" id="inputMinScore"
                                                     class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -70,11 +70,11 @@
                                     </div>
                             </form>
                             <div class="my-4"></div>
-                            <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                            <label for="username" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                 List Pertanyaan </label>
                             <div class="relative overflow-x-auto">
                                 <table id="my-table"
-                                    class="text-md mx-auto w-full border-x text-left font-semibold text-gray-500 shadow-md sm:rounded-lg">
+                                    class="mx-auto w-full border-x text-left text-base font-semibold text-gray-500 shadow-md sm:rounded-lg">
                                     <thead class="bg-gray-200 text-xs uppercase text-gray-700">
                                         <tr>
                                             <th scope="col" class="px-6 py-3">
@@ -212,7 +212,7 @@
                                             placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                         <div class="my-4"></div>
                                         <label for="username"
-                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             Upload Gambar (Tidak Wajib)</label>
 
                                         <input name="question_img" id="question_img"
@@ -301,7 +301,7 @@
                                                     placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                                 <div class="my-4"></div>
                                                 <label for="username"
-                                                    class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                     Upload Gambar (Tidak Wajib)</label>
 
                                                 <input name="question_img" id="question_img"
@@ -363,8 +363,8 @@
             @if (!$certif_questions->isEmpty())
                 <div id="popup-delete-{{ $certif_test->id }}" tabindex="-1"
                     class="fixed left-0 right-0 top-0 z-50 hidden h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-                    <div class="flex items-center justify-center min-h-screen">
-                        <div class="relative rounded-lg bg-white shadow dark:bg-gray-700 w-full max-w-md">
+                    <div class="flex min-h-screen items-center justify-center">
+                        <div class="relative w-full max-w-md rounded-lg bg-white shadow dark:bg-gray-700">
                             <button type="button"
                                 class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                                 data-modal-hide="popup-delete-{{ $certif_test->id }}">

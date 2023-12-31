@@ -109,7 +109,7 @@
 
             <div class="relative overflow-x-auto">
                 <table
-                    class="text-md mx-auto w-full text-left font-semibold text-gray-500 shadow-md sm:rounded-lg md:w-10/12">
+                    class="mx-auto w-full text-left text-base font-semibold text-gray-500 shadow-md sm:rounded-lg md:w-10/12">
                     <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">

@@ -89,14 +89,14 @@
                             class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                             <div class="relative h-56 w-full">
                                 <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
-                                    src="{{ $course->course_img_url }}" alt="banner" />
+                                    src="{{ asset('uploads/course_images/' . $course->course_img) }}" alt="banner" />
                             </div>
                             <div class="h-full w-full pt-5 md:h-40">
 
                                 <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                     {{ $course->course_name }}
                                 </h4>
-                                <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
+                                <p class="mb-6 px-5 text-base font-normal tracking-normal text-gray-600">
                                     {{ $course->course_desc }}
                                 </p>
 

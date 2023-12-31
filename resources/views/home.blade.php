@@ -41,6 +41,7 @@
             </div>
         </div>
         @if (Auth::check())
+            {{-- User --}}
             @if (Auth::user()->role_id == '2')
                 <div class="container mx-auto mb-12 mt-6 w-11/12">
                     <div class="flex flex-wrap">
@@ -72,7 +73,7 @@
                                                             $barWidth = ($progressPercentage / 100) * 600;
                                                         @endphp
                                                         <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
-                                                            style="width: {{ $barWidth }}px; padding-left: 2px">
+                                                            style="width: {{ $barWidth + 25 }}px; padding-left: 2px">
                                                             {{ $progressPercentage }}%
                                                         </div>
                                                     </div>
@@ -128,9 +129,9 @@
 
                 </div>
             @endif
-
+            {{-- Admin --}}
             @if (Auth::user()->role_id == '1')
-                <div class="container mx-auto mb-12 mt-6 md:w-8/12 w-10/12">
+                <div class="container mx-auto mb-12 mt-6 w-10/12 md:w-8/12">
                     <div class="flex flex-wrap">
                         <div class="mb-12 w-full lg:pr-8">
                             <div class="rounded bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
@@ -143,7 +144,8 @@
                                             </p>
                                             <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">
                                                 <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-                                                    Melakukan pengaturan untuk detail kursus, materi kursus, dan tes akhir kursus.
+                                                    Melakukan pengaturan untuk detail kursus, materi kursus, dan tes akhir
+                                                    kursus.
                                             </div>
 
                                         </div>
@@ -188,12 +190,11 @@
                                             </p>
                                             <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">
                                                 <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-                                                Melakukan verifikasi untuk transaksi pembayaran sertifikasi.
+                                                    Melakukan verifikasi untuk transaksi pembayaran sertifikasi.
                                             </div>
 
                                         </div>
                                     </div>
-
                                     <div
                                         class="right-0 top-0 mt-4 block sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
                                         <a href="/manager/transaction"
@@ -207,6 +208,65 @@
                     </div>
                 </div>
             @endif
+
+        @endif
+        {{-- Guest --}}
+        @if (!Auth::user())
+            <div class="container mx-auto mb-12 mt-6 w-11/12">
+                <div class="flex flex-wrap">
+                    <div class="mb-12 w-full lg:pr-8">
+                        <div class="rounded bg-white px-6 py-8 shadow-sm">
+                            <p class="text-lg font-bold">Aktivitas Pembelajaran</p>
+                            <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
+
+                                <div class="flex w-full hover:bg-gray-200">
+                                    <div class="flex h-16 w-20 items-center justify-center rounded-lg text-gray-700">
+                                        {{-- Course image here --}}
+                                        <img src="https://cdn.elearningindustry.com/wp-content/uploads/2022/01/shutterstock_525008128.jpg" alt="course image"
+                                            class="h-full w-full object-cover" />
+                                    </div>
+                                    <div class="w-full px-4">
+                                        <a href="/courses">
+                                            <p class="text-lg font-semibold">
+                                                Kursus Pembelajaran
+                                            </p>
+                                            <p class="py-2 text-sm font-normal tracking-normal text-gray-600">
+                                                Anda dapat mengakses kursus pembelajaran gratis di Belajaritma.
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
+
+                                <div class="flex w-full hover:bg-gray-200">
+                                    <div class="flex h-16 w-20 items-center justify-center rounded-lg text-gray-700">
+                                        {{-- Course image here --}}
+                                        <img src="https://www.cpsc.gov/s3fs-public/Certificate_TestingAndCertification_Card.png" alt="course image"
+                                            class="h-full w-full object-cover" />
+                                    </div>
+                                    <div class="w-full px-4">
+                                        <a href="/certifications">
+                                        <p class="text-lg font-semibold">
+                                            Ambil Sertifikasi
+                                        </p>
+                                        <p class="py-2 text-sm font-normal tracking-normal text-gray-600">
+                                            Selain kursus, anda juga dapat registrasi untuk mengambil tes sertifikasi
+                                            berbayar.
+                                        </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
         @endif
         <script>
             // Avatar Dropdown
