@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('certif_title');
             $table->string('certif_short_desc');
             $table->string('certif_desc');
-            $table->string('certif_img')->default('placeholder.webp');
+            $table->string('certif_img');
             $table->unsignedBigInteger('certif_duration');
             $table->unsignedBigInteger('certif_cost');
             $table->string('certif_outline');

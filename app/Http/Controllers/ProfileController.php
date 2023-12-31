@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use App\Http\Controllers\ValidationException;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
@@ -49,51 +50,87 @@ class ProfileController extends Controller
     public function viewProfile($id)
     {
         $searchUser = User::find($id);
-        $wholeCourses = $searchUser
-                ->enrollments()
-                ->with('course')
-                ->latest()
-                ->get();
+        if (!$searchUser) {
+            return view('errors.404error', ['message' => 'User not found.']);
+        }
+        if ($searchUser->enrollments==null) {
+            $wholeCourses = null;
+            $wholeCourses = null;
 
-        $totalDuration = $searchUser
-                ->enrollments()
-                ->with('course')
-                ->latest()
-                ->sum('total_duration_count');
-        $totalMaterialComplete = $searchUser
-                ->materialComplete()
-                ->get();
-        $displayUser = User::all();
-        $profileImageUrl = asset('uploads/profile_images/' . $searchUser->profile_img);
-        $transactionHistory = Transaction::where('user_id', $searchUser->id)->get();
+            $totalDuration = null;
+            $totalMaterialComplete = null;
+            $displayUser = null;
+            $profileImageUrl = asset('uploads/profile_images/' . $searchUser->profile_img);
+            $transactionHistory = Transaction::where('user_id', $searchUser->id)->get();
 
 
-        $enrolledCourses = $searchUser
+            $enrolledCourses = null;
+            $completedCourses = null;
+
+            $registeredCertification = null;
+            $passedCertification = null;
+
+            return view('profile.profile', [
+                'searchUser' => $searchUser,
+                'display' => $displayUser,
+                'profileImageUrl' => $profileImageUrl,
+                'transactionHistory' => $transactionHistory,
+                'enrolledCourses' => $enrolledCourses,
+                'completedCourses' => $completedCourses,
+                'registeredCertification' => $registeredCertification,
+                'passedCertification' => $passedCertification,
+                'totalMaterialComplete' => $totalMaterialComplete,
+                'wholeCourses' => $wholeCourses,
+                'totalDuration' => $totalDuration,
+            ]);
+        }
+        else{
+            $wholeCourses = $searchUser
             ->enrollments()
             ->with('course')
-            ->get()
-            ->pluck('course');
-        $completedCourses = $searchUser->enrollments->where('completed', true);
-
-        $registeredCertification = $searchUser
-            ->registerCertifications()
-            ->with('certification')
+            ->latest()
             ->get();
-        $passedCertification = $searchUser->registerCertifications->where('passed', true);
 
-        return view('profile.profile', [
-            'searchUser' => $searchUser,
-            'display' => $displayUser,
-            'profileImageUrl' => $profileImageUrl,
-            'transactionHistory' => $transactionHistory,
-            'enrolledCourses' => $enrolledCourses,
-            'completedCourses' => $completedCourses,
-            'registeredCertification' => $registeredCertification,
-            'passedCertification' => $passedCertification,
-            'totalMaterialComplete' => $totalMaterialComplete,
-            'wholeCourses' => $wholeCourses,
-            'totalDuration' => $totalDuration,
-        ]);
+            $totalDuration = $searchUser
+                    ->enrollments()
+                    ->with('course')
+                    ->latest()
+                    ->sum('total_duration_count');
+            $totalMaterialComplete = $searchUser
+                    ->materialComplete()
+                    ->get();
+            $displayUser = User::all();
+            $profileImageUrl = asset('uploads/profile_images/' . $searchUser->profile_img);
+            $transactionHistory = Transaction::where('user_id', $searchUser->id)->get();
+
+
+            $enrolledCourses = $searchUser
+                ->enrollments()
+                ->with('course')
+                ->get()
+                ->pluck('course');
+            $completedCourses = $searchUser->enrollments->where('completed', true);
+
+            $registeredCertification = $searchUser
+                ->registerCertifications()
+                ->with('certification')
+                ->get();
+            $passedCertification = $searchUser->registerCertifications->where('passed', true);
+
+            return view('profile.profile', [
+                'searchUser' => $searchUser,
+                'display' => $displayUser,
+                'profileImageUrl' => $profileImageUrl,
+                'transactionHistory' => $transactionHistory,
+                'enrolledCourses' => $enrolledCourses,
+                'completedCourses' => $completedCourses,
+                'registeredCertification' => $registeredCertification,
+                'passedCertification' => $passedCertification,
+                'totalMaterialComplete' => $totalMaterialComplete,
+                'wholeCourses' => $wholeCourses,
+                'totalDuration' => $totalDuration,
+            ]);
+        }
     }
 
     public function update(Request $request)
@@ -142,7 +179,7 @@ class ProfileController extends Controller
 
         // Verify the old password
         if (!Hash::check($request->old_password, $user->password) || $request->confirm_password != $request->new_password) {
-            return redirect('/profile/edit')->with('error', 'Password change failed!');
+            return redirect('/editProfile')->with('error', 'Password change failed!');
         }
 
         User::where('id', Auth::user()->id)->update([

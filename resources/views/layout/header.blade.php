@@ -32,20 +32,19 @@
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a href="/home" id="home-link"class="hover:text-indigo-600 hover:underline">Home</a>
                 </li>
-                @if (Auth::check())
-                    @if (Auth::user()->role_id != '1')
-                        <li
-                            class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                            <a href="/courses" id="courses-link"
-                                class="hover:text-indigo-600 hover:underline">Kursus</a>
-                        </li>
-                        <li
-                            class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
-                            <a href="/certifications" id="certifications-link"
-                                class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
-                        </li>
-                    @endif
-                @endif
+                {{-- @if (Auth::check())
+                    @if (Auth::user()->role_id != '1') --}}
+                <li
+                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                    <a href="/courses" id="courses-link" class="hover:text-indigo-600 hover:underline">Kursus</a>
+                </li>
+                <li
+                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                    <a href="/certifications" id="certifications-link"
+                        class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
+                </li>
+                {{-- @endif
+                @endif --}}
                 @if (Auth::check())
                     <li
                         class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
@@ -81,7 +80,8 @@
                                     <li
                                         class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
 
-                                        <a href="/profile/edit" class="ml-4 font-semibold">Atur Profil</a>
+                                        <a href="/editProfile" class="ml-4 font-semibold">Atur
+                                            Profil</a>
                                     </li>
                                     <li
                                         class="my-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-red-600 focus:text-indigo-600 focus:outline-none">

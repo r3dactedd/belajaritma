@@ -28,6 +28,7 @@ class CourseSeeder extends Seeder
             'total_time' => 142,
             'created_by'=> 1,
             'updated_by'=> 1,
+            'course_img' => 'algoprog_courseImg.jpg'
         ]);
 
         Course::create([
@@ -44,6 +45,7 @@ class CourseSeeder extends Seeder
             'total_time' => 142,
             'created_by'=> 1,
             'updated_by'=> 1,
+            'course_img' => 'placeholder.webp',
         ]);
 
         Course::create([
@@ -60,6 +62,7 @@ class CourseSeeder extends Seeder
             'total_time' => 142,
             'created_by'=> 1,
             'updated_by'=> 1,
+            'course_img' => 'placeholder.webp',
         ]);
     }
 }

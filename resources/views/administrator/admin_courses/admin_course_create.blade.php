@@ -120,8 +120,8 @@
                         <!-- Profile Card -->
                         <div class="h-full p-2 md:py-4 md:pl-8">
                             <div class="mx-auto w-full">
-                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0" src="/placeholder.webp"
-                                    alt="Image Preview" />
+                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
+                                    src={{ asset('uploads/course_images/placeholder.webp') }} alt="Image Preview" />
                             </div>
                             <div class="max-w-md">
                                 <label

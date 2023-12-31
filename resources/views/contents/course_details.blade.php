@@ -93,8 +93,10 @@
                                 </div>
                                 <div
                                     class="flex items-center mt-6 mb-3 space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
-                                    @if (auth()->check() &&
-                                            !auth()->user()->isEnrolled($data->id))
+                                    @if (
+                                        (auth()->check() &&
+                                            !auth()->user()->isEnrolled($data->id)) ||
+                                            !Auth::check())
                                         <a data-modal-target="popup-enroll" data-modal-toggle="popup-enroll"
                                             class="inline-flex items-center px-4 py-2 text-sm font-semibold text-white align-middle bg-green-400 rounded-md hover:bg-indigo-600 md:w-36">
                                             <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
@@ -264,20 +266,22 @@
 
                             <div class="transition hover:bg-indigo-50">
                             </div>
-                            @if (auth()->user()->isEnrolled($data->id) != null)
-                                @if (
-                                    $materialItem->materialContentToMasterType->master_type_name == 'Final Test' &&
-                                        auth()->user()->isReadyForFinal($data->id))
-                                    <div class="flex items-center">
+                            @if (Auth::check())
+                                @if (auth()->user()->isEnrolled($data->id) != null)
+                                    @if (
+                                        $materialItem->materialContentToMasterType->master_type_name == 'Final Test' &&
+                                            auth()->user()->isReadyForFinal($data->id))
                                         <div class="flex items-center">
+                                            <div class="flex items-center">
 
-                                            <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                                <a href="/transaction" id="convertButton"
-                                                    class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 bg-selected rounded-xl hover:bg-green-400">Ambil
-                                                    Test</a>
-                                            </p>
+                                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                                    <a href="/transaction" id="convertButton"
+                                                        class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 bg-selected rounded-xl hover:bg-green-400">Ambil
+                                                        Test</a>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 @endif
                             @endif
 
@@ -288,35 +292,36 @@
                     $index++;
                 @endphp
             @endforeach
+            @if (Auth::check())
+                @if (auth()->user()->hasCompletedCourse($data->id) &&
+                        auth()->user()->isCompleted($data->id))
+                    <div
+                        class="container flex flex-col-reverse mx-auto mb-10 bg-white shadow rounded-xl md:w-3/5 lg:flex-row">
+                        <div class="w-full px-4">
+                            <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                                <h2 class="mt-4 mb-2 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                                    Sertifikasi Penyelesaian Kursus (MUNCULIN ABIS SELESAI FINAL TEST)
+                                </h2>
+                                <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                                    Selamat! Anda telah menyelesaikan kursus ini. Silahkan mengunduh sertifikat anda.
+                                </p>
 
-            @if (auth()->user()->hasCompletedCourse($data->id) &&
-                    auth()->user()->isCompleted($data->id))
-                <div class="container flex flex-col-reverse mx-auto mb-10 bg-white shadow rounded-xl md:w-3/5 lg:flex-row">
-                    <div class="w-full px-4">
-                        <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                            <h2 class="mt-4 mb-2 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                Sertifikasi Penyelesaian Kursus (MUNCULIN ABIS SELESAI FINAL TEST)
-                            </h2>
-                            <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                                Selamat! Anda telah menyelesaikan kursus ini. Silahkan mengunduh sertifikat anda.
-                            </p>
-
-                            <div class="flex items-center">
                                 <div class="flex items-center">
+                                    <div class="flex items-center">
 
-                                    <p onclick="downloadImage()"
-                                        class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                        <a
-                                            class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 bg-selected rounded-xl hover:bg-green-400">Unduh
-                                            Sertifikat</a>
-                                    </p>
+                                        <p onclick="downloadImage()"
+                                            class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                            <a
+                                                class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 bg-selected rounded-xl hover:bg-green-400">Unduh
+                                                Sertifikat</a>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
             @endif
-
 
             <div id="popup-enroll" tabindex="-1"
                 class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
@@ -433,23 +438,23 @@
             }
         }
     </style>
+    @if (Auth::check())
+        <table id="certificate" class="hidden bg-white cert">
 
-    <table id="certificate" class="hidden bg-white cert">
+            <tr>
+                <td align="center">
+                    <h1 class="crt_title">Certificate Of Completion
+                        <h2 class="my-6 font-semibold afterName">Sertifikat ini Diberikan Kepada</h2>
+                        <h1 class="colorGreen crt_user">{{ auth()->user()->full_name }}</h1>
+                        <h2 class="mt-4 afterName">{{ $data->course_name }}</h2>
+                        <h3 class="mt-4 mb-12">Pada Tanggal <span class="font-semibold">
+                                {{ auth()->user()->updateTimestampForCourse($data->id) }}</span></h3>
+                        <h1 class="mb-12 ml-4 text-2xl font-black text-gray-800">Belajaritma</h1>
+                </td>
 
-        <tr>
-            <td align="center">
-                <h1 class="crt_title">Certificate Of Completion
-                    <h2 class="my-6 font-semibold afterName">Sertifikat ini Diberikan Kepada</h2>
-                    <h1 class="colorGreen crt_user">{{ auth()->user()->full_name }}</h1>
-                    <h2 class="mt-4 afterName">{{ $data->course_name }}</h2>
-                    <h3 class="mt-4 mb-12">Pada Tanggal <span class="font-semibold">
-                            {{ auth()->user()->updateTimestampForCourse($data->id) }}</span></h3>
-                    <h1 class="mb-12 ml-4 text-2xl font-black text-gray-800">Belajaritma</h1>
-            </td>
-
-        </tr>
-    </table>
-
+            </tr>
+        </table>
+    @endif
     <script>
         function downloadImage() {
             //var container = document.getElementById("image-wrap"); //specific element on page
