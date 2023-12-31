@@ -16,29 +16,74 @@ use Illuminate\Support\Str;
 class ForumController extends Controller
 {
     //
-    public function showCourseData(Request $request){
-        $searchKeyword = $request->input('searchKeyword');
+    // public function showCourseData(Request $request){
+    //     $searchKeyword = $request->input('searchKeyword');
 
-        if ($searchKeyword) {
-            $data = Course::where('course_name', 'like', "%$searchKeyword%")->get();
-        } else {
+    //     if ($searchKeyword) {
+    //         $data = Course::where('course_name', 'like', "%$searchKeyword%")->get();
+    //     } else {
+    //         $data = Course::all();
+    //     }
+
+    //     $data = $data->map(function ($course) {
+    //         $course->course_img_url = asset('uploads/course_images/' . $course->course_img);
+    //         return $course;
+    //     });
+
+    //     return view('forum.forum_list', compact('data'));
+    // }
+
+    public function showCourseData(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->role_id == 1) {
             $data = Course::all();
+
+            $searchKeyword = $request->input('searchKeyword');
+
+            if ($searchKeyword) {
+                $data = $data->filter(function ($course) use ($searchKeyword) {
+                    return stripos($course->course_name, $searchKeyword) !== false;
+                });
+            }
+
+            $data = $data->map(function ($course) {
+                $course->course_img_url = asset('uploads/course_images/' . $course->course_img);
+                return $course;
+            });
+
+            return view('forum.forum_list', compact('data'));
         }
 
-        $data = $data->map(function ($course) {
-            $course->course_img_url = asset('uploads/course_images/' . $course->course_img);
-            return $course;
-        });
+        if ($user->role_id == 2) {
+            $data = $user->enrollments->map(function ($enrollment) {
+                return $enrollment->course;
+            });
 
-        return view('forum.forum_list', compact('data'));
+            $searchKeyword = $request->input('searchKeyword');
+
+            if ($searchKeyword) {
+                $data = $data->filter(function ($course) use ($searchKeyword) {
+                    return stripos($course->course_name, $searchKeyword) !== false;
+                });
+            }
+
+            return view('forum.forum_list', compact('data'));
+        }
     }
 
+
     public function showForumsByCourse($course_id, Request $request){
+        $user = Auth::user();
         $searchKeyword = $request->input('searchKeyword');
         $onlyUserForums = $request->has('bordered-checkbox');
         $selectedMaterial = $request->input('selectedMaterial');
-
         $query = Forum::where('course_id', $course_id);
+
+        if ($user && $user->role_id == 2) {
+            $query->where('deleted_by_admin', 0);
+        }
 
         if ($searchKeyword) {
             $query->where('forum_title', 'like', "%$searchKeyword%");

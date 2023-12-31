@@ -28,7 +28,7 @@ class Forum extends Model
         return $this->belongsTo(MasterType::class, 'master_type_id');
     }
     public function formToCourse(){
-        return $this->hasMany(Course::class, 'course_id','id');
+        return $this->belongsTo(Course::class, 'course_id','id');
     }
     public function formToMaterial(){
         return $this->belongsTo(Material::class, 'material_id');

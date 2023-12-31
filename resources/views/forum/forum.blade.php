@@ -90,7 +90,8 @@
                             <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox"
                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600">
                             <label for="bordered-checkbox-1"
-                                class="mx-2 w-full py-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hanya Tampilkan Diskusi Saya</label>
+                                class="mx-2 w-full py-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hanya
+                                Tampilkan Diskusi Saya</label>
                         </div>
                     </div>
                     </form>
@@ -150,10 +151,14 @@
                                                         {{ $getTotalReplies }} Replies
                                                     </p>
                                                     <div class="mx-2 flex space-x-4">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" height="16"
+                                                            width="16" viewBox="0 0 512 512">
+                                                            <path
+                                                                d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z" />
+                                                        </svg>
                                                     </div>
                                                     <p class="text-sm font-semibold text-gray-500 hover:underline">
-                                                        Insert Session Name here
+                                                        {{ $forumData->formToMaterial->title }}
                                                     </p>
                                                 </div>
                                             </p>
@@ -274,7 +279,7 @@
                                             Pertanyaan
                                         </label>
                                         <textarea id="forum_message" name="forum_message" placeholder="Input Pertanyaan Anda disini."></textarea>
-                                        <input type="" id="courseId" name="course_id"
+                                        <input type="hidden" id="courseId" name="course_id"
                                             value="{{ $course->id }}">
                                     </div>
                                     <div class="flex justify-start pt-2">
@@ -369,7 +374,7 @@
 
                 // Append image tag with the asset URL to the content
                 var assetUrl = "{{ asset('uploads/forum_attachments/') }}"; // Laravel asset function
-                editorContent += `<br><img src="${assetUrl}" alt="Uploaded Image">`;
+                // editorContent += `<br><img src="${assetUrl}">`;
 
                 console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
                 var formData = new FormData();

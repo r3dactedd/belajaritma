@@ -89,7 +89,7 @@
                             class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                             <div class="relative h-56 w-full">
                                 <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
-                                    src="{{ $course->course_img_url }}" alt="banner" />
+                                    src="{{ asset('uploads/course_images/' . $course->course_img) }}" alt="banner" />
                             </div>
                             <div class="h-full w-full pt-5 md:h-40">
 
