@@ -21,11 +21,7 @@
         <div class="" style="background-image: url('/background_image/bg-home.svg')">
             <div class="container mx-auto p-5">
                 <div class="my-4 md:-mx-2 md:flex">
-
-                    <!-- Right Side -->
                     <div class="h-full w-full">
-
-
                         <div class="md:mx-2 md:w-3/4">
                             <div class="rounded-xl bg-none px-4 py-2 md:px-8">
                                 <h1
@@ -44,7 +40,6 @@
                 </div>
             </div>
         </div>
-
         @if (Auth::check())
             @if (Auth::user()->role_id == '2')
                 <div class="container mx-auto mb-12 mt-6 w-11/12">

@@ -9,11 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
-
 </head>
-<!-- nav -->
 
-<div class="fixed mx-auto w-full border-b border-gray-300 bg-white px-5 shadow-sm sm:px-10">
+<div class=" top-0 z-50 fixed mx-auto w-full border-b border-gray-300 bg-white px-5 shadow-sm sm:px-10">
     <div class="container mx-auto flex h-16 items-center justify-between lg:items-stretch">
         <div class="flex h-full items-center">
             <a href="/" class="relative mr-10 flex h-full items-center font-black leading-none">
@@ -32,8 +30,6 @@
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a href="/home" id="home-link"class="hover:text-indigo-600 hover:underline">Home</a>
                 </li>
-                {{-- @if (Auth::check())
-                    @if (Auth::user()->role_id != '1') --}}
                 <li
                     class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
                     <a href="/courses" id="courses-link" class="hover:text-indigo-600 hover:underline">Kursus</a>
@@ -43,8 +39,6 @@
                     <a href="/certifications" id="certifications-link"
                         class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
                 </li>
-                {{-- @endif
-                @endif --}}
                 @if (Auth::check())
                     <li
                         class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
