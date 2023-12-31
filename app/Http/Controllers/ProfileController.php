@@ -47,9 +47,9 @@ class ProfileController extends Controller
         return view('home', ['searchUser' => $searchUser, 'enrolledCourses' => $enrolledCourses]);
     }
 
-    public function viewProfile($id)
+    public function viewProfile($username)
     {
-        $searchUser = User::find($id);
+        $searchUser = User::where('username', $username)->first();
         if (!$searchUser) {
             return view('errors.404error', ['message' => 'User not found.']);
         }
@@ -138,7 +138,7 @@ class ProfileController extends Controller
         $validateProfile = $request->validate([
             'profile_img' => 'image|file',
             'full_name' => 'required|string|min:3|max:50',
-            'username' => 'required|string|min:3|max:30',
+            'username' => 'required|string|min:3|max:30|unique:users,username',
             'about_me' => 'max:150',
         ]);
 
@@ -163,8 +163,7 @@ class ProfileController extends Controller
         ];
 
         User::where('id', Auth::user()->id)->update($changeProfile);
-        $userId = Auth::user()->id;
-        return Redirect::to("/profile/{$userId}");
+        return Redirect::to("/profile/{$request->username}");
     }
 
     public function changePassword(Request $request)
@@ -185,7 +184,6 @@ class ProfileController extends Controller
         User::where('id', Auth::user()->id)->update([
             'password' => bcrypt($request->new_password),
         ]);
-        $userId = Auth::user()->id;
-        return Redirect::to("/profile/{$userId}");
+        return Redirect::to("/profile/{$request->username}");
     }
 }

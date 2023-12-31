@@ -103,7 +103,7 @@ Route::get('/courses/3/asg/results', function () {
     return view('contents.assignment_results');
 });
 
-Route::get('/profile/{id}', [ProfileController::class, 'viewProfile']);
+Route::get('/profile/{username}', [ProfileController::class, 'viewProfile']);
 Route::get('/editProfile', [ProfileController::class, 'editProfile']);
 Route::post('/editProfile', [ProfileController::class, 'update']);
 Route::post('/editProfile/password', [ProfileController::class, 'changePassword']);

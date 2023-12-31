@@ -57,7 +57,7 @@
                                         <p class="mb-3 text-sm">
                                             Created by:
                                         </p>
-                                        <a class="mb-3 text-sm" href="/profile/{{ $data->formToUser->id }}">
+                                        <a class="mb-3 text-sm" href="/profile/{{ $data->formToUser->username }}">
                                             {{ $data->formToUser->username }}
                                         </a>
                                     </div>
@@ -77,12 +77,16 @@
                             {{-- ADD COMMENTS --}}
                             @if (Auth::user()->id == $data->formToUser->id)
                                 <div class="mt-4 flex items-center">
-
-
                                     <button id="open-btn" data-modal-target="popup-delete" data-modal-toggle="popup-delete"
-                                        class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
-                                        data-modal-target="defaultModal" data-modal-toggle="defaultModal">
+                                        class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                                         Hapus Diskusi
+                                    </button>
+                                </div>
+                            @elseif(auth()->user()->role_id == 1)
+                                <div class="mt-4 flex items-center">
+                                    <button id="open-btn" data-modal-target="admin-delete" data-modal-toggle="admin-delete"
+                                        class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                                        Hapus Diskusi Oleh Admin
                                     </button>
                                 </div>
                             @endif
@@ -119,13 +123,11 @@
                                         {{-- COMMENTS LIST W/REPLY --}}
                                         @php
                                             $repliedTo = $data->formToUser->username;
-                                            $repliedProfile = $data->formToUser->id;
                                         @endphp
                                         @include('forum.reply', [
                                             'reply' => $reply,
                                             'data' => $data,
                                             'repliedTo' => $repliedTo,
-                                            'repliedProfile' => $repliedProfile,
                                         ])
                                         {{-- COMMENTS LIST W/REPLY --}}
                                     @endif
@@ -188,6 +190,48 @@
             </div>
         </div>
         {{-- Delete Popup Modal --}}
+
+        {{-- Delete Admin --}}
+        <div id="admin-delete" tabindex="-1"
+            class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+            <div class="relative max-h-full w-full max-w-md">
+                <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+                    <button type="button"
+                        class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="admin-delete">
+                        <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-6">
+                        <form method="POST"
+                            action="/forum/course/{{ $data->course_id }}/thread/{{ $data->id }}/delete"
+                            data-course-id="">
+                            @csrf
+                            @method('DELETE')
+                            <h1 class="mb-5 text-lg font-normal text-black-500 dark:text-gray-400"><strong>Alasan
+                                    Hapus</strong>
+                            </h1>
+                            <input type="text" name="reason_delete" id="inputReasonDelete"
+                                class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
+                                placeholder="Tulis alasan hapus forum" required="">
+
+                            <div class="flex justify-center text-center">
+                                <button data-modal-hide="admin-delete" type="submit"
+                                    class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                    Ya, hapus
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Delete Admin --}}
     </body>
     <style>
         .accordion-content {
