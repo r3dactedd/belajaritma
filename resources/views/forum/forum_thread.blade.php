@@ -118,6 +118,7 @@
 
                             <h3 class="mb-4 text-lg font-semibold text-gray-900">Comments</h3>
                             <div class="space-y-4">
+                                <hr class="border-gray-600">
                                 @foreach ($getReply as $reply)
                                     @if ($reply->reply_id == $data->id)
                                         {{-- COMMENTS LIST W/REPLY --}}

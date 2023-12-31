@@ -45,7 +45,7 @@
     @endphp
 @else()
     <hr class="my-2">
-    <div class="flex class ml-10">
+    <div class="class ml-10 flex">
         <div class="mr-3 flex-shrink-0">
             <img class="mt-3 h-5 w-5 rounded-full sm:h-8 sm:w-8"
                 src="{{ asset('uploads/profile_images/' . $reply->formToUser->profile_img) }}" alt="">
@@ -148,44 +148,7 @@
     tinymce.init({
         selector: '#forum_reply',
         menubar: false,
-        // Image below, for further consideration
-        plugins: ' code codesample image',
         toolbar: ' wordcount | link image |code |bold italic underline| codesample ',
-        // Image below, for further consideration
-        file_picker_types: 'image',
-        /* enable automatic uploads of images represented by blob or data URIs*/
-        automatic_uploads: true,
-        file_picker_callback: (cb, value, meta) => {
-            const input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
-
-            input.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-
-                const reader = new FileReader();
-                reader.addEventListener('load', () => {
-                    /*
-                      Note: Now we need to register the blob in TinyMCEs image blob
-                      registry. In the next release this part hopefully won't be
-                      necessary, as we are looking to handle it internally.
-                    */
-                    const id = 'blobid' + (new Date()).getTime();
-                    const blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                    const base64 = reader.result.split(',')[1];
-                    const blobInfo = blobCache.create(id, file, base64);
-                    blobCache.add(blobInfo);
-
-                    /* call the callback and populate the Title field with the file name */
-                    cb(blobInfo.blobUri(), {
-                        title: file.name
-                    });
-                });
-                reader.readAsDataURL(file);
-            });
-
-            input.click();
-        },
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 
     })
