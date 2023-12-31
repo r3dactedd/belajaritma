@@ -22,7 +22,7 @@ class CertificationSeeder extends Seeder
             'certif_outline' => 'Outline Algoritma dan Pemrograman',
             'created_by'=> 1,
             'updated_by'=> 1,
-            'certif_img'=> 'placeholder.webp',
+            'certif_img'=> 'algoprog_courseImg.jpg',
         ]);
         Certification::create([
             'certif_title' => 'Dummy Certif 1',
