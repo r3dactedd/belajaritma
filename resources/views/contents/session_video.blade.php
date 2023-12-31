@@ -43,10 +43,13 @@
                 </div>
                 <div class="my-4"></div>
                 <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
-
+                    {{--
                     <iframe width="100%" height="640" src="{{ $material->video_link }}" frameborder="0"
-                        allowfullscreen></iframe>
-
+                        allowfullscreen></iframe> --}}
+                    <div id="videoContainer" class="container mx-auto my-5 p-5" onload="embedVideo()">
+                        <!-- YouTube video will be embedded here -->
+                    </div>
+                    <input type="hidden" name="video_link" id="inputVideoLink" value="{{ $material->video_link }}">
                 </div>
             </div>
         </div>
@@ -73,8 +76,7 @@
                 @endif
                 @if ($nextMaterial)
                     <button type="button">
-                        <a
-                            href="{{ url('/courses/' . 'material/' . $material->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
+                        <a href="{{ url('/courses/' . 'material/' . $material->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
                             class="group inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800">
 
                             <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"
@@ -131,6 +133,37 @@
                 // Handle other types of errors, such as network issues
             });
     }
+
+    function embedVideo() {
+        const videoLink = document.getElementById('inputVideoLink').value;
+        const videoContainer = document.getElementById('videoContainer');
+
+        // Extract the video ID from the YouTube link
+        const videoId = extractVideoId(videoLink);
+
+        // Create and set the iframe element
+        const iframe = document.createElement('iframe');
+        iframe.width = '100%';
+        iframe.height = '640';
+        iframe.src = `https://www.youtube.com/embed/${videoId}`;
+        iframe.allowfullscreen = true;
+
+        // Clear previous content and append the iframe
+        videoContainer.innerHTML = '';
+        videoContainer.appendChild(iframe);
+    }
+
+    // Function to extract the video ID from a YouTube link
+    function extractVideoId(link) {
+        const videoIdMatch = link.match(/[?&]v=([^&#]+)/);
+        return videoIdMatch && videoIdMatch[1];
+    }
+
+    window.onload = function() {
+        console.log("Page loaded");
+
+        embedVideo();
+    };
 </script>
 
 </html>

@@ -22,6 +22,7 @@ class CertificationSeeder extends Seeder
             'certif_outline' => 'Outline Algoritma dan Pemrograman',
             'created_by'=> 1,
             'updated_by'=> 1,
+            'certif_img'=> 'placeholder.webp',
         ]);
         Certification::create([
             'certif_title' => 'Dummy Certif 1',
@@ -32,6 +33,7 @@ class CertificationSeeder extends Seeder
             'certif_outline' => 'Outline Algoritma dan Pemrograman',
             'created_by'=> 1,
             'updated_by'=> 1,
+            'certif_img'=> 'placeholder.webp',
         ]);
         Certification::create([
             'certif_title' => 'Dummy Certif 2',
@@ -42,6 +44,7 @@ class CertificationSeeder extends Seeder
             'certif_outline' => 'Outline Algoritma dan Pemrograman',
             'created_by'=> 1,
             'updated_by'=> 1,
+            'certif_img'=> 'placeholder.webp',
         ]);
     }
 }

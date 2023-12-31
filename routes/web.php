@@ -104,8 +104,7 @@ Route::get('/courses/3/asg/results', function () {
 });
 
 Route::get('/profile/{id}', [ProfileController::class, 'viewProfile']);
-Route::get('/profile/edit', [ProfileController::class, 'editProfile']);
-Route::post('/profile/edit', [ProfileController::class, 'update']);
+Route::get('/editProfile', [ProfileController::class, 'editProfile']);
 Route::post('/editProfile', [ProfileController::class, 'update']);
 Route::post('/editProfile/password', [ProfileController::class, 'changePassword']);
 

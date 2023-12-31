@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Certification;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,12 +30,16 @@ class CertificationController extends Controller
     }
     public function registerCertification($id){
         $data=Certification::find($id);
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('warning', 'Anda perlu masuk terlebih dahulu untuk mendaftar sertifikasi.');
+        }
         if ($data) {
             session()->flash('success', 'Transaction Sent');
         }
         return view('transactions.transaction', ['data' => $data]);
     }
     public function createTransaction(Request $request){
+
         $request->validate([
             'transaction_proof' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);

@@ -41,7 +41,7 @@ class ManageCourseController extends Controller
             'processor'=> 'required|string',
             'operating_system' => 'required|string',
             'other_programs'=> 'required|string',
-            'course_img' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'course_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
 
@@ -49,9 +49,7 @@ class ManageCourseController extends Controller
             $filename = Str::orderedUuid() . '.' . $request->file('course_img')->getClientOriginalExtension();
             $request->file('course_img')->storeAs('course_images', $filename, 'course_images');
         }
-        else{
-            $filename = 'placeholder.webp';
-        }
+
 
         $course = new Course();
         $course->course_name = $request->course_name;

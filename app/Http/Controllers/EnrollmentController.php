@@ -13,9 +13,8 @@ class EnrollmentController extends Controller
     //
     public function enrollCourse($id){
          if (!Auth::check()) {
-        // Jika pengguna belum masuk, redirect ke halaman login dengan pesan peringatan
-        return redirect()->route('login')->with('warning', 'Anda perlu masuk terlebih dahulu untuk mendaftar kelas.');
-    }
+            return redirect()->route('login')->with('warning', 'Anda perlu masuk terlebih dahulu untuk mendaftar kelas.');
+        }
         $user = auth()->user();
 
         $enrollment = new Enrollment([

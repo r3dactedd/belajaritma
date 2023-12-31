@@ -48,7 +48,7 @@ class MaterialSeeder extends Seeder
             'description' => 'Video ini akan memberikan materi tambahan mengenai Data Type di C.
             ',
             'material_duration' => 8,
-            'video_link' => 'https://www.youtube.com/watch?v=wnbzTjWr5gY',
+            'video_link' => 'https://www.youtube.com/watch?v=wnbzTjWr5gY&ab_channel=Simplilearn',
         ]);
 
         Material::create([

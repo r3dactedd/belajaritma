@@ -42,10 +42,10 @@
                 <div class="my-4"></div>
                 <div class="w-full bg-white rounded shadow md:mx-2 md:w-9/12">
 
-                    <iframe src="{{ Storage::url('pdf_folder/test.pdf') }}" type="application/pdf" width="100%"
-                        height="1024">
+                    <iframe src="{{ asset('uploads/material_pdf/' . $material->pdf_link) }}" type="application/pdf"
+                        width="100%" height="1024">
                         This browser does not support PDFs. Please download the PDF to view it: <a
-                            href="{{ asset('pdf_folder/test.pdf') }}">Download
+                            href="{{ asset('uploads/material_pdf/' . $material->pdf_link) }}">Download
                             PDF</a>
                     </iframe>
 
@@ -74,8 +74,7 @@
                 @endif
                 @if ($nextMaterial)
                     <button type="button">
-                        <a
-                            href="{{ url('/courses/' . 'material/' . $material->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
+                        <a href="{{ url('/courses/' . 'material/' . $material->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
                             class="inline-flex flex-col items-center justify-center px-5 group hover:bg-gray-50 dark:hover:bg-gray-800">
 
                             <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"

@@ -39,16 +39,13 @@ class ManageCertificationController extends Controller
             'certif_duration'=> 'required|integer|min:0',
             'certif_cost'=> 'required|integer|min:0',
             'certif_outline' => 'required|string',
+            'certif_img' =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $filename = '';
         if ($request->hasFile('certif_img')) {
             $filename = Str::orderedUuid() . '.' . $request->file('certif_img')->getClientOriginalExtension();
             $request->file('certif_img')->storeAs('certif_images', $filename, 'certif_images');
-        }
-
-        else{
-            $filename = 'placeholder.webp';
         }
 
         $certif = new Certification();
