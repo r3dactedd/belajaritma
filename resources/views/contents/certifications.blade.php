@@ -90,7 +90,8 @@
                                                 <h2 class="mb-4 text-lg font-bold tracking-normal text-gray-800">
                                                     Rp {{ $data->certif_cost }}
                                                 </h2>
-                                                <p class="text-md mb-2 font-normal tracking-normal text-gray-600 md:w-3/4">
+                                                <p
+                                                    class="mb-2 text-base font-normal tracking-normal text-gray-600 md:w-3/4">
                                                     {{ $data->certif_desc }}
                                                 </p>
                                                 <div

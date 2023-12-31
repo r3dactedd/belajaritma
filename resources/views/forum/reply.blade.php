@@ -7,13 +7,13 @@
         <div class="flex-1 rounded-lg px-4 py-2 leading-relaxed sm:px-6 sm:py-4">
             <strong>{{ $reply->formToUser->username }}</strong>
             <span class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
-            <p class="text-md">
+            <p class="text-base">
                 <a href="/profile/{{ $repliedTo }}"><strong style="color: blue;">{{ '@' . $repliedTo }}</strong></a>
 
                 {{ strip_tags($reply->forum_message) }}
             </p>
             <div class="transition">
-                <div class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
+                <div class="flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
                     <div class="flex -space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" height="0.8em" viewBox="0 0 640 512">
                             <path
@@ -22,12 +22,12 @@
                     </div>
                     <a id="reply-text" data-modal-target="popup-reply" data-modal-toggle="popup-reply"
                         data-reply-message="{{ $reply->forum_message }}" data-reply-id="{{ $reply->id }}"
-                        onclick="setReplyId(this)" class="accordion-header font-semibold text-gray-500 hover:underline">
+                        onclick="setReplyId(this)" class="font-semibold text-gray-500 hover:underline">
                         Balas
                     </a>
                 </div>
-                <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
-                    <ul class="ml-0 list-inside space-y-2 pb-4"> <!-- Removed the left margin -->
+                <div class="max-h-0 overflow-hidden px-5 pt-0">
+                    <ul class="ml-0 list-inside space-y-2 pb-4">
                         <div class="w-full" id="destination-reply-container">
                             <div id="quill-container3"></div>
                             <div class="my-4 flex justify-end">
@@ -53,14 +53,14 @@
         <div class="flex-1 rounded-lg px-4 py-2 leading-relaxed sm:px-6 sm:py-4">
             <strong>{{ $reply->formToUser->username }}</strong>
             <span class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
-            <p class="text-md">
+            <p class="text-base">
                 <a href="/profile/{{ $repliedTo }}"><strong
                         style="color: blue;">{{ '@' . $repliedTo }}</strong></a>
 
                 {{ strip_tags($reply->forum_message) }}
             </p>
             <div class="transition">
-                <div class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
+                <div class="flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
                     <div class="flex -space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" height="0.8em" viewBox="0 0 640 512">
                             <path
@@ -69,11 +69,11 @@
                     </div>
                     <a id="reply-text" data-modal-target="popup-reply" data-modal-toggle="popup-reply"
                         data-reply-message="{{ $reply->forum_message }}" data-reply-id="{{ $reply->id }}"
-                        onclick="setReplyId(this)" class="accordion-header font-semibold text-gray-500 hover:underline">
+                        onclick="setReplyId(this)" class="font-semibold text-gray-500 hover:underline">
                         Balas
                     </a>
                 </div>
-                <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
+                <div class="max-h-0 overflow-hidden px-5 pt-0">
                     <ul class="ml-0 list-inside space-y-2 pb-4"> <!-- Removed the left margin -->
                         <div class="w-full" id="destination-reply-container">
                             <div id="quill-container3"></div>
@@ -113,7 +113,7 @@
 
                 <div class="mx-auto rounded-xl bg-white px-2 py-2">
                     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
-                    <p class="text-md my-4" id="showComment">
+                    <p class="my-4 text-base" id="showComment">
 
                     </p>
                     <form id="myForm2_{{ $reply->id }}" method="post" enctype="multipart/form-data">
@@ -180,7 +180,7 @@
         var editorContent = tinymce.get('forum_reply').getContent();
         console.log("ini isian editorContent", editorContent)
         if (editorContent === '') {
-            alert('Error: Forum message cannot be empty.');
+            alert('Error: Pesan tidak boleh kosong');
             return;
         }
 

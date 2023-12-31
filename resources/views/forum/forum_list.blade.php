@@ -96,7 +96,7 @@
                                 <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                     {{ $course->course_name }}
                                 </h4>
-                                <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
+                                <p class="mb-6 px-5 text-base font-normal tracking-normal text-gray-600">
                                     {{ $course->course_desc }}
                                 </p>
 

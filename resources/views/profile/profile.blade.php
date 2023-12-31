@@ -69,12 +69,12 @@
                                     @endif
                                     @if ($searchUser->about_me != null)
                                         <h2
-                                            class="text-md mt-12 pr-2 pt-2 text-center tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
+                                            class="mt-12 pr-2 pt-2 text-center text-base tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
                                             Tentang Saya
                                         </h2>
 
                                         <h2
-                                            class="text-md mt-4 pr-2 pt-2 text-center font-light tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
+                                            class="mt-4 pr-2 pt-2 text-center text-base font-light tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
                                             {{ $searchUser->about_me }}
                                         </h2>
                                     @endif
@@ -88,44 +88,45 @@
             </div>
 
         </div>
-        <div class="container mx-auto mb-1 flex h-full w-11/12 items-center border-b-2 border-gray-300 px-2">
+        @if (Auth::user()->role_id == '2')
+            <div class="container mx-auto mb-1 flex h-full w-11/12 items-center border-b-2 border-gray-300 px-2">
 
-            <ul class="h-full items-center lg:flex">
-                <li
-                    class="text-md my-4 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:my-1">
-                    <a id="profileDashboard">Statistika</a>
-                </li>
-                <li
-                    class="md:my-1text-md my-4 ml-0 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:ml-10">
-                    <a id="profileCourses">Kursus</a>
-                </li>
-                <li
-                    class="text-md my-4 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:my-1">
-                    <a id="profileCerti">Sertifikasi</a>
-                </li>
-                @if ($searchUser->id == auth()->user()->id)
+                <ul class="h-full items-center lg:flex">
                     <li
-                        class="text-md my-4 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:my-1">
-                        <a id="profileHistory">Riwayat Transaksi</a>
+                        class="my-4 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800 md:my-1">
+                        <a id="profileDashboard">Statistika</a>
                     </li>
-                @endif
-            </ul>
+                    <li
+                        class="md:my-1text-base my-4 ml-0 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:ml-10">
+                        <a id="profileCourses">Kursus</a>
+                    </li>
+                    <li
+                        class="my-4 mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800 md:my-1">
+                        <a id="profileCerti">Sertifikasi</a>
+                    </li>
+                    @if ($searchUser->id == auth()->user()->id)
+                        <li
+                            class="my-4 mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800 md:my-1">
+                            <a id="profileHistory">Riwayat Transaksi</a>
+                        </li>
+                    @endif
+                </ul>
 
-        </div>
+            </div>
 
-        <div id="dashboard">
-            @include('profile.profile_dashboard')
-        </div>
-        <div id="certifications" style="display: none;">
-            @include('profile.profile_certilist')
-        </div>
-        <div id="courses" style="display: none;">
-            @include('profile.profile_courselist')
-        </div>
-        <div id="history" style="display: none;">
-            @include('profile.profile_history')
-        </div>
-
+            <div id="dashboard">
+                @include('profile.profile_dashboard')
+            </div>
+            <div id="certifications" style="display: none;">
+                @include('profile.profile_certilist')
+            </div>
+            <div id="courses" style="display: none;">
+                @include('profile.profile_courselist')
+            </div>
+            <div id="history" style="display: none;">
+                @include('profile.profile_history')
+            </div>
+        @endif
         </div>
 
     </body>

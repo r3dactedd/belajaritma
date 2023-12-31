@@ -59,7 +59,7 @@
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:pb-6 md:pr-4 md:text-left lg:text-3xl">
                             Ubah Data Profil
                         </h1>
-                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
+                        <p class="mb-6 text-base font-normal tracking-normal text-gray-600">
                             Anda dapat mengubah informasi akun anda disini.
                         </p>
                     </div>
@@ -165,7 +165,7 @@
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:pb-6 md:pr-4 md:text-left lg:text-3xl">
                             Ubah Password Akun
                         </h1>
-                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
+                        <p class="mb-6 text-base font-normal tracking-normal text-gray-600">
                             Anda dapat mengubah password akun anda disini.
                         </p>
                     </div>

@@ -91,12 +91,12 @@
                     <!-- Profile tab -->
                     <!-- About Section -->
                     <div class="rounded-xl bg-white px-6 pt-4 md:px-12">
-                        <label for="courseTitle" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                        <label for="courseTitle" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                             Judul Kursus</label>
                         <input type="text" name="course_name" id="inputCourseName"
                             class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
                             value="{{ htmlspecialchars($data->course_name) }}" required="">
-                        <label for="shortDesc" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                        <label for="shortDesc" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                             Deskripsi Singkat Kursus</label>
                         <textarea name="short_desc" id="inputShortDesc"
                             class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="rounded-t-xl bg-white p-4 shadow-sm">
-                <label for="courseDesc" class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                <label for="courseDesc" class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                     Mengenai Kursus</label>
                 <div class="px-4 py-2 font-semibold">
                     <textarea name="course_desc" id="inputCourseDesc"
@@ -137,7 +137,7 @@
             <div class="rounded-b-xl bg-white p-4 shadow-sm">
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div>
-                        <label for="minSpec" class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                        <label for="minSpec" class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                             Spesifikasi Minimum</label>
 
                         <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-2">
@@ -168,7 +168,8 @@
                         </div>
                     </div>
                     <div>
-                        <label for="username" class="text-md my-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                        <label for="username"
+                            class="my-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                             Program Lain yang Diperlukan</label>
 
                         <div class="px-4 py-2 font-semibold">
@@ -201,7 +202,7 @@
             <div id="syllabus"class="my-4"></div>
             <div class="relative overflow-x-auto">
                 <table
-                    class="text-md mx-auto w-full text-left font-semibold text-gray-500 shadow-md sm:rounded-lg md:w-10/12">
+                    class="text-base mx-auto w-full text-left font-semibold text-gray-500 shadow-md sm:rounded-lg md:w-10/12">
                     <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">

@@ -11,7 +11,7 @@
     <link href="style.css" rel="stylesheet" />
 </head>
 
-<div class=" top-0 z-50 fixed mx-auto w-full border-b border-gray-300 bg-white px-5 shadow-sm sm:px-10">
+<div class="fixed top-0 z-40 mx-auto w-full border-b border-gray-300 bg-white px-5 shadow-sm sm:px-10">
     <div class="container mx-auto flex h-16 items-center justify-between lg:items-stretch">
         <div class="flex h-full items-center">
             <a href="/" class="relative mr-10 flex h-full items-center font-black leading-none">
@@ -27,28 +27,26 @@
             </a>
             <ul class="hidden h-full items-center lg:flex">
                 <li
-                    class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                    class="mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800">
                     <a href="/home" id="home-link"class="hover:text-indigo-600 hover:underline">Home</a>
                 </li>
-                {{-- @if (Auth::check())
-                    @if (Auth::user()->role_id != '1') --}}
                 @if (!Auth::user())
                     <li
-                        class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                        class="mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800">
                         <a href="/courses" id="courses-link" class="hover:text-indigo-600 hover:underline">Kursus</a>
                     </li>
                     <li
-                        class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                        class="mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800">
                         <a href="/certifications" id="certifications-link"
                             class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
                     </li>
                 @elseif (Auth::user()->role_id == '2')
                     <li
-                        class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                        class="mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800">
                         <a href="/courses" id="courses-link" class="hover:text-indigo-600 hover:underline">Kursus</a>
                     </li>
                     <li
-                        class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                        class="mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800">
                         <a href="/certifications" id="certifications-link"
                             class="hover:text-indigo-600 hover:underline">Sertifikasi</a>
                     </li>
@@ -57,14 +55,14 @@
                 @endif --}}
                 @if (Auth::check())
                     <li
-                        class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                        class="mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800">
                         <a href="/forum" id="forums-link"class="hover:text-indigo-600 hover:underline">Forum</a>
                     </li>
                 @endif
                 @if (Auth::check())
                     @if (Auth::user()->role_id == '1')
                         <li
-                            class="text-md mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800">
+                            class="mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800">
                             <a href="/manager" id="manager-link"class="hover:text-indigo-600 hover:underline">Admin
                                 Manager</a>
                         </li>
@@ -104,8 +102,8 @@
                                 </ul>
                                 <img class="h-10 w-10 rounded-full object-cover"
                                     src={{ asset('uploads/profile_images/' . Auth::user()->profile_img) }} alt="" />
-                                <p class="text-md ml-2 font-semibold text-gray-800">{{ auth()->user()->username }}</p> <svg
-                                    class="ml-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                                <p class="ml-2 text-base font-semibold text-gray-800">{{ auth()->user()->username }}</p>
+                                <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
 
                                     <path
                                         d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
@@ -113,7 +111,6 @@
                                 </svg>
                             </div>
                         @endauth
-
                 </div>
             </div>
             {{-- KALAU BLM ADA ACCOUNT --}}
@@ -138,20 +135,35 @@
                 <span class="my-1 ml-2 font-bold"><a href="/#">Home</a></span>
             </div>
         </li>
-        <li class="flex cursor-pointer flex-col justify-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden"
-            onclick="dropdownHandler(this)">
-            <div class="flex items-center">
-                <span class="my-1 ml-2 font-bold"><a href="/courses">Kursus</a></span>
-            </div>
-        </li>
-        <li
-            class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
-            <span class="my-1 ml-2 font-bold"><a href="/certifications">Sertifikasi</a></span>
-        </li>
-        <li
-            class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
-            <span class="my-1 ml-2 font-bold"><a href="/forum">Forum</a></span>
-        </li>
+        @if (!Auth::user())
+            <li class="flex cursor-pointer flex-col justify-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden"
+                onclick="dropdownHandler(this)">
+                <div class="flex items-center">
+                    <span class="my-1 ml-2 font-bold"><a href="/courses">Kursus</a></span>
+                </div>
+            </li>
+            <li
+                class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
+                <span class="my-1 ml-2 font-bold"><a href="/certifications">Sertifikasi</a></span>
+            </li>
+        @elseif (Auth::user()->role_id == '2')
+            <li class="flex cursor-pointer flex-col justify-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden"
+                onclick="dropdownHandler(this)">
+                <div class="flex items-center">
+                    <span class="my-1 ml-2 font-bold"><a href="/courses">Kursus</a></span>
+                </div>
+            </li>
+            <li
+                class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
+                <span class="my-1 ml-2 font-bold"><a href="/certifications">Sertifikasi</a></span>
+            </li>
+        @endif
+        @if (Auth::check())
+            <li
+                class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
+                <span class="my-1 ml-2 font-bold"><a href="/forum">Forum</a></span>
+            </li>
+        @endif
         @if (Auth::check())
             @if (Auth::user()->role_id == '1')
                 <li

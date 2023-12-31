@@ -58,7 +58,7 @@
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-6 md:pr-4 md:text-left lg:text-3xl">
                             {{ $data->certif_title }}
                         </h1>
-                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
+                        <p class="mb-6 text-base font-normal tracking-normal text-gray-600">
                             {{ $data->certif_short_desc }}
                         </p>
                         <div class="grid-row-2 grid md:grid-cols-2">
@@ -159,7 +159,7 @@
                             <div class="w-full px-4">
                                 <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                                     <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                        Bukti Penyelesaian Sertifikasi (MUNCULIN ABIS SELESAI FINAL TEST)
+                                        Bukti Penyelesaian Sertifikasi
                                     </h2>
                                     <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
                                         Selamat! Anda telah lulus tes sertifikasi ini. Silahkan mengunduh bukti sertifikasi
@@ -185,7 +185,7 @@
                             <div class="w-full px-4">
                                 <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                                     <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                        Ambil Test Sertifikasi (muncul kalau sudah registered)
+                                        Ambil Test Sertifikasi
                                     </h2>
                                     <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
                                         Anda telah berhasil registrasi untuk sertifikasi ini. Silahkan memulai test ini.
@@ -211,12 +211,11 @@
                         <div class="w-full px-4">
                             <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                                 <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                    Registrasi Sertifikasi (muncul kalau belum registered)
+                                    Registrasi Sertifikasi
                                 </h2>
                                 <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                                    Anda belum melakukan registrasi untuk sertifikasi ini. Untuk mengakses tes sertifikasi,
-                                    selesaikan
-                                    pembayaran terlebih dahulu.
+                                    Anda belum melakukan registrasi untuk sertifikasi ini.
+                                    Untuk mengakses tes sertifikasi, selesaikan pembayaran terlebih dahulu.
                                 </p>
 
                                 <div class="flex items-center">
@@ -237,12 +236,11 @@
                     <div class="w-full px-4">
                         <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                             <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                Registrasi Sertifikasi (muncul kalau belum registered)
+                                Registrasi Sertifikasi
                             </h2>
                             <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                                Anda belum melakukan registrasi untuk sertifikasi ini. Untuk mengakses tes sertifikasi,
-                                selesaikan
-                                pembayaran terlebih dahulu.
+                                Anda belum melakukan registrasi untuk sertifikasi ini.
+                                Untuk mengakses tes sertifikasi, selesaikan pembayaran terlebih dahulu.
                             </p>
 
                             <div class="flex items-center">

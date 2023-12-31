@@ -75,7 +75,7 @@
                         <col>
                     </colgroup>
                     <thead class="bg-gray-200 leading-normal text-gray-600">
-                        <tr class="text-md bg-gray-200 leading-normal text-gray-600 md:text-lg">
+                        <tr class="bg-gray-200 text-base leading-normal text-gray-600 md:text-lg">
                             <th class="px-4 py-2 text-left">Nama Kursus</th>
                             <th class="px-4 py-2 text-left">Diupload Oleh</th>
                             <th class="px-4 py-2 text-left">Terakhir Diedit Oleh</th>
@@ -83,7 +83,7 @@
                             <th class="px-2 py-3 text-center">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="text-md font-light text-gray-600 md:text-lg">
+                    <tbody class="text-base font-light text-gray-600 md:text-lg">
                         @foreach ($data as $item)
                             <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
                                 <td class="px-4 py-2">

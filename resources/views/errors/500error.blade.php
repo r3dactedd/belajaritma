@@ -31,7 +31,7 @@
                     Server Error
                 </div>
 
-                <div class="text-md mt-8 font-medium text-gray-400 md:text-xl">
+                <div class="mt-8 text-base font-medium text-gray-400 md:text-xl">
                     <a onclick="history.back()" class="mt-4 flex items-center text-center" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                             <path

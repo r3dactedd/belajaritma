@@ -46,11 +46,11 @@
                         {{-- Success --}}
                         <div class="space-y-4">
                             <h1
-                                class="text-md relative mx-6 block w-auto pt-4 font-bold tracking-normal text-gray-800 lg:text-xl">
+                                class="relative mx-6 block w-auto pt-4 text-base font-bold tracking-normal text-gray-800 lg:text-xl">
                                 Nilai Assignment : <span class="text-green-600">90</span>
                             </h1>
                             <h2
-                                class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                class="relative mx-6 mb-2 w-auto py-4 text-base font-semibold tracking-normal text-gray-800 lg:text-base">
                                 Selamat, anda telah lulus kursus ini! Silahkan melanjutkan ke sesi berikutnya.
                             </h2>
                         </div>
@@ -58,11 +58,11 @@
                         {{-- Fail --}}
                         <div class="space-y-4">
                             <h1
-                                class="text-md relative mx-6 block w-auto pt-4 font-bold tracking-normal text-gray-800 lg:text-xl">
+                                class="relative mx-6 block w-auto pt-4 text-base font-bold tracking-normal text-gray-800 lg:text-xl">
                                 Nilai Assignment : <span class="text-red-600">60</span>
                             </h1>
                             <h2
-                                class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                class="relative mx-6 mb-2 w-auto py-4 text-base font-semibold tracking-normal text-gray-800 lg:text-base">
                                 Maaf, anda belum lulus kursus ini. Silahkan mengambil kembali assignment ini.
                             </h2>
                             <a href='/courses/3/asg/questions'
@@ -81,7 +81,7 @@
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
                             <h1
-                                class="text-md relative mx-6 mb-6 block w-auto pt-6 font-semibold tracking-normal text-gray-800 lg:text-xl">
+                                class="relative mx-6 mb-6 block w-auto pt-6 text-base font-semibold tracking-normal text-gray-800 lg:text-xl">
                                 2. INCORRECT EXAMPLE "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor
                                 incididunt ut
@@ -92,20 +92,20 @@
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio2-a" type="radio" name="radio2" class="hidden" />
-                                    <label for="radio2-a" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio2-a" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Wrong choice</label>
                                     {{-- ADD INI BUAT INCORRECT ANSWERS --}}
                                     <h1
-                                        class="text-md relative mx-6 block w-auto font-semibold tracking-normal text-red-400 lg:text-xl">
+                                        class="relative mx-6 block w-auto text-base font-semibold tracking-normal text-red-400 lg:text-xl">
                                         ✗
                                     </h1>
                                 </div>
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio2-b" type="radio" name="radio2" class="hidden" />
-                                    <label for="radio2-b" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio2-b" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Second choice</label>
@@ -114,7 +114,7 @@
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio2-c" type="radio" name="radio2" class="hidden" />
                                     <label for="radio2-c"
-                                        class="text-md flex cursor-pointer items-center text-green-400 underline">
+                                        class="flex cursor-pointer items-center text-base text-green-400 underline">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Give Correct choice kalau salah</label>
@@ -122,7 +122,7 @@
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio2-d" type="radio" name="radio2" class="hidden" />
-                                    <label for="radio2-d" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio2-d" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Fourth choice</label>
@@ -135,7 +135,7 @@
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
                             <h1
-                                class="text-md relative mx-6 mb-6 block w-auto pt-2 font-semibold tracking-normal text-gray-800 lg:text-xl">
+                                class="relative mx-6 mb-6 block w-auto pt-2 text-base font-semibold tracking-normal text-gray-800 lg:text-xl">
                                 3. CORRECT EXAMPLE "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                 tempor
                                 incididunt ut
@@ -146,20 +146,20 @@
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio3-a" type="radio" name="radio3" class="hidden" />
-                                    <label for="radio3-a" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio3-a" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Correct choice</label>
                                     {{-- ADD INI BUAT CORRECT ANSWERS --}}
                                     <h1
-                                        class="text-md relative mx-6 block w-auto font-semibold tracking-normal text-green-400 lg:text-xl">
+                                        class="relative mx-6 block w-auto text-base font-semibold tracking-normal text-green-400 lg:text-xl">
                                         ✓
                                     </h1>
                                 </div>
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio3-b" type="radio" name="radio3" class="hidden" />
-                                    <label for="radio3-b" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio3-b" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Second choice</label>
@@ -167,7 +167,7 @@
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio3-c" type="radio" name="radio3" class="hidden" />
-                                    <label for="radio3-c" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio3-c" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Third choice</label>
@@ -175,7 +175,7 @@
 
                                 <div class="mb-4 mr-4 flex items-center">
                                     <input id="radio3-d" type="radio" name="radio3" class="hidden" />
-                                    <label for="radio3-d" class="text-md flex cursor-pointer items-center">
+                                    <label for="radio3-d" class="flex cursor-pointer items-center text-base">
                                         <span
                                             class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
                                         Fourth choice</label>
