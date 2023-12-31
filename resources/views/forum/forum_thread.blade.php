@@ -60,6 +60,12 @@
                                         <a class="mb-3 text-sm" href="/profile/{{ $data->formToUser->username }}">
                                             {{ $data->formToUser->username }}
                                         </a>
+                                    </div>
+
+                                    <p class="w-fit text-base mb-7" id="codeContainer">
+                                    <div class="text-base mb-7">
+                                        {!! $data->forum_message !!}
+                                    </div>
                                     </p>
                                 </div>
                             </div>
@@ -108,11 +114,11 @@
                                         </div>
                                     </form>
                                 </div>
-                                </p>
                             </div>
 
                             <h3 class="mb-4 text-lg font-semibold text-gray-900">Comments</h3>
                             <div class="space-y-4">
+                                <hr class="border-gray-600">
                                 @foreach ($getReply as $reply)
                                     @if ($reply->reply_id == $data->id)
                                         {{-- COMMENTS LIST W/REPLY --}}
@@ -130,71 +136,15 @@
                             </div>
                             {{-- COMMENTS LIST END --}}
                         </div>
-                        {{-- FORUM CONTENT END --}}
-                        {{-- ADD COMMENTS --}}
-                        @if (Auth::user()->id == $data->formToUser->id)
-                            <div class="mt-4 flex items-center">
-                                <button id="open-btn" data-modal-target="popup-delete" data-modal-toggle="popup-delete"
-                                    class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
-                                    data-modal-target="defaultModal" data-modal-toggle="defaultModal">
-                                    Hapus Diskusi
-                                </button>
-                            </div>
-                        @endif
-
-                        <div class="flex-1 rounded-lg px-4 pb-2 text-2xl leading-relaxed">
-                            <div class="mb-2 text-base font-bold text-red-600">
-                                Thread ini telah diblokir dan di-private oleh Admin karena : INSERT MESSSAGE HERE.
-                            </div>
-                        </div>
-                        <div class="flex w-full items-center justify-center bg-white">
-                            <div class="w-full">
-                                {{-- Input --}}
-
-                                <form id="myForm" method="post" enctype="multipart/form-data" class="relative z-40">
-                                    @csrf
-                                    <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
-                                    <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
-                                    <input type="hidden" id="original_forum_id" name="forum_id"
-                                        value="{{ $data->id }}">
-                                    <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
-                                    <input type="hidden" id="materialId" name="material_id"
-                                        value="{{ $data->material_id }}">
-                                    <input type="hidden" id="parent_id" name="parent_id" value="{{ $data->id }}">
-                                    <div class="my-4 flex justify-end">
-                                        <button id="get-content-button" type="submit"
-                                            class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <h3 class="mb-4 text-lg font-semibold text-gray-900">Comments</h3>
-                        <div class="space-y-4">
-                            <hr class="border-gray-600">
-                            @foreach ($getReply as $reply)
-                                @if ($reply->reply_id == $data->id)
-                                    {{-- COMMENTS LIST W/REPLY --}}
-                                    @php
-                                        $repliedTo = $data->formToUser->username;
-                                        $repliedProfile = $data->formToUser->id;
-                                    @endphp
-                                    @include('forum.reply', [
-                                        'reply' => $reply,
-                                        'data' => $data,
-                                        'repliedTo' => $repliedTo,
-                                        'repliedProfile' => $repliedProfile,
-                                    ])
-                                    {{-- COMMENTS LIST W/REPLY --}}
-                                @endif
-                                <hr class="border-gray-600">
-                            @endforeach
-                        </div>
-                        {{-- COMMENTS LIST END --}}
                     </div>
+
                 </div>
             </div>
         </div>
+        {{-- Reply Popup Modal --}}
+
+
+        {{-- Reply Popup Modal --}}
 
         {{-- Delete Popup Modal --}}
         <div id="popup-delete" tabindex="-1"
@@ -294,7 +244,43 @@
             selector: '#forum_message',
             menubar: false,
             // Image below, for further consideration
+            plugins: ' code codesample image',
             toolbar: ' wordcount | link image |code |bold italic underline| codesample ',
+            // Image below, for further consideration
+            file_picker_types: 'image',
+            /* enable automatic uploads of images represented by blob or data URIs*/
+            automatic_uploads: true,
+            file_picker_callback: (cb, value, meta) => {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+
+                input.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+
+                    const reader = new FileReader();
+                    reader.addEventListener('load', () => {
+                        /*
+                          Note: Now we need to register the blob in TinyMCEs image blob
+                          registry. In the next release this part hopefully won't be
+                          necessary, as we are looking to handle it internally.
+                        */
+                        const id = 'blobid' + (new Date()).getTime();
+                        const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        const base64 = reader.result.split(',')[1];
+                        const blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        /* call the callback and populate the Title field with the file name */
+                        cb(blobInfo.blobUri(), {
+                            title: file.name
+                        });
+                    });
+                    reader.readAsDataURL(file);
+                });
+
+                input.click();
+            },
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 
         })
