@@ -266,7 +266,8 @@
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Pilih Materi</label>
                                         <select id="material_id" name="material_id"
-                                            class="w-full rounded-md border-transparent bg-gray-50 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
+                                            class="w-full rounded-md border-transparent bg-gray-50 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0"
+                                            required="">
                                             <option value="">Pilih Materi</option>
                                             @foreach ($materials as $material)
                                                 <option value="{{ $material->id }}">{{ $material->title }}</option>
@@ -362,13 +363,13 @@
                 var courseId = document.getElementById('courseId').value;
                 var discussionTitle = document.getElementById('forum_title').value;
                 if (discussionTitle === '') {
-                    alert('Error: Pesan tidak boleh kosong');
+                    alert('Error: Judul Diskusi tidak boleh kosong');
                     return;
                 }
 
                 var materialId = document.getElementById('material_id').value;
                 if (materialId === '') {
-                    alert('Error: Pesan tidak boleh kosong');
+                    alert('Error: Materi tidak boleh kosong');
                     return;
                 }
 
