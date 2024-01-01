@@ -44,40 +44,54 @@
                 <div class="w-2xl mx-4 h-fit rounded-xl bg-white md:mx-12 md:w-9/12">
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
-                            <h1
-                                class="relative mx-6 block w-auto py-4 text-base font-bold tracking-normal text-gray-800 lg:text-xl">
-                                Mengenai Assignment
-                            </h1>
+
+                            @if ($material->materialContentToMasterType->master_type_name == 'Final Test')
+                                <h1
+                                    class="relative mx-6 block w-auto py-4 text-base font-bold tracking-normal text-gray-800 lg:text-xl">
+                                    Mengenai Final Test
+                                </h1>
+                            @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment')
+                                <h1
+                                    class="relative mx-6 block w-auto py-4 text-base font-bold tracking-normal text-gray-800 lg:text-xl">
+                                    Mengenai Assignment
+                                </h1>
+                            @endif
                             <h2
                                 class="relative mx-6 mb-2 w-auto text-base font-semibold tracking-normal text-gray-800 lg:text-base">
-                                Input Deskripsi Assignment here "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor
-                                incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation
-                                ullamco
+                                {{ $material->detailed_description }}
                             </h2>
 
                             <div
                                 class="grid w-full grid-cols-1 gap-4 py-4 pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-2">
                                 <div class="rounded-lg bg-white px-2 py-4">
                                     <div class="text-indigo-500">Waktu Pengerjaan</div>
-                                    <div class="text-xs text-gray-500">60 Menit</div>
+                                    <div class="text-xs text-gray-500">{{ $material->material_duration }} Menit</div>
                                 </div>
                                 <div class="rounded-lg bg-white px-2 py-4">
                                     <div class="text-indigo-500">Nilai Minimum</div>
-                                    <div class="text-xs text-gray-500">min. 75</div>
+                                    <div class="text-xs text-gray-500">min. {{ $material->minimum_score }}</div>
                                 </div>
                             </div>
 
                         </div>
-                        <a href='/courses/3/asg/questions'
-                            class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                        @if ($material->materialContentToMasterType->master_type_name == 'Final Test')
+                            <a href='/courses/material/{{ $material->title }}/{{ $material->course_id }}/{{ $material->id }}/{{ $firstIndexFIN->id }}/finalTest'
+                                class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                            <span class="mx-2 items-center">Mulai Assignment
-                            </span>
+                                <span class="mx-2 items-center">Mulai Final Test
+                                </span>
 
-                        </a>
+                            </a>
+                        @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment')
+                            <a href='/courses/material/{{ $material->title }}/{{ $material->course_id }}/{{ $material->id }}/{{ $firstIndexASG->id }}/assignment'
+                                class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+
+                                <span class="mx-2 items-center">Mulai Assignment
+                                </span>
+
+                            </a>
+                        @endif
+
                     </div>
                 </div>
             </div>

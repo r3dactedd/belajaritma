@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignmentQuestions;
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Models\FinalTestQuestions;
 use App\Models\MasterType;
 use App\Models\Material;
 use App\Models\MaterialCompleted;
@@ -55,8 +57,13 @@ class SidebarController extends Controller
         $nextMaterial = $sidebars[$currentMaterialIndex + 1] ?? null;
         $material = Material::findOrFail($material_id);
         $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
+        $finalSidebar = Sidebar::where('course_id', $id)->where('material_id', $material_id)->first();
+
         $course = Course::find($id);
         $excludeFinal = $course->total_module-1;
+        $firstIndexASG = AssignmentQuestions::where('material_id', $material_id)->first();
+        $firstIndexFIN = FinalTestQuestions::where('material_id', $material_id)->first();
+
 
         if ($enrollment){
             $materialCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
@@ -81,6 +88,9 @@ class SidebarController extends Controller
                 if ($enrollment->material_completed_count == $excludeFinal) {
                     $enrollment->ready_for_final = true;
                     $enrollment->save();
+
+                    $finalSidebar->is_locked = false;
+                    $finalSidebar->save();
                 }
 
         }
@@ -115,7 +125,12 @@ class SidebarController extends Controller
         } elseif ($master_type->master_type_name == 'PDF') {
             return view('contents.session_pdf', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal'));
         } elseif ($master_type->master_type_name == 'Assignment') {
-            return view('contents.session_assignment', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal'));
+            // dd($firstIndexASG);
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN'));
+        }
+        elseif ($master_type->master_type_name == 'Final Test') {
+            // dd($firstIndexFIN);
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN'));
         }
 
     }

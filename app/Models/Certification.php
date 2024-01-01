@@ -22,6 +22,7 @@ class Certification extends Model
         'created_by',
         'updated_by',
         'students_registered',
+        'minimum_score',
     ];
     public function findUpdatedBy(){
         return $this->belongsTo(User::class, 'updated_by');

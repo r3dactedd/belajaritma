@@ -195,7 +195,7 @@
                                         <div class="flex items-center">
 
                                             <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                                <a href="/test" id="convertButton"
+                                                <a href="/certifications/aboutTest/{{ $data->id }}" id="convertButton"
                                                     class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
                                                     Test</a>
                                             </p>

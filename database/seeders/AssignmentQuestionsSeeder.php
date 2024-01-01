@@ -58,14 +58,14 @@ class AssignmentQuestionsSeeder extends Seeder
             'questions' => 'Operator pada bahasa C yang digunakan untuk memberikan nilai suatu variabel ke variabel lain adalah :',
             'jawaban_a' => '==',
             'jawaban_b' => '=',
-            'jawaban_c' => 'EQUALr',
+            'jawaban_c' => 'EQUAL',
             'jawaban_d' => '=>',
             'jawaban_benar' => 'B',
         ]);
         AssignmentQuestions::create([
             'material_id' => 5,
             'questions' => 'Yang akan terjadi apabila kita mengetik % pada aplikasi ini',
-            'question_img'=> 'assignment1_question6',
+            'question_img'=> 'assignment1_question6.png',
             'jawaban_a' => 'Program akan crash karena tidak dapat memproses karakter % pada switch statement tersebut.',
             'jawaban_b' => 'Program akan menampilkan pesan Error! operator is not correct.',
             'jawaban_c' => 'Program akan menampilkan hasil pembagian dari 15/12.',
@@ -74,7 +74,7 @@ class AssignmentQuestionsSeeder extends Seeder
         ]);
         AssignmentQuestions::create([
             'material_id' => 5,
-            'question_img'=> 'assignment1_question7',
+            'question_img'=> 'assignment1_question7.png',
             'questions' => 'Apabila kita menginput integer bernilai 6 pada program ini, berapakah nilai dari variabel sum pada aplikasi? ',
             'jawaban_a' => '21',
             'jawaban_b' => '15',
@@ -95,7 +95,7 @@ class AssignmentQuestionsSeeder extends Seeder
         ]);
         AssignmentQuestions::create([
             'material_id' => 10,
-            'question_img'=> 'assignment2_question2',
+            'question_img'=> 'assignment2_question2.png',
             'questions' => 'Function addNumbers pada baris 16 di atas akan menghasilkan error, karena
             ',
             'jawaban_a' => 'Variabel result harusnya diganti dengan variabel sum

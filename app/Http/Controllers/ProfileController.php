@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use App\Http\Controllers\ValidationException;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
@@ -135,10 +136,11 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        Log::info('Request Data:', $request->all());
+
         $validateProfile = $request->validate([
-            'profile_img' => 'image|file',
-            'full_name' => 'required|string|min:3|max:50',
-            'username' => 'required|string|min:3|max:30|unique:users,username',
+            'full_name' => 'string|min:3|max:50',
+            'username' => 'string|min:3|max:30|unique:users,username,' . Auth::user()->id,
             'about_me' => 'max:150',
         ]);
 
@@ -161,7 +163,7 @@ class ProfileController extends Controller
             'full_name' => $validateProfile['full_name'],
             'about_me' => $validateProfile['about_me'],
         ];
-
+        // dd($request->profile_img);
         User::where('id', Auth::user()->id)->update($changeProfile);
         return Redirect::to("/profile/{$request->username}");
     }

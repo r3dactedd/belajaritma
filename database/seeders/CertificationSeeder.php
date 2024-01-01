@@ -22,6 +22,7 @@ class CertificationSeeder extends Seeder
             'certif_outline' => 'Outline Algoritma dan Pemrograman',
             'created_by'=> 1,
             'updated_by'=> 1,
+            'minimum_score'=>75,
             'certif_img'=> 'algoprog_courseImg.jpg',
         ]);
         Certification::create([
@@ -33,6 +34,7 @@ class CertificationSeeder extends Seeder
             'certif_outline' => 'Outline Algoritma dan Pemrograman',
             'created_by'=> 1,
             'updated_by'=> 1,
+            'minimum_score'=>75,
             'certif_img'=> 'placeholder.webp',
         ]);
         Certification::create([
@@ -44,6 +46,7 @@ class CertificationSeeder extends Seeder
             'certif_outline' => 'Outline Algoritma dan Pemrograman',
             'created_by'=> 1,
             'updated_by'=> 1,
+            'minimum_score'=>75,
             'certif_img'=> 'placeholder.webp',
         ]);
     }
