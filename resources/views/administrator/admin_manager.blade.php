@@ -84,7 +84,7 @@
                         class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                         <div class="relative h-56 w-full">
                             <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
-                                src="https://cdn.elearningindustry.com/wp-content/uploads/2022/01/shutterstock_525008128.jpg"
+                                src="https://www.cpsc.gov/s3fs-public/Certificate_TestingAndCertification_Card.png"
                                 alt="banner" />
                         </div>
                         <div class="h-full w-full pt-5 md:h-36">
@@ -106,7 +106,7 @@
                         class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                         <div class="relative h-56 w-full">
                             <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
-                                src="https://www.paper.id/blog/wp-content/uploads/2020/10/due-upon-receipt-method.png"
+                                src="https://www.apaservices.org/images/title-payment-platform_tcm9-282170.jpg"
                                 alt="banner" />
                         </div>
                         <div class="h-full w-full pt-5 md:h-36">

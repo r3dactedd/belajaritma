@@ -264,7 +264,7 @@
                                         <path
                                             d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0-13.3-10.7 24-24 24s-24-10.7-24-24z" />
                                     </svg>
-                                    Buat Materi Baru
+                                    Tambah Materi Baru
                                 </p>
                             </td>
                         </tr>
@@ -296,7 +296,7 @@
                                 </button>
                             </div>
                             <div class="mx-auto rounded-xl bg-white px-2 py-2">
-                                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Materi Baru</h2>
+                                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Tambah Materi Baru</h2>
                                 <form method="POST" action = "/manager/course/materiallist/{{ $courseId }}"
                                     enctype="multipart/form-data">
                                     @csrf

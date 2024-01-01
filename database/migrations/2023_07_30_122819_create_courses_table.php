@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('course_name');
             $table->string('short_desc');
-            $table->string('course_desc');
+            $table->text('course_desc');
             $table->string('level');
             $table->string('course_img');
             $table->string('screen_resolution');
             $table->string('minimum_ram');
             $table->string('processor');
             $table->string('operating_system');
-            $table->string('other_programs');
+            $table->text('other_programs');
             $table->unsignedBigInteger('total_module')->default(0);
             $table->unsignedBigInteger('total_time')->default(0);
             $table->unsignedBigInteger('students_enrolled')->default(0);
