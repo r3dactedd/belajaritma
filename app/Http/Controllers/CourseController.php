@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignmentQuestions;
 use App\Models\Course;
+use App\Models\FinalTestQuestions;
 use App\Models\ModuleContent;
 use App\Models\Material;
 use App\Models\UserCourseDetail;
@@ -43,7 +45,31 @@ class CourseController extends Controller
 
     public function materialDetail($title,$id, $material_id){
         $data=Material::find($id);
-        return view('contents.session_assignment', ['data' => $data]);
+        return view('contents.session_assignment_test', ['data' => $data]);
         // dd($contentArray);
     }
+
+    public function courseTestPage ($title,$id, $material_id,$question_id,$type){
+        if($type == "finalTest"){
+            $questionDetail= FinalTestQuestions::find($question_id);
+            $questionList= FinalTestQuestions::where('material_id', $material_id)->get();
+            $firstQuestion = FinalTestQuestions::where('material_id', $material_id)->first();
+            $latestQuestion = FinalTestQuestions::where('material_id', $material_id)->orderBy('id', 'desc')->first();
+        }
+        if($type == "assignment"){
+            $questionDetail= AssignmentQuestions::find($question_id);
+            $questionList= AssignmentQuestions::where('material_id', $material_id)->get();
+            $firstQuestion = AssignmentQuestions::where('material_id', $material_id)->first();
+            $latestQuestion = AssignmentQuestions::where('material_id', $material_id)->orderBy('id', 'desc')->first();
+        }
+
+        $material = Material::where('id', $material_id)->first();
+        // dd($material_id);
+        // dd($question_id);
+        // dd($type);
+        // dd($material);
+        //  dd($latestQuestion->id);
+        return view('contents.assignment_test_questions', ['title'=>$title, 'questionDetail' => $questionDetail,'material'=>$material, 'questionList'=>$questionList, 'question_id'=>$question_id, 'id'=>$id, 'material_id'=>$material_id,'type'=>$type, 'latestQuestion'=>$latestQuestion, 'firstQuestion'=>$firstQuestion]);
+    }
+
 }

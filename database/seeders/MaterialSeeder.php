@@ -56,6 +56,7 @@ class MaterialSeeder extends Seeder
             'master_type_id' => 2,
             'title' => 'Assignment 1',
             'description' => 'Assignment ini akan mengecek pengetahuan anda untuk materi-materi Sesi 1, 2, dan 3.',
+            'detailed_description' => 'Assignment ini akan mengecek pengetahuan anda untuk materi-materi Sesi 1, 2, dan 3.',
             'material_duration' => 5,
             'minimum_score' => 70,
             'total_questions'=> 10,
@@ -94,7 +95,7 @@ class MaterialSeeder extends Seeder
             'title' => 'Datatypes in C',
             'description' => 'Video ini akan memberikan informasi tambahan mengenai algoritma-algoritma yang ada.',
             'material_duration' => 12,
-            'video_link' => 'https://youtu.be/rL8X2mlNHPM?si=7lPQS8ODzGGPC4Ly',
+            'video_link' => 'https://www.youtube.com/watch?v=rL8X2mlNHPM&ab_channel=CrashCourse',
         ]);
 
         Material::create([
@@ -102,8 +103,11 @@ class MaterialSeeder extends Seeder
             'master_type_id' => 2,
             'title' => 'Assignment 2',
             'description' => 'Assignment ini akan mengecek pengetahuan anda untuk materi-materi Sesi 6-8.',
+            'detailed_description' => 'Assignment ini akan mengecek pengetahuan anda untuk materi-materi Sesi 6-8.',
             'material_duration' => 5,
             'minimum_score' => 70,
+            'total_questions'=> 5,
+
         ]);
 
         Material::create([

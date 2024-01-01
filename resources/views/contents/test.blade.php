@@ -27,7 +27,7 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Final Test (or Certification Test)</span>
+                            <span class="mb-1 ml-2">Certification Test</span>
                         </a>
                 </div>
             </div>
@@ -47,28 +47,23 @@
                             </h1>
                             <h2
                                 class="relative mx-6 mb-2 w-auto text-base font-semibold tracking-normal text-gray-800 lg:text-base">
-                                Input Deskripsi Assignment here "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor
-                                incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation
-                                ullamco
+                                {{ $data->certif_desc }}
                             </h2>
 
                             <div class="grid w-full grid-cols-1 gap-4 pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-2">
                                 <div class="rounded-lg bg-white p-4">
                                     <div class="text-indigo-500">Waktu Pengerjaan</div>
-                                    <div class="text-xs text-gray-500">60 Menit</div>
+                                    <div class="text-xs text-gray-500">{{ $data->certif_duration }} Menit</div>
                                 </div>
                                 <div class="rounded-lg bg-white p-4">
                                     <div class="text-indigo-500">Nilai Minimum</div>
-                                    <div class="text-xs text-gray-500">min. 75</div>
+                                    <div class="text-xs text-gray-500">min. {{ $data->minimum_score }} </div>
                                 </div>
                             </div>
 
 
                         </div>
-                        <a href='/courses/3/asg/questions'
+                        <a href='/certification/test/{{ $data->id }}/{{ $firstIndexCERT->id }}'
                             class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
                             <span class="mx-2 items-center">Mulai Test

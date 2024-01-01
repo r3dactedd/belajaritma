@@ -88,13 +88,11 @@ Route::get('/courses/2/video', function () {
     return view('contents.session_video');
 });
 
-Route::get('/courses/3/asg', function () {
-    return view('contents.session_assignment');
-});
+// Route::get('/courses/3/asg', function () {
+//     return view('contents.session_assignment');
+// });
 
-Route::get('/test', function () {
-    return view('contents.test');
-});
+
 
 Route::get('/courses/3/asg/questions', function () {
     return view('contents.assignment_questions');
@@ -114,6 +112,14 @@ Route::post('/editProfile/password', [ProfileController::class, 'changePassword'
 
 Route::get('/certifications', [CertificationController::class, 'showCertificationList']);
 Route::get('/certifications/{id}', [CertificationController::class, 'certifDetail']);
+Route::get('/certifications/aboutTest/{certif_id}', [CertificationController::class, 'aboutTest']);
+Route::get('/certification/test/{certif_id}/{question_id}', [CertificationController::class, 'certifTestPage']);
+
+// Route::get('/certifications/detail/{id}', [CertificationController::class, 'aboutTest']);
+
+// Route::get('/test', function () {
+//     return view('contents.test');
+// });
 
 // Route::get('/certifications/1', function () {
 //     return view('contents.certification_details');
@@ -125,6 +131,7 @@ Route::get('/courses/1/getcerti', function () {
 
 //sidebar route
 Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showMaterial'])->name('sidebar.showSidebar');
+Route::get('/courses/material/{title}/{id}/{material_id}/{question_id}/{type}', [CourseController::class, 'courseTestPage']);
 
 Route::get('/courses/material/{title}/{course_id}/{current_material_id}/{direction}', [SidebarController::class, 'handleMaterialNavigation']);
 // Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');

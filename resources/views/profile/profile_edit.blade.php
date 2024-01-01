@@ -84,7 +84,7 @@
                                 </button>
                             </div>
                         @endif
-                        <form method="post" enctype="multipart/form-data">
+                        <form method="post" action="/editProfile" enctype="multipart/form-data">
                             @csrf
                             <label for="profilePicture"
                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Gambar

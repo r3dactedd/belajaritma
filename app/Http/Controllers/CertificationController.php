@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Certification;
+use App\Models\CertifQuestions;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,7 @@ class CertificationController extends Controller
         $data=Certification::find($id);
         return view('contents.certification_details', ['data' => $data]);
     }
+
     public function registerCertification($id){
         $data=Certification::find($id);
         if (!Auth::check()) {
@@ -57,5 +59,24 @@ class CertificationController extends Controller
         $transaction->save();
         // transaction_proof
         return redirect("/certifications/{$request->certif_id}");
+    }
+    public function aboutTest($certif_id){
+        $data=Certification::find($certif_id);
+        $firstIndexCERT = CertifQuestions::where('certification_id', $certif_id)->first();
+        return view('contents.test', ['data' => $data, 'firstIndexCERT'=>$firstIndexCERT]);
+    }
+    public function certifTestPage ($certif_id, $question_id){
+        $questionDetail= CertifQuestions::find($question_id);
+        $questionList= CertifQuestions::where('certification_id', $certif_id)->get();
+        $firstQuestion = CertifQuestions::where('certification_id', $certif_id)->first();
+        $latestQuestion = CertifQuestions::where('certification_id', $certif_id)->orderBy('id', 'desc')->first();
+
+        $certif = CertifQuestions::where('id', $certif_id)->first();
+        // dd($material_id);
+        // dd($question_id);
+        // dd($type);
+        // dd($material);
+        //  dd($latestQuestion->id);
+        return view('contents.certif_test_questions', ['questionDetail' => $questionDetail,'questionList'=>$questionList, 'question_id'=>$question_id, 'latestQuestion'=>$latestQuestion, 'firstQuestion'=>$firstQuestion, 'certif_id'=>$certif_id]);
     }
 }
