@@ -49,8 +49,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mb-6 w-11/12 px-4 text-base font-normal tracking-normal text-gray-600">
-                                {{ $courses->course_desc }}
+                            <p class="mb-6 w-11/12 h-16 px-4 text-base font-normal tracking-normal text-gray-600">
+                                {{ $courses->short_desc }}
                             </p>
                             <div
                                 class="grid grid-cols-2 items-start px-4 pb-6 md:flex md:flex-col lg:flex-row lg:items-center">

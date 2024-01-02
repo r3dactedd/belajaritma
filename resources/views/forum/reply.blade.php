@@ -6,7 +6,7 @@
         </div>
         <div class="flex-1 rounded-lg px-4 py-2 leading-relaxed sm:px-6 sm:py-4">
             <strong>{{ $reply->formToUser->username }}</strong>
-            <span class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
+            <span class="ml-2 text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
             <p class="text-base">
                 <a href="/profile/{{ $repliedTo }}"><strong style="color: blue;">{{ '@' . $repliedTo }}</strong></a>
 
@@ -51,8 +51,8 @@
                 src="{{ asset('uploads/profile_images/' . $reply->formToUser->profile_img) }}" alt="">
         </div>
         <div class="flex-1 rounded-lg px-4 py-2 leading-relaxed sm:px-6 sm:py-4">
-            <strong>{{ $reply->formToUser->username }}</strong>
-            <span class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
+            <strong class="mr-2">{{ $reply->formToUser->username }}</strong>
+            <span class="ml-2 text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
             <p class="text-base">
                 <a href="/profile/{{ $repliedTo }}"><strong
                         style="color: blue;">{{ '@' . $repliedTo }}</strong></a>

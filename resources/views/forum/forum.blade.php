@@ -393,7 +393,7 @@
                     })
                     .then(response => {
                         if (response.ok) {
-                            alert('Success! Your form has been uploaded.');
+                            alert('Diskusi baru berhasil dibuat!');
                             window.location.href = '/forum/course/' + courseId;
                         } else {
                             console.error('Error:', response.statusText);
