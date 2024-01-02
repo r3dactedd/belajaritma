@@ -70,7 +70,7 @@
                                             <!-- Profile Card -->
                                             <div class="h-full bg-white py-2 md:ml-4">
                                                 <div class="mx-auto h-full w-full">
-                                                    <img class="max-h-36 w-full md:h-full lg:max-h-64"
+                                                    <img class="max-h-36 w-full md:w-4/5 md:max-h-48"
                                                         src="{{ asset('uploads/certif_images/' . $data->certif_img) }}"
                                                         alt="Certification Image" />
                                                 </div>
@@ -92,10 +92,10 @@
                                                 </h2>
                                                 <p
                                                     class="mb-2 text-base font-normal tracking-normal text-gray-600 md:w-3/4">
-                                                    {{ $data->certif_desc }}
+                                                    {{ $data->certif_short_desc }}
                                                 </p>
                                                 <div
-                                                    class="my-6 grid grid-cols-2 items-start md:flex md:flex-col lg:flex-row lg:items-center">
+                                                    class="mt-6 grid grid-cols-2 items-start md:flex md:flex-col lg:flex-row lg:items-center">
 
                                                     <div class="flex items-center">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="20"
@@ -122,6 +122,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

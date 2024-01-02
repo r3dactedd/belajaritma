@@ -8,7 +8,7 @@
                     <!-- Ini adalah parent -->
                     <li>
                         <div
-                            class="{{ $userCourseDetail->last_accessed_material == $sidebar->material_id ? 'bg-indigo-100 transition hover:bg-indigo-300' : 'transition hover:bg-indigo-100' }}">
+                            class="{{ $userCourseDetail->last_accessed_material == $sidebar->material_id ? 'bg-green-100 transition hover:bg-indigo-300' : 'transition hover:bg-green-100' }}">
                             <div
                                 class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
                                 @if ($sidebar->is_locked == true)

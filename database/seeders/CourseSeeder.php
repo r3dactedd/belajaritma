@@ -23,7 +23,7 @@ class CourseSeeder extends Seeder
             'minimum_ram' => '4GB',
             'processor' => 'Intel i3 / Sejenisnya',
             'operating_system' => 'Windows, macOS, dan Linux,',
-            'other_programs' => ' Untuk kursus ini, diperlukan penginstalan IDE (seperti DevC atau Codeblocks), serta koneksi internet yang baik dan lancar untuk memudahkan akses materi.,',
+            'other_programs' => 'Untuk kursus ini, diperlukan penginstalan IDE (seperti DevC atau Codeblocks), serta koneksi internet yang baik dan lancar untuk memudahkan akses materi.',
             'total_module' => 11,
             'total_time' => 142,
             'created_by' => 1,

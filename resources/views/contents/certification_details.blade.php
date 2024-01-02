@@ -124,7 +124,7 @@
                                         <div class="text-xs text-gray-500">{{ $data->certif_duration }} menit</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
-                                        <div class="text-indigo-500">Jumlah Pertanyaan</div>
+                                        <div class="text-indigo-500">Jumlah Soal</div>
                                         <div class="text-xs text-gray-500">{{ $data->total_questions }} Pilihan Ganda</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
