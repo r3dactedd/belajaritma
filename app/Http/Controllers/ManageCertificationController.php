@@ -108,7 +108,6 @@ class ManageCertificationController extends Controller
             'certif_duration'=> $validateCertif['certif_duration'],
             'certif_cost'=> $validateCertif['certif_cost'],
             'certif_outline' => $validateCertif['certif_outline'],
-            'created_by' => Auth()->user()->id,
             'updated_by' => Auth()->user()->id,
         ];
 

@@ -117,6 +117,11 @@
                                             value="{{ $searchUser->username }}"
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Input Username" required="">
+                                        @error('username')
+                                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
 
                                 </div>
 
@@ -128,6 +133,11 @@
                                         value="{{ $searchUser->full_name }}"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Input Nama Lengkap" required="">
+                                    @error('full_name')
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
                                         {{-- Error Message Design --}}
                                     </div>
@@ -172,6 +182,11 @@
                 </div>
                 <div class="col-span-2 h-auto md:mx-2 md:w-10/12">
                     <div class="rounded-xl bg-white px-6 py-8 md:px-12">
+                        @if ($errors->has('error'))
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
                         <form action="/editProfile/password" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">

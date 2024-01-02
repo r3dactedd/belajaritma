@@ -3,14 +3,15 @@
 <div class="hidden rounded-xl border-4 bg-white px-4 pb-8 md:flex md:flex-col">
     <div class="flex flex-col overflow-hidden bg-white">
         <ul class="flex flex-col py-4">
-            @foreach ($sidebars as $sidebar)
+            @foreach ($sidebars as $index => $sidebar)
                 @if ($sidebar->parent_id == null)
                     <!-- Ini adalah parent -->
                     <li>
-                        <div class="transition hover:bg-indigo-50">
+                        <div
+                            class="{{ $userCourseDetail->last_accessed_material == $sidebar->material_id ? 'bg-indigo-100 transition hover:bg-indigo-300' : 'transition hover:bg-indigo-100' }}">
                             <div
                                 class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
-                                @if ($sidebar->is_locked)
+                                @if ($sidebar->is_locked == true)
                                     <!-- Show lock icon if locked -->
                                     @php
                                         $hasChildren = false;
@@ -35,7 +36,7 @@
                                     @endif
 
                                     <span class="text-gray-1000 ml-2 text-base font-normal">{{ $sidebar->title }}</span>
-                                @else
+                                @elseif ($sidebar->is_locked == false && $index != $nextMaterialIndex)
                                     @php
                                         $hasChildren = false;
                                         foreach ($sidebars as $child) {
@@ -50,6 +51,17 @@
                                         <path
                                             d="M369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
                                     </svg>
+                                    @if ($hasChildren)
+                                        <svg class="ml-4" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                            viewBox="0 0 320 512">
+                                            <path
+                                                d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                                        </svg>
+                                    @endif
+                                    <a href="/courses/material/{{ $sidebar->title }}/{{ $sidebar->course_id }}/{{ $sidebar->material_id }}"
+                                        class="ml-2 text-base font-normal text-gray-600 hover:underline">
+                                        {{ $sidebar->title }}</a>
+                                @elseif ($index == $nextMaterialIndex)
                                     @if ($hasChildren)
                                         <svg class="ml-4" xmlns="http://www.w3.org/2000/svg" height="1em"
                                             viewBox="0 0 320 512">

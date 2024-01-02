@@ -126,8 +126,6 @@ class ManageCourseController extends Controller
             'processor'=> $validateCourse['processor'],
             'operating_system' => $validateCourse['operating_system'],
             'other_programs'=> $validateCourse['other_programs'],
-            'total_module'=>2,
-            'created_by' => Auth()->user()->id,
             'updated_by' => Auth()->user()->id,
         ];
 
