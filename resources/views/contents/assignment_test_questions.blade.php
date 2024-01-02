@@ -107,23 +107,23 @@
                 <hr>
 
 
-                <div class="p-6 mx-auto antialiased">
-                    <div class="grid grid-cols-2">
-                        @if ($question_id > $firstQuestion->id)
-                        <a href="/courses/material/{{ $title }}/{{ $id }}/{{ $material_id }}/{{ $question_id - 1 }}/{{ $type }}"
-                            class="items-center hidden px-4 py-3 mx-auto mt-4 mr-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:flex">
-                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" height="1em"
-                                viewBox="0 0 448 512">
-                                <path
-                                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-                            </svg>
-                            <span class="mx-2">Sebelumnya
-                            </span>
-                        </a>
-                        @endif
-                        @if ($question_id < $latestQuestion->id)
-                            <a id="tombol-selanjutnya" href="/courses/material/{{ $title }}/{{ $id }}/{{ $material_id }}/{{ $question_id + 1 }}/{{ $type }}"
-                                class="items-center hidden px-4 py-3 mx-auto mt-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:flex">
+                    <div class="p-6 mx-auto antialiased">
+                        <div class="grid grid-cols-2">
+                            @if ($question_id > $firstQuestion->id)
+                                <a href="/courses/material/{{ $title }}/{{ $id }}/{{ $material_id }}/{{ $question_id - 1 }}/{{ $type }}"
+                                    class="items-center hidden px-4 py-3 mx-auto mt-4 mr-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:flex">
+                                    <svg class="w-4 h-4 mr-2"xmlns="http://www.w3.org/2000/svg" height="1em"
+                                        viewBox="0 0 448 512">
+                                        <path
+                                            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                                    </svg>
+                                    <span class="mx-2">Sebelumnya
+                                    </span>
+                                </a>
+                            @endif
+                            @if ($question_id < $latestQuestion->id)
+                                <a href="/courses/material/{{ $title }}/{{ $id }}/{{ $material_id }}/{{ $question_id + 1 }}/{{ $type }}"
+                                    class="items-center hidden px-4 py-3 mx-auto mt-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:flex">
 
                                 <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" height="1em"
                                     viewBox="0 0 448 512">
@@ -134,13 +134,8 @@
                                 </span>
                             </a>
                             @endif
-                            @if($question_id == $latestQuestion->id)
-                            <a href=""
-                                class="items-center hidden px-4 py-3 mx-auto mt-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:flex">
-                                <span class="mx-2">Selesai
-                                </span>
-                            </a>
-                            @endif
+
+                        </div>
                     </div>
                 </div>
             </div>

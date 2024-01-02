@@ -20,7 +20,7 @@ class SidebarSeeder extends Seeder
             'order' => 1,
             'title' => 'Pengenalan Algoritma dan Pemrograman',
             'path' => '/courses/materialContent/pdf',
-            'is_locked' => false
+            'is_locked' => true
         ]);
 
         Sidebar::create([
@@ -30,7 +30,7 @@ class SidebarSeeder extends Seeder
             'order' => 2,
             'title' => 'Variabel, Tipe Data, dan Operator',
             'path' => '/courses/materialContent/pdf',
-            'is_locked' => true
+            'is_locked' => true,
         ]);
 
         Sidebar::create([
@@ -40,7 +40,7 @@ class SidebarSeeder extends Seeder
             'order' => 3,
             'title' => 'Control Flow',
             'path' => '/courses/materialContent/pdf',
-            'is_locked' => true
+            'is_locked' => true,
         ]);
 
         Sidebar::create([
@@ -50,7 +50,7 @@ class SidebarSeeder extends Seeder
             'order' => 4,
             'title' => 'Datatypes in C',
             'path' => '/courses/materialContent/video',
-            'is_locked' => true
+            'is_locked' => true,
         ]);
 
         Sidebar::create([
@@ -60,7 +60,7 @@ class SidebarSeeder extends Seeder
             'order' => 5,
             'title' => 'Assignment 1',
             'path' => '/courses/materialContent/assignment',
-            'is_locked' => true
+            'is_locked' => true,
         ]);
 
         Sidebar::create([
@@ -70,7 +70,7 @@ class SidebarSeeder extends Seeder
             'order' => 6,
             'title' => 'Pengenalan Function dan Recursion',
             'path' => '/courses/materialContent/pdf',
-            'is_locked' => true
+            'is_locked' => true,
         ]);
 
         Sidebar::create([
@@ -80,7 +80,7 @@ class SidebarSeeder extends Seeder
             'order' => 7,
             'title' => 'Pengenalan Array',
             'path' => '/courses/materialContent/pdf',
-            'is_locked' => true
+            'is_locked' => true,
         ]);
 
         Sidebar::create([
@@ -90,7 +90,7 @@ class SidebarSeeder extends Seeder
             'order' => 8,
             'title' => 'Contoh Algoritma Sederhana',
             'path' => '/courses/materialContent/pdf',
-            'is_locked' => true
+            'is_locked' => true,
         ]);
 
         Sidebar::create([
@@ -98,9 +98,9 @@ class SidebarSeeder extends Seeder
             'parent_id' => null,
             'material_id' => 9,
             'order' => 9,
-            'title' => 'Datatypes in C',
+            'title' => 'Intro to Algorithms',
             'path' => '/courses/materialContent/video',
-            'is_locked' => true
+            'is_locked' => true,
         ]);
 
         Sidebar::create([
@@ -110,7 +110,7 @@ class SidebarSeeder extends Seeder
             'order' => 10,
             'title' => 'Assignment 2',
             'path' => '/courses/materialContent/assignment',
-            'is_locked' => true
+            'is_locked' => true,
         ]);
 
         Sidebar::create([
@@ -120,7 +120,7 @@ class SidebarSeeder extends Seeder
             'order' => 11,
             'title' => 'Final Test',
             'path' => '/courses/materialContent/finaltest',
-            'is_locked' => true
+            'is_locked' => true,
         ]);
     }
 }

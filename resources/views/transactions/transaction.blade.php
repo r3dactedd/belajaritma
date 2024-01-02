@@ -90,10 +90,10 @@
             var fileInput = document.getElementById('transaction_proof').value;
             console.log("ini isian input gambar", fileInput)
             if (fileInput === '') {
-                alert('Error: You must send the Transaction Proof!');
+                alert('Error: Bukti transaksi harus dikirim');
                 return;
             } else {
-                alert('Success: Transaction Proof has been successfully sent!');
+                alert('Success: Bukti transaksi berhasil dikirim!');
             }
         }
     </script>

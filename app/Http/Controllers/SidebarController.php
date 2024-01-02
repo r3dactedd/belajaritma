@@ -54,11 +54,12 @@ class SidebarController extends Controller
         $nextMaterialIndex = $currentMaterialIndex + 1;
 
         // Determine the previous and next material
+        $currentMaterial = $sidebars[$currentMaterialIndex];
         $previousMaterial = $sidebars[$currentMaterialIndex - 1] ?? null;
         $nextMaterial = $sidebars[$currentMaterialIndex + 1] ?? null;
         $material = Material::findOrFail($material_id);
         $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
-        $finalSidebar = Sidebar::where('course_id', $id)->where('material_id', $material_id)->first();
+        $findFinalSidebar = Sidebar::where('course_id', $id)->where('material_id', $material_id)->first();
 
         $course = Course::find($id);
         $excludeFinal = $course->total_module-1;
@@ -89,9 +90,12 @@ class SidebarController extends Controller
                 if ($enrollment->material_completed_count == $excludeFinal) {
                     $enrollment->ready_for_final = true;
                     $enrollment->save();
-
-                    $finalSidebar->is_locked = false;
-                    $finalSidebar->save();
+                    $currentMaterial->is_locked = false;
+                    $currentMaterial->save();
+                }
+                elseif($enrollment->material_completed_count < $excludeFinal){
+                    $currentMaterial->is_locked = false;
+                    $currentMaterial->save();
                 }
 
         }
@@ -106,11 +110,11 @@ class SidebarController extends Controller
                 if ($userCourse) {
                     $userCourse->last_accessed_material = $previousMaterial ? $previousMaterial->material_id : $nextMaterial->material_id;
                     $userCourse->save();
-                    if ($nextMaterial && $nextMaterial->is_locked) {
-                        // Unlock the next material if it is currently locked
-                        $nextMaterial->is_locked = false;
-                        $nextMaterial->save();
-                    }
+                    // if ($nextMaterial && $nextMaterial->is_locked) {
+                    //     // Unlock the next material if it is currently locked
+                    //     $nextMaterial->is_locked = false;
+                    //     $nextMaterial->save();
+                    // }
                 }
             }
         }

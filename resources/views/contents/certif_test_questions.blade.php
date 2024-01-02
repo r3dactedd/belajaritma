@@ -114,6 +114,14 @@
                                     </span>
                                 </a>
                             @endif
+                            @if ($question_id == $latestQuestion->id)
+                                <a href=""
+                                    class="y-4 mx-auto ml-4 mt-4 hidden items-center rounded-md bg-red-500 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:flex">
+
+                                    <span class="mx-2">Submit
+                                    </span>
+                                </a>
+                            @endif
 
                             @if ($question_id < $latestQuestion->id)
                                 <a href="/certification/test/{{ $certif_id }}/{{ $question_id + 1 }}"
