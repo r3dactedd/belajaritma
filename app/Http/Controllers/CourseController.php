@@ -53,13 +53,21 @@ class CourseController extends Controller
         if($type == "finalTest"){
             $questionDetail= FinalTestQuestions::find($question_id);
             $questionList= FinalTestQuestions::where('material_id', $material_id)->get();
+            $totalQuestions = count($questionList);
             $firstQuestion = FinalTestQuestions::where('material_id', $material_id)->first();
+            $currentQuestionNumber = $question_id - $firstQuestion->id + 1;
+            $currentQuestionNumber = ($currentQuestionNumber % $totalQuestions);
+            $currentQuestionNumber = ($currentQuestionNumber == 0) ? $totalQuestions : $currentQuestionNumber;
             $latestQuestion = FinalTestQuestions::where('material_id', $material_id)->orderBy('id', 'desc')->first();
         }
         if($type == "assignment"){
             $questionDetail= AssignmentQuestions::find($question_id);
             $questionList= AssignmentQuestions::where('material_id', $material_id)->get();
+            $totalQuestions = count($questionList);
             $firstQuestion = AssignmentQuestions::where('material_id', $material_id)->first();
+            $currentQuestionNumber = $question_id - $firstQuestion->id + 1;
+            $currentQuestionNumber = ($currentQuestionNumber % $totalQuestions);
+            $currentQuestionNumber = ($currentQuestionNumber == 0) ? $totalQuestions : $currentQuestionNumber;
             $latestQuestion = AssignmentQuestions::where('material_id', $material_id)->orderBy('id', 'desc')->first();
         }
 
@@ -69,7 +77,7 @@ class CourseController extends Controller
         // dd($type);
         // dd($material);
         //  dd($latestQuestion->id);
-        return view('contents.assignment_test_questions', ['title'=>$title, 'questionDetail' => $questionDetail,'material'=>$material, 'questionList'=>$questionList, 'question_id'=>$question_id, 'id'=>$id, 'material_id'=>$material_id,'type'=>$type, 'latestQuestion'=>$latestQuestion, 'firstQuestion'=>$firstQuestion]);
+        return view('contents.assignment_test_questions', ['title'=>$title, 'questionDetail' => $questionDetail,'material'=>$material, 'questionList'=>$questionList, 'currentQuestionNumber'=>$currentQuestionNumber, 'question_id'=>$question_id, 'id'=>$id, 'material_id'=>$material_id,'type'=>$type, 'latestQuestion'=>$latestQuestion, 'firstQuestion'=>$firstQuestion]);
     }
 
 }
