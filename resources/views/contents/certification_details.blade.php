@@ -129,7 +129,8 @@
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Biaya Sertifikasi</div>
-                                        <div class="text-xs text-gray-500">Rp {{ $data->certif_cost }}</div>
+                                        <div class="text-xs text-gray-500">Rp.
+                                            {{ number_format($data->certif_cost, 2, ',', '.') }}</div>
                                     </div>
 
                                 </div>

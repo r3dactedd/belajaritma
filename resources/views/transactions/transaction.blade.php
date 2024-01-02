@@ -46,7 +46,7 @@
                     </h1>
                     <div class="mb-6 text-left">
                         <div class="text-left text-lg font-semibold">Biaya Sertifikasi</div>
-                        <span class="text-lg font-bold text-indigo-500">Rp. {{ $data->certif_cost }}</span>
+                        <span class="text-lg font-bold text-indigo-500">Rp. {{ number_format($data->certif_cost, 2, ',', '.') }}</span>
                     </div>
 
                     <div class="mb-6">

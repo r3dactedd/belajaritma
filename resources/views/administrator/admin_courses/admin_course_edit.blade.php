@@ -65,29 +65,84 @@
             </div>
         </div>
         <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-            <div id="toast-default" class="bg-white w-fit  flex items-center rounded-lg p-4 text-gray-500"role="alert">
-                <div>
-                    <svg class="h-6 w-6 fill-current text-red-500" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24">
-                        <path d="M0 0h24v24H0V0z" fill="none" />
-                        <path
-                            d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                    </svg>
+            @if ($errors->any())
+                <div id="toast-default" class="bg-white w-fit  flex items-center rounded-lg p-4 text-gray-500"role="alert">
+                    <div>
+                        <svg class="h-6 w-6 fill-current text-red-500" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                    </div>
+
+                    <div class="ml-3">
+                        <h2 class="font-bold text-red-400">Test error here</h2>
+                        @error('course_name')
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('short_desc')
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('course_desc')
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('level')
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('screen_resolution')
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('minimum_ram')
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('processor')
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('operating_system')
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('other_programs')
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        @error('course_img')
+                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+
+                    <button type="button"
+                        class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg  p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 "
+                        data-dismiss-target="#toast-default" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
                 </div>
-                <div class="ml-3">
-                    <h2 class="font-bold text-red-400">Test error here</h2>
-                </div>
-                <button type="button"
-                    class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg  p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 "
-                    data-dismiss-target="#toast-default" aria-label="Close">
-                    <span class="sr-only">Close</span>
-                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
-                </button>
-            </div>
+            @endif
             <div class="my-4 rounded-xl bg-white md:flex">
                 <!-- Left Side -->
                 <div class="w-full md:w-1/3">
@@ -102,8 +157,8 @@
                                 class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                 <span class="text-base leading-normal">Unduh Foto</span>
-                                <input type='file' id='imageInput' name="course_img" class="hidden" accept="image/*"
-                                    onchange="previewImage()" />
+                                <input type='file' id='imageInput' name="course_img" value={{ $data->course_img }}
+                                    class="hidden" accept="image/*" onchange="previewImage()" />
                             </label>
                         </div>
                     </div>
@@ -159,7 +214,8 @@
             <div class="rounded-b-xl bg-white p-4 shadow-sm">
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div>
-                        <label for="minSpec" class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
+                        <label for="minSpec"
+                            class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                             Spesifikasi Minimum</label>
 
                         <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-2">

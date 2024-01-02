@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+
 
 class ManageCertificationController extends Controller
 {
@@ -32,15 +34,21 @@ class ManageCertificationController extends Controller
             // Jika pengguna belum masuk, redirect ke halaman login dengan pesan peringatan
             return redirect()->route('login')->with('warning', 'Anda perlu masuk terlebih dahulu untuk mendaftar sertifikasi.');
         }
-        $request->validate([
-            'certif_title' => 'required|string',
-            'certif_short_desc' => 'required|string',
-            'certif_desc' => 'required|string',
-            'certif_duration'=> 'required|integer|min:0',
-            'certif_cost'=> 'required|integer|min:0',
-            'certif_outline' => 'required|string',
+        $rules = [
+            'certif_title' => 'required|string|max:50',
+            'certif_short_desc' => 'required|string|max:150',
+            'certif_desc' => 'required|string|max:500',
+            'certif_duration'=> 'required|integer|min:1',
+            'certif_cost'=> 'required|integer|min:1',
+            'certif_outline' => 'required|string|max:500',
             'certif_img' =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
 
         $filename = '';
         if ($request->hasFile('certif_img')) {
@@ -80,39 +88,52 @@ class ManageCertificationController extends Controller
         return view('administrator.admin_certifications.admin_certification_edit', ['data' => $data]);
     }
     public function editCertifPOST(Request $request, $id){
-        $validateCertif=$request->validate([
-            'certif_title' => 'required|string',
-            'certif_short_desc' => 'required|string',
-            'certif_desc' => 'required|string',
-            'certif_duration'=> 'required|integer|min:0',
-            'certif_cost'=> 'required|integer|min:0',
-            'certif_outline' => 'required|string',
-        ]);
-        $changeCertif = [];
+        $rules = [
+            'certif_title' => 'required|string|max:50',
+            'certif_short_desc' => 'required|string|max:150',
+            'certif_desc' => 'required|string|max:500',
+            'certif_duration'=> 'required|integer|min:1',
+            'certif_cost'=> 'required|integer|min:1',
+            'certif_outline' => 'required|string|max:500',
+            'certif_img' =>  'image|mimes:jpeg,png,jpg,gif|max:2048'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
 
         if ($request->hasFile('certif_img')) {
             $filename = Str::orderedUuid() . "." . $request->file('certif_img')->getClientOriginalExtension();
             $request->file('certif_img')->storeAs('certif_images', $filename, 'certif_images');
-            $changeCertif['certif_img'] = $filename;
+            Certification::where('id', $id)->update([
+                'certif_title' => $request->certif_title,
+                'certif_short_desc' => $request->certif_short_desc,
+                'certif_desc' => $request->certif_desc,
+                'certif_duration'=> $request->certif_duration,
+                'certif_cost' => $request->certif_cost,
+                'certif_outline'=> $request->certif_outline,
+                'certif_img' => $request->certif_img,
+                'updated_by' => Auth()->user()->id,
+            ]);
+            return redirect('/manager/certification')->with('success', 'Certification edit successfull!');
+        }
+        else{
+            Certification::where('id', $id)->update([
+                'certif_title' => $request->certif_title,
+                'certif_short_desc' => $request->certif_short_desc,
+                'certif_desc' => $request->certif_desc,
+                'certif_duration'=> $request->certif_duration,
+                'certif_cost' => $request->certif_cost,
+                'certif_outline'=> $request->certif_outline,
+                'updated_by' => Auth()->user()->id,
+            ]);
+            return redirect('/manager/certification')->with('success', 'Certification edit successfull!');
         }
 
-        // Check if 'certif_img' exists in the validated data
-        if (array_key_exists('certif_img', $validateCertif)) {
-            unset($validateCertif['certif_img']);
-        }
 
-        $changeCertif += [
-            'certif_title' => $validateCertif['certif_title'],
-            'certif_short_desc' => $validateCertif['certif_short_desc'],
-            'certif_desc' => $validateCertif['certif_desc'],
-            'certif_duration'=> $validateCertif['certif_duration'],
-            'certif_cost'=> $validateCertif['certif_cost'],
-            'certif_outline' => $validateCertif['certif_outline'],
-            'updated_by' => Auth()->user()->id,
-        ];
-
-        Certification::where('id', $id)->update($changeCertif);
-        return redirect('/manager/certification')->with('success', 'Certification edit successfull!');
     }
 
     public function editCertifTestPage($id){
@@ -123,7 +144,7 @@ class ManageCertificationController extends Controller
 
     public function setScore(Request $request){
         Log::info('Request Data:', $request->all());
-
+        $user = Auth::user();
         // dd($request);
         $validateScore = $request->validate([
             'minimum_score'=>'required|integer|max:100',
@@ -132,6 +153,7 @@ class ManageCertificationController extends Controller
 
         $changeScore += [
             'minimum_score'=> $validateScore['minimum_score'],
+            'updated_by' => $user->id,
         ];
         // dd($changeMaterialDetail);
         Certification::where('id',$request->certification_id)->update($changeScore);
@@ -140,6 +162,7 @@ class ManageCertificationController extends Controller
 
     public function createCertifQuestions(Request $request, $id){
         Log::info('Request Data:', $request->all());
+        $user = Auth::user();
         $request->validate([
             'questions'=>'required|string',
             'jawaban_a'=>'required|string',
@@ -166,15 +189,16 @@ class ManageCertificationController extends Controller
         $addTotalQuestions = [];
         $addTotalQuestions = [
             'total_questions' => \DB::raw('total_questions + 1'),
+            'updated_by' => $user->id,
         ];
         Certification::where('id', $createCertifQuestions->certification_id)->update($addTotalQuestions);
-
         $createCertifQuestions->save();
         return Redirect::to("/manager/certification/edit/test/{$id}");
     }
 
-    public function editCertifQuestions(Request $request){
+    public function editCertifQuestions(Request $request,$id){
         Log::info('Request Data:', $request->all());
+        $user = Auth::user();
         $validateQuestions=$request->validate([
             'questions'=>'required|string',
             'jawaban_a'=>'required|string',
@@ -205,11 +229,15 @@ class ManageCertificationController extends Controller
             'jawaban_benar'=>$validateQuestions['jawaban_benar'],
         ];
         CertifQuestions::where('id', $request->certif_test_id)->update($changeCertTest);
+        Certification::where('id', $request->certification_id)->update([
+            'updated_by' => $user->id,
+        ]);
         return Redirect::to("/manager/certification/edit/test/{$request->certification_id}");
         // return redirect('/manager/course')->with('success', 'Course deleted successfully.');
     }
 
-    public function deleteCertifQuestion(Request $request){
+    public function deleteCertifQuestion(Request $request,$id){
+        $user = Auth::user();
         $certif_test_questions = CertifQuestions::find($request->certif_test_id);
         if (!$certif_test_questions) {
             return redirect()->back()->with('error', 'Assignment not found.');
@@ -217,6 +245,7 @@ class ManageCertificationController extends Controller
         $decreaseTotalQuestions = [];
         $decreaseTotalQuestions = [
             'total_questions' => \DB::raw('total_questions - 1'),
+            'updated_by' => $user->id,
         ];
         Certification::where('id', $request->certification_id)->update($decreaseTotalQuestions);
 
