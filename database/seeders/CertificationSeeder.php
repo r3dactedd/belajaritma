@@ -28,29 +28,5 @@ class CertificationSeeder extends Seeder
             'minimum_score' => 75,
             'certif_img' => 'azure.png',
         ]);
-        Certification::create([
-            'certif_title' => 'Dummy Certif 1',
-            'certif_short_desc' => 'Deskripsi Pendek 1',
-            'certif_desc' => 'Kursus ini akan mengarjakan dasar-dasar dari algoritma.',
-            'certif_duration' => 120,
-            'certif_cost' => 500000,
-            'certif_outline' => 'Outline Algoritma dan Pemrograman',
-            'created_by' => 1,
-            'updated_by' => 1,
-            'minimum_score' => 75,
-            'certif_img' => 'placeholder.webp',
-        ]);
-        Certification::create([
-            'certif_title' => 'Dummy Certif 2',
-            'certif_short_desc' => 'Deskripsi Pendek 1',
-            'certif_desc' => 'Kursus ini akan mengarjakan dasar-dasar dari algoritma.',
-            'certif_duration' => 120,
-            'certif_cost' => 500000,
-            'certif_outline' => 'Outline Algoritma dan Pemrograman',
-            'created_by' => 1,
-            'updated_by' => 1,
-            'minimum_score' => 75,
-            'certif_img' => 'placeholder.webp',
-        ]);
     }
 }
