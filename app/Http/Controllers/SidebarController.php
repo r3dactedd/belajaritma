@@ -90,9 +90,8 @@ class SidebarController extends Controller
                 if ($enrollment->material_completed_count == $excludeFinal) {
                     $enrollment->ready_for_final = true;
                     $enrollment->save();
-
-                    $findFinalSidebar->is_locked = false;
-                    $findFinalSidebar->save();
+                    $currentMaterial->is_locked = false;
+                    $currentMaterial->save();
                 }
                 elseif($enrollment->material_completed_count < $excludeFinal){
                     $currentMaterial->is_locked = false;
