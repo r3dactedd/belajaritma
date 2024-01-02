@@ -51,6 +51,7 @@ class SidebarController extends Controller
         $currentMaterialIndex = $sidebars->search(function ($item) use ($material_id) {
             return $item->material_id == $material_id;
         });
+        $nextMaterialIndex = $currentMaterialIndex + 1;
 
         // Determine the previous and next material
         $previousMaterial = $sidebars[$currentMaterialIndex - 1] ?? null;
@@ -121,16 +122,16 @@ class SidebarController extends Controller
 
         $master_type = MasterType::find($material->master_type_id);
         if ($master_type->master_type_name == 'Video') {
-            return view('contents.session_video', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal'));
+            return view('contents.session_video', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'userCourseDetail','nextMaterialIndex'));
         } elseif ($master_type->master_type_name == 'PDF') {
-            return view('contents.session_pdf', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal'));
+            return view('contents.session_pdf', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal','userCourseDetail','nextMaterialIndex'));
         } elseif ($master_type->master_type_name == 'Assignment') {
             // dd($firstIndexASG);
-            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN'));
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN','userCourseDetail','nextMaterialIndex'));
         }
         elseif ($master_type->master_type_name == 'Final Test') {
             // dd($firstIndexFIN);
-            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN'));
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN','userCourseDetail','nextMaterialIndex'));
         }
 
     }

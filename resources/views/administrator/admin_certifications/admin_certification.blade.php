@@ -90,10 +90,10 @@
                                     <p class="max-h-20 overflow-scroll">{{ $mat->certif_title }}</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $mat->findUpdatedBy->username }}</p>
+                                    <p class="max-h-20 overflow-scroll">{{ $mat->findCreatedBy->username }}</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $mat->findCreatedBy->username }}</p>
+                                    <p class="max-h-20 overflow-scroll">{{ $mat->findUpdatedBy->username }}</p>
                                 </td>
                                 <td class="px-4 py-2">
                                     <p class="max-h-20 overflow-scroll">{{ $mat->updated_at->format('Y-m-d') }}</p>

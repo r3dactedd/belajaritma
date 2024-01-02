@@ -11,6 +11,7 @@ use App\Http\Controllers\ValidationException;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -25,11 +26,6 @@ class ProfileController extends Controller
     //     $data = Course::all();
     //     return view('courses.courses',['data'=>$data]);
     // }
-    public function editProfile()
-    {
-        $searchUser = User::find(Auth::user()->id);
-        return view('profile.profile_edit', ['searchUser' => $searchUser]);
-    }
 
     public function homePage()
     {
@@ -167,20 +163,33 @@ class ProfileController extends Controller
         User::where('id', Auth::user()->id)->update($changeProfile);
         return Redirect::to("/profile/{$request->username}");
     }
+    public function editProfile()
+    {
+        $searchUser = User::find(Auth::user()->id);
+        return view('profile.profile_edit', ['searchUser' => $searchUser]);
+    }
 
     public function changePassword(Request $request)
     {
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => ['required', 'alpha_num', 'min:8'],
-            'confirm_password' => ['required', 'alpha_num', 'min:8'],
-        ]);
-
         $user = Auth::user();
 
-        // Verify the old password
-        if (!Hash::check($request->old_password, $user->password) || $request->confirm_password != $request->new_password) {
-            return redirect('/editProfile')->with('error', 'Password change failed!');
+
+        $rules = [
+            'old_password' => 'required',
+            'new_password' => 'required|regex:/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/',
+            'confirm_password' => 'required|regex:/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/|same:new_password',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+         // Verify the old password
+         if (!Hash::check($request->old_password, $user->password)) {
+            $validator->errors()->add('old_password', 'Password lama tidak sesuai');
+            return back()->withErrors($validator);
+        }
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
         }
 
         User::where('id', Auth::user()->id)->update([

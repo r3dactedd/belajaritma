@@ -46,52 +46,20 @@
                     </h1>
                     <div class="mb-6 text-left">
                         <div class="text-left text-lg font-semibold">Biaya Sertifikasi</div>
-                        <span class="text-lg font-bold text-indigo-500">Rp. {{ $data->certif_cost }}</span>
+                        <span class="text-lg font-bold text-indigo-500">Rp. {{ number_format($data->certif_cost, 2, ',', '.') }}</span>
                     </div>
-                    {{-- <div class="mb-6">
-                        <label class="mb-3 block" for="">Nama di Kartu</label>
-                        <input type="text"
-                            class="inline-block w-full rounded-md border border-gray-500 px-3 py-2 tracking-wider text-gray-600" />
-                    </div>
-                    <div class="mb-6">
-                        <label class="mb-3 block" for="">Nomor Kartu</label>
-                        <input type="tel"
-                            class="inline-block w-full rounded-md border border-gray-500 px-3 py-2 tracking-wide text-gray-600" />
-                    </div> --}}
-                    {{-- <div class="mb-6 flex w-full flex-wrap">
-                        <div class="mb-6 pr-3 md:w-2/3">
-                            <label class="mb-3 block text-gray-600" for="">Tanggal Expire</label>
-                            <div class="relative max-w-sm">
-                                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
-                                    <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                    </svg>
-                                </div>
 
-                                <input datepicker type="text" datepicker-format="dd/yyyy"
-                                    class="data-te-format= block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                                    placeholder="Select date">
-                            </div>
-                        </div>
-
-                        <div class="pr-3 md:w-1/3">
-                            <label class="mb-3 block text-gray-600" for="">CVC (3 digit belakang)</label>
-                            <input type="tel"
-                                class="inline-block w-full rounded-md border border-gray-500 px-3 py-2 tracking-widest text-gray-600" />
-                        </div>
-                    </div> --}}
                     <div class="mb-6">
                         <label class="my-4 font-semibold" for="">Tahap Transaksi</label>
 
                         <div class="my-4 rounded-lg border border-gray-600 bg-white p-4 shadow-md">
-                            <div class="text-base font-medium">Anda dapat melakukan transfer pada nomor <span
-                                    class="font-semibold text-indigo-600">12345678 A.N Name Here</span></div>
-                            <div class="text-base font-medium">1. Cantumkan blablabla pada </div>
-                            <div class="text-base font-medium">2. Waktu konfirmasi blabla</div>
-                            <div class="text-base font-medium">3. Apabila bukti transfer valid, anda dapat</div>
-                            <div class="text-base font-medium">4. Apabila bukti transfer tidak valid, anda dapat</div>
+                            <div class="text-base my-1 font-medium">Anda dapat melakukan transfer pada nomor <span
+                                    class="font-semibold text-indigo-600">12345678 A.N Lorem Ipsum</span></div>
+                            <div class="text-base my-1 font-medium">1. Cantumkan screenshot bukti transfer pada link upload dibawah ini.</div>
+                            <div class="text-base my-1 font-medium">2. Screenshot bukti yang valid terdiri dari pesan berhasil, tanggal dan waktu transfer, nama penerima diatas, serta nominal transaksi yang sesuai.</div>
+                            <div class="text-base my-1 font-medium">3. Anda dapat melihat status pembayaran pada menu Profil Saya -> Riwayat Transaksi</div>
+                            <div class="text-base my-1 font-medium">4. Apabila bukti transfer valid, anda sudah dapat mengakses tes sertifikasi.</div>
+                            <div class="text-base my-1 font-medium">5. Apabila bukti transfer tidak valid, anda dapat mengupload ulang bukti transfer anda.</div>
                         </div>
                     </div>
                     <form method="post" enctype="multipart/form-data">
