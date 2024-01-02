@@ -177,7 +177,7 @@
                             <a href="/courses/material/{{ $sidebar->title }}/{{ $sidebar->material_id }}"
                                 class="ml-2 text-base font-normal text-gray-600 hover:underline">{{ $sidebar->title }}</a>
 
-                        </div>
+                       </div>
 
                         <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
                             <ul class="ml-12 list-inside space-y-2 pb-4">

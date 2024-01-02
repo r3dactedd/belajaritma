@@ -50,26 +50,11 @@
                                 </svg>
                                 <span class="mb-1 ml-2">Upload Kursus Baru</span>
                             </a>
-
                     </div>
-                    {{-- <div class="mt-6 md:mt-0">
-                        <button type="submit"
-                            class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
-                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <line x1="12" y1="5" x2="12" y2="19" />
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                            </svg>
-                            <div class="mx-2"> Finalize Kursus </div>
-                        </button>
-                    </div> --}}
                 </div>
             </div>
+
             <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-                {{-- <form id="myForm" method="post" enctype="multipart/form-data">
-                @csrf --}}
                 <div class="mx-auto flex">
                     <ol
                         class="flex w-full items-center space-x-2 p-3 text-center text-sm font-medium text-gray-500 rtl:space-x-reverse sm:space-x-4 sm:p-4 sm:text-base">
@@ -109,11 +94,31 @@
                             Pengaturan Materi Kursus
                         </li>
                     </ol>
-
                 </div>
 
-
-
+                <div id="toast-default" class="bg-white w-fit  flex items-center rounded-lg p-4 text-gray-500"role="alert">
+                    <div>
+                        <svg class="h-6 w-6 fill-current text-red-500" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h2 class="font-bold text-red-400">Test error here</h2>
+                    </div>
+                    <button type="button"
+                        class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg  p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 "
+                        data-dismiss-target="#toast-default" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div>
                 <div class="my-4 rounded-xl bg-white md:flex">
                     <!-- Left Side -->
                     <div class="w-full md:w-1/3">
@@ -145,7 +150,8 @@
                             <input type="text" name="course_name" id="inputCourseName"
                                 class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-left text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
                                 placeholder="Tulis Nama Kursus" required="">
-                            <label for="shortDesc" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                            <label for="shortDesc"
+                                class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                 Deskripsi Singkat Kursus</label>
                             <textarea name="short_desc" id="inputShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -217,7 +223,7 @@
                         </div>
                         <div>
                             <label for="username"
-                                class="my-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
+                                class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                 Program Lain yang Diperlukan</label>
 
                             <div class="px-4 py-2 font-semibold">
