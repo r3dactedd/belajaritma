@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+
 class ManageCourseController extends Controller
 {
     //
@@ -31,18 +33,24 @@ class ManageCourseController extends Controller
     }
 
     public function createCourse(Request $request){
-        $request->validate([
-            'course_name' => 'required|string',
-            'short_desc' => 'required|string',
-            'course_desc' => 'required|string',
+        $rules = [
+            'course_name' => 'required|string|max:50',
+            'short_desc' => 'required|string|max:150',
+            'course_desc' => 'required|string|max:500',
             'level'=> 'required|string',
-            'screen_resolution'=> 'required|string',
-            'minimum_ram' => 'required|string',
-            'processor'=> 'required|string',
-            'operating_system' => 'required|string',
-            'other_programs'=> 'required|string',
+            'screen_resolution'=> 'required|string|max:50',
+            'minimum_ram' => 'required|string|max:50',
+            'processor'=> 'required|string|max:50',
+            'operating_system' => 'required|string|max:50',
+            'other_programs'=> 'required|string|max:500',
             'course_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
 
 
         if ($request->hasFile('course_img')) {
@@ -92,47 +100,58 @@ class ManageCourseController extends Controller
         return view('administrator.admin_courses.admin_course_edit', ['data' => $data, 'courseId'=> $id, 'type_list'=>$type_list]);
     }
     public function editCoursePOST(Request $request, $id){
-        $validateCourse=$request->validate([
-            'course_name' => 'required|string',
-            'short_desc' => 'required|string',
-            'course_desc' => 'required|string',
+        $rules = [
+            'course_name' => 'required|string|max:50',
+            'short_desc' => 'required|string|max:150',
+            'course_desc' => 'required|string|max:500',
             'level'=> 'required|string',
-            'screen_resolution'=> 'required|string',
-            'minimum_ram' => 'required|string',
-            'processor'=> 'required|string',
-            'operating_system' => 'required|string',
-            'other_programs'=> 'required|string',
-        ]);
-        $changeCourse = [];
+            'screen_resolution'=> 'required|string|max:50',
+            'minimum_ram' => 'required|string|max:50',
+            'processor'=> 'required|string|max:50',
+            'operating_system' => 'required|string|max:50',
+            'other_programs'=> 'required|string|max:500',
+            'course_img' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
 
         if ($request->hasFile('course_img')) {
             $filename = Str::orderedUuid() . "." . $request->file('course_img')->getClientOriginalExtension();
             $request->file('course_img')->storeAs('course_images', $filename, 'course_images');
-            $changeCourse['course_img'] = $filename;
+
+            Course::where('id', $id)->update([
+                'course_name' => $request->course_name,
+                'short_desc' => $request->short_desc,
+                'course_desc' => $request->course_desc,
+                'level'=> $request->level,
+                'screen_resolution'=> $request->screen_resolution,
+                'minimum_ram' => $request->minimum_ram,
+                'processor'=> $request->processor,
+                'operating_system' => $request->operating_system,
+                'other_programs'=> $request->other_programs,
+                'course_img' => $request->course_img,
+                'updated_by' => Auth()->user()->id,
+            ]);
+            return redirect('/manager/course')->with('success', 'Course edit successfull!');
         }
-
-        // Check if 'course_img' exists in the validated data
-        if (array_key_exists('course_img', $validateCourse)) {
-            unset($validateCourse['course_img']);
+        else{
+            Course::where('id', $id)->update([
+                'course_name' => $request->course_name,
+                'short_desc' => $request->short_desc,
+                'course_desc' => $request->course_desc,
+                'level'=> $request->level,
+                'screen_resolution'=> $request->screen_resolution,
+                'minimum_ram' => $request->minimum_ram,
+                'processor'=> $request->processor,
+                'operating_system' => $request->operating_system,
+                'other_programs'=> $request->other_programs,
+                'updated_by' => Auth()->user()->id,
+            ]);
+            return redirect('/manager/course')->with('success', 'Course edit successfull!');
         }
-
-        $changeCourse += [
-            'course_name' => $validateCourse['course_name'],
-            'short_desc' => $validateCourse['short_desc'],
-            'course_desc' => $validateCourse['course_desc'],
-            'level'=> $validateCourse['level'],
-            'screen_resolution'=> $validateCourse['screen_resolution'],
-            'minimum_ram' => $validateCourse['minimum_ram'],
-            'processor'=> $validateCourse['processor'],
-            'operating_system' => $validateCourse['operating_system'],
-            'other_programs'=> $validateCourse['other_programs'],
-            'total_module'=>2,
-            'created_by' => Auth()->user()->id,
-            'updated_by' => Auth()->user()->id,
-        ];
-
-        Course::where('id', $id)->update($changeCourse);
-        return redirect('/manager/course')->with('success', 'Course edit successfull!');
     }
 
     public function showMaterialList($id){
@@ -143,6 +162,7 @@ class ManageCourseController extends Controller
     }
 
     public function createMaterial(Request $request, $id){
+
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -159,6 +179,16 @@ class ManageCourseController extends Controller
         $createMaterial->save();
         $material_id = $createMaterial->id;
 
+        $user = Auth::user();
+        $addTimeAndModule= [];
+        $addTimeAndModule = [
+            'total_time' => \DB::raw('total_time + ' . $request->material_duration),
+            'total_module' => \DB::raw('total_module + 1'),
+            'updated_by' => $user->id,
+
+        ];
+        Course::where('id', $createMaterial->course_id)->update($addTimeAndModule);
+
         $sidebarCount = Sidebar::where('course_id', $id)->count();
 
         $newSidebar = new Sidebar();
@@ -170,18 +200,7 @@ class ManageCourseController extends Controller
         $newSidebar->path = '';
         $newSidebar->save();
 
-        $updateUserCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $id)->first();
-        if ($updateUserCourseDetail->last_accessed_material === 0) {
-            $updateUserCourseDetail->last_accessed_material = $material_id;
-            $updateUserCourseDetail->save();
-        }
 
-        $addTimeAndModule= [];
-        $addTimeAndModule = [
-            'total_time' => \DB::raw('total_time + ' . $request->material_duration),
-            'total_module' => \DB::raw('total_module + 1'),
-        ];
-        Course::where('id', $createMaterial->course_id)->update($addTimeAndModule);
         // dd($createMaterial);
         return Redirect::to("/manager/course/session/{$material_id}/edit");
     }
@@ -272,9 +291,12 @@ class ManageCourseController extends Controller
     public function deleteMaterial($id){
         $material = Material::find($id);
         $decreaseTimeAndModule= [];
+        $user = Auth::user();
         $decreaseTimeAndModule = [
             'total_time' => \DB::raw('total_time - ' . $material->material_duration),
             'total_module' => \DB::raw('total_module - 1'),
+            'updated_by' => $user->id,
+
         ];
         Course::where('id', $material->course_id)->update($decreaseTimeAndModule);
         if (!$material) {

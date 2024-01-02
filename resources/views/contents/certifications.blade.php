@@ -88,7 +88,7 @@
                                                     </h2>
                                                 </div>
                                                 <h2 class="mb-4 text-lg font-bold tracking-normal text-gray-800">
-                                                    Rp {{ $data->certif_cost }}
+                                                    Rp. {{ number_format($data->certif_cost, 2, ',', '.') }}
                                                 </h2>
                                                 <p
                                                     class="mb-2 text-base font-normal tracking-normal text-gray-600 md:w-3/4">

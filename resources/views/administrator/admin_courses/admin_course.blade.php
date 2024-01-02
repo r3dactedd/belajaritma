@@ -90,10 +90,10 @@
                                     <p class="max-h-20 overflow-scroll">{{ $item->course_name }}</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $item->findUpdatedBy->username }}</p>
+                                    <p class="max-h-20 overflow-scroll">{{ $item->findCreatedBy->username }}</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $item->findCreatedBy->username }}</p>
+                                    <p class="max-h-20 overflow-scroll">{{ $item->findUpdatedBy->username }}</p>
                                 </td>
                                 <td class="px-4 py-2">
                                     <p class="max-h-20 overflow-scroll">{{ $item->updated_at->format('Y-m-d') }}</p>
