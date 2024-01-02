@@ -225,7 +225,7 @@
         fetch(`/manager/transaction/accept/${transactionId}`)
             .then(response => response.json())
             .then(data => {
-                alert('Success: Transaction approved successfully!');
+                alert('Transaksi berhasil di-accept.');
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -236,7 +236,7 @@
         fetch(`/manager/transaction/decline/${transactionId}`)
             .then(response => response.json())
             .then(data => {
-                alert('Success: Transaction declined successfully!');
+                alert('Transaksi berhasil di-decline.');
             })
             .catch(error => {
                 console.error('Error:', error);
