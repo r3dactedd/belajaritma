@@ -201,12 +201,6 @@ class ManageCourseController extends Controller
         $newSidebar->save();
 
 
-        $updateUserCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $id)->first();
-        if ($updateUserCourseDetail->last_accessed_material === 0) {
-            $updateUserCourseDetail->last_accessed_material = $material_id;
-            $updateUserCourseDetail->save();
-        }
-
         // dd($createMaterial);
         return Redirect::to("/manager/course/session/{$material_id}/edit");
     }
