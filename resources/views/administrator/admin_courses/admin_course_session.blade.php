@@ -180,13 +180,8 @@
                                             (muncul kalau content typenya Assignment) </label>
                                     </div> --}}
                                     <div class="font-semibold">
-                                        <label for="username"
-                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
-                                            Penjelasan Assignment</label>
-                                        <textarea name="detailed_description" id="inputDetDesc"
-                                            class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
-                                            {{ htmlspecialchars($material->detailed_description) }}
+                                        <label for="username" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">Penjelasan Assignment</label>
+                                        <textarea name="detailed_description" id="inputDetDesc" class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->detailed_description) }}
                                         </textarea>
                                         <div class="mb-6 font-semibold">
                                             <div class="grid grid-cols-1 md:grid-cols-2">

@@ -136,11 +136,11 @@
                                         </div>
                                     </div>
 
-                                    <p class="mb-6 w-11/12 px-4 text-base font-normal tracking-normal text-gray-600">
-                                        {{ $course->course_desc }}
+                                    <p class="mb-6 w-11/12 h-16 px-4 text-base font-normal tracking-normal text-gray-600">
+                                        {{ $course->short_desc }}
                                     </p>
                                     <div
-                                        class="grid grid-cols-2 items-start px-4 pb-6 md:flex md:flex-col lg:flex-row lg:items-center">
+                                        class="grid grid-cols-2 md:grid-cols-4 items-start px-4 pb-6 md:flex md:flex-col lg:flex-row lg:items-center">
                                         <div class="flex items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 384 512">
                                                 <path
@@ -150,7 +150,7 @@
                                                 {{ $course->total_module }} Modul
                                             </p>
                                         </div>
-                                        <div class="ml-0 flex items-end lg:ml-12 lg:mt-0">
+                                        <div class="ml-0 flex items-end lg:ml-8 lg:mt-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512">
                                                 <path
                                                     d="M353.8 54.1L330.2 6.3c-3.9-8.3-16.1-8.6-20.4 0L286.2 54.1l-52.3 7.5c-9.3 1.4-13.3 12.9-6.4 19.8l38 37-9 52.1c-1.4 9.3 8.2 16.5 16.8 12.2l46.9-24.8 46.6 24.4c8.6 4.3 18.3-2.9 16.8-12.2l-9-52.1 38-36.6c6.8-6.8 2.9-18.3-6.4-19.8l-52.3-7.5zM256 256c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H384c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H256zM32 320c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H160c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32H32zm416 96v64c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32V416c0-17.7-14.3-32-32-32H480c-17.7 0-32 14.3-32 32z" />
@@ -159,7 +159,7 @@
                                                 {{ $course->level }}
                                             </p>
                                         </div>
-                                        <div class="ml-0 mt-4 flex items-end lg:ml-12 lg:mt-0">
+                                        <div class="ml-0 mt-4 flex items-end lg:ml-8 lg:mt-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 512 512">
                                                 <path
                                                     d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
@@ -168,7 +168,7 @@
                                                 {{ $course->total_time }} Menit
                                             </p>
                                         </div>
-                                        <div class="ml-0 mt-4 flex items-end lg:ml-12 lg:mt-0">
+                                        <div class="ml-0 mt-4 flex items-end lg:ml-8 lg:mt-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512">
                                                 <path
                                                     d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z" />

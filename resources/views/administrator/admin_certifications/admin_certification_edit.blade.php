@@ -53,20 +53,40 @@
                     <div class="mt-6 md:mt-0">
                         <button type="submit"
                             class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
-                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <line x1="12" y1="5" x2="12" y2="19" />
-                                <line x1="5" y1="12" x2="19" y2="12" />
+
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 448 512">
+                                <path fill="#ffffff"
+                                    d="M48 96V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V170.5c0-4.2-1.7-8.3-4.7-11.3l33.9-33.9c12 12 18.7 28.3 18.7 45.3V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H309.5c17 0 33.3 6.7 45.3 18.7l74.5 74.5-33.9 33.9L320.8 84.7c-.3-.3-.5-.5-.8-.8V184c0 13.3-10.7 24-24 24H104c-13.3 0-24-10.7-24-24V80H64c-8.8 0-16 7.2-16 16zm80-16v80H272V80H128zm32 240a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z" />
                             </svg>
-                            <div class="mx-2"> Finalize Sertifikasi </div>
+                            <div class="mx-2"> Simpan Perubahan Data </div>
                         </button>
                     </div>
                 </div>
             </div>
             <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-
+                <div id="toast-default" class="bg-white w-fit  flex items-center rounded-lg p-4 text-gray-500"role="alert">
+                    <div>
+                        <svg class="h-6 w-6 fill-current text-red-500" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h2 class="font-bold text-red-400">Test error here</h2>
+                    </div>
+                    <button type="button"
+                        class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg  p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 "
+                        data-dismiss-target="#toast-default" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div>
                 <div class="my-4 rounded-xl bg-white md:flex">
                     <!-- Left Side -->
                     <div class="w-full md:w-1/3">
@@ -80,7 +100,7 @@
                                 <label
                                     class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
-                                    <span class="text-base leading-normal">Unduh Foto Baru</span>
+                                    <span class="text-base leading-normal">Unduh Foto</span>
                                     <input type='file' name="certif_img" id="inputCertifImg" class="hidden"
                                         accept="image/*" onchange="previewImage()" />
                                 </label>
@@ -147,7 +167,7 @@
                                 </div>
                                 <div>
                                     <label for="username"
-                                        class="my-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
+                                        class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                         Outline Test</label>
 
                                     <div class="px-4 py-2 font-semibold">
