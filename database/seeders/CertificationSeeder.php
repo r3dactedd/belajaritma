@@ -26,6 +26,7 @@ class CertificationSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
             'minimum_score' => 75,
+            'total_questions' => 25,
             'certif_img' => 'azure.png',
         ]);
     }

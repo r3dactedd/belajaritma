@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('material_id');
             $table->string('question_img')->nullable();
 
-            $table->string('questions');
+            $table->text('questions');
             $table->string('jawaban_a');
             $table->string('jawaban_b');
             $table->string('jawaban_c');
