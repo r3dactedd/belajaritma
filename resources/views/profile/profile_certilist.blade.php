@@ -35,7 +35,7 @@
                                     <div class="h-full bg-white py-2 md:ml-4">
                                         <div class="mx-auto h-full w-full">
                                             <img class="h-full"
-                                                src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
+                                                src="{{ asset('uploads/certif_images/' . $registration->certification->certif_img) }}"
                                                 alt="e" />
                                         </div>
                                     </div>

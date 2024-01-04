@@ -73,29 +73,28 @@ class SidebarController extends Controller
                 ->where('enrollment_id', $enrollment->id)
                 ->exists();
 
-                if (!$materialCompleted && $enrollment->material_completed_count < $excludeFinal) {
+                //Kalau sudah selesai material course sebelum final (Bukan Assignment dan Bukan Final Test)
+                if (!$materialCompleted && $enrollment->material_completed_count < $excludeFinal
+                && $material->materialContentToMasterType->master_type_name !=  "Assignment" && $material->materialContentToMasterType->master_type_name != "Final Test") {
                     MaterialCompleted::create([
                         'user_id' => auth()->id(),
                         'course_id' => $id,
                         'material_id' => $material_id,
                         'enrollment_id' => $enrollment->id,
                     ]);
+                    $currentMaterial->is_locked = false;
+                    $currentMaterial->save();
 
-                    // Update material_completed field in the enrollment table
                     $enrollment->material_completed_count += 1;
                     $enrollment->total_duration_count+=$material->material_duration;
                     $enrollment->save();
-                }
 
-                if ($enrollment->material_completed_count == $excludeFinal) {
+                }
+                //Kalau total complete sudah tinggal yg final saja
+                if ($enrollment->material_completed_count == $excludeFinal ) {
                     $enrollment->ready_for_final = true;
                     $enrollment->save();
-                    $currentMaterial->is_locked = false;
-                    $currentMaterial->save();
-                }
-                elseif($enrollment->material_completed_count < $excludeFinal){
-                    $currentMaterial->is_locked = false;
-                    $currentMaterial->save();
+
                 }
 
         }
