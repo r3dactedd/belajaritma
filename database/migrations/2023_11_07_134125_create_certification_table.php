@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('certif_title');
             $table->string('certif_short_desc');
-            $table->string('certif_desc');
+            $table->text('certif_desc');
             $table->string('certif_img');
             $table->unsignedBigInteger('certif_duration');
             $table->unsignedBigInteger('certif_cost');
-            $table->string('certif_outline');
+            $table->text('certif_outline');
             $table->unsignedBigInteger('students_registered')->default(0);
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');

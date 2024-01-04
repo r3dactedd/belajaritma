@@ -19,6 +19,7 @@ class Forum extends Model
         'forum_message',
         'forum_attachment',
         'reply_id',
+        'parent_id',
     ];
     public function formToUser(){
         return $this->belongsTo(User::class, 'user_id');
@@ -27,13 +28,13 @@ class Forum extends Model
         return $this->belongsTo(MasterType::class, 'master_type_id');
     }
     public function formToCourse(){
-        return $this->hasMany(Course::class, 'course_id','id');
+        return $this->belongsTo(Course::class, 'course_id','id');
     }
     public function formToMaterial(){
         return $this->belongsTo(Material::class, 'material_id');
     }
-    public function nestedReplies(){
-        return $this->hasMany(Forum::class, 'reply_id');
+    public function allReplies(){
+        return $this->hasMany(Forum::class, 'parent_id');
     }
     public function replies(){
         return $this->hasMany(Forum::class, 'reply_id');

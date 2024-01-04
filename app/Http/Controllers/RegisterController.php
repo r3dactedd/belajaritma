@@ -18,8 +18,8 @@ class RegisterController extends Controller
     {
         $rules = [
             'full_name' => 'required|string|min:3|max:50',
-            'username' => 'required|string|min:3|max:30',
-            'email' => 'required|string',
+            'username' => 'required|string|min:3|max:30|unique:users,username',
+            'email' => 'required|string|email|unique:users,email',
             'password' => 'required|string|min:6|max:30',
             'password_confirmation' => 'same:password',
             'profile_img' => 'image|file',
@@ -37,6 +37,7 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
         $user->role_id = 2;
         //give default placeholder instead
+        $user->profile_img = 'placeholder.webp';
         $user->about_me = ' ';
         $user->save();
         return redirect('/login')->with('success', 'Registrasi Akun Berhasil.');

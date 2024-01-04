@@ -48,7 +48,7 @@ class MaterialSeeder extends Seeder
             'description' => 'Video ini akan memberikan materi tambahan mengenai Data Type di C.
             ',
             'material_duration' => 8,
-            'video_link' => 'https://www.youtube.com/watch?v=wnbzTjWr5gY',
+            'video_link' => 'https://www.youtube.com/watch?v=wnbzTjWr5gY&ab_channel=Simplilearn',
         ]);
 
         Material::create([
@@ -56,9 +56,10 @@ class MaterialSeeder extends Seeder
             'master_type_id' => 2,
             'title' => 'Assignment 1',
             'description' => 'Assignment ini akan mengecek pengetahuan anda untuk materi-materi Sesi 1, 2, dan 3.',
+            'detailed_description' => 'Assignment ini akan mengecek pengetahuan anda untuk materi-materi Sesi 1, 2, dan 3.',
             'material_duration' => 5,
             'minimum_score' => 70,
-            'total_questions'=> 10,
+            'total_questions' => 10,
         ]);
 
         Material::create([
@@ -91,10 +92,10 @@ class MaterialSeeder extends Seeder
         Material::create([
             'course_id' => 1,
             'master_type_id' => 3,
-            'title' => 'Datatypes in C',
+            'title' => 'Intro to Algorithms',
             'description' => 'Video ini akan memberikan informasi tambahan mengenai algoritma-algoritma yang ada.',
             'material_duration' => 12,
-            'video_link' => 'https://youtu.be/rL8X2mlNHPM?si=7lPQS8ODzGGPC4Ly',
+            'video_link' => 'https://www.youtube.com/watch?v=rL8X2mlNHPM&ab_channel=CrashCourse',
         ]);
 
         Material::create([
@@ -102,8 +103,10 @@ class MaterialSeeder extends Seeder
             'master_type_id' => 2,
             'title' => 'Assignment 2',
             'description' => 'Assignment ini akan mengecek pengetahuan anda untuk materi-materi Sesi 6-8.',
+            'detailed_description' => 'Assignment ini akan mengecek pengetahuan anda untuk materi-materi Sesi 6-8.',
             'material_duration' => 5,
             'minimum_score' => 70,
+            'total_questions' => 5,
         ]);
 
         Material::create([
@@ -113,8 +116,7 @@ class MaterialSeeder extends Seeder
             'description' => 'Berikut adalah Final Test dari kursus Algoritma dan Pemograman',
             'material_duration' => 7,
             'minimum_score' => 70,
+            'total_questions' => 15,
         ]);
-
-
     }
 }

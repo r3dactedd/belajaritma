@@ -70,8 +70,8 @@
                             <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                 Manage Kursus
                             </h4>
-                            <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Anda dapat melakukan pengaturan untuk detail kursus, materi kursus, dan tes akhir kursus.
+                            <p class="mb-6 px-5 text-base font-normal tracking-normal text-gray-600">
+                                Melakukan pengaturan untuk detail kursus, materi kursus, dan tes akhir kursus.
                             </p>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                         class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                         <div class="relative h-56 w-full">
                             <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
-                                src="https://viewjobnow.com/wp-content/uploads/2023/05/free-business-certifications.png"
+                                src="https://www.cpsc.gov/s3fs-public/Certificate_TestingAndCertification_Card.png"
                                 alt="banner" />
                         </div>
                         <div class="h-full w-full pt-5 md:h-36">
@@ -92,8 +92,8 @@
                             <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                 Manage Sertifikasi
                             </h4>
-                            <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Anda dapat melakukan pengaturan untuk detail dan tes sertifikasi.
+                            <p class="mb-6 px-5 text-base font-normal tracking-normal text-gray-600">
+                                Melakukan pengaturan untuk detail dan tes sertifikasi.
                             </p>
 
                         </div>
@@ -106,24 +106,21 @@
                         class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                         <div class="relative h-56 w-full">
                             <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
-                                src="https://www.paper.id/blog/wp-content/uploads/2020/10/due-upon-receipt-method.png"
+                                src="https://www.apaservices.org/images/title-payment-platform_tcm9-282170.jpg"
                                 alt="banner" />
                         </div>
                         <div class="h-full w-full pt-5 md:h-36">
-
                             <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                 Verifikasi Pembayaran Sertifikasi
                             </h4>
-                            <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                Anda dapat melakukan verifikasi untuk transaksi pembayaran sertifikasi.
+                            <p class="mb-6 px-5 text-base font-normal tracking-normal text-gray-600">
+                                Melakukan verifikasi untuk transaksi pembayaran sertifikasi.
                             </p>
 
                         </div>
                     </div>
                 </a>
             </div>
-
-
         </div>
     @endsection
     @section('footer')

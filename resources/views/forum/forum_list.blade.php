@@ -51,7 +51,7 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Akses Forum Kursus</span>
+                            <span class="mb-1 ml-2">Akses Forum</span>
                         </a>
                     </h4>
                 </div>
@@ -76,6 +76,8 @@
                     <input type="search" name="searchKeyword" id="inputKeyword"
                         class="mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                         placeholder="Cari Kursus yang ingin Diakses">
+                    <button type="submit"
+                        class="absolute bottom-2.5 right-2.5 rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
             </form>
             {{-- Search Bar --}}
@@ -87,17 +89,16 @@
                             class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow transition duration-150 ease-in-out hover:shadow-lg">
                             <div class="relative h-56 w-full">
                                 <img class="absolute inset-0 z-0 h-full w-full rounded-t object-cover"
-                                    src="{{ $course->course_img_url }}" alt="banner" />
+                                    src="{{ asset('uploads/course_images/' . $course->course_img) }}" alt="banner" />
                             </div>
                             <div class="h-full w-full pt-5 md:h-40">
 
                                 <h4 class="mb-4 px-5 text-xl font-bold leading-5 tracking-normal text-gray-800 lg:text-2xl">
                                     {{ $course->course_name }}
                                 </h4>
-                                <p class="text-md mb-6 px-5 font-normal tracking-normal text-gray-600">
-                                    {{ $course->course_desc }}
+                                <p class="mb-6 px-5 text-base font-normal tracking-normal text-gray-600">
+                                    {{ Str::limit(strip_tags($course->course_desc), 140) }}</p>
                                 </p>
-
                             </div>
                         </div>
 

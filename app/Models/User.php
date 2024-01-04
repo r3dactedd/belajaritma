@@ -65,6 +65,16 @@ class User extends Authenticatable
         return $this->hasMany(Enrollment::class);
     }
 
+    public function isReadyForFinal($courseId)
+    {
+        $enrollment = $this->enrollments->where('course_id', $courseId)->first();
+        return $enrollment && $enrollment->ready_for_final;
+    }
+
+    public function userCourseDetail() {
+        return $this->hasMany(userCourseDetail::class);
+    }
+
     public function isEnrolled($courseId)
     {
         return $this->enrollments->contains('course_id', $courseId);
@@ -74,7 +84,22 @@ class User extends Authenticatable
     {
         $enrollment = $this->enrollments->where('course_id', $courseId)->first();
 
-        return $enrollment && $enrollment->completed;
+        return $enrollment && $enrollment->ready_for_final && $enrollment->completed;
+    }
+
+    public function updateTimestampForCourse($courseId)
+    {
+        $enrollment = $this->enrollments()->where('course_id', $courseId)->first();
+
+        if ($enrollment) {
+            $course = $enrollment->course;
+
+            if ($course) {
+                return $course->updated_at->format('Y-m-d');
+            }
+        }
+
+        return null; // Course not found or not enrolled
     }
 
 
@@ -93,5 +118,9 @@ class User extends Authenticatable
         $certification = $this->registerCertifications->where('certif_id', $certif_id)->first();
 
         return $certification && $certification->passed;
+    }
+
+    public function materialComplete(){
+        return $this->hasMany(MaterialCompleted::class);
     }
 }

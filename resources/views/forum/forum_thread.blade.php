@@ -41,7 +41,7 @@
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="mx-auto w-full rounded bg-white px-8 py-4 antialiased shadow">
-                <div class="mx-auto w-full rounded bg-white px-8 py-4 antialiased shadow">
+
                     <div class="mt-4 space-y-4">
                         {{-- FORUM CONTENT --}}
                         <div class="flex">
@@ -53,11 +53,17 @@
                             <div class="flex-1 rounded-lg px-4 pb-2 text-2xl leading-relaxed">
                                 <strong>{{ $data->forum_title }}</strong> <span
                                     class="ml-2 text-xl text-gray-400">{{ $data->created_at->format('Y-m-d') }}</span>
-                                <p class="mb-5 text-sm">
-                                    Created by: {{ $data->formToUser->username }}
-                                </p>
-                                <p class="w-fit text-base mb-7" id="codeContainer">
-                                <div class="text-base mb-7">
+                                <div class="flex">
+                                    <p class="my-2 text-sm">
+                                        Created by:
+                                    </p>
+                                    <a class="my-2 text-sm" href="/profile/{{ $data->formToUser->username }}">
+                                        {{ $data->formToUser->username }}
+                                    </a>
+                                </div>
+
+                                <p class="mb-4 w-fit text-base" id="codeContainer">
+                                <div class="text-base">
                                     {!! $data->forum_message !!}
                                 </div>
                                 </p>
@@ -71,12 +77,16 @@
                         {{-- ADD COMMENTS --}}
                         @if (Auth::user()->id == $data->formToUser->id)
                             <div class="mt-4 flex items-center">
-
-
                                 <button id="open-btn" data-modal-target="popup-delete" data-modal-toggle="popup-delete"
-                                    class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
-                                    data-modal-target="defaultModal" data-modal-toggle="defaultModal">
+                                    class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                                     Hapus Diskusi
+                                </button>
+                            </div>
+                        @elseif(auth()->user()->role_id == 1)
+                            <div class="mt-4 flex items-center">
+                                <button id="open-btn" data-modal-target="admin-delete" data-modal-toggle="admin-delete"
+                                    class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                                    Hapus Diskusi Oleh Admin
                                 </button>
                             </div>
                         @endif
@@ -96,7 +106,7 @@
                                     <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
                                     <input type="hidden" id="materialId" name="material_id"
                                         value="{{ $data->material_id }}">
-
+                                    <input type="hidden" id="parent_id" name="parent_id" value="{{ $data->id }}">
                                     <div class="my-4 flex justify-end">
                                         <button id="get-content-button" type="submit"
                                             class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
@@ -107,6 +117,7 @@
 
                         <h3 class="mb-4 text-lg font-semibold text-gray-900">Comments</h3>
                         <div class="space-y-4">
+                            <hr class="border-gray-600">
                             @foreach ($getReply as $reply)
                                 @if ($reply->reply_id == $data->id)
                                     {{-- COMMENTS LIST W/REPLY --}}
@@ -120,19 +131,14 @@
                                     ])
                                     {{-- COMMENTS LIST W/REPLY --}}
                                 @endif
+                                <hr class="border-gray-600">
                             @endforeach
                         </div>
                         {{-- COMMENTS LIST END --}}
                     </div>
                 </div>
-
             </div>
         </div>
-        </div>
-        {{-- Reply Popup Modal --}}
-
-
-        {{-- Reply Popup Modal --}}
 
         {{-- Delete Popup Modal --}}
         <div id="popup-delete" tabindex="-1"
@@ -179,6 +185,46 @@
             </div>
         </div>
         {{-- Delete Popup Modal --}}
+
+        {{-- Delete Admin --}}
+        <div id="admin-delete" tabindex="-1"
+            class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+            <div class="relative max-h-full w-full max-w-md">
+                <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+                    <button type="button"
+                        class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="admin-delete">
+                        <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-6">
+                        <form method="POST"
+                            action="/forum/course/{{ $data->course_id }}/thread/{{ $data->id }}/delete"
+                            data-course-id="">
+                            @csrf
+                            @method('DELETE')
+                            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
+                            <input type="text" name="reason_delete" id="inputReasonDelete"
+                                class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-base"
+                                placeholder="Tulis alasan hapus forum" required="">
+
+                            <div class="flex justify-center text-center">
+                                <button data-modal-hide="admin-delete" type="submit"
+                                    class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                    Ya, hapus
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Delete Admin --}}
     </body>
     <style>
         .accordion-content {
@@ -189,44 +235,7 @@
         tinymce.init({
             selector: '#forum_message',
             menubar: false,
-            // Image below, for further consideration
-            plugins: ' code codesample image',
             toolbar: ' wordcount | link image |code |bold italic underline| codesample ',
-            // Image below, for further consideration
-            file_picker_types: 'image',
-            /* enable automatic uploads of images represented by blob or data URIs*/
-            automatic_uploads: true,
-            file_picker_callback: (cb, value, meta) => {
-                const input = document.createElement('input');
-                input.setAttribute('type', 'file');
-                input.setAttribute('accept', 'image/*');
-
-                input.addEventListener('change', (e) => {
-                    const file = e.target.files[0];
-
-                    const reader = new FileReader();
-                    reader.addEventListener('load', () => {
-                        /*
-                          Note: Now we need to register the blob in TinyMCEs image blob
-                          registry. In the next release this part hopefully won't be
-                          necessary, as we are looking to handle it internally.
-                        */
-                        const id = 'blobid' + (new Date()).getTime();
-                        const blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                        const base64 = reader.result.split(',')[1];
-                        const blobInfo = blobCache.create(id, file, base64);
-                        blobCache.add(blobInfo);
-
-                        /* call the callback and populate the Title field with the file name */
-                        cb(blobInfo.blobUri(), {
-                            title: file.name
-                        });
-                    });
-                    reader.readAsDataURL(file);
-                });
-
-                input.click();
-            },
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 
         })
@@ -306,8 +315,7 @@
             var editorContent = tinymce.get('forum_message').getContent();
             console.log("ini isian editorContent", editorContent)
             if (editorContent === '') {
-                alert('Error: Pesan Tidak bisa kosong.');
-                alert('Error: Pesan Tidak bisa kosong.');
+                alert('Error: Pesan tidak boleh kosong');
                 return;
             }
             var forumId = document.getElementById('original_forum_id').value;
@@ -318,6 +326,8 @@
             console.log("ini isian replyId", replyId)
             var materialId = document.getElementById('materialId').value;
             console.log("ini isian materialId", materialId);
+            var parentId = document.getElementById('parent_id').value;
+            console.log("ini forum id asli", parentId)
 
 
             console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));

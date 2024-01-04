@@ -51,23 +51,73 @@
                             </a>
 
                     </div>
-                    <div class="mt-6 md:mt-0">
-                        <button type="submit"
-                            class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
-                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <line x1="12" y1="5" x2="12" y2="19" />
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                            </svg>
-                            <div class="mx-2"> Finalize Sertifikasi </div>
-                        </button>
-                    </div>
+
                 </div>
             </div>
             <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
+                @if ($errors->any())
+                    <div id="toast-default"
+                        class="bg-white w-fit  flex items-center rounded-lg p-4 text-gray-500"role="alert">
+                        <div>
+                            <svg class="h-6 w-6 fill-current text-red-500" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                    d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                            </svg>
+                        </div>
 
+                        <div class="ml-3">
+                            @error('certif_title')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('certif_short_desc')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('certif_desc')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('certif_duration')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('certif_cost')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('certif_outline')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('certif_img')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+
+                        <button type="button"
+                            class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg  p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 "
+                            data-dismiss-target="#toast-default" aria-label="Close">
+                            <span class="sr-only">Close</span>
+                            <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                        </button>
+                    </div>
+                @endif
                 <div class="my-4 rounded-xl bg-white md:flex">
                     <!-- Left Side -->
                     <div class="w-full md:w-1/3">
@@ -75,13 +125,13 @@
                         <div class="h-full p-2 md:py-4 md:pl-8">
                             <div class="mx-auto w-full">
                                 <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
-                                    src="/storage/image/placeholder.webp" alt="Image Preview" />
+                                    src={{ asset('uploads/certif_images/placeholder.webp') }} alt="Image Preview" />
                             </div>
                             <div class="max-w-md">
                                 <label
                                     class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
-                                    <span class="text-base leading-normal">Unduh Foto Baru</span>
+                                    <span class="text-base leading-normal">Unduh Foto</span>
                                     <input type='file' name="certif_img" id="inputCertifImg" class="hidden"
                                         accept="image/*" onchange="previewImage()" />
                                 </label>
@@ -93,12 +143,12 @@
                         <!-- Profile tab -->
                         <!-- About Section -->
                         <div class="rounded-xl bg-white px-6 pt-4 md:px-12">
-                            <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                            <label for="username" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                 Judul Sertifikasi</label>
                             <input type="text" name="certif_title" id="inputCertifTitle"
                                 class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
                                 placeholder="Tulis Nama Sertifikasi" required="">
-                            <label for="username" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                            <label for="username" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                 Deskripsi Singkat Sertifikasi</label>
                             <textarea id="myInfo" name="certif_short_desc" id="inputCertifShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -114,7 +164,7 @@
                     <div class="h-auto w-full md:mx-2">
                         <div class="rounded-t-xl bg-white p-4 shadow-sm">
                             <label for="username"
-                                class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                                class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                 Mengenai Sertifikasi</label>
                             <div class="px-4 py-2 font-semibold">
                                 <textarea id="myInfo" id="inputCertifDesc" name="certif_desc"
@@ -127,7 +177,7 @@
                             <div class="grid grid-cols-2">
                                 <div>
                                     <label for="username"
-                                        class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                                        class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                         Informasi Test</label>
 
                                     <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-1">
@@ -149,7 +199,7 @@
                                 </div>
                                 <div>
                                     <label for="username"
-                                        class="text-md my-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                                        class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                         Outline Test</label>
 
                                     <div class="px-4 py-2 font-semibold">
@@ -163,31 +213,13 @@
                     </div>
                 </div>
                 <div class="my-4"></div>
-
+                <h1 class="my-8 text-center text-xl font-semibold">
+                    <button type="submit"
+                        class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses Tes
+                        Sertifikasi
+                    </button>
+                </h1>
                 <div id="syllabus"class="my-4"></div>
-                <div class="relative overflow-x-auto">
-                    <table
-                        class="text-md mx-auto w-full text-left font-semibold text-gray-500 shadow-md sm:rounded-lg md:w-10/12">
-                        <tbody>
-                            <tr
-                                class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
-                                <td class="px-6 py-3 text-center font-semibold" colspan="4">
-                                    <a class="block" href="/manager/certification/edit/test">
-                                        <p class="inline-flex items-center align-middle" data-modal-target="defaultModal"
-                                            data-modal-toggle="defaultModal">
-                                            <svg class="mr-4 fill-black hover:fill-white"
-                                                xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512">
-                                                <path
-                                                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0-13.3-10.7 24-24 24s-24-10.7-24-24z" />
-                                            </svg>
-                                            Akses Tes Sertifikasi
-                                        </p>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </form>
     </body>

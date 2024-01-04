@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignmentQuestions;
 use App\Models\Course;
+use App\Models\Enrollment;
+use App\Models\FinalTestQuestions;
 use App\Models\MasterType;
 use App\Models\Material;
+use App\Models\MaterialCompleted;
 use App\Models\Sidebar;
+use App\Models\UserCourseDetail;
 use Illuminate\Http\Request;
 
 class SidebarController extends Controller
@@ -46,21 +51,91 @@ class SidebarController extends Controller
         $currentMaterialIndex = $sidebars->search(function ($item) use ($material_id) {
             return $item->material_id == $material_id;
         });
+        $nextMaterialIndex = $currentMaterialIndex + 1;
 
         // Determine the previous and next material
+        $currentMaterial = $sidebars[$currentMaterialIndex];
         $previousMaterial = $sidebars[$currentMaterialIndex - 1] ?? null;
         $nextMaterial = $sidebars[$currentMaterialIndex + 1] ?? null;
-
-        // Load the corresponding material view based on the material type
         $material = Material::findOrFail($material_id);
+        $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
+        $findFinalSidebar = Sidebar::where('course_id', $id)->where('material_id', $material_id)->first();
+
+        $course = Course::find($id);
+        $excludeFinal = $course->total_module-1;
+        $firstIndexASG = AssignmentQuestions::where('material_id', $material_id)->first();
+        $firstIndexFIN = FinalTestQuestions::where('material_id', $material_id)->first();
+
+
+        if ($enrollment){
+            $materialCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
+                ->where('material_id', $material_id)
+                ->where('enrollment_id', $enrollment->id)
+                ->exists();
+
+                if (!$materialCompleted && $enrollment->material_completed_count < $excludeFinal) {
+                    MaterialCompleted::create([
+                        'user_id' => auth()->id(),
+                        'course_id' => $id,
+                        'material_id' => $material_id,
+                        'enrollment_id' => $enrollment->id,
+                    ]);
+
+                    // Update material_completed field in the enrollment table
+                    $enrollment->material_completed_count += 1;
+                    $enrollment->total_duration_count+=$material->material_duration;
+                    $enrollment->save();
+                }
+
+                if ($enrollment->material_completed_count == $excludeFinal) {
+                    $enrollment->ready_for_final = true;
+                    $enrollment->save();
+                    $currentMaterial->is_locked = false;
+                    $currentMaterial->save();
+                }
+                elseif($enrollment->material_completed_count < $excludeFinal){
+                    $currentMaterial->is_locked = false;
+                    $currentMaterial->save();
+                }
+
+        }
+
+        if ($previousMaterial || $nextMaterial) {
+            // Assuming you have a UserCourse model that represents the user's progress in a course
+            // $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
+
+            if ($enrollment) {
+                $userCourse = UserCourseDetail::find($enrollment->course_id);
+
+                if ($userCourse) {
+                    $userCourse->last_accessed_material = $previousMaterial ? $previousMaterial->material_id : $nextMaterial->material_id;
+                    $userCourse->save();
+                    // if ($nextMaterial && $nextMaterial->is_locked) {
+                    //     // Unlock the next material if it is currently locked
+                    //     $nextMaterial->is_locked = false;
+                    //     $nextMaterial->save();
+                    // }
+                }
+            }
+        }
+        // Load the corresponding material view based on the material type
+        // $material = Material::findOrFail($material_id);
+        $userCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $id)->first();
+        $userCourseDetail->last_accessed_material = $material_id;
+        $userCourseDetail->save();
 
         $master_type = MasterType::find($material->master_type_id);
         if ($master_type->master_type_name == 'Video') {
-            return view('contents.session_video', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id'));
+            return view('contents.session_video', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'userCourseDetail','nextMaterialIndex'));
         } elseif ($master_type->master_type_name == 'PDF') {
-            return view('contents.session_pdf', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id'));
+            return view('contents.session_pdf', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal','userCourseDetail','nextMaterialIndex'));
         } elseif ($master_type->master_type_name == 'Assignment') {
-            return view('contents.session_assignment', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id'));
+            // dd($firstIndexASG);
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN','userCourseDetail','nextMaterialIndex'));
+        }
+        elseif ($master_type->master_type_name == 'Final Test') {
+            // dd($firstIndexFIN);
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN','userCourseDetail','nextMaterialIndex'));
         }
 
     }

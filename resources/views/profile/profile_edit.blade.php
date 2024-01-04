@@ -59,7 +59,7 @@
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:pb-6 md:pr-4 md:text-left lg:text-3xl">
                             Ubah Data Profil
                         </h1>
-                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
+                        <p class="mb-6 text-base font-normal tracking-normal text-gray-600">
                             Anda dapat mengubah informasi akun anda disini.
                         </p>
                     </div>
@@ -84,7 +84,7 @@
                                 </button>
                             </div>
                         @endif
-                        <form method="post" enctype="multipart/form-data">
+                        <form method="post" action="/editProfile" enctype="multipart/form-data">
                             @csrf
                             <label for="profilePicture"
                                 class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">Gambar
@@ -92,7 +92,7 @@
                             <div class="mb-2 w-full md:w-3/12">
                                 <div class="h-fit w-auto">
                                     <img id="profile-preview" class="h-32 w-32 rounded-full object-cover"
-                                        src="{{ Auth::user()->profile_img ? '/profile_img/' . Auth::user()->profile_img : '/profile_img/placeholder.webp' }}">
+                                        src={{ asset('uploads/profile_images/' . Auth::user()->profile_img) }}>
                                 </div>
                             </div>
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
@@ -117,6 +117,11 @@
                                             value="{{ $searchUser->username }}"
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Input Username" required="">
+                                        @error('username')
+                                            <div class="invalid-feedback my-1 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
 
                                 </div>
 
@@ -128,6 +133,11 @@
                                         value="{{ $searchUser->full_name }}"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Input Nama Lengkap" required="">
+                                    @error('full_name')
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     <div class="invalid-feedback my-1 text-sm text-red-500">
                                         {{-- Error Message Design --}}
                                     </div>
@@ -165,15 +175,24 @@
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:pb-6 md:pr-4 md:text-left lg:text-3xl">
                             Ubah Password Akun
                         </h1>
-                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
+                        <p class="mb-6 text-base font-normal tracking-normal text-gray-600">
                             Anda dapat mengubah password akun anda disini.
+                        </p>
+                        <p class=" text-base font-normal tracking-normal text-gray-600">
+                            <strong>*Password harus minimal berisi 8 Karakter*</strong>
+                        </p>
+                        <p class=" text-base font-normal tracking-normal text-gray-600">
+                            <strong>*Password minimal harus mengandung huruf dan angka*</strong>
                         </p>
                     </div>
                 </div>
                 <div class="col-span-2 h-auto md:mx-2 md:w-10/12">
                     <div class="rounded-xl bg-white px-6 py-8 md:px-12">
+
+                        <div class="my-4"></div>
                         <form action="/editProfile/password" method="post" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="username" value="{{ $searchUser->username }}">
                             <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                 <div class="sm:col-span-2">
                                     <label for=""
@@ -182,6 +201,11 @@
                                     <input type="password" name="old_password" id="inputOldPass"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Password Lama" required="">
+                                    @error('old_password')
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="password"
@@ -190,6 +214,11 @@
                                     <input type="password" name="new_password" id="inputNewPass"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Password Baru" required="">
+                                    @error('new_password')
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="password"
@@ -199,6 +228,11 @@
                                     <input type="password" name="confirm_password" id="inputConfirmPass"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                         placeholder="Masukkan Lagi Password Baru" required="">
+                                    @error('confirm_password')
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                             </div>

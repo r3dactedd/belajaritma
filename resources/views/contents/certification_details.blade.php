@@ -58,7 +58,7 @@
                             class="py-2 text-center text-xl font-bold tracking-normal text-gray-800 md:py-6 md:pr-4 md:text-left lg:text-3xl">
                             {{ $data->certif_title }}
                         </h1>
-                        <p class="text-md mb-6 font-normal tracking-normal text-gray-600">
+                        <p class="mb-6 text-base font-normal tracking-normal text-gray-600">
                             {{ $data->certif_short_desc }}
                         </p>
                         <div class="grid-row-2 grid md:grid-cols-2">
@@ -124,12 +124,13 @@
                                         <div class="text-xs text-gray-500">{{ $data->certif_duration }} menit</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
-                                        <div class="text-indigo-500">Jumlah Pertanyaan</div>
-                                        <div class="text-xs text-gray-500">50 Pilihan Ganda</div>
+                                        <div class="text-indigo-500">Jumlah Soal</div>
+                                        <div class="text-xs text-gray-500">{{ $data->total_questions }} Pilihan Ganda</div>
                                     </div>
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Biaya Sertifikasi</div>
-                                        <div class="text-xs text-gray-500">Rp {{ $data->certif_cost }}</div>
+                                        <div class="text-xs text-gray-500">Rp.
+                                            {{ number_format($data->certif_cost, 2, ',', '.') }}</div>
                                     </div>
 
                                 </div>
@@ -159,7 +160,7 @@
                             <div class="w-full px-4">
                                 <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                                     <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                        Bukti Penyelesaian Sertifikasi (MUNCULIN ABIS SELESAI FINAL TEST)
+                                        Bukti Penyelesaian Sertifikasi
                                     </h2>
                                     <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
                                         Selamat! Anda telah lulus tes sertifikasi ini. Silahkan mengunduh bukti sertifikasi
@@ -185,7 +186,7 @@
                             <div class="w-full px-4">
                                 <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                                     <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                        Ambil Test Sertifikasi (muncul kalau sudah registered)
+                                        Ambil Test Sertifikasi
                                     </h2>
                                     <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
                                         Anda telah berhasil registrasi untuk sertifikasi ini. Silahkan memulai test ini.
@@ -195,7 +196,7 @@
                                         <div class="flex items-center">
 
                                             <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                                <a href="/test" id="convertButton"
+                                                <a href="/certifications/aboutTest/{{ $data->id }}" id="convertButton"
                                                     class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
                                                     Test</a>
                                             </p>
@@ -211,12 +212,11 @@
                         <div class="w-full px-4">
                             <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                                 <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                    Registrasi Sertifikasi (muncul kalau belum registered)
+                                    Registrasi Sertifikasi
                                 </h2>
                                 <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                                    Anda belum melakukan registrasi untuk sertifikasi ini. Untuk mengakses tes sertifikasi,
-                                    selesaikan
-                                    pembayaran terlebih dahulu.
+                                    Anda belum melakukan registrasi untuk sertifikasi ini.
+                                    Untuk mengakses tes sertifikasi, selesaikan pembayaran terlebih dahulu.
                                 </p>
 
                                 <div class="flex items-center">
@@ -233,6 +233,29 @@
                     </div>
                 @endif
             @else
+                <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                    <div class="w-full px-4">
+                        <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                            <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                                Registrasi Sertifikasi
+                            </h2>
+                            <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
+                                Anda belum melakukan registrasi untuk sertifikasi ini.
+                                Untuk mengakses tes sertifikasi, selesaikan pembayaran terlebih dahulu.
+                            </p>
+
+                            <div class="flex items-center">
+                                <div class="flex items-center">
+
+                                    <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                        <a href="/transaction/{{ $data->id }}" id="convertButton"
+                                            class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Registrasi</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endif
     </body>
 @endsection

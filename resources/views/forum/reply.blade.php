@@ -6,13 +6,14 @@
         </div>
         <div class="flex-1 rounded-lg px-4 py-2 leading-relaxed sm:px-6 sm:py-4">
             <strong>{{ $reply->formToUser->username }}</strong>
-            <span class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
-            <p class="text-md">
-                <strong style="color: blue;">{{ '@' . $repliedTo }}</strong>
+            <span class="ml-2 text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
+            <p class="text-base">
+                <a href="/profile/{{ $repliedTo }}"><strong style="color: blue;">{{ '@' . $repliedTo }}</strong></a>
+
                 {{ strip_tags($reply->forum_message) }}
             </p>
             <div class="transition">
-                <div class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
+                <div class="flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
                     <div class="flex -space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" height="0.8em" viewBox="0 0 640 512">
                             <path
@@ -21,12 +22,12 @@
                     </div>
                     <a id="reply-text" data-modal-target="popup-reply" data-modal-toggle="popup-reply"
                         data-reply-message="{{ $reply->forum_message }}" data-reply-id="{{ $reply->id }}"
-                        onclick="setReplyId(this)" class="accordion-header font-semibold text-gray-500 hover:underline">
+                        onclick="setReplyId(this)" class="font-semibold text-gray-500 hover:underline">
                         Balas
                     </a>
                 </div>
-                <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
-                    <ul class="ml-0 list-inside space-y-2 pb-4"> <!-- Removed the left margin -->
+                <div class="max-h-0 overflow-hidden px-5 pt-0">
+                    <ul class="ml-0 list-inside space-y-2 pb-4">
                         <div class="w-full" id="destination-reply-container">
                             <div id="quill-container3"></div>
                             <div class="my-4 flex justify-end">
@@ -44,20 +45,22 @@
     @endphp
 @else()
     <hr class="my-2">
-    <div class="flex class ml-10">
+    <div class="class ml-10 flex">
         <div class="mr-3 flex-shrink-0">
             <img class="mt-3 h-5 w-5 rounded-full sm:h-8 sm:w-8"
                 src="{{ asset('uploads/profile_images/' . $reply->formToUser->profile_img) }}" alt="">
         </div>
         <div class="flex-1 rounded-lg px-4 py-2 leading-relaxed sm:px-6 sm:py-4">
-            <strong>{{ $reply->formToUser->username }}</strong>
-            <span class="text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
-            <p class="text-md">
-                <strong style="color: blue;">{{ '@' . $repliedTo }}</strong>
+            <strong class="mr-2">{{ $reply->formToUser->username }}</strong>
+            <span class="ml-2 text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
+            <p class="text-base">
+                <a href="/profile/{{ $repliedTo }}"><strong
+                        style="color: blue;">{{ '@' . $repliedTo }}</strong></a>
+
                 {{ strip_tags($reply->forum_message) }}
             </p>
             <div class="transition">
-                <div class="accordion-header flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
+                <div class="flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
                     <div class="flex -space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" height="0.8em" viewBox="0 0 640 512">
                             <path
@@ -66,11 +69,11 @@
                     </div>
                     <a id="reply-text" data-modal-target="popup-reply" data-modal-toggle="popup-reply"
                         data-reply-message="{{ $reply->forum_message }}" data-reply-id="{{ $reply->id }}"
-                        onclick="setReplyId(this)" class="accordion-header font-semibold text-gray-500 hover:underline">
+                        onclick="setReplyId(this)" class="font-semibold text-gray-500 hover:underline">
                         Balas
                     </a>
                 </div>
-                <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
+                <div class="max-h-0 overflow-hidden px-5 pt-0">
                     <ul class="ml-0 list-inside space-y-2 pb-4"> <!-- Removed the left margin -->
                         <div class="w-full" id="destination-reply-container">
                             <div id="quill-container3"></div>
@@ -110,7 +113,7 @@
 
                 <div class="mx-auto rounded-xl bg-white px-2 py-2">
                     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
-                    <p class="text-md my-4" id="showComment">
+                    <p class="my-4 text-base" id="showComment">
 
                     </p>
                     <form id="myForm2_{{ $reply->id }}" method="post" enctype="multipart/form-data">
@@ -119,7 +122,7 @@
                         {{-- <input type="hidden" id="replyId" name="reply_id" value="{{ $reply->id }}"> --}}
                         <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
                         <input type="hidden" id="materialId" name="material_id" value="{{ $data->material_id }}">
-                        <input type="hidden" id="original_forum_id" name="forum_id" value="{{ $data->id }}">
+                        <input type="hidden" id="parent_id" name="parent_id" value="{{ $reply->id }}">
 
                         <div class="my-4 flex justify-end">
                             <button id="get-content-button" type="submit"
@@ -145,44 +148,7 @@
     tinymce.init({
         selector: '#forum_reply',
         menubar: false,
-        // Image below, for further consideration
-        plugins: ' code codesample image',
         toolbar: ' wordcount | link image |code |bold italic underline| codesample ',
-        // Image below, for further consideration
-        file_picker_types: 'image',
-        /* enable automatic uploads of images represented by blob or data URIs*/
-        automatic_uploads: true,
-        file_picker_callback: (cb, value, meta) => {
-            const input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
-
-            input.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-
-                const reader = new FileReader();
-                reader.addEventListener('load', () => {
-                    /*
-                      Note: Now we need to register the blob in TinyMCEs image blob
-                      registry. In the next release this part hopefully won't be
-                      necessary, as we are looking to handle it internally.
-                    */
-                    const id = 'blobid' + (new Date()).getTime();
-                    const blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                    const base64 = reader.result.split(',')[1];
-                    const blobInfo = blobCache.create(id, file, base64);
-                    blobCache.add(blobInfo);
-
-                    /* call the callback and populate the Title field with the file name */
-                    cb(blobInfo.blobUri(), {
-                        title: file.name
-                    });
-                });
-                reader.readAsDataURL(file);
-            });
-
-            input.click();
-        },
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 
     })
@@ -214,7 +180,7 @@
         var editorContent = tinymce.get('forum_reply').getContent();
         console.log("ini isian editorContent", editorContent)
         if (editorContent === '') {
-            alert('Error: Forum message cannot be empty.');
+            alert('Error: Pesan tidak boleh kosong');
             return;
         }
 
@@ -228,6 +194,9 @@
         console.log("ini forum id asli", forumId)
         var materialId = document.getElementById('materialId').value;
         console.log("ini isian materialId", materialId);
+        var parentId = document.getElementById('parent_id').value;
+        console.log("ini forum parent", parentId)
+
 
 
         console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
@@ -236,6 +205,7 @@
         formData.append('forum_message', editorContent);
         formData.append('reply_id', replyId);
         formData.append('material_id', materialId);
+        formData.append('parent_id', parentId);
 
         // if (hasImages) {
         //     var file = fileInput.files[0];

@@ -32,10 +32,6 @@ class Course extends Model
         return $this->hasMany(Sidebar::class,'id','id');
     }
 
-    public function corseToMaterial(){
-        return $this->hasMany(Material::class,'id','id');
-    }
-
     public function courseToMaterial(){
         return $this->hasMany(Material::class, 'course_id','id');
     }
@@ -52,5 +48,8 @@ class Course extends Model
     }
     public function enrollments() {
         return $this->hasMany(Enrollment::class);
+    }
+    public function userCourseDetail() {
+        return $this->hasMany(userCourseDetail::class);
     }
 }

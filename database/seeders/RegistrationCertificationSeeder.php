@@ -14,11 +14,11 @@ class RegistrationCertificationSeeder extends Seeder
     public function run(): void
     {
         //
-        RegistrationCertification::create([
-            'user_id' => 4,
-            'certif_id' => 1,
-            'passed'=>true,
-            'registered'=>true,
-        ]);
+        // RegistrationCertification::create([
+        //     'user_id' => 4,
+        //     'certif_id' => 1,
+        //     'passed'=>true,
+        //     'registered'=>true,
+        // ]);
     }
 }

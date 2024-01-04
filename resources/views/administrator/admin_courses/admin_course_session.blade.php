@@ -86,10 +86,9 @@
                 <div class="mx-auto my-4 md:-mx-2 md:flex">
                     <div class="h-auto w-full md:mx-2">
                         <div class="rounded-xl bg-white p-4 shadow-sm">
-
                             <div class="px-4 font-semibold">
                                 <label for="username"
-                                    class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                     Judul Materi</label>
                                 <input type="text" name="title" id="inputTitle"
                                     class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-lg text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left"
@@ -98,12 +97,11 @@
                             </div>
                             <div class="px-4 font-semibold">
                                 <label for="username"
-                                    class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                     Deskripsi Singkat Materi</label>
                                 <textarea name="description" id="inputDescription"
                                     class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                    placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
-                                    {{ htmlspecialchars($material->description) }}
+                                    placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->description) }}
                             </textarea>
                             </div>
                             <div class="flex justify-end pt-2">
@@ -127,7 +125,7 @@
                             @if ($material->materialContentToMasterType->master_type_name == 'PDF')
                                 <div class="px-4 font-semibold">
                                     {{-- <label for="username"
-                                        class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                        class="text-base mb-2 block font-semibold text-gray-900 dark:text-white">
                                         (muncul kalau content typenya PDF) </label> --}}
 
 
@@ -147,10 +145,10 @@
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Video')
                                 <div class="px-4 font-semibold">
                                     {{-- <label for="username"
-                                        class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                        class="text-base mb-2 block font-semibold text-gray-900 dark:text-white">
                                         (muncul kalau content typenya Video) </label> --}}
                                     <label for="username"
-                                        class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                         Upload Link Video</label>
                                     <input type="text" name="video_link" id="inputVideoLink"
                                         class="mt-focus:ring-primary-600 mb-6 block h-12 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:w-1/2"
@@ -178,24 +176,19 @@
                                 <div class="mx-auto px-4">
                                     {{-- <div class="font-semibold">
                                         <label for="username"
-                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                            class="text-base mb-2 block font-semibold text-gray-900 dark:text-white">
                                             (muncul kalau content typenya Assignment) </label>
                                     </div> --}}
                                     <div class="font-semibold">
-                                        <label for="username"
-                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
-                                            Penjelasan Assignment</label>
-                                        <textarea name="detailed_description" id="inputDetDesc"
-                                            class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
-                                            {{ htmlspecialchars($material->detailed_description) }}
+                                        <label for="username" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">Penjelasan Assignment</label>
+                                        <textarea name="detailed_description" id="inputDetDesc" class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->detailed_description) }}
                                         </textarea>
                                         <div class="mb-6 font-semibold">
                                             <div class="grid grid-cols-1 md:grid-cols-2">
 
                                                 <div>
                                                     <label for="username"
-                                                        class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Nilai Minimum</label>
                                                     <input type="number" name="minimum_score" id="inputMinScore"
                                                         value="{{ $material->minimum_score }}"
@@ -214,11 +207,11 @@
                                             </button>
                                         </div>
                                         <label for="username"
-                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             List Pertanyaan </label>
                                         <div class="relative overflow-x-auto">
                                             <table
-                                                class="text-md mx-auto w-full border-x text-left font-semibold text-gray-500 shadow-md sm:rounded-lg">
+                                                class="mx-auto w-full border-x text-left text-base font-semibold text-gray-500 shadow-md sm:rounded-lg">
                                                 <thead class="bg-gray-200 text-xs uppercase text-gray-700">
                                                     <tr>
                                                         <th scope="col" class="px-6 py-3">
@@ -322,12 +315,12 @@
                                 <div class="mx-auto px-4">
                                     {{-- <div class="font-semibold">
                                         <label for="username"
-                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                            class="text-base mb-2 block font-semibold text-gray-900 dark:text-white">
                                             (muncul kalau content typenya Assignment) </label>
                                     </div> --}}
                                     <div class="font-semibold">
                                         <label for="username"
-                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             Penjelasan Final Test</label>
                                         <textarea name="detailed_description" id="inputDetDesc"
                                             class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -339,7 +332,7 @@
 
                                                 <div>
                                                     <label for="username"
-                                                        class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Nilai Minimum</label>
                                                     <input type="number" name="minimum_score" id="inputMinScore"
                                                         value="{{ $material->minimum_score }}"
@@ -356,11 +349,11 @@
                                             </button>
                                         </div>
                                         <label for="username"
-                                            class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             List Pertanyaan </label>
                                         <div class="relative overflow-x-auto">
                                             <table
-                                                class="text-md mx-auto w-full border-x text-left font-semibold text-gray-500 shadow-md sm:rounded-lg">
+                                                class="mx-auto w-full border-x text-left text-base font-semibold text-gray-500 shadow-md sm:rounded-lg">
                                                 <thead class="bg-gray-200 text-xs uppercase text-gray-700">
                                                     <tr>
                                                         <th scope="col" class="px-6 py-3">
@@ -523,7 +516,7 @@
                                                 placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                             <div class="my-4"></div>
                                             <label for="username"
-                                                class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                                class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                 Upload Gambar (Tidak Wajib)</label>
 
                                             <input name="question_img" id="question_img"
@@ -701,7 +694,7 @@
                                                         placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                                     <div class="my-4"></div>
                                                     <label for="username"
-                                                        class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Upload Gambar (Tidak Wajib)</label>
 
                                                     <input name="question_img" id="question_img"
@@ -805,7 +798,7 @@
                                                         placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                                     <div class="my-4"></div>
                                                     <label for="username"
-                                                        class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Upload Gambar (Tidak Wajib)</label>
 
                                                     <input name="question_img" id="question_img"
@@ -878,8 +871,8 @@
                 @if (!$final_test_questions->isEmpty())
                     <div id="popup-final-delete-{{ $final_test->id }}" tabindex="-1"
                         class="fixed left-0 right-0 top-0 z-50 hidden h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-                        <div class="flex items-center justify-center min-h-screen">
-                            <div class="relative rounded-lg bg-white shadow dark:bg-gray-700 w-full max-w-md">
+                        <div class="flex min-h-screen items-center justify-center">
+                            <div class="relative w-full max-w-md rounded-lg bg-white shadow dark:bg-gray-700">
                                 <button type="button"
                                     class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                                     data-modal-hide="popup-final-delete-{{ $final_test->id }}">
@@ -928,8 +921,8 @@
                 @if (!$assignment_questions->isEmpty())
                     <div id="popup-delete-{{ $assignment->id }}" tabindex="-1"
                         class="fixed left-0 right-0 top-0 z-50 hidden h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-                        <div class="flex items-center justify-center min-h-screen">
-                            <div class="relative rounded-lg bg-white shadow dark:bg-gray-700 w-full max-w-md">
+                        <div class="flex min-h-screen items-center justify-center">
+                            <div class="relative w-full max-w-md rounded-lg bg-white shadow dark:bg-gray-700">
                                 <button type="button"
                                     class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                                     data-modal-hide="popup-delete-{{ $assignment->id }}">

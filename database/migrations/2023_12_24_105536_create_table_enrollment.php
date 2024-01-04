@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('material_completed_count')->default(0);
+            $table->unsignedBigInteger('total_duration_count')->default(0);
+            $table->boolean('ready_for_final')->default(false);
             $table->boolean('completed')->default(false);
             $table->timestamps();
 

@@ -50,26 +50,11 @@
                                 </svg>
                                 <span class="mb-1 ml-2">Upload Kursus Baru</span>
                             </a>
-
                     </div>
-                    {{-- <div class="mt-6 md:mt-0">
-                        <button type="submit"
-                            class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20"
-                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <line x1="12" y1="5" x2="12" y2="19" />
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                            </svg>
-                            <div class="mx-2"> Finalize Kursus </div>
-                        </button>
-                    </div> --}}
                 </div>
             </div>
+
             <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
-                {{-- <form id="myForm" method="post" enctype="multipart/form-data">
-                @csrf --}}
                 <div class="mx-auto flex">
                     <ol
                         class="flex w-full items-center space-x-2 p-3 text-center text-sm font-medium text-gray-500 rtl:space-x-reverse sm:space-x-4 sm:p-4 sm:text-base">
@@ -109,19 +94,94 @@
                             Pengaturan Materi Kursus
                         </li>
                     </ol>
-
                 </div>
+                @if ($errors->any())
+                    <div id="toast-default"
+                        class="bg-white w-fit  flex items-center rounded-lg p-4 text-gray-500"role="alert">
+                        <div>
+                            <svg class="h-6 w-6 fill-current text-red-500" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                    d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                            </svg>
+                        </div>
+
+                        <div class="ml-3">
+                            <h2 class="font-bold text-red-400">Test error here</h2>
+                            @error('course_name')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('short_desc')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('course_desc')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('level')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('screen_resolution')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('minimum_ram')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('processor')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('operating_system')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('other_programs')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('course_img')
+                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
 
-
+                        <button type="button"
+                            class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg  p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 "
+                            data-dismiss-target="#toast-default" aria-label="Close">
+                            <span class="sr-only">Close</span>
+                            <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                        </button>
+                    </div>
+                @endif
                 <div class="my-4 rounded-xl bg-white md:flex">
                     <!-- Left Side -->
                     <div class="w-full md:w-1/3">
                         <!-- Profile Card -->
                         <div class="h-full p-2 md:py-4 md:pl-8">
                             <div class="mx-auto w-full">
-                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0" src="/placeholder.webp"
-                                    alt="Image Preview" />
+                                <img id="imagePreview" class="max-h-64 w-full p-4 md:px-0"
+                                    src={{ asset('uploads/course_images/placeholder.webp') }} alt="Image Preview" />
                             </div>
                             <div class="max-w-md">
                                 <label
@@ -139,12 +199,14 @@
                         <!-- Profile tab -->
                         <!-- About Section -->
                         <div class="rounded-xl bg-white px-6 pt-4 md:px-12">
-                            <label for="courseTitle" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                            <label for="courseTitle"
+                                class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                 Judul Kursus</label>
                             <input type="text" name="course_name" id="inputCourseName"
                                 class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-left text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
                                 placeholder="Tulis Nama Kursus" required="">
-                            <label for="shortDesc" class="text-md mb-2 block font-semibold text-gray-900 dark:text-white">
+                            <label for="shortDesc"
+                                class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                 Deskripsi Singkat Kursus</label>
                             <textarea name="short_desc" id="inputShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -171,7 +233,7 @@
                     </div>
                 </div>
                 <div class="rounded-t-xl bg-white p-4 shadow-sm">
-                    <label for="courseDesc" class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                    <label for="courseDesc" class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                         Mengenai Kursus</label>
                     <div class="px-4 py-2 font-semibold">
                         <textarea name="course_desc" id="inputCourseDesc"
@@ -184,7 +246,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div>
                             <label for="minSpec"
-                                class="text-md mb-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                                class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                 Spesifikasi Minimum</label>
 
                             <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-2">
@@ -216,7 +278,7 @@
                         </div>
                         <div>
                             <label for="username"
-                                class="text-md my-4 ml-4 block font-semibold text-gray-900 dark:text-white">
+                                class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                 Program Lain yang Diperlukan</label>
 
                             <div class="px-4 py-2 font-semibold">
@@ -239,97 +301,7 @@
                     </button>
                 </h1>
         </form>
-        {{-- <button type="submit" class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses
-            Materi
-            Kursus
-        </button> --}}
-
-        {{-- <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var courseNameInput = document.getElementById('inputCourseName');
-                var shortDescInput = document.getElementById('inputShortDesc');
-                var levelSelect = document.getElementById('inputLevelDasar'); // Ganti dengan ID yang benar
-                var courseDescInput = document.getElementById('inputCourseDesc');
-                var screenResInput = document.getElementById('inputScreenRes');
-                var minRAMInput = document.getElementById('inputMinRAM');
-                var processorInput = document.getElementById('inputProcessor');
-                var operatingSystemInput = document.getElementById('inputOperatingSystem');
-                var otherProgramsInput = document.getElementById('inputOtherPrograms');
-                var courseImg = document.getElementById('imageInput').files[0];
-
-                var myForm = document.getElementById('myForm');
-
-                if (myForm) {
-                    myForm.addEventListener('submit', function(event) {
-                        event.preventDefault();
-
-                        var courseName = courseNameInput.value;
-                        var shortDesc = shortDescInput.value;
-                        var level = levelSelect.value;
-                        var courseDesc = courseDescInput.value;
-                        var screenRes = screenResInput.value;
-                        var minRAM = minRAMInput.value;
-                        var processor = processorInput.value;
-                        var operatingSystem = operatingSystemInput.value;
-                        var otherPrograms = otherProgramsInput.value;
-
-                        console.log('Course Name:', courseName);
-                        console.log('Short Description:', shortDesc);
-                        console.log('Level:', level);
-                        console.log('Course Description:', courseDesc);
-                        console.log('Screen Resolution:', screenRes);
-                        console.log('Minimum RAM:', minRAM);
-                        console.log('Processor:', processor);
-                        console.log('Operating System:', operatingSystem);
-                        console.log('Other Programs:', otherPrograms);
-
-                        var formData = new FormData();
-                        formData.append('course_name', courseName);
-                        formData.append('short_desc', shortDesc);
-                        formData.append('level', level);
-                        formData.append('course_desc', courseDesc);
-                        formData.append('screen_resolution', screenRes);
-                        formData.append('minimum_ram', minRAM);
-                        formData.append('processor', processor);
-                        formData.append('operating_system', operatingSystem);
-                        formData.append('other_programs', otherPrograms);
-                        formData.append('course_img', courseImg);
-
-                        // ... Lanjutkan dengan logika formulir atau kirim data ke server ...
-
-                        // Setelah selesai, jika perlu, pindahkan ke halaman baru
-                        // window.location.href = '/manager/course/materiallist/' + courseId;
-
-                        fetch('/manager/course/create', {
-                                method: 'POST',
-                                body: formData,
-                                headers: {
-                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
-                                        .getAttribute('content'),
-                                },
-                            })
-                            .then(data => {
-                                // Sekarang, data berisi courseId yang dikembalikan oleh backend
-                                console.log("Course ID:", data);
-
-                                if (data) {
-                                    alert('Success! Your course data has been saved');
-                                    window.location.href = '/manager/course/materiallist/' + data;
-                                } else {
-                                    console.error('Error:', 'Course ID not found in the response.');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                            });
-                    })
-
-                } else {
-                    console.error('Elemen dengan ID "myForm" tidak ditemukan.');
-                }
-            });
-        </script> --}}
-
+        
         {{-- Publish Modal --}}
         <div id="popup-publish" tabindex="-1"
             class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
