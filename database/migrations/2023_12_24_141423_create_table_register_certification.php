@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('certif_id');
             $table->boolean('registered')->default(false);
+            $table->unsignedBigInteger('total_score')->nullable();
             $table->boolean('passed')->default(false);
             $table->timestamps();
 
