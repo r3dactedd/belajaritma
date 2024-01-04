@@ -42,7 +42,7 @@
                                 <div class="h-auto w-full md:mx-2 md:w-3/5">
                                     <div class="bg-white px-4 py-2">
                                         <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
-                                            {{-- {{ $courses->course_name }} --}}
+
                                             {{ $courses->course_name }}
                                         </h1>
 
