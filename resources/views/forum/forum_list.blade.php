@@ -97,7 +97,7 @@
                                     {{ $course->course_name }}
                                 </h4>
                                 <p class="mb-6 px-5 text-base font-normal tracking-normal text-gray-600">
-                                    {{ Str::limit(strip_tags($course->course_desc), 140) }}</p>
+                                    {{ Str::limit(strip_tags($course->short_desc), 140) }}</p>
                                 </p>
                             </div>
                         </div>
