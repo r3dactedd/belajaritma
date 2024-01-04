@@ -33,7 +33,8 @@
                                 <div class="h-full bg-white py-2 md:ml-4">
                                     <div class="mx-auto h-full w-full">
                                         <img class="h-full"
-                                            src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2017/02/PI_2017.02.08_Algorithms_featured.png"
+                                        src = "{{ asset('uploads/course_images/' . $courses->course_img)}}"
+
                                             alt="e" />
                                     </div>
                                 </div>
@@ -42,7 +43,7 @@
                                 <div class="h-auto w-full md:mx-2 md:w-3/5">
                                     <div class="bg-white px-4 py-2">
                                         <h1 class="text-xl font-bold tracking-normal text-gray-800 lg:text-3xl">
-                                            {{-- {{ $courses->course_name }} --}}
+
                                             {{ $courses->course_name }}
                                         </h1>
 
