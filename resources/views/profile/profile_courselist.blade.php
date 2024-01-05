@@ -33,8 +33,7 @@
                                 <div class="h-full bg-white py-2 md:ml-4">
                                     <div class="mx-auto h-full w-full">
                                         <img class="h-full"
-                                        src = "{{ asset('uploads/course_images/' . $courses->course_img)}}"
-
+                                            src = "{{ asset('uploads/course_images/' . $courses->course_img) }}"
                                             alt="e" />
                                     </div>
                                 </div>

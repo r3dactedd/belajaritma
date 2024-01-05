@@ -24,4 +24,8 @@ class AssignmentQuestions extends Model
         return $this->belongsTo(Material::class, 'material_id');
     }
 
+    public function questionToAnswer(){
+        return $this->hasMany(UserAnswer::class,'question_id');
+    }
+
 }

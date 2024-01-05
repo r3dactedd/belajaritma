@@ -57,7 +57,7 @@
             <div class="grid h-full max-w-lg grid-cols-2 mx-auto font-medium">
                 @if ($previousMaterial)
                     <button type="button">
-                        <a href="{{ url('/courses/' . 'material/' . $material->title . '/' . $material->course_id . '/' . $previousMaterial->material_id) }}"
+                        <a href="{{ url('/courses/' . 'material/' . $previousMaterial->title . '/' . $material->course_id . '/' . $previousMaterial->material_id) }}"
                             class="inline-flex flex-col items-center justify-center px-5 group hover:bg-gray-50 dark:hover:bg-gray-800">
 
 
@@ -74,7 +74,7 @@
                 @endif
                 @if ($nextMaterial)
                     <button type="button">
-                        <a href="{{ url('/courses/' . 'material/' . $material->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
+                        <a href="{{ url('/courses/' . 'material/' . $nextMaterial->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
                             class="inline-flex flex-col items-center justify-center px-5 group hover:bg-gray-50 dark:hover:bg-gray-800">
 
                             <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"

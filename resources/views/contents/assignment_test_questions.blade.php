@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Belajaritma</title>
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
@@ -65,42 +66,45 @@
                         @endif
 
                         <div class="pl-12">
+                            <div class="question-group">
+                                <div class="flex items-center mb-4 mr-4">
+                                    <input id="radio1-a" type="radio" name="radio1" class="hidden"
+                                        data-question="{{ $question_id }}" value="A" />
+                                    <label for="radio1-a" class="flex items-center text-base cursor-pointer">
+                                        <span
+                                            class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
+                                        {{ $questionDetail->jawaban_a }}</label>
+                                </div>
 
-                            <div class="flex items-center mb-4 mr-4">
-                                <input id="radio1-a" type="radio" name="radio1" class="hidden"
-                                    data-question="{{ $question_id }}" value="A" />
-                                <label for="radio1-a" class="flex items-center text-base cursor-pointer">
-                                    <span
-                                        class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
-                                    {{ $questionDetail->jawaban_a }}</label>
+                                <div class="flex items-center mb-4 mr-4">
+                                    <input id="radio1-b" value="B" type="radio" name="radio1" class="hidden"
+                                        data-question="{{ $question_id }}" />
+                                    <label for="radio1-b" class="flex items-center text-base cursor-pointer">
+                                        <span
+                                            class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
+                                        {{ $questionDetail->jawaban_b }}</label>
+                                </div>
+
+                                <div class="flex items-center mb-4 mr-4">
+                                    <input id="radio1-c" value="C" type="radio" name="radio1" class="hidden"
+                                        data-question="{{ $question_id }}" />
+                                    <label for="radio1-c" class="flex items-center text-base cursor-pointer">
+                                        <span
+                                            class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
+                                        {{ $questionDetail->jawaban_c }}</label>
+                                </div>
+
+                                <div class="flex items-center mb-4 mr-4">
+                                    <input id="radio1-d" value="D" type="radio" name="radio1" class="hidden"
+                                        data-question="{{ $question_id }}" />
+                                    <label for="radio1-d" class="flex items-center text-base cursor-pointer">
+                                        <span
+                                            class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
+                                        {{ $questionDetail->jawaban_d }}</label>
+                                </div>
                             </div>
 
-                            <div class="flex items-center mb-4 mr-4">
-                                <input id="radio1-b" value="B" type="radio" name="radio1" class="hidden"
-                                    data-question="{{ $question_id }}" />
-                                <label for="radio1-b" class="flex items-center text-base cursor-pointer">
-                                    <span
-                                        class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
-                                    {{ $questionDetail->jawaban_b }}</label>
-                            </div>
 
-                            <div class="flex items-center mb-4 mr-4">
-                                <input id="radio1-c" value="C" type="radio" name="radio1" class="hidden"
-                                    data-question="{{ $question_id }}" />
-                                <label for="radio1-c" class="flex items-center text-base cursor-pointer">
-                                    <span
-                                        class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
-                                    {{ $questionDetail->jawaban_c }}</label>
-                            </div>
-
-                            <div class="flex items-center mb-4 mr-4">
-                                <input id="radio1-d" value="D" type="radio" name="radio1" class="hidden"
-                                    data-question="{{ $question_id }}" />
-                                <label for="radio1-d" class="flex items-center text-base cursor-pointer">
-                                    <span
-                                        class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
-                                    {{ $questionDetail->jawaban_d }}</label>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,15 +126,16 @@
                         </a>
                         @endif
                         @if ($question_id == $latestQuestion->id)
-                        <a href=""
-                            class="items-center hidden px-4 py-3 mx-auto mt-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-red-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:flex">
-
-                            <span class="mx-2">Submit
-                            </span>
-                        </a>
+                        <input type="hidden" name="courseId" value="{{ $id }}">
+                        <input type="hidden" name="materialId" value="{{ $material_id }}">
+                        <button id="submit-button"
+                            class="hidden px-4 py-3 mx-auto mt-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-red-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:flex">
+                            <span class="mx-2">Submit</span>
+                        </button>
                         @endif
                         @if ($question_id < $latestQuestion->id)
-                            <a href="/courses/material/{{ $title }}/{{ $id }}/{{ $material_id }}/{{ $question_id + 1 }}/{{ $type }}"
+                            <a id="tombol-selanjutnya"
+                                href="/courses/material/{{ $title }}/{{ $id }}/{{ $material_id }}/{{ $question_id + 1 }}/{{ $type }}"
                                 class="items-center hidden px-4 py-3 mx-auto mt-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:flex">
 
                                 <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" height="1em"
@@ -151,29 +156,178 @@
 
     </div>
     <script>
-        // Inisialisasi variabel untuk menyimpan jawaban sementara
-        const userAnswers = {};
+        document.addEventListener('DOMContentLoaded', function () {
+    const nextButton = document.getElementById('tombol-selanjutnya');
+    const submitButton = document.getElementById('submit-button');
+    const userAnswers = JSON.parse(sessionStorage.getItem('userAnswers')) || [];
 
-// Fungsi untuk menyimpan jawaban
-    function saveUserAnswer(question, answer) {
-        userAnswers[question] = answer;
-        console.log(`Saved answer for question ${question}: ${answer}`);
-        console.log('Updated userAnswers:', userAnswers);
+    function validateAnswers() {
+        // Lakukan validasi apakah semua soal telah terisi
+        // Anda dapat menggunakan data dari userAnswers untuk melakukan validasi
+        return userAnswers.every(answer => answer.answer !== undefined && answer.answer !== null);
     }
 
-        document.querySelectorAll('input[type="radio"]').forEach((radio) => {
-        radio.addEventListener('change', function () {
-            const questionNumber = this.getAttribute('data-question');
-            const selectedAnswer = this.value;
-            saveUserAnswer(questionNumber, selectedAnswer);
-        });
+    if(nextButton){
+        nextButton.addEventListener('click', function () {
+        const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
+        const questionId = selectedAnswer ? selectedAnswer.getAttribute('data-question') : null;
+
+        if (questionId) {
+            const answerData = {
+                questionId: questionId,
+                answer: selectedAnswer.value,
+            };
+
+            const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId === questionId);
+
+            if (existingAnswerIndex !== -1) {
+            // Ganti jawaban jika questionId sudah ada di dalam array
+                userAnswers[existingAnswerIndex] = answerData;
+            } else {
+            // Tambahkan jawaban baru jika questionId belum ada di dalam array
+                userAnswers.push(answerData);
+            }
+
+            // Simpan array jawaban pengguna ke session storage
+            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+
+            updateRadioButtons();
+            console.log("array", userAnswers)
+            // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
+            // ...
+
+        } else {
+            alert('Pilih jawaban terlebih dahulu.');
+        }
     });
-
-    // Fungsi untuk mendapatkan jawaban pengguna
-    function getUserAnswer(question) {
-        return userAnswers[question];
     }
-    console.log("SCRIPT LOADED")
+
+
+
+    if(submitButton){
+        submitButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
+        const questionId = selectedAnswer ? selectedAnswer.getAttribute('data-question') : null;
+
+        if (questionId) {
+            const answerData = {
+                questionId: questionId,
+                answer: selectedAnswer.value,
+            };
+
+            const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId === questionId);
+
+            if (existingAnswerIndex !== -1) {
+            // Ganti jawaban jika questionId sudah ada di dalam array
+                userAnswers[existingAnswerIndex] = answerData;
+            } else {
+            // Tambahkan jawaban baru jika questionId belum ada di dalam array
+                userAnswers.push(answerData);
+            }
+
+            // Simpan array jawaban pengguna ke session storage
+            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+
+            const submissionData = {
+                answers: userAnswers,
+                courseId: document.querySelector('input[name="courseId"]').value,
+                materialId: document.querySelector('input[name="materialId"]').value,
+            };
+
+
+
+            updateRadioButtons();
+            const isConfirmed = window.confirm('Apakah Anda yakin ingin mengumpulkan jawaban?');
+
+            if (isConfirmed) {
+            // Kirim jawaban ke backend saat tombol "Submit" ditekan
+             if (validateAnswers()) {
+                sendAnswersToBackend(submissionData);
+            } else {
+                alert('Masih ada soal yang belum terisi. Silakan isi semua soal sebelum mengumpulkan jawaban.');
+            }
+        }
+            console.log("array", submissionData)
+            // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
+            // ...
+
+        } else {
+            alert('Pilih jawaban terlebih dahulu.');
+        }
+    });
+    }
+
+
+    // submitButton.addEventListener('click', function(){
+
+    //     warning("Apakah anda ingin mengumpulkan jawaban?")
+    // })
+
+    function updateRadioButtons() {
+        const radioButtons = document.querySelectorAll('input[name="radio1"]');
+
+        radioButtons.forEach(radioButton => {
+            const questionId = radioButton.getAttribute('data-question');
+            const userAnswer = userAnswers.find(ans => ans.questionId === questionId);
+
+            if (userAnswer) {
+                // Set status checked jika jawaban sudah ada
+                radioButton.checked = userAnswer.answer === radioButton.value;
+            } else {
+                // Jika jawaban belum ada, pastikan radio button tidak dipilih
+                radioButton.checked = false;
+            }
+        });
+    }
+
+    function sendAnswersToBackend(answers) {
+        const xhr = new XMLHttpRequest();
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        xhr.open('POST', '/submit-answers', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    try {
+                        const responseData = JSON.parse(xhr.responseText);
+                        alert(responseData.message);
+
+                    // Reset array userAnswers
+                    userAnswers = [];
+
+                    // Simpan array yang sudah direset ke session storage
+                    sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+
+                    // Reset status radio buttons
+                    updateRadioButtons();
+
+                    // Sembunyikan tombol Submit dan tampilkan tombol Selanjutnya
+                    submitButton.style.display = 'none';
+                    nextButton.style.display = 'block';
+                }
+                catch (error){
+                    console.error('Error parsing JSON:', error);
+                    console.error('Response Text:', xhr.responseText);
+                }
+             } else {
+                    console.error('Request failed with status:', xhr.status);
+                }
+            }
+        }
+
+
+        const submitData = {
+            userAnswers: answers,
+        };
+
+        xhr.send(JSON.stringify(submitData));
+    }
+
+    updateRadioButtons();
+});
     </script>
 </body>
 @endsection

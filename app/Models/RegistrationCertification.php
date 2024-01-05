@@ -14,7 +14,9 @@ class RegistrationCertification extends Model
         'user_id',
         'certif_id',
         'registered',
-        'passed'
+        'passed',
+        'total_score',
+        'attempts',
     ];
 
     public function user(){

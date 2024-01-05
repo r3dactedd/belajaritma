@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('certif_id');
             $table->boolean('registered')->default(false);
             $table->boolean('passed')->default(false);
+            $table->unsignedBigInteger('total_score')->nullable();
+            $table->unsignedBigInteger('attempts')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
