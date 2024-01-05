@@ -65,6 +65,7 @@ Route::get('/forum/course/{course_id}/thread/{id}', [ForumController::class, 'fo
 Route::post('/forum/course/{course_id}/thread/{id}', [ForumController::class, 'createReply']);
 Route::delete('/forum/course/{course_id}/thread/{id}/delete', [ForumController::class, 'deleteThread']);
 
+Route::post('/submit-answers', [CourseController::class, 'submitAnswers'])->name('submit.answers');
 // Route::get('/forum/course/1', function () {
 //     return view('forum.forum');
 // });
@@ -97,9 +98,7 @@ Route::get('/courses/2/video', function () {
 Route::get('/courses/3/asg/questions', function () {
     return view('contents.assignment_questions');
 });
-Route::get('/courses/3/asg/results', function () {
-    return view('contents.assignment_results');
-});
+Route::get('/courses/{courseId}/{materialId}/asg/results', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
 
 Route::get('/profile/{username}', [ProfileController::class, 'viewProfile']);
 Route::get('/editProfile', [ProfileController::class, 'editProfile']);
@@ -114,7 +113,7 @@ Route::get('/certifications', [CertificationController::class, 'showCertificatio
 Route::get('/certifications/{id}', [CertificationController::class, 'certifDetail']);
 Route::get('/certifications/aboutTest/{certif_id}', [CertificationController::class, 'aboutTest']);
 Route::get('/certification/test/{certif_id}/{question_id}', [CertificationController::class, 'certifTestPage']);
-
+// Route::get('/courses/material/{title}/{id}/{material_id}', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
 // Route::get('/certifications/detail/{id}', [CertificationController::class, 'aboutTest']);
 
 // Route::get('/test', function () {
