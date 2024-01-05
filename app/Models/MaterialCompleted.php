@@ -15,6 +15,8 @@ class MaterialCompleted extends Model
         'course_id',
         'material_id',
         'enrollment_id',
+        'total_score',
+        'attempts',
     ];
 
     public function user(){
