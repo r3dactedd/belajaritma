@@ -124,35 +124,27 @@
                         <div class="rounded-xl bg-white p-4 shadow-sm">
                             @if ($material->materialContentToMasterType->master_type_name == 'PDF')
                                 <div class="px-4 font-semibold">
-                                    {{-- <label for="username"
-                                        class="text-base mb-2 block font-semibold text-gray-900 dark:text-white">
-                                        (muncul kalau content typenya PDF) </label> --}}
-
-
                                     <label
                                         class="text-blue border-blue hover:bg-blue flex w-48 cursor-pointer flex-col items-center rounded-lg border bg-white p-2 tracking-wide shadow-lg hover:bg-indigo-500 hover:text-white">
 
                                         <span class="text-base leading-normal">Upload File PDF</span>
-                                        <input type='file' id="pdfInput" name="pdf_link" class="hidden"
-                                            onchange="previewImage()" />
+                                        <input type='file' id="pdfInput" name="pdf_link" class="hidden" />
                                     </label>
                                     <div class="my-4"></div>
                                     <button type="submit"
                                         class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                                         <div class="mx-2"> Finalize PDF</div>
                                     </button>
+
                                 </div>
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Video')
                                 <div class="px-4 font-semibold">
-                                    {{-- <label for="username"
-                                        class="text-base mb-2 block font-semibold text-gray-900 dark:text-white">
-                                        (muncul kalau content typenya Video) </label> --}}
                                     <label for="username"
                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                         Upload Link Video</label>
                                     <input type="text" name="video_link" id="inputVideoLink"
                                         class="mt-focus:ring-primary-600 mb-6 block h-12 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:w-1/2"
-                                        placeholder="Isi Link Video" required="">
+                                        placeholder="Isi Link Video" required="" value="{{$material->video_link}}">
                                 </div>
                                 <div id="videoPreview"
                                     class="mb-3 flex items-center space-x-2 px-4 font-semibold leading-8 text-gray-900">
@@ -174,14 +166,13 @@
                                 </div>
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment')
                                 <div class="mx-auto px-4">
-                                    {{-- <div class="font-semibold">
-                                        <label for="username"
-                                            class="text-base mb-2 block font-semibold text-gray-900 dark:text-white">
-                                            (muncul kalau content typenya Assignment) </label>
-                                    </div> --}}
                                     <div class="font-semibold">
-                                        <label for="username" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">Penjelasan Assignment</label>
-                                        <textarea name="detailed_description" id="inputDetDesc" class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->detailed_description) }}
+                                        <label for="username"
+                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">Penjelasan
+                                            Assignment</label>
+                                        <textarea name="detailed_description" id="inputDetDesc"
+                                            class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                            placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->detailed_description) }}
                                         </textarea>
                                         <div class="mb-6 font-semibold">
                                             <div class="grid grid-cols-1 md:grid-cols-2">
@@ -313,11 +304,6 @@
                                 </div>
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Final Test')
                                 <div class="mx-auto px-4">
-                                    {{-- <div class="font-semibold">
-                                        <label for="username"
-                                            class="text-base mb-2 block font-semibold text-gray-900 dark:text-white">
-                                            (muncul kalau content typenya Assignment) </label>
-                                    </div> --}}
                                     <div class="font-semibold">
                                         <label for="username"
                                             class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
@@ -450,35 +436,43 @@
                                                 </tbody>
                                             </table>
                                         </div>
-
                                     </div>
                                 </div>
                             @endif
-
                         </div>
                     </div>
                 </div>
             </form>
+            @if ($material->materialContentToMasterType->master_type_name == 'PDF')
+                <div class="container mx-auto my-5 p-5">
+                    <div class="no-wrap my-4 md:-mx-2 md:flex">
+                        <div class="my-4"></div>
+                        <div id="pdfPreviewContainer" class="hidden w-full rounded bg-white shadow md:mx-2">
+                            <!-- PDF preview will be displayed here -->
+                        </div>
+                        <div id="pdfExistingContainer" class="w-full rounded bg-white shadow md:mx-2">
+                            <!-- PDF preview will be displayed here -->
 
+                            <iframe src="{{ asset('uploads/material_pdf/' . $material->pdf_link) }}"
+                                type="application/pdf" width="100%" height="1024">
+                                This browser does not support PDFs. Please download the PDF to view it: <a
+                                    href="{{ asset('uploads/material_pdf/' . $material->pdf_link) }}">Download
+                                    PDF</a>
+                            </iframe>
+                        </div>
 
-            <div class="container mx-auto my-5 p-5">
-                <div class="no-wrap my-4 md:-mx-2 md:flex">
-                    <div class="my-4"></div>
-                    <div id="pdfPreviewContainer" class="hidden w-full rounded bg-white shadow md:mx-2">
-                        <!-- PDF preview will be displayed here -->
                     </div>
                 </div>
-            </div>
-
-            <div class="container mx-auto my-5 p-5">
-                <div class="no-wrap my-4 md:-mx-2 md:flex">
-                    <div class="my-4"></div>
-                    <div id="videoContainer" class="container mx-auto my-5 p-5">
-                        <!-- YouTube video will be embedded here -->
+            @else
+                <div class="container mx-auto my-5 p-5">
+                    <div class="no-wrap my-4 md:-mx-2 md:flex">
+                        <div class="my-4"></div>
+                        <div id="videoContainer" class="container mx-auto my-5 p-5">
+                            <!-- YouTube video will be embedded here -->
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            @endif
 
             <div id="modal-create" tabindex="-1" aria-hidden="true"
                 class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
@@ -1010,6 +1004,7 @@
         // Get references to the file input and preview container
         const pdfInput = document.getElementById('pdfInput');
         const pdfPreviewContainer = document.getElementById('pdfPreviewContainer');
+        const pdfExistingContainer = document.getElementById('pdfExistingContainer');
 
         // Add an event listener to the file input to detect changes
         pdfInput.addEventListener('change', function() {
@@ -1020,6 +1015,7 @@
                 // Check if the selected file is a PDF
                 if (file.type === 'application/pdf') {
                     // Create a URL for the selected PDF
+                    pdfExistingContainer.classList.add('hidden');
                     const pdfURL = URL.createObjectURL(file);
                     pdfPreviewContainer.classList.remove('hidden');
                     // Create an <object> element to display the PDF
@@ -1040,6 +1036,7 @@
                 // Clear the preview container if no file is selected
                 pdfPreviewContainer.innerHTML = '';
             }
+
         });
 
         function embedVideo() {
