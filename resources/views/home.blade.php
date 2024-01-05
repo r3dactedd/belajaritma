@@ -46,7 +46,7 @@
                 <div class="container mx-auto mb-12 mt-6 w-11/12">
                     <div class="flex flex-wrap">
                         <div class="mb-12 w-full lg:w-3/5 lg:pr-8">
-                            <div class="rounded bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
+                            <div class="rounded-xl bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
                                 <p class="text-lg font-bold">Aktivitas Pembelajaran Anda</p>
                                 @if (auth()->check())
                                     @foreach ($enrolledCourses as $ongoCor)
@@ -96,7 +96,7 @@
 
 
                         <div class="mb-12 w-full lg:w-2/5">
-                            <div class="rounded border border-gray-300 bg-white p-8 shadow">
+                            <div class="rounded-xl border border-gray-300 bg-white p-8 shadow">
                                 <p class="mb-4 text-lg font-bold">Forum untuk Kursus Anda</p>
                                 @if (auth()->check())
                                     @foreach ($enrolledCourses as $enCor)
@@ -134,7 +134,7 @@
                 <div class="container mx-auto mb-12 mt-6 w-10/12 md:w-8/12">
                     <div class="flex flex-wrap">
                         <div class="mb-12 w-full lg:pr-8">
-                            <div class="rounded bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
+                            <div class="rounded-xl bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
                                 <p class="px-4 text-lg font-bold">Akses Admin Management</p>
                                 <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
                                     <div class="flex w-11/12">
@@ -215,7 +215,7 @@
             <div class="container mx-auto mb-12 mt-6 w-11/12">
                 <div class="flex flex-wrap">
                     <div class="mb-12 w-full lg:pr-8">
-                        <div class="rounded bg-white px-6 py-8 shadow-sm">
+                        <div class="rounded-xl bg-white px-6 py-8 shadow-sm">
                             <p class="text-lg font-bold">Aktivitas Pembelajaran</p>
                             <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
 

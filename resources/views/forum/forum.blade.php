@@ -264,11 +264,11 @@
                                     <div class="sm:col-span-2">
                                         <label for="material_id"
                                             class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                            Pilih Materi</label>
+                                            Pilih Sesi Kursus</label>
                                         <select id="material_id" name="material_id"
                                             class="w-full rounded-md border-transparent bg-gray-50 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0"
                                             required="">
-                                            <option value="">Pilih Materi</option>
+                                            <option value="">Sesi Kursus</option>
                                             @foreach ($materials as $material)
                                                 <option value="{{ $material->id }}">{{ $material->title }}</option>
                                             @endforeach
@@ -393,7 +393,7 @@
                     })
                     .then(response => {
                         if (response.ok) {
-                            alert('Diskusi baru berhasil dibuat!');
+                            alert('Diskusi forum berhasil dibuat!');
                             window.location.href = '/forum/course/' + courseId;
                         } else {
                             console.error('Error:', response.statusText);

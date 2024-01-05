@@ -210,8 +210,7 @@
                                 Deskripsi Singkat Kursus</label>
                             <textarea name="short_desc" id="inputShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="" required="">
-                            </textarea>
+                                placeholder="" required=""></textarea>
 
                             <div class="grid-row-2 grid md:grid-cols-2">
                                 <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
@@ -301,7 +300,7 @@
                     </button>
                 </h1>
         </form>
-        
+
         {{-- Publish Modal --}}
         <div id="popup-publish" tabindex="-1"
             class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">

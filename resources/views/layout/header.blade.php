@@ -320,6 +320,9 @@
             case "/profile":
                 profileLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
                 break;
+            case "/editProfile":
+                profileLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
+                break;
             default:
                 homeLink.parentElement.classList.add("border-b-2", "border-indigo-600", "text-indigo-600");
                 break;
