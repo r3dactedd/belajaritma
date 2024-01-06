@@ -8,7 +8,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
+
 </head>
 
 <body class="bg-gray-200 pb-12">
@@ -144,7 +144,7 @@
                                         Upload Link Video</label>
                                     <input type="text" name="video_link" id="inputVideoLink"
                                         class="mt-focus:ring-primary-600 mb-6 block h-12 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:w-1/2"
-                                        placeholder="Isi Link Video" required="" value="{{$material->video_link}}">
+                                        placeholder="Isi Link Video" required="" value="{{ $material->video_link }}">
                                 </div>
                                 <div id="videoPreview"
                                     class="mb-3 flex items-center space-x-2 px-4 font-semibold leading-8 text-gray-900">
@@ -450,17 +450,21 @@
                         <div id="pdfPreviewContainer" class="hidden w-full rounded bg-white shadow md:mx-2">
                             <!-- PDF preview will be displayed here -->
                         </div>
-                        <div id="pdfExistingContainer" class="w-full rounded bg-white shadow md:mx-2">
-                            <!-- PDF preview will be displayed here -->
-
-                            <iframe src="{{ asset('uploads/material_pdf/' . $material->pdf_link) }}"
-                                type="application/pdf" width="100%" height="1024">
-                                This browser does not support PDFs. Please download the PDF to view it: <a
-                                    href="{{ asset('uploads/material_pdf/' . $material->pdf_link) }}">Download
-                                    PDF</a>
-                            </iframe>
-                        </div>
-
+                        @if (empty($material->pdf_link))
+                            <div id="pdfExistingContainer" class="w-full rounded md:mx-2">
+                                {{-- needs to be empty for sum reason --}}
+                            </div>
+                        @else
+                            <div id="pdfExistingContainer" class="w-full rounded bg-white shadow md:mx-2">
+                                <!-- PDF preview will be displayed here -->
+                                <iframe src="{{ asset('uploads/material_pdf/' . $material->pdf_link) }}"
+                                    type="application/pdf" width="100%" height="1024">
+                                    This browser does not support PDFs. Please download the PDF to view it: <a
+                                        href="{{ asset('uploads/material_pdf/' . $material->pdf_link) }}">Download
+                                        PDF</a>
+                                </iframe>
+                            </div>
+                        @endif
                     </div>
                 </div>
             @else

@@ -233,6 +233,15 @@ class MaterialSeeder extends Seeder
             'total_questions' => 15,
         ]);
 
+        Material::create([
+            'course_id' => 3,
+            'master_type_id' => 1,
+            'title' => 'Pengenalan Web Programming',
+            'description' => 'Materi ini akan memberikan pengenalan mengenai konsep Web Programming.',
+            'material_duration' => 20,
+            'pdf_link' => 'Sesi VIII_ Implementasi Algoritma.pdf',
+        ]);
+
 
     }
 }

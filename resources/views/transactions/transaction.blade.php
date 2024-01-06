@@ -8,7 +8,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
     @vite('resources/css/app.css')
 </head>
@@ -46,20 +46,27 @@
                     </h1>
                     <div class="mb-6 text-left">
                         <div class="text-left text-lg font-semibold">Biaya Sertifikasi</div>
-                        <span class="text-lg font-bold text-indigo-500">Rp. {{ number_format($data->certif_cost, 2, ',', '.') }}</span>
+                        <span class="text-lg font-bold text-indigo-500">Rp.
+                            {{ number_format($data->certif_cost, 2, ',', '.') }}</span>
                     </div>
 
                     <div class="mb-6">
                         <label class="my-4 font-semibold" for="">Tahap Transaksi</label>
 
                         <div class="my-4 rounded-lg border border-gray-600 bg-white p-4 shadow-md">
-                            <div class="text-base my-1 font-medium">Anda dapat melakukan transfer pada nomor <span
+                            <div class="my-1 text-base font-medium">Anda dapat melakukan transfer pada nomor <span
                                     class="font-semibold text-indigo-600">12345678 A.N Lorem Ipsum</span></div>
-                            <div class="text-base my-1 font-medium">1. Cantumkan screenshot bukti transfer pada link upload dibawah ini.</div>
-                            <div class="text-base my-1 font-medium">2. Screenshot bukti yang valid terdiri dari pesan berhasil, tanggal dan waktu transfer, nama penerima diatas, serta nominal transaksi yang sesuai.</div>
-                            <div class="text-base my-1 font-medium">3. Anda dapat melihat status pembayaran pada menu Profil Saya -> Riwayat Transaksi</div>
-                            <div class="text-base my-1 font-medium">4. Apabila bukti transfer valid, anda sudah dapat mengakses tes sertifikasi.</div>
-                            <div class="text-base my-1 font-medium">5. Apabila bukti transfer tidak valid, anda dapat mengupload ulang bukti transfer anda.</div>
+                            <div class="my-1 text-base font-medium">1. Cantumkan screenshot bukti transfer pada link upload
+                                dibawah ini.</div>
+                            <div class="my-1 text-base font-medium">2. Screenshot bukti yang valid terdiri dari pesan
+                                berhasil, tanggal dan waktu transfer, nama penerima diatas, serta nominal transaksi yang
+                                sesuai.</div>
+                            <div class="my-1 text-base font-medium">3. Anda dapat melihat status pembayaran pada menu Profil
+                                Saya -> Riwayat Transaksi</div>
+                            <div class="my-1 text-base font-medium">4. Apabila bukti transfer valid, anda sudah dapat
+                                mengakses tes sertifikasi.</div>
+                            <div class="my-1 text-base font-medium">5. Apabila bukti transfer tidak valid, anda dapat
+                                mengupload ulang bukti transfer anda.</div>
                         </div>
                     </div>
                     <form method="post" enctype="multipart/form-data">
