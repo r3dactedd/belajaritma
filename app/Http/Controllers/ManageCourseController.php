@@ -102,6 +102,7 @@ class ManageCourseController extends Controller
     public function unpublishCourse($id){
         $data=Course::find($id);
         $data->ready_for_publish = false;
+        $data->updated_by = Auth()->user()->id;;
         $data->save();
         return Redirect::to("/manager/course/edit/{$id}");
     }
@@ -109,6 +110,7 @@ class ManageCourseController extends Controller
     public function publishCourse($id){
         $data=Course::find($id);
         $data->ready_for_publish = true;
+        $data->updated_by = Auth()->user()->id;;
         $data->save();
         return Redirect::to("/manager/course/edit/{$id}");
     }
