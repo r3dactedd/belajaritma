@@ -25,6 +25,7 @@ return new class extends Migration
             $table->unsignedBigInteger('updated_by');
             $table->unsignedBigInteger('total_questions')->default(0);
             $table->unsignedBigInteger('minimum_score')->default(0);
+            $table->boolean('ready_for_publish')->default(false);
             $table->timestamps();
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');

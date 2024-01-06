@@ -99,6 +99,19 @@ class ManageCourseController extends Controller
         $type_list = MasterType::all();
         return view('administrator.admin_courses.admin_course_edit', ['data' => $data, 'courseId'=> $id, 'type_list'=>$type_list]);
     }
+    public function unpublishCourse($id){
+        $data=Course::find($id);
+        $data->ready_for_publish = false;
+        $data->save();
+        return Redirect::to("/manager/course/edit/{$id}");
+    }
+
+    public function publishCourse($id){
+        $data=Course::find($id);
+        $data->ready_for_publish = true;
+        $data->save();
+        return Redirect::to("/manager/course/edit/{$id}");
+    }
     public function editCoursePOST(Request $request, $id){
         $rules = [
             'course_name' => 'required|string|max:50',
@@ -218,7 +231,8 @@ class ManageCourseController extends Controller
         $material = Material::find($id);
         $assignment_questions = AssignmentQuestions::where('material_id', $id)->get();
         $final_test_questions = FinalTestQuestions::where('material_id', $id)->get();
-        return view('administrator.admin_courses.admin_course_session', ['material'=>$material, 'assignment_questions'=>$assignment_questions, 'final_test_questions'=>$final_test_questions]);
+        $type_list = MasterType::all();
+        return view('administrator.admin_courses.admin_course_session', ['material'=>$material, 'assignment_questions'=>$assignment_questions, 'final_test_questions'=>$final_test_questions,'type_list'=>$type_list]);
         // dd($material);
     }
 
@@ -232,6 +246,7 @@ class ManageCourseController extends Controller
         $changeMaterialData += [
             'title'=> $validateMaterialData['title'],
             'description'=> $validateMaterialData['description'],
+            'master_type_id' => $request->master_type_id,
         ];
         Material::where('id', $id)->update($changeMaterialData);
         return Redirect::to("/manager/course/session/{$id}/edit");

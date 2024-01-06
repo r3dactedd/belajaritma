@@ -28,6 +28,7 @@ return new class extends Migration
             $table->unsignedBigInteger('students_enrolled')->default(0);
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
+            $table->boolean('ready_for_publish')->default(false);
             $table->timestamps();
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');

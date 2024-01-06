@@ -80,7 +80,9 @@
                             <th class="px-4 py-2 text-left">Diupload Oleh</th>
                             <th class="px-4 py-2 text-left">Terakhir Diedit Oleh</th>
                             <th class="px-4 py-2 text-left">Tanggal Edit Terakhir</th>
+                            <th class="px-2 py-3 text-center">Status</th>
                             <th class="px-2 py-3 text-center">Aksi</th>
+
                         </tr>
                     </thead>
                     <tbody class="text-base font-light text-gray-600 md:text-lg">
@@ -97,6 +99,13 @@
                                 </td>
                                 <td class="px-4 py-2">
                                     <p class="max-h-20 overflow-scroll">{{ $item->updated_at->format('Y-m-d') }}</p>
+                                </td>
+                                <td class="px-4 py-2">
+                                    @if ($item->ready_for_publish == 1)
+                                        <p class="max-h-20 overflow-scroll text-green-500">Publish</p>
+                                    @else
+                                        <p class="max-h-20 overflow-scroll text-red-500">Edit</p>
+                                    @endif
                                 </td>
                                 <td class="px-6 py-3 text-center">
                                     <div class="item-center flex justify-center">

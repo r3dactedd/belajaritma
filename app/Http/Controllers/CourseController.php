@@ -23,11 +23,13 @@ class CourseController extends Controller
     {
         $searchKeyword = $request->input('searchKeyword');
 
+        $query = Course::where('ready_for_publish', 1);
+
         if ($searchKeyword) {
-            $data = Course::where('course_name', 'like', "%$searchKeyword%")->get();
-        } else {
-            $data = Course::all();
+            $query->where('course_name', 'like', "%$searchKeyword%");
         }
+
+        $data = $query->get();
 
         $data = $data->map(function ($course) {
             $course->course_img_url = asset('uploads/course_images/' . $course->course_img);

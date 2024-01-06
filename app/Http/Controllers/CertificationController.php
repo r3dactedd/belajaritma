@@ -12,17 +12,25 @@ use Illuminate\Support\Facades\Storage;
 
 class CertificationController extends Controller
 {
-    //
-    public function showCertificationList(Request $request){
+
+    public function showCertificationList(Request $request)
+    {
         $searchKeyword = $request->input('searchKeyword');
-        if($searchKeyword){
-            $data = Certification::where('certif_title', 'like', "%$searchKeyword%")->get();
-            return view('contents.certifications', compact('data'));
+
+        $query = Certification::where('ready_for_publish', 1);
+
+        if ($searchKeyword) {
+            $query->where('course_name', 'like', "%$searchKeyword%");
         }
-        else{
-            $data = Certification::all();
-            return view('contents.certifications',['data'=>$data]);
-        }
+
+        $data = $query->get();
+
+        $data = $data->map(function ($course) {
+            $course->course_img_url = asset('uploads/course_images/' . $course->course_img);
+            return $course;
+        });
+
+        return view('contents.certifications', compact('data'));
     }
 
     public function certifDetail($id){
