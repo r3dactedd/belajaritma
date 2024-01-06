@@ -19,6 +19,7 @@ class Certification extends Model
         'certif_cost',
         'certif_outline',
         'total_questions',
+        'ready_for_publish',
         'created_by',
         'updated_by',
         'students_registered',
