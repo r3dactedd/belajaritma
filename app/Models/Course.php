@@ -26,6 +26,7 @@ class Course extends Model
         'created_by',
         'updated_by',
         'students_enrolled',
+        'ready_for_publish',
     ];
 
     public function courseToSidebar(){

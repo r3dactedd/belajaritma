@@ -29,6 +29,7 @@ class CourseSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
             'course_img' => 'algoprog_courseImg.jpg',
+            'ready_for_publish' => true,
         ]);
 
         Course::create([
@@ -46,6 +47,7 @@ class CourseSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
             'course_img' => 'Data Structures.png',
+            'ready_for_publish' => true,
         ]);
 
         Course::create([
@@ -63,6 +65,7 @@ class CourseSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
             'course_img' => 'webprog.jpg',
+            'ready_for_publish' => true,
         ]);
     }
 }

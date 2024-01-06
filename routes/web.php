@@ -153,6 +153,9 @@ Route::get('/manager/course', [ManageCourseController::class, 'showCourseAdmin']
 Route::get('/manager/course/create', function () {
     return view('administrator.admin_courses.admin_course_create');
 });
+Route::post('/unpublishCourse/{id}',[ManageCourseController::class, 'unpublishCourse']);
+Route::post('/publishCourse/{id}',[ManageCourseController::class, 'publishCourse']);
+
 // Route::get('/manager/course/materiallist/{id}', function () {
 //     return view('administrator.admin_courses.admin_course_list');
 // });
@@ -201,6 +204,9 @@ Route::post('/manager/certification/edit/test/{id}/set/score', [ManageCertificat
 Route::post('/manager/certification/edit/test/{id}/create/questions', [ManageCertificationController::class, 'createCertifQuestions']);
 Route::post('/manager/certification/edit/test/{id}/edit/question', [ManageCertificationController::class, 'editCertifQuestions']);
 Route::delete('/manager/certification/edit/test/{id}/delete/question', [ManageCertificationController::class, 'deleteCertifQuestion']);
+
+Route::post('/unpublishCertif/{id}',[ManageCertificationController::class, 'unpublishCertif']);
+Route::post('/publishCertif/{id}',[ManageCertificationController::class, 'publishCertif']);
 
 Route::get('/manager/forum', [ForumController::class, 'manageForumList']);
 

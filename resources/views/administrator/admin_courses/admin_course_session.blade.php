@@ -94,7 +94,21 @@
                                     class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-lg text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left"
                                     placeholder="Tulis Nama Materi" required=""
                                     value="{{ htmlspecialchars($material->title) }}">
+                                <label for="username"
+                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                    Tipe Materi</label>
+                                <select name="master_type_id" id="inputType"
+                                    class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
+                                    @foreach ($type_list as $type)
+                                        <option name="master_type_id" id="inputType" value="{{ $type->id }}"
+                                            {{ $material->master_type_id == $type->id ? 'selected' : '' }}>
+                                            {{ $type->master_type_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
                             </div>
+                            <div class="my-4"></div>
                             <div class="px-4 font-semibold">
                                 <label for="username"
                                     class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">

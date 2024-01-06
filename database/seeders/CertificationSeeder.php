@@ -28,6 +28,7 @@ class CertificationSeeder extends Seeder
             'minimum_score' => 75,
             'total_questions' => 25,
             'certif_img' => 'azure.png',
+            'ready_for_publish' => true,
         ]);
     }
 }
