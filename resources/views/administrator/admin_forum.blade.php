@@ -8,7 +8,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
+
     @vite('resources/css/app.css')
 </head>
 
@@ -55,7 +55,7 @@
             </div>
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="my-4"></div>
-                <div class="w-full mx-auto rounded-xl bg-white px-4 py-2">
+                <div class="mx-auto w-full rounded-xl bg-white px-4 py-2">
 
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
@@ -73,7 +73,7 @@
                                             class="ml-2 text-lg text-gray-400">
                                             {{ $forumData->created_at->format('Y-m-d') }}
                                         </span>
-                                        <p class="text-sm mb-5">
+                                        <p class="mb-5 text-sm">
                                             Created by: {{ $forumData->formToUser->username }}
                                         </p>
                                         <p class="text-sm">

@@ -292,6 +292,7 @@
                     $index++;
                 @endphp
             @endforeach
+            
             @if (Auth::check())
                 @if (auth()->user()->hasCompletedCourse($data->id) &&
                         auth()->user()->isCompleted($data->id))
@@ -367,12 +368,7 @@
             </div>
         </div>
     </body>
-    {{-- @if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif --}}
-    {{-- CERTIFICATION HERE --}}
+
     <style>
         .cert {
             border: 15px solid #0072c6;

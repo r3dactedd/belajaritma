@@ -8,7 +8,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
+
     @vite('resources/css/app.css')
 </head>
 
@@ -206,12 +206,12 @@
     function showConfirmationPopup(action, transactionId) {
         var popup = document.getElementById('confirmation-popup');
         console.log(action);
-        var confirmationText = (action === 'approve') ? 'approve' : 'decline';
+        var confirmationText = (action === 'approve') ? 'menyetujui' : 'menolak';
 
         popup.querySelector('form').action = `/manager/transaction/${action}/${transactionId}`;
 
         popup.querySelector('.confirmation-text').innerText =
-            `Are you sure you want to ${confirmationText} this transaction?`;
+            `Apakah anda yakin untuk ${confirmationText} transaksi ini?`;
 
         popup.style.display = 'block';
     }
@@ -268,13 +268,13 @@
                         <form method="POST" action="#" data-transaction-id="">
                             @csrf
                             <button data-modal-hide="confirmation-popup" type="submit"
-                                class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
-                                Yes, proceed
+                                class="mr-2 items-center rounded-lg bg-green-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-green-800">
+                                Ya, lanjutkan
                             </button>
                         </form>
                         <button onclick="hideConfirmationPopup()" type="button"
                             class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">
-                            No, cancel
+                            Tidak, batalkan
                         </button>
                     </div>
                 </div>

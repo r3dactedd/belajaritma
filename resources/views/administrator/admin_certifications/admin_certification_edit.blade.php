@@ -8,7 +8,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
+
     @vite('resources/css/app.css')
 </head>
 
@@ -66,7 +66,7 @@
             <div class="container mx-auto my-auto w-full p-6 md:w-9/12">
                 @if ($errors->any())
                     <div id="toast-default"
-                        class="bg-white w-fit  flex items-center rounded-lg p-4 text-gray-500"role="alert">
+                        class="flex w-fit items-center rounded-lg bg-white p-4 text-gray-500"role="alert">
                         <div>
                             <svg class="h-6 w-6 fill-current text-red-500" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24">
@@ -116,7 +116,7 @@
 
 
                         <button type="button"
-                            class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg  p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 "
+                            class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300"
                             data-dismiss-target="#toast-default" aria-label="Close">
                             <span class="sr-only">Close</span>
                             <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"

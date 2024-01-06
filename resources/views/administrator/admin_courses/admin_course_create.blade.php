@@ -9,7 +9,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
+
     @vite('resources/css/app.css')
 </head>
 
@@ -97,7 +97,7 @@
                 </div>
                 @if ($errors->any())
                     <div id="toast-default"
-                        class="bg-white w-fit  flex items-center rounded-lg p-4 text-gray-500"role="alert">
+                        class="flex w-full items-center rounded-lg bg-white p-4 text-gray-500"role="alert">
                         <div>
                             <svg class="h-6 w-6 fill-current text-red-500" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24">
@@ -108,54 +108,53 @@
                         </div>
 
                         <div class="ml-3">
-                            <h2 class="font-bold text-red-400">Test error here</h2>
                             @error('course_name')
-                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                <div class="invalid-feedback my-1 font-bold text-red-400">
                                     {{ $message }}
                                 </div>
                             @enderror
                             @error('short_desc')
-                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                <div class="invalid-feedback my-1 font-bold text-red-400">
                                     {{ $message }}
                                 </div>
                             @enderror
                             @error('course_desc')
-                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                <div class="invalid-feedback my-1 font-bold text-red-400">
                                     {{ $message }}
                                 </div>
                             @enderror
                             @error('level')
-                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                <div class="invalid-feedback my-1 font-bold text-red-400">
                                     {{ $message }}
                                 </div>
                             @enderror
                             @error('screen_resolution')
-                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                <div class="invalid-feedback my-1 font-bold text-red-400">
                                     {{ $message }}
                                 </div>
                             @enderror
                             @error('minimum_ram')
-                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                <div class="invalid-feedback my-1 font-bold text-red-400">
                                     {{ $message }}
                                 </div>
                             @enderror
                             @error('processor')
-                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                <div class="invalid-feedback my-1 font-bold text-red-400">
                                     {{ $message }}
                                 </div>
                             @enderror
                             @error('operating_system')
-                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                <div class="invalid-feedback my-1 font-bold text-red-400">
                                     {{ $message }}
                                 </div>
                             @enderror
                             @error('other_programs')
-                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                <div class="invalid-feedback my-1 font-bold text-red-400">
                                     {{ $message }}
                                 </div>
                             @enderror
                             @error('course_img')
-                                <div class="invalid-feedback my-1 text-sm text-red-500">
+                                <div class="invalid-feedback my-1 font-bold text-red-400">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -163,7 +162,7 @@
 
 
                         <button type="button"
-                            class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg  p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 "
+                            class="ms-autos -my-1.5 mx-auto ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300"
                             data-dismiss-target="#toast-default" aria-label="Close">
                             <span class="sr-only">Close</span>
                             <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -210,8 +209,7 @@
                                 Deskripsi Singkat Kursus</label>
                             <textarea name="short_desc" id="inputShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                placeholder="" required="">
-                            </textarea>
+                                placeholder="" required=""></textarea>
 
                             <div class="grid-row-2 grid md:grid-cols-2">
                                 <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
@@ -296,12 +294,11 @@
                 </div>
                 <h1 class="my-8 text-center text-xl font-semibold">
                     <button type="submit"
-                        class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses Materi
-                        Kursus
+                        class= "rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Simpan
                     </button>
                 </h1>
         </form>
-        
+
         {{-- Publish Modal --}}
         <div id="popup-publish" tabindex="-1"
             class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">

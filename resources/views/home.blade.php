@@ -8,7 +8,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
+
 </head>
 
 <body class="bg-gray-200 pb-12">
@@ -46,7 +46,7 @@
                 <div class="container mx-auto mb-12 mt-6 w-11/12">
                     <div class="flex flex-wrap">
                         <div class="mb-12 w-full lg:w-3/5 lg:pr-8">
-                            <div class="rounded bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
+                            <div class="rounded-xl bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
                                 <p class="text-lg font-bold">Aktivitas Pembelajaran Anda</p>
                                 @if (auth()->check())
                                     @foreach ($enrolledCourses as $ongoCor)
@@ -96,7 +96,7 @@
 
 
                         <div class="mb-12 w-full lg:w-2/5">
-                            <div class="rounded border border-gray-300 bg-white p-8 shadow">
+                            <div class="rounded-xl border border-gray-300 bg-white p-8 shadow">
                                 <p class="mb-4 text-lg font-bold">Forum untuk Kursus Anda</p>
                                 @if (auth()->check())
                                     @foreach ($enrolledCourses as $enCor)
@@ -134,7 +134,7 @@
                 <div class="container mx-auto mb-12 mt-6 w-10/12 md:w-8/12">
                     <div class="flex flex-wrap">
                         <div class="mb-12 w-full lg:pr-8">
-                            <div class="rounded bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
+                            <div class="rounded-xl bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
                                 <p class="px-4 text-lg font-bold">Akses Admin Management</p>
                                 <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
                                     <div class="flex w-11/12">
@@ -215,15 +215,15 @@
             <div class="container mx-auto mb-12 mt-6 w-11/12">
                 <div class="flex flex-wrap">
                     <div class="mb-12 w-full lg:pr-8">
-                        <div class="rounded bg-white px-6 py-8 shadow-sm">
+                        <div class="rounded-xl bg-white px-6 py-8 shadow-sm">
                             <p class="text-lg font-bold">Aktivitas Pembelajaran</p>
                             <div class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
 
                                 <div class="flex w-full hover:bg-gray-200">
                                     <div class="flex h-16 w-20 items-center justify-center rounded-lg text-gray-700">
                                         {{-- Course image here --}}
-                                        <img src="https://cdn.elearningindustry.com/wp-content/uploads/2022/01/shutterstock_525008128.jpg" alt="course image"
-                                            class="h-full w-full object-cover" />
+                                        <img src="https://cdn.elearningindustry.com/wp-content/uploads/2022/01/shutterstock_525008128.jpg"
+                                            alt="course image" class="h-full w-full object-cover" />
                                     </div>
                                     <div class="w-full px-4">
                                         <a href="/courses">
@@ -242,18 +242,18 @@
                                 <div class="flex w-full hover:bg-gray-200">
                                     <div class="flex h-16 w-20 items-center justify-center rounded-lg text-gray-700">
                                         {{-- Course image here --}}
-                                        <img src="https://www.cpsc.gov/s3fs-public/Certificate_TestingAndCertification_Card.png" alt="course image"
-                                            class="h-full w-full object-cover" />
+                                        <img src="https://www.cpsc.gov/s3fs-public/Certificate_TestingAndCertification_Card.png"
+                                            alt="course image" class="h-full w-full object-cover" />
                                     </div>
                                     <div class="w-full px-4">
                                         <a href="/certifications">
-                                        <p class="text-lg font-semibold">
-                                            Ambil Sertifikasi
-                                        </p>
-                                        <p class="py-2 text-sm font-normal tracking-normal text-gray-600">
-                                            Selain kursus, anda juga dapat registrasi untuk mengambil tes sertifikasi
-                                            berbayar.
-                                        </p>
+                                            <p class="text-lg font-semibold">
+                                                Ambil Sertifikasi
+                                            </p>
+                                            <p class="py-2 text-sm font-normal tracking-normal text-gray-600">
+                                                Selain kursus, anda juga dapat registrasi untuk mengambil tes sertifikasi
+                                                berbayar.
+                                            </p>
                                         </a>
                                     </div>
                                 </div>
