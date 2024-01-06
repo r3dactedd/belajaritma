@@ -193,10 +193,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Right Side -->
                     <div class="h-auto w-full md:mx-2 md:w-2/3">
-                        <!-- Profile tab -->
-                        <!-- About Section -->
                         <div class="rounded-xl bg-white px-6 pt-4 md:px-12">
                             <label for="courseTitle"
                                 class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
@@ -215,7 +212,6 @@
                                 <div class="flex flex-row items-center justify-between lg:flex-col lg:items-start">
                                     <div
                                         class="mb-3 mt-4 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
-
                                         <select name="level" id="level"
                                             class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
                                             <option value="">Pilih Tingkat Kursus</option>
@@ -285,12 +281,7 @@
                                     placeholder="Input Tools serta Program-Program Lain yang diperlukan dalam menjalankan kursus ini." required=""></textarea>
                             </div>
                         </div>
-
                     </div>
-
-
-
-
                 </div>
                 <h1 class="my-8 text-center text-xl font-semibold">
                     <button type="submit"
@@ -335,16 +326,9 @@
                 </div>
             </div>
         </div>
-        {{-- Delete Popup Modal --}}
-
     </body>
-
-
-
 @endsection
 @section('footer')
     @include('layout.footer')
 @endsection
-
-
 </html>
