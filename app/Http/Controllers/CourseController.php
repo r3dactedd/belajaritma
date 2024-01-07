@@ -10,11 +10,14 @@ use App\Models\ModuleContent;
 use App\Models\Material;
 use App\Models\MaterialCompleted;
 use App\Models\Sidebar;
-use App\Models\UserAnswer;
+use App\Models\UserAnswerAssignment;
+use App\Models\UserAnswerFinalTest;
 use App\Models\UserCourseDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
+
 
 class CourseController extends Controller
 {
@@ -104,8 +107,7 @@ class CourseController extends Controller
 
     // }
 
-    public function submitAnswers(Request $request)
-    {
+    public function submitAnswers(Request $request){
         Log::info('Submit Answers Request:', $request->all());
         // Validasi request jika diperlukan
         $user = Auth::user();
@@ -116,7 +118,6 @@ class CourseController extends Controller
 
         $submissionData = $request->only(['answers', 'courseId', 'materialId']);
 
-        // Extract answers, courseId, and materialId from submissionData
         $userAnswers = $request->input('answers');
         $userId = $user->id; // Mendapatkan ID pengguna yang sedang login
         $courseId = $request->filled('courseId') ? $request->input('courseId') : null;
@@ -129,7 +130,7 @@ class CourseController extends Controller
                     $questionId = $answer['questionId'];
                     $selectedAnswer = $answer['answer'];
 
-                    $existingAnswer = UserAnswer::where([
+                    $existingAnswer = UserAnswerAssignment::where([
                         'user_id' => $userId,
                         'question_id' => $questionId,
                         'type' => 'Assignment', // Adjust the type as needed
@@ -142,7 +143,7 @@ class CourseController extends Controller
                         ]);
                     } else {
                         // Jika jawaban belum ada, tambahkan jawaban baru ke database
-                        UserAnswer::create([
+                        UserAnswerAssignment::create([
                             'user_id' => $userId,
                             'question_id' => $questionId,
                             'selected_answer' => $selectedAnswer,
@@ -160,7 +161,7 @@ class CourseController extends Controller
                     $questionId = $answer['questionId'];
                     $selectedAnswer = $answer['answer'];
 
-                    $existingAnswer = UserAnswer::where([
+                    $existingAnswer = UserAnswerFinalTest::where([
                         'user_id' => $userId,
                         'question_id' => $questionId,
                         'type' => 'Final Test', // Adjust the type as needed
@@ -173,7 +174,7 @@ class CourseController extends Controller
                         ]);
                     } else {
                         // Jika jawaban belum ada, tambahkan jawaban baru ke database
-                        UserAnswer::create([
+                        UserAnswerFinalTest::create([
                             'user_id' => $userId,
                             'question_id' => $questionId,
                             'selected_answer' => $selectedAnswer,
@@ -184,21 +185,11 @@ class CourseController extends Controller
             }
         }
 
-        // dd($userAnswers, $userId, $courseId, $materialId);
-        // The rest of your code remains unchanged
-
-        // if ($material) {
             return redirect()->route('course.showResults', [$courseId, $materialId]);
-        // } else {
-        //     // Handle the case where the material is not found
-        //     // You can redirect to an error page, show a message, or take another appropriate action
-        //     return redirect()->route('error.page'); // Replace 'error.page' with the appropriate route name
-        // }
     }
 
 
-    public function showAssignmentResults($courseId, $materialId)
-    {
+    public function showAssignmentResults($courseId, $materialId){
         $sidebars = Sidebar::select('sidebar.id', 'sidebar.material_id', 'sidebar.parent_id', 'sidebar.title', 'sidebar.course_id', 'sidebar.is_locked')
             ->where('course_id', $courseId)
             ->orderBy('order')
@@ -208,28 +199,25 @@ class CourseController extends Controller
         $currentMaterialIndex = $sidebars->search(function ($item) use ($materialId) {
             return $item->material_id == $materialId;
         });
-        $nextMaterialIndex = $currentMaterialIndex + 1;
 
         // Determine the previous and next material
         $currentMaterial = $sidebars[$currentMaterialIndex];
-        $previousMaterial = $sidebars[$currentMaterialIndex - 1] ?? null;
-        $nextMaterial = $sidebars[$currentMaterialIndex + 1] ?? null;
         $material = Material::findOrFail($materialId);
         $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $courseId)->first();
-        $findFinalSidebar = Sidebar::where('course_id', $courseId)->where('material_id', $materialId)->first();
 
         $course = Course::find($courseId);
         $excludeFinal = $course->total_module - 1;
-        $firstIndexASG = AssignmentQuestions::where('material_id', $materialId)->first();
-        $firstIndexFIN = FinalTestQuestions::where('material_id', $materialId)->first();
-
+        $materialCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $courseId)
+            ->where('material_id', $materialId)
+            ->where('enrollment_id', $enrollment->id)
+            ->exists();
 
         if ($enrollment) {
 
             if($material->materialContentToMasterType->master_type_name ==  "Assignment"){
                 $assignmentQuestions = AssignmentQuestions::where('material_id', $materialId)->orderBy('id', 'asc')->get();
 
-                $userAnswers = UserAnswer::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $assignmentQuestions->pluck('id'))->get();
+                $userAnswers = UserAnswerAssignment::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $assignmentQuestions->pluck('id'))->get();
 
                 // Calculate the user's score
                 $totalQuestions = $assignmentQuestions->count();
@@ -244,22 +232,49 @@ class CourseController extends Controller
                     }
                 }
                 $userScore = ceil(($correctAnswers / $totalQuestions) * 100);
-                MaterialCompleted::create([
-                    'user_id' => auth()->id(),
-                    'course_id' => $courseId,
-                    'material_id' => $materialId,
-                    'enrollment_id' => $enrollment->id,
-                    'total_score' => $userScore,
-                ]);
+
+                if(!$materialCompleted){
+                    MaterialCompleted::create([
+                        'user_id' => auth()->id(),
+                        'course_id' => $courseId,
+                        'material_id' => $materialId,
+                        'enrollment_id' => $enrollment->id,
+                        'total_score' => $userScore,
+                        'attempts' => \DB::raw('attempts + 1'),
+                    ]);
+                }
+                else{
+                    MaterialCompleted::where('material_id', $materialId)->update([
+                        'total_score' => $userScore,
+                        'attempts' => \DB::raw('attempts + 1'),
+                    ]);
+                }
+
                 Log::info('The Answers:', [$userAnswers]);
                 Log::info('The Questions:', [$assignmentQuestions]);
+
+                if($userScore >= $material->minimum_score){
+                    $enrollment->material_completed_count += 1;
+                    $enrollment->total_duration_count+=$material->material_duration;
+                    $enrollment->save();
+
+                    $currentMaterial->is_locked = false;
+                    $currentMaterial->save();
+                }
+
+                if ($enrollment->material_completed_count == $excludeFinal) {
+                    $enrollment->ready_for_final = true;
+                    $enrollment->save();
+                }
+
+                return response()->json(['message' => 'Success']);
 
             }
 
             if($material->materialContentToMasterType->master_type_name ==  "Final Test"){
                 $finalTestQuestions = FinalTestQuestions::where('material_id', $materialId)->orderBy('id', 'asc')->get();
 
-                $userAnswers = UserAnswer::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $finalTestQuestions->pluck('id'))->get();
+                $userAnswers = UserAnswerFinalTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $finalTestQuestions->pluck('id'))->get();
 
                 // Calculate the user's score
                 $totalQuestions = $finalTestQuestions->count();
@@ -274,56 +289,44 @@ class CourseController extends Controller
                     }
                 }
                 $userScore = ceil(($correctAnswers / $totalQuestions) * 100);
-                MaterialCompleted::create([
-                    'user_id' => auth()->id(),
-                    'course_id' => $courseId,
-                    'material_id' => $materialId,
-                    'enrollment_id' => $enrollment->id,
-                    'total_score' => $userScore,
-                ]);
-            }
-            if($userScore >= $material->minimum_score){
-                $enrollment->material_completed_count += 1;
-                $enrollment->total_duration_count+=$material->material_duration;
-                $enrollment->save();
-
-                $currentMaterial->is_locked = false;
-                $currentMaterial->save();
-            }
-
-
-            //Kalau total complete sudah tinggal yg final saja
-            if ($enrollment->material_completed_count == $excludeFinal) {
-                $enrollment->ready_for_final = true;
-                $enrollment->save();
-            }
-
-        }
-
-        if ($previousMaterial || $nextMaterial) {
-            // Assuming you have a UserCourse model that represents the user's progress in a course
-            // $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
-
-            if ($enrollment) {
-                $userCourse = UserCourseDetail::find($enrollment->course_id);
-
-                if ($userCourse) {
-                    $userCourse->last_accessed_material = $previousMaterial ? $previousMaterial->material_id : $nextMaterial->material_id;
-                    $userCourse->save();
-                    // if ($nextMaterial && $nextMaterial->is_locked) {
-                    //     // Unlock the next material if it is currently locked
-                    //     $nextMaterial->is_locked = false;
-                    //     $nextMaterial->save();
-                    // }
+                if(!$materialCompleted){
+                    MaterialCompleted::create([
+                        'user_id' => auth()->id(),
+                        'course_id' => $courseId,
+                        'material_id' => $materialId,
+                        'enrollment_id' => $enrollment->id,
+                        'total_score' => $userScore,
+                        'attempts' => \DB::raw('attempts + 1'),
+                    ]);
                 }
+                else{
+                    MaterialCompleted::where('material_id', $materialId)->update([
+                        'total_score' => $userScore,
+                        'attempts' => \DB::raw('attempts + 1'),
+                    ]);
+                }
+                Log::info('The Answers:', [$userAnswers]);
+                Log::info('The Questions:', [$finalTestQuestions]);
+
+                if($userScore >= $material->minimum_score){
+                    $enrollment->material_completed_count += 1;
+                    $enrollment->total_duration_count+=$material->material_duration;
+                    $enrollment->save();
+
+                    $currentMaterial->is_locked = false;
+                    $currentMaterial->save();
+                }
+
+                if ($enrollment->material_completed_count == $excludeFinal) {
+                    $enrollment->ready_for_final = true;
+                    $enrollment->save();
+                }
+
+                // return view('contents.assignment_test_results');
             }
         }
-        // Load the corresponding material view based on the material type
-        // $material = Material::findOrFail($material_id);
-        $userCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $courseId)->first();
-        $userCourseDetail->last_accessed_material = $materialId;
-        $userCourseDetail->save();
-        // return view('contents.courses');
-        // return view('contents.assignment_results', compact('courseId', 'materialId', 'currentMaterialIndex', 'nextMaterial', 'sidebars', 'userCourseDetail'));
+    }
+    public function showScore($material_id, $question_id, $type){
+        return view('contents.assignment_test_results');
     }
 }

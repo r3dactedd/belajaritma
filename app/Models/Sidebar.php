@@ -15,6 +15,8 @@ class Sidebar extends Model
         'course_id',
         'order',
         'material_id',
+        'is_visible',
+        'is_locked',
         'title',
         'path',
         'type',
