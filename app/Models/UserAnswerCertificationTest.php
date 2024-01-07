@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserAnswer extends Model
+class UserAnswerCertificationTest extends Model
 {
     use HasFactory;
-
+    public $table = "user_answers_certification_test";
     protected $fillable = [
         'user_id',
         'question_id',
@@ -23,6 +23,6 @@ class UserAnswer extends Model
 
     public function question()
     {
-        return $this->belongsTo(AssignmentQuestions::class);
+        return $this->belongsTo(CertifQuestions::class);
     }
 }

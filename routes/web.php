@@ -65,7 +65,10 @@ Route::get('/forum/course/{course_id}/thread/{id}', [ForumController::class, 'fo
 Route::post('/forum/course/{course_id}/thread/{id}', [ForumController::class, 'createReply']);
 Route::delete('/forum/course/{course_id}/thread/{id}/delete', [ForumController::class, 'deleteThread']);
 
-Route::post('/submit-answers', [CourseController::class, 'submitAnswers'])->name('submit.answers');
+
+// Route::get('/courses/material/{id}/{material_id}/{type}/results', function(){
+//     return view('contents.assignment_test_results');
+// });
 // Route::get('/forum/course/1', function () {
 //     return view('forum.forum');
 // });
@@ -98,7 +101,7 @@ Route::get('/courses/2/video', function () {
 Route::get('/courses/3/asg/questions', function () {
     return view('contents.assignment_questions');
 });
-Route::get('/courses/{courseId}/{materialId}/asg/results', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
+
 
 Route::get('/profile/{username}', [ProfileController::class, 'viewProfile']);
 Route::get('/editProfile', [ProfileController::class, 'editProfile']);
@@ -131,6 +134,14 @@ Route::get('/courses/1/getcerti', function () {
 //sidebar route
 Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showMaterial'])->name('sidebar.showSidebar');
 Route::get('/courses/material/{title}/{id}/{material_id}/{question_id}/{type}', [CourseController::class, 'courseTestPage']);
+
+Route::post('/submit-answers', [CourseController::class, 'submitAnswers'])->name('submit.answers');
+Route::get('/courses/{courseId}/{materialId}/results', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
+Route::get('/courses/material/{id}/{material_id}/{type}/score', [CourseController::class, 'showScore']);
+
+
+
+
 
 Route::get('/courses/material/{title}/{course_id}/{current_material_id}/{direction}', [SidebarController::class, 'handleMaterialNavigation']);
 // Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');

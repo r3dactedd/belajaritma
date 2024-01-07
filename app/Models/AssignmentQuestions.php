@@ -25,7 +25,7 @@ class AssignmentQuestions extends Model
     }
 
     public function questionToAnswer(){
-        return $this->hasMany(UserAnswer::class,'question_id');
+        return $this->hasMany(UserAnswerAssignment::class,'question_id');
     }
 
 }

@@ -20,7 +20,7 @@ class SidebarSeeder extends Seeder
             'order' => 1,
             'title' => 'Pengenalan Algoritma dan Pemrograman',
             'path' => '/courses/materialContent/pdf',
-            'is_locked' => true
+            'is_locked' => false,
         ]);
 
         Sidebar::create([

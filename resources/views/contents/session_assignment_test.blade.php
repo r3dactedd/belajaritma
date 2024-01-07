@@ -61,8 +61,7 @@
                                 {{ $material->detailed_description }}
                             </h2>
 
-                            <div
-                                class="grid w-full grid-cols-1 gap-4  pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-2">
+                            <div class="grid w-full grid-cols-1 gap-4  pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-2">
                                 <div class="rounded-lg bg-white px-2 py-4">
                                     <div class="text-indigo-500">Waktu Pengerjaan</div>
                                     <div class="text-xs text-gray-500">{{ $material->material_duration }} Menit</div>
@@ -115,7 +114,7 @@
                             </a>
                         </button>
                     @endif
-                    @if ($nextMaterial)
+                    @if ($nextMaterial->is_locked == false)
                         <button type="button">
                             <a href="{{ url('/courses/' . 'material/' . $nextMaterial->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
                                 class="group inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800">
