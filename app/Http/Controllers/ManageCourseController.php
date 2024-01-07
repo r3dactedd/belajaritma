@@ -195,10 +195,15 @@ class ManageCourseController extends Controller
         $newSidebar->title = $createMaterial->title;
         $newSidebar->course_id = $id;
         $newSidebar->material_id = $material_id;
-        $newSidebar->is_locked = false;
+        $newSidebar->is_locked = true;
         $newSidebar->order = ($sidebarCount > 0) ? Sidebar::where('course_id', $id)->max('order') + 1 : 1;
         $newSidebar->path = '';
         $newSidebar->save();
+
+        $updateLastAccessedMats = UserCourseDetail::firstOrNew(['course_id' => $id]);
+
+        // Periksa apakah last_accessed_material belum diatur (0)
+
 
 
         // dd($createMaterial);
@@ -233,6 +238,31 @@ class ManageCourseController extends Controller
             'title'=> $validateMaterialData['title'],
             'description'=> $validateMaterialData['description'],
         ];
+
+        $updateLastAccessedMats = UserCourseDetail::where(['course_id' => $id]);
+
+
+        // Periksa apakah last_accessed_material belum diatur (0)
+        if ($updateLastAccessedMats) {
+            if($updateLastAccessedMats->last_accessed_material == 0){
+                $updateLastAccessedMats->last_accessed_material = $id;
+                $updateLastAccessedMats->save();
+            }
+            // Set last_accessed_material ke $material_id
+
+
+            // Simpan perubahan
+
+        }
+        else{
+            $user = auth()->user();
+            $userCourseDetail = new UserCourseDetail([
+                            'user_id' => $user->id,
+                            'course_id' => $id,
+                            'last_accessed_material' => $id,
+                        ]);
+            $userCourseDetail->save();
+        }
         Material::where('id', $id)->update($changeMaterialData);
         return Redirect::to("/manager/course/session/{$id}/edit");
         // dd($changeMaterialData);
@@ -255,18 +285,27 @@ class ManageCourseController extends Controller
         }
         if($material->materialContentToMasterType->master_type_name == 'PDF'){
             $validatePDF = $request->validate([
-                'pdf_link'=>'file|mimes:pdf|max:2048',
+                'pdf_link' => 'file|mimes:pdf|max:2048',
             ]);
-            $changeMaterialDetail = [];
 
-            $changeMaterialDetail += [
-                'pdf_link'=> $validatePDF['pdf_link'],
+            // Generate nama file menggunakan Str::orderedUuid()
+            $filename = Str::orderedUuid() . '.' . $request->file('pdf_link')->getClientOriginalExtension();
+
+            // Pindahkan file ke direktori yang diinginkan (misalnya di dalam direktori public/material_pdf)
+            $request->file('pdf_link')->move(public_path('material_pdf'), $filename);
+
+            $changeMaterialDetail = [
+                'pdf_link' => $filename,
             ];
 
-            $filename = Str::orderedUuid() . '.' . $request->file('pdf_link')->getClientOriginalExtension();
-            $request->file('pdf_link')->storeAs('material_pdf', $filename, 'material_pdf');
+            try {
+                Material::where('id', $id)->update($changeMaterialDetail);
+            } catch (\Exception $e) {
+                // Tangani kesalahan (contoh: log kesalahan, kembalikan tanggapan kesalahan)
+                Log::error('Error updating material: ' . $e->getMessage());
 
-            Material::where('id', $id)->update($changeMaterialDetail);
+                return redirect()->back()->with('error', 'Failed to update material. Please try again.');
+            }
             return Redirect::to("/manager/course/materiallist/{$material->materialToCourse->id}");
         }
         if($material->materialContentToMasterType->master_type_name == 'Assignment' || $material->materialContentToMasterType->master_type_name == 'Final Test'){
