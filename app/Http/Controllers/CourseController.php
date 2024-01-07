@@ -326,7 +326,7 @@ class CourseController extends Controller
             }
         }
     }
-    public function showScore($material_id, $question_id, $type){
+    public function showScore($id, $material_id, $type){
         return view('contents.assignment_test_results');
     }
 }
