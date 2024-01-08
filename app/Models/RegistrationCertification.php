@@ -16,6 +16,7 @@ class RegistrationCertification extends Model
         'registered',
         'passed',
         'total_score',
+        'blocked_until',
         'attempts',
     ];
 

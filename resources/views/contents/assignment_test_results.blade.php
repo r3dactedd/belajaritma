@@ -45,19 +45,19 @@
                             <div class="space-y-4">
                                 <h1
                                     class="text-md relative mx-6 block w-auto pt-4 font-bold tracking-normal text-gray-800 lg:text-xl">
-                                    Nilai : <span
-                                        class="text-green-600">{{ $materialCompleted->total_score }}</span>
+                                    Nilai : <span class="text-green-600">{{ $materialCompleted->total_score }}</span>
                                 </h1>
                                 @if ($material->materialContentToMasterType->master_type_name == 'Assignment')
-                                <h2
-                                    class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
-                                    Selamat, anda berhasil mengerjakan assignment ini! Silahkan melanjutkan ke sesi berikutnya.
-                                </h2>
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        Selamat, anda berhasil mengerjakan assignment ini! Silahkan melanjutkan ke sesi
+                                        berikutnya.
+                                    </h2>
                                 @else
-                                <h2
-                                class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
-                                Selamat, anda berhasil menyelesaikan Final Test ini!
-                            </h2>
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        Selamat, anda berhasil menyelesaikan Final Test ini!
+                                    </h2>
                                 @endif
                             </div>
                             {{-- Success --}}
@@ -66,43 +66,66 @@
                             <div class="space-y-4">
                                 <h1
                                     class="text-md relative mx-6 block w-auto pt-4 font-bold tracking-normal text-gray-800 lg:text-xl">
-                                    Nilai : <span
-                                        class="text-red-600">{{ $materialCompleted->total_score }}</span>
+                                    Nilai : <span class="text-red-600">{{ $materialCompleted->total_score }}</span>
                                 </h1>
 
-                                @if ($materialCompleted->attempts < 3 && $material->materialContentToMasterType->master_type_name == 'Assignment')
-                                <h2
-                                    class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
-                                    Maaf, anda belum berhasil menyelesaikan assignment ini. Silahkan mencoba kembali.
-                                </h2>
+                                @if (
+                                    $materialCompleted->attempts < 3 &&
+                                        $material->materialContentToMasterType->master_type_name == 'Assignment' &&
+                                        now() > $materialCompleted->blocked_until)
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        Maaf, anda belum berhasil menyelesaikan assignment ini. Silahkan mencoba kembali.
+                                    </h2>
                                     <strong class="flex items-center justify-center">Batas untuk mengambil ulang Assignment
-                                        ini adalah 3 Kali. Anda memiliki {{ 3-$materialCompleted->attempts }} kesempatan lagi.</strong>
-                                        <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 30 menit sebelum dapat mengerjakan assignment kembali.</strong>
+                                        ini adalah 3 Kali. Anda memiliki {{ 3 - $materialCompleted->attempts }} kesempatan
+                                        lagi.</strong>
+                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 30
+                                        menit sebelum dapat mengerjakan assignment kembali.</strong>
                                     <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstIndex->id }}/{{ $type }}'
                                         class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
                                         <span class="mx-2 items-center">Mengambil Ulang Assignment
                                         </span>
                                     </a>
-                                @elseif ($materialCompleted->attempts < 3 && $material->materialContentToMasterType->master_type_name == 'Final Test')
-                                <h2
-                                    class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
-                                    Maaf, anda belum lulus mengerjakan Final Test ini. Silahkan mencoba kembali pada esok hari.
-                                </h2>
-                                    <strong class="flex items-center justify-center"></strong>
+                                @elseif (
+                                    $materialCompleted->attempts < 1 &&
+                                        $material->materialContentToMasterType->master_type_name == 'Final Test' &&
+                                        now() > $materialCompleted->blocked_until)
+                                    <strong class="flex items-center justify-center">Batas untuk mengambil ulang Final Test
+                                        ini adalah 1 Kali. Anda memiliki {{ 1 - $materialCompleted->attempts }} kesempatan
+                                        lagi.</strong>
+                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 1
+                                        hari sebelum dapat mengerjakan Final Test kembali.</strong>
                                     <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstIndex->id }}/{{ $type }}'
                                         class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
                                         <span class="mx-2 items-center">Mengambil Ulang Final Test
                                         </span>
                                     </a>
-                                @else
-                                    <a
-                                        class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-red-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
-
-                                        <span class="mx-2 items-center">Ambil Ulang Sudah Mencapai Batas Maksimal
-                                        </span>
-
-                                    </a>
+                                @elseif (
+                                    $materialCompleted->blocked_until &&
+                                        now() < $materialCompleted->blocked_until &&
+                                        $material->materialContentToMasterType->master_type_name == 'Final Test')
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        Maaf, anda belum lulus mengerjakan Final Test ini. Silahkan mencoba kembali pada
+                                        esok hari.
+                                    </h2>
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
+                                @elseif (
+                                    $materialCompleted->blocked_until &&
+                                        now() < $materialCompleted->blocked_until &&
+                                        $material->materialContentToMasterType->master_type_name == 'Assignment')
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        Maaf, anda belum lulus mengerjakan Assignment ini. Silahkan mencoba kembali setelah
+                                        30 menit
+                                    </h2>
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
                                 @endif
                             </div>
                             {{-- Fail --}}
@@ -181,16 +204,30 @@
 
 
                     <hr>
-                    <div class="mx-auto p-6 antialiased">
-                        <div class="space-y-4">
-                            <a href='/courses/{{ $course->id }}'
-                                class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                    @if ($material->materialContentToMasterType->master_type_name == 'Assignment')
+                        <div class="mx-auto p-6 antialiased">
+                            <div class="space-y-4">
+                                <a href='/courses/{{ $course->id }}'
+                                    class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                                <span class="mx-2 items-center">Finish Assignment
-                                </span>
-                            </a>
+                                    <span class="mx-2 items-center">Finish Assignment
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
+                    @if ($material->materialContentToMasterType->master_type_name == 'Final Test')
+                        <div class="mx-auto p-6 antialiased">
+                            <div class="space-y-4">
+                                <a href='/courses/{{ $course->id }}'
+                                    class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+
+                                    <span class="mx-2 items-center">Finish Final Test
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
 
                 </div>
                 <hr>
