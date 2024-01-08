@@ -50,18 +50,23 @@
                                     class="relative mx-6 block w-auto py-4 text-base font-bold tracking-normal text-gray-800 lg:text-xl">
                                     Mengenai Final Test
                                 </h1>
+                                <h2
+                                    class="relative mx-6 mb-2 w-auto text-base font-semibold tracking-normal text-gray-800 lg:text-base">
+                                    {{ $material->description }}
+                                </h2>
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment')
                                 <h1
                                     class="relative mx-6 block w-auto py-4 text-base font-bold tracking-normal text-gray-800 lg:text-xl">
                                     Mengenai Assignment
                                 </h1>
+                                <h2
+                                    class="relative mx-6 mb-2 w-auto text-base font-semibold tracking-normal text-gray-800 lg:text-base">
+                                    {{ $material->detailed_description }}
+                                </h2>
                             @endif
-                            <h2
-                                class="relative mx-6 mb-2 w-auto text-base font-semibold tracking-normal text-gray-800 lg:text-base">
-                                {{ $material->detailed_description }}
-                            </h2>
 
-                            <div class="grid w-full grid-cols-1 gap-4  pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-2">
+
+                            <div class="grid w-full grid-cols-1 gap-4 pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-2">
                                 <div class="rounded-lg bg-white px-2 py-4">
                                     <div class="text-indigo-500">Waktu Pengerjaan</div>
                                     <div class="text-xs text-gray-500">{{ $material->material_duration }} Menit</div>

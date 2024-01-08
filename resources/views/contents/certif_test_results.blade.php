@@ -62,33 +62,12 @@
                                     Nilai Test Sertifikasi : <span class="text-red-600">{{ $register->total_score }}</span>
                                 </h1>
                                 <h2
-                                    class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
-                                    Maaf, anda belum lulus kursus ini. Silahkan mengambil kembali Test Sertifikasi ini.
-                                </h2>
-                                @if ($register->attempts < 3)
-                                    <strong class="flex items-center justify-center"> **INGAT!!! Batas Ambil Ulang Adalah 3
-                                        Kali**</strong>
-                                    <a href="/certification/test/{{ $certif->id }}/{{ $firstIndexCERT->id }}"
-                                        class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
-
-                                        <span class="items-center mx-2">Mengambil Ulang Tes Sertifikasi
-                                        </span>
-
-                                    </a>
-                                @else
-                                    <a
-                                        class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-red-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
-
-                                        <span class="items-center mx-2">Ambil Ulang Sudah Mencapai Batas Maksimal
-                                        </span>
-
-                                    </a>
-                                @endif
+                                class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                Maaf, anda belum lulus mengerjakan Tes Sertifikasi ini. Silahkan mencoba kembali pada esok hari.
+                            </h2>
                             </div>
                             {{-- Fail --}}
                         @endif
-
-
                     </div>
                     <hr>
                     {{-- QUESTION TEXT --}}
