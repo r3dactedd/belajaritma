@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\Enrollment;
+use App\Models\Material;
 use App\Models\UserCourseDetail;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,14 +33,22 @@ class EnrollmentController extends Controller
 
         Course::where('id', $id)->update($addStudentsEnrolled);
 
-        $userCourseDetail = new UserCourseDetail([
-            'user_id' => $user->id,
-            'course_id' => $id,
-            'last_accessed_material' => 1,
-        ]);
+        $userCourseDetail = UserCourseDetail::where('course_id', $id)->get();
 
-        $userCourseDetail->save();
+        $existingMaterial = Material::where('course_id', $id)->first();
+        if($userCourseDetail){
+            if($existingMaterial){
+                $userCourseDetail = new UserCourseDetail([
+                    'user_id' => $user->id,
+                    'course_id' => $id,
+                    'last_accessed_material' => $existingMaterial->id,
+                ]);
+                $userCourseDetail->save();
 
-        return redirect()->back()->with('success', 'You have successfully enrolled in the course.');
+
+                return redirect()->back()->with('success', 'You have successfully enrolled in the course.');
+            }
+        }
+
     }
 }
