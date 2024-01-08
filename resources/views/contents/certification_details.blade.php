@@ -150,29 +150,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
-                <div class="w-full px-4">
-                    <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
-                        <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                            Bukti Penyelesaian Sertifikasi
-                        </h2>
-                        <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
-                            Selamat! Anda telah lulus tes sertifikasi ini. Silahkan mengunduh bukti sertifikasi
-                            anda.
-                        </p>
 
-                        <div class="flex items-center">
-                            <div class="flex items-center">
-                                <p onclick="downloadImage()" class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                    <a
-                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Unduh
-                                        Bukti Sertifikasi</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="my-4"></div>
             @if (auth()->check())
                 @if (auth()->user()->isRegistered($data->id))
@@ -215,12 +193,21 @@
 
                                     <div class="flex items-center">
                                         <div class="flex items-center">
+                                            @if ($register->attempts < 1)
+                                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                                    <a href="/certifications/aboutTest/{{ $data->id }}"
+                                                        id="convertButton"
+                                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
+                                                        Test</a>
+                                                </p>
+                                            @elseif ($register->attempts >= 1)
+                                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                                    <a href="/certification/{{ $data->id }}/score" id="convertButton"
+                                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Lihat
+                                                        Nilai</a>
+                                                </p>
+                                            @endif
 
-                                            <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                                <a href="/certifications/aboutTest/{{ $data->id }}" id="convertButton"
-                                                    class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
-                                                    Test</a>
-                                            </p>
                                         </div>
                                     </div>
                                 </div>

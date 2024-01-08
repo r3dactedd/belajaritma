@@ -73,7 +73,7 @@
                             </div>
 
                         </div>
-                        @if ($material->materialContentToMasterType->master_type_name == 'Final Test')
+                        @if ($material->materialContentToMasterType->master_type_name == 'Final Test' && !$materialCompleted)
                             <a href='/courses/material/{{ $material->title }}/{{ $material->course_id }}/{{ $material->id }}/{{ $firstIndexFIN->id }}/finalTest'
                                 class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
@@ -81,11 +81,27 @@
                                 </span>
 
                             </a>
-                        @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment')
+                        @elseif ($material->materialContentToMasterType->master_type_name == 'Final Test' && $materialCompleted)
+                            <a href='/courses/material/{{ $material->course_id }}/{{ $material->id }}/finalTest/score'
+                                class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+
+                                <span class="mx-2 items-center">Lihat Nilai Final Test
+                                </span>
+
+                            </a>
+                        @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment' && !$materialCompleted)
                             <a href='/courses/material/{{ $material->title }}/{{ $material->course_id }}/{{ $material->id }}/{{ $firstIndexASG->id }}/assignment'
                                 class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
                                 <span class="mx-2 items-center">Mulai Assignment
+                                </span>
+
+                            </a>
+                        @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment' && $materialCompleted)
+                            <a href='/courses/material/{{ $material->course_id }}/{{ $material->id }}/assignment/score'
+                                class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+
+                                <span class="mx-2 items-center">Lihat Nilai Assignment
                                 </span>
 
                             </a>
@@ -114,22 +130,25 @@
                             </a>
                         </button>
                     @endif
-                    @if ($nextMaterial->is_locked == false)
-                        <button type="button">
-                            <a href="{{ url('/courses/' . 'material/' . $nextMaterial->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
-                                class="group inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800">
+                    @if ($nextMaterial)
+                        @if ($nextMaterial->is_locked == true && $nextMaterial->is_visible == true)
+                            <button type="button">
+                                <a href="{{ url('/courses/' . 'material/' . $nextMaterial->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
+                                    class="group inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800">
 
-                                <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"
-                                    xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512"
-                                    fill="currentColor">
-                                    <path
-                                        d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-                                </svg>
-                                <span
-                                    class="text-base text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-blue-500">Lanjut</span>
-                            </a>
-                        </button>
+                                    <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"
+                                        xmlns="http://www.w3.org/2000/svg" height="16" width="10"
+                                        viewBox="0 0 320 512" fill="currentColor">
+                                        <path
+                                            d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                                    </svg>
+                                    <span
+                                        class="text-base text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-blue-500">Lanjut</span>
+                                </a>
+                            </button>
+                        @endif
                     @endif
+
                 </div>
             </div>
     </body>

@@ -180,6 +180,7 @@
                             const answerData = {
                                 questionId: questionId,
                                 answer: selectedAnswer.value,
+                                answerDetail: selectedAnswer.parentElement.textContent.trim(),
                             };
 
                             const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
@@ -216,6 +217,7 @@
                             const answerData = {
                                 questionId: questionId,
                                 answer: selectedAnswer.value,
+                                answerDetail: selectedAnswer.parentElement.textContent.trim(),
                             };
 
                             const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
@@ -267,6 +269,7 @@
                             const answerData = {
                                 questionId: questionId,
                                 answer: selectedAnswer.value,
+                                answerDetail: selectedAnswer.parentElement.textContent.trim(),
                             };
 
                             const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
@@ -288,7 +291,11 @@
                                 if (validateAnswers()) {
                                     // If validation is successful, send the submission data to the controller
                                     const submissionData = {
-                                        answers: userAnswers,
+                                        answers: userAnswers.map(answer => ({
+                                            questionId: answer.questionId,
+                                            answer: answer.answer,
+                                            answerDetail: answer.answerDetail,
+                                        })),
                                         courseId: document.querySelector('input[name="courseId"]').value,
                                         materialId: document.querySelector('input[name="materialId"]')
                                             .value,
@@ -317,7 +324,7 @@
                                                 console.log(data
                                                     .data
                                                 ); // Lakukan sesuatu dengan data JSON yang diterima
-
+                                                clearSelectedAnswers();
                                                 // Redirect ke halaman assignment_test_results
                                                 window.location.href = '/courses/material/' + courseId +
                                                     '/' + materialId + '/' + type + '/score'
@@ -384,6 +391,16 @@
 
 
                 updateRadioButtons();
+
+                function clearSelectedAnswers() {
+                    const radioButtons = document.querySelectorAll('input[name="radio1"]');
+                    radioButtons.forEach(radioButton => {
+                        radioButton.checked = false;
+                    });
+
+                    // Clear the userAnswers array
+                    sessionStorage.removeItem('userAnswers');
+                }
             });
         </script>
     </body>

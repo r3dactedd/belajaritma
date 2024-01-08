@@ -13,6 +13,8 @@ class UserAnswerFinalTest extends Model
         'user_id',
         'question_id',
         'selected_answer',
+        'answer_detail',
+        'is_correct',
         'type'
     ];
 

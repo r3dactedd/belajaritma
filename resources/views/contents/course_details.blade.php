@@ -270,14 +270,31 @@
                                 @if (auth()->user()->isEnrolled($data->id) != null)
                                     @if (
                                         $materialItem->materialContentToMasterType->master_type_name == 'Final Test' &&
-                                            auth()->user()->isReadyForFinal($data->id))
+                                            auth()->user()->isReadyForFinal($data->id) &&
+                                            !$checkFinalComplete)
                                         <div class="flex items-center">
                                             <div class="flex items-center">
 
                                                 <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
-                                                    <a href="/transaction" id="convertButton"
+                                                    <a href="/courses/material/{{ $materialItem->title }}/{{ $materialItem->course_id }}/{{ $materialItem->id }}/{{ $firstIndexFIN->id }}/finalTest"
+                                                        id="convertButton"
                                                         class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Ambil
                                                         Test</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    @elseif (
+                                        $materialItem->materialContentToMasterType->master_type_name == 'Final Test' &&
+                                            auth()->user()->isReadyForFinal($data->id) &&
+                                            $checkFinalComplete)
+                                        <div class="flex items-center">
+                                            <div class="flex items-center">
+
+                                                <p class="text-lg font-bold leading-5 tracking-normal text-indigo-600">
+                                                    <a href="/courses/material/{{ $materialItem->course_id }}/{{ $materialItem->id }}/finalTest/score"
+                                                        id="convertButton"
+                                                        class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Lihat
+                                                        Nilai Test</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -292,10 +309,9 @@
                     $index++;
                 @endphp
             @endforeach
-            
+
             @if (Auth::check())
-                @if (auth()->user()->hasCompletedCourse($data->id) &&
-                        auth()->user()->isCompleted($data->id))
+                @if (auth()->user()->hasCompletedCourse($data->id))
                     <div
                         class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
                         <div class="w-full px-4">

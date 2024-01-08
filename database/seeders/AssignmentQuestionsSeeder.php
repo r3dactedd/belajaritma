@@ -16,7 +16,7 @@ class AssignmentQuestionsSeeder extends Seeder
         //
         AssignmentQuestions::create([
             'material_id' => 5,
-            'questions' => 'Aplikasi seperti Dev-C dan Codeblocks yang akan digunakan pada pembelajaran kursus ini adalah contoh dari: ',
+            'questions' => 'Aplikasi seperti Dev-C dan Codeblocks yang akan digunakan pada pembelajaran kursus ini adalah contoh dari:',
             'jawaban_a' => 'Program Constructor',
             'jawaban_b' => 'Integrated Development Environment',
             'jawaban_c' => 'Algorithm Explorer',
@@ -25,7 +25,7 @@ class AssignmentQuestionsSeeder extends Seeder
         ]);
         AssignmentQuestions::create([
             'material_id' => 5,
-            'questions' => 'Bahasa C dikembangkan oleh : ',
+            'questions' => 'Bahasa C dikembangkan oleh :',
             'jawaban_a' => 'Guido van Rossum',
             'jawaban_b' => 'Steve Wozniak',
             'jawaban_c' => 'Dennis Ritchie',
@@ -34,7 +34,7 @@ class AssignmentQuestionsSeeder extends Seeder
         ]);
         AssignmentQuestions::create([
             'material_id' => 5,
-            'questions' => 'Untuk menampung variabel angka yang memiliki titik desimal, digunakan tipe data: ',
+            'questions' => 'Untuk menampung variabel angka yang memiliki titik desimal, digunakan tipe data:',
             'jawaban_a' => 'string',
             'jawaban_b' => 'char',
             'jawaban_c' => 'int',
@@ -45,8 +45,7 @@ class AssignmentQuestionsSeeder extends Seeder
             'material_id' => 5,
             'questions' => 'Pada suatu program, terdapat variable
             int test = 21;
-            Untuk print variable tersebut, digunakan sintaks :
-            ',
+            Untuk print variable tersebut, digunakan sintaks :',
             'jawaban_a' => '%int',
             'jawaban_b' => '%f',
             'jawaban_c' => '%test',
@@ -75,7 +74,7 @@ class AssignmentQuestionsSeeder extends Seeder
         AssignmentQuestions::create([
             'material_id' => 5,
             'question_img'=> 'assignment1_question7.png',
-            'questions' => 'Apabila kita menginput integer bernilai 6 pada program ini, berapakah nilai dari variabel sum pada aplikasi? ',
+            'questions' => 'Apabila kita menginput integer bernilai 6 pada program ini, berapakah nilai dari variabel sum pada aplikasi?',
             'jawaban_a' => '21',
             'jawaban_b' => '15',
             'jawaban_c' => '36',
@@ -84,28 +83,21 @@ class AssignmentQuestionsSeeder extends Seeder
         ]);
         AssignmentQuestions::create([
             'material_id' => 10,
-            'questions' => 'Suatu fungsi yang bekerja dengan memanggil dirinya sendiri disebut dengan
-            ',
+            'questions' => 'Suatu fungsi yang bekerja dengan memanggil dirinya sendiri disebut dengan',
             'jawaban_a' => 'Self-calling Function',
             'jawaban_b' => 'Independent Function',
             'jawaban_c' => 'Recursive Function',
-            'jawaban_d' => 'Standard Function
-            ',
+            'jawaban_d' => 'Standard Function',
             'jawaban_benar' => 'C',
         ]);
         AssignmentQuestions::create([
             'material_id' => 10,
             'question_img'=> 'assignment2_question2.png',
-            'questions' => 'Function addNumbers pada baris 16 di atas akan menghasilkan error, karena
-            ',
-            'jawaban_a' => 'Variabel result harusnya diganti dengan variabel sum
-            ',
-            'jawaban_b' => 'Variabel result belum di-declare
-            ',
-            'jawaban_c' => 'Fungsi addNumbers seharusnya berada di atas main()
-            ',
-            'jawaban_d' => 'Kesalahan tipe data pada variabel result
-            ',
+            'questions' => 'Function addNumbers pada baris 16 di atas akan menghasilkan error, karena',
+            'jawaban_a' => 'Variabel result harusnya diganti dengan variabel sum',
+            'jawaban_b' => 'Variabel result belum di-declare',
+            'jawaban_c' => 'Fungsi addNumbers seharusnya berada di atas main()',
+            'jawaban_d' => 'Kesalahan tipe data pada variabel result',
             'jawaban_benar' => 'B',
         ]);
         AssignmentQuestions::create([
@@ -121,7 +113,7 @@ class AssignmentQuestionsSeeder extends Seeder
         ]);
         AssignmentQuestions::create([
             'material_id' => 10,
-            'questions' => 'Algoritma Binary Search memiliki kompleksitas waktu : ',
+            'questions' => 'Algoritma Binary Search memiliki kompleksitas waktu :',
             'jawaban_a' => 'O(n * log(n))',
             'jawaban_b' => 'O(n)',
             'jawaban_c' => 'O(log(n))',
@@ -130,7 +122,7 @@ class AssignmentQuestionsSeeder extends Seeder
         ]);
         AssignmentQuestions::create([
             'material_id' => 10,
-            'questions' => 'Algoritma sorting yang menggunakan prinsip elemen pivot untuk menjalankan algoritmanya adalah : ',
+            'questions' => 'Algoritma sorting yang menggunakan prinsip elemen pivot untuk menjalankan algoritmanya adalah :',
             'jawaban_a' => 'Quick sort',
             'jawaban_b' => 'Merge sort',
             'jawaban_c' => 'Selection sort',
