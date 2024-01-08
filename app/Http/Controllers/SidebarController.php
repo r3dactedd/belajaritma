@@ -47,6 +47,19 @@ class SidebarController extends Controller
             ->orderBy('order')
             ->get();
 
+        $getFirstSidebar = Sidebar::select('sidebar.id', 'sidebar.material_id', 'sidebar.parent_id', 'sidebar.title', 'sidebar.course_id', 'sidebar.is_locked', 'sidebar.is_visible')
+            ->where('course_id', $id)
+            ->orderBy('order')
+            ->first();
+
+        $requestedMaterial = Sidebar::where('course_id', $id)
+            ->where('material_id', $material_id)
+            ->first();
+
+        if ((!$requestedMaterial || $requestedMaterial->is_visible == false && $requestedMaterial->is_locked ==true ) && $getFirstSidebar->id != $requestedMaterial->id) {
+            return redirect()->back();
+        }
+
         $userCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $id)->first();
 
         // Find the current material in the sorted sidebar list
@@ -57,14 +70,6 @@ class SidebarController extends Controller
 
         // Determine the previous and next material
         $currentMaterial = $sidebars[$currentMaterialIndex];
-        // $currentMaterial = Sidebar::where('material_id',$material_id)->get();
-        // $currentOrder = $currentMaterial[0]->order;
-
-        // $nextFurthestMaterial = Sidebar::where('course_id', $id)
-        // ->where('order', '>', $currentOrder)
-        // ->orderBy('order')
-        // ->first();
-
 
         $previousMaterial = $sidebars[$currentMaterialIndex - 1] ?? null;
         $nextMaterial = $sidebars[$currentMaterialIndex + 1] ?? null;

@@ -10,6 +10,7 @@ use App\Models\UserAnswerCertificationTest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -189,7 +190,7 @@ class CertificationController extends Controller
 
                 $userScore = ceil(($correctAnswers / $totalQuestions) * 100);
 
-                RegistrationCertification::where('id', $certif_id)->update([
+                RegistrationCertification::where('certif_id', $certif_id)->update([
                     'total_score' => $userScore,
                     'attempts' => \DB::raw('attempts + 1'),
                 ]);
@@ -212,6 +213,21 @@ class CertificationController extends Controller
         $totalQuestions = $questions->count();
         $firstIndexCERT = CertifQuestions::where('certification_id', $certif_id)->first();
         $userAnswers = UserAnswerCertificationTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $questions->pluck('id'))->get();
-        return view('contents.certif_test_results', compact('userAnswers', 'questions','certif','firstIndex','register','totalQuestions','firstIndexCERT'));
+        $remainingTime=null;
+        // dd($register);
+        if ($register->attempts >= 1 && $register->total_score < $certif->minimum_score) {
+            $this->blockUserforADay($register);
+        }
+        if($register->blocked_until){
+            $remainingTime = Carbon::now()->diffInMinutes($register->blocked_until);
+        }
+        return view('contents.certif_test_results', compact('userAnswers', 'questions','certif','firstIndex','register','totalQuestions','firstIndexCERT','remainingTime'));
+    }
+    protected function blockUserForADay ($register){
+        RegistrationCertification::where('id', $register->id)->update([
+            'blocked_until' => Carbon::now()->addDay(1),
+            'attempts' => 0,
+        ]);
+
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class MaterialCompleted extends Model
 {
     use HasFactory;
@@ -16,6 +17,7 @@ class MaterialCompleted extends Model
         'material_id',
         'enrollment_id',
         'total_score',
+        'blocked_until',
         'attempts',
     ];
 

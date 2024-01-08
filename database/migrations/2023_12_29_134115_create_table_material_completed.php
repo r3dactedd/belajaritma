@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('material_id');
             $table->unsignedBigInteger('enrollment_id');
             $table->unsignedBigInteger('total_score')->nullable();
+            $table->timestamp('blocked_until')->nullable();
             $table->unsignedBigInteger('attempts')->default(0);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

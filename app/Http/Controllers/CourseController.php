@@ -13,6 +13,7 @@ use App\Models\Sidebar;
 use App\Models\UserAnswerAssignment;
 use App\Models\UserAnswerFinalTest;
 use App\Models\UserCourseDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -227,6 +228,10 @@ class CourseController extends Controller
             ->where('material_id', $materialId)
             ->where('enrollment_id', $enrollment->id)
             ->exists();
+        $findMaterialCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $courseId)
+            ->where('material_id', $materialId)
+            ->where('enrollment_id', $enrollment->id)
+            ->first();
 
         if ($enrollment) {
 
@@ -277,6 +282,7 @@ class CourseController extends Controller
                         'attempts' => \DB::raw('attempts + 1'),
                     ]);
                 }
+
 
                 Log::info('The Answers:', [$userAnswers]);
                 Log::info('The Questions:', [$assignmentQuestions]);
@@ -347,6 +353,8 @@ class CourseController extends Controller
                         'attempts' => \DB::raw('attempts + 1'),
                     ]);
                 }
+
+
                 Log::info('The Answers:', [$userAnswers]);
                 Log::info('The Questions:', [$finalTestQuestions]);
 
@@ -378,29 +386,55 @@ class CourseController extends Controller
             ->orderBy('order')
             ->first();
 
-
         $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
         $materialCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
             ->where('material_id', $material_id)
             ->where('enrollment_id', $enrollment->id)
             ->first();
-
-
+        $remainingTime = null;
         // dd($firstIndexASG->id);
         if($type=='assignment'){
-            $firstIndex = AssignmentQuestions::where('material_id', $material_id)->first();
 
+            if ($materialCompleted->attempts == 3 && $materialCompleted->total_score < $material->minimum_score) {
+                $this->blockUserFor30Minutes($materialCompleted);
+            }
+            if($materialCompleted->blocked_until){
+                $remainingTime = Carbon::now()->diffInMinutes($materialCompleted->blocked_until);
+            }
+            $firstIndex = AssignmentQuestions::where('material_id', $material_id)->first();
             $questions = AssignmentQuestions::where('material_id', $material_id)->orderBy('id', 'asc')->get();
             $userAnswers = UserAnswerAssignment::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $questions->pluck('id'))->get();
-            return view('contents.assignment_test_results', compact('userAnswers', 'questions','sidebars','materialCompleted', 'material', 'course', 'material_id', 'type', 'firstIndex'));
+            return view('contents.assignment_test_results', compact('userAnswers', 'questions','remainingTime','sidebars','materialCompleted', 'material', 'course', 'material_id', 'type', 'firstIndex'));
 
         }
         if($type=='finalTest'){
+
+            if ($materialCompleted->attempts == 1 && $materialCompleted->total_score < $material->minimum_score) {
+                $this->blockUserforADay($materialCompleted);
+            }
+            if($materialCompleted->blocked_until){
+                $remainingTime = Carbon::now()->diffInMinutes($materialCompleted->blocked_until);
+            }
+            $firstIndex = FinalTestQuestions::where('material_id', $material_id)->first();
             $firstIndex = FinalTestQuestions::where('material_id', $material_id)->first();
             $questions = FinalTestQuestions::where('material_id', $material_id)->orderBy('id', 'asc')->get();
             $userAnswers = UserAnswerFinalTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $questions->pluck('id'))->get();
-            return view('contents.assignment_test_results', compact('userAnswers', 'questions','sidebars','materialCompleted','material', 'course', 'material_id', 'type','firstIndex'));
+            return view('contents.assignment_test_results', compact('userAnswers', 'questions','remainingTime','sidebars','materialCompleted','material', 'course', 'material_id', 'type','firstIndex'));
         }
 
+    }
+
+    protected function blockUserFor30Minutes ($materialCompleted){
+        MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
+            'blocked_until' => Carbon::now()->addMinutes(30),
+            'attempts' => 0,
+        ]);
+    }
+
+    protected function blockUserForADay ($materialCompleted){
+        MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
+            'blocked_until' => Carbon::now()->addDay(1),
+            'attempts' => 0,
+        ]);
     }
 }

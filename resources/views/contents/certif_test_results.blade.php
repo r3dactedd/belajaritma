@@ -61,34 +61,38 @@
                                     class="relative block w-auto pt-4 mx-6 font-bold tracking-normal text-gray-800 text-md lg:text-xl">
                                     Nilai Test Sertifikasi : <span class="text-red-600">{{ $register->total_score }}</span>
                                 </h1>
-                                <h2
-                                    class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
-                                    Maaf, anda belum lulus kursus ini. Silahkan mengambil kembali Test Sertifikasi ini.
-                                </h2>
-                                @if ($register->attempts < 3)
-                                    <strong class="flex items-center justify-center"> **INGAT!!! Batas Ambil Ulang Adalah 3
-                                        Kali**</strong>
-                                    <a href="/certification/test/{{ $certif->id }}/{{ $firstIndexCERT->id }}"
-                                        class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
-
-                                        <span class="items-center mx-2">Mengambil Ulang Tes Sertifikasi
+                                @if ($register->attempts < 1 && now() > $register->blocked_until)
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        Maaf, anda belum berhasil menyelesaikan Tes Sertifikasi ini. Silahkan mencoba
+                                        kembali.
+                                    </h2>
+                                    <strong class="flex items-center justify-center">Batas untuk mengambil ulang Tes
+                                        Sertifikasi ini adalah 1 Kali. Anda memiliki {{ 1 - $register->attempts }}
+                                        kesempatan
+                                        lagi.</strong>
+                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 1
+                                        hari sebelum dapat mengerjakan Tes Sertifikasi kembali.</strong>
+                                    <a href='/certification/test/{{ $certif->id }}/{{ $firstIndexCERT->id }}'
+                                        class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                                        <span class="mx-2 items-center">Mengambil Ulang Tes Sertifikasi
                                         </span>
-
                                     </a>
-                                @else
-                                    <a
-                                        class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-red-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
-
-                                        <span class="items-center mx-2">Ambil Ulang Sudah Mencapai Batas Maksimal
-                                        </span>
-
-                                    </a>
+                                @elseif ($register->blocked_until && now() < $register->blocked_until)
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        Maaf, anda belum lulus mengerjakan Tes Sertifikasi ini. Silahkan mencoba kembali
+                                        pada
+                                        esok hari.
+                                    </h2>
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
                                 @endif
+
                             </div>
                             {{-- Fail --}}
                         @endif
-
-
                     </div>
                     <hr>
                     {{-- QUESTION TEXT --}}
