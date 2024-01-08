@@ -116,6 +116,12 @@ Route::get('/certifications', [CertificationController::class, 'showCertificatio
 Route::get('/certifications/{id}', [CertificationController::class, 'certifDetail']);
 Route::get('/certifications/aboutTest/{certif_id}', [CertificationController::class, 'aboutTest']);
 Route::get('/certification/test/{certif_id}/{question_id}', [CertificationController::class, 'certifTestPage']);
+Route::post('/certification/submit-answers', [CertificationController::class, 'submitAnswers'])->name('certification.submitAnswers');
+Route::get('/certification/{certif_id}/results', [CertificationController::class, 'showResults'])->name('certification.showResults');
+Route::get('/certification/{certif_id}/score', [CertificationController::class, 'showScore']);
+// Route::get('/courses/{courseId}/{materialId}/results', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
+// Route::get('/courses/material/{id}/{material_id}/{type}/score', [CourseController::class, 'showScore']);
+
 // Route::get('/courses/material/{title}/{id}/{material_id}', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
 // Route::get('/certifications/detail/{id}', [CertificationController::class, 'aboutTest']);
 

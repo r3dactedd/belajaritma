@@ -16,8 +16,8 @@ class FinalTestQuestionsSeeder extends Seeder
         //
         FinalTestQuestions::create([
             'material_id' => 11,
-            'questions' => 'Aplikasi dibawah ini yang bukan merupakan Integrated Development Environment adalah : ',
-            'jawaban_a' => 'Dev-C ',
+            'questions' => 'Aplikasi dibawah ini yang bukan merupakan Integrated Development Environment adalah :',
+            'jawaban_a' => 'Dev-C',
             'jawaban_b' => 'Codeblocks',
             'jawaban_c' => 'Visual Studio Code',
             'jawaban_d' => 'Visual Studio',
@@ -26,7 +26,7 @@ class FinalTestQuestionsSeeder extends Seeder
 
         FinalTestQuestions::create([
             'material_id' => 11,
-            'questions' => 'Bahasa C pada umumnya digunakan untuk pemrograman di bidang  berikut, kecuali : ',
+            'questions' => 'Bahasa C pada umumnya digunakan untuk pemrograman di bidang  berikut, kecuali :',
             'jawaban_a' => 'Sistem Operasi',
             'jawaban_b' => 'Embedded Systems',
             'jawaban_c' => 'Networking',
@@ -36,18 +36,17 @@ class FinalTestQuestionsSeeder extends Seeder
 
         FinalTestQuestions::create([
             'material_id' => 11,
-            'questions' => 'Untuk melakukan multi-line comment di C, digunakan simbol :
-            ',
+            'questions' => 'Untuk melakukan multi-line comment di C, digunakan simbol :',
             'jawaban_a' => '/*',
             'jawaban_b' => '//',
             'jawaban_c' => '#',
-            'jawaban_d' => '- - ',
+            'jawaban_d' => '- -',
             'jawaban_benar' => 'A',
         ]);
 
         FinalTestQuestions::create([
             'material_id' => 11,
-            'questions' => 'Untuk menampung sebuah kata atau kalimat (seperti “ikan”) pada C, digunakan tipe data: ',
+            'questions' => 'Untuk menampung sebuah kata atau kalimat (seperti “ikan”) pada C, digunakan tipe data:',
             'jawaban_a' => 'var',
             'jawaban_b' => 'string',
             'jawaban_c' => 'char',
@@ -63,8 +62,7 @@ class FinalTestQuestionsSeeder extends Seeder
             'jawaban_a' => '%int',
             'jawaban_b' => '%c',
             'jawaban_c' => '%d',
-            'jawaban_d' => '%num
-            ',
+            'jawaban_d' => '%num',
             'jawaban_benar' => 'B',
         ]);
 
@@ -112,9 +110,9 @@ class FinalTestQuestionsSeeder extends Seeder
 
         FinalTestQuestions::create([
             'material_id' => 11,
-            'questions' => 'Berikut merupakan keyword yang valid untuk mendeklarasikan sebuah function di C : ',
+            'questions' => 'Berikut merupakan keyword yang valid untuk mendeklarasikan sebuah function di C :',
             'jawaban_a' => 'define',
-            'jawaban_b' => 'func ',
+            'jawaban_b' => 'func',
             'jawaban_c' => 'function',
             'jawaban_d' => 'void',
             'jawaban_benar' => 'D',
@@ -122,10 +120,10 @@ class FinalTestQuestionsSeeder extends Seeder
 
         FinalTestQuestions::create([
             'material_id' => 11,
-            'questions' => 'Dibawah ini manakah yang merupakan cara tepat untuk memberikan nilai 0 untuk seluruh elemen pada array? ',
+            'questions' => 'Dibawah ini manakah yang merupakan cara tepat untuk memberikan nilai 0 untuk seluruh elemen pada array?',
             'jawaban_a' => 'int arr[5] = {0}',
-            'jawaban_b' => 'int arr[5] = 0 ',
-            'jawaban_c' => 'int arr[5] = {0, 0, 0, 0, 0} ',
+            'jawaban_b' => 'int arr[5] = 0',
+            'jawaban_c' => 'int arr[5] = {0, 0, 0, 0, 0}',
             'jawaban_d' => 'int arr[5];',
             'jawaban_benar' => 'C',
         ]);
@@ -147,7 +145,7 @@ class FinalTestQuestionsSeeder extends Seeder
             int matrix[2][4] = {{1, 5, 12, 5}, {4, 7, 10, 14}};
 
             Untuk mengambil nilai perkalian dari 12 dan 7 dari array tersebut, kode yang tepat adalah:',
-            'jawaban_a' => 'matrix[0][2]*matrix[1][1] ',
+            'jawaban_a' => 'matrix[0][2]*matrix[1][1]',
             'jawaban_b' => 'matrix[1][3]*matrix[2][2]',
             'jawaban_c' => 'matrix[0][2]*matrix[1][5]',
             'jawaban_d' => 'matrix[12]*matrix[7]',
@@ -156,7 +154,7 @@ class FinalTestQuestionsSeeder extends Seeder
 
         FinalTestQuestions::create([
             'material_id' => 11,
-            'questions' => 'Algoritma Linear Search memiliki kompleksitas waktu : ',
+            'questions' => 'Algoritma Linear Search memiliki kompleksitas waktu :',
             'jawaban_a' => 'O(n * log(n))',
             'jawaban_b' => 'O(n)',
             'jawaban_c' => 'O(log(n))',
@@ -166,7 +164,7 @@ class FinalTestQuestionsSeeder extends Seeder
 
         FinalTestQuestions::create([
             'material_id' => 11,
-            'questions' => 'Algoritma sorting yang menggunakan prinsip membagi list menjadi dua untuk menjalankan algoritmanya adalah : ',
+            'questions' => 'Algoritma sorting yang menggunakan prinsip membagi list menjadi dua untuk menjalankan algoritmanya adalah :',
             'jawaban_a' => 'Quick sort',
             'jawaban_b' => 'Merge sort',
             'jawaban_c' => 'Selection sort',
