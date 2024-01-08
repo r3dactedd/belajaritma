@@ -27,12 +27,10 @@ class CertificationQuestionSeeder extends Seeder
         CertifQuestions::create([
             'certification_id' => 1,
             'questions' => 'A company wants to migrate to the cloud. The requirement is to have a VPN connection to connect your on-premises network to an Azure virtual network over an IPsec/IKE (IKEv1 or IKEv2) VPN tunnel.
-            What is the most suitable type of VPN connection that you should use?
-            ',
+            What is the most suitable type of VPN connection that you should use?',
             'jawaban_a' => 'Point-to-Site VPN connection',
             'jawaban_b' => 'Site-to-Site VPN Connection',
-            'jawaban_c' => 'VNet peering connection
-            ',
+            'jawaban_c' => 'VNet peering connection',
             'jawaban_d' => 'ExpressRoute Connection',
             'jawaban_benar' => 'B',
         ]);
@@ -55,8 +53,7 @@ class CertificationQuestionSeeder extends Seeder
             What should you create?",
             'jawaban_a' => 'Azure virtual machines, Azure SQL databases, and Azure Storage accounts',
             'jawaban_b' => 'an Azure App Service and Azure virtual machines that have Microsoft SQL Server installed',
-            'jawaban_c' => 'an Azure App Service and Azure SQL databases
-            ',
+            'jawaban_c' => 'an Azure App Service and Azure SQL databases',
             'jawaban_d' => 'Azure storage accounts and web server in Azure virtual machines.',
             'jawaban_benar' => 'C',
         ]);

@@ -32,7 +32,7 @@
                                     </svg>
                                     <a href="/courses/material/{{ $sidebar->title }}/{{ $sidebar->course_id }}/{{ $sidebar->material_id }}"
                                         class="ml-2 text-base font-normal text-gray-600 hover:underline">
-                                        {{ $sidebar->title }} asdasdadadasda</a>
+                                        {{ $sidebar->title }}</a>
                                 @endif
 
                             </div>
