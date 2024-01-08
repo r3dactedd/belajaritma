@@ -44,20 +44,11 @@ class EnrollmentController extends Controller
                     'last_accessed_material' => $existingMaterial->id,
                 ]);
                 $userCourseDetail->save();
-            }
-            else{
-                $userCourseDetail = new UserCourseDetail([
-                    'user_id' => $user->id,
-                    'course_id' => $id,
-                    'last_accessed_material' => 1,
-                ]);
-                $userCourseDetail->save();
+
+
+                return redirect()->back()->with('success', 'You have successfully enrolled in the course.');
             }
         }
 
-
-
-
-        return redirect()->back()->with('success', 'You have successfully enrolled in the course.');
     }
 }

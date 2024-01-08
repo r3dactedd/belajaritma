@@ -109,10 +109,19 @@ class ManageCourseController extends Controller
 
     public function publishCourse($id){
         $data=Course::find($id);
-        $data->ready_for_publish = true;
-        $data->updated_by = Auth()->user()->id;;
-        $data->save();
-        return Redirect::to("/manager/course/edit/{$id}");
+        $materialCount = Material::where('course_id', $id)->count();
+
+        // Memeriksa apakah kursus memiliki setidaknya satu materi
+        if ($materialCount > 0) {
+            $data->ready_for_publish = true;
+            $data->updated_by = auth()->user()->id;
+            $data->save();
+
+            return response()->json(['success' => true, 'redirect_url' => "/manager/course/edit/{$id}"]);
+        } else {
+            // Jika kursus tidak memiliki materi, berikan pesan kesalahan
+            return response()->json(['error' => 'Kursus belum memiliki materi. Silahkan tambahkan setidaknya satu materi.']);
+        }
     }
     public function editCoursePOST(Request $request, $id){
         $rules = [
