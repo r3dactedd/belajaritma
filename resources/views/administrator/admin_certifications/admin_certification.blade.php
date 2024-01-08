@@ -80,6 +80,7 @@
                             <th class="px-4 py-2 text-left">Diupload Oleh</th>
                             <th class="px-4 py-2 text-left">Terakhir Diedit Oleh</th>
                             <th class="px-4 py-2 text-left">Tanggal Edit Terakhir</th>
+                            <th class="px-4 py-2 text-left">Status</th>
                             <th class="px-2 py-3 text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -97,6 +98,13 @@
                                 </td>
                                 <td class="px-4 py-2">
                                     <p class="max-h-20 overflow-scroll">{{ $mat->updated_at->format('Y-m-d') }}</p>
+                                </td>
+                                <td class="px-4 py-2">
+                                    @if ($mat->ready_for_publish == 1)
+                                        <p class="max-h-20 overflow-scroll text-green-500">Published</p>
+                                    @else
+                                        <p class="max-h-20 overflow-scroll text-red-500">Unpublished</p>
+                                    @endif
                                 </td>
                                 <td class="px-6 py-3 text-center">
                                     <div class="item-center flex justify-center">
@@ -154,7 +162,6 @@
                             menghapus materi tersebut?
                         </h3>
                         <div class="flex justify-center text-center">
-                            {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
                             <form method="POST" action="/manager/certification/delete/{{ $mat->id }}"
                                 data-course-id="">
                                 @csrf

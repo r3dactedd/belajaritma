@@ -151,6 +151,11 @@
                 </div>
             </div>
         </div>
+        {{-- window.location.href = '/courses/material/' + $title + $id + $material_id  + $type + '/results'; --}}
+        <input type="hidden" id="title" name="title" value="{{ $title }}">
+        <input type="hidden" id="id" name="id" value="{{ $id }}">
+        <input type="hidden" id="material_id" name="material_id" value="{{ $material_id }}">
+        <input type="hidden" id="type" name="type" value="{{ $type }}">
 
         </div>
         <script>
@@ -246,6 +251,18 @@
                         const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
                         const questionId = selectedAnswer ? selectedAnswer.getAttribute('data-question') : null;
 
+                        var title = document.getElementById('title').value;
+                        console.log("ini title: ", title)
+
+                        var courseId = document.getElementById('id').value;
+                        console.log("ini isian courseId: ", courseId)
+
+                        var materialId = document.getElementById('material_id').value;
+                        console.log("ini isian materialId: ", materialId)
+
+                        var type = document.getElementById('type').value;
+                        console.log("ini type: ", type)
+
                         if (questionId) {
                             const answerData = {
                                 questionId: questionId,
@@ -279,28 +296,50 @@
 
                                     // Use fetch API to make a POST request
                                     fetch('/submit-answers', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRF-TOKEN': document.head.querySelector(
-                                                'meta[name="csrf-token"]').content,
-                                        },
-                                        body: JSON.stringify(submissionData),
-                                    })
-                                    // .then(response => {
-                                    //     if (!response.ok) {
-                                    //         throw new Error('Network response was not ok');
-                                    //     }
-                                    //     return response.json();
-                                    // })
-                                    // .then(data => {
-                                    //     // Handle the response from the server if needed
-                                    //     console.log(data);
-                                    // })
-                                    // .catch(error => {
-                                    //     console.error('There was a problem with the fetch operation:',
-                                    //         error);
-                                    // });
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': document.head.querySelector(
+                                                    'meta[name="csrf-token"]').content,
+                                            },
+                                            body: JSON.stringify(submissionData),
+                                        })
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Network response was not ok');
+                                            }
+                                            return response.json();
+                                        })
+                                        .then(data => {
+                                            // Handle the response from the server if needed
+                                            if (data.message === 'Success') {
+                                                // Tangani respons JSON jika permintaan berasal dari AJAX
+                                                console.log(data
+                                                    .data
+                                                ); // Lakukan sesuatu dengan data JSON yang diterima
+
+                                                // Redirect ke halaman assignment_test_results
+                                                window.location.href = '/courses/material/' + courseId +
+                                                    '/' + materialId + '/' + type + '/score'
+                                            } else {
+                                                // Tangani respons HTML jika permintaan bukan dari AJAX
+                                                console.log(
+                                                    data); // Lakukan sesuatu dengan HTML yang diterima
+                                            }
+                                            console.log(data);
+                                        })
+                                        .catch(error => {
+                                            // Use the error parameter instead of response
+                                            // Check if the response is HTML (error page) and handle accordingly
+                                            if (error.headers && error.headers.get('content-type').includes(
+                                                    'text/html')) {
+                                                console.error('Server returned HTML:', error.statusText);
+                                            } else {
+                                                console.error(
+                                                    'There was a problem with the fetch operation:',
+                                                    error);
+                                            }
+                                        });
                                 } else {
                                     alert(
                                         'Masih ada soal yang belum terisi. Silakan isi semua soal sebelum mengumpulkan jawaban.'

@@ -253,4 +253,20 @@ class ManageCertificationController extends Controller
         // dd($assignment_questions);
         return Redirect::to("/manager/certification/edit/test/{$request->certification_id}");
     }
+
+    public function unpublishCertif($id){
+        $data=Certification::find($id);
+        $data->ready_for_publish = false;
+        $data->updated_by = Auth()->user()->id;;
+        $data->save();
+        return Redirect::to("/manager/certification/edit/{$id}");
+    }
+
+    public function publishCertif($id){
+        $data=Certification::find($id);
+        $data->ready_for_publish = true;
+        $data->updated_by = Auth()->user()->id;;
+        $data->save();
+        return Redirect::to("/manager/certification/edit/{$id}");
+    }
 }
