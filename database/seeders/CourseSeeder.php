@@ -65,7 +65,7 @@ class CourseSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
             'course_img' => 'webprog.jpg',
-            'ready_for_publish' => true,
+            'ready_for_publish' => false,
         ]);
     }
 }

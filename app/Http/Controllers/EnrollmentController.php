@@ -11,11 +11,12 @@ use Illuminate\Support\Facades\Auth;
 class EnrollmentController extends Controller
 {
     //
-    public function enrollCourse($id){
+    public function enrollCourse($id,$materialId){
          if (!Auth::check()) {
             return redirect()->route('login')->with('warning', 'Anda perlu masuk terlebih dahulu untuk mendaftar kelas.');
         }
         $user = auth()->user();
+        // dd($materialId);
 
         $enrollment = new Enrollment([
             'user_id' => $user->id,
@@ -35,7 +36,7 @@ class EnrollmentController extends Controller
         $userCourseDetail = new UserCourseDetail([
             'user_id' => $user->id,
             'course_id' => $id,
-            'last_accessed_material' => 1,
+            'last_accessed_material' => $materialId,
         ]);
 
         $userCourseDetail->save();

@@ -79,7 +79,7 @@ Route::delete('/forum/course/{course_id}/thread/{id}/delete', [ForumController::
 Route::get('/courses', [CourseController::class, 'showData']);
 
 Route::get('/courses/{id}', [CourseController::class, 'courseDetail']);
-Route::post('/courses/enroll/{id}', [EnrollmentController::class, 'enrollCourse']);
+Route::post('/courses/enroll/{id}/{materialId}', [EnrollmentController::class, 'enrollCourse']);
 
 Route::get('/courses/1', function () {
     return view('contents.course_details');
