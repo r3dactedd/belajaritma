@@ -66,7 +66,7 @@
                             @endif
 
 
-                            <div class="grid w-full grid-cols-1 gap-4 pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-2">
+                            <div class="grid w-full grid-cols-1 gap-4 pl-4 pr-8 font-semibold md:w-8/12 md:grid-cols-3">
                                 <div class="rounded-lg bg-white px-2 py-4">
                                     <div class="text-indigo-500">Waktu Pengerjaan</div>
                                     <div class="text-xs text-gray-500">{{ $material->material_duration }} Menit</div>
@@ -75,8 +75,21 @@
                                     <div class="text-indigo-500">Nilai Minimum</div>
                                     <div class="text-xs text-gray-500">min. {{ $material->minimum_score }}</div>
                                 </div>
+                                <div class="rounded-lg bg-white px-2 py-4">
+                                    <div class="text-indigo-500">Status Pengerjaan</div>
+                                    <div class="text-xs text-gray-500">@if (1==2)
+                                        <a class="font-bold text-green-500">Lulus</a>
+                                    @elseif (21==2)
+                                    <a class="font-bold text-red-500">Belum Lulus</a>
+                                    @else
+                                    <a class="font-bold">Belum Dikerjakan</a>
+                                    @endif
+                                </div>
+                                </div>
                             </div>
 
+
+                        </h2>
                         </div>
                         @if ($material->materialContentToMasterType->master_type_name == 'Final Test' && !$materialCompleted)
                             <a href='/courses/material/{{ $material->title }}/{{ $material->course_id }}/{{ $material->id }}/{{ $firstIndexFIN->id }}/finalTest'
@@ -90,7 +103,7 @@
                             <a href='/courses/material/{{ $material->course_id }}/{{ $material->id }}/finalTest/score'
                                 class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                                <span class="mx-2 items-center">Lihat Nilai Final Test
+                                <span class="mx-2 items-center">Lihat Hasil Final Test
                                 </span>
 
                             </a>
@@ -106,9 +119,8 @@
                             <a href='/courses/material/{{ $material->course_id }}/{{ $material->id }}/assignment/score'
                                 class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                                <span class="mx-2 items-center">Lihat Nilai Assignment
+                                <span class="mx-2 items-center">Lihat Hasil Assignment
                                 </span>
-
                             </a>
                         @endif
 

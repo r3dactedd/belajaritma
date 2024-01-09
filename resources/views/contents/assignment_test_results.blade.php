@@ -84,7 +84,7 @@
                                         menit sebelum dapat mengerjakan assignment kembali.</strong>
                                     <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstIndex->id }}/{{ $type }}'
                                         class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
-                                        <span class="mx-2 items-center">Mengambil Ulang Assignment
+                                        <span class="mx-2 items-center">Ambil Ulang Assignment
                                         </span>
                                     </a>
                                 @elseif (
