@@ -47,12 +47,12 @@ class CourseController extends Controller
     {
         $data = Course::find($id);
         $material = Material::where('course_id', $id)->get();
-        $firstMaterial = Material::where('course_id', $id)->orderBy('id', 'asc')->first();
         $finalMaterial = $material->where('master_type_id', 4)->first();
         $firstIndexFIN = FinalTestQuestions::where('material_id', $finalMaterial->id)->first();
         // dd($finalMaterial);
         $contentArray = [];
         $userCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $id)->first();
+        $materialAccessed = null;
         $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
         $checkFinalComplete =null;
         if($enrollment){
@@ -60,11 +60,12 @@ class CourseController extends Controller
                 ->where('material_id', $finalMaterial->id)
                 ->where('enrollment_id', $enrollment->id)
                 ->exists();
+            $materialAccessed = Material::where('id', $userCourseDetail->last_accessed_material)->first();
         }
         foreach ($material as $materials) {
             $contentArray[$materials->id] = ModuleContent::where('material_id', $materials->id)->get();
         }
-        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray, 'userCourseDetail' => $userCourseDetail, 'checkFinalComplete' => $checkFinalComplete, 'firstIndexFIN'=> $firstIndexFIN, 'firstMaterial'=> $firstMaterial]);
+        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray, 'userCourseDetail' => $userCourseDetail, 'checkFinalComplete' => $checkFinalComplete, 'firstIndexFIN'=> $firstIndexFIN, 'materialAccessed'=> $materialAccessed]);
         // dd($contentArray);
     }
 

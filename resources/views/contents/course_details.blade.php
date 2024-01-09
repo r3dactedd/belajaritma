@@ -108,7 +108,7 @@
                                         </a>
                                     @elseif (auth()->check() &&
                                             auth()->user()->isEnrolled($data->id))
-                                        <a href="/courses/material/{{ $data->course_name }}/{{ $data->id }}/{{ $userCourseDetail->last_accessed_material }}"
+                                        <a href="/courses/material/{{ $materialAccessed->title }}/{{ $data->id }}/{{ $userCourseDetail->last_accessed_material }}"
                                             class="inline-flex items-center rounded-md bg-green-400 px-4 py-2 align-middle text-sm font-semibold text-white hover:bg-indigo-600 md:w-36">
                                             <svg class="mr-2 mt-0.5 fill-white" xmlns="http://www.w3.org/2000/svg"
                                                 height="1.1em" viewBox="0 0 512 512">
