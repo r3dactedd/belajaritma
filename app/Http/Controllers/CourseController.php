@@ -47,6 +47,7 @@ class CourseController extends Controller
     {
         $data = Course::find($id);
         $material = Material::where('course_id', $id)->get();
+        $firstMaterial = Material::where('course_id', $id)->orderBy('id', 'asc')->first();
         $finalMaterial = $material->where('master_type_id', 4)->first();
         $firstIndexFIN = FinalTestQuestions::where('material_id', $finalMaterial->id)->first();
         // dd($finalMaterial);
@@ -63,7 +64,7 @@ class CourseController extends Controller
         foreach ($material as $materials) {
             $contentArray[$materials->id] = ModuleContent::where('material_id', $materials->id)->get();
         }
-        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray, 'userCourseDetail' => $userCourseDetail, 'checkFinalComplete' => $checkFinalComplete, 'firstIndexFIN'=> $firstIndexFIN]);
+        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray, 'userCourseDetail' => $userCourseDetail, 'checkFinalComplete' => $checkFinalComplete, 'firstIndexFIN'=> $firstIndexFIN, 'firstMaterial'=> $firstMaterial]);
         // dd($contentArray);
     }
 
