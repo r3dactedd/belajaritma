@@ -248,7 +248,7 @@
                         <h1 class="mx-8 my-8 text-xl font-semibold text-center">
                             <a data-modal-target="popup-no-certif-test" data-modal-toggle="popup-no-certif-test"
                                 class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">
-                                Publish Kursus
+                                Publish Sertifikasi
                             </a>
                         </h1>
                     @endif
