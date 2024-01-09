@@ -68,9 +68,7 @@
                                         kembali.
                                     </h2>
                                     <strong class="flex items-center justify-center">Batas untuk mengambil ulang Tes
-                                        Sertifikasi ini adalah 1 Kali. Anda memiliki {{ 1 - $register->attempts }}
-                                        kesempatan
-                                        lagi.</strong>
+                                        Sertifikasi ini adalah 1 Kali.</strong>
                                     <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 1
                                         hari sebelum dapat mengerjakan Tes Sertifikasi kembali.</strong>
                                     <a href='/certification/test/{{ $certif->id }}/{{ $firstIndexCERT->id }}'
@@ -170,7 +168,7 @@
                         <a href='/certifications/{{ $certif->id }}'
                             class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                            <span class="items-center mx-2">Finish Test Sertifikasi
+                            <span class="items-center mx-2">Keluar
                             </span>
                         </a>
                     </div>
