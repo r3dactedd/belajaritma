@@ -364,8 +364,7 @@
                                 ingin
                                 mendaftar kelas ini?</h3>
                             <div class="flex justify-center text-center">
-                                <form method="POST"
-                                    action="/courses/enroll/{{ $data->id }}/{{ $firstMaterial->id }}"
+                                <form method="POST" action="/courses/enroll/{{ $data->id }}"
                                     data-course-id="{{ $data->id }}">
                                     @csrf
                                     <button type="submit"

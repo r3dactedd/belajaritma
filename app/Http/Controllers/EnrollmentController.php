@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class EnrollmentController extends Controller
 {
     //
-    public function enrollCourse($id,$materialId){
+    public function enrollCourse($id){
          if (!Auth::check()) {
             return redirect()->route('login')->with('warning', 'Anda perlu masuk terlebih dahulu untuk mendaftar kelas.');
         }
@@ -34,7 +34,7 @@ class EnrollmentController extends Controller
 
         Course::where('id', $id)->update($addStudentsEnrolled);
 
-        $userCourseDetail = UserCourseDetail::where('course_id', $id)->get();
+        $userCourseDetail = UserCourseDetail::where('course_id', $id)->orderBy('id', 'asc')->get();
 
         $existingMaterial = Material::where('course_id', $id)->first();
         if($userCourseDetail){
