@@ -253,10 +253,12 @@ class ManageCourseController extends Controller
     }
 
     public function editMaterialPOST(Request $request, $id){
+        $getCurrentMaterial = Material::where('id', $id)->first();
         $validateMaterialData = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
         ]);
+        // dd($getCurrentMaterial->course_id);
         $changeMaterialData = [];
 
         $changeMaterialData += [
@@ -265,31 +267,55 @@ class ManageCourseController extends Controller
             'master_type_id' => $request->master_type_id,
         ];
 
-        $updateLastAccessedMats = UserCourseDetail::where(['course_id' => $id]);
+        // $updateLastAccessedMats = UserCourseDetail::where(['course_id' => $getCurrentMaterial->course_id])->get();
 
-
+        // dd($updateLastAccessedMats);
         // Periksa apakah last_accessed_material belum diatur (0)
-        if ($updateLastAccessedMats) {
-            if($updateLastAccessedMats->last_accessed_material == 0){
-                $updateLastAccessedMats->last_accessed_material = $id;
-                $updateLastAccessedMats->save();
-            }
-            // Set last_accessed_material ke $material_id
+        // if ($updateLastAccessedMats) {
+        //     if($updateLastAccessedMats->last_accessed_material == 0){
+        //         $updateLastAccessedMats->last_accessed_material = $id;
+        //         $updateLastAccessedMats->save();
+        //     }
+        //     // Set last_accessed_material ke $material_id
+        //     // Simpan perubahan
+        // }
+        // else{
+        //     $user = auth()->user();
+        //     $userCourseDetail = new UserCourseDetail([
+        //                     'user_id' => $user->id,
+        //                     'course_id' => $id,
+        //                     'last_accessed_material' => $id,
+        //                 ]);
+        //     $userCourseDetail->save();
+        // }
 
-
-            // Simpan perubahan
-
-        }
-        else{
-            $user = auth()->user();
-            $userCourseDetail = new UserCourseDetail([
-                            'user_id' => $user->id,
-                            'course_id' => $id,
-                            'last_accessed_material' => $id,
-                        ]);
-            $userCourseDetail->save();
-        }
         Material::where('id', $id)->update($changeMaterialData);
+        $getUpdatedMaterial = Material::where('id', $id)->first();
+        if($getUpdatedMaterial->materialContentToMasterType->master_type_name == "PDF"){
+             Sidebar::where('material_id', $id)->update([
+                'title' => $getUpdatedMaterial->title,
+                'path' => '/courses/materialContent/pdf',
+             ]);
+        }
+        if($getUpdatedMaterial->materialContentToMasterType->master_type_name == "Video"){
+            Sidebar::where('material_id', $id)->update([
+               'title' => $getUpdatedMaterial->title,
+               'path' => '/courses/materialContent/video',
+            ]);
+       }
+       if($getUpdatedMaterial->materialContentToMasterType->master_type_name == "Assignment"){
+            Sidebar::where('material_id', $id)->update([
+                'title' => $getUpdatedMaterial->title,
+                'path' => '/courses/materialContent/assignment',
+            ]);
+        }
+        if($getUpdatedMaterial->materialContentToMasterType->master_type_name == "Final Test"){
+            Sidebar::where('material_id', $id)->update([
+                'title' => $getUpdatedMaterial->title,
+                'path' => '/courses/materialContent/finaltest',
+            ]);
+        }
+
         return Redirect::to("/manager/course/session/{$id}/edit");
         // dd($changeMaterialData);
     }

@@ -17,6 +17,7 @@ class EnrollmentController extends Controller
             return redirect()->route('login')->with('warning', 'Anda perlu masuk terlebih dahulu untuk mendaftar kelas.');
         }
         $user = auth()->user();
+        // dd($materialId);
 
         $enrollment = new Enrollment([
             'user_id' => $user->id,
@@ -33,7 +34,7 @@ class EnrollmentController extends Controller
 
         Course::where('id', $id)->update($addStudentsEnrolled);
 
-        $userCourseDetail = UserCourseDetail::where('course_id', $id)->get();
+        $userCourseDetail = UserCourseDetail::where('course_id', $id)->orderBy('id', 'asc')->get();
 
         $existingMaterial = Material::where('course_id', $id)->first();
         if($userCourseDetail){

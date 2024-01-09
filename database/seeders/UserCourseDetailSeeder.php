@@ -13,10 +13,10 @@ class UserCourseDetailSeeder extends Seeder
      */
     public function run(): void
     {
-        UserCourseDetail::create([
-            'user_id' => 1,
-            'course_id' => 1,
-            'last_accessed_material' => 2,
-        ]);
+        // UserCourseDetail::create([
+        //     'user_id' => 1,
+        //     'course_id' => 1,
+        //     'last_accessed_material' => 2,
+        // ]);
     }
 }

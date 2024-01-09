@@ -237,10 +237,17 @@
                                 Unpublish Sertifikasi
                             </a>
                         </h1>
-                    @elseif ($data->ready_for_publish == 0)
+                    @elseif ($data->ready_for_publish == 0 && $data->certifToCertifQuestion->count() > 0)
                         <h1 class="mx-8 my-8 text-center text-xl font-semibold">
                             <a data-modal-target="popup-publish" data-modal-toggle="popup-publish"
                                 class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700">
+                                Publish Sertifikasi
+                            </a>
+                        </h1>
+                    @elseif ($data->certifToCertifQuestion->isEmpty() || $data->certifToCertifQuestion->count() == 0)
+                        <h1 class="mx-8 my-8 text-xl font-semibold text-center">
+                            <a data-modal-target="popup-no-certif-test" data-modal-toggle="popup-no-certif-test"
+                                class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">
                                 Publish Sertifikasi
                             </a>
                         </h1>
@@ -250,6 +257,36 @@
 
         </form>
     </body>
+
+    <div id="popup-no-certif-test" tabindex="-1"
+        class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+        <div class="relative w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button type="button"
+                    class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="popup-no-certif-test">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-6 text-center">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Sertifikasi Tidak Dapat Di
+                        Publish!!</h3>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"><strong>**Sertifikasi Wajib
+                            Mempunyai Pertanyaan**</strong></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="popup-publish" tabindex="-1"
         class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
         <div class="relative max-h-full w-full max-w-md">
@@ -272,7 +309,7 @@
                     </svg>
                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin
                         ingin
-                        publish kursus ini?</h3>
+                        publish sertifikasi ini?</h3>
                     <div class="flex justify-center text-center">
                         <form method="POST" action="/publishCertif/{{ $data->id }}"
                             data-course-id="{{ $data->id }}">
@@ -316,7 +353,7 @@
                     </svg>
                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin
                         ingin
-                        unpublish kursus ini?</h3>
+                        unpublish sertifikasi ini?</h3>
                     <div class="flex justify-center text-center">
                         <form method="POST" action="/unpublishCertif/{{ $data->id }}"
                             data-course-id="{{ $data->id }}">

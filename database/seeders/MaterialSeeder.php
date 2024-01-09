@@ -118,6 +118,7 @@ class MaterialSeeder extends Seeder
             'minimum_score' => 70,
             'total_questions' => 15,
         ]);
+        
         Material::create([
             'course_id' => 2,
             'master_type_id' => 1,

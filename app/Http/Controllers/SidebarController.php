@@ -12,6 +12,7 @@ use App\Models\MaterialCompleted;
 use App\Models\Sidebar;
 use App\Models\UserCourseDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SidebarController extends Controller
 {
@@ -76,7 +77,7 @@ class SidebarController extends Controller
         $material = Material::findOrFail($material_id);
         $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
         $findFinalSidebar = Sidebar::where('course_id', $id)->where('material_id', $material_id)->first();
-
+        $user = Auth::user();
         $course = Course::find($id);
         $excludeFinal = $course->total_module-1;
         $firstIndexASG = AssignmentQuestions::where('material_id', $material_id)->first();
@@ -133,16 +134,11 @@ class SidebarController extends Controller
             // $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
 
             if ($enrollment) {
-                $userCourse = UserCourseDetail::find($enrollment->course_id);
+                $userCourse = UserCourseDetail::where('course_id', $enrollment->course_id)->where('user_id', $enrollment->user_id)->first();
 
                 if ($userCourse) {
                     $userCourse->last_accessed_material = $previousMaterial ? $previousMaterial->material_id : $nextMaterial->material_id;
                     $userCourse->save();
-                    // if ($nextMaterial && $nextMaterial->is_locked) {
-                    //     // Unlock the next material if it is currently locked
-                    //     $nextMaterial->is_locked = false;
-                    //     $nextMaterial->save();
-                    // }
                 }
             }
         }
@@ -159,6 +155,10 @@ class SidebarController extends Controller
             $nextMaterial->save();
         }
         // dd($nextFurthestMaterial);
+        $getMatCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
+        ->where('material_id', $material_id)
+        ->where('enrollment_id', $enrollment->id)
+        ->first();
 
         $master_type = MasterType::find($material->master_type_id);
         if ($master_type->master_type_name == 'Video') {
@@ -167,11 +167,11 @@ class SidebarController extends Controller
             return view('contents.session_pdf', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal','userCourseDetail','nextMaterialIndex'));
         } elseif ($master_type->master_type_name == 'Assignment') {
             // dd($firstIndexASG);
-            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN','userCourseDetail','nextMaterialIndex', 'materialCompleted'));
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN','userCourseDetail','nextMaterialIndex', 'materialCompleted','getMatCompleted'));
         }
         elseif ($master_type->master_type_name == 'Final Test') {
             // dd($firstIndexFIN);
-            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN','userCourseDetail','nextMaterialIndex','materialCompleted'));
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN','userCourseDetail','nextMaterialIndex','materialCompleted','getMatCompleted'));
         }
 
     }

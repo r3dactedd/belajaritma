@@ -78,12 +78,12 @@
                                 <div class="rounded-lg bg-white px-2 py-4">
                                     <div class="text-indigo-500">Status Pengerjaan</div>
                                     <div class="text-xs text-gray-500">
-                                        @if (1 == 2)
-                                            <a class="font-bold text-green-500">Lulus</a>
-                                        @elseif (21 == 2)
-                                            <a class="font-bold text-red-500">Belum Lulus</a>
-                                        @else
+                                        @if (!$materialCompleted)
                                             <a class="font-bold">Belum Dikerjakan</a>
+                                        @elseif ($materialCompleted && $getMatCompleted->total_score >= $material->minimum_score)
+                                            <a class="font-bold text-green-500">Lulus</a>
+                                        @elseif ($materialCompleted && $getMatCompleted->total_score < $material->minimum_score)
+                                            <a class="font-bold text-red-500">Belum Lulus</a>
                                         @endif
                                     </div>
                                 </div>

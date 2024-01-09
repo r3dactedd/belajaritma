@@ -34,4 +34,7 @@ class Certification extends Model
     public function certifToTransaction(){
         return $this->hasMany(Transaction::class, 'certif_id','id');
     }
+    public function certifToCertifQuestion(){
+        return $this->hasMany(CertifQuestions::class, 'certification_id','id');
+    }
 }
