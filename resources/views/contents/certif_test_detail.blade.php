@@ -50,7 +50,7 @@
                                 {{ $data->certif_desc }}
                             </h2>
 
-                            <div class="grid w-full grid-cols-1 gap-4 pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-2">
+                            <div class="grid w-full grid-cols-1 gap-4 pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-3">
                                 <div class="rounded-lg bg-white p-4">
                                     <div class="text-indigo-500">Waktu Pengerjaan</div>
                                     <div class="text-xs text-gray-500">{{ $data->certif_duration }} Menit</div>
@@ -58,6 +58,16 @@
                                 <div class="rounded-lg bg-white p-4">
                                     <div class="text-indigo-500">Nilai Minimum</div>
                                     <div class="text-xs text-gray-500">min. {{ $data->minimum_score }} </div>
+                                </div>
+                                <div class="rounded-lg bg-white px-2 py-4">
+                                    <div class="text-indigo-500">Status Pengerjaan</div>
+                                    <div class="text-xs text-gray-500">@if (1==2)
+                                        <a class="font-bold text-green-500">Lulus</a>
+                                    @elseif (21==2)
+                                    <a class="font-bold text-red-500">Belum Lulus</a>
+                                    @else
+                                    <a class="font-bold">Belum Dikerjakan</a>
+                                    @endif
                                 </div>
                             </div>
 
