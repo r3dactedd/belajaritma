@@ -284,10 +284,17 @@
                             Unpublish Kursus
                         </a>
                     </h1>
-                @elseif ($data->ready_for_publish == 0)
+                @elseif ($data->ready_for_publish == 0 && $data->courseToMaterial->where('master_type_id', 4)->count() > 0)
                     <h1 class="mx-8 my-8 text-xl font-semibold text-center">
                         <a data-modal-target="popup-publish" data-modal-toggle="popup-publish"
                             class="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-700">
+                            Publish Kursus
+                        </a>
+                    </h1>
+                @elseif ($data->courseToMaterial->isEmpty() || $data->courseToMaterial->where('master_type_id', 4)->count() == 0)
+                    <h1 class="mx-8 my-8 text-xl font-semibold text-center">
+                        <a data-modal-target="popup-no-final-test" data-modal-toggle="popup-no-final-test"
+                            class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">
                             Publish Kursus
                         </a>
                     </h1>
@@ -367,6 +374,34 @@
                     </tbody>
                 </table>
             </div> --}}
+            <div id="popup-no-final-test" tabindex="-1"
+                class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+                <div class="relative w-full max-w-md max-h-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <button type="button"
+                            class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-hide="popup-no-final-test">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="p-6 text-center">
+                            <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Kursus Tidak Dapat Di
+                                Publish!!</h3>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"><strong>**Kursus Wajib
+                                    Mempunyai "Final Test"**</strong></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="popup-publish" tabindex="-1"
                 class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
                 <div class="relative w-full max-w-md max-h-full">
@@ -551,34 +586,34 @@
 
         </div>
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 var form = document.querySelector('#publishForm');
 
-                form.addEventListener('submit', function (event) {
+                form.addEventListener('submit', function(event) {
                     event.preventDefault();
 
                     fetch(form.action, {
-                        method: form.method,
-                        body: new FormData(form),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.error) {
-                            // Menampilkan pesan kesalahan dalam bentuk popup
-                            alert(data.error);
-                            var courseId = form.getAttribute('data-course-id');
+                            method: form.method,
+                            body: new FormData(form),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.error) {
+                                // Menampilkan pesan kesalahan dalam bentuk popup
+                                alert(data.error);
+                                var courseId = form.getAttribute('data-course-id');
 
-                            window.location.href = '/manager/course/edit/' + {{ $data->id }};
-                        } else {
-                            // Jika tidak ada kesalahan, redirect ke halaman yang ditentukan
-                            var courseId = form.getAttribute('data-course-id');
-                            alert('Kursus berhasil dipublikasikan');
-                            window.location.href = '/manager/course/edit/' + {{ $data->id }};
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                                window.location.href = '/manager/course/edit/' + {{ $data->id }};
+                            } else {
+                                // Jika tidak ada kesalahan, redirect ke halaman yang ditentukan
+                                var courseId = form.getAttribute('data-course-id');
+                                alert('Kursus berhasil dipublikasikan');
+                                window.location.href = '/manager/course/edit/' + {{ $data->id }};
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
                 });
             });
         </script>
