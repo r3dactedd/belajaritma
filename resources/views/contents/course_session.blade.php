@@ -38,7 +38,7 @@
         <div class="container mx-auto my-5 p-5">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="w-full md:mx-2 md:w-3/12">
-                    <!-- Sidebar, pass value courselistnya aja-->
+                    <!-- Sidebar-->
                     @include('contents.course_sidebar')
                 </div>
                 <div class="my-4"></div>
@@ -46,7 +46,6 @@
                 </div>
             </div>
         </div>
-
         <div
             class="fixed bottom-0 left-0 z-50 h-16 w-full border-t border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-700">
             <div class="mx-auto grid h-full max-w-lg grid-cols-4 font-medium">
@@ -85,7 +84,7 @@
 <script>
     console.log("SCRIPT LOADED")
     let currentIndex = 0;
-    const sidebars = @json($sidebars); // Assuming you pass the data from Laravel to JavaScript
+    const sidebars = @json($sidebars); 
 
     function navigate(direction) {
         if (direction === 'next') {
@@ -99,21 +98,16 @@
             `/courses/material/previous/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`;
         console.log("ini isi url", url)
 
-        // Fetch the URL or update content based on your requirements
         fetch(url)
             .then(response => {
                 if (response.ok) {
-                    // If the response status is in the range of 200 to 299, treat it as successful
                     console.log("ini isian response", response)
                 } else {
-                    // If the response status indicates an error, handle it
                     console.error('Error:', response.statusText);
-                    // You can display an error message to the user or take other appropriate actions
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Handle other types of errors, such as network issues
             });
     }
 </script>

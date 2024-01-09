@@ -39,7 +39,7 @@
             <div class="container mx-auto p-4">
                 <div class="my-4 px-4 md:flex">
                     <div class="w-full md:w-3/12">
-                        <!-- Profile Card -->
+
 
                         <div class="h-80 w-auto">
                             <img class="h-80 w-80 rounded-full object-cover" src="{{ $profileImageUrl }}" id="pfp"

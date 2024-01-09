@@ -20,7 +20,7 @@
         <div class="container mx-auto my-4 p-4">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
                 <div class="md:mx-2 md:w-4/12">
-                    <!-- Sidebar, pass value courselistnya aja-->
+                    <!-- Sidebar-->
                     <div class="rounded-xl border-4 border-green-400 bg-white p-2 md:flex md:flex-col">
                         <div class="flex flex-col overflow-hidden bg-white">
                             <div class="my-2 grid grid-cols-4">
@@ -38,27 +38,24 @@
                                         $count += 1;
                                     @endphp
                                 @endforeach
-
                             </div>
-
                         </div>
                     </div>
-                    <div class="my-2 w-full h-fit rounded-md bg-white shadow  md:w-9/12">
-                        <div class="h-full ml-4 py-4 flex items-end lg:ml-8 lg:mt-0">
-
+                    <div class="my-2 h-fit w-full rounded-md bg-white shadow md:w-9/12">
+                        <div class="ml-4 flex h-full items-end py-4 lg:ml-8 lg:mt-0">
                             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 512 512">
                                 <path
                                     d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
                             </svg>
                             <p class="ml-2 text-center text-base font-bold tracking-normal text-gray-600">
-                                20.00
+                                20:00
                             </p>
                         </div>
                     </div>
                 </div>
                 {{-- QUESTION --}}
                 <div id="asg-top" class="my-4"></div>
-                <div class="w-2xl mx-4 rounded-xl bg-white md:mx-12 md:w-8/12">
+                <div class="w-2xl mx-4 rounded-xl bg-white md:mx-12 md:w-8/12 h-fit">
                     {{-- QUESTION TEXT --}}
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
@@ -112,14 +109,10 @@
                                         </label>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                     <hr>
-
-
                     <div class="mx-auto p-6 antialiased">
                         <div class="grid grid-cols-2">
                             @if ($question_id > $firstQuestion->id)
@@ -157,7 +150,6 @@
                                     </span>
                                 </a>
                             @endif
-
                         </div>
                     </div>
                 </div>
@@ -257,8 +249,6 @@
                     });
                 }
 
-
-
                 if (submitButton) {
                     submitButton.addEventListener('click', function(event) {
                         event.preventDefault();
@@ -292,11 +282,8 @@
                             } else {
                                 userAnswers.push(answerData);
                             }
-
                             sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-
                             updateRadioButtons();
-
                             const isConfirmed = window.confirm('Apakah Anda yakin ingin mengumpulkan jawaban?');
 
                             if (isConfirmed) {
@@ -371,12 +358,6 @@
                     });
                 }
 
-
-                // submitButton.addEventListener('click', function(){
-
-                //     warning("Apakah anda ingin mengumpulkan jawaban?")
-                // })
-
                 function updateRadioButtons() {
                     const radioButtons = document.querySelectorAll('input[name="radio1"]');
 
@@ -400,7 +381,6 @@
                         }
                     });
                 }
-
 
                 updateRadioButtons();
 

@@ -40,7 +40,6 @@
                                 @enderror
                             </div>
 
-
                             <div class="form-floating mb-3">
                                 <label for="username" class="font-semibold">Username</label>
                                 <label for="full_name" class="text-sm leading-tight"> (3-30 Karakter)</label>

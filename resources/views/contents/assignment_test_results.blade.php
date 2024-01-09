@@ -202,7 +202,6 @@
                         </div>
                     </div>
 
-
                     <hr>
                     @if ($material->materialContentToMasterType->master_type_name == 'Assignment')
                         <div class="mx-auto p-6 antialiased">
