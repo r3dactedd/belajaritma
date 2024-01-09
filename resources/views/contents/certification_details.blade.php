@@ -102,8 +102,6 @@
                                     <div class="px-4 py-2 font-semibold">
                                         <p> {{ $data->certif_desc }}</p>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
