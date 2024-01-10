@@ -10,15 +10,15 @@
         rel="stylesheet" />
 </head>
 
-<body class="bg-gray-200 pb-12">
+<body class="pb-12 bg-gray-200">
     @section('title', 'Homepage')
     @extends('layout.layout')
     @section('header')
         @include('layout.header')
     @endsection
     @section('content')
-        <div class="bg-white px-5 sm:px-10">
-            <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
+        <div class="px-5 bg-white sm:px-10">
+            <div class="container flex flex-col items-start justify-between py-6 mx-auto md:flex-row md:items-center">
                 <div>
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
@@ -32,30 +32,30 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto my-4 p-4">
-            <div class="no-wrap my-4 md:-mx-2 md:flex">
+        <div class="container p-4 mx-auto my-4">
+            <div class="my-4 no-wrap md:-mx-2 md:flex">
 
                 {{-- QUESTION  --}}
                 <div id="asg-top" class="my-4"></div>
 
-                <div class="w-2xl border-xl mx-4 bg-white md:mx-12 md:w-9/12">
-                    <div class="mx-auto p-6 antialiased">
+                <div class="mx-4 bg-white w-2xl border-xl md:mx-12 md:w-9/12">
+                    <div class="p-6 mx-auto antialiased">
                         @if ($material->minimum_score <= $materialCompleted->total_score)
                             {{-- Success --}}
                             <div class="space-y-4">
                                 <h1
-                                    class="text-md relative mx-6 block w-auto pt-4 font-bold tracking-normal text-gray-800 lg:text-xl">
+                                    class="relative block w-auto pt-4 mx-6 font-bold tracking-normal text-gray-800 text-md lg:text-xl">
                                     Nilai : <span class="text-green-600">{{ $materialCompleted->total_score }}</span>
                                 </h1>
                                 @if ($material->materialContentToMasterType->master_type_name == 'Assignment')
                                     <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
                                         Selamat, anda berhasil mengerjakan assignment ini! Silahkan melanjutkan ke sesi
                                         berikutnya.
                                     </h2>
                                 @else
                                     <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
                                         Selamat, anda berhasil menyelesaikan Final Test ini!
                                     </h2>
                                 @endif
@@ -65,7 +65,7 @@
                             {{-- Fail --}}
                             <div class="space-y-4">
                                 <h1
-                                    class="text-md relative mx-6 block w-auto pt-4 font-bold tracking-normal text-gray-800 lg:text-xl">
+                                    class="relative block w-auto pt-4 mx-6 font-bold tracking-normal text-gray-800 text-md lg:text-xl">
                                     Nilai : <span class="text-red-600">{{ $materialCompleted->total_score }}</span>
                                 </h1>
 
@@ -74,7 +74,7 @@
                                         $material->materialContentToMasterType->master_type_name == 'Assignment' &&
                                         now() > $materialCompleted->blocked_until)
                                     <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
                                         Maaf, anda belum berhasil menyelesaikan assignment ini. Silahkan mencoba kembali.
                                     </h2>
                                     <strong class="flex items-center justify-center">Batas untuk mengambil ulang Assignment
@@ -82,9 +82,9 @@
                                         lagi.</strong>
                                     <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 30
                                         menit sebelum dapat mengerjakan assignment kembali.</strong>
-                                    <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstIndex->id }}/{{ $type }}'
-                                        class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
-                                        <span class="mx-2 items-center">Ambil Ulang Assignment
+                                    <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstRandomQuestion->id }}/{{ $type }}/1'
+                                        class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                                        <span class="items-center mx-2">Ambil Ulang Assignment
                                         </span>
                                     </a>
                                 @elseif (
@@ -96,10 +96,10 @@
                                         lagi.</strong>
                                     <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 1
                                         hari sebelum dapat mengerjakan Final Test kembali.</strong>
-                                    <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstIndex->id }}/{{ $type }}'
-                                        class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                                    <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstIndex->id }}/{{ $type }}/1'
+                                        class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                                        <span class="mx-2 items-center">Mengambil Ulang Final Test
+                                        <span class="items-center mx-2">Mengambil Ulang Final Test
                                         </span>
                                     </a>
                                 @elseif (
@@ -107,24 +107,24 @@
                                         now() < $materialCompleted->blocked_until &&
                                         $material->materialContentToMasterType->master_type_name == 'Final Test')
                                     <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
                                         Maaf, anda belum lulus mengerjakan Final Test ini. Silahkan mencoba kembali pada
                                         esok hari.
                                     </h2>
                                     <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
                                         {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
                                 @elseif (
                                     $materialCompleted->blocked_until &&
                                         now() < $materialCompleted->blocked_until &&
                                         $material->materialContentToMasterType->master_type_name == 'Assignment')
                                     <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
                                         Maaf, anda belum lulus mengerjakan Assignment ini. Silahkan mencoba kembali setelah
                                         30 menit
                                     </h2>
                                     <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
                                         {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
                                 @endif
                             </div>
@@ -135,7 +135,7 @@
                     </div>
                     <hr>
                     {{-- QUESTION TEXT --}}
-                    <div class="mx-auto p-6 antialiased">
+                    <div class="p-6 mx-auto antialiased">
                         <div class="space-y-4">
                             @forelse ($userAnswers as $index => $userAnswer)
                                 <h1
@@ -144,14 +144,14 @@
                                 </h1>
                                 @if ($userAnswer->question->question_img != null && $type == 'assignment')
                                     <img src={{ asset('uploads/asg_question_img/' . $userAnswer->question->question_img) }}
-                                        alt="course image" class="h-full w-full object-cover" />
+                                        alt="course image" class="object-cover w-full h-full" />
                                 @elseif ($userAnswer->question->question_img != null && $type == 'finalTest')
                                     <img src={{ asset('uploads/final_question_img/' . $userAnswer->question->question_img) }}
-                                        alt="course image" class="h-full w-full object-cover" />
+                                        alt="course image" class="object-cover w-full h-full" />
                                 @endif
                                 <div class="pl-12">
                                     @foreach (['jawaban_a', 'jawaban_b', 'jawaban_c', 'jawaban_d'] as $choice)
-                                        <div class="mb-4 mr-4 flex items-center">
+                                        <div class="flex items-center mb-4 mr-4">
                                             @if (
                                                 ($userAnswer->question->$choice == $userAnswer->question->jawaban_a &&
                                                     $userAnswer->question->jawaban_benar == 'A') ||
@@ -164,17 +164,17 @@
                                                 <input id="radio{{ $index + 1 }}-{{ $choice }}" type="radio"
                                                     name="radio{{ $index + 1 }}" class="hidden" />
                                                 <label for="radio{{ $index + 1 }}-{{ $choice }}"
-                                                    class="text-md flex cursor-pointer items-center text-green-400 underline">
+                                                    class="flex items-center text-green-400 underline cursor-pointer text-md">
                                                     <span
-                                                        class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
+                                                        class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
                                                     {{ $userAnswer->question->$choice }}</label>
                                             @else
                                                 <input id="radio{{ $index + 1 }}-{{ $choice }}" type="radio"
                                                     name="radio{{ $index + 1 }}" class="hidden" />
                                                 <label for="radio{{ $index + 1 }}-{{ $choice }}"
-                                                    class="text-md flex cursor-pointer items-center">
+                                                    class="flex items-center cursor-pointer text-md">
                                                     <span
-                                                        class="flex-no-shrink mr-2 inline-block h-4 w-4 rounded-full border border-gray-600"></span>
+                                                        class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
                                                     {{ $userAnswer->question->$choice }}
                                                 </label>
                                             @endif
@@ -183,13 +183,13 @@
                                             @if ($userAnswer->is_correct == true && $userAnswer->question->$choice == $userAnswer->answer_detail)
                                                 {{-- Correct answer --}}
                                                 <h1
-                                                    class="text-md relative mx-6 block w-auto font-semibold tracking-normal text-green-400 lg:text-xl">
+                                                    class="relative block w-auto mx-6 font-semibold tracking-normal text-green-400 text-md lg:text-xl">
                                                     ✓
                                                 </h1>
                                             @elseif($userAnswer->is_correct == false && $userAnswer->question->$choice == $userAnswer->answer_detail)
                                                 {{-- Incorrect answer --}}
                                                 <h1
-                                                    class="text-md relative mx-6 block w-auto font-semibold tracking-normal text-red-400 lg:text-xl">
+                                                    class="relative block w-auto mx-6 font-semibold tracking-normal text-red-400 text-md lg:text-xl">
                                                     ✗
                                                 </h1>
                                             @endif
@@ -205,24 +205,24 @@
 
                     <hr>
                     @if ($material->materialContentToMasterType->master_type_name == 'Assignment')
-                        <div class="mx-auto p-6 antialiased">
+                        <div class="p-6 mx-auto antialiased">
                             <div class="space-y-4">
                                 <a href='/courses/material/{{ $material->title }}/{{ $course->id }}/{{ $material->id }}'
-                                    class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                                    class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                                    <span class="mx-2 items-center">Finish Assignment
+                                    <span class="items-center mx-2">Finish Assignment
                                     </span>
                                 </a>
                             </div>
                         </div>
                     @endif
                     @if ($material->materialContentToMasterType->master_type_name == 'Final Test')
-                        <div class="mx-auto p-6 antialiased">
+                        <div class="p-6 mx-auto antialiased">
                             <div class="space-y-4">
                                 <a href='/courses/material/{{ $material->title }}/{{ $course->id }}/{{ $material->id }}'
-                                    class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                                    class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                                    <span class="mx-2 items-center">Finish Final Test
+                                    <span class="items-center mx-2">Finish Final Test
                                     </span>
                                 </a>
                             </div>
