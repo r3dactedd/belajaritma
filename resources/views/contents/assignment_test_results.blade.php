@@ -34,7 +34,6 @@
         </div>
         <div class="container mx-auto my-4 p-4">
             <div class="no-wrap my-4 md:-mx-2 md:flex">
-
                 {{-- QUESTION  --}}
                 <div id="asg-top" class="my-4"></div>
 
@@ -69,13 +68,57 @@
                                     Nilai : <span class="text-red-600">{{ $materialCompleted->total_score }}</span>
                                 </h1>
 
-                                @if (
-                                    $materialCompleted->attempts < 3 &&
-                                        $material->materialContentToMasterType->master_type_name == 'Assignment' &&
-                                        now() > $materialCompleted->blocked_until)
+                                @if ($remainingTime > 0 && $material->materialContentToMasterType->master_type_name == 'Assignment')
                                     <h2
                                         class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
-                                        Maaf, anda belum berhasil menyelesaikan assignment ini. Silahkan mencoba kembali.
+                                        Maaf, anda belum lulus mengerjakan Assignment ini. Silahkan mencoba kembali setelah
+                                        30 menit.
+                                    </h2>
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
+                                    <a href="#" onclick="refreshPage()" id="refreshButton"
+                                        class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-red-600 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                                        <span class="mx-2 items-center"> Refresh Halaman </span>
+                                    </a>
+                                @elseif ($remainingTime > 0 && $material->materialContentToMasterType->master_type_name == 'Final Test')
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        Maaf, anda belum lulus mengerjakan Final Test ini. Silahkan mencoba kembali pada
+                                        esok hari.
+                                    </h2>
+                                    <h2 class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800"
+                                        id="remainingTime">
+                                        {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya
+                                    </h2>
+                                    <a href="#" onclick="refreshPage()" id="refreshButton"
+                                        class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-red-600 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                                        <span class="mx-2 items-center"> Refresh Halaman </span>
+                                    </a>
+                                @elseif (
+                                    $materialCompleted->blocked_until == null &&
+                                        $material->materialContentToMasterType->master_type_name == 'Final Test' &&
+                                        $remainingTime == 0)
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        Maaf, anda belum berhasil menyelesaikan final test ini. Silahkan mencoba lagi.
+                                    </h2>
+                                    <strong class="flex items-center justify-center">Batas untuk mengambil ulang Final Test
+                                        ini adalah 1 Kali.</strong>
+                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 1
+                                        hari sebelum dapat mengerjakan Final Test kembali.</strong>
+                                    <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstIndex->id }}/{{ $type }}'
+                                        class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                                        <span class="mx-2 items-center">Mengambil Ulang Final Test
+                                        </span>
+                                    </a>
+                                @elseif (
+                                    $materialCompleted->blocked_until == null &&
+                                        $material->materialContentToMasterType->master_type_name == 'Assignment' &&
+                                        $remainingTime == 0)
+                                    <h2
+                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
+                                        Maaf, anda belum berhasil menyelesaikan assignment ini. Silahkan mencoba lagi.
                                     </h2>
                                     <strong class="flex items-center justify-center">Batas untuk mengambil ulang Assignment
                                         ini adalah 3 Kali. Anda memiliki {{ 3 - $materialCompleted->attempts }} kesempatan
@@ -84,51 +127,15 @@
                                         menit sebelum dapat mengerjakan assignment kembali.</strong>
                                     <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstIndex->id }}/{{ $type }}'
                                         class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
-                                        <span class="mx-2 items-center">Ambil Ulang Assignment
+                                        <span class="mx-2 items-center">Mengambil Ulang Assignment
                                         </span>
                                     </a>
-                                @elseif (
-                                    $materialCompleted->attempts < 1 &&
-                                        $material->materialContentToMasterType->master_type_name == 'Final Test' &&
-                                        now() > $materialCompleted->blocked_until)
-                                    <strong class="flex items-center justify-center">Batas untuk mengambil ulang Final Test
-                                        ini adalah 1 Kali. Anda memiliki {{ 1 - $materialCompleted->attempts }} kesempatan
-                                        lagi.</strong>
-                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 1
-                                        hari sebelum dapat mengerjakan Final Test kembali.</strong>
-                                    <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstIndex->id }}/{{ $type }}'
-                                        class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
-
-                                        <span class="mx-2 items-center">Mengambil Ulang Final Test
-                                        </span>
-                                    </a>
-                                @elseif (
-                                    $materialCompleted->blocked_until &&
-                                        now() < $materialCompleted->blocked_until &&
-                                        $material->materialContentToMasterType->master_type_name == 'Final Test')
-                                    <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
-                                        Maaf, anda belum lulus mengerjakan Final Test ini. Silahkan mencoba kembali pada
-                                        esok hari.
-                                    </h2>
-                                    <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
-                                        {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
-                                @elseif (
-                                    $materialCompleted->blocked_until &&
-                                        now() < $materialCompleted->blocked_until &&
-                                        $material->materialContentToMasterType->master_type_name == 'Assignment')
-                                    <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
-                                        Maaf, anda belum lulus mengerjakan Assignment ini. Silahkan mencoba kembali setelah
-                                        30 menit
-                                    </h2>
-                                    <h2
-                                        class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
-                                        {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
                                 @endif
+
                             </div>
                             {{-- Fail --}}
+
+
                         @endif
 
 
@@ -202,7 +209,6 @@
                         </div>
                     </div>
 
-
                     <hr>
                     @if ($material->materialContentToMasterType->master_type_name == 'Assignment')
                         <div class="mx-auto p-6 antialiased">
@@ -210,7 +216,7 @@
                                 <a href='/courses/material/{{ $material->title }}/{{ $course->id }}/{{ $material->id }}'
                                     class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                                    <span class="mx-2 items-center">Finish Assignment
+                                    <span class="mx-2 items-center">Keluar
                                     </span>
                                 </a>
                             </div>
@@ -222,7 +228,7 @@
                                 <a href='/courses/material/{{ $material->title }}/{{ $course->id }}/{{ $material->id }}'
                                     class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                                    <span class="mx-2 items-center">Finish Final Test
+                                    <span class="mx-2 items-center">Keluar
                                     </span>
                                 </a>
                             </div>
@@ -239,5 +245,10 @@
 @section('footer')
     @include('layout.footer')
 @endsection
+<script>
+    function refreshPage() {
+        location.reload();
+    }
+</script>
 
 </html>

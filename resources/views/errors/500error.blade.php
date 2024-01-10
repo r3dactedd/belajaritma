@@ -40,8 +40,6 @@
                         <span class="mb-1 ml-2">Mohon maaf, server error. Silahkan refresh page ini lagi.
                         </span>
                     </a>
-
-
                 </div>
             </div>
         </div>

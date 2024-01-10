@@ -39,7 +39,7 @@
             <div class="my-4 rounded-xl bg-white md:flex">
                 <!-- Left Side -->
                 <div class="w-full md:w-1/3">
-                    <!-- Profile Card -->
+
                     <div class="h-full p-2 md:py-4 md:pl-8">
                         <div class="mx-auto h-full w-full">
                             <img class="max-h-64 w-full p-4 md:px-0"
@@ -105,9 +105,7 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="rounded-b-xl bg-white p-4 shadow-sm">
                         <div class="grid grid-cols-1 md:grid-cols-2">
                             <div>
@@ -115,7 +113,6 @@
 
                                     <span class="px-2 text-xl tracking-wide">Informasi Test</span>
                                 </div>
-
                                 <div class="grid grid-cols-1 gap-4 py-4 pl-4 pr-8 font-semibold md:grid-cols-3">
                                     <div class="rounded-lg bg-white p-4 shadow-md">
                                         <div class="text-indigo-500">Waktu Test</div>

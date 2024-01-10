@@ -233,7 +233,6 @@
         <div id="defaultModal" tabindex="-1" aria-hidden="true"
             class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
             <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
-                <!-- Add margin if you want to see some of the overlay behind the modal-->
                 <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
                     <div class="container mx-auto my-5 p-5">
                         <div class="flex justify-end">
@@ -295,7 +294,6 @@
                                 <!-- Tempat untuk menampilkan hasil preview -->
                             </div>
                         </div>
-                        <!--Footer-->
 
                     </div>
                 </div>
@@ -306,10 +304,8 @@
             tinymce.init({
                 selector: '#forum_message',
                 menubar: false,
-                // Image below, for further consideration
                 plugins: ' code codesample image',
                 toolbar: ' wordcount | link image |bold italic underline| codesample ',
-                // Image below, for further consideration
                 file_picker_types: 'image',
                 /* enable automatic uploads of images represented by blob or data URIs*/
                 automatic_uploads: true,
@@ -373,10 +369,7 @@
                     return;
                 }
 
-                // Append image tag with the asset URL to the content
                 var assetUrl = "{{ asset('uploads/forum_attachments/') }}"; // Laravel asset function
-                // editorContent += `<br><img src="${assetUrl}">`;
-
                 console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
                 var formData = new FormData();
                 formData.append('course_id', courseId);
