@@ -69,10 +69,6 @@
                                 </p>
                             </div>
                         </div>
-                        {{-- <div class="flex w-full items-center md:ml-16">
-                            <img
-                                src="https://cdn.discordapp.com/attachments/699690186761830516/1136295687810723942/image.png">
-                        </div> --}}
                         {{-- FORUM CONTENT END --}}
                         {{-- ADD COMMENTS --}}
                         @if (Auth::user()->id == $data->formToUser->id)
@@ -165,7 +161,6 @@
                             menghapus forum ini?
                         </h3>
                         <div class="flex justify-center text-center">
-                            {{-- <form method="POST" action="/manager/course/delete/{{ $data->id }}" data-course-id=""> --}}
                             <form method="POST"
                                 action="/forum/course/{{ $data->course_id }}/thread/{{ $data->id }}/delete"
                                 data-course-id="">

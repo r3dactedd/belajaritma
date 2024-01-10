@@ -88,16 +88,6 @@
             </div>
         </div>
     </section>
-    {{-- <script>
-        function resend() {
-            const input = document.getElementById('inputEmail');
-            const resend = document.getElementById('resendEmail');
-
-            input.classList.add('hidden')
-            resend.classList.remove('hidden')
-
-        }
-    </script> --}}
 </body>
 
 </html>

@@ -476,10 +476,23 @@ class CourseController extends Controller
         if ($type == 'assignment') {
 
             if ($materialCompleted->attempts == 3 && $materialCompleted->total_score < $material->minimum_score) {
-                $this->blockUserFor30Minutes($materialCompleted);
+                MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
+                    'blocked_until' => Carbon::now()->addMinutes(30),
+                    'attempts' => 0,
+                ]);
+                $tempMaterial = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
+                    ->where('material_id', $material_id)
+                    ->where('enrollment_id', $enrollment->id)
+                    ->first();
+                $remainingTime = Carbon::now()->diffInMinutes($tempMaterial->blocked_until);
             }
             if ($materialCompleted->blocked_until) {
                 $remainingTime = Carbon::now()->diffInMinutes($materialCompleted->blocked_until);
+            }
+            if($remainingTime == 0){
+                $materialCompleted->blocked_until = null;
+                $materialCompleted->save();
+                $remainingTime = 0;
             }
             $firstRandomQuestion = AssignmentQuestions::where('material_id', $material_id)->inRandomOrder()->first();
             $randomizedQuestions = AssignmentQuestions::where('material_id', $material_id)->get()->shuffle();
@@ -490,10 +503,23 @@ class CourseController extends Controller
         if ($type == 'finalTest') {
 
             if ($materialCompleted->attempts == 1 && $materialCompleted->total_score < $material->minimum_score) {
-                $this->blockUserforADay($materialCompleted);
+                MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
+                    'blocked_until' => Carbon::now()->addDay(1),
+                    'attempts' => 0,
+                ]);
+                $tempMaterial = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
+                    ->where('material_id', $material_id)
+                    ->where('enrollment_id', $enrollment->id)
+                    ->first();
+                $remainingTime = Carbon::now()->diffInMinutes($tempMaterial->blocked_until);
             }
             if ($materialCompleted->blocked_until) {
                 $remainingTime = Carbon::now()->diffInMinutes($materialCompleted->blocked_until);
+            }
+            if($remainingTime == 0){
+                $materialCompleted->blocked_until = null;
+                $materialCompleted->save();
+                $remainingTime = 0;
             }
             $firstRandomQuestion = FinalTestQuestions::where('material_id', $material_id)->inRandomOrder()->first();
             $randomizedQuestions = FinalTestQuestions::where('material_id', $material_id)->get()->shuffle();

@@ -56,7 +56,6 @@
                 </div>
             </form>
 
-
             <div class="container mx-auto my-12 grid w-11/12 grid-cols-1 gap-8 pb-12">
                 @foreach ($data as $data)
                     <a href="/certifications/{{ $data->id }}">
@@ -67,16 +66,14 @@
                                     <div class="my-2 bg-white md:flex">
                                         <!-- Left Side -->
                                         <div class="w-full md:w-1/3">
-                                            <!-- Profile Card -->
                                             <div class="h-full bg-white py-2 md:ml-4">
                                                 <div class="mx-auto h-full w-full">
-                                                    <img class="max-h-36 w-full md:w-4/5 md:max-h-48"
+                                                    <img class="max-h-36 w-full md:max-h-48 md:w-4/5"
                                                         src="{{ asset('uploads/certif_images/' . $data->certif_img) }}"
                                                         alt="Certification Image" />
                                                 </div>
                                             </div>
                                         </div>
-
                                         <!-- Right Side -->
                                         <div class="h-auto w-full md:mx-2 md:w-2/3">
                                             <div class="px-4 md:px-8">
@@ -129,16 +126,8 @@
                         </div>
                     </a>
                 @endforeach()
-
-
             </div>
         </div>
-
-
-
-
-
-
     @endsection
     @section('footer')
         @include('layout.footer')

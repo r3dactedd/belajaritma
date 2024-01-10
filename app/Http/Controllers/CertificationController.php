@@ -217,9 +217,16 @@ class CertificationController extends Controller
         // dd($register);
         if ($register->attempts >= 1 && $register->total_score < $certif->minimum_score) {
             $this->blockUserforADay($register);
+            $tempRegister = RegistrationCertification::where('user_id', auth()->id())->where('certif_id', $certif_id)->first();
+            $remainingTime = Carbon::now()->diffInMinutes($tempRegister->blocked_until);
         }
         if($register->blocked_until){
             $remainingTime = Carbon::now()->diffInMinutes($register->blocked_until);
+        }
+        if($remainingTime == 0){
+            $register->blocked_until = null;
+            $register->save();
+            $remainingTime = 0;
         }
         return view('contents.certif_test_results', compact('userAnswers', 'questions','certif','firstIndex','register','totalQuestions','firstIndexCERT','remainingTime'));
     }

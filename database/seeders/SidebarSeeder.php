@@ -129,7 +129,7 @@ class SidebarSeeder extends Seeder
             'parent_id' => null,
             'material_id' => 12,
             'order' => 1,
-            'title' => 'Pengenalan Algoritma dan Pemrograman',
+            'title' => 'Pengenalan Data Structure',
             'path' => '/courses/materialContent/pdf',
             'is_locked' => false,
         ]);
@@ -139,7 +139,7 @@ class SidebarSeeder extends Seeder
             'parent_id' => null,
             'material_id' => 13,
             'order' => 2,
-            'title' => 'Variabel, Tipe Data, dan Operator',
+            'title' => 'Array dan Linked List',
             'path' => '/courses/materialContent/pdf',
             'is_locked' => true,
         ]);
@@ -149,26 +149,18 @@ class SidebarSeeder extends Seeder
             'parent_id' => null,
             'material_id' => 14,
             'order' => 3,
-            'title' => 'Control Flow',
+            'title' => 'Stack dan Queue',
             'path' => '/courses/materialContent/pdf',
             'is_locked' => true,
         ]);
+
+
 
         Sidebar::create([
             'course_id' => 2,
             'parent_id' => null,
             'material_id' => 15,
             'order' => 4,
-            'title' => 'Datatypes in C',
-            'path' => '/courses/materialContent/video',
-            'is_locked' => true,
-        ]);
-
-        Sidebar::create([
-            'course_id' => 2,
-            'parent_id' => null,
-            'material_id' => 16,
-            'order' => 5,
             'title' => 'Assignment 1',
             'path' => '/courses/materialContent/assignment',
             'is_locked' => true,
@@ -177,9 +169,19 @@ class SidebarSeeder extends Seeder
         Sidebar::create([
             'course_id' => 2,
             'parent_id' => null,
+            'material_id' => 16,
+            'order' => 5,
+            'title' => 'Trees',
+            'path' => '/courses/materialContent/pdf',
+            'is_locked' => true,
+        ]);
+
+        Sidebar::create([
+            'course_id' => 2,
+            'parent_id' => null,
             'material_id' => 17,
             'order' => 6,
-            'title' => 'Pengenalan Function dan Recursion',
+            'title' => 'Graphs',
             'path' => '/courses/materialContent/pdf',
             'is_locked' => true,
         ]);
@@ -189,7 +191,7 @@ class SidebarSeeder extends Seeder
             'parent_id' => null,
             'material_id' => 18,
             'order' => 7,
-            'title' => 'Pengenalan Array',
+            'title' => 'Hashes',
             'path' => '/courses/materialContent/pdf',
             'is_locked' => true,
         ]);
@@ -199,8 +201,8 @@ class SidebarSeeder extends Seeder
             'parent_id' => null,
             'material_id' => 19,
             'order' => 8,
-            'title' => 'Contoh Algoritma Sederhana',
-            'path' => '/courses/materialContent/pdf',
+            'title' => 'Data Structures in Depth',
+            'path' => '/courses/materialContent/video',
             'is_locked' => true,
         ]);
 
@@ -209,16 +211,6 @@ class SidebarSeeder extends Seeder
             'parent_id' => null,
             'material_id' => 20,
             'order' => 9,
-            'title' => 'Intro to Algorithms',
-            'path' => '/courses/materialContent/video',
-            'is_locked' => true,
-        ]);
-
-        Sidebar::create([
-            'course_id' => 2,
-            'parent_id' => null,
-            'material_id' => 21,
-            'order' => 10,
             'title' => 'Assignment 2',
             'path' => '/courses/materialContent/assignment',
             'is_locked' => true,
@@ -227,8 +219,8 @@ class SidebarSeeder extends Seeder
         Sidebar::create([
             'course_id' => 2,
             'parent_id' => null,
-            'material_id' => 22,
-            'order' => 11,
+            'material_id' => 21,
+            'order' => 10,
             'title' => 'Final Test',
             'path' => '/courses/materialContent/finaltest',
             'is_locked' => true,

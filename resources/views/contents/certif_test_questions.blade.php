@@ -16,11 +16,10 @@
     @extends('layout.layout')
 
     @section('content')
-
         <div class="container p-4 mx-auto my-4">
             <div class="my-4 no-wrap md:-mx-2 md:flex">
                 <div class="md:mx-2 md:w-4/12">
-                    <!-- Sidebar, pass value courselistnya aja-->
+                    <!-- Sidebar-->
                     <div class="p-2 bg-white border-4 border-green-400 rounded-xl md:flex md:flex-col">
                         <div class="flex flex-col overflow-hidden bg-white">
                             <div class="grid grid-cols-4 my-2">
@@ -38,11 +37,8 @@
                                         $count += 1;
                                     @endphp
                                 @endforeach
-
                             </div>
-
                         </div>
-
                     </div>
                     <div class="w-full my-2 bg-white rounded-md shadow h-fit md:w-9/12">
                         <div class="flex items-end h-full py-4 ml-4 lg:ml-8 lg:mt-0">
@@ -51,15 +47,17 @@
                                 <path
                                     d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
                             </svg>
-                            <p class="ml-2 text-base font-bold tracking-normal text-center text-gray-600">
-                                45.00
+                            <p id="timer-display" timer-duration="{{ $material->material_duration }}"
+                                class="ml-2 text-base font-bold tracking-normal text-center text-gray-600">
+                                5:00
+                                <!-- Ubah nilai awal sesuai dengan material_duration -->
                             </p>
                         </div>
                     </div>
                 </div>
                 {{-- QUESTION --}}
                 <div id="asg-top" class="my-4"></div>
-                <div class="mx-4 bg-white w-2xl rounded-xl md:mx-12 md:w-8/12">
+                <div class="mx-4 bg-white w-2xl rounded-xl md:mx-12 md:w-8/12 h-fit">
                     {{-- QUESTION TEXT --}}
                     <div class="p-6 mx-auto antialiased">
                         <div class="space-y-4">
@@ -108,14 +106,10 @@
                                         </label>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                     <hr>
-
-
                     <div class="p-6 mx-auto antialiased">
                         <div class="grid grid-cols-2">
                             @if ($question_id > $firstQuestion->id)
@@ -152,277 +146,270 @@
                                     </span>
                                 </a>
                             @endif
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <input type="hidden" id="certif_id" name="certif_id" value="{{ $certif_id }}">
-        {{-- window.location.href = '/courses/material/' + $title + $id + $material_id  + $type + '/results'; --}}
-        {{-- <input type="hidden" id="title" name="title" value="{{ $title }}">
-        <input type="hidden" id="id" name="id" value="{{ $id }}">
-
-        <input type="hidden" id="type" name="type" value="{{ $type }}"> --}}
-
         </div>
         <script>
-              document.addEventListener('DOMContentLoaded', function() {
-                const nextButton = document.getElementById('tombol-selanjutnya');
-                const previousButton = document.getElementById('tombol-sebelumnya');
-                const submitButton = document.getElementById('submit-button');
-                // sessionStorage.removeItem('userAnswers');
-                const userAnswers = JSON.parse(sessionStorage.getItem('userAnswers')) || [];
-                const timerDisplay = document.getElementById('timer-display');
-                const timerDuration = timerDisplay.getAttribute('timer-duration');
-                console.log("ini timer duration", timerDuration)
-                const totalSeconds =  parseInt(timerDuration) * 60 - 1;
+            document.addEventListener('DOMContentLoaded', function() {
+                    const nextButton = document.getElementById('tombol-selanjutnya');
+                    const previousButton = document.getElementById('tombol-sebelumnya');
+                    const submitButton = document.getElementById('submit-button');
+                    // sessionStorage.removeItem('userAnswers');
+                    const userAnswers = JSON.parse(sessionStorage.getItem('userAnswers')) || [];
+                    const timerDisplay = document.getElementById('timer-display');
+                    const timerDuration = timerDisplay.getAttribute('timer-duration');
+                    console.log("ini timer duration", timerDuration)
+                    const totalSeconds =  parseInt(timerDuration) * 60 - 1;
 
-                function convertTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-}
+                    function convertTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    }
 
-    let timeIsUp = false;
-    function startTimer(duration) {
-        let timer;
-        const storedTime = localStorage.getItem('timer');
+        let timeIsUp = false;
+        function startTimer(duration) {
+            let timer;
+            const storedTime = localStorage.getItem('timer');
 
-        if (storedTime !== null) {
-            timer = parseInt(storedTime, 10);
-        } else {
-            timer = duration;
-        }
-
-        const updateTimerDisplay = function () {
-            timerDisplay.textContent = convertTime(timer);
-            if (timer > 0) {
-                timer--;
-                localStorage.setItem('timer', timer.toString());
+            if (storedTime !== null) {
+                timer = parseInt(storedTime, 10);
             } else {
-                clearInterval(timerInterval);
-                localStorage.removeItem('timer');
-                timeIsUp = true;
-
-                // Gumpulkan jawaban dan tampilkan alert waktu habis
-                submitAnswers();
-                alert('Waktu telah habis. Jawaban Anda sudah otomatis terkumpul.');
+                timer = duration;
             }
-        };
 
-        const timerInterval = setInterval(updateTimerDisplay, 1000);
+            const updateTimerDisplay = function () {
+                timerDisplay.textContent = convertTime(timer);
+                if (timer > 0) {
+                    timer--;
+                    localStorage.setItem('timer', timer.toString());
+                } else {
+                    clearInterval(timerInterval);
+                    localStorage.removeItem('timer');
+                    timeIsUp = true;
 
-        updateTimerDisplay();
-}
-            startTimer(totalSeconds);
-
-                function validateAnswers() {
-                    // Lakukan validasi apakah semua soal telah terisi
-                    // Anda dapat menggunakan data dari userAnswers untuk melakukan validasi
-                    return userAnswers.every(answer => answer.answer !== undefined && answer.answer !== null && answer.answer !== '');
+                    // Gumpulkan jawaban dan tampilkan alert waktu habis
+                    submitAnswers();
+                    alert('Waktu telah habis. Jawaban Anda sudah otomatis terkumpul.');
                 }
+            };
 
-                if (nextButton) {
-                    nextButton.addEventListener('click', function() {
+            const timerInterval = setInterval(updateTimerDisplay, 1000);
+
+            updateTimerDisplay();
+    }
+                startTimer(totalSeconds);
+
+                    function validateAnswers() {
+                        // Lakukan validasi apakah semua soal telah terisi
+                        // Anda dapat menggunakan data dari userAnswers untuk melakukan validasi
+                        return userAnswers.every(answer => answer.answer !== undefined && answer.answer !== null && answer.answer !== '');
+                    }
+
+                    if (nextButton) {
+                        nextButton.addEventListener('click', function() {
+                            const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
+                            const questionId = document.getElementById('question_id').value;
+
+                        if (questionId) {
+                        // Cek apakah questionId sudah ada di dalam userAnswers
+                        const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId === questionId);
+
+                            if (existingAnswerIndex !== -1) {
+                                // Jika sudah ada, update jawabannya
+                                userAnswers[existingAnswerIndex].answer = selectedAnswer ? selectedAnswer.value : '';
+                                userAnswers[existingAnswerIndex].answerDetail = selectedAnswer ? selectedAnswer.parentElement.textContent.trim() : '';
+                            } else {
+                                // Jika belum ada, tambahkan jawaban baru
+                                const answerData = {
+                                    questionId: questionId,
+                                    answer: selectedAnswer ? selectedAnswer.value : '', // Jawaban kosong jika tidak ada yang dipilih
+                                    answerDetail: selectedAnswer ? selectedAnswer.parentElement.textContent.trim() : '',
+                                };
+                                userAnswers.push(answerData);
+                            }
+
+                        // Simpan array jawaban pengguna ke session storage
+                                sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+
+                                updateRadioButtons();
+                                console.log("array", userAnswers);
+                                // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
+                                // ...
+
+                    } else {
+                        alert('Pilih jawaban terlebih dahulu.');
+                    }
+                        });
+                    }
+
+                    if (previousButton) {
+                        previousButton.addEventListener('click', function() {
+                            const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
+                            const questionId = selectedAnswer ? selectedAnswer.getAttribute('data-question') : null;
+
+                            if (questionId) {
+                                const answerData = {
+                                    questionId: questionId,
+                                    answer: selectedAnswer.value,
+                                    answerDetail: selectedAnswer.parentElement.textContent.trim(),
+                                };
+
+                                const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
+                                    questionId);
+
+                                if (existingAnswerIndex !== -1) {
+                                    // Ganti jawaban jika questionId sudah ada di dalam array
+                                    userAnswers[existingAnswerIndex] = answerData;
+                                } else {
+                                    // Tambahkan jawaban baru jika questionId belum ada di dalam array
+                                    userAnswers.push(answerData);
+                                }
+
+                                // Simpan array jawaban pengguna ke session storage
+                                sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+
+                                updateRadioButtons();
+                                console.log("array", userAnswers)
+                                // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
+                                // ...
+
+                            } else {
+                                alert('Pilih jawaban terlebih dahulu.');
+                            }
+                        });
+                    }
+
+
+                    function submitAnswers(){
                         const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
                         const questionId = document.getElementById('question_id').value;
 
-                    if (questionId) {
-                    // Cek apakah questionId sudah ada di dalam userAnswers
-                    const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId === questionId);
+                            var title = document.getElementById('title').value;
+                            console.log("ini title: ", title)
 
-                        if (existingAnswerIndex !== -1) {
-                            // Jika sudah ada, update jawabannya
-                            userAnswers[existingAnswerIndex].answer = selectedAnswer ? selectedAnswer.value : '';
-                            userAnswers[existingAnswerIndex].answerDetail = selectedAnswer ? selectedAnswer.parentElement.textContent.trim() : '';
-                        } else {
-                            // Jika belum ada, tambahkan jawaban baru
-                            const answerData = {
-                                questionId: questionId,
-                                answer: selectedAnswer ? selectedAnswer.value : '', // Jawaban kosong jika tidak ada yang dipilih
-                                answerDetail: selectedAnswer ? selectedAnswer.parentElement.textContent.trim() : '',
-                            };
-                            userAnswers.push(answerData);
-                        }
+                            console.log(userAnswers)
 
-                    // Simpan array jawaban pengguna ke session storage
-                            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+                            var courseId = document.getElementById('id').value;
+                            console.log("ini isian courseId: ", courseId)
 
-                            updateRadioButtons();
-                            console.log("array", userAnswers);
-                            // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
-                            // ...
+                            var materialId = document.getElementById('material_id').value;
+                            console.log("ini isian materialId: ", materialId)
 
-                } else {
-                    alert('Pilih jawaban terlebih dahulu.');
-                }
-                    });
-                }
+                            var type = document.getElementById('type').value;
+                            console.log("ini type: ", type)
 
-                if (previousButton) {
-                    previousButton.addEventListener('click', function() {
-                        const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
-                        const questionId = selectedAnswer ? selectedAnswer.getAttribute('data-question') : null;
+                            if (questionId) {
+                                const answerData = {
+                                    questionId: questionId,
+                                    answer: selectedAnswer ? selectedAnswer.value : '', // Jawaban kosong jika tidak ada yang dipilih
+                                    answerDetail: selectedAnswer ? selectedAnswer.parentElement.textContent.trim() : '',
+                                };
 
-                        if (questionId) {
-                            const answerData = {
-                                questionId: questionId,
-                                answer: selectedAnswer.value,
-                                answerDetail: selectedAnswer.parentElement.textContent.trim(),
-                            };
+                                const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
+                                    questionId);
 
-                            const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
-                                questionId);
-
-                            if (existingAnswerIndex !== -1) {
-                                // Ganti jawaban jika questionId sudah ada di dalam array
-                                userAnswers[existingAnswerIndex] = answerData;
-                            } else {
-                                // Tambahkan jawaban baru jika questionId belum ada di dalam array
-                                userAnswers.push(answerData);
-                            }
-
-                            // Simpan array jawaban pengguna ke session storage
-                            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-
-                            updateRadioButtons();
-                            console.log("array", userAnswers)
-                            // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
-                            // ...
-
-                        } else {
-                            alert('Pilih jawaban terlebih dahulu.');
-                        }
-                    });
-                }
-
-
-                function submitAnswers(){
-                    const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
-                    const questionId = document.getElementById('question_id').value;
-
-                        var title = document.getElementById('title').value;
-                        console.log("ini title: ", title)
-
-                        console.log(userAnswers)
-
-                        var courseId = document.getElementById('id').value;
-                        console.log("ini isian courseId: ", courseId)
-
-                        var materialId = document.getElementById('material_id').value;
-                        console.log("ini isian materialId: ", materialId)
-
-                        var type = document.getElementById('type').value;
-                        console.log("ini type: ", type)
-
-                        if (questionId) {
-                            const answerData = {
-                                questionId: questionId,
-                                answer: selectedAnswer ? selectedAnswer.value : '', // Jawaban kosong jika tidak ada yang dipilih
-                                answerDetail: selectedAnswer ? selectedAnswer.parentElement.textContent.trim() : '',
-                            };
-
-                            const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
-                                questionId);
-
-                            if (existingAnswerIndex !== -1) {
-                                userAnswers[existingAnswerIndex] = answerData;
-                            } else {
-                                userAnswers.push(answerData);
-                            }
-
-                            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-
-                            updateRadioButtons();
-
-                            if(timeIsUp){
-                                submitAnswersWithoutConfirmation(courseId, materialId, type);
-                            }
-
-
-                            else{
-                                const isConfirmed = window.confirm('Apakah Anda yakin ingin mengumpulkan jawaban?');
-                                if (isConfirmed) {
-                                if (validateAnswers()) {
-                                    // If validation is successful, send the submission data to the controller
-                                    const submissionData = {
-                                        answers: userAnswers.map(answer => ({
-                                            questionId: answer.questionId,
-                                            answer: answer.answer,
-                                            answerDetail: answer.answerDetail,
-                                        })),
-                                        courseId: document.querySelector('input[name="courseId"]').value,
-                                        materialId: document.querySelector('input[name="materialId"]')
-                                            .value,
-                                    };
-
-                                    // Use fetch API to make a POST request
-                                    fetch('/certification/submit-answers', {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                                'X-CSRF-TOKEN': document.head.querySelector(
-                                                    'meta[name="csrf-token"]').content,
-                                            },
-                                            body: JSON.stringify(submissionData),
-                                        })
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                throw new Error('Network response was not ok');
-                                            }
-                                            return response.json();
-                                        })
-                                        .then(data => {
-                                            // Handle the response from the server if needed
-                                            if (data.message === 'Success') {
-                                                // Tangani respons JSON jika permintaan berasal dari AJAX
-                                                console.log(data
-                                                    .data
-                                                ); // Lakukan sesuatu dengan data JSON yang diterima
-                                                clearSelectedAnswers();
-                                                // Redirect ke halaman assignment_test_results
-                                                window.location.href = '/certification/' + certifId +
-                                                    '/score'
-                                            } else {
-                                                // Tangani respons HTML jika permintaan bukan dari AJAX
-                                                console.log(
-                                                    data); // Lakukan sesuatu dengan HTML yang diterima
-                                            }
-                                            console.log(data);
-                                        })
-                                        .catch(error => {
-                                            // Use the error parameter instead of response
-                                            // Check if the response is HTML (error page) and handle accordingly
-                                            if (error.headers && error.headers.get('content-type').includes(
-                                                    'text/html')) {
-                                                console.error('Server returned HTML:', error.statusText);
-                                            } else {
-                                                console.error(
-                                                    'There was a problem with the fetch operation:',
-                                                    error);
-                                            }
-                                        });
+                                if (existingAnswerIndex !== -1) {
+                                    userAnswers[existingAnswerIndex] = answerData;
                                 } else {
-                                    alert(
-                                        'Masih ada soal yang belum terisi. Silakan isi semua soal sebelum mengumpulkan jawaban.'
-                                    );
+                                    userAnswers.push(answerData);
                                 }
+
+                                sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+
+                                updateRadioButtons();
+
+                                if(timeIsUp){
+                                    submitAnswersWithoutConfirmation(courseId, materialId, type);
+                                }
+
+
+                                else{
+                                    const isConfirmed = window.confirm('Apakah Anda yakin ingin mengumpulkan jawaban?');
+                                    if (isConfirmed) {
+                                    if (validateAnswers()) {
+                                        // If validation is successful, send the submission data to the controller
+                                        const submissionData = {
+                                            answers: userAnswers.map(answer => ({
+                                                questionId: answer.questionId,
+                                                answer: answer.answer,
+                                                answerDetail: answer.answerDetail,
+                                            })),
+                                            courseId: document.querySelector('input[name="courseId"]').value,
+                                            materialId: document.querySelector('input[name="materialId"]')
+                                                .value,
+                                        };
+
+                                        // Use fetch API to make a POST request
+                                        fetch('/submit-answers', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'X-CSRF-TOKEN': document.head.querySelector(
+                                                        'meta[name="csrf-token"]').content,
+                                                },
+                                                body: JSON.stringify(submissionData),
+                                            })
+                                            .then(response => {
+                                                if (!response.ok) {
+                                                    throw new Error('Network response was not ok');
+                                                }
+                                                return response.json();
+                                            })
+                                            .then(data => {
+                                                // Handle the response from the server if needed
+                                                if (data.message === 'Success') {
+                                                    // Tangani respons JSON jika permintaan berasal dari AJAX
+                                                    console.log(data
+                                                        .data
+                                                    ); // Lakukan sesuatu dengan data JSON yang diterima
+                                                    clearSelectedAnswers();
+                                                    // Redirect ke halaman assignment_test_results
+                                                    window.location.href = '/courses/material/' + courseId +
+                                                        '/' + materialId + '/' + type + '/score'
+                                                } else {
+                                                    // Tangani respons HTML jika permintaan bukan dari AJAX
+                                                    console.log(
+                                                        data); // Lakukan sesuatu dengan HTML yang diterima
+                                                }
+                                                console.log(data);
+                                            })
+                                            .catch(error => {
+                                                // Use the error parameter instead of response
+                                                // Check if the response is HTML (error page) and handle accordingly
+                                                if (error.headers && error.headers.get('content-type').includes(
+                                                        'text/html')) {
+                                                    console.error('Server returned HTML:', error.statusText);
+                                                } else {
+                                                    console.error(
+                                                        'There was a problem with the fetch operation:',
+                                                        error);
+                                                }
+                                            });
+                                    } else {
+                                        alert(
+                                            'Masih ada soal yang belum terisi. Silakan isi semua soal sebelum mengumpulkan jawaban.'
+                                        );
+                                    }
+                                }
+                                }
+
+                            } else {
+                                alert('Pilih jawaban terlebih dahulu.');
                             }
-                            }
-
-                        } else {
-                            alert('Pilih jawaban terlebih dahulu.');
-                        }
-                }
+                    }
 
 
-                if (submitButton) {
-                    submitButton.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        submitAnswers();
-                    });
-                }
+                    if (submitButton) {
+                        submitButton.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            submitAnswers();
+                        });
+                    }
 
 
                 // submitButton.addEventListener('click', function(){
@@ -430,17 +417,17 @@
                 //     warning("Apakah anda ingin mengumpulkan jawaban?")
                 // })
 
-                function updateRadioButtons() {
-                    const radioButtons = document.querySelectorAll('input[name="radio1"]');
+                    function updateRadioButtons() {
+                        const radioButtons = document.querySelectorAll('input[name="radio1"]');
 
-                    radioButtons.forEach(radioButton => {
-                        const questionId = radioButton.getAttribute('data-question');
-                        const userAnswer = userAnswers.find(ans => ans.questionId === questionId);
+                        radioButtons.forEach(radioButton => {
+                            const questionId = radioButton.getAttribute('data-question');
+                            const userAnswer = userAnswers.find(ans => ans.questionId === questionId);
 
-                        console.log('Question ID:', questionId);
-                        console.log('User Answer:', userAnswer);
-                        console.log('Chosen Answer:', userAnswer.answer);
-                        console.log('Radio Button Value:', radioButton.value);
+                            console.log('Question ID:', questionId);
+                            console.log('User Answer:', userAnswer);
+                            console.log('Chosen Answer:', userAnswer.answer);
+                            console.log('Radio Button Value:', radioButton.value);
 
                         if (userAnswer.answer == radioButton.value) {
                             // Set status checked if the answer exists
@@ -520,253 +507,18 @@
     // Rest of your code
 
 
-                updateRadioButtons();
+                    updateRadioButtons();
 
-                function clearSelectedAnswers() {
-                    const radioButtons = document.querySelectorAll('input[name="radio1"]');
-                    radioButtons.forEach(radioButton => {
-                        radioButton.checked = false;
-                    });
+                    function clearSelectedAnswers() {
+                        const radioButtons = document.querySelectorAll('input[name="radio1"]');
+                        radioButtons.forEach(radioButton => {
+                            radioButton.checked = false;
+                        });
 
-                    // Clear the userAnswers array
-                    sessionStorage.removeItem('userAnswers');
-                }
-            });
-            // document.addEventListener('DOMContentLoaded', function() {
-            //     const nextButton = document.getElementById('tombol-selanjutnya');
-            //     const previousButton = document.getElementById('tombol-sebelumnya');
-            //     const submitButton = document.getElementById('submit-button');
-            //     const userAnswers = JSON.parse(sessionStorage.getItem('userAnswers')) || [];
-
-            //     function validateAnswers() {
-            //         // Lakukan validasi apakah semua soal telah terisi
-            //         // Anda dapat menggunakan data dari userAnswers untuk melakukan validasi
-            //         return userAnswers.every(answer => answer.answer !== undefined && answer.answer !== null);
-            //     }
-
-            //     if (nextButton) {
-            //         nextButton.addEventListener('click', function() {
-            //             const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
-            //             const questionId = selectedAnswer ? selectedAnswer.getAttribute('data-question') : null;
-
-            //             if (questionId) {
-            //                 const answerData = {
-            //                     questionId: questionId,
-            //                     answer: selectedAnswer.value,
-            //                     answerDetail: selectedAnswer.parentElement.textContent.trim(),
-            //                 };
-
-            //                 const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
-            //                     questionId);
-
-            //                 if (existingAnswerIndex !== -1) {
-            //                     // Ganti jawaban jika questionId sudah ada di dalam array
-            //                     userAnswers[existingAnswerIndex] = answerData;
-            //                 } else {
-            //                     // Tambahkan jawaban baru jika questionId belum ada di dalam array
-            //                     userAnswers.push(answerData);
-            //                 }
-
-            //                 // Simpan array jawaban pengguna ke session storage
-            //                 sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-
-            //                 updateRadioButtons();
-            //                 console.log("array", userAnswers)
-            //                 // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
-            //                 // ...
-
-            //             } else {
-            //                 alert('Pilih jawaban terlebih dahulu.');
-            //             }
-            //         });
-            //     }
-
-            //     if (previousButton) {
-            //         previousButton.addEventListener('click', function() {
-            //             const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
-            //             const questionId = selectedAnswer ? selectedAnswer.getAttribute('data-question') : null;
-
-            //             if (questionId) {
-            //                 const answerData = {
-            //                     questionId: questionId,
-            //                     answer: selectedAnswer.value,
-            //                     answerDetail: selectedAnswer.parentElement.textContent.trim(),
-            //                 };
-
-            //                 const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
-            //                     questionId);
-
-            //                 if (existingAnswerIndex !== -1) {
-            //                     // Ganti jawaban jika questionId sudah ada di dalam array
-            //                     userAnswers[existingAnswerIndex] = answerData;
-            //                 } else {
-            //                     // Tambahkan jawaban baru jika questionId belum ada di dalam array
-            //                     userAnswers.push(answerData);
-            //                 }
-
-            //                 // Simpan array jawaban pengguna ke session storage
-            //                 sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-
-            //                 updateRadioButtons();
-            //                 console.log("array", userAnswers)
-            //                 // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
-            //                 // ...
-
-            //             } else {
-            //                 alert('Pilih jawaban terlebih dahulu.');
-            //             }
-            //         });
-            //     }
-
-
-
-            //     if (submitButton) {
-            //         submitButton.addEventListener('click', function(event) {
-            //             event.preventDefault();
-            //             const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
-            //             const questionId = selectedAnswer ? selectedAnswer.getAttribute('data-question') : null;
-
-            //             var certifId = document.getElementById('certif_id').value;
-            //             console.log("ini isian certifId: ", certifId)
-
-
-            //             if (questionId) {
-            //                 const answerData = {
-            //                     questionId: questionId,
-            //                     answer: selectedAnswer.value,
-            //                     answerDetail: selectedAnswer.parentElement.textContent.trim(),
-            //                 };
-
-            //                 const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
-            //                     questionId);
-
-            //                 if (existingAnswerIndex !== -1) {
-            //                     userAnswers[existingAnswerIndex] = answerData;
-            //                 } else {
-            //                     userAnswers.push(answerData);
-            //                 }
-
-            //                 sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-
-            //                 updateRadioButtons();
-
-            //                 const isConfirmed = window.confirm('Apakah Anda yakin ingin mengumpulkan jawaban?');
-
-            //                 if (isConfirmed) {
-            //                     if (validateAnswers()) {
-            //                         // If validation is successful, send the submission data to the controller
-            //                         const submissionData = {
-            //                             answers: userAnswers.map(answer => ({
-            //                                 questionId: answer.questionId,
-            //                                 answer: answer.answer,
-            //                                 answerDetail: answer.answerDetail,
-            //                             })),
-            //                             certifId: document.querySelector('input[name="certifId"]')
-            //                                 .value,
-            //                         };
-            //                         console.log('submission data: ', submissionData);
-            //                         // Use fetch API to make a POST request
-            //                         fetch('/certification/submit-answers', {
-            //                                 method: 'POST',
-            //                                 headers: {
-            //                                     'Content-Type': 'application/json',
-            //                                     'X-CSRF-TOKEN': document.head.querySelector(
-            //                                         'meta[name="csrf-token"]').content,
-            //                                 },
-            //                                 body: JSON.stringify(submissionData),
-            //                             })
-            //                             .then(response => {
-            //                                 if (!response.ok) {
-            //                                     throw new Error('Network response was not ok');
-            //                                 }
-            //                                 return response.json();
-            //                             })
-            //                             .then(data => {
-            //                                 // Handle the response from the server if needed
-            //                                 if (data.message === 'Success') {
-            //                                     // Tangani respons JSON jika permintaan berasal dari AJAX
-            //                                     console.log(data
-            //                                         .data
-            //                                     ); // Lakukan sesuatu dengan data JSON yang diterima
-            //                                     clearSelectedAnswers();
-            //                                     // Redirect ke halaman assignment_test_results
-            //                                     window.location.href = '/certification/' + certifId +
-            //                                         '/score'
-
-            //                                 } else {
-            //                                     // Tangani respons HTML jika permintaan bukan dari AJAX
-            //                                     console.log(
-            //                                         data); // Lakukan sesuatu dengan HTML yang diterima
-            //                                 }
-            //                                 console.log(data);
-            //                             })
-            //                             .catch(error => {
-            //                                 // Use the error parameter instead of response
-            //                                 // Check if the response is HTML (error page) and handle accordingly
-            //                                 if (error.headers && error.headers.get('content-type').includes(
-            //                                         'text/html')) {
-            //                                     console.error('Server returned HTML:', error.statusText);
-            //                                 } else {
-            //                                     console.error(
-            //                                         'There was a problem with the fetch operation:',
-            //                                         error);
-            //                                 }
-            //                             });
-            //                     } else {
-            //                         alert(
-            //                             'Masih ada soal yang belum terisi. Silakan isi semua soal sebelum mengumpulkan jawaban.'
-            //                         );
-            //                     }
-            //                 }
-            //             } else {
-            //                 alert('Pilih jawaban terlebih dahulu.');
-            //             }
-            //         });
-            //     }
-
-
-            //     // submitButton.addEventListener('click', function(){
-
-            //     //     warning("Apakah anda ingin mengumpulkan jawaban?")
-            //     // })
-
-            //     function updateRadioButtons() {
-            //         const radioButtons = document.querySelectorAll('input[name="radio1"]');
-
-            //         radioButtons.forEach(radioButton => {
-            //             const questionId = radioButton.getAttribute('data-question');
-            //             const userAnswer = userAnswers.find(ans => ans.questionId === questionId);
-
-            //             console.log('Question ID:', questionId);
-            //             console.log('User Answer:', userAnswer);
-            //             console.log('Chosen Answer:', userAnswer.answer);
-            //             console.log('Radio Button Value:', radioButton.value);
-
-            //             if (userAnswer.answer == radioButton.value) {
-            //                 // Set status checked if the answer exists
-            //                 console.log('THIS MUST BE CHECKED');
-            //                 radioButton.checked = true;
-            //             } else {
-            //                 // If the answer does not exist, ensure the radio button is unchecked
-            //                 console.log('NOT CHOSEN');
-            //                 radioButton.checked = false;
-            //             }
-            //         });
-            //     }
-
-
-            //     updateRadioButtons();
-
-            //     function clearSelectedAnswers() {
-            //         const radioButtons = document.querySelectorAll('input[name="radio1"]');
-            //         radioButtons.forEach(radioButton => {
-            //             radioButton.checked = false;
-            //         });
-
-            //         // Clear the userAnswers array
-            //         sessionStorage.removeItem('userAnswers');
-            //     }
-            // });
+                        // Clear the userAnswers array
+                        sessionStorage.removeItem('userAnswers');
+                    }
+                });
         </script>
     </body>
 @endsection

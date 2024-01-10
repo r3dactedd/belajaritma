@@ -35,7 +35,7 @@
         <div class="container p-4 mx-auto my-4">
             <div class="my-4 no-wrap md:-mx-2 md:flex">
                 <div class="w-full md:mx-2 md:w-3/12">
-                    <!-- Sidebar, pass value courselistnya aja-->
+                    <!-- Sidebar-->
                     @include('contents.course_sidebar')
                 </div>
                 {{-- QUESTION  --}}

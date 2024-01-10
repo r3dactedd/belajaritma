@@ -91,12 +91,6 @@
                                     </ul>
                                 </div>
                             @endif
-
-                            {{-- <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
-                                <ul class="ml-12 list-inside space-y-2 pb-4">
-
-                                </ul>
-                            </div> --}}
                         </div>
                     </li>
                 @endif
