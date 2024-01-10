@@ -336,15 +336,12 @@ class ManageCourseController extends Controller
             return Redirect::to("/manager/course/materiallist/{$material->materialToCourse->id}");
         }
         if($material->materialContentToMasterType->master_type_name == 'PDF'){
-            $validatePDF = $request->validate([
+            $request->validate([
                 'pdf_link' => 'file|mimes:pdf|max:2048',
             ]);
 
-            // Generate nama file menggunakan Str::orderedUuid()
             $filename = Str::orderedUuid() . '.' . $request->file('pdf_link')->getClientOriginalExtension();
-
-            // Pindahkan file ke direktori yang diinginkan (misalnya di dalam direktori public/material_pdf)
-            $request->file('pdf_link')->move(public_path('material_pdf'), $filename);
+            $request->file('pdf_link')->storeAs('material_pdf', $filename, 'material_pdf');
 
             $changeMaterialDetail = [
                 'pdf_link' => $filename,

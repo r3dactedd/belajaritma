@@ -61,7 +61,7 @@
                                     class="relative block w-auto pt-4 mx-6 font-bold tracking-normal text-gray-800 text-md lg:text-xl">
                                     Nilai Test Sertifikasi : <span class="text-red-600">{{ $register->total_score }}</span>
                                 </h1>
-                                @if ($register->attempts < 1 && now() > $register->blocked_until)
+                                @if ($remainingTime == 0)
                                     <h2
                                         class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
                                         Maaf, anda belum berhasil menyelesaikan Tes Sertifikasi ini. Silahkan mencoba
@@ -76,7 +76,7 @@
                                         <span class="mx-2 items-center">Mengambil Ulang Tes Sertifikasi
                                         </span>
                                     </a>
-                                @elseif ($register->blocked_until && now() < $register->blocked_until)
+                                @elseif ($remainingTime > 0)
                                     <h2
                                         class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
                                         Maaf, anda belum lulus mengerjakan Tes Sertifikasi ini. Silahkan mencoba kembali
@@ -86,6 +86,10 @@
                                     <h2
                                         class="text-md lg:text-md relative mx-6 mb-2 w-auto py-4 font-semibold tracking-normal text-gray-800">
                                         {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
+                                    <a href="#" id="refreshButton" onclick="refreshPage()"
+                                        class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-red-600 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                                        <span class="mx-2 items-center"> Refresh Halaman </span>
+                                    </a>
                                 @endif
 
                             </div>
@@ -184,5 +188,10 @@
 @section('footer')
 @include('layout.footer')
 @endsection
+<script>
+    function refreshPage() {
+        location.reload();
+    }
+</script>
 
 </html>
