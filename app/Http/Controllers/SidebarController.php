@@ -81,9 +81,10 @@ class SidebarController extends Controller
         $course = Course::find($id);
         $excludeFinal = $course->total_module-1;
         $firstRandomQuestionASG = AssignmentQuestions::where('material_id', $material_id)->inRandomOrder()->first();
+        $firstRandomQuestionFIN = FinalTestQuestions::where('material_id', $material_id)->inRandomOrder()->first();
         // $remainingQuestions = AssignmentQuestions::where('material_id', $material_id)->where('id', '!=', $firstRandomQuestionASG->id)->get()->shuffle();
         // $shuffledQuestions = collect([$firstRandomQuestionASG])->merge($remainingQuestions);
-        $firstIndexFIN = FinalTestQuestions::where('material_id', $material_id)->first();
+        // $firstIndexFIN = FinalTestQuestions::where('material_id', $material_id)->first();
 
         // $nextCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
         // ->where('material_id', $nextFurthestMaterial->id)
@@ -169,11 +170,11 @@ class SidebarController extends Controller
             return view('contents.session_pdf', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal','userCourseDetail','nextMaterialIndex'));
         } elseif ($master_type->master_type_name == 'Assignment') {
             // dd($firstIndexASG);
-            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstRandomQuestionASG', 'firstIndexFIN','userCourseDetail','nextMaterialIndex', 'materialCompleted','getMatCompleted'));
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstRandomQuestionASG', 'firstRandomQuestionFIN','userCourseDetail','nextMaterialIndex', 'materialCompleted','getMatCompleted'));
         }
         elseif ($master_type->master_type_name == 'Final Test') {
             // dd($firstIndexFIN);
-            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstIndexASG', 'firstIndexFIN','userCourseDetail','nextMaterialIndex','materialCompleted','getMatCompleted'));
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstRandomQuestionASG', 'firstRandomQuestionFIN','userCourseDetail','nextMaterialIndex','materialCompleted','getMatCompleted'));
         }
 
     }
