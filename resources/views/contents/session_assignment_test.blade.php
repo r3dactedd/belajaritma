@@ -93,7 +93,7 @@
                             </h2>
                         </div>
                         @if ($material->materialContentToMasterType->master_type_name == 'Final Test' && !$materialCompleted)
-                            <a href='/courses/material/{{ $material->title }}/{{ $material->course_id }}/{{ $material->id }}/{{ $firstIndexFIN->id }}/finalTest/1'
+                            <a href='/courses/material/{{ $material->title }}/{{ $material->course_id }}/{{ $material->id }}/{{ $firstRandomQuestionFIN->id }}/finalTest/1'
                                 class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
                                 <span class="items-center mx-2">Mulai Final Test
@@ -109,7 +109,7 @@
 
                             </a>
                         @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment' && !$materialCompleted)
-                            <a href='/courses/material/{{ $material->title }}/{{ $material->course_id }}/{{ $material->id }}/{{ $firstRandomQuestion->id }}/1'
+                            <a href='/courses/material/{{ $material->title }}/{{ $material->course_id }}/{{ $material->id }}/{{ $firstRandomQuestionASG->id }}/assignment/1'
                                 class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
                                 <span class="items-center mx-2">Mulai Assignment
