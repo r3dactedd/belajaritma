@@ -195,6 +195,7 @@
     let timeIsUp = false;
     function startTimer(duration) {
         let timer;
+        // localStorage.removeItem('timer');
         const storedTime = localStorage.getItem('timer');
 
         if (storedTime !== null) {
@@ -389,6 +390,7 @@
                                                     .data
                                                 ); // Lakukan sesuatu dengan data JSON yang diterima
                                                 clearSelectedAnswers();
+                                                localStorage.removeItem('timer');
                                                 // Redirect ke halaman assignment_test_results
                                                 window.location.href = '/courses/material/' + courseId +
                                                     '/' + materialId + '/' + type + '/score'
