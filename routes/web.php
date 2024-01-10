@@ -139,7 +139,7 @@ Route::get('/courses/1/getcerti', function () {
 
 //sidebar route
 Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showMaterial'])->name('sidebar.showSidebar');
-Route::get('/courses/material/{title}/{id}/{material_id}/{question_id}/{type}', [CourseController::class, 'courseTestPage']);
+Route::get('/courses/material/{title}/{id}/{material_id}/{question_id}/{type}/{isReshuffle}', [CourseController::class, 'courseTestPage']);
 
 Route::post('/submit-answers', [CourseController::class, 'submitAnswers'])->name('submit.answers');
 Route::get('/courses/{courseId}/{materialId}/results', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');

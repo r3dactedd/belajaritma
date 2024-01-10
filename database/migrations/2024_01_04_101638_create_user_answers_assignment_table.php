@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('question_id');
-            $table->string('selected_answer');
+            $table->string('selected_answer')->nullable();
             $table->text('answer_detail')->nullable();;
             $table->string('type');
             $table->boolean('is_correct')->nullable();

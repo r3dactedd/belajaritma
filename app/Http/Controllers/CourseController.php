@@ -65,7 +65,7 @@ class CourseController extends Controller
         foreach ($material as $materials) {
             $contentArray[$materials->id] = ModuleContent::where('material_id', $materials->id)->get();
         }
-        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray, 'userCourseDetail' => $userCourseDetail, 'checkFinalComplete' => $checkFinalComplete, 'firstIndexFIN'=> $firstIndexFIN, 'materialAccessed'=> $materialAccessed]);
+        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray, 'userCourseDetail' => $userCourseDetail, 'checkFinalComplete' => $checkFinalComplete, 'firstIndexFIN' => $firstIndexFIN, 'materialAccessed'=> $materialAccessed]);
         // dd($contentArray);
     }
 
@@ -76,26 +76,108 @@ class CourseController extends Controller
         // dd($contentArray);
     }
 
-    public function courseTestPage($title, $id, $material_id, $question_id, $type)
+    public function courseTestPage($title, $id, $material_id, $question_id, $type, $isReshuffle)
     {
         if ($type == "finalTest") {
-            $questionDetail = FinalTestQuestions::find($question_id);
             $questionList = FinalTestQuestions::where('material_id', $material_id)->get();
-            $totalQuestions = count($questionList);
-            $firstQuestion = FinalTestQuestions::where('material_id', $material_id)->first();
-            $currentQuestionNumber = $question_id - $firstQuestion->id + 1;
-            $currentQuestionNumber = ($currentQuestionNumber % $totalQuestions);
-            $currentQuestionNumber = ($currentQuestionNumber == 0) ? $totalQuestions : $currentQuestionNumber;
+
+            // Shuffle and store question IDs in the session
+            if ($isReshuffle == 1) {
+                $shuffledQuestionIds = $questionList->pluck('id')->shuffle()->toArray();
+
+                // Ensure that the first question after shuffling is the same as firstRandomQuestionId
+                $firstQuestionIndex = array_search($question_id, $shuffledQuestionIds);
+
+                // If the firstRandomQuestionId is not in the list, add it to the beginning
+                if ($firstQuestionIndex === false) {
+                    array_unshift($shuffledQuestionIds, $question_id);
+                } else {
+                    // Swap the first question with the question at the firstRandomQuestionId index
+                    list($shuffledQuestionIds[0], $shuffledQuestionIds[$firstQuestionIndex]) =
+                        [$shuffledQuestionIds[$firstQuestionIndex], $shuffledQuestionIds[0]];
+                }
+
+                session(['shuffledQuestionIds' => $shuffledQuestionIds, 'reshuffled' => true]);
+            } else {
+                // If not set, shuffle and store in the session
+                if (!session()->has('shuffledQuestionIds')) {
+                    $shuffledQuestionIds = $questionList->pluck('id')->shuffle()->toArray();
+                    session(['shuffledQuestionIds' => $shuffledQuestionIds]);
+                } else {
+                    $shuffledQuestionIds = session('shuffledQuestionIds');
+                }
+            }
+
+
+            $currentQuestionIndex = array_search($question_id, $shuffledQuestionIds);
+
+            // Determine the next and previous question IDs
+            $nextQuestionId = $shuffledQuestionIds[($currentQuestionIndex + 1) % count($shuffledQuestionIds)];
+            $previousQuestionId = $shuffledQuestionIds[($currentQuestionIndex - 1 + count($shuffledQuestionIds)) % count($shuffledQuestionIds)];
+
+            $firstQuestionId = $shuffledQuestionIds[0];
+            $firstQuestion = FinalTestQuestions::find($firstQuestionId);
+            // Check if the current question is the last one in the shuffled order
+
+            $isLastQuestion = ($currentQuestionIndex + 1) == count($shuffledQuestionIds);
+
+            // Fetch the question details based on the shuffled order
+            $shuffledQuestionId = $shuffledQuestionIds[$currentQuestionIndex];
+            $questionDetail = FinalTestQuestions::find($shuffledQuestionId);
+
+            // Calculate the current question number based on the shuffled order
+            $currentQuestionNumber = $currentQuestionIndex + 1;
             $latestQuestion = FinalTestQuestions::where('material_id', $material_id)->orderBy('id', 'desc')->first();
         }
         if ($type == "assignment") {
-            $questionDetail = AssignmentQuestions::find($question_id);
             $questionList = AssignmentQuestions::where('material_id', $material_id)->get();
-            $totalQuestions = count($questionList);
-            $firstQuestion = AssignmentQuestions::where('material_id', $material_id)->first();
-            $currentQuestionNumber = $question_id - $firstQuestion->id + 1;
-            $currentQuestionNumber = ($currentQuestionNumber % $totalQuestions);
-            $currentQuestionNumber = ($currentQuestionNumber == 0) ? $totalQuestions : $currentQuestionNumber;
+
+            // Shuffle and store question IDs in the session
+            if ($isReshuffle == 1) {
+                $shuffledQuestionIds = $questionList->pluck('id')->shuffle()->toArray();
+
+                // Ensure that the first question after shuffling is the same as firstRandomQuestionId
+                $firstQuestionIndex = array_search($question_id, $shuffledQuestionIds);
+
+                // If the firstRandomQuestionId is not in the list, add it to the beginning
+                if ($firstQuestionIndex === false) {
+                    array_unshift($shuffledQuestionIds, $question_id);
+                } else {
+                    // Swap the first question with the question at the firstRandomQuestionId index
+                    list($shuffledQuestionIds[0], $shuffledQuestionIds[$firstQuestionIndex]) =
+                        [$shuffledQuestionIds[$firstQuestionIndex], $shuffledQuestionIds[0]];
+                }
+
+                session(['shuffledQuestionIds' => $shuffledQuestionIds, 'reshuffled' => true]);
+            } else {
+                // If not set, shuffle and store in the session
+                if (!session()->has('shuffledQuestionIds')) {
+                    $shuffledQuestionIds = $questionList->pluck('id')->shuffle()->toArray();
+                    session(['shuffledQuestionIds' => $shuffledQuestionIds]);
+                } else {
+                    $shuffledQuestionIds = session('shuffledQuestionIds');
+                }
+            }
+
+
+            $currentQuestionIndex = array_search($question_id, $shuffledQuestionIds);
+
+            // Determine the next and previous question IDs
+            $nextQuestionId = $shuffledQuestionIds[($currentQuestionIndex + 1) % count($shuffledQuestionIds)];
+            $previousQuestionId = $shuffledQuestionIds[($currentQuestionIndex - 1 + count($shuffledQuestionIds)) % count($shuffledQuestionIds)];
+
+            $firstQuestionId = $shuffledQuestionIds[0];
+            $firstQuestion = AssignmentQuestions::find($firstQuestionId);
+            // Check if the current question is the last one in the shuffled order
+
+            $isLastQuestion = ($currentQuestionIndex + 1) == count($shuffledQuestionIds);
+
+            // Fetch the question details based on the shuffled order
+            $shuffledQuestionId = $shuffledQuestionIds[$currentQuestionIndex];
+            $questionDetail = AssignmentQuestions::find($shuffledQuestionId);
+
+            // Calculate the current question number based on the shuffled order
+            $currentQuestionNumber = $currentQuestionIndex + 1;
             $latestQuestion = AssignmentQuestions::where('material_id', $material_id)->orderBy('id', 'desc')->first();
         }
 
@@ -105,7 +187,7 @@ class CourseController extends Controller
         // dd($type);
         // dd($material);
         //  dd($latestQuestion->id);
-        return view('contents.assignment_test_questions', ['title' => $title, 'questionDetail' => $questionDetail, 'material' => $material, 'questionList' => $questionList, 'currentQuestionNumber' => $currentQuestionNumber, 'question_id' => $question_id, 'id' => $id, 'material_id' => $material_id, 'type' => $type, 'latestQuestion' => $latestQuestion, 'firstQuestion' => $firstQuestion]);
+        return view('contents.assignment_test_questions', ['currentQuestionIndex' => $currentQuestionIndex, 'shuffledQuestionIds' => $shuffledQuestionIds, 'currentQuestionNumber' => $currentQuestionNumber, 'nextQuestionId' => $nextQuestionId, 'previousQuestionId' => $previousQuestionId, 'title' => $title, 'questionDetail' => $questionDetail, 'material' => $material, 'questionList' => $questionList, 'currentQuestionNumber' => $currentQuestionNumber, 'question_id' => $question_id, 'id' => $id, 'material_id' => $material_id, 'type' => $type, 'latestQuestion' => $latestQuestion, 'isLastQuestion' => $isLastQuestion, 'firstQuestion' => $firstQuestion]);
     }
     // public function saveAnswer(Request $request, $title, $id, $material_id, $question_id, $type)
     // {
@@ -120,7 +202,8 @@ class CourseController extends Controller
 
     // }
 
-    public function submitAnswers(Request $request){
+    public function submitAnswers(Request $request)
+    {
         Log::info('Submit Answers Request:', $request->all());
         // Validasi request jika diperlukan
         $user = Auth::user();
@@ -136,7 +219,7 @@ class CourseController extends Controller
         $courseId = $request->filled('courseId') ? $request->input('courseId') : null;
         $materialId = $request->filled('materialId') ? $request->input('materialId') : null;
         $material = Material::findOrFail($materialId);
-        if($material->materialContentToMasterType->master_type_name ==  "Assignment"){
+        if ($material->materialContentToMasterType->master_type_name ==  "Assignment") {
             if (is_array($userAnswers)) {
                 // Proses simpan jawaban ke dalam database atau lakukan tindakan lainnya sesuai kebutuhan
                 foreach ($userAnswers as $answer) {
@@ -170,7 +253,7 @@ class CourseController extends Controller
             }
         }
 
-        if($material->materialContentToMasterType->master_type_name ==  "Final Test"){
+        if ($material->materialContentToMasterType->master_type_name ==  "Final Test") {
             if (is_array($userAnswers)) {
                 // Proses simpan jawaban ke dalam database atau lakukan tindakan lainnya sesuai kebutuhan
                 foreach ($userAnswers as $answer) {
@@ -203,11 +286,12 @@ class CourseController extends Controller
             }
         }
 
-            return redirect()->route('course.showResults', [$courseId, $materialId]);
+        return redirect()->route('course.showResults', [$courseId, $materialId]);
     }
 
 
-    public function showAssignmentResults($courseId, $materialId){
+    public function showAssignmentResults($courseId, $materialId)
+    {
         $sidebars = Sidebar::select('sidebar.id', 'sidebar.material_id', 'sidebar.parent_id', 'sidebar.title', 'sidebar.course_id', 'sidebar.is_locked')
             ->where('course_id', $courseId)
             ->orderBy('order')
@@ -237,7 +321,7 @@ class CourseController extends Controller
 
         if ($enrollment) {
 
-            if($material->materialContentToMasterType->master_type_name ==  "Assignment"){
+            if ($material->materialContentToMasterType->master_type_name ==  "Assignment") {
                 $assignmentQuestions = AssignmentQuestions::where('material_id', $materialId)->orderBy('id', 'asc')->get();
 
                 $userAnswers = UserAnswerAssignment::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $assignmentQuestions->pluck('id'))->get();
@@ -252,14 +336,12 @@ class CourseController extends Controller
 
                     // Check if the selected answer matches the correct answer
                     if ($userAnswer->selected_answer === $question->jawaban_benar) {
-                        $userAnswer->is_correct=true;
+                        $userAnswer->is_correct = true;
                         $userAnswer->save();
                         $correctAnswers++;
-                    }
-                    else{
-                        $userAnswer->is_correct=false;
+                    } else {
+                        $userAnswer->is_correct = false;
                         $userAnswer->save();
-
                     }
                     $counter++;
                     if ($counter >= $totalQuestions) {
@@ -268,7 +350,7 @@ class CourseController extends Controller
                 }
                 $userScore = ceil(($correctAnswers / $totalQuestions) * 100);
 
-                if(!$materialCompleted){
+                if (!$materialCompleted) {
                     MaterialCompleted::create([
                         'user_id' => auth()->id(),
                         'course_id' => $courseId,
@@ -277,8 +359,7 @@ class CourseController extends Controller
                         'total_score' => $userScore,
                         'attempts' => \DB::raw('attempts + 1'),
                     ]);
-                }
-                else{
+                } else {
                     MaterialCompleted::where('material_id', $materialId)->update([
                         'total_score' => $userScore,
                         'attempts' => \DB::raw('attempts + 1'),
@@ -289,9 +370,9 @@ class CourseController extends Controller
                 Log::info('The Answers:', [$userAnswers]);
                 Log::info('The Questions:', [$assignmentQuestions]);
 
-                if($userScore >= $material->minimum_score){
+                if ($userScore >= $material->minimum_score) {
                     $enrollment->material_completed_count += 1;
-                    $enrollment->total_duration_count+=$material->material_duration;
+                    $enrollment->total_duration_count += $material->material_duration;
                     $enrollment->save();
 
                     $currentMaterial->is_locked = false;
@@ -307,10 +388,9 @@ class CourseController extends Controller
                 }
 
                 return response()->json(['message' => 'Success']);
-
             }
 
-            if($material->materialContentToMasterType->master_type_name ==  "Final Test"){
+            if ($material->materialContentToMasterType->master_type_name ==  "Final Test") {
                 $finalTestQuestions = FinalTestQuestions::where('material_id', $materialId)->orderBy('id', 'asc')->get();
 
                 $userAnswers = UserAnswerFinalTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $finalTestQuestions->pluck('id'))->get();
@@ -324,14 +404,12 @@ class CourseController extends Controller
 
                     // Check if the selected answer matches the correct answer
                     if ($userAnswer->selected_answer === $question->jawaban_benar) {
-                        $userAnswer->is_correct=true;
+                        $userAnswer->is_correct = true;
                         $userAnswer->save();
                         $correctAnswers++;
-                    }
-                    else{
-                        $userAnswer->is_correct=false;
+                    } else {
+                        $userAnswer->is_correct = false;
                         $userAnswer->save();
-
                     }
                     $counter++;
                     if ($counter >= $totalQuestions) {
@@ -339,7 +417,7 @@ class CourseController extends Controller
                     }
                 }
                 $userScore = ceil(($correctAnswers / $totalQuestions) * 100);
-                if(!$materialCompleted){
+                if (!$materialCompleted) {
                     MaterialCompleted::create([
                         'user_id' => auth()->id(),
                         'course_id' => $courseId,
@@ -348,8 +426,7 @@ class CourseController extends Controller
                         'total_score' => $userScore,
                         'attempts' => \DB::raw('attempts + 1'),
                     ]);
-                }
-                else{
+                } else {
                     MaterialCompleted::where('material_id', $materialId)->update([
                         'total_score' => $userScore,
                         'attempts' => \DB::raw('attempts + 1'),
@@ -360,10 +437,10 @@ class CourseController extends Controller
                 Log::info('The Answers:', [$userAnswers]);
                 Log::info('The Questions:', [$finalTestQuestions]);
 
-                if($userScore >= $material->minimum_score){
+                if ($userScore >= $material->minimum_score) {
                     $enrollment->material_completed_count += 1;
-                    $enrollment->total_duration_count+=$material->material_duration;
-                    $enrollment->completed=true;
+                    $enrollment->total_duration_count += $material->material_duration;
+                    $enrollment->completed = true;
                     $enrollment->save();
 
                     $currentMaterial->is_locked = false;
@@ -379,7 +456,8 @@ class CourseController extends Controller
             }
         }
     }
-    public function showScore($id, $material_id, $type){
+    public function showScore($id, $material_id, $type)
+    {
         $material = Material::findOrFail($material_id);
         $course = Course::findOrFail($id);
         $sidebars = Sidebar::select('sidebar.id', 'sidebar.material_id', 'sidebar.parent_id', 'sidebar.title', 'sidebar.course_id', 'sidebar.is_locked', 'sidebar.order')
@@ -395,7 +473,7 @@ class CourseController extends Controller
             ->first();
         $remainingTime = null;
         // dd($firstIndexASG->id);
-        if($type=='assignment'){
+        if ($type == 'assignment') {
 
             if ($materialCompleted->attempts == 3 && $materialCompleted->total_score < $material->minimum_score) {
                 MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
@@ -408,7 +486,7 @@ class CourseController extends Controller
                     ->first();
                 $remainingTime = Carbon::now()->diffInMinutes($tempMaterial->blocked_until);
             }
-            if($materialCompleted->blocked_until){
+            if ($materialCompleted->blocked_until) {
                 $remainingTime = Carbon::now()->diffInMinutes($materialCompleted->blocked_until);
             }
             if($remainingTime == 0){
@@ -416,13 +494,13 @@ class CourseController extends Controller
                 $materialCompleted->save();
                 $remainingTime = 0;
             }
-            $firstIndex = AssignmentQuestions::where('material_id', $material_id)->first();
+            $firstRandomQuestion = AssignmentQuestions::where('material_id', $material_id)->inRandomOrder()->first();
+            $randomizedQuestions = AssignmentQuestions::where('material_id', $material_id)->get()->shuffle();
             $questions = AssignmentQuestions::where('material_id', $material_id)->orderBy('id', 'asc')->get();
             $userAnswers = UserAnswerAssignment::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $questions->pluck('id'))->get();
-            return view('contents.assignment_test_results', compact('userAnswers', 'questions','remainingTime','sidebars','materialCompleted', 'material', 'course', 'material_id', 'type', 'firstIndex'));
-
+            return view('contents.assignment_test_results', compact('userAnswers', 'questions', 'firstRandomQuestion', 'randomizedQuestions', 'remainingTime', 'sidebars', 'materialCompleted', 'material', 'course', 'material_id', 'type'));
         }
-        if($type=='finalTest'){
+        if ($type == 'finalTest') {
 
             if ($materialCompleted->attempts == 1 && $materialCompleted->total_score < $material->minimum_score) {
                 MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
@@ -435,7 +513,7 @@ class CourseController extends Controller
                     ->first();
                 $remainingTime = Carbon::now()->diffInMinutes($tempMaterial->blocked_until);
             }
-            if($materialCompleted->blocked_until){
+            if ($materialCompleted->blocked_until) {
                 $remainingTime = Carbon::now()->diffInMinutes($materialCompleted->blocked_until);
             }
             if($remainingTime == 0){
@@ -443,13 +521,27 @@ class CourseController extends Controller
                 $materialCompleted->save();
                 $remainingTime = 0;
             }
-            $firstIndex = FinalTestQuestions::where('material_id', $material_id)->first();
-            $firstIndex = FinalTestQuestions::where('material_id', $material_id)->first();
+            $firstRandomQuestion = FinalTestQuestions::where('material_id', $material_id)->inRandomOrder()->first();
+            $randomizedQuestions = FinalTestQuestions::where('material_id', $material_id)->get()->shuffle();
             $questions = FinalTestQuestions::where('material_id', $material_id)->orderBy('id', 'asc')->get();
             $userAnswers = UserAnswerFinalTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $questions->pluck('id'))->get();
-            return view('contents.assignment_test_results', compact('userAnswers', 'questions','remainingTime','sidebars','materialCompleted','material', 'course', 'material_id', 'type','firstIndex'));
+            return view('contents.assignment_test_results', compact('userAnswers', 'questions','firstRandomQuestion', 'randomizedQuestions', 'remainingTime', 'sidebars', 'materialCompleted', 'material', 'course', 'material_id', 'type'));
         }
-
     }
 
+    protected function blockUserFor30Minutes($materialCompleted)
+    {
+        MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
+            'blocked_until' => Carbon::now()->addMinutes(30),
+            'attempts' => 0,
+        ]);
+    }
+
+    protected function blockUserForADay($materialCompleted)
+    {
+        MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
+            'blocked_until' => Carbon::now()->addDay(1),
+            'attempts' => 0,
+        ]);
+    }
 }
