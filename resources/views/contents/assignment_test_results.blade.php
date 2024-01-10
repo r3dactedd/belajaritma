@@ -127,9 +127,16 @@
                                         class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
                                         Maaf, anda belum berhasil menyelesaikan assignment ini. Silahkan mencoba lagi.
                                     </h2>
-                                    <h2
-                                        class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
-                                        {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
+                                    <strong class="flex items-center justify-center">Batas untuk mengambil ulang Assignment
+                                        ini adalah 3 Kali. Anda memiliki {{ 3 - $materialCompleted->attempts }} kesempatan
+                                        lagi.</strong>
+                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 30
+                                        menit sebelum dapat mengerjakan assignment kembali.</strong>
+                                    <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstRandomQuestion->id }}/{{ $type }}/1'
+                                        class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                                        <span class="items-center mx-2">Mengambil Ulang Assignment
+                                        </span>
+                                    </a>
                                 @elseif (
                                     $materialCompleted->blocked_until &&
                                         now() < $materialCompleted->blocked_until &&
@@ -142,16 +149,7 @@
                                     <h2
                                         class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
                                         {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
-                                    <strong class="flex items-center justify-center">Batas untuk mengambil ulang Assignment
-                                        ini adalah 3 Kali. Anda memiliki {{ 3 - $materialCompleted->attempts }} kesempatan
-                                        lagi.</strong>
-                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 30
-                                        menit sebelum dapat mengerjakan assignment kembali.</strong>
-                                    <a href='/courses/material/{{ $sidebars->title }}/{{ $course->id }}/{{ $material_id }}/{{ $firstRandomQuestion->id }}/{{ $type }}/1'
-                                        class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
-                                        <span class="items-center mx-2">Mengambil Ulang Assignment
-                                        </span>
-                                    </a>
+                             
                                 @endif
 
                             </div>

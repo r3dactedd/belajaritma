@@ -81,7 +81,6 @@
                         alt="course image" class="object-cover w-full h-full" />
                         @endif
 
-                        <p>Last Question ID: {{ $isLastQuestion }}</p>
                         <div class="pl-12">
                             <div class="question-group">
                                 <div class="flex items-center mb-4 mr-4">
