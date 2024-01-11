@@ -237,7 +237,7 @@
                         </div>
                     </div>
                 @elseif (!auth()->user()->isRegistered($data->id) && $transaction->is_pending == true)
-                    {{-- Not register OR transaction pending --}}
+                    {{-- Not register AND transaction pending --}}
 
                     <div
                         class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
