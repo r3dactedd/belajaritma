@@ -354,7 +354,7 @@
                         <h2 class="afterName mt-4">{{ $data->certi_name }}</h2>
                         <h3 class="mb-12 mt-4">Pada Tanggal <span class="font-semibold">
                                 {{ auth()->user()->updateTimestampForCourse($data->id) }}</span></h3>
-                        <h1 class="mb-12 ml-4 text-2xl font-black text-gray-800">Belajaritma</h1>
+                                <img class="mb-16 w-3/5" src="{{ asset('local/logo.png') }}" alt="logo">
                 </td>
             </tr>
         </table>

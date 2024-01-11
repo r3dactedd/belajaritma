@@ -15,20 +15,12 @@
     <div class="container mx-auto flex h-16 items-center justify-between lg:items-stretch">
         <div class="flex h-full items-center">
             <a href="/" class="relative mr-10 flex h-full items-center font-black leading-none">
-                {{-- <svg class="h-6 w-auto fill-current text-indigo-600" viewBox="0 0 194 116"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g fill-rule="evenodd">
-                        <path
-                            d="M96.869 0L30 116h104l-9.88-17.134H59.64l47.109-81.736zM0 116h19.831L77 17.135 67.088 0z" />
-                        <path d="M87 68.732l9.926 17.143 29.893-51.59L174.15 116H194L126.817 0z" />
-                    </g>
-                </svg> --}}
-                <span class="ml-4 text-2xl text-gray-800">Belajaritma</span>
+                <img src="{{ asset('local/logo.png') }}" class="h-5/8 w-36 fill-current text-indigo-600">
             </a>
             <ul class="hidden h-full items-center lg:flex">
                 <li
                     class="mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800">
-                    <a href="/home" id="home-link"class="hover:text-indigo-600 hover:underline">Home</a>
+                    <a href="/home" id="home-link"class=" hover:text-indigo-600 hover:underline">Home</a>
                 </li>
                 @if (!Auth::user())
                     <li
