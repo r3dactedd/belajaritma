@@ -40,7 +40,8 @@ class CertificationController extends Controller
     public function certifDetail($id){
         $data=Certification::find($id);
         $register = RegistrationCertification::where('user_id', auth()->id())->where('certif_id', $data->id)->first();
-        return view('contents.certification_details', ['data' => $data, 'register' => $register]);
+        $transaction = Transaction::where('user_id', auth()->id())->where('certif_id', $data->id)->first();
+        return view('contents.certification_details', ['data' => $data, 'register' => $register, 'transaction'=>$transaction]);
     }
 
     public function registerCertification($id){
@@ -53,23 +54,35 @@ class CertificationController extends Controller
         }
         return view('transactions.transaction', ['data' => $data]);
     }
-    public function createTransaction(Request $request){
+    public function createTransaction(Request $request, $id){
 
         $request->validate([
             'transaction_proof' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
+        $findTransaction = Transaction::where('user_id', auth()->id())->where('certif_id', $id)->first();
+        if(!$findTransaction){
+            $filename = Str::orderedUuid() . "." . $request->file('transaction_proof')->getClientOriginalExtension();
+            $request->transaction_proof->storeAs('transaction_images', $filename, 'transaction_images');
 
-        $filename = Str::orderedUuid() . "." . $request->file('transaction_proof')->getClientOriginalExtension();
-        $request->transaction_proof->storeAs('transaction_images', $filename, 'transaction_images');
+            $transaction = new Transaction();
+            $transaction->user_id = Auth()->user()->id;
+            $transaction->certif_id =  $request->certif_id;
+            $transaction->payment_code = Str::uuid();
+            $transaction->transaction_proof = $filename;
+            $transaction->is_pending = true;
+            $transaction->save();
+        }
+        else{
+            $filename = Str::orderedUuid() . "." . $request->file('transaction_proof')->getClientOriginalExtension();
+            $request->transaction_proof->storeAs('transaction_images', $filename, 'transaction_images');
 
-        $transaction = new Transaction();
-        $transaction->user_id = Auth()->user()->id;
-        $transaction->certif_id =  $request->certif_id;
-        $transaction->payment_code = Str::uuid();
-        $transaction->transaction_proof = $filename;
+            $findTransaction->update([
+                'payment_code' => Str::uuid(),
+                'transaction_proof' => $filename,
+                'is_pending' => true,
+            ]);
+        }
 
-
-        $transaction->save();
         // transaction_proof
         return redirect("/certifications/{$request->certif_id}");
     }
