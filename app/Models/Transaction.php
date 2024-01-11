@@ -16,6 +16,7 @@ class Transaction extends Model
         'payment_code',
         'transaction_proof',
         'isApproved',
+        'is_pending',
     ];
     public function transactionToCertification(){
         return $this->belongsTo(Certification::class, 'certif_id');
