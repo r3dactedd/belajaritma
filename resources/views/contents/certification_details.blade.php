@@ -209,7 +209,9 @@
                             </div>
                         </div>
                     @endif
-                @else
+                @elseif (!$transaction || ($transaction->is_pending == false && $transaction->isApproved == false))
+                    {{-- Havent sent transaction OR transaction declined --}}
+
                     <div
                         class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
                         <div class="w-full px-4">
@@ -230,6 +232,22 @@
                                                 class="bg-selected inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-400">Registrasi</a>
                                         </p>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @elseif (!auth()->user()->isRegistered($data->id) && $transaction->is_pending == true)
+                    {{-- Not register AND transaction pending --}}
+
+                    <div
+                        class="container mx-auto mb-10 flex flex-col-reverse rounded-xl bg-white shadow md:w-3/5 lg:flex-row">
+                        <div class="w-full px-4">
+                            <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
+                                <div class="text-center">
+                                    <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
+                                        Pembayaran Anda sedang diproses. Harap tunggu hingga admin menyetujui atau menolak
+                                        transaksi Anda.
+                                    </h2>
                                 </div>
                             </div>
                         </div>
@@ -336,7 +354,7 @@
                         <h2 class="afterName mt-4">{{ $data->certi_name }}</h2>
                         <h3 class="mb-12 mt-4">Pada Tanggal <span class="font-semibold">
                                 {{ auth()->user()->updateTimestampForCourse($data->id) }}</span></h3>
-                        <h1 class="mb-12 ml-4 text-2xl font-black text-gray-800">Belajaritma</h1>
+                                <img class="mb-16 w-3/5" src="{{ asset('local/logo.png') }}" alt="logo">
                 </td>
             </tr>
         </table>

@@ -222,7 +222,7 @@
                                 <div class="flex w-full hover:bg-gray-200">
                                     <div class="flex h-16 w-20 items-center justify-center rounded-lg text-gray-700">
                                         {{-- Course image here --}}
-                                        <img src="https://cdn.elearningindustry.com/wp-content/uploads/2022/01/shutterstock_525008128.jpg"
+                                        <img src="{{ asset('local/course.jpg') }}"
                                             alt="course image" class="h-full w-full object-cover" />
                                     </div>
                                     <div class="w-full px-4">
@@ -242,7 +242,7 @@
                                 <div class="flex w-full hover:bg-gray-200">
                                     <div class="flex h-16 w-20 items-center justify-center rounded-lg text-gray-700">
                                         {{-- Course image here --}}
-                                        <img src="https://www.cpsc.gov/s3fs-public/Certificate_TestingAndCertification_Card.png"
+                                        <img src="{{ asset('local/certification.png') }}"
                                             alt="course image" class="h-full w-full object-cover" />
                                     </div>
                                     <div class="w-full px-4">

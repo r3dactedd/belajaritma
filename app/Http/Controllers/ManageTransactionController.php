@@ -12,7 +12,15 @@ class ManageTransactionController extends Controller
 {
     //
     public function showTransactionList(){
-        $data = Transaction::where('isApproved', null)->get();
+        //isApproved = null -> Transaction not made
+        //isApproved = false & is_pending =true -> Transaction for the second time after failing
+        $data = Transaction::where(function($query) {
+            $query->where('isApproved', null)
+                  ->orWhere(function($query) {
+                      $query->where('isApproved', false)
+                            ->where('is_pending', true);
+                  });
+        })->get();
         return view('administrator.admin_transaction',['data'=>$data]);
     }
     public function approveTransaction(Request $request, $id)
@@ -20,6 +28,7 @@ class ManageTransactionController extends Controller
         Log::info('Request Data:', $request->all());
         $transaction = Transaction::find($id);
         $transaction->isApproved = true;
+        $transaction->is_pending = false;
         $transaction->save();
 
         $registerTransaction = new RegistrationCertification();
@@ -43,6 +52,7 @@ class ManageTransactionController extends Controller
         Log::info('Request Data:', $request->all());
         $transaction = Transaction::find($id);
         $transaction->isApproved = false;
+        $transaction->is_pending = false;
         $transaction->save();
 
         return redirect('/manager/transaction')->with('success', 'Transaction declined successfully!');
