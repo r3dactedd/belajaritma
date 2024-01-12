@@ -1,10 +1,10 @@
 @if ($reply->reply_id == $data->id)
     <div class="flex">
-        <div class="mr-3 flex-shrink-0">
-            <img class="mt-3 h-5 w-5 rounded-full sm:h-8 sm:w-8"
+        <div class="flex-shrink-0 mr-3">
+            <img class="w-5 h-5 mt-3 rounded-full sm:h-8 sm:w-8"
                 src="{{ asset('uploads/profile_images/' . $reply->formToUser->profile_img) }}" alt="">
         </div>
-        <div class="flex-1 rounded-lg px-4 py-2 leading-relaxed sm:px-6 sm:py-4">
+        <div class="flex-1 px-4 py-2 leading-relaxed rounded-lg sm:px-6 sm:py-4">
             <strong>{{ $reply->formToUser->username }}</strong>
             <span class="ml-2 text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
             <p class="text-base">
@@ -13,7 +13,7 @@
                 {{ strip_tags($reply->forum_message) }}
             </p>
             <div class="transition">
-                <div class="flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
+                <div class="flex items-center h-12 px-2 space-x-5 transition cursor-pointer">
                     <div class="flex -space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" height="0.8em" viewBox="0 0 640 512">
                             <path
@@ -26,13 +26,13 @@
                         Balas
                     </a>
                 </div>
-                <div class="max-h-0 overflow-hidden px-5 pt-0">
-                    <ul class="ml-0 list-inside space-y-2 pb-4">
+                <div class="px-5 pt-0 overflow-hidden max-h-0">
+                    <ul class="pb-4 ml-0 space-y-2 list-inside">
                         <div class="w-full" id="destination-reply-container">
                             <div id="quill-container3"></div>
-                            <div class="my-4 flex justify-end">
+                            <div class="flex justify-end my-4">
                                 <button id="get-content-button"
-                                    class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
+                                    class="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded w-fit">Kirim</button>
                             </div>
                         </div>
                     </ul>
@@ -45,12 +45,12 @@
     @endphp
 @else()
     <hr class="my-2">
-    <div class="class ml-10 flex">
-        <div class="mr-3 flex-shrink-0">
-            <img class="mt-3 h-5 w-5 rounded-full sm:h-8 sm:w-8"
+    <div class="flex ml-10 class">
+        <div class="flex-shrink-0 mr-3">
+            <img class="w-5 h-5 mt-3 rounded-full sm:h-8 sm:w-8"
                 src="{{ asset('uploads/profile_images/' . $reply->formToUser->profile_img) }}" alt="">
         </div>
-        <div class="flex-1 rounded-lg px-4 py-2 leading-relaxed sm:px-6 sm:py-4">
+        <div class="flex-1 px-4 py-2 leading-relaxed rounded-lg sm:px-6 sm:py-4">
             <strong class="mr-2">{{ $reply->formToUser->username }}</strong>
             <span class="ml-2 text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
             <p class="text-base">
@@ -60,7 +60,7 @@
                 {{ strip_tags($reply->forum_message) }}
             </p>
             <div class="transition">
-                <div class="flex h-12 cursor-pointer items-center space-x-5 px-2 transition">
+                <div class="flex items-center h-12 px-2 space-x-5 transition cursor-pointer">
                     <div class="flex -space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" height="0.8em" viewBox="0 0 640 512">
                             <path
@@ -73,13 +73,13 @@
                         Balas
                     </a>
                 </div>
-                <div class="max-h-0 overflow-hidden px-5 pt-0">
-                    <ul class="ml-0 list-inside space-y-2 pb-4"> <!-- Removed the left margin -->
+                <div class="px-5 pt-0 overflow-hidden max-h-0">
+                    <ul class="pb-4 ml-0 space-y-2 list-inside"> <!-- Removed the left margin -->
                         <div class="w-full" id="destination-reply-container">
                             <div id="quill-container3"></div>
-                            <div class="my-4 flex justify-end">
+                            <div class="flex justify-end my-4">
                                 <button id="get-content-button"
-                                    class="w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
+                                    class="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded w-fit">Kirim</button>
                             </div>
                         </div>
                     </ul>
@@ -94,16 +94,16 @@
 
 <div id="popup-reply" tabindex="-1" aria-hidden="true"
     class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-    <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
+    <div class="z-50 w-full mx-auto overflow-y-auto bg-white rounded shadow-lg md:w-3/5">
         <!-- Add margin if you want to see some of the overlay behind the modal-->
-        <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
-            <div class="container mx-auto my-5 p-5">
+        <div class="px-2 py-2 overflow-y-auto text-left modal-content md:px-6">
+            <div class="container p-5 mx-auto my-5">
                 {{-- EDIT PROFILE --}}
                 <div class="flex justify-end">
                     <button type="button"
                         class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
                         data-modal-hide="defaultModal">
-                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                 clip-rule="evenodd"></path>
@@ -111,7 +111,7 @@
                     </button>
                 </div>
 
-                <div class="mx-auto rounded-xl bg-white px-2 py-2">
+                <div class="px-2 py-2 mx-auto bg-white rounded-xl">
                     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
                     <p class="my-4 text-base" id="showComment">
 
@@ -124,9 +124,9 @@
                         <input type="hidden" id="materialId" name="material_id" value="{{ $data->material_id }}">
                         <input type="hidden" id="parent_id" name="parent_id" value="{{ $reply->id }}">
 
-                        <div class="my-4 flex justify-end">
+                        <div class="flex justify-end my-4">
                             <button id="get-content-button" type="submit"
-                                class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Balas
+                                class="absolute px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded w-fit">Balas
                                 Forum</button>
                         </div>
                     </form>
@@ -153,7 +153,6 @@
 
     })
     document.getElementById('myForm2_{{ $reply->id }}').addEventListener('submit', function(event) {
-        console.log("Hi, ini code getElementnya jalan Versi Reply Comment!")
         event.preventDefault(); // Prevent the default form submission behavior
         submitForm2();
     });
@@ -178,7 +177,6 @@
 
     function submitForm2() {
         var editorContent = tinymce.get('forum_reply').getContent();
-        console.log("ini isian editorContent", editorContent)
         if (editorContent === '') {
             alert('Error: Pesan tidak boleh kosong');
             return;
@@ -187,19 +185,13 @@
         // var hasImages = editorContent.includes('<img');
         // var fileInput = document.getElementById('forum_attachment');
         var courseId = document.getElementById('courseId').value;
-        console.log("ini isian courseId", courseId)
         var replyId = document.getElementById('replyId').value;
-        console.log("ini isian replyId", replyId)
         var forumId = document.getElementById('original_forum_id').value;
-        console.log("ini forum id asli", forumId)
         var materialId = document.getElementById('materialId').value;
-        console.log("ini isian materialId", materialId);
         var parentId = document.getElementById('parent_id').value;
-        console.log("ini forum parent", parentId)
 
 
 
-        console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
         var formData = new FormData();
         formData.append('course_id', courseId);
         formData.append('forum_message', editorContent);
@@ -233,7 +225,6 @@
                 }
             })
             .then(data => {
-                console.log('Success:', data);
                 // Redirect to a new page using JavaScript
                 alert('Balasan anda berhasil dikirim.');
                 window.location.href = '/forum/course/' + courseId + '/thread/' + forumId;

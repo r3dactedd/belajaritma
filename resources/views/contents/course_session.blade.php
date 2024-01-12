@@ -84,7 +84,7 @@
 <script>
     console.log("SCRIPT LOADED")
     let currentIndex = 0;
-    const sidebars = @json($sidebars); 
+    const sidebars = @json($sidebars);
 
     function navigate(direction) {
         if (direction === 'next') {
@@ -96,12 +96,12 @@
         const url = direction === 'next' ?
             `/courses/material/next/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}` :
             `/courses/material/previous/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`;
-        console.log("ini isi url", url)
+
 
         fetch(url)
             .then(response => {
                 if (response.ok) {
-                    console.log("ini isian response", response)
+                    console.log(response)
                 } else {
                     console.error('Error:', response.statusText);
                 }

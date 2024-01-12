@@ -13,15 +13,15 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-200 pb-12">
+<body class="pb-12 bg-gray-200">
     @section('title', 'Homepage')
     @extends('layout.layout')
     @section('header')
         @include('layout.header')
     @endsection
     @section('content')
-        <div class="scroll-smooth bg-white px-5 sm:px-10">
-            <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
+        <div class="px-5 bg-white scroll-smooth sm:px-10">
+            <div class="container flex flex-col items-start justify-between py-6 mx-auto md:flex-row md:items-center">
                 <div>
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
@@ -35,17 +35,17 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto my-auto p-6 md:w-5/12">
+        <div class="container p-6 mx-auto my-auto md:w-5/12">
 
             <div class="col-span-1 lg:col-span-6">
 
-                <div class="rounded-xl bg-white p-8 shadow-md">
+                <div class="p-8 bg-white shadow-md rounded-xl">
                     <h1
-                        class="mb-4 text-center text-lg font-bold tracking-normal text-gray-800 md:py-2 md:pr-4 md:text-left lg:text-2xl">
+                        class="mb-4 text-lg font-bold tracking-normal text-center text-gray-800 md:py-2 md:pr-4 md:text-left lg:text-2xl">
                         {{ $data->certif_title }}
                     </h1>
                     <div class="mb-6 text-left">
-                        <div class="text-left text-lg font-semibold">Biaya Sertifikasi</div>
+                        <div class="text-lg font-semibold text-left">Biaya Sertifikasi</div>
                         <span class="text-lg font-bold text-indigo-500">Rp.
                             {{ number_format($data->certif_cost, 2, ',', '.') }}</span>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="mb-6">
                         <label class="my-4 font-semibold" for="">Tahap Transaksi</label>
 
-                        <div class="my-4 rounded-lg border border-gray-600 bg-white p-4 shadow-md">
+                        <div class="p-4 my-4 bg-white border border-gray-600 rounded-lg shadow-md">
                             <div class="my-1 text-base font-medium">Anda dapat melakukan transfer pada nomor <span
                                     class="font-semibold text-indigo-600">12345678 A.N Lorem Ipsum</span></div>
                             <div class="my-1 text-base font-medium">1. Cantumkan screenshot bukti transfer pada link upload
@@ -75,14 +75,14 @@
                             <label class="my-4 font-semibold" for="">Upload Bukti Pembayaran</label>
 
                             <input name="transaction_proof" id="transaction_proof"
-                                class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                class="block w-full my-4 text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                                 type="file" accept="image/*">
                             <input type="hidden" id="certifId" name="certif_id" value="{{ $data->id }}">
                         </div>
 
                         <div>
                             <button type="submit" onclick="validateFile()"
-                                class="text-ceenter w-full rounded-md bg-blue-500 px-4 py-3 font-semibold text-white shadow-md">
+                                class="w-full px-4 py-3 font-semibold text-white bg-blue-500 rounded-md shadow-md text-ceenter">
                                 Kirim Bukti Pembayaran
                             </button>
                         </div>
@@ -95,7 +95,6 @@
     <script>
         function validateFile() {
             var fileInput = document.getElementById('transaction_proof').value;
-            console.log("ini isian input gambar", fileInput)
             if (fileInput === '') {
                 alert('Error: Bukti transaksi harus dikirim');
                 return;

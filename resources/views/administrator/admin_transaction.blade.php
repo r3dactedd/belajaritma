@@ -12,15 +12,15 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-200 pb-12">
+<body class="pb-12 bg-gray-200">
     @section('title', 'Homepage')
     @extends('layout.layout')
     @section('header')
         @include('layout.header')
     @endsection
     @section('content')
-        <div class="scroll-smooth bg-white px-5 sm:px-10">
-            <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
+        <div class="px-5 bg-white scroll-smooth sm:px-10">
+            <div class="container flex flex-col items-start justify-between py-6 mx-auto md:flex-row md:items-center">
                 <div>
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
@@ -35,12 +35,12 @@
             </div>
         </div>
 
-        <div class="container mx-auto my-4 pb-4">
+        <div class="container pb-4 mx-auto my-4">
 
 
-            <div class="container mx-auto w-11/12 overflow-x-auto">
+            <div class="container w-11/12 mx-auto overflow-x-auto">
 
-                <table class="mx-auto w-full text-xs text-white">
+                <table class="w-full mx-auto text-xs text-white">
                     <colgroup>
                         <col>
                         <col>
@@ -48,8 +48,8 @@
                         <col>
                         <col>
                     </colgroup>
-                    <thead class="bg-gray-200 leading-normal text-gray-600">
-                        <tr class="bg-gray-200 text-base leading-normal text-gray-600 md:text-lg">
+                    <thead class="leading-normal text-gray-600 bg-gray-200">
+                        <tr class="text-base leading-normal text-gray-600 bg-gray-200 md:text-lg">
                             <th class="px-4 py-2 text-left">Nama User</th>
                             <th class="px-4 py-2 text-left">Sertifikasi</th>
                             <th class="px-4 py-2 text-left">Kode Pembayaran</th>
@@ -60,25 +60,25 @@
                     </thead>
                     <tbody class="text-base font-light text-gray-600 md:text-lg">
                         @foreach ($data as $transaction)
-                            <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
+                            <tr class="font-medium leading-normal text-gray-600 bg-white border-b border-opacity-20">
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $transaction->transactionToUser->username }}</p>
+                                    <p class="overflow-scroll max-h-20">{{ $transaction->transactionToUser->username }}</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">
+                                    <p class="overflow-scroll max-h-20">
                                         {{ $transaction->transactionToCertification->certif_title }}
                                     </p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $transaction->payment_code }}</p>
+                                    <p class="overflow-scroll max-h-20">{{ $transaction->payment_code }}</p>
                                 </td>
                                 <td class="px-4 py-2">
-                                    <p class="max-h-20 overflow-scroll">{{ $transaction->created_at->format('Y-m-d') }}</p>
+                                    <p class="overflow-scroll max-h-20">{{ $transaction->created_at->format('Y-m-d') }}</p>
                                 </td>
                                 <td class="px-6 py-3 text-center">
-                                    <div class="item-center flex justify-center">
+                                    <div class="flex justify-center item-center">
                                         {{-- Image here --}}
-                                        <a href="#" class="mr-2 w-4 transform hover:scale-110 hover:text-green-500"
+                                        <a href="#" class="w-4 mr-2 transform hover:scale-110 hover:text-green-500"
                                             onclick="showImagePopup('{{ asset('uploads/transaction_images/' . $transaction->transaction_proof) }}')">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="18"
                                                 viewBox="0 0 576 512">
@@ -89,9 +89,9 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-3 text-center">
-                                    <div class="item-center flex justify-center">
+                                    <div class="flex justify-center item-center">
                                         {{-- Yes --}}
-                                        <a href="#" class="mx-2 w-4 transform hover:scale-110 hover:fill-green-500"
+                                        <a href="#" class="w-4 mx-2 transform hover:scale-110 hover:fill-green-500"
                                             onclick="showConfirmationPopup('approve', '{{ $transaction->id }}')">
 
 
@@ -103,7 +103,7 @@
 
                                         </a>
                                         {{-- No --}}
-                                        <a href="#" class="mr-2 w-4 transform hover:scale-110 hover:fill-red-500"
+                                        <a href="#" class="w-4 mr-2 transform hover:scale-110 hover:fill-red-500"
                                             onclick="showConfirmationPopup('decline', '{{ $transaction->id }}')">
 
 
@@ -118,18 +118,18 @@
                                 </td>
                             </tr>
                             <div id="image-popup"
-                                class="fixed left-0 right-0 top-0 z-50 hidden h-full w-full bg-gray-800 bg-opacity-75">
-                                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+                                class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+                                <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
                                     <button type="button" onclick="hideImagePopup()"
-                                        class="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-gray-300">
-                                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+                                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M6 18L18 6M6 6l12 12"></path>
                                         </svg>
                                     </button>
                                     <img src="{{ $transaction->transaction_proof }}" alt="Transaction Proof"
-                                        class="max-h-full max-w-full" />
+                                        class="max-w-full max-h-full" />
                                 </div>
                             </div>
                         @endforeach
@@ -141,12 +141,12 @@
     {{-- Delete Popup Modal --}}
     {{-- <div id="popup-delete" tabindex="-1"
         class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-        <div class="relative max-h-full w-full max-w-md">
-            <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+        <div class="relative w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <button type="button"
                     class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                     data-modal-hide="popup-delete">
-                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -154,7 +154,7 @@
                     <span class="sr-only">Close modal</span>
                 </button>
                 <div class="p-6 text-center">
-                    <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                    <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -189,7 +189,6 @@
 <script>
     function showImagePopup(imageUrl) {
         var popup = document.getElementById('image-popup');
-        console.log(imageUrl);
         var image = popup.querySelector('img');
 
         image.src = imageUrl;
@@ -205,7 +204,6 @@
 
     function showConfirmationPopup(action, transactionId) {
         var popup = document.getElementById('confirmation-popup');
-        console.log(action);
         var confirmationText = (action === 'approve') ? 'menyetujui' : 'menolak';
 
         popup.querySelector('form').action = `/manager/transaction/${action}/${transactionId}`;
@@ -245,25 +243,25 @@
 </script>
 <!-- Confirmation Popup Modal -->
 <div id="confirmation-popup" tabindex="-1"
-    class="fixed left-0 right-0 top-0 z-50 hidden h-full w-full bg-gray-800 bg-opacity-75">
-    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+    <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
         <button type="button" onclick="hideConfirmationPopup()"
-            class="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-gray-300">
-            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
-        <div class="rounded-lg bg-white p-6 shadow dark:bg-gray-700">
+        <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal Content Goes Here -->
             <div class="flex justify-center text-center">
                 <div class="flex flex-col items-center text-center">
-                    <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                    <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
-                    <h3 class="confirmation-text mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"></h3>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 confirmation-text dark:text-gray-400"></h3>
                     <div class="flex">
                         <form method="POST" action="#" data-transaction-id="">
                             @csrf

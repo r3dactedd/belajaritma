@@ -15,7 +15,7 @@
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 </head>
 
-<body class="bg-gray-200 pb-12">
+<body class="pb-12 bg-gray-200">
     @section('title', 'Homepage')
     @extends('layout.layout')
     @section('header')
@@ -23,8 +23,8 @@
     @endsection
     @section('content')
 
-        <div class="scroll-smooth bg-white px-5 sm:px-10">
-            <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
+        <div class="px-5 bg-white scroll-smooth sm:px-10">
+            <div class="container flex flex-col items-start justify-between py-6 mx-auto md:flex-row md:items-center">
                 <div>
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
                         <a onclick="history.back()" class="flex items-center" href="#">
@@ -38,19 +38,19 @@
             </div>
         </div>
 
-        <div class="container mx-auto my-5 p-5">
-            <div class="no-wrap my-4 md:-mx-2 md:flex">
-                <div class="mx-auto w-full rounded bg-white px-8 py-4 antialiased shadow">
+        <div class="container p-5 mx-auto my-5">
+            <div class="my-4 no-wrap md:-mx-2 md:flex">
+                <div class="w-full px-8 py-4 mx-auto antialiased bg-white rounded shadow">
 
                     <div class="mt-4 space-y-4">
                         {{-- FORUM CONTENT --}}
                         <div class="flex">
-                            <div class="mr-3 flex-shrink-0">
-                                <img class="mt-2 h-8 w-8 rounded-full sm:h-10 sm:w-10"
+                            <div class="flex-shrink-0 mr-3">
+                                <img class="w-8 h-8 mt-2 rounded-full sm:h-10 sm:w-10"
                                     src={{ asset('uploads/profile_images/' . $data->formToUser->profile_img) }}
                                     alt="">
                             </div>
-                            <div class="flex-1 rounded-lg px-4 pb-2 text-2xl leading-relaxed">
+                            <div class="flex-1 px-4 pb-2 text-2xl leading-relaxed rounded-lg">
                                 <strong>{{ $data->forum_title }}</strong> <span
                                     class="ml-2 text-xl text-gray-400">{{ $data->created_at->format('Y-m-d') }}</span>
                                 <div class="flex">
@@ -62,7 +62,7 @@
                                     </a>
                                 </div>
 
-                                <p class="mb-4 w-fit text-base" id="codeContainer">
+                                <p class="mb-4 text-base w-fit" id="codeContainer">
                                 <div class="text-base">
                                     {!! $data->forum_message !!}
                                 </div>
@@ -72,16 +72,16 @@
                         {{-- FORUM CONTENT END --}}
                         {{-- ADD COMMENTS --}}
                         @if (Auth::user()->id == $data->formToUser->id)
-                            <div class="mt-4 flex items-center">
+                            <div class="flex items-center mt-4">
                                 <button id="open-btn" data-modal-target="popup-delete" data-modal-toggle="popup-delete"
-                                    class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                                    class="flex items-center px-4 py-3 my-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-red-600 rounded-md hover:bg-yellow-500 focus:outline-none">
                                     Hapus Diskusi
                                 </button>
                             </div>
                         @elseif(auth()->user()->role_id == 1)
-                            <div class="mt-4 flex items-center">
+                            <div class="flex items-center mt-4">
                                 <button id="open-btn" data-modal-target="admin-delete" data-modal-toggle="admin-delete"
-                                    class="my-4 ml-4 flex items-center rounded-md bg-red-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
+                                    class="flex items-center px-4 py-3 my-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-red-600 rounded-md hover:bg-yellow-500 focus:outline-none">
                                     Hapus Diskusi Oleh Admin
                                 </button>
                             </div>
@@ -89,7 +89,7 @@
 
                         <hr>
 
-                        <div class="flex w-full items-center justify-center bg-white">
+                        <div class="flex items-center justify-center w-full bg-white">
                             <div class="w-full">
                                 {{-- Input --}}
 
@@ -103,9 +103,9 @@
                                     <input type="hidden" id="materialId" name="material_id"
                                         value="{{ $data->material_id }}">
                                     <input type="hidden" id="parent_id" name="parent_id" value="{{ $data->id }}">
-                                    <div class="my-4 flex justify-end">
+                                    <div class="flex justify-end my-4">
                                         <button id="get-content-button" type="submit"
-                                            class="absolute w-fit rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Kirim</button>
+                                            class="absolute px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded w-fit">Kirim</button>
                                     </div>
                                 </form>
                             </div>
@@ -139,12 +139,12 @@
         {{-- Delete Popup Modal --}}
         <div id="popup-delete" tabindex="-1"
             class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-            <div class="relative max-h-full w-full max-w-md">
-                <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+            <div class="relative w-full max-w-md max-h-full">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <button type="button"
                         class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                         data-modal-hide="popup-delete">
-                        <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -152,7 +152,7 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="p-6 text-center">
-                        <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                        <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -184,12 +184,12 @@
         {{-- Delete Admin --}}
         <div id="admin-delete" tabindex="-1"
             class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-            <div class="relative max-h-full w-full max-w-md">
-                <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+            <div class="relative w-full max-w-md max-h-full">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <button type="button"
                         class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                         data-modal-hide="admin-delete">
-                        <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -299,7 +299,6 @@
         });
 
         document.getElementById('myForm').addEventListener('submit', function(event) {
-            console.log("Hi, ini code getElementnya jalan!")
             event.preventDefault(); // Prevent the default form submission behavior
             submitForm();
         });
@@ -308,24 +307,22 @@
 
         function submitForm() {
             var editorContent = tinymce.get('forum_message').getContent();
-            console.log("ini isian editorContent", editorContent)
             if (editorContent === '') {
                 alert('Error: Pesan tidak boleh kosong');
                 return;
             }
             var forumId = document.getElementById('original_forum_id').value;
-            console.log("ini forum id asli", forumId)
+
             var courseId = document.getElementById('courseId').value;
-            console.log("ini isian courseId", courseId)
+
             var replyId = document.getElementById('replyId').value;
-            console.log("ini isian replyId", replyId)
+
             var materialId = document.getElementById('materialId').value;
-            console.log("ini isian materialId", materialId);
+
             var parentId = document.getElementById('parent_id').value;
-            console.log("ini forum id asli", parentId)
 
 
-            console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+
             var formData = new FormData();
             formData.append('course_id', courseId);
             formData.append('reply_id', replyId);
@@ -352,7 +349,6 @@
                     return response.text(); // Assuming the response is text, change accordingly if it's different
                 })
                 .then(data => {
-                    console.log('Success:', data);
                     alert('Balasan forum baru berhasil dibuat!');
                     window.location.href = '/forum/course/' + courseId + '/thread/' + forumId;
                 })
