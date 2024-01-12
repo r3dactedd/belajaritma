@@ -194,37 +194,41 @@
 
     let timeIsUp = false;
     function startTimer(duration) {
-        let timer;
-        // localStorage.removeItem('timer');
-        const storedTime = localStorage.getItem('timer');
+    let timer;
+    // localStorage.removeItem('timer');
+    const storedTime = localStorage.getItem('timer');
+    console.log("ini timer saat ini", storedTime)
 
-        if (storedTime !== null) {
-            timer = parseInt(storedTime, 10);
+    if (storedTime !== null) {
+        // Hapus nilai 'timer' dari localStorage
+        localStorage.removeItem('timer');
+        timer = parseInt(storedTime, 10);
+    } else {
+        timer = duration;
+    }
+
+    const updateTimerDisplay = function () {
+        timerDisplay.textContent = convertTime(timer);
+        if (timer > 0) {
+            timer--;
+            localStorage.setItem('timer', timer.toString());
         } else {
-            timer = duration;
+            clearInterval(timerInterval);
+            localStorage.removeItem('timer');
+            timeIsUp = true;
+
+            // Gumpulkan jawaban dan tampilkan alert waktu habis
+            submitAnswers();
+            alert('Waktu telah habis. Jawaban Anda sudah otomatis terkumpul.');
         }
+    };
 
-        const updateTimerDisplay = function () {
-            timerDisplay.textContent = convertTime(timer);
-            if (timer > 0) {
-                timer--;
-                localStorage.setItem('timer', timer.toString());
-            } else {
-                clearInterval(timerInterval);
-                localStorage.removeItem('timer');
-                timeIsUp = true;
+    const timerInterval = setInterval(updateTimerDisplay, 1000);
 
-                // Gumpulkan jawaban dan tampilkan alert waktu habis
-                submitAnswers();
-                alert('Waktu telah habis. Jawaban Anda sudah otomatis terkumpul.');
-            }
-        };
-
-        const timerInterval = setInterval(updateTimerDisplay, 1000);
-
-        updateTimerDisplay();
+    updateTimerDisplay();
 }
-            startTimer(totalSeconds);
+
+startTimer(totalSeconds);
 
                 function validateAnswers() {
                     // Lakukan validasi apakah semua soal telah terisi
@@ -326,20 +330,23 @@
                         console.log("ini type: ", type)
 
                         if (questionId) {
-                            const answerData = {
-                                questionId: questionId,
-                                answer: selectedAnswer ? selectedAnswer.value : '', // Jawaban kosong jika tidak ada yang dipilih
-                                answerDetail: selectedAnswer ? selectedAnswer.parentElement.textContent.trim() : '',
-                            };
 
-                            const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId ===
-                                questionId);
+                                const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId === questionId);
 
                             if (existingAnswerIndex !== -1) {
-                                userAnswers[existingAnswerIndex] = answerData;
+                                // Jika sudah ada, update jawabannya
+                                userAnswers[existingAnswerIndex].answer = selectedAnswer ? selectedAnswer.value : '';
+                                userAnswers[existingAnswerIndex].answerDetail = selectedAnswer ? selectedAnswer.parentElement.textContent.trim() : '';
                             } else {
+                                // Jika belum ada, tambahkan jawaban baru
+                                const answerData = {
+                                    questionId: questionId,
+                                    answer: selectedAnswer ? selectedAnswer.value : '', // Jawaban kosong jika tidak ada yang dipilih
+                                    answerDetail: selectedAnswer ? selectedAnswer.parentElement.textContent.trim() : '',
+                                };
                                 userAnswers.push(answerData);
                             }
+
 
                             sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
 

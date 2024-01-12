@@ -10,15 +10,15 @@
         rel="stylesheet" />
 </head>
 
-<body class="bg-gray-200 pb-12">
+<body class="pb-12 bg-gray-200">
     @section('title', 'Homepage')
     @extends('layout.layout')
     @section('header')
         @include('layout.header')
     @endsection
     @section('content')
-        <div class="bg-white px-5 sm:px-10">
-            <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
+        <div class="px-5 bg-white sm:px-10">
+            <div class="container flex flex-col items-start justify-between py-6 mx-auto md:flex-row md:items-center">
                 <div>
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
@@ -32,34 +32,34 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto my-4 p-4">
-            <div class="no-wrap my-4 md:-mx-2 md:flex">
+        <div class="container p-4 mx-auto my-4">
+            <div class="my-4 no-wrap md:-mx-2 md:flex">
 
                 {{-- QUESTION  --}}
                 <div id="asg-top" class="my-4"></div>
 
-                <div class="w-2xl mx-4 h-fit rounded-xl bg-white md:mx-12">
-                    <div class="mx-auto p-6 antialiased">
+                <div class="mx-4 bg-white w-2xl h-fit rounded-xl md:mx-12">
+                    <div class="p-6 mx-auto antialiased">
                         <div class="space-y-4">
                             <h1
-                                class="relative mx-6 block w-auto py-4 text-lg font-bold tracking-normal text-gray-800 lg:text-xl">
+                                class="relative block w-auto py-4 mx-6 text-lg font-bold tracking-normal text-gray-800 lg:text-xl">
                                 Mengenai Test
                             </h1>
                             <h2
-                                class="relative mx-6 mb-2 w-auto text-base font-semibold tracking-normal text-gray-800 lg:text-base">
+                                class="relative w-auto mx-6 mb-2 text-base font-semibold tracking-normal text-gray-800 lg:text-base">
                                 {{ $data->certif_desc }}
                             </h2>
 
                             <div class="grid w-full grid-cols-1 gap-4 pl-4 pr-8 font-semibold md:w-6/12 md:grid-cols-3">
-                                <div class="rounded-lg bg-white p-4">
+                                <div class="p-4 bg-white rounded-lg">
                                     <div class="text-indigo-500">Waktu Pengerjaan</div>
                                     <div class="text-xs text-gray-500">{{ $data->certif_duration }} Menit</div>
                                 </div>
-                                <div class="rounded-lg bg-white p-4">
+                                <div class="p-4 bg-white rounded-lg">
                                     <div class="text-indigo-500">Nilai Minimum</div>
                                     <div class="text-xs text-gray-500">min. {{ $data->minimum_score }} </div>
                                 </div>
-                                <div class="rounded-lg bg-white px-2 py-4">
+                                <div class="px-2 py-4 bg-white rounded-lg">
                                     <div class="text-indigo-500">Status Pengerjaan</div>
                                     <div class="text-xs text-gray-500">@if (1==2)
                                         <a class="font-bold text-green-500">Lulus</a>
@@ -73,10 +73,10 @@
 
 
                         </div>
-                        <a href='/certification/test/{{ $data->id }}/{{ $firstIndexCERT->id }}'
-                            class="y-4 mx-auto mt-4 flex w-full items-center justify-center rounded-md bg-indigo-500 px-2 py-4 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none md:w-4/12">
+                        <a href='/certification/test/{{ $data->id }}/{{ $firstIndexCERT->id }}/1'
+                            class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                            <span class="mx-2 items-center">Mulai Test
+                            <span class="items-center mx-2">Mulai Test
                             </span>
 
                         </a>

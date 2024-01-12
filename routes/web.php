@@ -115,7 +115,7 @@ Route::post('/editProfile/password', [ProfileController::class, 'changePassword'
 Route::get('/certifications', [CertificationController::class, 'showCertificationList']);
 Route::get('/certifications/{id}', [CertificationController::class, 'certifDetail']);
 Route::get('/certifications/aboutTest/{certif_id}', [CertificationController::class, 'aboutTest']);
-Route::get('/certification/test/{certif_id}/{question_id}', [CertificationController::class, 'certifTestPage']);
+Route::get('/certification/test/{certif_id}/{question_id}/{isReshuffle}', [CertificationController::class, 'certifTestPage']);
 Route::post('/certification/submit-answers', [CertificationController::class, 'submitAnswers'])->name('certification.submitAnswers');
 Route::get('/certification/{certif_id}/results', [CertificationController::class, 'showResults'])->name('certification.showResults');
 Route::get('/certification/{certif_id}/score', [CertificationController::class, 'showScore']);
