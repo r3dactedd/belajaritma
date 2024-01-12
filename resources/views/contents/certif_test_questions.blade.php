@@ -179,7 +179,6 @@
                     const userAnswers = JSON.parse(sessionStorage.getItem('userAnswers')) || [];
                     const timerDisplay = document.getElementById('timer-display');
                     const timerDuration = timerDisplay.getAttribute('timer-duration');
-                    console.log("ini timer duration", timerDuration)
                     const totalSeconds =  parseInt(timerDuration) * 60 - 1;
 
                     function convertTime(seconds) {
@@ -254,7 +253,6 @@
                                 sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
 
                                 updateRadioButtons();
-                                console.log("array", userAnswers);
                                 // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
                                 // ...
 
@@ -291,7 +289,7 @@
                                 sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
 
                                 updateRadioButtons();
-                                console.log("array", userAnswers)
+
                                 // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
                                 // ...
 
@@ -305,20 +303,8 @@
                     function submitAnswers(){
                         const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
                         const questionId = document.getElementById('question_id').value;
-
-                            // var title = document.getElementById('title').value;
-                            // console.log("ini title: ", title)
-
-                            // console.log(userAnswers)
-
                             const certifId = document.getElementById('id').value;
-                            console.log("ini isian courseId: ", certifId)
 
-                            // var materialId = document.getElementById('material_id').value;
-                            // console.log("ini isian materialId: ", materialId)
-
-                            // var type = document.getElementById('type').value;
-                            // console.log("ini type: ", type)
 
                             if (questionId) {
                                 const answerData = {
@@ -378,10 +364,7 @@
                                             .then(data => {
                                                 // Handle the response from the server if needed
                                                 if (data.message === 'Success') {
-                                                    // Tangani respons JSON jika permintaan berasal dari AJAX
-                                                    console.log(data
-                                                        .data
-                                                    ); // Lakukan sesuatu dengan data JSON yang diterima
+
                                                     clearSelectedAnswers();
                                                     localStorage.removeItem('timer');
                                                     // Redirect ke halaman assignment_test_results
@@ -389,10 +372,9 @@
                                                     '/score'
                                                 } else {
                                                     // Tangani respons HTML jika permintaan bukan dari AJAX
-                                                    console.log(
-                                                        data); // Lakukan sesuatu dengan HTML yang diterima
+                                                 // Lakukan sesuatu dengan HTML yang diterima
                                                 }
-                                                console.log(data);
+
                                             })
                                             .catch(error => {
                                                 // Use the error parameter instead of response
@@ -440,18 +422,14 @@
                             const questionId = radioButton.getAttribute('data-question');
                             const userAnswer = userAnswers.find(ans => ans.questionId === questionId);
 
-                            console.log('Question ID:', questionId);
-                            console.log('User Answer:', userAnswer);
-                            // console.log('Chosen Answer:', userAnswer.answer);
-                            console.log('Radio Button Value:', radioButton.value);
 
                         if (userAnswer.answer == radioButton.value) {
                             // Set status checked if the answer exists
-                            console.log('THIS MUST BE CHECKED');
+
                             radioButton.checked = true;
                         } else {
                             // If the answer does not exist, ensure the radio button is unchecked
-                            console.log('NOT CHOSEN');
+
                             radioButton.checked = false;
                         }
                     });
@@ -489,9 +467,7 @@
                                             // Handle the response from the server if needed
                                             if (data.message === 'Success') {
                                                 // Tangani respons JSON jika permintaan berasal dari AJAX
-                                                console.log(data
-                                                    .data
-                                                ); // Lakukan sesuatu dengan data JSON yang diterima
+                                               // Lakukan sesuatu dengan data JSON yang diterima
                                                 clearSelectedAnswers();
                                                 localStorage.removeItem('timer');
                                                 // Redirect ke halaman assignment_test_results
@@ -499,10 +475,9 @@
                                                     '/score'
                                             } else {
                                                 // Tangani respons HTML jika permintaan bukan dari AJAX
-                                                console.log(
-                                                    data); // Lakukan sesuatu dengan HTML yang diterima
+                                                 // Lakukan sesuatu dengan HTML yang diterima
                                             }
-                                            console.log(data);
+                                           
                                         })
                                             .catch(error => {
                                                 // Use the error parameter instead of response

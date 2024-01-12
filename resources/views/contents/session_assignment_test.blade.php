@@ -189,11 +189,11 @@
         const url = direction === 'next' ?
             `/courses/material/next/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}` :
             `/courses/material/previous/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`;
-        console.log("ini isi url", url)
+
         // Fetch the URL or update content based on your requirements
         fetch(url)
             .then(response => {
-                console.log('Response:', response);
+                console.log(response);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -202,7 +202,7 @@
                 return response.json();
             })
             .then(data => {
-                console.log('Response data:', data);
+                console.log(data);
 
                 // TODO: Handle the response data
                 // You may want to update the content based on the data received from the backend.

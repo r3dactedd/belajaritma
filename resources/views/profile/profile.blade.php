@@ -11,7 +11,7 @@
 
 </head>
 
-<body class="bg-gray-200 pb-12">
+<body class="pb-12 bg-gray-200">
     @section('title', 'My Profile')
     @extends('layout.layout')
     @section('header')
@@ -19,8 +19,8 @@
     @endsection
     @section('content')
 
-        <div class="bg-white px-6 sm:px-12">
-            <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
+        <div class="px-6 bg-white sm:px-12">
+            <div class="container flex flex-col items-start justify-between py-6 mx-auto md:flex-row md:items-center">
                 <div>
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
                         <a onclick="history.back()" class="flex items-center" href="#">
@@ -36,45 +36,45 @@
 
         <div class="" style="background-image: url('/background_image/bg-profile.svg')">
 
-            <div class="container mx-auto p-4">
-                <div class="my-4 px-4 md:flex">
+            <div class="container p-4 mx-auto">
+                <div class="px-4 my-4 md:flex">
                     <div class="w-full md:w-3/12">
 
 
-                        <div class="h-80 w-auto">
-                            <img class="h-80 w-80 rounded-full object-cover" src="{{ $profileImageUrl }}" id="pfp"
+                        <div class="w-auto h-80">
+                            <img class="object-cover rounded-full h-80 w-80" src="{{ $profileImageUrl }}" id="pfp"
                                 alt="{{ Auth::user()->username }}'s Profile Picture" />
 
                         </div>
                     </div>
                     <div class="my-4"></div>
                     <!-- Right Side -->
-                    <div class="h-full w-full md:w-9/12">
-                        <div class="rounded-xl bg-none p-3">
+                    <div class="w-full h-full md:w-9/12">
+                        <div class="p-3 rounded-xl bg-none">
                             <div class="md:mx-2 md:w-3/4">
-                                <div class="rounded-xl bg-none px-4 py-2 md:pr-8">
+                                <div class="px-4 py-2 rounded-xl bg-none md:pr-8">
                                     <h1
-                                        class="d pr-2 pt-2 text-center text-xl font-bold tracking-normal text-white md:pr-4 md:pt-8 md:text-left lg:text-3xl">
+                                        class="pt-2 pr-2 text-xl font-bold tracking-normal text-center text-white d md:pr-4 md:pt-8 md:text-left lg:text-3xl">
                                         {{ $searchUser->username }}
                                     </h1>
                                     <h2
-                                        class="pr-2 pt-2 text-center text-lg tracking-normal text-white md:pr-4 md:pt-4 md:text-left lg:text-xl">
+                                        class="pt-2 pr-2 text-lg tracking-normal text-center text-white md:pr-4 md:pt-4 md:text-left lg:text-xl">
                                         {{ $searchUser->full_name }}
                                     </h2>
                                     @if ($searchUser->id == auth()->user()->id)
                                         <h2
-                                            class="pr-2 pt-2 text-center text-lg tracking-normal text-white md:pr-4 md:pt-4 md:text-left lg:text-xl">
+                                            class="pt-2 pr-2 text-lg tracking-normal text-center text-white md:pr-4 md:pt-4 md:text-left lg:text-xl">
                                             {{ $searchUser->email }}
                                         </h2>
                                     @endif
                                     @if ($searchUser->about_me != null)
                                         <h2
-                                            class="mt-12 pr-2 pt-2 text-center text-base tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
+                                            class="pt-2 pr-2 mt-12 text-base tracking-normal text-center text-white md:pr-4 md:text-left lg:text-lg">
                                             Tentang Saya
                                         </h2>
 
                                         <h2
-                                            class="mt-4 pr-2 pt-2 text-center text-base font-light tracking-normal text-white md:pr-4 md:text-left lg:text-lg">
+                                            class="pt-2 pr-2 mt-4 text-base font-light tracking-normal text-center text-white md:pr-4 md:text-left lg:text-lg">
                                             {{ $searchUser->about_me }}
                                         </h2>
                                     @endif
@@ -89,24 +89,24 @@
 
         </div>
         @if (Auth::user()->role_id == '2')
-            <div class="container mx-auto mb-1 flex h-full w-11/12 items-center border-b-2 border-gray-300 px-2">
+            <div class="container flex items-center w-11/12 h-full px-2 mx-auto mb-1 border-b-2 border-gray-300">
 
-                <ul class="h-full items-center lg:flex">
+                <ul class="items-center h-full lg:flex">
                     <li
-                        class="my-4 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800 md:my-1">
+                        class="flex items-center h-full my-4 text-base font-bold tracking-normal text-gray-800 cursor-pointer md:my-1">
                         <a id="profileDashboard">Statistika</a>
                     </li>
                     <li
-                        class="md:my-1text-base my-4 ml-0 mr-10 flex h-full cursor-pointer items-center font-bold tracking-normal text-gray-800 md:ml-10">
+                        class="flex items-center h-full my-4 ml-0 mr-10 font-bold tracking-normal text-gray-800 cursor-pointer md:my-1text-base md:ml-10">
                         <a id="profileCourses">Kursus</a>
                     </li>
                     <li
-                        class="my-4 mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800 md:my-1">
+                        class="flex items-center h-full my-4 mr-10 text-base font-bold tracking-normal text-gray-800 cursor-pointer md:my-1">
                         <a id="profileCerti">Sertifikasi</a>
                     </li>
                     @if ($searchUser->id == auth()->user()->id)
                         <li
-                            class="my-4 mr-10 flex h-full cursor-pointer items-center text-base font-bold tracking-normal text-gray-800 md:my-1">
+                            class="flex items-center h-full my-4 mr-10 text-base font-bold tracking-normal text-gray-800 cursor-pointer md:my-1">
                             <a id="profileHistory">Riwayat Transaksi</a>
                         </li>
                     @endif
@@ -135,7 +135,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             var element = document.getElementById("profileDashboard");
             var pfp = document.getElementById("pfp").src;
-            console.log(pfp)
 
             // Add an event listener to run your onClick function when clicked
             element.addEventListener("click", function() {

@@ -11,15 +11,15 @@
 
 </head>
 
-<body class="bg-gray-200 pb-12">
+<body class="pb-12 bg-gray-200">
     @section('title', 'Homepage')
     @extends('layout.layout')
     @section('header')
         @include('layout.header')
     @endsection
     @section('content')
-        <div class="bg-white px-5 sm:px-10">
-            <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
+        <div class="px-5 bg-white sm:px-10">
+            <div class="container flex flex-col items-start justify-between py-6 mx-auto md:flex-row md:items-center">
                 <div>
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
@@ -33,14 +33,14 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto my-5 p-5">
-            <div class="no-wrap my-4 md:-mx-2 md:flex">
+        <div class="container p-5 mx-auto my-5">
+            <div class="my-4 no-wrap md:-mx-2 md:flex">
                 <div class="w-full md:mx-2 md:w-3/12">
                     <!-- Sidebar-->
                     @include('contents.course_sidebar')
                 </div>
                 <div class="my-4"></div>
-                <div class="w-full rounded bg-white shadow md:mx-2 md:w-9/12">
+                <div class="w-full bg-white rounded shadow md:mx-2 md:w-9/12">
 
                     <iframe src="{{ asset('uploads/material_pdf/' . $material->pdf_link) }}" type="application/pdf"
                         width="100%" height="1024">
@@ -53,12 +53,12 @@
             </div>
         </div>
         <div
-            class="fixed bottom-0 left-0 z-50 h-16 w-full border-t border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-700">
-            <div class="mx-auto grid h-full max-w-lg grid-cols-2 font-medium">
+            class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:border-gray-600 dark:bg-gray-700">
+            <div class="grid h-full max-w-lg grid-cols-2 mx-auto font-medium">
                 @if ($previousMaterial)
                     <button type="button">
                         <a href="{{ url('/courses/' . 'material/' . $previousMaterial->title . '/' . $material->course_id . '/' . $previousMaterial->material_id) }}"
-                            class="group inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800">
+                            class="inline-flex flex-col items-center justify-center px-5 group hover:bg-gray-50 dark:hover:bg-gray-800">
 
 
                             <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"
@@ -75,7 +75,7 @@
                 @if ($nextMaterial)
                     <button type="button">
                         <a href="{{ url('/courses/' . 'material/' . $nextMaterial->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
-                            class="group inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800">
+                            class="inline-flex flex-col items-center justify-center px-5 group hover:bg-gray-50 dark:hover:bg-gray-800">
 
                             <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"
                                 xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512"
@@ -110,12 +110,11 @@
         const url = direction === 'next' ?
             `/courses/material/next/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}` :
             `/courses/material/previous/${sidebars[currentIndex].title}/${sidebars[currentIndex].course_id}/${sidebars[currentIndex].material_id}`;
-        console.log("ini isi url", url)
+
 
         // Fetch the URL or update content based on your requirements
         fetch(url)
             .then(response => {
-                console.log('Response:', response);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -129,7 +128,6 @@
                 return response.json();
             })
             .then(data => {
-                console.log('Response data:', data);
 
                 // TODO: Handle the response data
                 // You may want to update the content based on the data received from the backend.

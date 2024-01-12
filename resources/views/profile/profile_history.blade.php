@@ -1,5 +1,5 @@
-<div class="container mx-auto my-4 pb-4">
-    <table class="mx-auto w-full text-xs text-white">
+<div class="container pb-4 mx-auto my-4">
+    <table class="w-full mx-auto text-xs text-white">
         <colgroup>
             <col>
             <col>
@@ -7,8 +7,8 @@
             <col>
             <col>
         </colgroup>
-        <thead class="bg-gray-200 leading-normal text-gray-600">
-            <tr class="bg-gray-200 text-base leading-normal text-gray-600 md:text-lg">
+        <thead class="leading-normal text-gray-600 bg-gray-200">
+            <tr class="text-base leading-normal text-gray-600 bg-gray-200 md:text-lg">
                 <th class="px-4 py-2 text-left">Nama Sertifikasi</th>
                 <th class="px-4 py-2 text-left">Kode Pembayaran</th>
                 <th class="px-4 py-2 text-left">Tanggal Upload Bukti</th>
@@ -20,35 +20,35 @@
         <tbody class="text-base font-light text-gray-600 md:text-lg">
 
             @foreach ($transactionHistory as $transactions)
-                <tr class="border-b border-opacity-20 bg-white font-medium leading-normal text-gray-600">
+                <tr class="font-medium leading-normal text-gray-600 bg-white border-b border-opacity-20">
 
                     <td class="px-4 py-2">
-                        <p class="max-h-20 overflow-scroll">
+                        <p class="overflow-scroll max-h-20">
                             {{ $transactions->transactionToCertification->certif_title }}
                         </p>
                     </td>
                     <td class="px-4 py-2">
-                        <p class="max-h-20 overflow-scroll">{{ $transactions->payment_code }}</p>
+                        <p class="overflow-scroll max-h-20">{{ $transactions->payment_code }}</p>
                     </td>
                     <td class="px-4 py-2">
-                        <p class="max-h-20 overflow-scroll">{{ $transactions->created_at->format('Y-m-d') }}</p>
+                        <p class="overflow-scroll max-h-20">{{ $transactions->created_at->format('Y-m-d') }}</p>
                     </td>
                     <td class="px-4 py-2">
                         @if ($transactions->isApproved === null)
-                            <p class="max-h-20 overflow-scroll text-yellow-500">Pending</p>
+                            <p class="overflow-scroll text-yellow-500 max-h-20">Pending</p>
                         @elseif ($transactions->isApproved === 1)
-                            <p class="max-h-20 overflow-scroll text-green-500">Diterima</p>
+                            <p class="overflow-scroll text-green-500 max-h-20">Diterima</p>
                         @elseif ($transactions->isApproved === 0)
-                            <p class="max-h-20 overflow-scroll text-red-500">Ditolak</p>
+                            <p class="overflow-scroll text-red-500 max-h-20">Ditolak</p>
                             {{-- @else
-                            <p class="max-h-20 overflow-scroll text-purple-500">Unknown Status:
+                            <p class="overflow-scroll text-purple-500 max-h-20">Unknown Status:
                                 {{ $transactions->isApproved }}</p> --}}
                         @endif
                     </td>
                     <td class="px-6 py-3 text-center">
-                        <div class="item-center flex justify-center">
+                        <div class="flex justify-center item-center">
                             {{-- Image here --}}
-                            <a href="#" class="mr-2 w-4 transform hover:scale-110 hover:text-green-500"
+                            <a href="#" class="w-4 mr-2 transform hover:scale-110 hover:text-green-500"
                                 onclick="showImagePopup('{{ asset('uploads/transaction_images/' . $transactions->transaction_proof) }}')">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="16" width="18"
                                     viewBox="0 0 576 512">
@@ -59,18 +59,18 @@
                         </div>
                     </td>
                     <div id="image-popup"
-                        class="fixed left-0 right-0 top-0 z-50 hidden h-full w-full bg-gray-800 bg-opacity-75">
-                        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+                        class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+                        <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
                             <button type="button" onclick="hideImagePopup()"
-                                class="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-gray-300">
-                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
                             </button>
                             <img src="{{ $transactions->transaction_proof }}" alt="Transaction Proof"
-                                class="max-h-full max-w-full" />
+                                class="max-w-full max-h-full" />
                         </div>
                 </tr>
             @endforeach
@@ -80,7 +80,6 @@
 <script>
     function showImagePopup(imageUrl) {
         var popup = document.getElementById('image-popup');
-        console.log(imageUrl);
         var image = popup.querySelector('img');
 
         image.src = imageUrl;

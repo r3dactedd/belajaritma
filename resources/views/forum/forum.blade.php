@@ -27,15 +27,15 @@
     use Illuminate\Support\Str;
 @endphp
 
-<body class="bg-gray-200 pb-12">
+<body class="pb-12 bg-gray-200">
     @section('title', 'Homepage')
     @extends('layout.layout')
     @section('header')
         @include('layout.header')
     @endsection
     @section('content')
-        <div class="scroll-smooth bg-white px-5 sm:px-10">
-            <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
+        <div class="px-5 bg-white scroll-smooth sm:px-10">
+            <div class="container flex flex-col items-start justify-between py-6 mx-auto md:flex-row md:items-center">
                 <div>
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
                         <a onclick="history.back()" class="flex items-center" href="#">
@@ -49,25 +49,25 @@
             </div>
         </div>
 
-        <div class="container mx-auto my-5 p-5">
-            <div class="no-wrap my-4 md:-mx-2 md:flex">
+        <div class="container p-5 mx-auto my-5">
+            <div class="my-4 no-wrap md:-mx-2 md:flex">
                 <div class="my-4"></div>
-                <div class="mx-auto w-full rounded-xl bg-white px-4 py-2">
+                <div class="w-full px-4 py-2 mx-auto bg-white rounded-xl">
                     <div class="relative mt-4 lg:px-4">
                         <form action="/forum/course/{{ $course->id }}" method="get" class="px-4 lg:px-0">
                             @csrf
                             <label for="default-search"
-                                class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
+                                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                             <div class="relative">
-                                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                    <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
                                 </div>
                                 <input type="search" name="searchKeyword" id="inputKeyword"
-                                    class="mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                                    class="block w-full p-4 pl-10 mt-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                                     placeholder="Cari Judul Diskusi Forum">
                                 <button type="submit"
                                     class="absolute bottom-2.5 right-2.5 rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
@@ -75,10 +75,10 @@
 
                     </div>
 
-                    <div class="mt-4 flex items-center justify-between px-4">
+                    <div class="flex items-center justify-between px-4 mt-4">
                         <div class="flex">
                             <select name="selectedMaterial"
-                                class="w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
+                                class="w-full px-4 py-3 text-sm font-semibold bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0">
                                 <option value="">Filter Forum</option>
                                 @foreach ($materials as $forum_material)
                                     <option value="{{ $forum_material->title }}">{{ $forum_material->title }}</option>
@@ -86,18 +86,18 @@
                             </select>
 
                         </div>
-                        <div class="flex w-fit items-center rounded border border-gray-200 px-4 pl-4 dark:border-gray-700">
+                        <div class="flex items-center px-4 pl-4 border border-gray-200 rounded w-fit dark:border-gray-700">
                             <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox"
-                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600">
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600">
                             <label for="bordered-checkbox-1"
-                                class="mx-2 w-full py-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hanya
+                                class="w-full py-2 mx-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hanya
                                 Tampilkan Diskusi Saya</label>
                         </div>
                     </div>
                     </form>
 
                     <button id="open-btn"
-                        class="my-4 ml-4 flex w-fit items-center rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
+                        class="flex items-center px-4 py-3 my-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-600 rounded-md w-fit hover:bg-yellow-500 focus:outline-none"
                         data-modal-target="defaultModal" data-modal-toggle="defaultModal">
                         Buat Diskusi Baru
                     </button>
@@ -105,12 +105,12 @@
                     @foreach ($forums as $forumData)
                         @if ($forumData->forum_title != null)
                             @if ($forumData->deleted_by_admin == 0)
-                                <div class="rounded-lg bg-white p-6 text-base dark:bg-gray-900">
-                                    <footer class="mb-2 flex items-center justify-between">
+                                <div class="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
+                                    <footer class="flex items-center justify-between mb-2">
                                         <div class="flex items-center">
                                             <p
-                                                class="mr-3 inline-flex items-center text-sm font-semibold text-gray-900 dark:text-white">
-                                                <img class="mr-2 h-8 w-8 rounded-full"
+                                                class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white">
+                                                <img class="w-8 h-8 mr-2 rounded-full"
                                                     src="{{ asset('uploads/profile_images/' . $forumData->formToUser->profile_img) }}"
                                                     alt=""><a class="hover:underline"
                                                     href="/profile/{{ $forumData->formToUser->username }}">{{ $forumData->formToUser->username }}</a>
@@ -123,13 +123,13 @@
                                     </footer>
                                     <div class="px-2 hover:bg-gray-200">
                                         <a href="/forum/course/{{ $forumData->course_id }}/thread/{{ $forumData->id }}">
-                                            <p class="mb-2 flex text-xl"><strong>{{ $forumData->forum_title }}</strong>
+                                            <p class="flex mb-2 text-xl"><strong>{{ $forumData->forum_title }}</strong>
 
                                                 <p class="mt-2 text-gray-500 dark:text-gray-400">
                                                     {{ Str::limit(strip_tags($forumData->forum_message), 30) }}</p>
 
-                                                <div class="mt-4 flex items-center px-2">
-                                                    <div class="mr-2 flex space-x-4">
+                                                <div class="flex items-center px-2 mt-4">
+                                                    <div class="flex mr-2 space-x-4">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                                                             viewBox="0 0 640 512">
                                                             <path
@@ -150,7 +150,7 @@
                                                     <p class="text-sm font-semibold text-gray-500 hover:underline">
                                                         {{ $getTotalReplies }} Replies
                                                     </p>
-                                                    <div class="mx-2 flex space-x-4">
+                                                    <div class="flex mx-2 space-x-4">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="16"
                                                             width="16" viewBox="0 0 512 512">
                                                             <path
@@ -166,12 +166,12 @@
                                     </div>
                                 </div>
                             @elseif ($forumData->deleted_by_admin == 1)
-                                <div class="rounded-lg bg-white p-6 text-base dark:bg-gray-900">
-                                    <footer class="mb-2 flex items-center justify-between">
+                                <div class="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
+                                    <footer class="flex items-center justify-between mb-2">
                                         <div class="flex items-center">
                                             <p
-                                                class="mr-3 inline-flex items-center text-sm font-semibold text-gray-900 dark:text-white">
-                                                <img class="mr-2 h-8 w-8 rounded-full"
+                                                class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white">
+                                                <img class="w-8 h-8 mr-2 rounded-full"
                                                     src="{{ asset('uploads/profile_images/' . $forumData->formToUser->profile_img) }}"
                                                     alt=""><a class="hover:underline"
                                                     href="/profile/{{ $forumData->formToUser->username }}">{{ $forumData->formToUser->username }}</a>
@@ -184,12 +184,12 @@
                                     </footer>
                                     <div class="px-2 hover:bg-gray-200">
                                         <a>
-                                            <p class="mb-2 flex text-xl"><strong>{{ $forumData->forum_title }}</strong>
+                                            <p class="flex mb-2 text-xl"><strong>{{ $forumData->forum_title }}</strong>
                                                 <p class="mt-2 text-gray-500 dark:text-gray-400">
                                                     {{ Str::limit(strip_tags($forumData->forum_message), 50) }}</p>
 
-                                                <div class="mt-4 flex items-center px-2">
-                                                    <div class="mr-2 flex space-x-4">
+                                                <div class="flex items-center px-2 mt-4">
+                                                    <div class="flex mr-2 space-x-4">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                                                             viewBox="0 0 640 512">
                                                             <path
@@ -232,14 +232,14 @@
 
         <div id="defaultModal" tabindex="-1" aria-hidden="true"
             class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-            <div class="z-50 mx-auto w-full overflow-y-auto rounded bg-white shadow-lg md:w-3/5">
-                <div class="modal-content overflow-y-auto px-2 py-2 text-left md:px-6">
-                    <div class="container mx-auto my-5 p-5">
+            <div class="z-50 w-full mx-auto overflow-y-auto bg-white rounded shadow-lg md:w-3/5">
+                <div class="px-2 py-2 overflow-y-auto text-left modal-content md:px-6">
+                    <div class="container p-5 mx-auto my-5">
                         <div class="flex justify-end">
                             <button type="button"
                                 class="modal-close ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
                                 data-modal-hide="defaultModal">
-                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -247,14 +247,14 @@
                                 </svg>
                             </button>
                         </div>
-                        <div class="mx-auto rounded-xl bg-white px-2 py-2">
+                        <div class="px-2 py-2 mx-auto bg-white rounded-xl">
                             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Buat Diskusi Baru</h2>
                             <form id="myForm" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
+                                <div class="grid gap-4 mb-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                     <div class="sm:col-span-2">
                                         <label for="forum_title"
-                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
                                             Judul Diskusi</label>
                                         <input type="text" name="forum_title" id="forum_title"
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -262,10 +262,10 @@
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="material_id"
-                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
                                             Pilih Sesi Kursus</label>
                                         <select id="material_id" name="material_id"
-                                            class="w-full rounded-md border-transparent bg-gray-50 px-4 py-3 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0"
+                                            class="w-full px-4 py-3 text-sm font-semibold border-transparent rounded-md bg-gray-50 focus:border-gray-500 focus:bg-white focus:ring-0"
                                             required="">
                                             <option value="">Sesi Kursus</option>
                                             @foreach ($materials as $material)
@@ -275,7 +275,7 @@
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="forum_message"
-                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
                                             Pertanyaan
                                         </label>
                                         <textarea id="forum_message" name="forum_message" placeholder="Input Pertanyaan Anda disini."></textarea>
@@ -284,7 +284,7 @@
                                     </div>
                                     <div class="flex justify-start pt-2">
                                         <button type="submit"
-                                            class="modal-close mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                            class="p-3 px-4 mt-2 text-white bg-indigo-600 rounded-lg modal-close hover:bg-indigo-400">Buat
                                             Diskusi</button>
                                     </div>
                                 </div>
@@ -349,7 +349,6 @@
 
             function submitForm() {
                 var editorContent = tinymce.get('forum_message').getContent();
-                console.log("Editor Content:", editorContent);
 
                 if (editorContent === '') {
                     alert('Error: Pesan tidak boleh kosong');
@@ -370,7 +369,6 @@
                 }
 
                 var assetUrl = "{{ asset('uploads/forum_attachments/') }}"; // Laravel asset function
-                console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
                 var formData = new FormData();
                 formData.append('course_id', courseId);
                 formData.append('material_id', materialId);
