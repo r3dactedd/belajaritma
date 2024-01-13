@@ -66,13 +66,27 @@ class EnrollmentController extends Controller
         $sidebars = Sidebar::where('course_id', $id)->get();
 
         if ($userSidebarProgressCount < count($sidebars)) {
+            $loop = 1;
+
             foreach ($sidebars as $sidebar) {
-                // Cek apakah sudah ada entry UserSidebarProgress untuk sidebar ini
                 $existingProgress = UserSidebarProgress::where('user_id', $user->id)
-                    ->where('course_id', $id)
+                    ->where('course_id', $sidebar->course_id)
+                    ->where('material_id', $sidebar->material_id)
                     ->where('sidebar_id', $sidebar->id)
                     ->exists();
 
+                if ($loop == 1) {
+                    $isLocked = false;
+                    $isVisible = true;
+                }
+                elseif($loop == 2){
+                    $isLocked = true;
+                    $isVisible = true;
+                }
+                else {
+                    $isLocked = true;
+                    $isVisible = false;
+                }
 
                 if (!$existingProgress) {
                     $userSidebarProgress = new UserSidebarProgress([
@@ -80,13 +94,15 @@ class EnrollmentController extends Controller
                         'sidebar_id' => $sidebar->id,
                         'course_id' => $id,
                         'material_id' => $sidebar->material_id,
-                        'is_visible' => false,
-                        'is_locked' => true
+                        'is_visible' => $isVisible,
+                        'is_locked' => $isLocked,
                     ]);
 
                     $userSidebarProgress->save();
                 }
+                $loop++;
             }
+            // dd($sidebars);
             return redirect()->back()->with('success', 'You have successfully enrolled in the course.');
         }
     }
