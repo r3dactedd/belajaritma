@@ -162,6 +162,7 @@ class ForumController extends Controller
             'material_id' => $request->input('material_id'),
             'forum_message' => $request->input('forum_message'),
         ]);
+        $forum->created_at = now()->setTimezone('Asia/Jakarta');
 
         // Save the forum to the database
         $forum->save();
@@ -220,7 +221,7 @@ class ForumController extends Controller
             'material_id' => $request->input('material_id'),
             'parent_id'=> $request->input('parent_id'),
         ]);
-
+        $forum->created_at = now()->setTimezone('Asia/Jakarta');
         $forum->save();
 
         if ($request->hasFile('forum_attachment')) {

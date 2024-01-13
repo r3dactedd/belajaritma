@@ -13,6 +13,7 @@ use App\Models\Sidebar;
 use App\Models\UserAnswerAssignment;
 use App\Models\UserAnswerFinalTest;
 use App\Models\UserCourseDetail;
+use App\Models\UserSidebarProgress;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -292,22 +293,109 @@ class CourseController extends Controller
 
     public function showAssignmentResults($courseId, $materialId)
     {
-        $sidebars = Sidebar::select('sidebar.id', 'sidebar.material_id', 'sidebar.parent_id', 'sidebar.title', 'sidebar.course_id', 'sidebar.is_locked')
-            ->where('course_id', $courseId)
+        $sidebars = Sidebar::select(
+            'sidebar.id',
+            'sidebar.material_id',
+            'sidebar.parent_id',
+            'sidebar.title',
+            'sidebar.course_id',
+            'user_sidebar_progress.is_locked as user_is_locked',
+            'user_sidebar_progress.is_visible as user_is_visible'
+        )
+            ->leftJoin('user_sidebar_progress', function ($join) use ($courseId) {
+                $join->on('sidebar.id', '=', 'user_sidebar_progress.sidebar_id')
+                    ->where('user_sidebar_progress.user_id', '=', auth()->id())
+                    ->where('user_sidebar_progress.course_id', '=', $courseId);
+            })
+            ->where('sidebar.course_id', $courseId)
             ->orderBy('order')
             ->get();
 
+        // dd($sidebars);
+
+
+        $getFirstSidebar = Sidebar::select(
+            'sidebar.id',
+            'sidebar.material_id',
+            'sidebar.parent_id',
+            'sidebar.title',
+            'sidebar.course_id',
+            'user_sidebar_progress.is_locked as user_is_locked',
+            'user_sidebar_progress.is_visible as user_is_visible'
+        )
+            ->leftJoin('user_sidebar_progress', function ($join) use ($courseId) {
+                $join->on('sidebar.id', '=', 'user_sidebar_progress.sidebar_id')
+                    ->where('user_sidebar_progress.user_id', '=', auth()->id())
+                    ->where('user_sidebar_progress.course_id', '=', $courseId);
+            })
+            ->where('sidebar.course_id', $courseId)
+            ->orderBy('order')
+            ->first();
+
+
+
+        $userSidebarProgress =  UserSidebarProgress::where('user_id', auth()->id())->where('course_id', $courseId)->get();
+        $firstUserSidebarProgress =  UserSidebarProgress::where('user_id', auth()->id())->where('course_id', $courseId)->first();
+
+        $user_id = auth()->id();
+        $requestedMaterial = Sidebar::select(
+            'sidebar.id',
+            'sidebar.material_id',
+            'user_sidebar_progress.is_locked as user_is_locked',
+            'user_sidebar_progress.is_visible as user_is_visible'
+        )
+            ->leftJoin('user_sidebar_progress', function ($join) use ($courseId) {
+                $join->on('sidebar.id', '=', 'user_sidebar_progress.sidebar_id')
+                    ->where('user_sidebar_progress.user_id', '=', auth()->id())
+                    ->where('user_sidebar_progress.course_id', '=', $courseId);
+            })
+            ->where('sidebar.course_id', $courseId)
+            ->where('sidebar.material_id', $materialId)
+            ->first();
+
+        if ((!$requestedMaterial || $requestedMaterial->user_is_visible == false && $requestedMaterial->user_is_locked == true) && $getFirstSidebar->id != $requestedMaterial->id) {
+            return redirect()->back();
+        }
+
+        $userCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $courseId)->first();
+
         // Find the current material in the sorted sidebar list
-        $currentMaterialIndex = $sidebars->search(function ($item) use ($materialId) {
-            return $item->material_id == $materialId;
-        });
+        $currentMaterialIndex = $userSidebarProgress
+    ->where('material_id', $materialId)
+    ->where('user_id', $user_id)
+    ->keys()
+    ->first();
 
-        // Determine the previous and next material
-        $currentMaterial = $sidebars[$currentMaterialIndex];
-        $material = Material::findOrFail($materialId);
-        $nextMaterial = $sidebars[$currentMaterialIndex + 1] ?? null;
+    $currentSidebar = $userSidebarProgress[$currentMaterialIndex]->sidebar;
+        // $currentMaterial = $sidebars[$currentMaterialIndex];
+        $previousMaterialIndex = $currentMaterialIndex - 1;
+        $nextMaterialIndex = $currentMaterialIndex + 1;
+
+        $currentMaterial = isset($userSidebarProgress[$currentMaterialIndex])
+            ? UserSidebarProgress::find($userSidebarProgress[$currentMaterialIndex]->id)
+            : null;
+
+
+        // Retrieve the previous material or set it to null if it doesn't exist
+        $previousMaterial = isset($userSidebarProgress[$previousMaterialIndex])
+            ? UserSidebarProgress::find($userSidebarProgress[$previousMaterialIndex]->id)
+            : null;
+
+        // Retrieve the next material or set it to null if it doesn't exist
+        $nextMaterial = isset($userSidebarProgress[$nextMaterialIndex])
+            ? UserSidebarProgress::find($userSidebarProgress[$nextMaterialIndex]->id)
+            : null;
+
+        // Access the material_id attribute from the previous and next materials
+        $previousMaterialId = $previousMaterial ? $userSidebarProgress[$previousMaterialIndex]->sidebarProgressToSidebar->material_id  : null;
+        $nextMaterialId = $nextMaterial ? $userSidebarProgress[$nextMaterialIndex]->sidebarProgressToSidebar->material_id : null;
+
+        // Access the title attribute from the previous and next materials
+        $previousMaterialTitle = $previousMaterial ? $userSidebarProgress[$previousMaterialIndex]->sidebarProgressToSidebar->title  : null;
+        $nextMaterialTitle = $nextMaterial ? $userSidebarProgress[$nextMaterialIndex]->sidebarProgressToSidebar->title : null;
+
         $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $courseId)->first();
-
+        $material = Material::findOrFail($materialId);
         $course = Course::find($courseId);
         $excludeFinal = $course->total_module - 1;
         $materialCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $courseId)
@@ -460,11 +548,107 @@ class CourseController extends Controller
     {
         $material = Material::findOrFail($material_id);
         $course = Course::findOrFail($id);
-        $sidebars = Sidebar::select('sidebar.id', 'sidebar.material_id', 'sidebar.parent_id', 'sidebar.title', 'sidebar.course_id', 'sidebar.is_locked', 'sidebar.order')
-            ->where('course_id', $id)
-            ->where('material_id', $material_id)
+        $sidebars = Sidebar::select(
+            'sidebar.id',
+            'sidebar.material_id',
+            'sidebar.parent_id',
+            'sidebar.order',
+            'sidebar.title',
+            'sidebar.course_id',
+            'user_sidebar_progress.is_locked as user_is_locked',
+            'user_sidebar_progress.is_visible as user_is_visible'
+        )
+            ->leftJoin('user_sidebar_progress', function ($join) use ($id) {
+                $join->on('sidebar.id', '=', 'user_sidebar_progress.sidebar_id')
+                    ->where('user_sidebar_progress.user_id', '=', auth()->id())
+                    ->where('user_sidebar_progress.course_id', '=', $id);
+            })
+            ->where('sidebar.course_id', $id)
             ->orderBy('order')
             ->first();
+
+        // dd($sidebars);
+
+
+        $getFirstSidebar = Sidebar::select(
+            'sidebar.id',
+            'sidebar.material_id',
+            'sidebar.parent_id',
+            'sidebar.title',
+            'sidebar.course_id',
+            'user_sidebar_progress.is_locked as user_is_locked',
+            'user_sidebar_progress.is_visible as user_is_visible'
+        )
+            ->leftJoin('user_sidebar_progress', function ($join) use ($id) {
+                $join->on('sidebar.id', '=', 'user_sidebar_progress.sidebar_id')
+                    ->where('user_sidebar_progress.user_id', '=', auth()->id())
+                    ->where('user_sidebar_progress.course_id', '=', $id);
+            })
+            ->where('sidebar.course_id', $id)
+            ->orderBy('order')
+            ->first();
+
+
+
+        $userSidebarProgress =  UserSidebarProgress::where('user_id', auth()->id())->where('course_id', $id)->get();
+        $firstUserSidebarProgress =  UserSidebarProgress::where('user_id', auth()->id())->where('course_id', $id)->first();
+
+        $user_id = auth()->id();
+        $requestedMaterial = Sidebar::select(
+            'sidebar.id',
+            'sidebar.material_id',
+            'user_sidebar_progress.is_locked as user_is_locked',
+            'user_sidebar_progress.is_visible as user_is_visible'
+        )
+            ->leftJoin('user_sidebar_progress', function ($join) use ($id) {
+                $join->on('sidebar.id', '=', 'user_sidebar_progress.sidebar_id')
+                    ->where('user_sidebar_progress.user_id', '=', auth()->id())
+                    ->where('user_sidebar_progress.course_id', '=', $id);
+            })
+            ->where('sidebar.course_id', $id)
+            ->where('sidebar.material_id', $id)
+            ->first();
+
+        if ((!$requestedMaterial || $requestedMaterial->user_is_visible == false && $requestedMaterial->user_is_locked == true) && $getFirstSidebar->id != $requestedMaterial->id) {
+            return redirect()->back();
+        }
+
+        $userCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $id)->first();
+
+        // Find the current material in the sorted sidebar list
+        $currentMaterialIndex = $userSidebarProgress
+    ->where('material_id', $material_id)
+    ->where('user_id', $user_id)
+    ->keys()
+    ->first();
+
+    $currentSidebar = $userSidebarProgress[$currentMaterialIndex]->sidebar;
+        // $currentMaterial = $sidebars[$currentMaterialIndex];
+        $previousMaterialIndex = $currentMaterialIndex - 1;
+        $nextMaterialIndex = $currentMaterialIndex + 1;
+
+        $currentMaterial = isset($userSidebarProgress[$currentMaterialIndex])
+            ? UserSidebarProgress::find($userSidebarProgress[$currentMaterialIndex]->id)
+            : null;
+
+
+        // Retrieve the previous material or set it to null if it doesn't exist
+        $previousMaterial = isset($userSidebarProgress[$previousMaterialIndex])
+            ? UserSidebarProgress::find($userSidebarProgress[$previousMaterialIndex]->id)
+            : null;
+
+        // Retrieve the next material or set it to null if it doesn't exist
+        $nextMaterial = isset($userSidebarProgress[$nextMaterialIndex])
+            ? UserSidebarProgress::find($userSidebarProgress[$nextMaterialIndex]->id)
+            : null;
+
+        // Access the material_id attribute from the previous and next materials
+        $previousMaterialId = $previousMaterial ? $userSidebarProgress[$previousMaterialIndex]->sidebarProgressToSidebar->material_id  : null;
+        $nextMaterialId = $nextMaterial ? $userSidebarProgress[$nextMaterialIndex]->sidebarProgressToSidebar->material_id : null;
+
+        // Access the title attribute from the previous and next materials
+        $previousMaterialTitle = $previousMaterial ? $userSidebarProgress[$previousMaterialIndex]->sidebarProgressToSidebar->title  : null;
+        $nextMaterialTitle = $nextMaterial ? $userSidebarProgress[$nextMaterialIndex]->sidebarProgressToSidebar->title : null;
 
         $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
         $materialCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
@@ -498,7 +682,7 @@ class CourseController extends Controller
             $randomizedQuestions = AssignmentQuestions::where('material_id', $material_id)->get()->shuffle();
             $questions = AssignmentQuestions::where('material_id', $material_id)->orderBy('id', 'asc')->get();
             $userAnswers = UserAnswerAssignment::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $questions->pluck('id'))->get();
-            return view('contents.assignment_test_results', compact('userAnswers', 'questions', 'firstRandomQuestion', 'randomizedQuestions', 'remainingTime', 'sidebars', 'materialCompleted', 'material', 'course', 'material_id', 'type'));
+            return view('contents.assignment_test_results', compact('userAnswers', 'questions', 'firstRandomQuestion', 'randomizedQuestions', 'remainingTime', 'sidebars', 'materialCompleted', 'sidebars','previousMaterial', 'nextMaterial', 'previousMaterialId', 'nextMaterialId', 'currentMaterialIndex', 'previousMaterialTitle', 'nextMaterialTitle',  'material', 'course', 'material_id', 'type'));
         }
         if ($type == 'finalTest') {
 

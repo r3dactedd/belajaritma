@@ -132,40 +132,38 @@
                 class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:border-gray-600 dark:bg-gray-700">
                 <div class="grid h-full max-w-lg grid-cols-2 mx-auto font-medium">
                     @if ($previousMaterial)
-                        <button type="button">
-                            <a href="{{ url('/courses/' . 'material/' . $previousMaterial->title . '/' . $material->course_id . '/' . $previousMaterial->material_id) }}"
-                                class="inline-flex flex-col items-center justify-center px-5 group hover:bg-gray-50 dark:hover:bg-gray-800">
+                    <button type="button">
+                        <a href="{{ url('/courses/' . 'material/' . $previousMaterialTitle . '/' . $material->course_id . '/' . $previousMaterialId) }}"
+                            class="inline-flex flex-col items-center justify-center px-5 group hover:bg-gray-50 dark:hover:bg-gray-800">
 
 
-                                <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"
-                                    xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512"
-                                    fill="currentColor">
-                                    <path
-                                        d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                                </svg>
-                                <span
-                                    class="text-base text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-blue-500">Balik</span>
-                            </a>
-                        </button>
-                    @endif
-                    @if ($nextMaterial)
-                        @if ($nextMaterial->is_locked == true && $nextMaterial->is_visible == true)
-                            <button type="button">
-                                <a href="{{ url('/courses/' . 'material/' . $nextMaterial->title . '/' . $material->course_id . '/' . $nextMaterial->material_id) }}"
-                                    class="inline-flex flex-col items-center justify-center px-5 group hover:bg-gray-50 dark:hover:bg-gray-800">
+                            <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"
+                                xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512"
+                                fill="currentColor">
+                                <path
+                                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                            </svg>
+                            <span
+                                class="text-base text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-blue-500">Balik</span>
+                        </a>
+                    </button>
+                @endif
+                @if ($nextMaterial)
+                    <button type="button">
+                        <a href="{{ url('/courses/' . 'material/' . $nextMaterialTitle . '/' . $material->course_id . '/' . $nextMaterialId) }}"
+                            class="inline-flex flex-col items-center justify-center px-5 group hover:bg-gray-50 dark:hover:bg-gray-800">
 
-                                    <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"
-                                        xmlns="http://www.w3.org/2000/svg" height="16" width="10"
-                                        viewBox="0 0 320 512" fill="currentColor">
-                                        <path
-                                            d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-                                    </svg>
-                                    <span
-                                        class="text-base text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-blue-500">Lanjut</span>
-                                </a>
-                            </button>
-                        @endif
-                    @endif
+                            <svg class="group-hover:text-blue-600 dark:group-hover:text-blue-500"
+                                xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512"
+                                fill="currentColor">
+                                <path
+                                    d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                            </svg>
+                            <span
+                                class="text-base text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-blue-500">Lanjut</span>
+                        </a>
+                    </button>
+                @endif
 
                 </div>
             </div>
