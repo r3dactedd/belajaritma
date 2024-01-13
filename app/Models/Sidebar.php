@@ -33,8 +33,11 @@ class Sidebar extends Model
         return $this->hasMany(UserSidebarProgress::class,'sidebar_id','id');
     }
 
-
     public function sidebarToMaterialContent(){
         return $this->belongsTo(MaterialContent::class,'material_content_id','id');
+    }
+
+    public function sidebarToUserSidebar(){
+        return $this->belongsTo(UserSidebarProgress::class,'sidebar_id','id');
     }
 }

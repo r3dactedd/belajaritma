@@ -617,10 +617,10 @@ class CourseController extends Controller
 
         // Find the current material in the sorted sidebar list
         $currentMaterialIndex = $userSidebarProgress
-    ->where('material_id', $material_id)
-    ->where('user_id', $user_id)
-    ->keys()
-    ->first();
+            ->where('material_id', $material_id)
+            ->where('user_id', $user_id)
+            ->keys()
+            ->first();
 
     $currentSidebar = $userSidebarProgress[$currentMaterialIndex]->sidebar;
         // $currentMaterial = $sidebars[$currentMaterialIndex];
@@ -678,6 +678,28 @@ class CourseController extends Controller
                 $materialCompleted->save();
                 $remainingTime = 0;
             }
+            if($materialCompleted->total_score >= $material->minimum_score){
+                $nextMaterial->is_visible = true;
+                $nextMaterial->save();
+            }
+            $sidebars = Sidebar::select(
+                'sidebar.id',
+                'sidebar.material_id',
+                'sidebar.parent_id',
+                'sidebar.order',
+                'sidebar.title',
+                'sidebar.course_id',
+                'user_sidebar_progress.is_locked as user_is_locked',
+                'user_sidebar_progress.is_visible as user_is_visible'
+            )
+                ->leftJoin('user_sidebar_progress', function ($join) use ($id) {
+                    $join->on('sidebar.id', '=', 'user_sidebar_progress.sidebar_id')
+                        ->where('user_sidebar_progress.user_id', '=', auth()->id())
+                        ->where('user_sidebar_progress.course_id', '=', $id);
+                })
+                ->where('sidebar.course_id', $id)
+                ->orderBy('order')
+                ->first();
             $firstRandomQuestion = AssignmentQuestions::where('material_id', $material_id)->inRandomOrder()->first();
             $randomizedQuestions = AssignmentQuestions::where('material_id', $material_id)->get()->shuffle();
             $questions = AssignmentQuestions::where('material_id', $material_id)->orderBy('id', 'asc')->get();
@@ -705,6 +727,28 @@ class CourseController extends Controller
                 $materialCompleted->save();
                 $remainingTime = 0;
             }
+            if($materialCompleted->total_score >= $material->minimum_score){
+                $nextMaterial->is_visible = true;
+                $nextMaterial->save();
+            }
+            $sidebars = Sidebar::select(
+                'sidebar.id',
+                'sidebar.material_id',
+                'sidebar.parent_id',
+                'sidebar.order',
+                'sidebar.title',
+                'sidebar.course_id',
+                'user_sidebar_progress.is_locked as user_is_locked',
+                'user_sidebar_progress.is_visible as user_is_visible'
+            )
+                ->leftJoin('user_sidebar_progress', function ($join) use ($id) {
+                    $join->on('sidebar.id', '=', 'user_sidebar_progress.sidebar_id')
+                        ->where('user_sidebar_progress.user_id', '=', auth()->id())
+                        ->where('user_sidebar_progress.course_id', '=', $id);
+                })
+                ->where('sidebar.course_id', $id)
+                ->orderBy('order')
+                ->first();
             $firstRandomQuestion = FinalTestQuestions::where('material_id', $material_id)->inRandomOrder()->first();
             $randomizedQuestions = FinalTestQuestions::where('material_id', $material_id)->get()->shuffle();
             $questions = FinalTestQuestions::where('material_id', $material_id)->orderBy('id', 'asc')->get();
