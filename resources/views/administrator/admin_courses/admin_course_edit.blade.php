@@ -396,8 +396,8 @@
                             </svg>
                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Kursus Tidak Dapat Di
                                 Publish!!</h3>
-                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"><strong>**Kursus Wajib
-                                    Mempunyai "Final Test"**</strong></h3>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"><strong>Kursus Wajib
+                                    Mempunyai "Final Test"</strong></h3>
                         </div>
                     </div>
                 </div>

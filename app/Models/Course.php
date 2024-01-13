@@ -41,6 +41,11 @@ class Course extends Model
         return $this->belongsTo(Course::class, 'course_id');
     }
 
+    public function courseToSidebarProgress(){
+        return $this->hasMany(UserSidebarProgress::class,'course_id','id');
+    }
+
+
     public function findUpdatedBy(){
         return $this->belongsTo(User::class, 'updated_by');
     }

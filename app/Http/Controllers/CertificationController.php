@@ -24,7 +24,7 @@ class CertificationController extends Controller
         $query = Certification::where('ready_for_publish', 1);
 
         if ($searchKeyword) {
-            $query->where('course_name', 'like', "%$searchKeyword%");
+            $query->where('certif_title', 'like', "%$searchKeyword%");
         }
 
         $data = $query->get();

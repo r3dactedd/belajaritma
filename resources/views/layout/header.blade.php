@@ -195,8 +195,18 @@
                 <div class="flex w-full items-center">
                     <li
                         class="mx-auto flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
-                        <span class="my-1 px-2 font-bold"><a href="/profile/edit">Profil Saya</a></span>
+                        <a href="/profile/{{ auth()->user()->username }}"class="ml-4 font-semibold">Profil
+                            Saya</a>
                     </li>
+
+                </div>
+                <div class="flex w-full items-center">
+                    <li
+                    class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+
+                    <a href="/editProfile" class="ml-4 font-semibold">Atur
+                        Profil</a>
+                </li>
 
                 </div>
                 <div class="ml-0 flex w-full items-end lg:ml-12 lg:mt-0">

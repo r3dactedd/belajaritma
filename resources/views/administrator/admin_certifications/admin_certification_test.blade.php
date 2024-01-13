@@ -213,7 +213,7 @@
                                         <div class="my-4"></div>
                                         <label for="username"
                                             class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
-                                            Upload Gambar (Tidak Wajib)</label>
+                                            Upload Gambar (Opsional)</label>
 
                                         <input name="question_img" id="question_img"
                                             class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
@@ -302,7 +302,7 @@
                                                 <div class="my-4"></div>
                                                 <label for="username"
                                                     class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
-                                                    Upload Gambar (Tidak Wajib)</label>
+                                                    Upload Gambar (Opsional)</label>
 
                                                 <input name="question_img" id="question_img"
                                                     class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"

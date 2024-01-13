@@ -17,7 +17,7 @@
             <div class="flex w-full justify-center">
                 <div class="mx-4 mb-12 flex flex-col justify-center text-gray-800 sm:mb-0">
                     <div class="rounded-xl bg-white px-6 py-2 md:px-12">
-                        <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Membuat Password Barud</h1>
+                        <h1 class="mt-12 text-center text-4xl font-semibold md:mt-8">Membuat Password Baru</h1>
                         <h1 class="my-4 text-center text-lg font-light">Anda dapat mengisi password baru untuk akun
                             anda.</h1>
 
