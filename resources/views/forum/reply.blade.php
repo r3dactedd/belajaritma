@@ -1,10 +1,10 @@
 @if ($reply->reply_id == $data->id)
     <div class="flex">
-        <div class="flex-shrink-0 mr-3">
-            <img class="w-5 h-5 mt-3 rounded-full sm:h-8 sm:w-8"
+        <div class="flex-shrink-0 ">
+            <img class="w-10 h-10 mt-3 rounded-full "
                 src="{{ asset('uploads/profile_images/' . $reply->formToUser->profile_img) }}" alt="">
         </div>
-        <div class="flex-1 px-4 py-2 leading-relaxed rounded-lg sm:px-6 sm:py-4">
+        <div class="flex-1  leading-relaxed rounded-lg px-6 py-2">
             <strong>{{ $reply->formToUser->username }}</strong>
             <span class="ml-2 text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
             <p class="text-base">
@@ -46,11 +46,11 @@
 @else()
     <hr class="my-2">
     <div class="flex ml-10 class">
-        <div class="flex-shrink-0 mr-3">
-            <img class="w-5 h-5 mt-3 rounded-full sm:h-8 sm:w-8"
+        <div class="flex-shrink-0 ">
+            <img class="w-10 h-10 mt-3 rounded-full "
                 src="{{ asset('uploads/profile_images/' . $reply->formToUser->profile_img) }}" alt="">
         </div>
-        <div class="flex-1 px-4 py-2 leading-relaxed rounded-lg sm:px-6 sm:py-4">
+        <div class="flex-1  leading-relaxed rounded-lg px-6 py-2">
             <strong class="mr-2">{{ $reply->formToUser->username }}</strong>
             <span class="ml-2 text-xs text-gray-400">{{ $reply->created_at->format('h:i A') }}</span>
             <p class="text-base">
