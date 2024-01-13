@@ -49,47 +49,54 @@
                             <div class="rounded-xl bg-white px-4 py-8 shadow-sm sm:px-4 xl:px-8">
                                 <p class="text-lg font-bold">Aktivitas Pembelajaran Anda</p>
                                 @if (auth()->check())
-                                    @foreach ($enrolledCourses as $ongoCor)
-                                        <div
-                                            class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
-                                            <div class="flex w-11/12">
-                                                <div class="w-full px-4">
-                                                    @php
-                                                        $progressPercentage = ceil(($ongoCor->material_completed_count / $ongoCor->course->total_module) * 100);
-                                                    @endphp
-                                                    <p class="text-lg font-semibold">
-                                                        {{ $ongoCor->course->course_name }}
-                                                    </p>
-                                                    <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">
-                                                        <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
-
-                                                            <span class="font-bold text-indigo-600">Kemajuan Pembelajaran
-                                                                :</span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="mt-6 max-w-xl rounded-xl bg-gray-600">
+                                    @if ($enrolledCourses->count() == 0)
+                                        <p class="text-lg text-center mt-10 mb-10">Kamu belum mendaftar kursus apapun.
+                                            mulailah perjalanan programming kamu <span class="text-bold underline" style="color:rgb(15, 104, 182)"><a href="/courses">disini.</a></span></p>
+                                    @else
+                                        @foreach ($enrolledCourses as $ongoCor)
+                                            <div
+                                                class="relative border-b border-gray-300 pb-8 pt-8 sm:flex md:flex lg:flex xl:flex">
+                                                <div class="flex w-11/12">
+                                                    <div class="w-full px-4">
                                                         @php
                                                             $progressPercentage = ceil(($ongoCor->material_completed_count / $ongoCor->course->total_module) * 100);
-                                                            $barWidth = ($progressPercentage / 100) * 600;
                                                         @endphp
-                                                        <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
-                                                            style="width: {{ $barWidth + 25 }}px; padding-left: 2px">
-                                                            {{ $progressPercentage }}%
+                                                        <p class="text-lg font-semibold">
+                                                            {{ $ongoCor->course->course_name }}
+                                                        </p>
+                                                        <div class="my-2 flex-wrap justify-between md:flex lg:flex xl:flex">
+                                                            <p class="mb-2 text-sm text-gray-600 lg:mb-0 xl:mb-0">
+
+                                                                <span class="font-bold text-indigo-600">Kemajuan
+                                                                    Pembelajaran
+                                                                    :</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="mt-6 max-w-xl rounded-xl bg-gray-600">
+                                                            @php
+                                                                $progressPercentage = ceil(($ongoCor->material_completed_count / $ongoCor->course->total_module) * 100);
+                                                                $barWidth = ($progressPercentage / 100) * 600;
+                                                            @endphp
+                                                            <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
+                                                                style="width: {{ $barWidth + 25 }}px; padding-left: 2px">
+                                                                {{ $progressPercentage }}%
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div
-                                                class="right-0 top-0 mt-4 block sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
-                                                <a href="/courses/{{ $ongoCor->course->id }}"
-                                                    class="rounded-full px-6 py-2 text-base font-semibold text-indigo-600 hover:underline focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
-                                                    Lanjutkan
-                                                </a>
+                                                <div
+                                                    class="right-0 top-0 mt-4 block sm:relative sm:mt-0 md:relative md:mt-0 md:pl-0 lg:relative lg:mt-0 xl:relative">
+                                                    <a href="/courses/{{ $ongoCor->course->id }}"
+                                                        class="rounded-full px-6 py-2 text-base font-semibold text-indigo-600 hover:underline focus:outline-none md:mt-0 md:w-32 md:px-12 md:py-3">
+                                                        Lanjutkan
+                                                    </a>
 
+                                                </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
+
                                 @endif
                             </div>
                         </div>
@@ -99,27 +106,32 @@
                             <div class="rounded-xl border border-gray-300 bg-white p-8 shadow">
                                 <p class="mb-4 text-lg font-bold">Forum untuk Kursus Anda</p>
                                 @if (auth()->check())
-                                    @foreach ($enrolledCourses as $enCor)
-                                        <div class="flex items-center border-b border-gray-300 py-4">
-                                            <div
-                                                class="flex h-12 w-12 items-center justify-center rounded-lg text-gray-700">
-                                                {{-- Course image here --}}
-                                                <img src="{{ asset('uploads/course_images/' . $enCor->course->course_img) }}"
-                                                    alt="course image" class="h-full w-full object-cover" />
+                                    @if ($enrolledCourses->count() == 0)
+                                        <p class="text-lg text-center mt-10 mb-10">Belum ada kursus yang di ambil</p>
+                                    @else
+                                        @foreach ($enrolledCourses as $enCor)
+                                            <div class="flex items-center border-b border-gray-300 py-4">
+                                                <div
+                                                    class="flex h-12 w-12 items-center justify-center rounded-lg text-gray-700">
+                                                    {{-- Course image here --}}
+                                                    <img src="{{ asset('uploads/course_images/' . $enCor->course->course_img) }}"
+                                                        alt="course image" class="h-full w-full object-cover" />
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p
+                                                        class="text-lg font-semibold leading-5 tracking-normal text-gray-700">
+                                                        {{ $enCor->course->course_name }}
+                                                    </p>
+                                                    <a href="/forum/course/{{ $enCor->course->id }}">
+                                                        <h3
+                                                            class="mt-1 text-sm font-bold leading-6 text-indigo-600 hover:underline">
+                                                            Akses
+                                                            Forum</h3>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class="ml-3">
-                                                <p class="text-lg font-semibold leading-5 tracking-normal text-gray-700">
-                                                    {{ $enCor->course->course_name }}
-                                                </p>
-                                                <a href="/forum/course/{{ $enCor->course->id }}">
-                                                    <h3
-                                                        class="mt-1 text-sm font-bold leading-6 text-indigo-600 hover:underline">
-                                                        Akses
-                                                        Forum</h3>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 @else
                                 @endif
 
@@ -222,8 +234,8 @@
                                 <div class="flex w-full hover:bg-gray-200">
                                     <div class="flex h-16 w-20 items-center justify-center rounded-lg text-gray-700">
                                         {{-- Course image here --}}
-                                        <img src="{{ asset('local/course.jpg') }}"
-                                            alt="course image" class="h-full w-full object-cover" />
+                                        <img src="{{ asset('local/course.jpg') }}" alt="course image"
+                                            class="h-full w-full object-cover" />
                                     </div>
                                     <div class="w-full px-4">
                                         <a href="/courses">
@@ -242,8 +254,8 @@
                                 <div class="flex w-full hover:bg-gray-200">
                                     <div class="flex h-16 w-20 items-center justify-center rounded-lg text-gray-700">
                                         {{-- Course image here --}}
-                                        <img src="{{ asset('local/certification.png') }}"
-                                            alt="course image" class="h-full w-full object-cover" />
+                                        <img src="{{ asset('local/certification.png') }}" alt="course image"
+                                            class="h-full w-full object-cover" />
                                     </div>
                                     <div class="w-full px-4">
                                         <a href="/certifications">
