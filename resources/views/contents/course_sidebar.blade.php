@@ -11,7 +11,7 @@
                             class="{{ $userCourseDetail->last_accessed_material == $sidebar->material_id ? 'bg-green-100 transition hover:bg-indigo-300' : 'transition hover:bg-green-100' }}">
                             <div
                                 class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
-                                @if ($sidebar->is_locked == true && $sidebar->is_visible == false)
+                                @if ($sidebar->user_is_locked == true && $sidebar->user_is_visible == false)
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24">
                                         <path
@@ -20,12 +20,12 @@
 
                                     <span class="text-gray-1000 ml-2 text-base font-normal">{{ $sidebar->title }}</span>
                                 @endif
-                                @if ($sidebar->is_locked == true && $sidebar->is_visible == true)
+                                @if ($sidebar->user_is_locked == true && $sidebar->user_is_visible == true)
                                     <a href="/courses/material/{{ $sidebar->title }}/{{ $sidebar->course_id }}/{{ $sidebar->material_id }}"
                                         class="ml-2 text-base font-normal text-gray-600 hover:underline">
                                         {{ $sidebar->title }}</a>
                                 @endif
-                                @if ($sidebar->is_locked == false && $sidebar->is_visible == true)
+                                @if ($sidebar->user_is_locked == false && $sidebar->user_is_visible == true)
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                         <path
                                             d="M369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
@@ -37,60 +37,7 @@
 
                             </div>
 
-                            @php
-                                // Check if the parent has children
-                                $hasChildren = false;
-                                foreach ($sidebars as $child) {
-                                    if ($child->parent_id == $sidebar->id) {
-                                        $hasChildren = true;
-                                        break;
-                                    }
-                                }
-                            @endphp
 
-                            @if ($hasChildren)
-                                <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
-                                    <ul class="ml-12 list-inside space-y-2 pb-4">
-                                        <!-- Materi Module -->
-                                        @foreach ($sidebars as $child)
-                                            @if ($child->parent_id == $sidebar->id)
-                                                <!-- Ini adalah child -->
-                                                <li>
-                                                    <div class="flex items-center">
-                                                        <!-- If done, add check-->
-                                                        @if ($sidebar->is_locked == false)
-                                                            <!-- Show checkmark if completed -->
-                                                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                                                                viewBox="0 0 512 512">
-                                                                <path
-                                                                    d="M369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                                                            </svg>
-                                                            <a href="/courses/material/{{ $child->title }}/{{ $child->course_id }}/{{ $child->material_id }}"
-                                                                class="ml-4 text-base font-normal text-gray-600 hover:underline">
-                                                                {{ $child->title }}
-                                                            </a>
-                                                        @else
-                                                            <!-- Show lock icon if not completed -->
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24">
-                                                                <path
-                                                                    d="M10 16c0-1.104.896-2 2-2s2 .896 2 2c0 .738-.404 1.376-1 1.723v2.277h-2v-2.277c-.596-.347-1-.985-1-1.723zm11-6v14h-18v-14h3v-4c0-3.313 2.687-6 6-6s6 2.687 6 6v4h3zm-13 0h8v-4c0-2.206-1.795-4-4-4s-4 1.794-4 4v4zm11 2h-14v10h14v-10z" />
-                                                            </svg> <a
-                                                                href="/courses/material/{{ $child->title }}/{{ $child->course_id }}/{{ $child->material_id }}"
-                                                                class="text-gray-1000 ml-4 text-base font-normal hover:underline"
-                                                                disabled>
-                                                                {{ $child->title }}
-                                                            </a>
-                                                        @endif
-
-                                                    </div>
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                        <!-- Materi Module -->
-                                    </ul>
-                                </div>
-                            @endif
                         </div>
                     </li>
                 @endif
@@ -111,94 +58,6 @@
 </div>
 {{-- MOBILE TOGGLE --}}
 
-<div
-    class="cursor-pointer text-gray-700 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none lg:hidden">
-    <ul class="absolute left-0 top-0.5 z-[1035] mt-16 hidden rounded border-r bg-white p-2 shadow md:mt-16">
-        <div onclick="MenuHandler(this,false)" class="close-m-menu hidden">
-            <svg aria-label="Close" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-        </div>
-        <li>
-            {{-- MODUL 1 --}}
-            @foreach ($sidebars as $sidebar)
-                @if ($sidebar->parent_id == null)
-                    <div class="transition hover:bg-indigo-50">
-
-                        <div
-                            class="accordion-header ml-4 flex h-16 cursor-pointer items-center space-x-5 px-5 transition">
-                            {{-- if sudah semua, add ini --}}
-                            <div class="-ml-3 -mr-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                                    <path
-                                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                                </svg>
-                            </div>
-                            <svg class="ml-4" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
-                                <path
-                                    d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
-                            </svg>
-                            <a href="/courses/material/{{ $sidebar->title }}/{{ $sidebar->material_id }}"
-                                class="ml-2 text-base font-normal text-gray-600 hover:underline">{{ $sidebar->title }}</a>
-
-                        </div>
-
-                        <div class="accordion-content max-h-0 overflow-hidden px-5 pt-0">
-                            <ul class="ml-12 list-inside space-y-2 pb-4">
-                                <!-- Materi Module-->
-                                @foreach ($sidebars as $child)
-                                    @if ($child->parent_id == $sidebar->id)
-                                        <!-- Ini adalah child -->
-                                        <li>
-                                            <div class="flex items-center">
-                                                <!-- If done, add check-->
-                                                <svg id="check" class="-ml-4" xmlns="http://www.w3.org/2000/svg"
-                                                    height="1em" viewBox="0 0 512 512">
-                                                    <path
-                                                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                                                </svg>
-                                                <a href="/courses/material/{{ $child->title }}/{{ $child->material_content_id }}"
-                                                    class="ml-4 text-base font-normal text-gray-600 hover:underline">
-                                                    {{ $child->title }}
-                                                </a>
-                                            </div>
-                                        </li>
-                                    @endif
-                                @endforeach
-                                <!-- Materi Module-->
-                            </ul>
-                        </div>
-                    </div>
-                    {{-- MODUL 2 --}}
-                @endif
-            @endforeach
-        </li>
-
-    </ul>
-    <div>
-        <div class="show-m-menu mx-4 lg:hidden" onclick="MenuHandler(this,true)">
-            <svg aria-haspopup="true" aria-label="Main Menu" xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-menu" width="32" height="32" viewBox="0 0 24 24"
-                stroke-width="1.5" stroke="#2C3E50" fill="none" stroke-linecap="round">
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <line x1="4" y1="8" x2="20" y2="8" />
-                <line x1="4" y1="16" x2="20" y2="16" />
-            </svg>
-        </div>
-        <div onclick="MenuHandler(this,false)" class="close-m-menu hidden">
-            <svg aria-label="Close" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-        </div>
-    </div>
-</div>
 {{-- MOBILE TOGGLE --}}
 
 </html>

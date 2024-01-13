@@ -36,5 +36,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FinalTestQuestionsSeeder::class);
         $this->call(UserCourseDetailSeeder::class);
         $this->call(CertificationQuestionSeeder::class);
+        $this->call(UserSidebarProgressSeeder::class);
     }
 }

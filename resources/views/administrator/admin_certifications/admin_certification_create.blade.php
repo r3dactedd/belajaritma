@@ -192,7 +192,7 @@
                                             <div class="text-indigo-500">Biaya Sertifikasi (dalam Rupiah)</div>
                                             <input type="text" id="inputCertifCost" name="certif_cost"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                placeholder="ex: Rp 200.000,00" required="">
+                                                placeholder="ex: 200000" required="">
                                         </div>
 
                                     </div>
