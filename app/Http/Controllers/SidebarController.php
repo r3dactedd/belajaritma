@@ -204,6 +204,23 @@ class SidebarController extends Controller
             ->first();
 
         $master_type = MasterType::find($material->master_type_id);
+        $sidebars = Sidebar::select(
+            'sidebar.id',
+            'sidebar.material_id',
+            'sidebar.parent_id',
+            'sidebar.title',
+            'sidebar.course_id',
+            'user_sidebar_progress.is_locked as user_is_locked',
+            'user_sidebar_progress.is_visible as user_is_visible'
+        )
+        ->leftJoin('user_sidebar_progress', function ($join) use ($id) {
+            $join->on('sidebar.id', '=', 'user_sidebar_progress.sidebar_id')
+                ->where('user_sidebar_progress.user_id', '=', auth()->id())
+                ->where('user_sidebar_progress.course_id', '=', $id);
+        })
+            ->where('sidebar.course_id', $id)
+            ->orderBy('order')
+            ->get();
         if ($master_type->master_type_name == 'Video') {
             return view('contents.session_video', compact('material', 'userSidebarProgress', 'currentMaterialIndex', 'previousMaterial', 'nextMaterial', 'previousMaterialId', 'nextMaterialId', 'nextMaterialTitle', 'previousMaterialTitle', 'sidebars', 'id', 'excludeFinal', 'userCourseDetail', 'nextMaterialIndex'));
         } elseif ($master_type->master_type_name == 'PDF') {
