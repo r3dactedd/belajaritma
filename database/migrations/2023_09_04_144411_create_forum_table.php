@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('reply_id')->nullable();
             // $table->string('course_session')->nullable();
             $table->string('forum_title')->nullable();
-            $table->text('forum_message');
+            $table->mediumText('forum_message');
             $table->string('forum_attachment')->nullable();
             $table->boolean('deleted_by_admin')->default(false);
             $table->string('reason_delete')->nullable();
