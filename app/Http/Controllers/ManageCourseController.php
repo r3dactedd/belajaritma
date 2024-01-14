@@ -322,40 +322,51 @@ class ManageCourseController extends Controller
 
     public function editMaterialDetail(Request $request, $id){
         $material = Material::find($id);
-        // dd($request);
         if($material->materialContentToMasterType->master_type_name == 'Video'){
-            $validateVideo = $request->validate([
+            $rules = [
                 'video_link'=>'required|string',
-            ]);
-            $changeMaterialDetail = [];
-
-            $changeMaterialDetail += [
-                'video_link'=> $validateVideo['video_link'],
             ];
-            Material::where('id', $id)->update($changeMaterialDetail);
-            return Redirect::to("/manager/course/materiallist/{$material->materialToCourse->id}");
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                return back()->withErrors($validator);
+            }
+            else{
+                $changeMaterialDetail = [];
+
+                $changeMaterialDetail += [
+                    'video_link'=> $request->video_link,
+                ];
+                Material::where('id', $id)->update($changeMaterialDetail);
+                return Redirect::to("/manager/course/materiallist/{$material->materialToCourse->id}");
+            }
+
         }
         if($material->materialContentToMasterType->master_type_name == 'PDF'){
-            $request->validate([
-                'pdf_link' => 'file|mimes:pdf|max:2048',
-            ]);
-
-            $filename = Str::orderedUuid() . '.' . $request->file('pdf_link')->getClientOriginalExtension();
-            $request->file('pdf_link')->storeAs('material_pdf', $filename, 'material_pdf');
-
-            $changeMaterialDetail = [
-                'pdf_link' => $filename,
+            $rules = [
+                'pdf_link' => 'required|file|mimes:pdf|max:2048',
             ];
-
-            try {
-                Material::where('id', $id)->update($changeMaterialDetail);
-            } catch (\Exception $e) {
-                // Tangani kesalahan (contoh: log kesalahan, kembalikan tanggapan kesalahan)
-                Log::error('Error updating material: ' . $e->getMessage());
-
-                return redirect()->back()->with('error', 'Failed to update material. Please try again.');
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                return back()->withErrors($validator);
             }
-            return Redirect::to("/manager/course/materiallist/{$material->materialToCourse->id}");
+            else{
+                $filename = Str::orderedUuid() . '.' . $request->file('pdf_link')->getClientOriginalExtension();
+                $request->file('pdf_link')->storeAs('material_pdf', $filename, 'material_pdf');
+
+                $changeMaterialDetail = [
+                    'pdf_link' => $filename,
+                ];
+                try {
+                    Material::where('id', $id)->update($changeMaterialDetail);
+                } catch (\Exception $e) {
+                    // Tangani kesalahan (contoh: log kesalahan, kembalikan tanggapan kesalahan)
+                    Log::error('Error updating material: ' . $e->getMessage());
+
+                    return redirect()->back()->with('error', 'Failed to update material. Please try again.');
+                }
+                return Redirect::to("/manager/course/materiallist/{$material->materialToCourse->id}");
+            }
+
         }
         if($material->materialContentToMasterType->master_type_name == 'Assignment' || $material->materialContentToMasterType->master_type_name == 'Final Test'){
             Log::info('Request Data:', $request->all());
@@ -562,7 +573,7 @@ class ManageCourseController extends Controller
             unset($validateFinal['question_img']);
         }
         if ($request->hasFile('question_img')) {
-            $changeAssignment += [
+            $changeFinal += [
                 'questions'=> $validateFinal['questions'],
                 'jawaban_a'=>$validateFinal['jawaban_a'],
                 'jawaban_b'=>$validateFinal['jawaban_b'],

@@ -177,6 +177,11 @@
                                         class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                                         <div class="mx-2"> Finalize PDF</div>
                                     </button>
+                                    @error('pdf_link')
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                 </div>
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Video')
@@ -570,8 +575,7 @@
                                             <label
                                                 class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                 Upload Gambar (Opsional)</label>
-                                            <img src={{ asset('uploads/certif_images/placeholder.webp') }}
-                                                alt="Question Image" id="img-preview-createASG"
+                                            <img id="img-preview-createASG"
                                                 class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
                                                 style="max-width: 150px; max-height: 150px;"
                                                 onclick="showImagePopupCreateASG()">
@@ -631,8 +635,7 @@
                                     d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </button>
-                        <img src={{ asset('uploads/certif_images/placeholder.webp') }} alt="Question Image"
-                            id="popup-image-createASG" class="max-w-full max-h-full" />
+                        <img id="popup-image-createASG" class="max-w-full max-h-full" />
                     </div>
                 </div>
             </div>
@@ -674,8 +677,7 @@
                                             <div class="my-4"></div>
                                             <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Upload Gambar (Opsional)</label>
-                                            <img src={{ asset('uploads/certif_images/placeholder.webp') }}
-                                                alt="Question Image" id="img-preview-createFIN"
+                                            <img id="img-preview-createFIN"
                                                 class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
                                                 style="max-width: 150px; max-height: 150px;"
                                                 onclick="showImagePopupCreateFIN()">
@@ -735,8 +737,7 @@
                                     d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </button>
-                        <img src={{ asset('uploads/certif_images/placeholder.webp') }} alt=""
-                            id="popup-image-createFIN" class="max-w-full max-h-full" />
+                        <img id="popup-image-createFIN" class="max-w-full max-h-full" />
 
                     </div>
                 </div>
@@ -789,8 +790,7 @@
                                                             style="max-width: 150px; max-height: 150px;"
                                                             onclick="showImagePopupASG('{{ $assignment->id }}')">
                                                     @else
-                                                        <img src={{ asset('uploads/certif_images/placeholder.webp') }}
-                                                            alt="Question Image" id="img-preview-{{ $assignment->id }}"
+                                                        <img id="img-preview-{{ $assignment->id }}"
                                                             class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
                                                             style="max-width: 150px; max-height: 150px;"
                                                             onclick="showImagePopupASG('{{ $assignment->id }}')">
@@ -933,9 +933,7 @@
                                                             style="max-width: 150px; max-height: 150px;"
                                                             onclick="showImagePopupFIN('{{ $final_test->id }}')">
                                                     @else
-                                                        <img src={{ asset('uploads/certif_images/placeholder.webp') }}
-                                                            alt="Question Image"
-                                                            id="img-preview-final-{{ $final_test->id }}"
+                                                        <img id="img-preview-final-{{ $final_test->id }}"
                                                             class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
                                                             style="max-width: 150px; max-height: 150px;"
                                                             onclick="showImagePopupFIN('{{ $final_test->id }}')">
@@ -1303,9 +1301,6 @@
                 var imageUrl = URL.createObjectURL(inputImage.files[0]);
                 imgPreview.src = imageUrl;
                 imgPreview.style.display = 'block';
-            } else {
-                imgPreview.src = '{{ asset('uploads/certif_images/placeholder.webp') }}';
-                imgPreview.style.display = 'none';
             }
         }
 
@@ -1336,9 +1331,6 @@
                 var imageUrl = URL.createObjectURL(inputImage.files[0]);
                 imgPreview.src = imageUrl;
                 imgPreview.style.display = 'block';
-            } else {
-                imgPreview.src = '{{ asset('uploads/certif_images/placeholder.webp') }}';
-                imgPreview.style.display = 'none';
             }
         }
     </script>
