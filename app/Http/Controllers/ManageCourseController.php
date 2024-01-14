@@ -456,15 +456,27 @@ class ManageCourseController extends Controller
             unset($validateAssignment['question_img']);
         }
 
-
-        $changeAssignment += [
-            'questions'=> $validateAssignment['questions'],
-            'jawaban_a'=>$validateAssignment['jawaban_a'],
-            'jawaban_b'=>$validateAssignment['jawaban_b'],
-            'jawaban_c'=>$validateAssignment['jawaban_c'],
-            'jawaban_d'=>$validateAssignment['jawaban_d'],
-            'jawaban_benar'=>$validateAssignment['jawaban_benar'],
-        ];
+        if ($request->hasFile('question_img')) {
+            $changeAssignment += [
+                'questions'=> $validateAssignment['questions'],
+                'jawaban_a'=>$validateAssignment['jawaban_a'],
+                'jawaban_b'=>$validateAssignment['jawaban_b'],
+                'jawaban_c'=>$validateAssignment['jawaban_c'],
+                'jawaban_d'=>$validateAssignment['jawaban_d'],
+                'jawaban_benar'=>$validateAssignment['jawaban_benar'],
+                'question_img'=> $filename,
+            ];
+        }
+        else{
+            $changeAssignment += [
+                'questions'=> $validateAssignment['questions'],
+                'jawaban_a'=>$validateAssignment['jawaban_a'],
+                'jawaban_b'=>$validateAssignment['jawaban_b'],
+                'jawaban_c'=>$validateAssignment['jawaban_c'],
+                'jawaban_d'=>$validateAssignment['jawaban_d'],
+                'jawaban_benar'=>$validateAssignment['jawaban_benar'],
+            ];
+        }
         AssignmentQuestions::where('id', $request->assignment_id)->update($changeAssignment);
 
         // dd($request->assignment_id);
@@ -549,15 +561,27 @@ class ManageCourseController extends Controller
         if (array_key_exists('question_img', $validateFinal)) {
             unset($validateFinal['question_img']);
         }
-
-        $changeFinal += [
-            'questions'=> $validateFinal['questions'],
-            'jawaban_a'=>$validateFinal['jawaban_a'],
-            'jawaban_b'=>$validateFinal['jawaban_b'],
-            'jawaban_c'=>$validateFinal['jawaban_c'],
-            'jawaban_d'=>$validateFinal['jawaban_d'],
-            'jawaban_benar'=>$validateFinal['jawaban_benar'],
-        ];
+        if ($request->hasFile('question_img')) {
+            $changeAssignment += [
+                'questions'=> $validateFinal['questions'],
+                'jawaban_a'=>$validateFinal['jawaban_a'],
+                'jawaban_b'=>$validateFinal['jawaban_b'],
+                'jawaban_c'=>$validateFinal['jawaban_c'],
+                'jawaban_d'=>$validateFinal['jawaban_d'],
+                'jawaban_benar'=>$validateFinal['jawaban_benar'],
+                'question_img'=> $filename,
+            ];
+        }
+        else{
+            $changeFinal += [
+                'questions'=> $validateFinal['questions'],
+                'jawaban_a'=>$validateFinal['jawaban_a'],
+                'jawaban_b'=>$validateFinal['jawaban_b'],
+                'jawaban_c'=>$validateFinal['jawaban_c'],
+                'jawaban_d'=>$validateFinal['jawaban_d'],
+                'jawaban_benar'=>$validateFinal['jawaban_benar'],
+            ];
+        }
         FinalTestQuestions::where('id', $request->final_test_id)->update($changeFinal);
 
         // dd($request->assignment_id);

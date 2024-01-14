@@ -10,6 +10,22 @@
         rel="stylesheet" />
 
 </head>
+<script>
+    function previewImageASG(assignmentId) {
+        const imageInput = document.getElementById('inputQuestionImg-' + assignmentId);
+        const questionIMGPreview = document.getElementById('img-preview-' + assignmentId);
+        if (imageInput.files && imageInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                console.log('FileReader onload event fired');
+                questionIMGPreview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(imageInput.files[0]);
+        }
+    }
+</script>
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
@@ -28,7 +44,7 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Edit Materi Kursus</span>
+                            <span class="mb-1 ml-2">Materi Kursus</span>
                         </a>
                 </div>
             </div>
@@ -703,15 +719,23 @@
                                                         Input Pertanyaan</label>
                                                     <textarea id="myInfo" name="questions" id="inputQuestions"
                                                         class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
+                                                        placeholder="Input Penjelasan Singkat mengenai Materi" required="">{{ $assignment->questions }}</textarea>
                                                     <div class="my-4"></div>
                                                     <label for="username"
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Upload Gambar (Opsional)</label>
-
-                                                    <input name="question_img" id="question_img"
+                                                    @if ($assignment->question_img)
+                                                        <img src="{{ asset('uploads/asg_question_img/' . $assignment->question_img) }}"
+                                                            alt="Question Image" id="img-preview-{{ $assignment->id }}"
+                                                            class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                            style="max-width: 150px; max-height: 150px;"
+                                                            onclick="showImagePopupASG('{{ $assignment->id }}')">
+                                                    @endif
+                                                    <input name="question_img"
+                                                        id="inputQuestionImg-{{ $assignment->id }}"
                                                         class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                                                        type="file" accept="image/*">
+                                                        type="file" accept="image/*"
+                                                        onchange="previewImageASG('{{ $assignment->id }}')">
                                                 </div>
 
                                                 <input type="hidden" name="assignment_id"
@@ -724,16 +748,20 @@
                                                         Pilihan Jawaban</label>
                                                     <input type="text" name="jawaban_a" id="inputJawabanA"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban A" required="">
+                                                        placeholder="Jawaban A" value="{{ $assignment->jawaban_a }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_b" id="inputJawabanB"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban B" required="">
+                                                        placeholder="Jawaban B" value="{{ $assignment->jawaban_b }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_c" id="inputJawabanC"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban C" required="">
+                                                        placeholder="Jawaban C" value="{{ $assignment->jawaban_c }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_d" id="inputJawabanD"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban D" required="">
+                                                        placeholder="Jawaban D" value="{{ $assignment->jawaban_d }}"
+                                                        required="">
                                                 </div>
                                                 <div class="sm:col-span-1">
                                                     <label for="username"
@@ -746,13 +774,18 @@
                                                             Pilih Jawaban Yang Tepat
                                                             untuk Pertanyaan
                                                         </option>
-                                                        <option value="A">A
-                                                        </option>
-                                                        <option value="B">B
-                                                        </option>
-                                                        <option value="C">C
-                                                        </option>
-                                                        <option value="D">D
+                                                        <option value="A"
+                                                            {{ $assignment->jawaban_benar == 'A' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">A</option>
+                                                        <option value="B"
+                                                            {{ $assignment->jawaban_benar == 'B' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">B</option>
+                                                        <option value="C"
+                                                            {{ $assignment->jawaban_benar == 'C' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">C</option>
+                                                        <option value="D"
+                                                            {{ $assignment->jawaban_benar == 'D' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">D</option>
                                                         </option>
                                                     </select>
                                                 </div>
@@ -767,6 +800,21 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div id="image-popup-{{ $assignment->id }}"
+                        class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+                        <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                            <button type="button" onclick="hideImagePopupASG({{ $assignment->id }})"
+                                class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                            <img src="{{ $assignment->question_img }}" alt="Question Image"
+                                id="popup-image-{{ $assignment->id }}" class="max-w-full max-h-full" />
                         </div>
                     </div>
                 @endif
@@ -807,7 +855,7 @@
                                                         Input Pertanyaan</label>
                                                     <textarea id="myInfo" name="questions" id="inputQuestions"
                                                         class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
+                                                        placeholder="Input Penjelasan Singkat mengenai Materi" required="">{{ $final_test->questions }}</textarea>
                                                     <div class="my-4"></div>
                                                     <label for="username"
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
@@ -828,16 +876,20 @@
                                                         Pilihan Jawaban</label>
                                                     <input type="text" name="jawaban_a" id="inputJawabanA"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban A" required="">
+                                                        placeholder="Jawaban A" value="{{ $final_test->jawaban_a }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_b" id="inputJawabanB"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban B" required="">
+                                                        placeholder="Jawaban B" value="{{ $final_test->jawaban_b }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_c" id="inputJawabanC"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban C" required="">
+                                                        placeholder="Jawaban C" value="{{ $final_test->jawaban_c }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_d" id="inputJawabanD"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban D" required="">
+                                                        placeholder="Jawaban D" value="{{ $final_test->jawaban_d }}"
+                                                        required="">
                                                 </div>
                                                 <div class="sm:col-span-1">
                                                     <label for="username"
@@ -850,13 +902,18 @@
                                                             Pilih Jawaban Yang Tepat
                                                             untuk Pertanyaan
                                                         </option>
-                                                        <option value="A">A
-                                                        </option>
-                                                        <option value="B">B
-                                                        </option>
-                                                        <option value="C">C
-                                                        </option>
-                                                        <option value="D">D
+                                                        <option value="A"
+                                                            {{ $final_test->jawaban_benar == 'A' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">A</option>
+                                                        <option value="B"
+                                                            {{ $final_test->jawaban_benar == 'B' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">B</option>
+                                                        <option value="C"
+                                                            {{ $final_test->jawaban_benar == 'C' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">C</option>
+                                                        <option value="D"
+                                                            {{ $final_test->jawaban_benar == 'D' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">D</option>
                                                         </option>
                                                     </select>
                                                 </div>
@@ -912,7 +969,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="final_test_id" value="{{ $final_test->id }}">
-                                            <button data-modal-hide="popup-final-delete-{{ $final_test->id }}e"
+                                            <button data-modal-hide="popup-final-delete-{{ $final_test->id }}"
                                                 type="submit"
                                                 class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
                                                 Ya, hapus
@@ -1080,6 +1137,25 @@
         function extractVideoId(link) {
             const videoIdMatch = link.match(/[?&]v=([^&#]+)/);
             return videoIdMatch && videoIdMatch[1];
+        }
+
+        function showImagePopupASG(assignmentId) {
+            var popup = document.getElementById('image-popup-' + assignmentId);
+            var image = popup.querySelector('img');
+
+            var previewImage = document.getElementById('img-preview-' + assignmentId); // Use correct ID
+            var imageUrl = previewImage.src;
+
+            image.src = imageUrl;
+
+            popup.style.display = 'block';
+        }
+
+
+        function hideImagePopupASG(assignmentId) {
+            var popup = document.getElementById('image-popup-' + assignmentId);
+
+            popup.style.display = 'none';
         }
     </script>
 
