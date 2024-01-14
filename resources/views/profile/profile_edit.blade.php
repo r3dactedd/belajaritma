@@ -107,11 +107,9 @@
                                     </label>
                                 </div>
                                 <div class="sm:col-span-2">
-                                    <label for="username"
-                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                    <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                         Username (3-50 Karakter)</label>
-                                    <label for="username"
-                                        class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                    <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                         </ </label>
                                         <input type="text" name="username" id="inputUsername"
                                             value="{{ $searchUser->username }}"

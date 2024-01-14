@@ -103,15 +103,13 @@
                     <div class="h-auto w-full md:mx-2">
                         <div class="rounded-xl bg-white p-4 shadow-sm">
                             <div class="px-4 font-semibold">
-                                <label for="username"
-                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                     Judul Materi</label>
                                 <input type="text" name="title" id="inputTitle"
                                     class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-lg text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left"
                                     placeholder="Tulis Nama Materi" required=""
                                     value="{{ htmlspecialchars($material->title) }}">
-                                <label for="username"
-                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                     Tipe Materi</label>
                                 <select name="master_type_id" id="inputType"
                                     class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
@@ -126,8 +124,7 @@
                             </div>
                             <div class="my-4"></div>
                             <div class="px-4 font-semibold">
-                                <label for="username"
-                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                     Deskripsi Singkat Materi</label>
                                 <textarea name="description" id="inputDescription"
                                     class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -169,8 +166,7 @@
                                 </div>
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Video')
                                 <div class="px-4 font-semibold">
-                                    <label for="username"
-                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                    <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                         Upload Link Video</label>
                                     <input type="text" name="video_link" id="inputVideoLink"
                                         class="mt-focus:ring-primary-600 mb-6 block h-12 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:w-1/2"
@@ -197,7 +193,7 @@
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment')
                                 <div class="mx-auto px-4">
                                     <div class="font-semibold">
-                                        <label for="username"
+                                        <label
                                             class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">Penjelasan
                                             Assignment</label>
                                         <textarea name="detailed_description" id="inputDetDesc"
@@ -207,8 +203,8 @@
                                         <div class="mb-6 font-semibold">
                                             <div class="grid grid-cols-1 md:grid-cols-2">
 
-                                                <div>
-                                                    <label for="username"
+                                                <div class="mx-2">
+                                                    <label
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Nilai Minimum</label>
                                                     <input type="number" name="minimum_score" id="inputMinScore"
@@ -217,6 +213,17 @@
                                                         placeholder="Input nilai minimum untuk menyelesaikan assignment"
                                                         value="" required="">
 
+                                                </div>
+                                                <div class="mx-2">
+                                                    <label
+                                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                                        Jumlah Soal</label>
+                                                    <input type="number" name="minimum_score" id="inputMinScore"
+                                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+
+                                                        placeholder="Input jumlah pertanyaan untuk assignment"
+                                                        required="">
+                                                    <input type="hidden" name="certification_id" >
                                                 </div>
                                             </div>
                                         </div>
@@ -227,8 +234,7 @@
                                                 <div class="mx-2"> Finalize Assignment</div>
                                             </button>
                                         </div>
-                                        <label for="username"
-                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                        <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             List Pertanyaan </label>
                                         <div class="relative overflow-x-auto">
                                             <table
@@ -335,26 +341,33 @@
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Final Test')
                                 <div class="mx-auto px-4">
                                     <div class="font-semibold">
-                                        <label for="username"
-                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                        <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             Penjelasan Final Test</label>
                                         <textarea name="detailed_description" id="inputDetDesc"
                                             class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
-                                            {{ htmlspecialchars($material->detailed_description) }}
-                                        </textarea>
+                                            placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->detailed_description) }}</textarea>
                                         <div class="mb-6 font-semibold">
                                             <div class="grid grid-cols-1 md:grid-cols-2">
-
-                                                <div>
-                                                    <label for="username"
+                                                <div class="mx-2">
+                                                    <label
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Nilai Minimum</label>
                                                     <input type="number" name="minimum_score" id="inputMinScore"
                                                         value="{{ $material->minimum_score }}"
                                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Input nilai minimum untuk menyelesaikan assignment"
+                                                        placeholder="Input nilai minimum untuk tes akhir"
                                                         value="" required="">
+                                                </div>
+                                                <div class="mx-2">
+                                                    <label
+                                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                                        Jumlah Soal</label>
+                                                    <input type="number" name="minimum_score" id="inputMinScore"
+                                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+
+                                                        placeholder="Input jumlah pertanyaan untuk tes akhir"
+                                                        required="">
+                                                    <input type="hidden" name="certification_id" >
                                                 </div>
                                             </div>
                                         </div>
@@ -364,8 +377,7 @@
                                                 <div class="mx-2"> Finalize Final Test</div>
                                             </button>
                                         </div>
-                                        <label for="username"
-                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                        <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             List Pertanyaan </label>
                                         <div class="relative overflow-x-auto">
                                             <table
@@ -536,14 +548,13 @@
                                     <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                         {{-- Input Area --}}
                                         <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Input Pertanyaan</label>
                                             <textarea id="myInfo" name="questions" id="inputQuestions"
                                                 class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                             <div class="my-4"></div>
-                                            <label for="username"
+                                            <label
                                                 class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                 Upload Gambar (Opsional)</label>
 
@@ -553,8 +564,7 @@
                                         </div>
 
                                         <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Pilihan Jawaban</label>
                                             <input type="text" name="jawaban_a" id="inputJawabanA"
                                                 class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -570,8 +580,7 @@
                                                 placeholder="Jawaban D" required="">
                                         </div>
                                         <div class="sm:col-span-1">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Pilihan Jawaban Tepat</label>
                                             <select name="jawaban_benar" id="inputJawabanBenar"
                                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
@@ -625,15 +634,13 @@
                                     <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                         {{-- Input Area --}}
                                         <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Input Pertanyaan</label>
                                             <textarea id="myInfo" name="questions" id="inputQuestions"
                                                 class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="Input Pertanyaan Soal Disini" required=""></textarea>
                                             <div class="my-4"></div>
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Upload Gambar (Opsional)</label>
                                             <input name="question_img" id="question_img"
                                                 class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
@@ -641,8 +648,7 @@
                                         </div>
 
                                         <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Pilihan Jawaban</label>
                                             <input type="text" name="jawaban_a" id="inputJawabanA"
                                                 class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -658,8 +664,7 @@
                                                 placeholder="Jawaban D" required="">
                                         </div>
                                         <div class="sm:col-span-1">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Pilihan Jawaban Tepat</label>
                                             <select name="jawaban_benar" id="inputJawabanBenar"
                                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
@@ -714,14 +719,14 @@
                                             <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                                 {{-- Input Area --}}
                                                 <div class="sm:col-span-2">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Input Pertanyaan</label>
                                                     <textarea id="myInfo" name="questions" id="inputQuestions"
                                                         class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                         placeholder="Input Penjelasan Singkat mengenai Materi" required="">{{ $assignment->questions }}</textarea>
                                                     <div class="my-4"></div>
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Upload Gambar (Opsional)</label>
                                                     @if ($assignment->question_img)
@@ -743,7 +748,7 @@
                                                 <input type="hidden" name="material_id"
                                                     value="{{ $assignment->material_id }}">
                                                 <div class="sm:col-span-2">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Pilihan Jawaban</label>
                                                     <input type="text" name="jawaban_a" id="inputJawabanA"
@@ -764,7 +769,7 @@
                                                         required="">
                                                 </div>
                                                 <div class="sm:col-span-1">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Pilihan Jawaban
                                                         Tepat</label>
@@ -850,14 +855,14 @@
                                             <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                                 {{-- Input Area --}}
                                                 <div class="sm:col-span-2">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Input Pertanyaan</label>
                                                     <textarea id="myInfo" name="questions" id="inputQuestions"
                                                         class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                         placeholder="Input Penjelasan Singkat mengenai Materi" required="">{{ $final_test->questions }}</textarea>
                                                     <div class="my-4"></div>
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Upload Gambar (Opsional)</label>
 
@@ -871,7 +876,7 @@
                                                 <input type="hidden" name="material_id"
                                                     value="{{ $final_test->material_id }}">
                                                 <div class="sm:col-span-2">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Pilihan Jawaban</label>
                                                     <input type="text" name="jawaban_a" id="inputJawabanA"
@@ -892,7 +897,7 @@
                                                         required="">
                                                 </div>
                                                 <div class="sm:col-span-1">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Pilihan Jawaban
                                                         Tepat</label>
