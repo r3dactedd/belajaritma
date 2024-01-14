@@ -206,8 +206,7 @@
                                     @csrf
                                     <div class="mb-4 grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                         <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Judul Materi</label>
                                             <input type="text" name="title" id="inputTitle"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -216,8 +215,7 @@
 
                                         {{-- Input Area --}}
                                         <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Deskripsi Singkat Materi</label>
                                             <textarea name="description" id="inputDescription"
                                                 class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -225,8 +223,7 @@
                                         </div>
 
                                         <div class="sm:col-span-1">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Estimasi Waktu Penyelesaian (dalam Menit)</label>
                                             <input type="number" name="material_duration" id="inputMatDuration"
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -234,8 +231,7 @@
                                                 required="">
                                         </div>
                                         <div class="sm:col-span-1">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Tipe Konten</label>
                                             <select name="master_type_id" id="inputType"
                                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">

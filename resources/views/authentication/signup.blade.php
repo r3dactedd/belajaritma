@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <label for="username" class="font-semibold">Username</label>
+                                <label class="font-semibold">Username</label>
                                 <label for="full_name" class="text-sm leading-tight"> (3-30 Karakter)</label>
                                 <input type="text" name="username"
                                     class="form-control @error('last_name') is-invalid @enderror mt-2 h-10 w-full rounded border border-gray-400 px-5 sm:px-6"

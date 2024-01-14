@@ -152,12 +152,12 @@
                         <!-- Profile tab -->
                         <!-- About Section -->
                         <div class="rounded-xl bg-white px-6 pt-4 md:px-12">
-                            <label for="username" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                            <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                 Judul Sertifikasi</label>
                             <input type="text" name="certif_title" id="inputCertifTitle"
                                 class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-xl"
                                 value="{{ htmlspecialchars($data->certif_title) }}" required="">
-                            <label for="username" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                            <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                 Deskripsi Singkat Sertifikasi</label>
                             <textarea id="myInfo" name="certif_short_desc" id="inputCertifShortDesc"
                                 class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -172,8 +172,7 @@
                 <div class="mx-auto my-auto md:-mx-2 md:flex">
                     <div class="h-auto w-full md:mx-2">
                         <div class="rounded-t-xl bg-white p-4 shadow-sm">
-                            <label for="username"
-                                class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
+                            <label class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                 Mengenai Sertifikasi</label>
                             <div class="px-4 py-2 font-semibold">
                                 <textarea id="myInfo" id="inputCertifDesc" name="certif_desc"
@@ -184,8 +183,7 @@
                         <div class="rounded-b-xl bg-white p-4 shadow-sm">
                             <div class="grid grid-cols-2">
                                 <div>
-                                    <label for="username"
-                                        class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
+                                    <label class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                         Informasi Test</label>
 
                                     <div class="grid gap-4 py-4 pl-4 pr-8 md:grid-cols-1">
@@ -206,8 +204,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label for="username"
-                                        class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
+                                    <label class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                         Outline Test</label>
 
                                     <div class="px-4 py-2 font-semibold">
@@ -245,9 +242,9 @@
                             </a>
                         </h1>
                     @elseif ($data->certifToCertifQuestion->isEmpty() || $data->certifToCertifQuestion->count() == 0)
-                        <h1 class="mx-8 my-8 text-xl font-semibold text-center">
+                        <h1 class="mx-8 my-8 text-center text-xl font-semibold">
                             <a data-modal-target="popup-no-certif-test" data-modal-toggle="popup-no-certif-test"
-                                class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">
+                                class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700">
                                 Publish Sertifikasi
                             </a>
                         </h1>
@@ -260,12 +257,12 @@
 
     <div id="popup-no-certif-test" tabindex="-1"
         class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-        <div class="relative w-full max-w-md max-h-full">
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="relative max-h-full w-full max-w-md">
+            <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
                 <button type="button"
                     class="absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                     data-modal-hide="popup-no-certif-test">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -273,7 +270,7 @@
                     <span class="sr-only">Close modal</span>
                 </button>
                 <div class="p-6 text-center">
-                    <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true"
+                    <svg class="mx-auto mb-4 h-12 w-12 text-gray-400 dark:text-gray-200" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
