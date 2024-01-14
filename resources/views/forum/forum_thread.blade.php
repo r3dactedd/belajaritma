@@ -82,7 +82,7 @@
                             <div class="flex items-center mt-4">
                                 <button id="open-btn" data-modal-target="admin-delete" data-modal-toggle="admin-delete"
                                     class="flex items-center px-4 py-3 my-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-red-600 rounded-md hover:bg-yellow-500 focus:outline-none">
-                                    Hapus Diskusi Oleh Admin
+                                    Blokir Diskusi
                                 </button>
                             </div>
                         @endif
@@ -202,10 +202,10 @@
                             data-course-id="">
                             @csrf
                             @method('DELETE')
-                            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Balas Forum</h2>
+                            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Blokir Diskusi</h2>
                             <input type="text" name="reason_delete" id="inputReasonDelete"
                                 class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-xl text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left lg:text-base"
-                                placeholder="Tulis alasan hapus forum" required="">
+                                placeholder="Tulis alasan blokir diskusi" required="">
 
                             <div class="flex justify-center text-center">
                                 <button data-modal-hide="admin-delete" type="submit"
