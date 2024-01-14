@@ -47,8 +47,8 @@
                                     <div class="mb-6 font-semibold">
                                         <div class="grid grid-cols-1 md:grid-cols-2">
 
-                                            <div>
-                                                <label for="username"
+                                            <div class="mx-2">
+                                                <label
                                                     class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                     Nilai Minimum</label>
                                                 <input type="number" name="minimum_score" id="inputMinScore"
@@ -58,6 +58,18 @@
                                                     required="">
                                                 <input type="hidden" name="certification_id" value="{{ $data->id }}">
                                             </div>
+                                            <div class="mx-2">
+                                                <label
+                                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                                    Jumlah Soal</label>
+                                                <input type="number" name="minimum_score" id="inputMinScore"
+                                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                    value=""
+                                                    placeholder="Input jumlah pertanyaan untuk tes sertifikasi"
+                                                    required="">
+                                                <input type="hidden" name="certification_id" >
+                                            </div>
+
                                         </div>
                                     </div>
 
@@ -70,7 +82,7 @@
                                     </div>
                             </form>
                             <div class="my-4"></div>
-                            <label for="username" class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                            <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                 List Pertanyaan </label>
                             <div class="relative overflow-x-auto">
                                 <table id="my-table"
@@ -204,15 +216,13 @@
                                 <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                     {{-- Input Area --}}
                                     <div class="sm:col-span-2">
-                                        <label for="username"
-                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                        <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Input Pertanyaan</label>
                                         <textarea id="myInfo" name="questions" id="inputQuestions"
                                             class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                         <div class="my-4"></div>
-                                        <label for="username"
-                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                        <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             Upload Gambar (Opsional)</label>
 
                                         <input name="question_img" id="question_img"
@@ -221,8 +231,7 @@
                                     </div>
 
                                     <div class="sm:col-span-2">
-                                        <label for="username"
-                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                        <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Pilihan Jawaban</label>
                                         <input type="text" name="jawaban_a" id="inputJawabanA"
                                             class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -238,8 +247,7 @@
                                             placeholder="Jawaban D" required="">
                                     </div>
                                     <div class="sm:col-span-1">
-                                        <label for="username"
-                                            class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                        <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Pilihan Jawaban Tepat</label>
                                         <select name="jawaban_benar" id="inputJawabanBenar"
                                             class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
@@ -293,14 +301,14 @@
                                         <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                             {{-- Input Area --}}
                                             <div class="sm:col-span-2">
-                                                <label for="username"
+                                                <label
                                                     class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                     Input Pertanyaan</label>
                                                 <textarea id="myInfo" name="questions" id="inputQuestions"
                                                     class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                     placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                                 <div class="my-4"></div>
-                                                <label for="username"
+                                                <label
                                                     class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                     Upload Gambar (Opsional)</label>
 
@@ -310,7 +318,7 @@
                                             </div>
 
                                             <div class="sm:col-span-2">
-                                                <label for="username"
+                                                <label
                                                     class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                     Pilihan Jawaban</label>
                                                 <input type="text" name="jawaban_a" id="inputJawabanA"
@@ -330,7 +338,7 @@
                                             <input type="hidden" name="certification_id"
                                                 value="{{ $certif_test->certification_id }}">
                                             <div class="sm:col-span-1">
-                                                <label for="username"
+                                                <label
                                                     class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                     Pilihan Jawaban Tepat</label>
                                                 <select name="jawaban_benar" id="inputJawabanBenar"

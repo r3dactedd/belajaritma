@@ -271,8 +271,7 @@
                             </div>
                         </div>
                         <div>
-                            <label for="username"
-                                class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
+                            <label class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
                                 Program Lain yang Diperlukan</label>
 
                             <div class="px-4 py-2 font-semibold">

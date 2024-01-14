@@ -10,6 +10,37 @@
         rel="stylesheet" />
 
 </head>
+<script>
+    function previewImageASG(assignmentId) {
+        const imageInput = document.getElementById('inputQuestionImg-' + assignmentId);
+        const questionIMGPreview = document.getElementById('img-preview-' + assignmentId);
+        if (imageInput.files && imageInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                console.log('FileReader onload event fired');
+                questionIMGPreview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(imageInput.files[0]);
+        }
+    }
+
+    function previewImageFIN(finalId) {
+        const imageInput = document.getElementById('inputQuestionImg-final-' + finalId);
+        const questionIMGPreview = document.getElementById('img-preview-final-' + finalId);
+        if (imageInput.files && imageInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                console.log('FileReader onload event fired');
+                questionIMGPreview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(imageInput.files[0]);
+        }
+    }
+</script>
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
@@ -28,7 +59,7 @@
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Edit Materi Kursus</span>
+                            <span class="mb-1 ml-2">Materi Kursus</span>
                         </a>
                 </div>
             </div>
@@ -87,15 +118,13 @@
                     <div class="h-auto w-full md:mx-2">
                         <div class="rounded-xl bg-white p-4 shadow-sm">
                             <div class="px-4 font-semibold">
-                                <label for="username"
-                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                     Judul Materi</label>
                                 <input type="text" name="title" id="inputTitle"
                                     class="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-lg text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:text-left"
                                     placeholder="Tulis Nama Materi" required=""
                                     value="{{ htmlspecialchars($material->title) }}">
-                                <label for="username"
-                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                     Tipe Materi</label>
                                 <select name="master_type_id" id="inputType"
                                     class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
@@ -110,8 +139,7 @@
                             </div>
                             <div class="my-4"></div>
                             <div class="px-4 font-semibold">
-                                <label for="username"
-                                    class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                     Deskripsi Singkat Materi</label>
                                 <textarea name="description" id="inputDescription"
                                     class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -149,12 +177,16 @@
                                         class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
                                         <div class="mx-2"> Finalize PDF</div>
                                     </button>
+                                    @error('pdf_link')
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                 </div>
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Video')
                                 <div class="px-4 font-semibold">
-                                    <label for="username"
-                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                    <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                         Upload Link Video</label>
                                     <input type="text" name="video_link" id="inputVideoLink"
                                         class="mt-focus:ring-primary-600 mb-6 block h-12 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:w-1/2"
@@ -181,7 +213,7 @@
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment')
                                 <div class="mx-auto px-4">
                                     <div class="font-semibold">
-                                        <label for="username"
+                                        <label
                                             class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">Penjelasan
                                             Assignment</label>
                                         <textarea name="detailed_description" id="inputDetDesc"
@@ -191,8 +223,8 @@
                                         <div class="mb-6 font-semibold">
                                             <div class="grid grid-cols-1 md:grid-cols-2">
 
-                                                <div>
-                                                    <label for="username"
+                                                <div class="mx-2">
+                                                    <label
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Nilai Minimum</label>
                                                     <input type="number" name="minimum_score" id="inputMinScore"
@@ -201,6 +233,16 @@
                                                         placeholder="Input nilai minimum untuk menyelesaikan assignment"
                                                         value="" required="">
 
+                                                </div>
+                                                <div class="mx-2">
+                                                    <label
+                                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                                        Jumlah Soal</label>
+                                                    <input type="number" name="minimum_score" id="inputMinScore"
+                                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Input jumlah pertanyaan untuk assignment"
+                                                        required="">
+                                                    <input type="hidden" name="certification_id">
                                                 </div>
                                             </div>
                                         </div>
@@ -211,8 +253,7 @@
                                                 <div class="mx-2"> Finalize Assignment</div>
                                             </button>
                                         </div>
-                                        <label for="username"
-                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                        <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             List Pertanyaan </label>
                                         <div class="relative overflow-x-auto">
                                             <table
@@ -319,26 +360,32 @@
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Final Test')
                                 <div class="mx-auto px-4">
                                     <div class="font-semibold">
-                                        <label for="username"
-                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                        <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             Penjelasan Final Test</label>
                                         <textarea name="detailed_description" id="inputDetDesc"
                                             class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Input Deskripsi Singkat mengenai Kursus" required="">
-                                            {{ htmlspecialchars($material->detailed_description) }}
-                                        </textarea>
+                                            placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->detailed_description) }}</textarea>
                                         <div class="mb-6 font-semibold">
                                             <div class="grid grid-cols-1 md:grid-cols-2">
-
-                                                <div>
-                                                    <label for="username"
+                                                <div class="mx-2">
+                                                    <label
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Nilai Minimum</label>
                                                     <input type="number" name="minimum_score" id="inputMinScore"
                                                         value="{{ $material->minimum_score }}"
                                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Input nilai minimum untuk menyelesaikan assignment"
-                                                        value="" required="">
+                                                        placeholder="Input nilai minimum untuk tes akhir" value=""
+                                                        required="">
+                                                </div>
+                                                <div class="mx-2">
+                                                    <label
+                                                        class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                                        Jumlah Soal</label>
+                                                    <input type="number" name="minimum_score" id="inputMinScore"
+                                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                        placeholder="Input jumlah pertanyaan untuk tes akhir"
+                                                        required="">
+                                                    <input type="hidden" name="certification_id">
                                                 </div>
                                             </div>
                                         </div>
@@ -348,8 +395,7 @@
                                                 <div class="mx-2"> Finalize Final Test</div>
                                             </button>
                                         </div>
-                                        <label for="username"
-                                            class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
+                                        <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             List Pertanyaan </label>
                                         <div class="relative overflow-x-auto">
                                             <table
@@ -520,25 +566,26 @@
                                     <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                         {{-- Input Area --}}
                                         <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Input Pertanyaan</label>
                                             <textarea id="myInfo" name="questions" id="inputQuestions"
                                                 class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
                                             <div class="my-4"></div>
-                                            <label for="username"
+                                            <label
                                                 class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                 Upload Gambar (Opsional)</label>
-
-                                            <input name="question_img" id="question_img"
+                                            <img id="img-preview-createASG"
+                                                class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                style="max-width: 150px; max-height: 150px;"
+                                                onclick="showImagePopupCreateASG()">
+                                            <input name="question_img" id="inputImageCreateASG"
                                                 class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                                                type="file" accept="image/*">
+                                                type="file" accept="image/*" onchange=previewImageCreateASG()>
                                         </div>
 
                                         <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Pilihan Jawaban</label>
                                             <input type="text" name="jawaban_a" id="inputJawabanA"
                                                 class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -554,8 +601,7 @@
                                                 placeholder="Jawaban D" required="">
                                         </div>
                                         <div class="sm:col-span-1">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Pilihan Jawaban Tepat</label>
                                             <select name="jawaban_benar" id="inputJawabanBenar"
                                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
@@ -576,6 +622,20 @@
                                 </form>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div id="image-popup-createASG"
+                    class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+                    <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                        <button type="button" onclick="hideImagePopupCreateASG()"
+                            class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                        <img id="popup-image-createASG" class="max-w-full max-h-full" />
                     </div>
                 </div>
             </div>
@@ -609,24 +669,25 @@
                                     <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                         {{-- Input Area --}}
                                         <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Input Pertanyaan</label>
                                             <textarea id="myInfo" name="questions" id="inputQuestions"
                                                 class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="Input Pertanyaan Soal Disini" required=""></textarea>
                                             <div class="my-4"></div>
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Upload Gambar (Opsional)</label>
-                                            <input name="question_img" id="question_img"
+                                            <img id="img-preview-createFIN"
+                                                class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                style="max-width: 150px; max-height: 150px;"
+                                                onclick="showImagePopupCreateFIN()">
+                                            <input name="question_img" id="inputImageCreateFIN"
                                                 class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                                                type="file" accept="image/*">
+                                                type="file" accept="image/*" onchange=previewImageCreateFIN()>
                                         </div>
 
                                         <div class="sm:col-span-2">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Pilihan Jawaban</label>
                                             <input type="text" name="jawaban_a" id="inputJawabanA"
                                                 class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -642,8 +703,7 @@
                                                 placeholder="Jawaban D" required="">
                                         </div>
                                         <div class="sm:col-span-1">
-                                            <label for="username"
-                                                class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                 Pilihan Jawaban Tepat</label>
                                             <select name="jawaban_benar" id="inputJawabanBenar"
                                                 class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
@@ -664,6 +724,21 @@
                                 </form>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div id="image-popup-createFIN"
+                    class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+                    <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                        <button type="button" onclick="hideImagePopupCreateFIN()"
+                            class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                        <img id="popup-image-createFIN" class="max-w-full max-h-full" />
+
                     </div>
                 </div>
             </div>
@@ -698,20 +773,33 @@
                                             <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                                 {{-- Input Area --}}
                                                 <div class="sm:col-span-2">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Input Pertanyaan</label>
                                                     <textarea id="myInfo" name="questions" id="inputQuestions"
                                                         class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
+                                                        placeholder="Input Penjelasan Singkat mengenai Materi" required="">{{ $assignment->questions }}</textarea>
                                                     <div class="my-4"></div>
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Upload Gambar (Opsional)</label>
-
-                                                    <input name="question_img" id="question_img"
+                                                    @if ($assignment->question_img)
+                                                        <img src="{{ asset('uploads/asg_question_img/' . $assignment->question_img) }}"
+                                                            alt="Question Image" id="img-preview-{{ $assignment->id }}"
+                                                            class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                            style="max-width: 150px; max-height: 150px;"
+                                                            onclick="showImagePopupASG('{{ $assignment->id }}')">
+                                                    @else
+                                                        <img id="img-preview-{{ $assignment->id }}"
+                                                            class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                            style="max-width: 150px; max-height: 150px;"
+                                                            onclick="showImagePopupASG('{{ $assignment->id }}')">
+                                                    @endif
+                                                    <input name="question_img"
+                                                        id="inputQuestionImg-{{ $assignment->id }}"
                                                         class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                                                        type="file" accept="image/*">
+                                                        type="file" accept="image/*"
+                                                        onchange="previewImageASG('{{ $assignment->id }}')">
                                                 </div>
 
                                                 <input type="hidden" name="assignment_id"
@@ -719,24 +807,28 @@
                                                 <input type="hidden" name="material_id"
                                                     value="{{ $assignment->material_id }}">
                                                 <div class="sm:col-span-2">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Pilihan Jawaban</label>
                                                     <input type="text" name="jawaban_a" id="inputJawabanA"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban A" required="">
+                                                        placeholder="Jawaban A" value="{{ $assignment->jawaban_a }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_b" id="inputJawabanB"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban B" required="">
+                                                        placeholder="Jawaban B" value="{{ $assignment->jawaban_b }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_c" id="inputJawabanC"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban C" required="">
+                                                        placeholder="Jawaban C" value="{{ $assignment->jawaban_c }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_d" id="inputJawabanD"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban D" required="">
+                                                        placeholder="Jawaban D" value="{{ $assignment->jawaban_d }}"
+                                                        required="">
                                                 </div>
                                                 <div class="sm:col-span-1">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Pilihan Jawaban
                                                         Tepat</label>
@@ -746,13 +838,18 @@
                                                             Pilih Jawaban Yang Tepat
                                                             untuk Pertanyaan
                                                         </option>
-                                                        <option value="A">A
-                                                        </option>
-                                                        <option value="B">B
-                                                        </option>
-                                                        <option value="C">C
-                                                        </option>
-                                                        <option value="D">D
+                                                        <option value="A"
+                                                            {{ $assignment->jawaban_benar == 'A' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">A</option>
+                                                        <option value="B"
+                                                            {{ $assignment->jawaban_benar == 'B' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">B</option>
+                                                        <option value="C"
+                                                            {{ $assignment->jawaban_benar == 'C' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">C</option>
+                                                        <option value="D"
+                                                            {{ $assignment->jawaban_benar == 'D' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">D</option>
                                                         </option>
                                                     </select>
                                                 </div>
@@ -767,6 +864,21 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div id="image-popup-{{ $assignment->id }}"
+                        class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+                        <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                            <button type="button" onclick="hideImagePopupASG({{ $assignment->id }})"
+                                class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                            <img src="{{ $assignment->question_img }}" alt="Question Image"
+                                id="popup-image-{{ $assignment->id }}" class="max-w-full max-h-full" />
                         </div>
                     </div>
                 @endif
@@ -802,20 +914,35 @@
                                             <div class="grid gap-4 sm:mb-5 sm:grid-cols-2 sm:gap-6">
                                                 {{-- Input Area --}}
                                                 <div class="sm:col-span-2">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Input Pertanyaan</label>
                                                     <textarea id="myInfo" name="questions" id="inputQuestions"
                                                         class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
+                                                        placeholder="Input Penjelasan Singkat mengenai Materi" required="">{{ $final_test->questions }}</textarea>
                                                     <div class="my-4"></div>
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Upload Gambar (Opsional)</label>
 
-                                                    <input name="question_img" id="question_img"
+                                                    @if ($final_test->question_img)
+                                                        <img src="{{ asset('uploads/final_question_img/' . $final_test->question_img) }}"
+                                                            alt="Question Image"
+                                                            id="img-preview-final-{{ $final_test->id }}"
+                                                            class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                            style="max-width: 150px; max-height: 150px;"
+                                                            onclick="showImagePopupFIN('{{ $final_test->id }}')">
+                                                    @else
+                                                        <img id="img-preview-final-{{ $final_test->id }}"
+                                                            class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                            style="max-width: 150px; max-height: 150px;"
+                                                            onclick="showImagePopupFIN('{{ $final_test->id }}')">
+                                                    @endif
+                                                    <input name="question_img"
+                                                        id="inputQuestionImg-final-{{ $final_test->id }}"
                                                         class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                                                        type="file" accept="image/*">
+                                                        type="file" accept="image/*"
+                                                        onchange="previewImageFIN('{{ $final_test->id }}')">
                                                 </div>
 
                                                 <input type="hidden" name="final_test_id"
@@ -823,24 +950,28 @@
                                                 <input type="hidden" name="material_id"
                                                     value="{{ $final_test->material_id }}">
                                                 <div class="sm:col-span-2">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Pilihan Jawaban</label>
                                                     <input type="text" name="jawaban_a" id="inputJawabanA"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban A" required="">
+                                                        placeholder="Jawaban A" value="{{ $final_test->jawaban_a }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_b" id="inputJawabanB"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban B" required="">
+                                                        placeholder="Jawaban B" value="{{ $final_test->jawaban_b }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_c" id="inputJawabanC"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban C" required="">
+                                                        placeholder="Jawaban C" value="{{ $final_test->jawaban_c }}"
+                                                        required="">
                                                     <input type="text" name="jawaban_d" id="inputJawabanD"
                                                         class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Jawaban D" required="">
+                                                        placeholder="Jawaban D" value="{{ $final_test->jawaban_d }}"
+                                                        required="">
                                                 </div>
                                                 <div class="sm:col-span-1">
-                                                    <label for="username"
+                                                    <label
                                                         class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                         Pilihan Jawaban
                                                         Tepat</label>
@@ -850,13 +981,18 @@
                                                             Pilih Jawaban Yang Tepat
                                                             untuk Pertanyaan
                                                         </option>
-                                                        <option value="A">A
-                                                        </option>
-                                                        <option value="B">B
-                                                        </option>
-                                                        <option value="C">C
-                                                        </option>
-                                                        <option value="D">D
+                                                        <option value="A"
+                                                            {{ $final_test->jawaban_benar == 'A' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">A</option>
+                                                        <option value="B"
+                                                            {{ $final_test->jawaban_benar == 'B' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">B</option>
+                                                        <option value="C"
+                                                            {{ $final_test->jawaban_benar == 'C' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">C</option>
+                                                        <option value="D"
+                                                            {{ $final_test->jawaban_benar == 'D' ? 'selected' : '' }}
+                                                            id="inputJawabanBenar">D</option>
                                                         </option>
                                                     </select>
                                                 </div>
@@ -871,6 +1007,21 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div id="image-popup-final-{{ $final_test->id }}"
+                        class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+                        <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                            <button type="button" onclick="hideImagePopupFIN({{ $final_test->id }})"
+                                class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                            <img src="{{ $final_test->question_img }}" alt="Question Image"
+                                id="popup-image-final-{{ $final_test->id }}" class="max-w-full max-h-full" />
                         </div>
                     </div>
                 @endif
@@ -912,13 +1063,14 @@
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="final_test_id" value="{{ $final_test->id }}">
-                                            <button data-modal-hide="popup-final-delete-{{ $final_test->id }}e"
+                                            <button data-modal-hide="popup-final-delete-{{ $final_test->id }}"
                                                 type="submit"
                                                 class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
                                                 Ya, hapus
                                             </button>
                                         </form>
-                                        <button data-modal-hide="popup-final-delete-{{ $final_test->id }}" type="button"
+                                        <button data-modal-hide="popup-final-delete-{{ $final_test->id }}"
+                                            type="button"
                                             class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Tidak,
                                             batalkan</button>
                                     </div>
@@ -1080,6 +1232,106 @@
         function extractVideoId(link) {
             const videoIdMatch = link.match(/[?&]v=([^&#]+)/);
             return videoIdMatch && videoIdMatch[1];
+        }
+        //Image Script for Edit Assignment
+        function showImagePopupASG(assignmentId) {
+            var popup = document.getElementById('image-popup-' + assignmentId);
+            var image = popup.querySelector('img');
+
+            var previewImage = document.getElementById('img-preview-' + assignmentId); // Use correct ID
+            var imageUrl = previewImage.src;
+
+            image.src = imageUrl;
+
+            popup.style.display = 'block';
+        }
+
+
+        function hideImagePopupASG(assignmentId) {
+            var popup = document.getElementById('image-popup-' + assignmentId);
+
+            popup.style.display = 'none';
+        }
+
+        //Image Script for Edit Final
+        function showImagePopupFIN(finalId) {
+            var popup = document.getElementById('image-popup-final-' + finalId);
+            var image = popup.querySelector('img');
+
+            var previewImage = document.getElementById('img-preview-final-' + finalId);
+            var imageUrl = previewImage.src;
+
+            image.src = imageUrl;
+
+            popup.style.display = 'block';
+        }
+
+
+        function hideImagePopupFIN(finalId) {
+            var popup = document.getElementById('image-popup-final-' + finalId);
+
+            popup.style.display = 'none';
+        }
+
+        //Image Script for Create Assignment
+        function showImagePopupCreateASG() {
+            var popup = document.getElementById('image-popup-createASG');
+            var image = popup.querySelector('img');
+
+            var inputImage = document.getElementById('inputImageCreateASG');
+            var imageUrl = inputImage.files.length > 0 ? URL.createObjectURL(inputImage.files[0]) : '';
+
+            image.src = imageUrl;
+
+            popup.style.display = 'block';
+        }
+
+        function hideImagePopupCreateASG() {
+            var popup = document.getElementById('image-popup-createASG');
+
+            popup.style.display = 'none';
+        }
+
+
+        function previewImageCreateASG() {
+            var inputImage = document.getElementById('inputImageCreateASG');
+            var imgPreview = document.getElementById('img-preview-createASG');
+
+            if (inputImage.files.length > 0) {
+                var imageUrl = URL.createObjectURL(inputImage.files[0]);
+                imgPreview.src = imageUrl;
+                imgPreview.style.display = 'block';
+            }
+        }
+
+        //Image Script for Create Final
+        function showImagePopupCreateFIN() {
+            var popup = document.getElementById('image-popup-createFIN');
+            var image = popup.querySelector('img');
+
+            var inputImage = document.getElementById('inputImageCreateFIN');
+            var imageUrl = inputImage.files.length > 0 ? URL.createObjectURL(inputImage.files[0]) : '';
+
+            image.src = imageUrl;
+
+            popup.style.display = 'block';
+        }
+
+        function hideImagePopupCreateFIN() {
+            var popup = document.getElementById('image-popup-createFIN');
+
+            popup.style.display = 'none';
+        }
+
+        function previewImageCreateFIN() {
+            var inputImage = document.getElementById('inputImageCreateFIN');
+            var imgPreview = document.getElementById('img-preview-createFIN');
+
+            if (inputImage.files.length > 0) {
+                var imageUrl = URL.createObjectURL(inputImage.files[0]);
+                imgPreview.src = imageUrl;
+                imgPreview.style.display = 'block';
+            }
         }
     </script>
 
