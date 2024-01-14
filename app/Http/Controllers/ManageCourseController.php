@@ -219,7 +219,6 @@ class ManageCourseController extends Controller
         $newSidebar->title = $createMaterial->title;
         $newSidebar->course_id = $id;
         $newSidebar->material_id = $material_id;
-        $newSidebar->is_locked = true;
         $newSidebar->order = ($sidebarCount > 0) ? Sidebar::where('course_id', $id)->max('order') + 1 : 1;
         $newSidebar->path = '';
         $newSidebar->save();
