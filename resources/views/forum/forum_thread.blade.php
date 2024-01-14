@@ -210,7 +210,7 @@
                             <div class="flex justify-center text-center">
                                 <button data-modal-hide="admin-delete" type="submit"
                                     class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
-                                    Ya, hapus
+                                    Ya, blokir
                                 </button>
                             </div>
                         </form>
