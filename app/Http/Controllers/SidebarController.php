@@ -193,7 +193,7 @@ class SidebarController extends Controller
 
 
         $masterTypeName = $currentMaterial->sidebarProgressToMaterial->materialContentToMasterType->master_type_name;
-        if ($masterTypeName !=  "Assignment" && $masterTypeName = "Final Test") {
+        if ($masterTypeName !=  "Assignment" && $masterTypeName != "Final Test") {
             $nextMaterial->is_visible = true;
             $nextMaterial->save();
         }
@@ -230,7 +230,7 @@ class SidebarController extends Controller
             return view('contents.session_assignment_test', compact('material', 'previousMaterial', 'nextMaterial', 'previousMaterialId', 'nextMaterialId', 'currentMaterialIndex', 'previousMaterialTitle', 'nextMaterialTitle', 'sidebars', 'id', 'excludeFinal', 'firstRandomQuestionASG', 'firstRandomQuestionFIN', 'userCourseDetail', 'nextMaterialIndex', 'materialCompleted', 'getMatCompleted'));
         } elseif ($master_type->master_type_name == 'Final Test') {
             // dd($firstIndexFIN);
-            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex', 'previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'firstRandomQuestionASG', 'firstRandomQuestionFIN', 'userCourseDetail', 'nextMaterialIndex', 'materialCompleted', 'getMatCompleted'));
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterialId', 'nextMaterialId', 'previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'previousMaterialTitle', 'nextMaterialTitle','firstRandomQuestionASG', 'firstRandomQuestionFIN', 'userCourseDetail', 'nextMaterialIndex', 'materialCompleted', 'getMatCompleted'));
         }
     }
 }

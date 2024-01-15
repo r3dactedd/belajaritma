@@ -82,41 +82,45 @@ class CourseController extends Controller
         $totalQuestions = Material::where('id', $material_id)->first();
         if ($type == "finalTest") {
             if ($isReshuffle == 1) {
-                $shuffledQuestionIds = FinalTestQuestions::where('material_id', $material_id)
-                    ->pluck('id') ->take($totalQuestions->total_questions)->toArray();
+                // Retrieve all question IDs for the given material
+                $allQuestionIds = FinalTestQuestions::where('material_id', $material_id)
+                    ->pluck('id')->toArray();
 
+                // Shuffle all question IDs
+                shuffle($allQuestionIds);
 
-                // $shuffledQuestionIds = $questionList->pluck('id')->toArray();
+                // Set the desired count of shuffled questions (e.g., 5)
+                $shuffledQuestionCount = $totalQuestions->total_questions;
 
-                // Shuffle the array
+                // Ensure that the first question after shuffling is the same as $question_id
+                $firstShuffledId = intval($question_id);
+                $firstShuffledIdIndex = array_search($firstShuffledId, $allQuestionIds);
 
-                shuffle($shuffledQuestionIds);
+                if ($firstShuffledIdIndex !== false) {
+                    // Remove the $firstShuffledId from the array
+                    unset($allQuestionIds[$firstShuffledIdIndex]);
+                }
 
-                $shuffledQuestionIds = array_map('intval', $shuffledQuestionIds);
-                // Ensure that the first question after shuffling is the same as firstRandomQuestionId
-                $firstQuestionIndex = array_search($question_id, $shuffledQuestionIds);
+                // Take the desired count of shuffled questions
+                $shuffledQuestionIds = array_slice($allQuestionIds, 0, $shuffledQuestionCount - 1);
 
-                $firstShuffledId = intval($shuffledQuestionIds[0]);
-                // If the firstRandomQuestionId is not in the list, add it to the beginning
-                if ($firstQuestionIndex === false) {
-                    array_unshift($shuffledQuestionIds, intval($question_id));
-                } else {
-                    // Swap the first question with the question at the firstRandomQuestionId index
-                    if ($firstQuestionIndex == 0) {
-                        $shuffledQuestionIds[0] = $firstShuffledId;
-                    } else {
-                        // Swap the first question with the question at the firstRandomQuestionId index
-                        $temp = $shuffledQuestionIds[0];
-                        $shuffledQuestionIds[0] = $firstShuffledId;
-                        $shuffledQuestionIds[$firstQuestionIndex] = $temp;
+                // Replace occurrences of $firstShuffledId with other IDs
+                foreach ($shuffledQuestionIds as $index => $shuffledId) {
+                    if ($shuffledId == $firstShuffledId) {
+                        // Replace with another ID from the allQuestionIds array
+                        $shuffledQuestionIds[$index] = array_shift($allQuestionIds);
                     }
                 }
 
-                session(['shuffledQuestionIds' => array_values($shuffledQuestionIds), 'reshuffled' => true]);
+                // Add the $firstShuffledId to the beginning of the array
+                array_unshift($shuffledQuestionIds, $firstShuffledId);
+
+                session(['shuffledQuestionIds' => $shuffledQuestionIds, 'reshuffled' => true]);
             } else {
-                // // If not set or not reshuffled, use the existing shuffledQuestionIds or the original order
-                $shuffledQuestionIds = array_values(session('shuffledQuestionIds'));
+                // If not set or not reshuffled, use the existing shuffledQuestionIds or the original order
+                $shuffledQuestionIds = session('shuffledQuestionIds');
             }
+
 
 
 
@@ -128,7 +132,7 @@ class CourseController extends Controller
             $previousQuestionId = $shuffledQuestionIds[($currentQuestionIndex - 1 + count($shuffledQuestionIds)) % count($shuffledQuestionIds)];
 
             $firstQuestionId =intval($shuffledQuestionIds[0]);
-            $firstQuestion = AssignmentQuestions::find($firstQuestionId);
+            $firstQuestion = FinalTestQuestions::find($firstQuestionId);
             // Check if the current question is the last one in the shuffled order
 
             $isLastQuestion = ($currentQuestionIndex + 1) == count($shuffledQuestionIds);
@@ -323,11 +327,11 @@ class CourseController extends Controller
 
         // Kemudian, jika perlu, sesi 'reshuffled' juga dapat dihapus
         session()->forget('reshuffled');
-        return redirect()->route('course.showResults', [$courseId, $materialId, $userAnswers]);
+        return redirect()->route('course.showResults', [$courseId, $materialId]);
     }
 
 
-    public function showAssignmentResults($courseId, $materialId, $userAnswers)
+    public function showAssignmentResults($courseId, $materialId)
     {
         $sidebars = Sidebar::select(
             'sidebar.id',
@@ -763,10 +767,10 @@ class CourseController extends Controller
                 $materialCompleted->save();
                 $remainingTime = 0;
             }
-            if ($materialCompleted->total_score >= $material->minimum_score) {
-                $nextMaterial->is_visible = true;
-                $nextMaterial->save();
-            }
+            // if ($materialCompleted->total_score >= $material->minimum_score) {
+            //     $nextMaterial->is_visible = true;
+            //     $nextMaterial->save();
+            // }
             $sidebars = Sidebar::select(
                 'sidebar.id',
                 'sidebar.material_id',
