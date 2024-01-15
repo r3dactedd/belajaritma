@@ -219,7 +219,6 @@ class ManageCourseController extends Controller
         $newSidebar->title = $createMaterial->title;
         $newSidebar->course_id = $id;
         $newSidebar->material_id = $material_id;
-        $newSidebar->is_locked = true;
         $newSidebar->order = ($sidebarCount > 0) ? Sidebar::where('course_id', $id)->max('order') + 1 : 1;
         $newSidebar->path = '';
         $newSidebar->save();
@@ -375,16 +374,25 @@ class ManageCourseController extends Controller
             $validateAssignment = $request->validate([
                 'detailed_description' => 'required|string|max:300',
                 'minimum_score'=>'required|integer|max:100',
+                'total_questions'=>'required|integer',
             ]);
             $changeMaterialDetail = [];
+            $questionList = AssignmentQuestions::where('material_id',$id)->get()->count();
+            // dd($questionList);
+            if($validateAssignment['total_questions'] <= $questionList){
+                $changeMaterialDetail += [
+                    'detailed_description'=> $validateAssignment['detailed_description'],
+                    'minimum_score'=> $validateAssignment['minimum_score'],
+                    'total_questions'=> $validateAssignment['total_questions'],
+                ];
+                // dd($changeMaterialDetail);
+                Material::where('id', $id)->update($changeMaterialDetail);
+                return Redirect::to("/manager/course/session/{$id}/edit");
+            }
+            else{
+                return redirect()->back()->withErrors(['total_questions' => 'Tidak bisa mengatur jumlah soal lebih sedikit dari total pertanyaan saat ini.']);
+            }
 
-            $changeMaterialDetail += [
-                'detailed_description'=> $validateAssignment['detailed_description'],
-                'minimum_score'=> $validateAssignment['minimum_score'],
-            ];
-            // dd($changeMaterialDetail);
-            Material::where('id', $id)->update($changeMaterialDetail);
-            return Redirect::to("/manager/course/session/{$id}/edit");
         }
     }
     public function deleteMaterial($id){
@@ -434,6 +442,7 @@ class ManageCourseController extends Controller
             $createAssignment->question_img =  $filename;
         }
         $addTotalQuestions = [];
+        $checkTotalQuestions = AssignmentQuestions::where('material_id', $createAssignment->material_id)->count();
         $addTotalQuestions = [
             'total_questions' => \DB::raw('total_questions + 1'),
         ];
