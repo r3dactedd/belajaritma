@@ -243,11 +243,11 @@
                                                         value="{{ $material->total_questions }}"
                                                         placeholder="Input jumlah pertanyaan untuk tes akhir"
                                                         required="">
-                                                        <span class="text-sm text-red-500">
-                                                            @error('total_questions')
-                                                                {{ $message }}
-                                                            @enderror
-                                                        </span>
+                                                    <span class="text-sm text-red-500">
+                                                        @error('total_questions')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
                                                     <input type="hidden" name="certification_id">
                                                 </div>
                                             </div>
@@ -622,7 +622,7 @@
                                     </div>
                                     <div class="flex justify-end pt-2">
                                         <button type="submit"
-                                            class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                            class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Simpan
                                             Pertanyaan
                                         </button>
                                     </div>
@@ -724,7 +724,7 @@
                                     </div>
                                     <div class="flex justify-end pt-2">
                                         <button type="submit"
-                                            class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                            class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Simpan
                                             Pertanyaan
                                         </button>
                                     </div>
@@ -863,7 +863,7 @@
                                             </div>
                                             <div class="flex justify-end pt-2">
                                                 <button type="submit"
-                                                    class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                                    class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Simpan
                                                     Pertanyaan
                                                 </button>
                                             </div>
@@ -1006,7 +1006,7 @@
                                             </div>
                                             <div class="flex justify-end pt-2">
                                                 <button type="submit"
-                                                    class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
+                                                    class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Simpan
                                                     Pertanyaan
                                                 </button>
                                             </div>
