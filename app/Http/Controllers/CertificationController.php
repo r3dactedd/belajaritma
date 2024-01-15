@@ -215,7 +215,7 @@ class CertificationController extends Controller
                 Log::info('User Answers Count:', [$userAnswers->count()]);
                 Log::info('User Answers:', $userAnswers->toArray());
                 // Calculate the user's score
-                $totalQuestions = $certifQuestion->count();
+                $totalQuestions = $certif->total_questions;
                 $correctAnswers = 0;
                 $userScore=0;
                 $counter = 0;

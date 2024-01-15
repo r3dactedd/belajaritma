@@ -10,6 +10,72 @@
         rel="stylesheet" />
 
 </head>
+<script>
+    function previewImageCERT(certifId) {
+        const imageInput = document.getElementById('inputQuestionImg-' + certifId);
+        const questionIMGPreview = document.getElementById('img-preview-' + certifId);
+        if (imageInput.files && imageInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                console.log('FileReader onload event fired');
+                questionIMGPreview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(imageInput.files[0]);
+        }
+    }
+
+    function showImagePopupCERT(certifId) {
+        var popup = document.getElementById('image-popup-' + certifId);
+        var image = popup.querySelector('img');
+
+        var previewImage = document.getElementById('img-preview-' + certifId);
+        var imageUrl = previewImage.src;
+
+        image.src = imageUrl;
+
+        popup.style.display = 'block';
+    }
+
+
+    function hideImagePopupCERT(certifId) {
+        var popup = document.getElementById('image-popup-' + certifId);
+
+        popup.style.display = 'none';
+    }
+
+    //Image Script for Create Certif
+    function showImagePopupCreateCERT() {
+        var popup = document.getElementById('image-popup-createCERT');
+        var image = popup.querySelector('img');
+
+        var inputImage = document.getElementById('inputImageCreateCERT');
+        var imageUrl = inputImage.files.length > 0 ? URL.createObjectURL(inputImage.files[0]) : '';
+
+        image.src = imageUrl;
+
+        popup.style.display = 'block';
+    }
+
+    function hideImagePopupCreateCERT() {
+        var popup = document.getElementById('image-popup-createCERT');
+
+        popup.style.display = 'none';
+    }
+
+
+    function previewImageCreateCERT() {
+        var inputImage = document.getElementById('inputImageCreateCERT');
+        var imgPreview = document.getElementById('img-preview-createCERT');
+
+        if (inputImage.files.length > 0) {
+            var imageUrl = URL.createObjectURL(inputImage.files[0]);
+            imgPreview.src = imageUrl;
+            imgPreview.style.display = 'block';
+        }
+    }
+</script>
 
 <body class="bg-gray-200 pb-12">
     @section('title', 'Homepage')
@@ -62,12 +128,11 @@
                                                 <label
                                                     class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                     Jumlah Soal</label>
-                                                <input type="number" name="minimum_score" id="inputMinScore"
+                                                <input type="number" name="total_questions" id="inputTotalQuestion"
                                                     class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    value=""
+                                                    value="{{ $data->total_questions }}"
                                                     placeholder="Input jumlah pertanyaan untuk tes sertifikasi"
                                                     required="">
-                                                <input type="hidden" name="certification_id" >
                                             </div>
 
                                         </div>
@@ -160,7 +225,6 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-
                                         <tr
                                             class="border-b border-opacity-20 bg-white hover:bg-indigo-600 hover:text-white dark:border-gray-700">
                                             <td class="px-6 py-3 text-center font-semibold" colspan="4">
@@ -177,6 +241,7 @@
                                                 </p>
                                             </td>
                                         </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -225,9 +290,13 @@
                                         <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                             Upload Gambar (Opsional)</label>
 
-                                        <input name="question_img" id="question_img"
+                                        <img id="img-preview-createCERT"
+                                            class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                            style="max-width: 150px; max-height: 150px;"
+                                            onclick="showImagePopupCreateCERT()">
+                                        <input name="question_img" id="inputImageCreateCERT"
                                             class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                                            type="file" accept="image/*">
+                                            type="file" accept="image/*" onchange=previewImageCreateCERT()>
                                     </div>
 
                                     <div class="sm:col-span-2">
@@ -270,6 +339,20 @@
                     </div>
                 </div>
             </div>
+            <div id="image-popup-createCERT"
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+                <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                    <button type="button" onclick="hideImagePopupCreateCERT()"
+                        class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <img id="popup-image-createCERT" class="max-w-full max-h-full" />
+                </div>
+            </div>
         </div>
         @foreach ($certif_questions as $certif_test)
             @if (!$certif_questions->isEmpty())
@@ -306,15 +389,27 @@
                                                     Input Pertanyaan</label>
                                                 <textarea id="myInfo" name="questions" id="inputQuestions"
                                                     class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Input Penjelasan Singkat mengenai Materi" required=""></textarea>
+                                                    placeholder="Input Penjelasan Singkat mengenai Materi" required="">{{ $certif_test->questions }}</textarea>
                                                 <div class="my-4"></div>
                                                 <label
                                                     class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                     Upload Gambar (Opsional)</label>
-
-                                                <input name="question_img" id="question_img"
+                                                @if ($certif_test->question_img)
+                                                    <img src="{{ asset('uploads/certif_question_img/' . $certif_test->question_img) }}"
+                                                        alt="Question Image" id="img-preview-{{ $certif_test->id }}"
+                                                        class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                        style="max-width: 150px; max-height: 150px;"
+                                                        onclick="showImagePopupCERT('{{ $certif_test->id }}')">
+                                                @else
+                                                    <img id="img-preview-{{ $certif_test->id }}"
+                                                        class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                        style="max-width: 150px; max-height: 150px;"
+                                                        onclick="showImagePopupCERT('{{ $certif_test->id }}')">
+                                                @endif
+                                                <input name="question_img" id="inputQuestionImg-{{ $certif_test->id }}"
                                                     class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
-                                                    type="file" accept="image/*">
+                                                    type="file" accept="image/*"
+                                                    onchange="previewImageCERT('{{ $certif_test->id }}')">
                                             </div>
 
                                             <div class="sm:col-span-2">
@@ -323,16 +418,20 @@
                                                     Pilihan Jawaban</label>
                                                 <input type="text" name="jawaban_a" id="inputJawabanA"
                                                     class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Jawaban A" required="">
+                                                    placeholder="Jawaban A" value="{{ $certif_test->jawaban_a }}"
+                                                    required="">
                                                 <input type="text" name="jawaban_b" id="inputJawabanB"
                                                     class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Jawaban B" required="">
+                                                    placeholder="Jawaban B" value="{{ $certif_test->jawaban_b }}"
+                                                    required="">
                                                 <input type="text" name="jawaban_c" id="inputJawabanC"
                                                     class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Jawaban C" required="">
+                                                    placeholder="Jawaban C" value="{{ $certif_test->jawaban_c }}"
+                                                    required="">
                                                 <input type="text" name="jawaban_d" id="inputJawabanD"
                                                     class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Jawaban D" required="">
+                                                    placeholder="Jawaban D" value="{{ $certif_test->jawaban_d }}"
+                                                    required="">
                                             </div>
                                             <input type="hidden" name="certif_test_id" value="{{ $certif_test->id }}">
                                             <input type="hidden" name="certification_id"
@@ -343,12 +442,23 @@
                                                     Pilihan Jawaban Tepat</label>
                                                 <select name="jawaban_benar" id="inputJawabanBenar"
                                                     class="w-full rounded-md border-transparent bg-gray-100 px-4 py-2.5 text-sm font-semibold focus:border-gray-500 focus:bg-white focus:ring-0">
-                                                    <option value="">Pilih Jawaban Yang Tepat untuk Pertanyaan
+                                                    <option value="">
+                                                        Pilih Jawaban Yang Tepat
+                                                        untuk Pertanyaan
                                                     </option>
-                                                    <option value="A">A</option>
-                                                    <option value="B">B</option>
-                                                    <option value="C">C</option>
-                                                    <option value="D">D</option>
+                                                    <option value="A"
+                                                        {{ $certif_test->jawaban_benar == 'A' ? 'selected' : '' }}
+                                                        id="inputJawabanBenar">A</option>
+                                                    <option value="B"
+                                                        {{ $certif_test->jawaban_benar == 'B' ? 'selected' : '' }}
+                                                        id="inputJawabanBenar">B</option>
+                                                    <option value="C"
+                                                        {{ $certif_test->jawaban_benar == 'C' ? 'selected' : '' }}
+                                                        id="inputJawabanBenar">C</option>
+                                                    <option value="D"
+                                                        {{ $certif_test->jawaban_benar == 'D' ? 'selected' : '' }}
+                                                        id="inputJawabanBenar">D</option>
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -361,6 +471,21 @@
                                     </form>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div id="image-popup-{{ $certif_test->id }}"
+                        class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+                        <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                            <button type="button" onclick="hideImagePopupCERT({{ $certif_test->id }})"
+                                class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                            <img src="{{ $certif_test->question_img }}" alt="Question Image"
+                                id="popup-image-{{ $certif_test->id }}" class="max-w-full max-h-full" />
                         </div>
                     </div>
                 </div>
@@ -529,7 +654,7 @@
                     });
                 });
             }
-        })();
+        }();
     </script>
 
 @endsection

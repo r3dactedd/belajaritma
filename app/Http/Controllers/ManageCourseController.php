@@ -252,7 +252,6 @@ class ManageCourseController extends Controller
     }
 
     public function editMaterialPOST(Request $request, $id){
-        $getCurrentMaterial = Material::where('id', $id)->first();
         $validateMaterialData = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -406,6 +405,7 @@ class ManageCourseController extends Controller
     }
 
     public function createAssignmentQuestions(Request $request, $id){
+        $material = Material::find($id);
         Log::info('Request Data:', $request->all());
         $request->validate([
             'questions'=>'required|string',
@@ -432,11 +432,14 @@ class ManageCourseController extends Controller
             $request->file('question_img')->storeAs('asg_question_img', $filename, 'asg_question_img');
             $createAssignment->question_img =  $filename;
         }
-        $addTotalQuestions = [];
-        $addTotalQuestions = [
-            'total_questions' => \DB::raw('total_questions + 1'),
-        ];
-        Material::where('id', $createAssignment->material_id)->update($addTotalQuestions);
+        if($material->total_questions == 0){
+            $addTotalQuestions = [];
+            $addTotalQuestions = [
+                'total_questions' => \DB::raw('total_questions + 1'),
+            ];
+            Material::where('id', $createAssignment->material_id)->update($addTotalQuestions);
+        }
+
         // dd($createAssignment);
 
         $createAssignment->save();
@@ -496,22 +499,28 @@ class ManageCourseController extends Controller
     }
 
     public function deleteQuestion(Request $request){
+
         $assignment_questions = AssignmentQuestions::find($request->assignment_id);
         $material_id = $assignment_questions->questionToMaterial->id;
+        $material = Material::find($material_id);
         if (!$assignment_questions) {
             return redirect()->back()->with('error', 'Assignment not found.');
         }
-        $decreaseTotalQuestions = [];
-        $decreaseTotalQuestions = [
-            'total_questions' => \DB::raw('total_questions - 1'),
-        ];
-        Material::where('id', $material_id)->update($decreaseTotalQuestions);
+        if($material->total_questions == 1){
+            $decreaseTotalQuestions = [];
+            $decreaseTotalQuestions = [
+                'total_questions' => \DB::raw('total_questions - 1'),
+            ];
+            Material::where('id', $material_id)->update($decreaseTotalQuestions);
+        }
+
         $assignment_questions->delete();
         // dd($assignment_questions);
         return Redirect::to("/manager/course/session/{$material_id}/edit");
     }
 
     public function createFinalTestQuestions(Request $request, $id){
+        $material = Material::find($id);
         Log::info('Request Data:', $request->all());
         $request->validate([
             'questions'=>'required|string',
@@ -537,13 +546,15 @@ class ManageCourseController extends Controller
             $request->file('question_img')->storeAs('final_question_img', $filename, 'final_question_img');
             $createFinalTest->question_img =  $filename;
         }
-
+        if($material->total_questions == 0){
+            $addTotalQuestions = [];
+            $addTotalQuestions = [
+                'total_questions' => \DB::raw('total_questions + 1'),
+            ];
+            Material::where('id', $createFinalTest->material_id)->update($addTotalQuestions);
+        }
         // dd($createAssignment);
-        $addTotalQuestions = [];
-        $addTotalQuestions = [
-            'total_questions' => \DB::raw('total_questions + 1'),
-        ];
-        Material::where('id', $createFinalTest->material_id)->update($addTotalQuestions);
+
 
         $createFinalTest->save();
         return Redirect::to("/manager/course/session/{$id}/edit");
@@ -602,14 +613,18 @@ class ManageCourseController extends Controller
     public function deleteFinalTestQuestion(Request $request){
         $final_test_questions = FinalTestQuestions::find($request->final_test_id);
         $material_id = $final_test_questions->questionToMaterial->id;
+        $material = Material::find($material_id);
         if (!$final_test_questions) {
             return redirect()->back()->with('error', 'Assignment not found.');
         }
-        $decreaseTotalQuestions = [];
-        $decreaseTotalQuestions = [
-            'total_questions' => \DB::raw('total_questions - 1'),
-        ];
-        Material::where('id', $material_id)->update($decreaseTotalQuestions);
+        if($material->total_questions == 1){
+            $decreaseTotalQuestions = [];
+            $decreaseTotalQuestions = [
+                'total_questions' => \DB::raw('total_questions - 1'),
+            ];
+            Material::where('id', $material_id)->update($decreaseTotalQuestions);
+        }
+
         $final_test_questions->delete();
         // dd($assignment_questions);
         return Redirect::to("/manager/course/session/{$material_id}/edit");
