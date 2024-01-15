@@ -373,12 +373,14 @@ class ManageCourseController extends Controller
             $validateAssignment = $request->validate([
                 'detailed_description' => 'required|string|max:300',
                 'minimum_score'=>'required|integer|max:100',
+                'total_questions'=>'required|integer',
             ]);
             $changeMaterialDetail = [];
 
             $changeMaterialDetail += [
                 'detailed_description'=> $validateAssignment['detailed_description'],
                 'minimum_score'=> $validateAssignment['minimum_score'],
+                'total_questions' => $validateAssignment['total_questions'],
             ];
             // dd($changeMaterialDetail);
             Material::where('id', $id)->update($changeMaterialDetail);
