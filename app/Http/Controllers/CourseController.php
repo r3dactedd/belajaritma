@@ -76,7 +76,34 @@ class CourseController extends Controller
         return view('contents.session_assignment_test', ['data' => $data]);
         // dd($contentArray);
     }
+    public function exitTest($id, $material_id,){
+        $material = Material::where('id', $material_id)->first();
+        $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
+        $materialCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
+        ->where('material_id', $material_id)
+        ->where('enrollment_id', $enrollment->id)
+        ->exists();
+        $userCourse = UserCourseDetail::where('course_id', $id)->where('user_id',auth()->id())->first();
+        $userCourse->last_accessed_material = $material_id;
+        $userCourse->save();
+        if (!$materialCompleted) {
+            MaterialCompleted::create([
+                'user_id' => auth()->id(),
+                'course_id' => $id,
+                'material_id' => $material_id,
+                'enrollment_id' => $enrollment->id,
+                'total_score' => 0,
+                'attempts' => \DB::raw('attempts + 1'),
+            ]);
+        } else {
+            MaterialCompleted::where('material_id', $material->id)->update([
+                'total_score' => 0,
+                'attempts' => \DB::raw('attempts + 1'),
+            ]);
+        }
 
+        return Redirect::to("/courses/{$id}");
+    }
     public function courseTestPage($title, $id, $material_id, $question_id, $type, $isReshuffle)
     {
         $totalQuestions = Material::where('id', $material_id)->first();
@@ -239,6 +266,7 @@ class CourseController extends Controller
     //     dd($request->selectedAnswer);
 
     // }
+
 
     public function submitAnswers(Request $request)
     {
@@ -646,9 +674,8 @@ class CourseController extends Controller
                     ->where('user_sidebar_progress.course_id', '=', $id);
             })
             ->where('sidebar.course_id', $id)
-            ->where('sidebar.material_id', $id)
+            ->where('sidebar.material_id', $material_id)
             ->first();
-
         if ((!$requestedMaterial || $requestedMaterial->user_is_visible == false && $requestedMaterial->user_is_locked == true) && $getFirstSidebar->id != $requestedMaterial->id) {
             return redirect()->back();
         }
@@ -696,6 +723,12 @@ class CourseController extends Controller
             ->where('enrollment_id', $enrollment->id)
             ->first();
         $remainingTime = null;
+        $userSidebarProgress =  UserSidebarProgress::where('user_id', auth()->id())->where('course_id', $id)->get();
+        $currentMaterialIndex = $userSidebarProgress
+            ->where('material_id', $material_id)
+            ->where('user_id', $user_id)
+            ->keys()
+            ->first();
         // dd($firstIndexASG->id);
         if ($type == 'assignment') {
 
@@ -812,4 +845,5 @@ class CourseController extends Controller
             'attempts' => 0,
         ]);
     }
+
 }
