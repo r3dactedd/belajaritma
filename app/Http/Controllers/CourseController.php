@@ -695,6 +695,12 @@ class CourseController extends Controller
             ->where('enrollment_id', $enrollment->id)
             ->first();
         $remainingTime = null;
+        $userSidebarProgress =  UserSidebarProgress::where('user_id', auth()->id())->where('course_id', $id)->get();
+        $currentMaterialIndex = $userSidebarProgress
+            ->where('material_id', $material_id)
+            ->where('user_id', $user_id)
+            ->keys()
+            ->first();
         // dd($firstIndexASG->id);
         if ($type == 'assignment') {
 
