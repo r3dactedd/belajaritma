@@ -243,6 +243,11 @@
                                                         value="{{ $material->total_questions }}"
                                                         placeholder="Input jumlah pertanyaan untuk tes akhir"
                                                         required="">
+                                                        <span class="text-sm text-red-500">
+                                                            @error('total_questions')
+                                                                {{ $message }}
+                                                            @enderror
+                                                        </span>
                                                     <input type="hidden" name="certification_id">
                                                 </div>
                                             </div>
