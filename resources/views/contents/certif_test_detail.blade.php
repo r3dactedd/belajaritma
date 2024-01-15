@@ -61,30 +61,41 @@
                                 </div>
                                 <div class="px-2 py-4 bg-white rounded-lg">
                                     <div class="text-indigo-500">Status Pengerjaan</div>
-                                    <div class="text-xs text-gray-500">@if (1==2)
-                                        <a class="font-bold text-green-500">Lulus</a>
-                                    @elseif (21==2)
-                                    <a class="font-bold text-red-500">Belum Lulus</a>
-                                    @else
-                                    <a class="font-bold">Belum Dikerjakan</a>
-                                    @endif
+                                    <div class="text-xs text-gray-500">
+                                        @if ($getCertCompleted->total_score == null)
+                                            <a class="font-bold">Belum Dikerjakan</a>
+                                        @elseif ($getCertCompleted->total_score < $data->minimum_score)
+                                            <a class="font-bold text-red-500">Belum Lulus</a>
+                                        @elseif ($getCertCompleted->total_score >= $data->minimum_score)
+                                            <a class="font-bold text-green-500">Lulus</a>
+                                        @endif
+                                    </div>
                                 </div>
+
+
                             </div>
+                            @if ($getCertCompleted->total_score == null)
+                                <a href='/certification/test/{{ $data->id }}/{{ $firstIndexCERT->id }}/1'
+                                    class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
+                                    <span class="items-center mx-2">Mulai Test
+                                    </span>
 
+                                </a>
+                            @elseif ($getCertCompleted->total_score != null)
+                                <a href='/certification/{{ $data->id }}/score'
+                                    class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
+
+                                    <span class="items-center mx-2">Lihat Hasil Tes Sertifikasi
+                                    </span>
+
+                                </a>
+                            @endif
                         </div>
-                        <a href='/certification/test/{{ $data->id }}/{{ $firstIndexCERT->id }}/1'
-                            class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
 
-                            <span class="items-center mx-2">Mulai Test
-                            </span>
 
-                        </a>
                     </div>
-
-
                 </div>
-            </div>
 
     </body>
 @endsection

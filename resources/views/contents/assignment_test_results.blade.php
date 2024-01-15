@@ -92,11 +92,10 @@
                                         id="remainingTime">
                                         {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya
                                     </h2>
-                                    <strong class="flex items-center justify-center">Batas untuk mengambil ulang Assignment
-                                        ini adalah 3 Kali. Anda memiliki {{ 3 - $materialCompleted->attempts }} kesempatan
-                                        lagi.</strong>
-                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 30
-                                        menit sebelum dapat mengerjakan assignment kembali.</strong>
+                                    <strong class="flex items-center justify-center">Batas untuk mengambil ulang Final Test
+                                        ini adalah 1 Kali.</strong>
+                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 1
+                                        hari sebelum dapat mengerjakan Final Test kembali.</strong>
                                     <a href="#" onclick="refreshPage()" id="refreshButton"
                                         class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-red-600 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
                                         <span class="items-center mx-2"> Refresh Halaman </span>

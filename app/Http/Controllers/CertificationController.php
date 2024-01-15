@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
 class CertificationController extends Controller
@@ -86,10 +87,20 @@ class CertificationController extends Controller
         // transaction_proof
         return redirect("/certifications/{$request->certif_id}");
     }
+
     public function aboutTest($certif_id){
         $data=Certification::find($certif_id);
+        $getCertCompleted = RegistrationCertification::where('user_id', auth()->id())->where('certif_id', $certif_id)
+        ->first();
         $firstIndexCERT = CertifQuestions::where('certification_id', $certif_id)->inRandomOrder()->first();
-        return view('contents.certif_test_detail', ['data' => $data, 'firstIndexCERT'=>$firstIndexCERT]);
+        return view('contents.certif_test_detail', ['data' => $data, 'firstIndexCERT'=>$firstIndexCERT,'getCertCompleted'=>$getCertCompleted]);
+    }
+    public function exitCertTest($certif_id,){
+        RegistrationCertification::where('certif_id', $certif_id)->update([
+            'total_score' => 0,
+            'attempts' => \DB::raw('attempts + 1'),
+        ]);
+        return Redirect::to("/certifications/{$certif_id}");
     }
     public function certifTestPage ($certif_id, $question_id, $isReshuffle){
         $totalQuestions = Certification::where('id', $certif_id)->first();

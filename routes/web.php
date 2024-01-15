@@ -117,6 +117,7 @@ Route::get('/certifications/{id}', [CertificationController::class, 'certifDetai
 Route::get('/certifications/aboutTest/{certif_id}', [CertificationController::class, 'aboutTest']);
 Route::get('/certification/test/{certif_id}/{question_id}/{isReshuffle}', [CertificationController::class, 'certifTestPage']);
 Route::post('/certification/submit-answers', [CertificationController::class, 'submitAnswers'])->name('certification.submitAnswers');
+Route::get('/certification/{certif_id}/exitCertTest', [CertificationController::class, 'exitCertTest']);
 Route::get('/certification/{certif_id}/results', [CertificationController::class, 'showResults'])->name('certification.showResults');
 Route::get('/certification/{certif_id}/score', [CertificationController::class, 'showScore']);
 // Route::get('/courses/{courseId}/{materialId}/results', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
@@ -140,6 +141,7 @@ Route::get('/courses/1/getcerti', function () {
 //sidebar route
 Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showMaterial'])->name('sidebar.showSidebar');
 Route::get('/courses/material/{title}/{id}/{material_id}/{question_id}/{type}/{isReshuffle}', [CourseController::class, 'courseTestPage']);
+Route::get('/courses/{id}/{material_id}/exitTest', [CourseController::class, 'exitTest']);
 
 Route::post('/submit-answers', [CourseController::class, 'submitAnswers'])->name('submit.answers');
 Route::get('/courses/{courseId}/{materialId}/results', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
