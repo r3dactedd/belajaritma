@@ -238,10 +238,10 @@
                                                     <label
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Jumlah Soal</label>
-                                                    <input type="number" name="total_questions"
-                                                    value="{{ $material->total_questions }}" id="inputMinScore"
+                                                    <input type="number" name="total_questions" id="inputTotalScore"
                                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Input jumlah pertanyaan untuk assignment"
+                                                        value="{{ $material->total_questions }}"
+                                                        placeholder="Input jumlah pertanyaan untuk tes akhir"
                                                         required="">
                                                         <span class="text-sm text-red-500">
                                                             @error('total_questions')
@@ -387,9 +387,10 @@
                                                     <label
                                                         class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                         Jumlah Soal</label>
-                                                    <input type="number" name="minimum_score" id="inputMinScore"
+                                                    <input type="number" name="total_questions" id="inputTotalScore"
                                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                        placeholder="Input jumlah pertanyaan untuk tes akhir"
+                                                        value="{{ $material->total_questions }}"
+                                                        placeholder="Input jumlah pertanyaan untuk final test"
                                                         required="">
                                                     <input type="hidden" name="certification_id">
                                                 </div>
