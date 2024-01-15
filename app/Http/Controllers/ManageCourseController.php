@@ -389,7 +389,7 @@ class ManageCourseController extends Controller
                 return Redirect::to("/manager/course/session/{$id}/edit");
             }
             else{
-                return redirect()->back()->withErrors(['total_questions' => 'Tidak bisa mengatur jumlah soal lebih sedikit dari total pertanyaan saat ini.']);
+                return redirect()->back()->withErrors(['total_questions' => 'Jumlah soal harus lebih sedikit dari list pertanyaan']);
             }
 
         }

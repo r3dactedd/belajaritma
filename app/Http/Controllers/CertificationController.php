@@ -92,47 +92,64 @@ class CertificationController extends Controller
         return view('contents.certif_test_detail', ['data' => $data, 'firstIndexCERT'=>$firstIndexCERT]);
     }
     public function certifTestPage ($certif_id, $question_id, $isReshuffle){
-        $questionList = CertifQuestions::where('certification_id', $certif_id)->get();
-
-        // Shuffle and store question IDs in the session
+        $totalQuestions = Certification::where('id', $certif_id)->first();
         if ($isReshuffle == 1) {
-            $shuffledQuestionIds = $questionList->pluck('id')->shuffle()->toArray();
+            // Retrieve all question IDs for the given material
+            $allQuestionIds = CertifQuestions::where('certification_id', $certif_id)
+                ->pluck('id')->toArray();
 
-            // Ensure that the first question after shuffling is the same as firstRandomQuestionId
-            $firstQuestionIndex = array_search($question_id, $shuffledQuestionIds);
+            // Shuffle all question IDs
+            shuffle($allQuestionIds);
 
-            // If the firstRandomQuestionId is not in the list, add it to the beginning
-            if ($firstQuestionIndex === false) {
-                array_unshift($shuffledQuestionIds, $question_id);
-            } else {
-                // Swap the first question with the question at the firstRandomQuestionId index
-                list($shuffledQuestionIds[0], $shuffledQuestionIds[$firstQuestionIndex]) =
-                    [$shuffledQuestionIds[$firstQuestionIndex], $shuffledQuestionIds[0]];
+            // Set the desired count of shuffled questions (e.g., 5)
+            $shuffledQuestionCount = $totalQuestions->total_questions;
+
+            // Ensure that the first question after shuffling is the same as $question_id
+            $firstShuffledId = intval($question_id);
+            $firstShuffledIdIndex = array_search($firstShuffledId, $allQuestionIds);
+
+            if ($firstShuffledIdIndex !== false) {
+                // Remove the $firstShuffledId from the array
+                unset($allQuestionIds[$firstShuffledIdIndex]);
             }
+
+            // Take the desired count of shuffled questions
+            $shuffledQuestionIds = array_slice($allQuestionIds, 0, $shuffledQuestionCount - 1);
+
+            // Replace occurrences of $firstShuffledId with other IDs
+            foreach ($shuffledQuestionIds as $index => $shuffledId) {
+                if ($shuffledId == $firstShuffledId) {
+                    // Replace with another ID from the allQuestionIds array
+                    $shuffledQuestionIds[$index] = array_shift($allQuestionIds);
+                }
+            }
+
+            // Add the $firstShuffledId to the beginning of the array
+            array_unshift($shuffledQuestionIds, $firstShuffledId);
 
             session(['shuffledQuestionIds' => $shuffledQuestionIds, 'reshuffled' => true]);
         } else {
-            // If not set, shuffle and store in the session
-            if (!session()->has('shuffledQuestionIds')) {
-                $shuffledQuestionIds = $questionList->pluck('id')->shuffle()->toArray();
-                session(['shuffledQuestionIds' => $shuffledQuestionIds]);
-            } else {
-                $shuffledQuestionIds = session('shuffledQuestionIds');
-            }
+            // If not set or not reshuffled, use the existing shuffledQuestionIds or the original order
+            $shuffledQuestionIds = session('shuffledQuestionIds');
         }
 
 
+
+
+        // dd($shuffledQuestionIds);
         $currentQuestionIndex = array_search($question_id, $shuffledQuestionIds);
 
         // Determine the next and previous question IDs
         $nextQuestionId = $shuffledQuestionIds[($currentQuestionIndex + 1) % count($shuffledQuestionIds)];
         $previousQuestionId = $shuffledQuestionIds[($currentQuestionIndex - 1 + count($shuffledQuestionIds)) % count($shuffledQuestionIds)];
 
-        $firstQuestionId = $shuffledQuestionIds[0];
+        $firstQuestionId =intval($shuffledQuestionIds[0]);
         $firstQuestion = CertifQuestions::find($firstQuestionId);
         // Check if the current question is the last one in the shuffled order
 
         $isLastQuestion = ($currentQuestionIndex + 1) == count($shuffledQuestionIds);
+
+        // dd($shuffledQuestionIds, $nextQuestionId, $previousQuestionId, $firstQuestionId);
 
         // Fetch the question details based on the shuffled order
         $shuffledQuestionId = $shuffledQuestionIds[$currentQuestionIndex];
@@ -140,12 +157,13 @@ class CertificationController extends Controller
 
         // Calculate the current question number based on the shuffled order
         $currentQuestionNumber = $currentQuestionIndex + 1;
+        $latestQuestion = CertifQuestions::where('certification_id', $certif_id)->orderBy('id', 'desc')->first();
         // $latestQuestion = CertifQuestions::where('certification_id', $certif_id)->orderBy('id', 'desc')->first();
-
+        $listQuestionId = $shuffledQuestionIds;
         $data=Certification::find($certif_id);
         $certifDuration = $data->certif_duration;
 
-        return view('contents.certif_test_questions', ['currentQuestionIndex'=>$currentQuestionIndex,'questionDetail' => $questionDetail,'questionList'=>$questionList, 'question_id'=>$question_id, 'nextQuestionId'=>$nextQuestionId, 'previousQuestionId'=>$previousQuestionId, 'isLastQuestion'=>$isLastQuestion, 'firstQuestion'=>$firstQuestion, 'certif_id'=>$certif_id,
+        return view('contents.certif_test_questions', ['currentQuestionIndex'=>$currentQuestionIndex,'listQuestionId'=>$listQuestionId, 'questionDetail' => $questionDetail,'question_id'=>$question_id, 'nextQuestionId'=>$nextQuestionId, 'previousQuestionId'=>$previousQuestionId, 'isLastQuestion'=>$isLastQuestion, 'firstQuestion'=>$firstQuestion, 'certif_id'=>$certif_id,
         'currentQuestionNumber'=>$currentQuestionNumber, 'id'=>$certif_id, 'certifDuration'=>$certifDuration]);
     }
 
@@ -205,12 +223,16 @@ class CertificationController extends Controller
         $certif = Certification::findOrFail($certif_id);
 
         if ($register) {
+                // $certifQuestion = CertifQuestions::where('certification_id', $certif_id)->orderBy('id', 'asc')->get();
+
+                // $userAnswers = UserAnswerCertificationTest::where('user_id', auth()->id())
+                // ->orderBy('id', 'asc')
+                // ->whereIn('question_id', $certifQuestion->pluck('id'))
+                // ->get();
+
                 $certifQuestion = CertifQuestions::where('certification_id', $certif_id)->orderBy('id', 'asc')->get();
 
-                $userAnswers = UserAnswerCertificationTest::where('user_id', auth()->id())
-                ->orderBy('id', 'asc')
-                ->whereIn('question_id', $certifQuestion->pluck('id'))
-                ->get();
+                $userAnswers = UserAnswerCertificationTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $certifQuestion->pluck('id'))->get();
 
                 Log::info('User Answers Count:', [$userAnswers->count()]);
                 Log::info('User Answers:', $userAnswers->toArray());
