@@ -241,7 +241,7 @@
                                                     <input type="number" name="total_questions" id="inputTotalScore"
                                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                         value="{{ $material->total_questions }}"
-                                                        placeholder="Input jumlah pertanyaan untuk assignment"
+                                                        placeholder="Input jumlah pertanyaan untuk tes akhir"
                                                         required="">
                                                     <input type="hidden" name="certification_id">
                                                 </div>
