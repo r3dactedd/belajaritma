@@ -646,9 +646,8 @@ class CourseController extends Controller
                     ->where('user_sidebar_progress.course_id', '=', $id);
             })
             ->where('sidebar.course_id', $id)
-            ->where('sidebar.material_id', $id)
+            ->where('sidebar.material_id', $material_id)
             ->first();
-
         if ((!$requestedMaterial || $requestedMaterial->user_is_visible == false && $requestedMaterial->user_is_locked == true) && $getFirstSidebar->id != $requestedMaterial->id) {
             return redirect()->back();
         }
