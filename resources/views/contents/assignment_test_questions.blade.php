@@ -30,6 +30,8 @@
                         $shuffledQuestionIds = $listQuestionId;
                         session(['shuffledQuestionIds' => $shuffledQuestionIds, 'reshuffled' => false]);
                     }
+
+
                 @endphp
                     <!-- Sidebar, pass value courselistnya aja-->
                     <div class="p-2 bg-white border-4 border-green-400 rounded-xl md:flex md:flex-col">
@@ -57,6 +59,14 @@
                                 <!-- Ubah nilai awal sesuai dengan material_duration -->
                             </p>
                         </div>
+                    </div>
+                    <div class="w-full my-2 flex justify-center text-center rounded-md shadow h-fit md:w-9/12">
+
+
+                        <button id="exit-asg"
+                            class="w-full my-2 mr-2 justify-center text-center items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow h-fit md:w-9/12">Keluar
+                            dari Assignment</button>
+
                     </div>
                 </div>
                 {{-- QUESTION --}}
@@ -174,11 +184,14 @@
         <input type="hidden" id="material_id" name="material_id" value="{{ $material_id }}">
         <input type="hidden" id="type" name="type" value="{{ $type }}">
         <input type="hidden" id="question_id" name="type" value="{{ $question_id }}">
+        <input type="hidden" id="course_id" value="{{ $id }}">
+        <input type="hidden" id="material_title" name="type" value="{{ $material->title }}">
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const nextButton = document.getElementById('tombol-selanjutnya');
                 const previousButton = document.getElementById('tombol-sebelumnya');
+                const exitAsg = document.getElementById('exit-asg');
                 const submitButton = document.getElementById('submit-button');
                 // localStorage.removeItem('userAnswers');
                 let userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || [];
@@ -338,6 +351,30 @@
                 }
 
 
+                if (exitAsg) {
+                    exitAsg.addEventListener('click', function() {
+                        const isConfirmed = window.confirm(
+                            'Apakah kamu yakin ingin membatalkan pengerjaan assignment? semua progress jawaban kamu akan hilang jika keluar'
+                        );
+
+                        if (isConfirmed) {
+                            const courseId = document.getElementById('course_id').value;
+                            const materialId = document.getElementById('material_id').value;
+                            const materialTitle = document.getElementById('material_title').value;
+                            clearSelectedAnswers();
+                            localStorage.removeItem('timer');
+                            @php
+                                // session()->forget('shuffledQuestionIds');
+                                // session()->forget('reshuffled');
+                            @endphp
+                            window.location.href = '/courses/material/' + materialTitle +
+                                '/' + courseId + '/' + materialId
+                        }
+                    });
+                }
+
+
+
                 function submitAnswers() {
                     const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
                     const questionId = document.getElementById('question_id').value;
@@ -365,15 +402,14 @@
                             // Jika belum ada, tambahkan jawaban baru
                             const answerData = {
                                 questionId: questionId,
-                                answer: selectedAnswer ? selectedAnswer.value :
-                                '', // Jawaban kosong jika tidak ada yang dipilih
-                                answerDetail: selectedAnswer ? selectedAnswer.parentElement.textContent.trim() : '',
+                                answer: selectedAnswer.value, // Jawaban kosong jika tidak ada yang dipilih
+                                answerDetail: selectedAnswer.parentElement.textContent.trim()
                             };
                             userAnswers.push(answerData);
                         }
 
 
-                        sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+                        localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
 
                         updateRadioButtons();
 
@@ -394,6 +430,8 @@
                                         materialId: document.querySelector('input[name="materialId"]')
                                             .value,
                                     };
+
+                                    console.log(submissionData);
 
                                     // Use fetch API to make a POST request
                                     fetch('/submit-answers', {

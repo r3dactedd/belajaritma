@@ -144,42 +144,46 @@ class CourseController extends Controller
             $latestQuestion = FinalTestQuestions::where('material_id', $material_id)->orderBy('id', 'desc')->first();
         }
         if ($type == "assignment") {
-            // Shuffle and store question IDs in the session
             if ($isReshuffle == 1) {
-                $shuffledQuestionIds = AssignmentQuestions::where('material_id', $material_id)
-                    ->pluck('id') ->take($totalQuestions->total_questions)->toArray();
+                // Retrieve all question IDs for the given material
+                $allQuestionIds = AssignmentQuestions::where('material_id', $material_id)
+                    ->pluck('id')->toArray();
 
+                // Shuffle all question IDs
+                shuffle($allQuestionIds);
 
-                shuffle($shuffledQuestionIds);
+                // Set the desired count of shuffled questions (e.g., 5)
+                $shuffledQuestionCount = $totalQuestions->total_questions;
 
+                // Ensure that the first question after shuffling is the same as $question_id
+                $firstShuffledId = intval($question_id);
+                $firstShuffledIdIndex = array_search($firstShuffledId, $allQuestionIds);
 
-                // dd($shuffledQuestionIds);
-                $shuffledQuestionIds = array_map('intval', $shuffledQuestionIds);
-                // Ensure that the first question after shuffling is the same as firstRandomQuestionId
-                $firstQuestionIndex = array_search($question_id, $shuffledQuestionIds);
+                if ($firstShuffledIdIndex !== false) {
+                    // Remove the $firstShuffledId from the array
+                    unset($allQuestionIds[$firstShuffledIdIndex]);
+                }
 
-                $firstShuffledId = intval($shuffledQuestionIds[0]);
-             
-                // If the firstRandomQuestionId is not in the list, add it to the beginning
-                if ($firstQuestionIndex === false) {
-                    array_unshift($shuffledQuestionIds, intval($question_id));
-                } else {
-                    // Swap the first question with the question at the firstRandomQuestionId index
-                    if ($firstQuestionIndex == 0) {
-                        $shuffledQuestionIds[0] = $firstShuffledId;
-                    } else {
-                        // Swap the first question with the question at the firstRandomQuestionId index
-                        $temp = $shuffledQuestionIds[0];
-                        $shuffledQuestionIds[0] = $firstShuffledId;
-                        $shuffledQuestionIds[$firstQuestionIndex] = $temp;
+                // Take the desired count of shuffled questions
+                $shuffledQuestionIds = array_slice($allQuestionIds, 0, $shuffledQuestionCount - 1);
+
+                // Replace occurrences of $firstShuffledId with other IDs
+                foreach ($shuffledQuestionIds as $index => $shuffledId) {
+                    if ($shuffledId == $firstShuffledId) {
+                        // Replace with another ID from the allQuestionIds array
+                        $shuffledQuestionIds[$index] = array_shift($allQuestionIds);
                     }
                 }
 
-                session(['shuffledQuestionIds' => array_values($shuffledQuestionIds), 'reshuffled' => true]);
+                // Add the $firstShuffledId to the beginning of the array
+                array_unshift($shuffledQuestionIds, $firstShuffledId);
+
+                session(['shuffledQuestionIds' => $shuffledQuestionIds, 'reshuffled' => true]);
             } else {
-                // // If not set or not reshuffled, use the existing shuffledQuestionIds or the original order
-                $shuffledQuestionIds = array_values(session('shuffledQuestionIds'));
+                // If not set or not reshuffled, use the existing shuffledQuestionIds or the original order
+                $shuffledQuestionIds = session('shuffledQuestionIds');
             }
+
 
 
 
@@ -217,7 +221,7 @@ class CourseController extends Controller
         // dd($type);
         // dd($material);
         //  dd($latestQuestion->id);
-        return view('contents.assignment_test_questions', ['currentQuestionIndex' => $currentQuestionIndex, 'listQuestionId' => $listQuestionId, 'shuffledQuestionIds' => $shuffledQuestionIds, 'currentQuestionNumber' => $currentQuestionNumber, 'nextQuestionId' => $nextQuestionId, 'previousQuestionId' => $previousQuestionId, 'title' => $title, 'questionDetail' => $questionDetail, 'material' => $material,  'question_id' => $question_id, 'id' => $id, 'material_id' => $material_id, 'type' => $type, 'latestQuestion' => $latestQuestion, 'isLastQuestion' => $isLastQuestion, 'firstQuestion' => $firstQuestion]);
+        return view('contents.assignment_test_questions', ['currentQuestionIndex' => $currentQuestionIndex, 'totalQuestions'=>$totalQuestions, 'listQuestionId' => $listQuestionId, 'shuffledQuestionIds' => $shuffledQuestionIds, 'currentQuestionNumber' => $currentQuestionNumber, 'nextQuestionId' => $nextQuestionId, 'previousQuestionId' => $previousQuestionId, 'title' => $title, 'questionDetail' => $questionDetail, 'material' => $material,  'question_id' => $question_id, 'id' => $id, 'material_id' => $material_id, 'type' => $type, 'latestQuestion' => $latestQuestion, 'isLastQuestion' => $isLastQuestion, 'firstQuestion' => $firstQuestion]);
     }
     // public function saveAnswer(Request $request, $title, $id, $material_id, $question_id, $type)
     // {
@@ -234,7 +238,7 @@ class CourseController extends Controller
 
     public function submitAnswers(Request $request)
     {
-        Log::info('Submit Answers Request:', $request->all());
+        // Log::info('Submit Answers Request:', $request->all());
         // Validasi request jika diperlukan
         $user = Auth::user();
         if (!$user) {
@@ -243,13 +247,11 @@ class CourseController extends Controller
         }
 
         $submissionData = $request->only(['answers', 'courseId', 'materialId']);
-
         $userAnswers = $request->input('answers');
-        dd($userAnswers);
         $userId = $user->id; // Mendapatkan ID pengguna yang sedang login
         $courseId = $request->filled('courseId') ? $request->input('courseId') : null;
         $materialId = $request->filled('materialId') ? $request->input('materialId') : null;
-        $material = Material::findOrFail($materialId);
+        $material = Material::where('id',$materialId)->first();
         if ($material->materialContentToMasterType->master_type_name ==  "Assignment") {
             if (is_array($userAnswers)) {
                 // Proses simpan jawaban ke dalam database atau lakukan tindakan lainnya sesuai kebutuhan
