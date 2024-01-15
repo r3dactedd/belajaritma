@@ -144,25 +144,29 @@ class ManageCertificationController extends Controller
 
     public function setScore(Request $request){
         Log::info('Request Data:', $request->all());
+        $certifId = $request->certification_id;
         $user = Auth::user();
         // dd($request);
         $validateScore = $request->validate([
             'minimum_score'=>'required|integer|max:100',
+            'total_questions'=>'required|integer',
         ]);
         $changeScore= [];
 
         $changeScore += [
             'minimum_score'=> $validateScore['minimum_score'],
+            'total_questions'=> $validateScore['total_questions'],
             'updated_by' => $user->id,
         ];
         // dd($changeMaterialDetail);
         Certification::where('id',$request->certification_id)->update($changeScore);
-        return Redirect::to("/manager/certification/edit/test/{$request->certification_id}");
+        return Redirect::to("/manager/certification/edit/test/{$certifId}");
     }
 
     public function createCertifQuestions(Request $request, $id){
         Log::info('Request Data:', $request->all());
         $user = Auth::user();
+        $certif = Certification::find($id);
         $request->validate([
             'questions'=>'required|string',
             'jawaban_a'=>'required|string',
@@ -186,12 +190,15 @@ class ManageCertificationController extends Controller
             $createCertifQuestions->question_img =  $filename;
         }
         // dd($createAssignment);
-        $addTotalQuestions = [];
-        $addTotalQuestions = [
-            'total_questions' => \DB::raw('total_questions + 1'),
-            'updated_by' => $user->id,
-        ];
-        Certification::where('id', $createCertifQuestions->certification_id)->update($addTotalQuestions);
+        if($certif->total_questions == 0){
+            $addTotalQuestions = [];
+            $addTotalQuestions = [
+                'total_questions' => \DB::raw('total_questions + 1'),
+                'updated_by' => $user->id,
+            ];
+            Certification::where('id', $createCertifQuestions->certification_id)->update($addTotalQuestions);
+        }
+
         $createCertifQuestions->save();
         return Redirect::to("/manager/certification/edit/test/{$id}");
     }
@@ -239,15 +246,19 @@ class ManageCertificationController extends Controller
     public function deleteCertifQuestion(Request $request,$id){
         $user = Auth::user();
         $certif_test_questions = CertifQuestions::find($request->certif_test_id);
+        $certif = Certification::find($certif_test_questions->certification_id);
         if (!$certif_test_questions) {
             return redirect()->back()->with('error', 'Assignment not found.');
         }
-        $decreaseTotalQuestions = [];
-        $decreaseTotalQuestions = [
-            'total_questions' => \DB::raw('total_questions - 1'),
-            'updated_by' => $user->id,
-        ];
-        Certification::where('id', $request->certification_id)->update($decreaseTotalQuestions);
+        if($certif->total_questions == 1){
+            $decreaseTotalQuestions = [];
+            $decreaseTotalQuestions = [
+                'total_questions' => \DB::raw('total_questions - 1'),
+                'updated_by' => $user->id,
+            ];
+            Certification::where('id', $request->certification_id)->update($decreaseTotalQuestions);
+        }
+
 
         $certif_test_questions->delete();
         // dd($assignment_questions);
