@@ -449,7 +449,7 @@ class CourseController extends Controller
                 $userAnswers = UserAnswerAssignment::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $assignmentQuestions->pluck('id'))->get();
 
                 // Calculate the user's score
-                $totalQuestions = $assignmentQuestions->count();
+                $totalQuestions = $material->total_questions;
                 $correctAnswers = 0;
                 $counter = 0;
 
@@ -518,7 +518,7 @@ class CourseController extends Controller
                 $userAnswers = UserAnswerFinalTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $finalTestQuestions->pluck('id'))->get();
 
                 // Calculate the user's score
-                $totalQuestions = $finalTestQuestions->count();
+                $totalQuestions = $material->total_questions;
                 $correctAnswers = 0;
                 $counter = 0;
                 foreach ($userAnswers as $userAnswer) {
