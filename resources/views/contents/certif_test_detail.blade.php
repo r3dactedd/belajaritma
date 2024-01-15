@@ -64,9 +64,9 @@
                                     <div class="text-xs text-gray-500">
                                         @if ($getCertCompleted->total_score == null)
                                             <a class="font-bold">Belum Dikerjakan</a>
-                                        @elseif ($getCertCompleted->total_score < $data->minimum_score && $getCertCompleted->passed == false)
+                                        @elseif ($getCertCompleted->total_score < $data->minimum_score)
                                             <a class="font-bold text-red-500">Belum Lulus</a>
-                                        @elseif ($getCertCompleted->total_score >= $data->minimum_score && $getCertCompleted->passed == true)
+                                        @elseif ($getCertCompleted->total_score >= $data->minimum_score)
                                             <a class="font-bold text-green-500">Lulus</a>
                                         @endif
                                     </div>
