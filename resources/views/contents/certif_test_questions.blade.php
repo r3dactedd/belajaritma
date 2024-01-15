@@ -226,26 +226,26 @@
                 let timeIsUp = false;
 
                 function startTimer(duration) {
-                    let timer;
+                    let timerCert;
                     // localStorage.removeItem('timer');
-                    const storedTime = localStorage.getItem('timer');
+                    const storedTime = localStorage.getItem('timerCert');
 
                     if (storedTime !== null) {
                         // Hapus nilai 'timer' dari localStorage
-                        localStorage.removeItem('timer');
-                        timer = parseInt(storedTime, 10);
+                        localStorage.removeItem('timerCert');
+                        timerCert = parseInt(storedTime, 10);
                     } else {
-                        timer = duration;
+                        timerCert = duration;
                     }
 
                     const updateTimerDisplay = function() {
-                        timerDisplay.textContent = convertTime(timer);
-                        if (timer > 0) {
-                            timer--;
-                            localStorage.setItem('timer', timer.toString());
+                        timerDisplay.textContent = convertTime(timerCert);
+                        if (timerCert > 0) {
+                            timerCert--;
+                            localStorage.setItem('timerCert', timerCert.toString());
                         } else {
                             clearInterval(timerInterval);
-                            localStorage.removeItem('timer');
+                            localStorage.removeItem('timerCert');
                             timeIsUp = true;
 
                             // Gumpulkan jawaban dan tampilkan alert waktu habis
@@ -352,7 +352,7 @@
                         if (isConfirmed) {
                             const certifId = document.getElementById('id').value;
                             clearSelectedAnswers();
-                            localStorage.removeItem('timer');
+                            localStorage.removeItem('timerCert');
                             @php
                                 // session()->forget('shuffledQuestionIds');
                                 // session()->forget('reshuffled');
@@ -433,7 +433,7 @@
                                             // Handle the response from the server if needed
                                             if (data.message === 'Success') {
                                                 clearSelectedAnswers();
-                                                localStorage.removeItem('timer');
+                                                localStorage.removeItem('timerCert');
                                                 window.location.href = '/certification/' + certifId +
                                                     '/score'
                                             } else {}
