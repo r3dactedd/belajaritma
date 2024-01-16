@@ -245,8 +245,7 @@
                             <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                                 <div class="text-center">
                                     <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                        Pembayaran Anda sedang diproses. Harap tunggu hingga admin menyetujui atau menolak
-                                        transaksi Anda.
+                                        Pembayaran Anda sedang diproses. Harap tunggu konfirmasi dari admin untuk menerima bukti transaksi Anda.
                                     </h2>
                                 </div>
                             </div>

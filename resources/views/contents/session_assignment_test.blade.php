@@ -165,6 +165,14 @@
                             </a>
                         </button>
                     @endif
+                    @if (!$nextMaterial)
+                        <a id="open-btn"
+                            href="/courses/{{$material->course_id}}/complete"
+                            class="flex justify-content-center px-4 py-3 my-4 ml-4 mx-auto text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-600 rounded-md w-fit hover:bg-yellow-500 focus:outline-none"
+                            data-modal-target="defaultModal" data-modal-toggle="defaultModal">
+                            <p class="text-center">Akhiri Kursus</p>
+                    </a>
+                    @endif
 
                 </div>
             </div>

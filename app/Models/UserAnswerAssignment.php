@@ -15,6 +15,8 @@ class UserAnswerAssignment extends Model
         'selected_answer',
         'answer_detail',
         'is_correct',
+        'question_shown',
+        'material_id',
         'type'
     ];
 

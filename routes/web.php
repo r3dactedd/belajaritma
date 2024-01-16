@@ -151,14 +151,14 @@ Route::get('/courses/material/{id}/{material_id}/{type}/score', [CourseControlle
 
 
 
-Route::get('/courses/material/{title}/{course_id}/{current_material_id}/{direction}', [SidebarController::class, 'handleMaterialNavigation']);
+// Route::get('/courses/material/{title}/{course_id}/{current_material_id}/{direction}', [SidebarController::class, 'handleMaterialNavigation']);
 // Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
 Route::get('/courses/material/next/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'nextMaterial'])->name('sidebar.nextMaterial');
 Route::get('/courses/material/previous/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'previousMaterial'])->name('sidebar.previousMaterial');
 
 //show page spesifik
 Route::get('/courses/materialContent/{title}/{id}', [SidebarController::class, 'showByType']);
-
+Route::get('/courses/{id}/complete', [CourseController::class, 'congratulatePage']);
 Route::get('/manager', function () {
     return view('administrator.admin_manager');
 });
