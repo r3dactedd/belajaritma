@@ -125,14 +125,9 @@
                                 {{ $currentQuestionNumber }}. {{ $questionDetail->questions }}
                             </h1>
 
-                            @if ($questionDetail->question_img != null && $type == 'assignment')
-                                <img src={{ asset('uploads/asg_question_img/' . $questionDetail->question_img) }}
-                                    alt="course image" class="object-cover w-full h-full" />
-                            @endif
-
-                            @if ($questionDetail->question_img != null && $type == 'finalTest')
-                                <img src={{ asset('uploads/final_question_img/' . $questionDetail->question_img) }}
-                                    alt="course image" class="object-cover w-full h-full" />
+                            @if ($questionDetail->question_img != null)
+                                <img src={{ asset('uploads/certif_question_img/' . $questionDetail->question_img) }}
+                                    alt="certif test image" class="object-cover w-full h-full" />
                             @endif
 
                             <div class="pl-12">
