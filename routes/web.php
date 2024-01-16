@@ -145,13 +145,13 @@ Route::get('/courses/{id}/{material_id}/exitTest', [CourseController::class, 'ex
 
 Route::post('/submit-answers', [CourseController::class, 'submitAnswers'])->name('submit.answers');
 Route::get('/courses/{courseId}/{materialId}/results', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
-Route::get('/courses/material/{id}/{material_id}/{type}/{answer_attempt}/score', [CourseController::class, 'showScore']);
+Route::get('/courses/material/{id}/{material_id}/{type}/score', [CourseController::class, 'showScore']);
 
 
 
 
 
-Route::get('/courses/material/{title}/{course_id}/{current_material_id}/{direction}', [SidebarController::class, 'handleMaterialNavigation']);
+// Route::get('/courses/material/{title}/{course_id}/{current_material_id}/{direction}', [SidebarController::class, 'handleMaterialNavigation']);
 // Route::get('/courses/material/{title}/{id}/{material_id}', [SidebarController::class, 'showSidebar'])->name('sidebar.showSidebar');
 Route::get('/courses/material/next/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'nextMaterial'])->name('sidebar.nextMaterial');
 Route::get('/courses/material/previous/{title}/{course_id}/{current_material_id}', [SidebarController::class, 'previousMaterial'])->name('sidebar.previousMaterial');

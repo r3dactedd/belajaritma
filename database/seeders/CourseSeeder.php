@@ -47,7 +47,7 @@ class CourseSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
             'course_img' => 'Data Structures.png',
-            'ready_for_publish' => true,
+            'ready_for_publish' => false,
         ]);
 
         Course::create([

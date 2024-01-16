@@ -96,7 +96,7 @@
                                         <div class="flex justify-center text-center">
                                             <form method="GET" action="/certification/{{ $certif_id }}/exitCertTest">
                                                 @csrf
-                                                <button type="submit"
+                                                <button type="submit" id="exit-certi"
                                                     class="mr-2 items-center rounded-lg bg-red-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
                                                     Ya
                                                 </button>
@@ -230,7 +230,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const nextButton = document.getElementById('tombol-selanjutnya');
                 const previousButton = document.getElementById('tombol-sebelumnya');
-                // const exitAsg = document.getElementById('exit-asg');
+                const exitAsg = document.getElementById('exit-certi');
                 const submitButton = document.getElementById('submit-button');
                 // localStorage.removeItem('userAnswers');
                 let userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || [];
@@ -298,7 +298,7 @@
 
                     const convertTime = function(seconds) {
                         const minutes = Math.floor(seconds / 60);
-                        const remainingSeconds = seconds % 60;
+                        const remainingSeconds = Math.floor(seconds % 60); // Round down the seconds
                         return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
                     };
 
@@ -425,13 +425,9 @@
                 }
 
 
-                // if (exitAsg) {
-                //     exitAsg.addEventListener('click', function() {
-                //         const isConfirmed = window.confirm(
-                //             'Apakah kamu yakin ingin membatalkan pengerjaan assignment? semua progress jawaban kamu akan hilang jika keluar'
-                //         );
+                if (exitAsg) {
+                    exitAsg.addEventListener('click', function() {
 
-                        if (isConfirmed) {
                             sessionStorage.removeItem('certiTime');
                             const timerDisplay = document.getElementById('timer-display');
                             const timerDuration = timerDisplay.getAttribute('timer-duration');
@@ -441,8 +437,7 @@
                             startTimer(totalSeconds, true);
                             const certifId = document.getElementById('id').value;
                             clearSelectedAnswers();
-                            window.location.href = '/certifications/aboutTest/' + certifId
-                        }
+
                     });
                 }
                 // startTimer();
@@ -493,7 +488,7 @@
                                             answer: answer.answer,
                                             answerDetail: answer.answerDetail,
                                         })),
-                                        certifId: document.querySelector('input[name="certifId"]').value,
+                                        certifId: certifId
                                     };
 
                                     console.log(submissionData);
@@ -593,7 +588,7 @@
                             answer: answer.answer,
                             answerDetail: answer.answerDetail,
                         })),
-                        certifId: document.querySelector('input[name="certifId"]').value,
+                        certifId: certifId
                     }
 
                     fetch('/certification/submit-answers', {

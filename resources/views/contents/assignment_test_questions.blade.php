@@ -62,7 +62,7 @@
                     <div class="w-full my-2 flex justify-center text-center rounded-md shadow h-fit md:w-9/12">
 
                         @if ($type == 'assignment')
-                            <a id="exit-asg" data-modal-target="popup-exit-asg" data-modal-toggle="popup-exit-asg"
+                            <a data-modal-target="popup-exit-asg" data-modal-toggle="popup-exit-asg"
                                 class="w-full my-2 mr-2 justify-center  items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow h-fit md:w-9/12">
                                 Keluar dari Assignment
                             </a>
@@ -98,7 +98,7 @@
                                                 <form method="GET"
                                                     action="/courses/{{ $id }}/{{ $material_id }}/exitTest">
                                                     @csrf
-                                                    <button type="submit"
+                                                    <button type="submit" id="exit-asg"
                                                         class="mr-2 items-center rounded-lg bg-red-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
                                                         Ya
                                                     </button>
@@ -150,7 +150,7 @@
                                                 <form method="GET"
                                                     action="/courses/{{ $id }}/{{ $material_id }}/exitTest">
                                                     @csrf
-                                                    <button type="submit"
+                                                    <button type="submit" id="exit-asg"
                                                         class="mr-2 items-center rounded-lg bg-red-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
                                                         Ya
                                                     </button>
@@ -318,46 +318,51 @@
                     });
                 }
 
-                // sessionStorage.removeItem('timer');
+                // localStorage.removeItem('timer');
 
                 // Untuk keperluan debugging, Anda dapat mencetak array userAnswers ke konsol
+                console.log(userAnswers);
+                console.log(userAnswers);
                 let timeIsUp = false;
 
+                // function convertTime(seconds) {
+                //     const minutes = Math.floor(seconds / 60);
+                //     const remainingSeconds = seconds % 60;
+                //     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+                // }
 
-                function convertTime(seconds) {
-                    const minutes = Math.floor(seconds / 60);
-                    const remainingSeconds = seconds % 60;
-                    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-                }
+                let timerStarted = false;
+                // localStorage.removeItem('timer');
 
-                function convertTime(seconds) {
-                    const minutes = Math.floor(seconds / 60);
-                    const remainingSeconds = seconds % 60;
+                let timerInterval;
 
-                    // Menambahkan nol di depan jika detik kurang dari 10
-                    const displaySeconds = (remainingSeconds < 10) ? '0' + remainingSeconds : remainingSeconds;
-
-                    return `${minutes}:${displaySeconds}`;
-                }
-
-                function startTimer() {
+                function startTimer(duration, resetTimer) {
                     const timerDisplay = document.getElementById('timer-display');
                     const timerDuration = parseInt(timerDisplay.getAttribute('timer-duration'), 10) * 60;
-                    let timerInterval;
+                    let elapsedTime, remainingTime;
 
-                    // Check if the start time is stored in localStorage
-                    const storedStartTime = localStorage.getItem('startTime');
+                    if (resetTimer && !timerStarted) {
+                        // Reset the timer only if it's not already started
+                        sessionStorage.removeItem('timer');
+                        timerStarted = false; // Ensure the timer is stopped
+                    } else {
+                        timerStarted = true;
+                        // Continue the timer if it has started
+                        const storedTime = sessionStorage.getItem('timer');
+                        remainingTime = (storedTime !== null) ? Math.max(0, timerDuration - (Math.floor(Date.now() /
+                            1000) - parseInt(storedTime, 10))) : timerDuration;
+                    }
 
-                    // Use the stored start time if available, otherwise use the current time
-                    const startTime = (storedStartTime !== null) ? parseInt(storedStartTime, 10) : Date.now() / 1000;
+                    const getStartTime = function() {
+                        const storedStartTime = sessionStorage.getItem('timer');
+                        return (storedStartTime !== null) ? parseInt(storedStartTime, 10) : Date.now() / 1000;
+                    };
 
-                    const elapsedTime = Math.floor(Date.now() / 1000) - startTime;
-                    let remainingTime = Math.max(0, timerDuration - elapsedTime);
+                    let startTime = getStartTime();
 
                     const convertTime = function(seconds) {
                         const minutes = Math.floor(seconds / 60);
-                        const remainingSeconds = seconds % 60;
-
+                        const remainingSeconds = Math.floor(seconds % 60); // Round down the seconds
                         return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
                     };
 
@@ -366,54 +371,36 @@
 
                         if (remainingTime > 0) {
                             remainingTime--;
-                            localStorage.setItem('startTime', startTime); // Update the start time in localStorage
+                            sessionStorage.setItem('timer', startTime);
                         } else {
                             clearInterval(timerInterval);
-                            localStorage.removeItem('startTime');
-
-                            // Gumpulkan jawaban dan tampilkan alert waktu habis
+                            timeIsUp == true;
                             submitAnswersWithoutConfirmation();
                             alert('Waktu telah habis. Jawaban Anda sudah otomatis terkumpul.');
                         }
                     };
 
-                    timerInterval = setInterval(updateTimerDisplay, 1000);
+                    // Clear the interval before creating a new one
+                    clearInterval(timerInterval);
 
-                    updateTimerDisplay();
-                }
+                    // Calculate elapsed time and remaining time
+                    elapsedTime = Math.floor(Date.now() / 1000) - startTime;
+                    remainingTime = Math.max(0, timerDuration - elapsedTime);
 
-                // Jalankan startTimer saat halaman dimuat
-                startTimer();
-
-                // function updateTimer() {
-                //     // Hitung menit dan detik
-                //     var minutes = Math.floor(totalSeconds / 60);
-                //     var seconds = totalSeconds % 60;
-
-                //     // Tampilkan waktu pada elemen p
-                //     timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-                //     // Kurangi totalSeconds
-                //     totalSeconds--;
-
-                //     // Hentikan timer jika waktu habis
-                //     if (totalSeconds < 0) {
-                //         clearInterval(countdownInterval);
-                //         // Tambahkan logika atau tindakan yang ingin Anda lakukan setelah waktu habis
-                //         alert('Waktu telah habis!');
-                //     }
-                // }
-
-
-
-                function stopTimer() {
-                    const type = document.getElementById('type').value;
-                    if (type == 'assignment') {
-                        localStorage.removeItem('timer');
-                    } else if (type == 'finalTest') {
-                        localStorage.removeItem('timerFinalTest');
+                    // Start the timer only if it should be started
+                    if (timerStarted) {
+                        timerInterval = setInterval(updateTimerDisplay, 1000);
+                        updateTimerDisplay();
                     }
                 }
+                const timerDisplay = document.getElementById('timer-display');
+                const timerDuration = timerDisplay.getAttribute('timer-duration');
+                const totalSeconds = parseInt(timerDuration) * 60 - 1;
+                // Jalankan startTimer saat halaman dimuat
+                startTimer(totalSeconds, false);
+                // Jalankan startTimer saat halaman dimuat
+
+
                 // startTimer(totalSeconds);
 
                 function validateAnswers() {
@@ -496,23 +483,21 @@
                 }
 
 
-                // if (exitAsg) {
-                //     exitAsg.addEventListener('click', function() {
-                //         const isConfirmed = window.confirm(
-                //             'Apakah kamu yakin ingin membatalkan pengerjaan assignment? Attempt pengerjaan tes sertifikasi ini akan hangus!'
-                //         );
+                if (exitAsg) {
+                    exitAsg.addEventListener('click', function() {
 
-                //         if (isConfirmed) {
-                //             const courseId = document.getElementById('course_id').value;
-                //             const materialId = document.getElementById('material_id').value;
-                //             const materialTitle = document.getElementById('material_title').value;
-                //             clearSelectedAnswers();
-                //             localStorage.removeItem('timer');
-                //             window.location.href = '/courses/material/' + materialTitle +
-                //                 '/' + courseId + '/' + materialId
-                //         }
-                //     });
-                // }
+                        sessionStorage.removeItem('timer');
+                        const timerDisplay = document.getElementById('timer-display');
+                        const timerDuration = timerDisplay.getAttribute('timer-duration');
+                        const totalSeconds = parseInt(timerDuration) * 60 -
+                            1; // Remove timer data from sessionStorage
+                        timerStarted = false;
+                        startTimer(totalSeconds, true);
+                        const certifId = document.getElementById('id').value;
+                        clearSelectedAnswers();
+
+                    });
+                }
 
 
 
@@ -554,70 +539,73 @@
 
                         updateRadioButtons();
 
-                        if (timeIsUp) {
-                            submitAnswersWithoutConfirmation(courseId, materialId, type);
-                        } else {
-                            const isConfirmed = window.confirm('Apakah Anda yakin ingin mengumpulkan jawaban?');
-                            if (isConfirmed) {
-                                if (validateAnswers()) {
-                                    // If validation is successful, send the submission data to the controller
-                                    const submissionData = {
-                                        answers: userAnswers.map(answer => ({
-                                            questionId: answer.questionId,
-                                            answer: answer.answer,
-                                            answerDetail: answer.answerDetail,
-                                        })),
-                                        courseId: document.querySelector('input[name="courseId"]').value,
-                                        materialId: document.querySelector('input[name="materialId"]')
-                                            .value,
-                                    };
 
-                                    console.log(submissionData);
+                        const isConfirmed = window.confirm('Apakah Anda yakin ingin mengumpulkan jawaban?');
+                        if (isConfirmed) {
+                            if (validateAnswers()) {
+                                // If validation is successful, send the submission data to the controller
+                                const submissionData = {
+                                    answers: userAnswers.map(answer => ({
+                                        questionId: answer.questionId,
+                                        answer: answer.answer,
+                                        answerDetail: answer.answerDetail,
+                                    })),
+                                    courseId: document.querySelector('input[name="courseId"]').value,
+                                    materialId: document.querySelector('input[name="materialId"]')
+                                        .value,
+                                };
 
-                                    // Use fetch API to make a POST request
-                                    fetch('/submit-answers', {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                                'X-CSRF-TOKEN': document.head.querySelector(
-                                                    'meta[name="csrf-token"]').content,
-                                            },
-                                            body: JSON.stringify(submissionData),
-                                        })
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                throw new Error('Network response was not ok');
-                                            }
-                                            return response.json();
-                                        })
-                                        .then(data => {
-                                            // Handle the response from the server if needed
-                                            if (data.message === 'Success') {
-                                                clearSelectedAnswers();
-                                                localStorage.removeItem('startTime');
-                                                window.location.href = '/courses/material/' + courseId +
-                                                    '/' + materialId + '/' + type + '/score'
-                                            } else {}
-                                        })
-                                        .catch(error => {
-                                            // Use the error parameter instead of response
-                                            // Check if the response is HTML (error page) and handle accordingly
-                                            if (error.headers && error.headers.get('content-type').includes(
-                                                    'text/html')) {
-                                                console.error('Server returned HTML:', error.statusText);
-                                            } else {
-                                                console.error(
-                                                    'There was a problem with the fetch operation:',
-                                                    error);
-                                            }
-                                        });
-                                } else {
-                                    alert(
-                                        'Masih ada soal yang belum terisi. Silakan isi semua soal sebelum mengumpulkan jawaban.'
-                                    );
-                                }
+                                console.log(submissionData);
+
+                                // Use fetch API to make a POST request
+                                fetch('/submit-answers', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-TOKEN': document.head.querySelector(
+                                                'meta[name="csrf-token"]').content,
+                                        },
+                                        body: JSON.stringify(submissionData),
+                                    })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        // Handle the response from the server if needed
+                                        if (data.message === 'Success') {
+                                            clearSelectedAnswers();
+                                            const timerDisplay = document.getElementById('timer-display');
+                                            const timerDuration = timerDisplay.getAttribute('timer-duration');
+                                            const totalSeconds = parseInt(timerDuration) * 60 -
+                                                1; // Remove timer data from sessionStorage
+                                            timerStarted = false;
+                                            startTimer(totalSeconds, true);
+                                            window.location.href = '/courses/material/' + courseId +
+                                                '/' + materialId + '/' + type + '/score'
+                                        } else {}
+                                    })
+                                    .catch(error => {
+                                        // Use the error parameter instead of response
+                                        // Check if the response is HTML (error page) and handle accordingly
+                                        if (error.headers && error.headers.get('content-type').includes(
+                                                'text/html')) {
+                                            console.error('Server returned HTML:', error.statusText);
+                                        } else {
+                                            console.error(
+                                                'There was a problem with the fetch operation:',
+                                                error);
+                                        }
+                                    });
+                            } else {
+                                alert(
+                                    'Masih ada soal yang belum terisi. Silakan isi semua soal sebelum mengumpulkan jawaban.'
+                                );
                             }
                         }
+
 
                     } else {
                         alert('Pilih jawaban terlebih dahulu.');
@@ -656,61 +644,107 @@
                 }
 
                 function submitAnswersWithoutConfirmation(courseId, materialId, type) {
+                    const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
+                    const questionId = document.getElementById('question_id').value;
 
-                    // Lakukan pengumpulan jawaban tanpa konfirmasi
-                    const submissionData = {
-                        answers: userAnswers.map(answer => ({
-                            questionId: answer.questionId,
-                            answer: answer.answer,
-                            answerDetail: answer.answerDetail,
-                        })),
-                        courseId: document.querySelector('input[name="courseId"]').value,
-                        materialId: document.querySelector('input[name="materialId"]').value
-                    }
+                    var title = document.getElementById('title').value;
 
-                    fetch('/submit-answers', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': document.head.querySelector(
-                                    'meta[name="csrf-token"]').content,
-                            },
-                            body: JSON.stringify(submissionData),
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            // Handle the response from the server if needed
-                            if (data.message === 'Success') {
-                                // Tangani respons JSON jika permintaan berasal dari AJAX
-                                localStorage.removeItem('startTime');
-                                clearSelectedAnswers();
-                                // Redirect ke halaman assignment_test_results
-                                window.location.href = '/courses/material/' + courseId +
-                                    '/' + materialId + '/' + type + '/score'
-                            } else {
-                                // Tangani respons HTML jika permintaan bukan dari AJAX
-                                // Lakukan sesuatu dengan HTML yang diterima
+
+                    var courseId = document.getElementById('id').value;
+
+                    var materialId = document.getElementById('material_id').value;
+
+
+                    var type = document.getElementById('type').value;
+
+                    if (questionId) {
+
+                        const existingAnswerIndex = userAnswers.findIndex(ans => ans.questionId === questionId);
+
+                        if (existingAnswerIndex !== -1) {
+                            // Jika sudah ada, update jawabannya
+                            userAnswers[existingAnswerIndex].answer = selectedAnswer ? selectedAnswer.value : '';
+                            userAnswers[existingAnswerIndex].answerDetail = selectedAnswer ? selectedAnswer
+                                .parentElement.textContent.trim() : '';
+                        } else {
+                            // Jika belum ada, tambahkan jawaban baru
+                            const answerData = {
+                                questionId: questionId,
+                                answer: selectedAnswer.value, // Jawaban kosong jika tidak ada yang dipilih
+                                answerDetail: selectedAnswer.parentElement.textContent.trim()
+                            };
+                            userAnswers.push(answerData);
+                        }
+
+
+                        localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+
+                        updateRadioButtons();
+
+                        // Lakukan pengumpulan jawaban tanpa konfirmasi
+                        if (validateAnswers()) {
+
+                            const submissionData = {
+                                answers: userAnswers.map(answer => ({
+                                    questionId: answer.questionId,
+                                    answer: answer.answer,
+                                    answerDetail: answer.answerDetail,
+                                })),
+                                courseId: document.querySelector('input[name="courseId"]').value,
+                                materialId: document.querySelector('input[name="materialId"]').value
                             }
 
-                        })
-                        .catch(error => {
-                            // Use the error parameter instead of response
-                            // Check if the response is HTML (error page) and handle accordingly
-                            if (error.headers && error.headers.get('content-type').includes(
-                                    'text/html')) {
-                                console.error('Server returned HTML:', error.statusText);
-                            } else {
-                                console.error(
-                                    'There was a problem with the fetch operation:',
-                                    error);
-                            }
-                        });
-                };
+                            fetch('/submit-answers', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': document.head.querySelector(
+                                            'meta[name="csrf-token"]').content,
+                                    },
+                                    body: JSON.stringify(submissionData),
+                                })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    // Handle the response from the server if needed
+                                    if (data.message === 'Success') {
+                                        // Tangani respons JSON jika permintaan berasal dari AJAX
+                                        const timerDisplay = document.getElementById('timer-display');
+                                        const timerDuration = timerDisplay.getAttribute('timer-duration');
+                                        const totalSeconds = parseInt(timerDuration) * 60 -
+                                            1; // Remove timer data from sessionStorage
+                                        timerStarted = false;
+                                        startTimer(totalSeconds, true);
+                                        clearSelectedAnswers();
+                                        // Redirect ke halaman assignment_test_results
+                                        window.location.href = '/courses/material/' + courseId +
+                                            '/' + materialId + '/' + type + '/score'
+                                    } else {
+                                        // Tangani respons HTML jika permintaan bukan dari AJAX
+                                        // Lakukan sesuatu dengan HTML yang diterima
+                                    }
+
+                                })
+                                .catch(error => {
+                                    // Use the error parameter instead of response
+                                    // Check if the response is HTML (error page) and handle accordingly
+                                    if (error.headers && error.headers.get('content-type').includes(
+                                            'text/html')) {
+                                        console.error('Server returned HTML:', error.statusText);
+                                    } else {
+                                        console.error(
+                                            'There was a problem with the fetch operation:',
+                                            error);
+                                    }
+                                });
+                        }
+
+                    };
+                }
 
                 // Lakukan fetch API untuk melakukan permintaan POST
                 // ...
