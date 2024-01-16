@@ -96,7 +96,7 @@
                                         <div class="flex justify-center text-center">
                                             <form method="GET" action="/certification/{{ $certif_id }}/exitCertTest">
                                                 @csrf
-                                                <button type="submit"
+                                                <button type="submit" id="exit-certi"
                                                     class="mr-2 items-center rounded-lg bg-red-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
                                                     Ya
                                                 </button>
@@ -225,15 +225,12 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const nextButton = document.getElementById('tombol-selanjutnya');
                 const previousButton = document.getElementById('tombol-sebelumnya');
-                // const exitAsg = document.getElementById('exit-asg');
+                const exitAsg = document.getElementById('exit-certi');
                 const submitButton = document.getElementById('submit-button');
                 // localStorage.removeItem('userAnswers');
                 let userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || [];
-                const timerDisplay = document.getElementById('timer-display');
-                const timerDuration = timerDisplay.getAttribute('timer-duration');
-                const totalSeconds = parseInt(timerDuration) * 60 - 1;
                 const questionContainer = document.querySelector('.question-container');
-                const startTime = Date.now();
+                // const startTime = Date.now();
                 const rawQuestionIds = JSON.parse(document.querySelector('.question-container').getAttribute(
                     'data-question-id'));
                 console.log(rawQuestionIds);
@@ -254,10 +251,11 @@
                     });
                 }
 
-                // sessionStorage.removeItem('timer');
+
 
                 // Untuk keperluan debugging, Anda dapat mencetak array userAnswers ke konsol
                 console.log(userAnswers);
+                let timeIsUp = false;
 
                 function convertTime(seconds) {
                     const minutes = Math.floor(seconds / 60);
@@ -265,43 +263,80 @@
                     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
                 }
 
-                let timeIsUp = false;
+                let timerStarted = false;
+                // localStorage.removeItem('certiTime');
 
-                function startTimer(duration) {
-                    let timerCert;
-                    // localStorage.removeItem('timer');
-                    const storedTime = localStorage.getItem('timerCert');
+                let timerInterval;
 
-                    if (storedTime !== null) {
-                        // Hapus nilai 'timer' dari localStorage
-                        localStorage.removeItem('timerCert');
-                        timerCert = parseInt(storedTime, 10);
+                function startTimer(duration, resetTimer) {
+                    const timerDisplay = document.getElementById('timer-display');
+                    const timerDuration = parseInt(timerDisplay.getAttribute('timer-duration'), 10) * 60;
+                    let elapsedTime, remainingTime;
+
+                    // Hapus 'certiTime' hanya jika belum pernah dihapus sebelumnya
+                    const storedTime = sessionStorage.getItem('certiTime');
+
+                    if (resetTimer && !timerStarted) {
+                        sessionStorage.removeItem('certiTime');
+                        timer = parseInt(storedTime, 10);
                     } else {
-                        timerCert = duration;
+                        timerStarted = true;
+                        timer = duration;
                     }
 
+                    const getStartTime = function() {
+                        const storedStartTime = sessionStorage.getItem('certiTime');
+                        return (storedStartTime !== null) ? parseInt(storedStartTime, 10) : Date.now() / 1000;
+                    };
+
+                    let startTime = getStartTime();
+
+                    const convertTime = function(seconds) {
+                        const minutes = Math.floor(seconds / 60);
+                        const remainingSeconds = Math.floor(seconds % 60); // Round down the seconds
+                        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+                    };
+
                     const updateTimerDisplay = function() {
-                        timerDisplay.textContent = convertTime(timerCert);
-                        if (timerCert > 0) {
-                            timerCert--;
-                            localStorage.setItem('timerCert', timerCert.toString());
+                        timerDisplay.textContent = convertTime(remainingTime);
+
+                        if (remainingTime > 0) {
+                            remainingTime--;
+                            sessionStorage.setItem('certiTime', startTime);
                         } else {
                             clearInterval(timerInterval);
-                            localStorage.removeItem('timerCert');
-                            timeIsUp = true;
-
-                            // Gumpulkan jawaban dan tampilkan alert waktu habis
-                            submitAnswers();
+                            submitAnswersWithoutConfirmation();
                             alert('Waktu telah habis. Jawaban Anda sudah otomatis terkumpul.');
                         }
                     };
 
-                    const timerInterval = setInterval(updateTimerDisplay, 1000);
+                    // Hentikan interval sebelum membuat yang baru
+                    clearInterval(timerInterval);
 
-                    updateTimerDisplay();
+                    elapsedTime = Math.floor(Date.now() / 1000) - startTime;
+                    remainingTime = Math.max(0, timerDuration - elapsedTime);
+
+                    // Atur interval kembali
+                    timerInterval = setInterval(updateTimerDisplay, 1000);
+                    if (timerStarted) {
+                        updateTimerDisplay();
+                    }
+
+                    // if(resetTimer){
+                    //     timerStarted = false;
+                    // }
+                    // else{
+                    //     timerStarted = true;
+                    // }
+
                 }
+                const timerDisplay = document.getElementById('timer-display');
+                const timerDuration = timerDisplay.getAttribute('timer-duration');
+                const totalSeconds = parseInt(timerDuration) * 60 - 1;
+                // Jalankan startTimer saat halaman dimuat
+                startTimer(totalSeconds, false);
+                // Jalankan startTimer saat halaman dimuat
 
-                startTimer(totalSeconds);
 
                 // startTimer(totalSeconds);
 
@@ -385,22 +420,22 @@
                 }
 
 
-                // if (exitAsg) {
-                //     exitAsg.addEventListener('click', function() {
-                //         const isConfirmed = window.confirm(
-                //             'Apakah kamu yakin ingin membatalkan pengerjaan assignment? semua progress jawaban kamu akan hilang jika keluar'
-                //         );
+                if (exitAsg) {
+                    exitAsg.addEventListener('click', function() {
 
-                //         if (isConfirmed) {
-                //             const certifId = document.getElementById('id').value;
-                //             clearSelectedAnswers();
-                //             localStorage.removeItem('timerCert');
+                            sessionStorage.removeItem('certiTime');
+                            const timerDisplay = document.getElementById('timer-display');
+                            const timerDuration = timerDisplay.getAttribute('timer-duration');
+                            const totalSeconds = parseInt(timerDuration) * 60 -
+                                1; // Remove timer data from sessionStorage
+                            timerStarted = false;
+                            startTimer(totalSeconds, true);
+                            const certifId = document.getElementById('id').value;
+                            clearSelectedAnswers();
 
-                //             window.location.href = '/certifications/aboutTest/' + certifId
-                //         }
-                //     });
-                // }
-
+                    });
+                }
+                // startTimer();
 
 
                 function submitAnswers() {
@@ -438,6 +473,7 @@
                         } else {
                             const isConfirmed = window.confirm('Apakah Anda yakin ingin mengumpulkan jawaban?');
                             if (isConfirmed) {
+                                sessionStorage.removeItem('timerCerti');
                                 if (validateAnswers()) {
                                     const certifId = document.getElementById('id').value;
                                     // If validation is successful, send the submission data to the controller
@@ -447,7 +483,7 @@
                                             answer: answer.answer,
                                             answerDetail: answer.answerDetail,
                                         })),
-                                        certifId: document.querySelector('input[name="certifId"]').value,
+                                        certifId: certifId
                                     };
 
                                     console.log(submissionData);
@@ -472,7 +508,12 @@
                                             // Handle the response from the server if needed
                                             if (data.message === 'Success') {
                                                 clearSelectedAnswers();
-                                                localStorage.removeItem('timerCert');
+                                                const timerDisplay = document.getElementById('timer-display');
+                                                const timerDuration = timerDisplay.getAttribute('timer-duration');
+                                                const totalSeconds = parseInt(timerDuration) * 60 -
+                                                    1; // Remove timer data from sessionStorage
+                                                timerStarted = false;
+                                                startTimer(totalSeconds, true);
                                                 window.location.href = '/certification/' + certifId +
                                                     '/score'
                                             } else {}
@@ -542,8 +583,7 @@
                             answer: answer.answer,
                             answerDetail: answer.answerDetail,
                         })),
-                        courseId: document.querySelector('input[name="courseId"]').value,
-                        materialId: document.querySelector('input[name="materialId"]').value
+                        certifId: certifId
                     }
 
                     fetch('/certification/submit-answers', {
@@ -565,7 +605,12 @@
                             // Handle the response from the server if needed
                             if (data.message === 'Success') {
                                 // Tangani respons JSON jika permintaan berasal dari AJAX
-
+                                const timerDisplay = document.getElementById('timer-display');
+                                const timerDuration = timerDisplay.getAttribute('timer-duration');
+                                const totalSeconds = parseInt(timerDuration) * 60 -
+                                    1; // Remove timer data from sessionStorage
+                                timerStarted = false;
+                                startTimer(totalSeconds, true);
                                 clearSelectedAnswers();
                                 // Redirect ke halaman assignment_test_results
                                 window.location.href = '/certification/' + certifId +
