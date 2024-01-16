@@ -91,16 +91,16 @@
                                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                                                 Apakah kamu yakin ingin membatalkan pengerjaan assignment?
                                             </h3>
-                                            <strong>
+                                            <h3 class="mb-5 text-lg font-bold text-gray-500 dark:text-gray-400">
                                                 Attempt pengerjaan assignment ini akan hangus
-                                            </strong>
+                                            </h3>
                                             <div class="flex justify-center text-center">
                                                 <form method="GET"
                                                     action="/courses/{{ $id }}/{{ $material_id }}/exitTest">
                                                     @csrf
                                                     <button type="submit" id="exit-asg"
-                                                        class="mr-2 items-center rounded-lg bg-red-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
-                                                        Ya
+                                                        class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                                        Ya, batalkan
                                                     </button>
                                                 </form>
                                                 <button type="button"
@@ -110,12 +110,13 @@
                                                 </button>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         @elseif ($type == 'finalTest')
                             <a id="exit-final" data-modal-target="popup-exit-final" data-modal-toggle="popup-exit-final"
-                                class="w-full my-2 mr-2 justify-center text-center items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow h-fit md:w-9/12">
+                                class="w-full my-2 mr-2 justify-center  items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow h-fit md:w-9/12">
                                 Keluar dari Final Test
                             </a>
                             <div id="popup-exit-final" tabindex="-1"
@@ -151,13 +152,13 @@
                                                     action="/courses/{{ $id }}/{{ $material_id }}/exitTest">
                                                     @csrf
                                                     <button type="submit" id="exit-asg"
-                                                        class="mr-2 items-center rounded-lg bg-red-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
-                                                        Ya
+                                                        class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                                        Ya, batalkan
                                                     </button>
                                                 </form>
                                                 <button type="button"
                                                     class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
-                                                    data-modal-hide="popup-exit-final">
+                                                    data-modal-hide="popup-exit-asg">
                                                     Tidak
                                                 </button>
                                             </div>
