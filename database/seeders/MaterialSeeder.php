@@ -125,17 +125,17 @@ class MaterialSeeder extends Seeder
             'title' => 'Pengenalan Data Structure',
             'description' => 'Materi ini akan menjelaskan secara singkat mengenai Data Structure.',
             'material_duration' => 20,
-            'pdf_link' => 'Sesi I _ Pengenalan Algoritma dan Pemrograman.pdf',
+            'pdf_link' => 'Sesi I_Pengenalan Data Structure.pdf',
         ]);
 
 
         Material::create([
             'course_id' => 2,
             'master_type_id' => 1,
-            'title' => 'Array dan Linked List',
+            'title' => 'Linked List',
             'description' => 'Materi ini akan memberikan penjelasan lebih mengenai Array, mengenalkan konsep Linked List, serta menjelaskan perbedaan antara keduanya.',
             'material_duration' => 15,
-            'pdf_link' => 'Sesi II_ Variabel, Tipe Data, dan Operator.pdf',
+            'pdf_link' => 'Sesi II_Linked List.pdf',
         ]);
 
 
@@ -145,7 +145,7 @@ class MaterialSeeder extends Seeder
             'title' => 'Stack dan Queue',
             'description' => ' Materi ini akan memberikan penjelasan lebih mengenai konsep Stack, Queue, serta implementasinya dalam program.',
             'material_duration' => 30,
-            'pdf_link' => 'Sesi III_ Control Flow.pdf',
+            'pdf_link' => 'Sesi III_Stack and Queue.pdf',
         ]);
 
 
@@ -157,7 +157,7 @@ class MaterialSeeder extends Seeder
             'detailed_description' => 'Assignment ini akan mengecek pengetahuan anda untuk materi-materi Sesi 1, 2, dan 3.',
             'material_duration' => 5,
             'minimum_score' => 70,
-            'total_questions' => 10,
+            'total_questions' => 4,
         ]);
 
         Material::create([
@@ -166,7 +166,7 @@ class MaterialSeeder extends Seeder
             'title' => 'Trees',
             'description' => ' Materi ini akan memberikan penjelasan mengenai dasar Trees (seperti node, root, leaf, parent, child), serta Tipe-tipenya seperti BST, AVL, RB Tree.',
             'material_duration' => 45,
-            'pdf_link' => 'Sesi III_ Control Flow.pdf',
+            'pdf_link' => 'Sesi V_Trees.pdf',
         ]);
 
         Material::create([
@@ -175,7 +175,7 @@ class MaterialSeeder extends Seeder
             'title' => 'Graphs',
             'description' => 'Materi ini akan mengenalkan konsep dasar Graph (seperti vertex, edge, direction, dan weight), Representasi Graph, dan Algoritma traversal Graph.',
             'material_duration' => 40,
-            'pdf_link' => 'Sesi VI_ Pengenalan Function dan Recursion.pdf',
+            'pdf_link' => 'Sesi VI_Graphs.pdf',
         ]);
 
 
@@ -185,17 +185,17 @@ class MaterialSeeder extends Seeder
             'title' => 'Hashes',
             'description' => 'Materi ini akan memberikan penjelasan dan konsep dasar Hashing, hash function, dan implementasi Hash Table.',
             'material_duration' => 30,
-            'pdf_link' => 'Sesi VIII_ Implementasi Algoritma.pdf',
+            'pdf_link' => 'Sesi VII_Hashes.pdf',
         ]);
 
 
         Material::create([
             'course_id' => 2,
             'master_type_id' => 3,
-            'title' => 'Data Structures in Depth',
+            'title' => 'Data Structures Crash Course',
             'description' => 'Video ini akan memberikan informasi tambahan mengenai Data Structure.',
             'material_duration' => 20,
-            'video_link' => 'https://www.youtube.com/watch?v=wnbzTjWr5gY&ab_channel=Simplilearn',
+            'video_link' => 'https://www.youtube.com/watch?v=DuDz6B4cqVc&ab_channel=CrashCourse',
         ]);
 
 
@@ -207,7 +207,7 @@ class MaterialSeeder extends Seeder
             'detailed_description' => 'Assignment ini akan mengecek pengetahuan anda untuk materi-materi Sesi 5-7.',
             'material_duration' => 5,
             'minimum_score' => 70,
-            'total_questions' => 5,
+            'total_questions' => 4,
         ]);
 
 

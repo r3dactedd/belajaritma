@@ -132,113 +132,86 @@ class AssignmentQuestionsSeeder extends Seeder
 
         AssignmentQuestions::create([
             'material_id' => 15,
-            'questions' => 'Apa yang dimaksud dengan Struktur Data?',
-            'jawaban_a' => 'Urutan data dalam memori',
-            'jawaban_b' => 'Algoritma sorting',
-            'jawaban_c' => 'Jaringan komputer',
-            'jawaban_d' => 'Bahasa pemrograman',
-            'jawaban_benar' => 'A',
-        ]);
-        AssignmentQuestions::create([
-            'material_id' => 15,
-            'questions' => 'Apa perbedaan utama antara Array dan Linked List?',
-            'jawaban_a' => 'Array memiliki ukuran tetap, sedangkan Linked List dapat dinamis',
-            'jawaban_b' => 'Linked List memiliki indeks, sedangkan Array tidak',
-            'jawaban_c' => 'Array bersifat dinamis, sedangkan Linked List bersifat statis',
-            'jawaban_d' => 'Tidak ada perbedaan antara keduanya',
-            'jawaban_benar' => 'A',
-        ]);
-        AssignmentQuestions::create([
-            'material_id' => 15,
-            'questions' => 'Keuntungan menggunakan Linked List dibandingkan dengan Array adalah:',
-            'jawaban_a' => 'Akses elemen dengan indeks',
-            'jawaban_b' => 'Penggunaan memori lebih efisien',
-            'jawaban_c' => 'Implementasi yang lebih sederhana',
-            'jawaban_d' => 'Tidak ada keuntungan khusus',
+            'questions' => 'Bagaimana elemen diakses dalam struktur data Stack?',
+            'jawaban_a' => 'FIFO',
+            'jawaban_b' => 'LIFO',
+            'jawaban_c' => 'Unordered',
+            'jawaban_d' => 'Random Access',
             'jawaban_benar' => 'B',
         ]);
         AssignmentQuestions::create([
             'material_id' => 15,
-            'questions' => 'Apa fungsi utama dari Stack?',
-            'jawaban_a' => 'Penyimpanan data dengan indeks',
-            'jawaban_b' => 'Penyimpanan data dengan prinsip LIFO (Last In, First Out)',
-            'jawaban_c' => 'Penyimpanan data dengan prinsip FIFO (First In, First Out)',
-            'jawaban_d' => 'Penyimpanan data dalam urutan acak',
-            'jawaban_benar' => 'B',
+            'questions' => 'Bagaimana elemen diakses dalam struktur data Queue?',
+            'jawaban_a' => 'FIFO',
+            'jawaban_b' => 'LIFO',
+            'jawaban_c' => 'Unordered',
+            'jawaban_d' => 'Berdasarkan index',
+            'jawaban_benar' => 'A',
         ]);
         AssignmentQuestions::create([
             'material_id' => 15,
-            'questions' => 'Queue mirip dengan Stack, tetapi menggunakan prinsip:',
-            'jawaban_a' => 'LIFO (Last In, First Out)',
-            'jawaban_b' => 'Random Access',
-            'jawaban_c' => 'FIFO (First In, First Out)',
-            'jawaban_d' => 'Statis',
-            'jawaban_benar' => 'C',
-        ]);
-        AssignmentQuestions::create([
-            'material_id' => 15,
-            'questions' => 'Operasi utama pada Array adalah:',
-            'jawaban_a' => 'Read dan Write',
-            'jawaban_b' => 'Enqueue dan Dequeue',
-            'jawaban_c' => 'Insert dan Delete',
-            'jawaban_d' => 'Push dan Pop',
-            'jawaban_benar' => 'C',
-        ]);
-        AssignmentQuestions::create([
-            'material_id' => 15,
-            'questions' => 'Linked List dapat digunakan untuk:',
-            'jawaban_a' => 'Implementasi antrian (Queue)',
-            'jawaban_b' => 'Representasi struktur data berhirarki',
-            'jawaban_c' => 'Implementasi tumpukan (Stack)',
-            'jawaban_d' => 'Semua jawaban benar',
+            'questions' => 'Apa kekurangan dari singly linked list dibandingkan dengan doubly linked list?',
+            'jawaban_a' => 'Membutuhkan lebih banyak ruang penyimpanan.',
+            'jawaban_b' => 'Lebih sulit dalam pengelolaan memori',
+            'jawaban_c' => 'Lebih lambat dalam operasi penyisipan tengah',
+            'jawaban_d' => 'Kurang efisien dalam operasi traversal mundur',
             'jawaban_benar' => 'D',
         ]);
-
         AssignmentQuestions::create([
-            'material_id' => 20,
-            'questions' => 'Apa tujuan utama dari penggunaan fungsi hash dalam struktur data?',
-            'jawaban_a' => 'Mengurutkan data',
-            'jawaban_b' => 'Menyimpan data secara terstruktur',
-            'jawaban_c' => 'Mengubah data menjadi nilai tetap untuk menghindari tabrakan data',
-            'jawaban_d' => 'Mempercepat pencarian data',
-            'jawaban_benar' => 'C',
-        ]);
-        AssignmentQuestions::create([
-            'material_id' => 20,
-            'questions' => 'Dalam struktur Tree, simpul yang tidak memiliki anak disebut:',
-            'jawaban_a' => 'Leaf',
-            'jawaban_b' => 'Root',
-            'jawaban_c' => 'Child',
-            'jawaban_d' => 'Branch',
-            'jawaban_benar' => 'A',
-        ]);
-        AssignmentQuestions::create([
-            'material_id' => 20,
-            'questions' => 'Jenis struktur data apa yang paling tepat digunakan untuk merepresentasikan hubungan yang kompleks antara entitas?',
-            'jawaban_a' => 'Hash Table',
-            'jawaban_b' => 'Tree',
-            'jawaban_c' => 'Graph',
-            'jawaban_d' => 'Stack',
-            'jawaban_benar' => 'C',
-        ]);
-        AssignmentQuestions::create([
-            'material_id' => 20,
-            'questions' => 'Apa perbedaan utama antara Binary Tree dan Binary Search Tree?',
-            'jawaban_a' => 'Binary Tree hanya memiliki dua tingkatan, sedangkan Binary Search Tree  memiliki lebih dari dua tingkatan.',
-            'jawaban_b' => 'Binary Tree tidak memerlukan urutan tertentu, sedangkan Binary Search Tree  mengikuti urutan tertentu.',
-            'jawaban_c' => 'Binary Search Tree  memiliki akar, sedangkan Binary Tree tidak.',
-            'jawaban_d' => 'Tidak ada perbedaan antara keduanya.',
+            'material_id' => 15,
+            'questions' => 'Apa persamaan antara Stack dan Queue?',
+            'jawaban_a' => 'Keduanya hanya dapat menampung elemen numerik',
+            'jawaban_b' => 'Keduanya menggunakan prinsip FIFO',
+            'jawaban_c' => 'Keduanya dapat diimplementasikan menggunakan linked list',
+            'jawaban_d' => 'Keduanya cocok untuk operasi pencarian acak',
             'jawaban_benar' => 'B',
         ]);
         AssignmentQuestions::create([
-            'material_id' => 20,
-            'questions' => 'Jenis graf mana yang setiap Edge memiliki arah atau panah yang menunjukkan satu arah saja?',
-            'jawaban_a' => 'Directed Graph',
-            'jawaban_b' => 'Undirected Graph',
-            'jawaban_c' => 'Connected Graph',
-            'jawaban_d' => 'Cyclic Graph',
-            'jawaban_benar' => 'A',
+            'material_id' => 15,
+            'questions' => 'Bagian yang diberi outline merah disebut:',
+            'jawaban_a' => 'Pointer',
+            'jawaban_b' => 'Node',
+            'jawaban_c' => 'Value',
+            'jawaban_d' => 'Stack',
+            'question_img'=> 'assignment1Course2Question5.png',
+            'jawaban_benar' => 'B',
         ]);
 
+        AssignmentQuestions::create([
+            'material_id' => 20,
+            'questions' => 'Pernyataan yang benar untuk DFS (Depth-First Search) dan BFS (Breadth-First Search)?',
+            'jawaban_a' => 'DFS menggunakan stack, sedangkan BFS menggunakan queue',
+            'jawaban_b' => 'DFS menggunakan prinsip FIFO, sedangkan BFS menggunakan prinsip LIFO.',
+            'jawaban_c' => 'DFS menggunakan stack, sedangkan BFS melibatkan antrian',
+            'jawaban_d' => 'BFS menggunakan stack, sedangkan DFS menggunakan queue',
+            'jawaban_benar' => 'A',
+        ]);
+        AssignmentQuestions::create([
+            'material_id' => 20,
+            'questions' => 'Fungsi utama dari hash-function pada tabel hash adalah :',
+            'jawaban_a' => 'Melakukan sorting elemen pada tabel',
+            'jawaban_b' => 'Menghapus elemen duplikat',
+            'jawaban_c' => 'Melakukan operasi pada data',
+            'jawaban_d' => 'Mapping data pada array',
+            'jawaban_benar' => 'D',
+        ]);
+        AssignmentQuestions::create([
+            'material_id' => 20,
+            'questions' => 'Cara umum untuk menyelesaikan collision pada hash table adalah :',
+            'jawaban_a' => 'Menambah ukuran hash table',
+            'jawaban_b' => 'Menghapus elemen yang berkonflik',
+            'jawaban_c' => 'Membuat linked list antar data',
+            'jawaban_d' => 'Collision dapat dihiraukan terlebih dahulu',
+            'jawaban_benar' => 'C',
+        ]);
+        AssignmentQuestions::create([
+            'material_id' => 20,
+            'questions' => 'Algoritma apakah yang sering digunakan untuk mencari jalan terpendek pada weighted graph?',
+            'jawaban_a' => 'Algoritma Dijkstra',
+            'jawaban_b' => 'Algoritma Prim',
+            'jawaban_c' => 'Algoritma Kruskal',
+            'jawaban_d' => 'Algoritma Bresenham',
+            'jawaban_benar' => 'A',
+        ]);
     }
 }
