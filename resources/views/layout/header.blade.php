@@ -70,27 +70,38 @@
                             <div id='profile-link' class="relative flex w-full cursor-pointer items-center justify-end"
                                 onclick="dropdownHandler(this)">
                                 <ul class="absolute left-0 top-0 mt-16 hidden w-40 rounded border-r bg-white shadow">
-                                    <li
-                                        class="mt-2 flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
-                                        <div class="flex items-center">
-                                            <a href="/profile/{{ auth()->user()->username }}"class="ml-4 font-semibold">Profil
-                                                Saya</a>
-                                        </div>
+                                    <li>
+                                        <a href="/profile/{{ auth()->user()->username }}"
+                                            class="mt-2 flex cursor-pointer py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+                                            <div class="flex items-center">
+                                                <p class="ml-4 font-semibold">Profil Saya</p>
+                                            </div>
+                                        </a>
                                     </li>
-                                    <li
-                                        class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+                                    <li>
+                                        <a href="/editProfile"
+                                            class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
 
-                                        <a href="/editProfile" class="ml-4 font-semibold">Atur
-                                            Profil</a>
+                                            <div class="flex items-center">
+                                                <p class="ml-4 font-semibold">Atur Profil</p>
+                                            </div>
+                                        </a>
                                     </li>
-                                    <li
-                                        class="my-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-red-600 focus:text-indigo-600 focus:outline-none">
+                                    <form method="POST" action="/logout">
+                                        <li>
 
-                                        <form method="POST" action="/logout">
-                                            @csrf
-                                            <button type="submit" class="ml-4 font-semibold">Logout</button>
-                                        </form>
-                                    </li>
+                                            <button type="submit"
+                                                class="w-full my-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-red-600 focus:text-indigo-600 focus:outline-none">
+
+                                                @csrf
+                                                <div class="flex items-center">
+                                                    <p class="ml-4 font-semibold">Logout</p>
+                                                </div>
+                                            </button>
+
+                                        </li>
+                                    </form>
+                                    </form>
                                 </ul>
                                 <img class="h-10 w-10 rounded-full object-cover"
                                     src={{ asset('uploads/profile_images/' . Auth::user()->profile_img) }} alt="" />
@@ -165,17 +176,11 @@
             @endif
         @endif
         {{-- IF USER SUDAH DAFTAR/LOGIN --}}
+        <li
+            class="ml-2 mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
 
+        </li>
         @if (Auth::check())
-            <li
-                class="flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
-                <span class="my-1 ml-2 font-bold">
-                    <form method="POST" action="/logout">
-                        @csrf
-                        <button type="submit" class="text-red-500 font-bold">Logout</button>
-                    </form>
-                </span>
-            </li>
             @auth
                 <a href="/profile/{{ auth()->user()->username }}" class="my-2 flex items-center">
 
@@ -201,17 +206,29 @@
                 <div class="flex w-full items-center">
                     <li
                         class="mx-auto flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
-                        <a href="/profile/{{ auth()->user()->username }}"class="ml-4 font-semibold">Profil Saya</a>
+                        <a href="/profile/{{ auth()->user()->username }}"class="ml-4 font-semibold">Profil
+                            Saya</a>
                     </li>
+
                 </div>
                 <div class="flex w-full items-center">
                     <li
-                        class="mx-auto flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
-                        <a href="/editProfile" class="ml-4 font-semibold">Atur Profil</a>
+                        class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+
+                        <a href="/editProfile" class="ml-4 font-semibold">Atur
+                            Profil</a>
                     </li>
 
                 </div>
-
+                <div class="ml-0 flex w-full items-end lg:ml-12 lg:mt-0">
+                    <li
+                        class="mx-auto flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
+                        <form method="POST" action="/logout">
+                            @csrf
+                            <button type="submit" class="my-1 px-2 font-bold">Logout</button>
+                        </form>
+                    </li>
+                </div>
             </div>
         @else
             {{-- IF USER SUDAH DAFTAR/LOGIN --}}

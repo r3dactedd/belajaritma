@@ -70,7 +70,7 @@
                                 </svg>
                             </button>
                             <img src="{{ $transactions->transaction_proof }}" alt="Transaction Proof"
-                                class="max-w-full max-h-full" />
+                                class="max-w-full h-screen" />
                         </div>
                 </tr>
             @endforeach
