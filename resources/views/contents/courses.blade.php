@@ -136,8 +136,7 @@
                                     <p class="mb-6 h-16 w-11/12 px-4 text-base font-normal tracking-normal text-gray-600">
                                         {{ $course->short_desc }}
                                     </p>
-                                    <div
-                                        class="grid grid-cols-2 items-start px-4 pb-6 md:flex md:grid-cols-4 md:flex-col lg:flex-row lg:items-center">
+                                    <div class="grid grid-cols-2 items-start px-4 py-6 md:flex md:grid-cols-4 md:flex-col lg:flex-row lg:items-center">
                                         <div class="flex items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 384 512">
                                                 <path
