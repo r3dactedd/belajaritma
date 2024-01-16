@@ -259,29 +259,28 @@
                 </div>
             </div>
             </form>
-            <div class="flex justify-center">
-                <h1 class="mx-8 my-8 text-center text-xl font-semibold">
+            <div class="grid grid-cols-2 md:w-1/2 md:mx-auto">
+                <h1 class="mx-2 my-8 text-center text-sm md:text-xl font-semibold">
                     <a href="/manager/course/materiallist/{{ $data->id }}"
                         class="rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">Akses Materi
-                        Kursus
                     </a>
                 </h1>
                 @if ($data->ready_for_publish == 1)
-                    <h1 class="mx-8 my-8 text-center text-xl font-semibold">
+                    <h1 class="mx-2 my-8 text-center text-sm md:text-xl font-semibold">
                         <a data-modal-target="popup-unpublish" data-modal-toggle="popup-unpublish"
                             class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
                             Unpublish Kursus
                         </a>
                     </h1>
                 @elseif ($data->ready_for_publish == 0 && $data->courseToMaterial->where('master_type_id', 4)->count() > 0)
-                    <h1 class="mx-8 my-8 text-center text-xl font-semibold">
+                    <h1 class="mx-2 my-8 text-center text-sm md:text-xl font-semibold">
                         <a data-modal-target="popup-publish" data-modal-toggle="popup-publish"
                             class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700">
                             Publish Kursus
                         </a>
                     </h1>
                 @elseif ($data->courseToMaterial->isEmpty() || $data->courseToMaterial->where('master_type_id', 4)->count() == 0)
-                    <h1 class="mx-8 my-8 text-center text-xl font-semibold">
+                    <h1 class="mx-2 my-8 text-center text-sm md:text-xl font-semibold">
                         <a data-modal-target="popup-no-final-test" data-modal-toggle="popup-no-final-test"
                             class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700">
                             Publish Kursus
