@@ -74,9 +74,13 @@
                         <div class="mb-6">
                             <label class="my-4 font-semibold" for="">Upload Bukti Pembayaran</label>
 
-                            <input name="transaction_proof" id="transaction_proof"
-                                class="block w-full my-4 text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-                                type="file" accept="image/*">
+                            <img id="img-preview-transaction"
+                                class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                style="max-width: 150px; max-height: 150px;" onclick="showImagePopupTransaction()">
+                            <input name="transaction_proof" id="inputImageTransaction"
+                                class="my-4 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm focus:outline-none"
+                                type="file" accept="image/*" onchange=previewImageTransaction()>
+
                             <input type="hidden" id="certifId" name="certif_id" value="{{ $data->id }}">
                         </div>
 
@@ -91,6 +95,21 @@
                 </div>
             </div>
         </div>
+        <div id="image-popup-transaction"
+            class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
+            <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                <button type="button" onclick="hideImagePopupTransaction()"
+                    class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+                <img id="popup-image-transaction" class="max-w-full max-h-full" />
+            </div>
+        </div>
+
     </body>
     <script>
         function validateFile() {
@@ -100,6 +119,37 @@
                 return;
             } else {
                 alert('Success: Bukti transaksi berhasil dikirim!');
+            }
+        }
+
+        //Image Script for Transaction
+        function showImagePopupTransaction() {
+            var popup = document.getElementById('image-popup-transaction');
+            var image = popup.querySelector('img');
+
+            var inputImage = document.getElementById('inputImageTransaction');
+            var imageUrl = inputImage.files.length > 0 ? URL.createObjectURL(inputImage.files[0]) : '';
+
+            image.src = imageUrl;
+
+            popup.style.display = 'block';
+        }
+
+        function hideImagePopupTransaction() {
+            var popup = document.getElementById('image-popup-transaction');
+
+            popup.style.display = 'none';
+        }
+
+
+        function previewImageTransaction() {
+            var inputImage = document.getElementById('inputImageTransaction');
+            var imgPreview = document.getElementById('img-preview-transaction');
+
+            if (inputImage.files.length > 0) {
+                var imageUrl = URL.createObjectURL(inputImage.files[0]);
+                imgPreview.src = imageUrl;
+                imgPreview.style.display = 'block';
             }
         }
     </script>
