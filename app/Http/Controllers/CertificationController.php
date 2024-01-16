@@ -95,11 +95,22 @@ class CertificationController extends Controller
         $firstIndexCERT = CertifQuestions::where('certification_id', $certif_id)->inRandomOrder()->first();
         return view('contents.certif_test_detail', ['data' => $data, 'firstIndexCERT'=>$firstIndexCERT,'getCertCompleted'=>$getCertCompleted]);
     }
-    public function exitCertTest($certif_id,){
+    public function exitCertTest($certif_id){
         RegistrationCertification::where('certif_id', $certif_id)->update([
             'total_score' => 0,
             'attempts' => \DB::raw('attempts + 1'),
         ]);
+        $searchResult = UserAnswerCertificationTest::where([
+            'user_id' => auth()->id(),
+            'certif_id' => $certif_id,
+            'type' => 'Certification Test',
+        ])->first();
+
+        // Check if a result is found
+        if ($searchResult) {
+            UserAnswerCertificationTest::where('certif_id', $certif_id)
+                ->update(['question_shown' => false]);
+        }
         return Redirect::to("/certifications/{$certif_id}");
     }
     public function certifTestPage ($certif_id, $question_id, $isReshuffle){

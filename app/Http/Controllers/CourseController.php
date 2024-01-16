@@ -101,8 +101,34 @@ class CourseController extends Controller
                 'attempts' => \DB::raw('attempts + 1'),
             ]);
         }
+        if($material->materialContentToMasterType->master_type_name == "Assignment"){
+            $searchResult = UserAnswerAssignment::where([
+                'user_id' => auth()->id(),
+                'material_id' => $material_id,
+                'type' => 'Assignment',
+            ])->first();
 
-        return Redirect::to("/courses/{$id}");
+            // Check if a result is found
+            if ($searchResult) {
+                UserAnswerAssignment::where('material_id', $material_id)
+                    ->update(['question_shown' => false]);
+            }
+        }
+        if ($material->materialContentToMasterType->master_type_name == "Final Test"){
+            $searchResult = UserAnswerFinalTest::where([
+                'user_id' => auth()->id(),
+                'material_id' => $material_id,
+                'type' => 'Final Test',
+            ])->first();
+
+            // Check if a result is found
+            if ($searchResult) {
+                UserAnswerFinalTest::where('material_id', $material_id)
+                    ->update(['question_shown' => false]);
+            }
+        }
+
+        return redirect()->action([SidebarController::class, 'showMaterial'], ['title' => $material->title, 'id' => $id, 'material_id' => $material_id]);
     }
     public function courseTestPage($title, $id, $material_id, $question_id, $type, $isReshuffle)
     {
@@ -549,7 +575,7 @@ class CourseController extends Controller
                     }
                     $counter++;
                     if ($counter >= $totalQuestions) {
-                        break;  // Exit the loop if the counter reaches 25
+                        break;
                     }
                 }
                 $userScore = ceil(($correctAnswers / $totalQuestions) * 100);

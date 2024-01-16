@@ -330,8 +330,8 @@
                                 </div>
                                 <div class="flex justify-end pt-2">
                                     <button type="submit"
-                                        class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
-                                        Pertanyaan
+                                        class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">
+                                        Simpan Pertanyaan
                                     </button>
                                 </div>
                             </form>
@@ -375,7 +375,7 @@
                                     </button>
                                 </div>
                                 <div class="mx-auto rounded-xl bg-white px-2 py-2">
-                                    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Tambah Pertanyaan Baru
+                                    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit Pertanyaan
                                     </h2>
                                     <form method="POST"
                                         action="/manager/certification/edit/test/{{ $certif_test->id }}/edit/question"
@@ -464,8 +464,8 @@
                                         </div>
                                         <div class="flex justify-end pt-2">
                                             <button type="submit"
-                                                class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">Buat
-                                                Pertanyaan
+                                                class="mt-2 rounded-lg bg-indigo-600 p-3 px-4 text-white hover:bg-indigo-400">
+                                                Simpan Pertanyaan
                                             </button>
                                         </div>
                                     </form>
