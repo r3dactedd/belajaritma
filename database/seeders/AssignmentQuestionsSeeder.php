@@ -129,5 +129,89 @@ class AssignmentQuestionsSeeder extends Seeder
             'jawaban_d' => 'Bubble sort',
             'jawaban_benar' => 'A',
         ]);
+
+        AssignmentQuestions::create([
+            'material_id' => 15,
+            'questions' => 'Bagaimana elemen diakses dalam struktur data Stack?',
+            'jawaban_a' => 'FIFO',
+            'jawaban_b' => 'LIFO',
+            'jawaban_c' => 'Unordered',
+            'jawaban_d' => 'Random Access',
+            'jawaban_benar' => 'B',
+        ]);
+        AssignmentQuestions::create([
+            'material_id' => 15,
+            'questions' => 'Bagaimana elemen diakses dalam struktur data Queue?',
+            'jawaban_a' => 'FIFO',
+            'jawaban_b' => 'LIFO',
+            'jawaban_c' => 'Unordered',
+            'jawaban_d' => 'Berdasarkan index',
+            'jawaban_benar' => 'A',
+        ]);
+        AssignmentQuestions::create([
+            'material_id' => 15,
+            'questions' => 'Apa kekurangan dari singly linked list dibandingkan dengan doubly linked list?',
+            'jawaban_a' => 'Membutuhkan lebih banyak ruang penyimpanan.',
+            'jawaban_b' => 'Lebih sulit dalam pengelolaan memori',
+            'jawaban_c' => 'Lebih lambat dalam operasi penyisipan tengah',
+            'jawaban_d' => 'Kurang efisien dalam operasi traversal mundur',
+            'jawaban_benar' => 'D',
+        ]);
+        AssignmentQuestions::create([
+            'material_id' => 15,
+            'questions' => 'Apa persamaan antara Stack dan Queue?',
+            'jawaban_a' => 'Keduanya hanya dapat menampung elemen numerik',
+            'jawaban_b' => 'Keduanya menggunakan prinsip FIFO',
+            'jawaban_c' => 'Keduanya dapat diimplementasikan menggunakan linked list',
+            'jawaban_d' => 'Keduanya cocok untuk operasi pencarian acak',
+            'jawaban_benar' => 'B',
+        ]);
+        AssignmentQuestions::create([
+            'material_id' => 15,
+            'questions' => 'Bagian yang diberi outline merah disebut:',
+            'jawaban_a' => 'Pointer',
+            'jawaban_b' => 'Node',
+            'jawaban_c' => 'Value',
+            'jawaban_d' => 'Stack',
+            'question_img'=> 'assignment1Course2Question5.png',
+            'jawaban_benar' => 'B',
+        ]);
+
+        AssignmentQuestions::create([
+            'material_id' => 20,
+            'questions' => 'Pernyataan yang benar untuk DFS (Depth-First Search) dan BFS (Breadth-First Search)?',
+            'jawaban_a' => 'DFS menggunakan stack, sedangkan BFS menggunakan queue',
+            'jawaban_b' => 'DFS menggunakan prinsip FIFO, sedangkan BFS menggunakan prinsip LIFO.',
+            'jawaban_c' => 'DFS menggunakan stack, sedangkan BFS melibatkan antrian',
+            'jawaban_d' => 'BFS menggunakan stack, sedangkan DFS menggunakan queue',
+            'jawaban_benar' => 'A',
+        ]);
+        AssignmentQuestions::create([
+            'material_id' => 20,
+            'questions' => 'Fungsi utama dari hash-function pada tabel hash adalah :',
+            'jawaban_a' => 'Melakukan sorting elemen pada tabel',
+            'jawaban_b' => 'Menghapus elemen duplikat',
+            'jawaban_c' => 'Melakukan operasi pada data',
+            'jawaban_d' => 'Mapping data pada array',
+            'jawaban_benar' => 'D',
+        ]);
+        AssignmentQuestions::create([
+            'material_id' => 20,
+            'questions' => 'Cara umum untuk menyelesaikan collision pada hash table adalah :',
+            'jawaban_a' => 'Menambah ukuran hash table',
+            'jawaban_b' => 'Menghapus elemen yang berkonflik',
+            'jawaban_c' => 'Membuat linked list antar data',
+            'jawaban_d' => 'Collision dapat dihiraukan terlebih dahulu',
+            'jawaban_benar' => 'C',
+        ]);
+        AssignmentQuestions::create([
+            'material_id' => 20,
+            'questions' => 'Algoritma apakah yang sering digunakan untuk mencari jalan terpendek pada weighted graph?',
+            'jawaban_a' => 'Algoritma Dijkstra',
+            'jawaban_b' => 'Algoritma Prim',
+            'jawaban_c' => 'Algoritma Kruskal',
+            'jawaban_d' => 'Algoritma Bresenham',
+            'jawaban_benar' => 'A',
+        ]);
     }
 }
