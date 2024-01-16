@@ -62,7 +62,7 @@
 
 
                         <a id="exit-final" data-modal-target="popup-exit-cert" data-modal-toggle="popup-exit-cert"
-                            class="w-full my-2 mr-2 justify-center text-center items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow h-fit md:w-9/12">
+                            class="w-full my-2 mr-2 justify-center items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow h-fit md:w-9/12">
                             Keluar dari Tes Sertifikasi
                         </a>
                         <div id="popup-exit-cert" tabindex="-1"
