@@ -54,7 +54,7 @@
                 <div>
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
-                        <a onclick="history.back()" class="flex items-center" href="#">
+                        <a href="/manager/course/materiallist/{{ $material->materialToCourse->id }}" class="flex items-center" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
@@ -149,7 +149,7 @@
                             <div class="flex justify-end pt-2">
                                 <button type="submit"
                                     class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                                    <div class="mx-2"> Finalize Material Data</div>
+                                    <div class="mx-2"> Simpan Material Data</div>
                                 </button>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
                                     <div class="my-4"></div>
                                     <button type="submit"
                                         class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                                        <div class="mx-2"> Finalize PDF</div>
+                                        <div class="mx-2"> Simpan PDF</div>
                                     </button>
                                     @error('pdf_link')
                                         <div class="invalid-feedback my-1 text-sm text-red-500">
@@ -207,7 +207,7 @@
                                 <div class="flex justify-end pt-2">
                                     <button type="submit"
                                         class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                                        <div class="mx-2"> Finalize Video</div>
+                                        <div class="mx-2"> Simpan Video</div>
                                     </button>
                                 </div>
                             @elseif ($material->materialContentToMasterType->master_type_name == 'Assignment')
@@ -256,7 +256,7 @@
                                         <div class="flex justify-end pt-2">
                                             <button type="submit"
                                                 class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                                                <div class="mx-2"> Finalize Assignment</div>
+                                                <div class="mx-2"> Simpan Assignment</div>
                                             </button>
                                         </div>
                                         <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
@@ -404,7 +404,7 @@
                                         <div class="flex justify-end pt-2">
                                             <button type="submit"
                                                 class="flex items-center rounded-xl bg-indigo-500 px-2 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none">
-                                                <div class="mx-2"> Finalize Final Test</div>
+                                                <div class="mx-2"> Simpan Final Test</div>
                                             </button>
                                         </div>
                                         <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">

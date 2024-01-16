@@ -22,12 +22,12 @@
                 <div>
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
-                        <a onclick="history.back()" class="flex items-center" href="#">
+                        <a href="/courses/material/{{ $sidebars->title }}/{{ $sidebars->course_id }}/{{ $sidebars->order }}" class="flex items-center" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                             </svg>
-                            <span class="mb-1 ml-2">Sesi {{ $sidebars->order }} : {{ $sidebars->title }}</span>
+                            <span class="mb-1 ml-2"> {{ $material->title }}</span>
                         </a>
                 </div>
             </div>
@@ -92,11 +92,10 @@
                                         id="remainingTime">
                                         {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya
                                     </h2>
-                                    <strong class="flex items-center justify-center">Batas untuk mengambil ulang Assignment
-                                        ini adalah 3 Kali. Anda memiliki {{ 3 - $materialCompleted->attempts }} kesempatan
-                                        lagi.</strong>
-                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 30
-                                        menit sebelum dapat mengerjakan assignment kembali.</strong>
+                                    <strong class="flex items-center justify-center">Batas untuk mengambil ulang Final Test
+                                        ini adalah 1 Kali.</strong>
+                                    <strong class="flex items-center justify-center">Apabila gagal, anda harus menunggu 1
+                                        hari sebelum dapat mengerjakan Final Test kembali.</strong>
                                     <a href="#" onclick="refreshPage()" id="refreshButton"
                                         class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-red-600 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
                                         <span class="items-center mx-2"> Refresh Halaman </span>
@@ -149,7 +148,6 @@
                                     <h2
                                         class="relative w-auto py-4 mx-6 mb-2 font-semibold tracking-normal text-gray-800 text-md lg:text-md">
                                         {{ $remainingTime }} Menit Hingga Uji Coba Ulang Berikutnya</h2>
-                             
                                 @endif
 
                             </div>

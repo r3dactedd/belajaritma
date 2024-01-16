@@ -76,7 +76,34 @@ class CourseController extends Controller
         return view('contents.session_assignment_test', ['data' => $data]);
         // dd($contentArray);
     }
+    public function exitTest($id, $material_id,){
+        $material = Material::where('id', $material_id)->first();
+        $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
+        $materialCompleted = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
+        ->where('material_id', $material_id)
+        ->where('enrollment_id', $enrollment->id)
+        ->exists();
+        $userCourse = UserCourseDetail::where('course_id', $id)->where('user_id',auth()->id())->first();
+        $userCourse->last_accessed_material = $material_id;
+        $userCourse->save();
+        if (!$materialCompleted) {
+            MaterialCompleted::create([
+                'user_id' => auth()->id(),
+                'course_id' => $id,
+                'material_id' => $material_id,
+                'enrollment_id' => $enrollment->id,
+                'total_score' => 0,
+                'attempts' => \DB::raw('attempts + 1'),
+            ]);
+        } else {
+            MaterialCompleted::where('material_id', $material->id)->update([
+                'total_score' => 0,
+                'attempts' => \DB::raw('attempts + 1'),
+            ]);
+        }
 
+        return Redirect::to("/courses/{$id}");
+    }
     public function courseTestPage($title, $id, $material_id, $question_id, $type, $isReshuffle)
     {
         $totalQuestions = Material::where('id', $material_id)->first();
@@ -240,6 +267,7 @@ class CourseController extends Controller
 
     // }
 
+
     public function submitAnswers(Request $request)
     {
         // Log::info('Submit Answers Request:', $request->all());
@@ -257,8 +285,21 @@ class CourseController extends Controller
         $materialId = $request->filled('materialId') ? $request->input('materialId') : null;
         $material = Material::where('id',$materialId)->first();
         if ($material->materialContentToMasterType->master_type_name ==  "Assignment") {
+
             if (is_array($userAnswers)) {
-                // Proses simpan jawaban ke dalam database atau lakukan tindakan lainnya sesuai kebutuhan
+
+                $searchResult = UserAnswerAssignment::where([
+                    'user_id' => $userId,
+                    'material_id' => $materialId,
+                    'type' => 'Assignment',
+                ])->first();
+
+                // Check if a result is found
+                if ($searchResult) {
+                    UserAnswerAssignment::where('material_id', $materialId)
+                        ->update(['question_shown' => false]);
+                }
+
                 foreach ($userAnswers as $answer) {
                     $questionId = $answer['questionId'];
                     $selectedAnswer = $answer['answer'];
@@ -268,6 +309,7 @@ class CourseController extends Controller
                         'user_id' => $userId,
                         'question_id' => $questionId,
                         'type' => 'Assignment', // Adjust the type as needed
+                        'material_id' => $material->id,
                     ])->first();
 
                     if ($existingAnswer) {
@@ -275,6 +317,7 @@ class CourseController extends Controller
                         $existingAnswer->update([
                             'selected_answer' => $selectedAnswer,
                             'answer_detail' => $answerDetail,
+                            'question_shown' => true,
                         ]);
                     } else {
                         // Jika jawaban belum ada, tambahkan jawaban baru ke database
@@ -284,6 +327,8 @@ class CourseController extends Controller
                             'selected_answer' => $selectedAnswer,
                             'answer_detail' => $answerDetail,
                             'type' => 'Assignment', // Adjust the type as needed
+                            'material_id' => $material->id,
+                            'question_shown' => true,
                         ]);
                     }
                 }
@@ -292,6 +337,18 @@ class CourseController extends Controller
 
         if ($material->materialContentToMasterType->master_type_name ==  "Final Test") {
             if (is_array($userAnswers)) {
+                $searchResult = UserAnswerFinalTest::where([
+                    'user_id' => $userId,
+                    'material_id' => $materialId,
+                    'type' => 'Final Test',
+                ])->first();
+
+                // Check if a result is found
+                if ($searchResult) {
+                    UserAnswerFinalTest::where('material_id', $materialId)
+                        ->update(['question_shown' => false]);
+                }
+
                 // Proses simpan jawaban ke dalam database atau lakukan tindakan lainnya sesuai kebutuhan
                 foreach ($userAnswers as $answer) {
                     $questionId = $answer['questionId'];
@@ -301,6 +358,7 @@ class CourseController extends Controller
                         'user_id' => $userId,
                         'question_id' => $questionId,
                         'type' => 'Final Test', // Adjust the type as needed
+                        'material_id' => $material->id,
                     ])->first();
 
                     if ($existingAnswer) {
@@ -308,6 +366,7 @@ class CourseController extends Controller
                         $existingAnswer->update([
                             'selected_answer' => $selectedAnswer,
                             'answer_detail' => $answerDetail,
+                            'question_shown' => true,
                         ]);
                     } else {
                         // Jika jawaban belum ada, tambahkan jawaban baru ke database
@@ -316,7 +375,9 @@ class CourseController extends Controller
                             'question_id' => $questionId,
                             'selected_answer' => $selectedAnswer,
                             'answer_detail' => $answerDetail,
-                            'type' => 'Final Test', // Adjust the type as needed
+                            'type' => 'Final Test',
+                            'material_id' => $material->id,
+                            'question_shown' => true,
                         ]);
                     }
                 }
@@ -450,10 +511,25 @@ class CourseController extends Controller
         if ($enrollment) {
 
             if ($material->materialContentToMasterType->master_type_name ==  "Assignment") {
-                $assignmentQuestions = AssignmentQuestions::where('material_id', $materialId)->orderBy('id', 'asc')->get();
+                // $assignmentQuestions = AssignmentQuestions::where('material_id', $materialId)->orderBy('id', 'asc')->get();
 
-                $userAnswers = UserAnswerAssignment::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $assignmentQuestions->pluck('id'))->get();
+                // $userAnswers = UserAnswerAssignment::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $assignmentQuestions->pluck('id'))->get();
 
+                $assignmentQuestions = AssignmentQuestions::where('material_id', $materialId)
+                ->whereIn('id', function ($query) use ($materialId) {
+                    $query->select('question_id')
+                        ->from('user_answers_assignment')
+                        ->where('material_id', $materialId)
+                        ->where('user_id', auth()->id())
+                        ->where('question_shown', true);
+                })
+                ->orderBy('id', 'asc')
+                ->get();
+                $userAnswers = UserAnswerAssignment::where('material_id', $materialId)
+                    ->where('user_id', auth()->id())
+                    ->whereIn('question_id', $assignmentQuestions->pluck('id'))
+                    ->orderBy('id', 'asc')
+                    ->get();
                 // Calculate the user's score
                 $totalQuestions = $material->total_questions;
                 $correctAnswers = 0;
@@ -519,9 +595,22 @@ class CourseController extends Controller
             }
 
             if ($material->materialContentToMasterType->master_type_name ==  "Final Test") {
-                $finalTestQuestions = FinalTestQuestions::where('material_id', $materialId)->orderBy('id', 'asc')->get();
 
-                $userAnswers = UserAnswerFinalTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $finalTestQuestions->pluck('id'))->get();
+                $finalTestQuestions = FinalTestQuestions::where('material_id', $materialId)
+                ->whereIn('id', function ($query) use ($materialId) {
+                    $query->select('question_id')
+                        ->from('user_answers_final_test')
+                        ->where('material_id', $materialId)
+                        ->where('user_id', auth()->id())
+                        ->where('question_shown', true);
+                })
+                ->orderBy('id', 'asc')
+                ->get();
+                $userAnswers = UserAnswerFinalTest::where('material_id', $materialId)
+                    ->where('user_id', auth()->id())
+                    ->whereIn('question_id', $finalTestQuestions->pluck('id'))
+                    ->orderBy('id', 'asc')
+                    ->get();
 
                 // Calculate the user's score
                 $totalQuestions = $material->total_questions;
@@ -646,9 +735,8 @@ class CourseController extends Controller
                     ->where('user_sidebar_progress.course_id', '=', $id);
             })
             ->where('sidebar.course_id', $id)
-            ->where('sidebar.material_id', $id)
+            ->where('sidebar.material_id', $material_id)
             ->first();
-
         if ((!$requestedMaterial || $requestedMaterial->user_is_visible == false && $requestedMaterial->user_is_locked == true) && $getFirstSidebar->id != $requestedMaterial->id) {
             return redirect()->back();
         }
@@ -696,6 +784,12 @@ class CourseController extends Controller
             ->where('enrollment_id', $enrollment->id)
             ->first();
         $remainingTime = null;
+        $userSidebarProgress =  UserSidebarProgress::where('user_id', auth()->id())->where('course_id', $id)->get();
+        $currentMaterialIndex = $userSidebarProgress
+            ->where('material_id', $material_id)
+            ->where('user_id', $user_id)
+            ->keys()
+            ->first();
         // dd($firstIndexASG->id);
         if ($type == 'assignment') {
 
@@ -742,8 +836,21 @@ class CourseController extends Controller
                 ->first();
             $firstRandomQuestion = AssignmentQuestions::where('material_id', $material_id)->inRandomOrder()->first();
             $randomizedQuestions = AssignmentQuestions::where('material_id', $material_id)->get()->shuffle();
-            $questions = AssignmentQuestions::where('material_id', $material_id)->orderBy('id', 'asc')->get();
-            $userAnswers = UserAnswerAssignment::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $questions->pluck('id'))->get();
+            $questions = AssignmentQuestions::where('material_id', $material_id)
+            ->whereIn('id', function ($query) use ($material_id) {
+                $query->select('question_id')
+                    ->from('user_answers_assignment')
+                    ->where('material_id', $material_id)
+                    ->where('user_id', auth()->id())
+                    ->where('question_shown', true);
+            })
+            ->orderBy('id', 'asc')
+            ->get();
+            $userAnswers = UserAnswerAssignment::where('material_id', $material_id)
+                ->where('user_id', auth()->id())
+                ->whereIn('question_id', $questions->pluck('id'))
+                ->orderBy('id', 'asc')
+                ->get();
             return view('contents.assignment_test_results', compact('userAnswers', 'questions', 'firstRandomQuestion', 'randomizedQuestions', 'remainingTime', 'sidebars', 'materialCompleted', 'sidebars', 'previousMaterial', 'nextMaterial', 'previousMaterialId', 'nextMaterialId', 'currentMaterialIndex', 'previousMaterialTitle', 'nextMaterialTitle',  'material', 'course', 'material_id', 'type'));
         }
         if ($type == 'finalTest') {
@@ -791,8 +898,21 @@ class CourseController extends Controller
                 ->first();
             $firstRandomQuestion = FinalTestQuestions::where('material_id', $material_id)->inRandomOrder()->first();
             $randomizedQuestions = FinalTestQuestions::where('material_id', $material_id)->get()->shuffle();
-            $questions = FinalTestQuestions::where('material_id', $material_id)->orderBy('id', 'asc')->get();
-            $userAnswers = UserAnswerFinalTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $questions->pluck('id'))->get();
+            $questions = FinalTestQuestions::where('material_id', $material_id)
+            ->whereIn('id', function ($query) use ($material_id) {
+                $query->select('question_id')
+                    ->from('user_answers_final_test')
+                    ->where('material_id', $material_id)
+                    ->where('user_id', auth()->id())
+                    ->where('question_shown', true);
+            })
+            ->orderBy('id', 'asc')
+            ->get();
+            $userAnswers = UserAnswerFinalTest::where('material_id', $material_id)
+                ->where('user_id', auth()->id())
+                ->whereIn('question_id', $questions->pluck('id'))
+                ->orderBy('id', 'asc')
+                ->get();
             return view('contents.assignment_test_results', compact('userAnswers', 'questions', 'firstRandomQuestion', 'randomizedQuestions', 'remainingTime', 'sidebars', 'materialCompleted', 'material', 'course', 'material_id', 'type'));
         }
     }
@@ -812,4 +932,5 @@ class CourseController extends Controller
             'attempts' => 0,
         ]);
     }
+
 }

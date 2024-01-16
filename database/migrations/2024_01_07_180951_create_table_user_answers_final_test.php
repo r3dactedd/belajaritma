@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('question_id');
+            $table->unsignedBigInteger('material_id')->nullable();
             $table->string('selected_answer');
             $table->text('answer_detail')->nullable();
             $table->string('type');
             $table->boolean('is_correct')->nullable();
-
+            $table->boolean('question_shown')->nullable();
             $table->timestamps();
 
             // Definisi foreign key
