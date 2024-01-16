@@ -30,12 +30,12 @@
                 </div>
 
                 <div class="mt-8 text-base font-medium text-gray-400 md:text-xl">
-                    <a onclick="history.back()" class="mt-4 flex items-center text-center" href="#">
+                    <a href="/home" class="mt-4 flex items-center text-center" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                             <path
                                 d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
                         </svg>
-                        <span class="mb-1 ml-2">Silahkan menekan tombol dikiri untuk balik.
+                        <span class="mb-1 ml-2">Silahkan menekan tombol dikiri untuk balik ke beranda.
                         </span>
                     </a>
                 </div>

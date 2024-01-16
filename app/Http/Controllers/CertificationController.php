@@ -195,7 +195,17 @@ class CertificationController extends Controller
         $certifId = $request->filled('certifId') ? $request->input('certifId') : null;
         $certification = Certification::findOrFail($certifId);
         if (is_array($userAnswers)) {
-            // Proses simpan jawaban ke dalam database atau lakukan tindakan lainnya sesuai kebutuhan
+            $searchResult = UserAnswerCertificationTest::where([
+                'user_id' => $userId,
+                'certif_id' => $certifId,
+                'type' => 'Certification Test',
+            ])->first();
+
+            // Check if a result is found
+            if ($searchResult) {
+                UserAnswerCertificationTest::where('certif_id', $certifId)
+                    ->update(['question_shown' => false]);
+            }
             foreach ($userAnswers as $answer) {
                 $questionId = $answer['questionId'];
                 $selectedAnswer = $answer['answer'];
@@ -204,6 +214,7 @@ class CertificationController extends Controller
                 $existingAnswer = UserAnswerCertificationTest::where([
                     'user_id' => $userId,
                     'question_id' => $questionId,
+                    'certif_id' => $certification->id,
                     'type' => 'Certification Test', // Adjust the type as needed
                 ])->first();
 
@@ -212,6 +223,7 @@ class CertificationController extends Controller
                     $existingAnswer->update([
                         'selected_answer' => $selectedAnswer,
                         'answer_detail' => $answerDetail,
+                        'question_shown' => true,
                     ]);
                 } else {
                     // Jika jawaban belum ada, tambahkan jawaban baru ke database
@@ -220,7 +232,9 @@ class CertificationController extends Controller
                         'question_id' => $questionId,
                         'selected_answer' => $selectedAnswer,
                         'answer_detail' => $answerDetail,
-                        'type' => 'Certification Test', // Adjust the type as needed
+                        'type' => 'Certification Test',
+                        'certif_id' => $certification->id,
+                        'question_shown' => true,
                     ]);
                 }
             }
@@ -241,9 +255,22 @@ class CertificationController extends Controller
                 // ->whereIn('question_id', $certifQuestion->pluck('id'))
                 // ->get();
 
-                $certifQuestion = CertifQuestions::where('certification_id', $certif_id)->orderBy('id', 'asc')->get();
 
-                $userAnswers = UserAnswerCertificationTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $certifQuestion->pluck('id'))->get();
+                $certifQuestion = CertifQuestions::where('certification_id', $certif_id)
+                ->whereIn('id', function ($query) use ($certif_id) {
+                    $query->select('question_id')
+                        ->from('user_answers_certification_test')
+                        ->where('certif_id', $certif_id)
+                        ->where('user_id', auth()->id())
+                        ->where('question_shown', true);
+                })
+                ->orderBy('id', 'asc')
+                ->get();
+                $userAnswers = UserAnswerCertificationTest::where('certif_id', $certif_id)
+                    ->where('user_id', auth()->id())
+                    ->whereIn('question_id', $certifQuestion->pluck('id'))
+                    ->orderBy('id', 'asc')
+                    ->get();
 
                 Log::info('User Answers Count:', [$userAnswers->count()]);
                 Log::info('User Answers:', $userAnswers->toArray());
@@ -293,10 +320,25 @@ class CertificationController extends Controller
         $firstIndex = CertifQuestions::where('certification_id', $certif_id)->first();
         $certif = Certification::findOrFail($certif_id);
         $register = RegistrationCertification::where('user_id', auth()->id())->where('certif_id', $certif_id)->first();
-        $questions = CertifQuestions::where('certification_id', $certif_id)->orderBy('id', 'asc')->get();
-        $totalQuestions = $questions->count();
+
         $firstIndexCERT = CertifQuestions::where('certification_id', $certif_id)->inRandomOrder()->first();
-        $userAnswers = UserAnswerCertificationTest::where('user_id', auth()->id())->orderBy('id', 'asc')->whereIn('question_id', $questions->pluck('id'))->get();
+
+        $questions = CertifQuestions::where('certification_id', $certif_id)
+                ->whereIn('id', function ($query) use ($certif_id) {
+                    $query->select('question_id')
+                        ->from('user_answers_certification_test')
+                        ->where('certif_id', $certif_id)
+                        ->where('user_id', auth()->id())
+                        ->where('question_shown', true);
+                })
+                ->orderBy('id', 'asc')
+                ->get();
+        $userAnswers = UserAnswerCertificationTest::where('certif_id', $certif_id)
+                ->where('user_id', auth()->id())
+                ->whereIn('question_id', $questions->pluck('id'))
+                ->orderBy('id', 'asc')
+                ->get();
+        $totalQuestions = $questions->count();
         $remainingTime=null;
         // dd($register);
         if ($register->attempts >= 1 && $register->total_score < $certif->minimum_score) {

@@ -63,7 +63,7 @@
 
                         @if ($type == 'assignment')
                             <a id="exit-asg" data-modal-target="popup-exit-asg" data-modal-toggle="popup-exit-asg"
-                                class="w-full my-2 mr-2 justify-center text-center items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow h-fit md:w-9/12">
+                                class="w-full my-2 mr-2 justify-center  items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow h-fit md:w-9/12">
                                 Keluar dari Assignment
                             </a>
                             <div id="popup-exit-asg" tabindex="-1"

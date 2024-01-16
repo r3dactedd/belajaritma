@@ -15,6 +15,8 @@ class UserAnswerCertificationTest extends Model
         'selected_answer',
         'answer_detail',
         'is_correct',
+        'question_shown',
+        'certif_id',
         'type'
     ];
 
