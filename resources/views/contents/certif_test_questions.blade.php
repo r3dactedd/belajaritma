@@ -37,7 +37,8 @@
                             <div class="grid grid-cols-4 my-2">
                                 @foreach ($shuffledQuestionIds as $index => $shuffledQuestionId)
                                     <a href="/certification/test/{{ $certif_id }}/{{ $shuffledQuestionId }}/2"
-                                        class="flex items-center justify-center py-2 mx-1 my-2 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md hover:bg-yellow-500 focus:outline-none">
+                                        class="flex items-center justify-center py-2 mx-1 my-2 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md hover:bg-yellow-500 focus:outline-none"
+                                        id="indexQuestion-{{ $shuffledQuestionId }}">
                                         <span class="items-center">{{ $index + 1 }}</span>
                                     </a>
                                 @endforeach
@@ -372,7 +373,9 @@
                             }
                             // Simpan array jawaban pengguna ke session storage
                             localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-
+                            const answeredLink = document.getElementById(`indexQuestion-${questionId}`);
+                            answeredLink.classList.remove('bg-indigo-500');
+                            answeredLink.classList.add('bg-green-500');
                             updateRadioButtons();
                             // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
                             // ...
@@ -382,7 +385,19 @@
                         }
                     });
                 }
+                const storedAnswers = JSON.parse(localStorage.getItem('userAnswers'));
 
+                if (storedAnswers) {
+                    storedAnswers.forEach(answerData => {
+                        const answeredLink = document.getElementById(
+                            `indexQuestion-${answerData.questionId}`);
+
+                        if (answeredLink && answerData.answer && answerData.answer.trim() !== '') {
+                            answeredLink.classList.remove('bg-indigo-500');
+                            answeredLink.classList.add('bg-green-500');
+                        }
+                    });
+                }
                 if (previousButton) {
                     previousButton.addEventListener('click', function() {
                         const selectedAnswer = document.querySelector('input[name="radio1"]:checked');
@@ -408,7 +423,9 @@
 
                             // Simpan array jawaban pengguna ke session storage
                             localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-
+                            const answeredLink = document.getElementById(`indexQuestion-${questionId}`);
+                            answeredLink.classList.remove('bg-indigo-500');
+                            answeredLink.classList.add('bg-green-500');
                             updateRadioButtons();
                             // Ganti isi pertanyaan dan jawaban di dalam HTML dengan data yang diterima dari server
                             // ...
@@ -423,15 +440,15 @@
                 if (exitAsg) {
                     exitAsg.addEventListener('click', function() {
 
-                            sessionStorage.removeItem('certiTime');
-                            const timerDisplay = document.getElementById('timer-display');
-                            const timerDuration = timerDisplay.getAttribute('timer-duration');
-                            const totalSeconds = parseInt(timerDuration) * 60 -
-                                1; // Remove timer data from sessionStorage
-                            timerStarted = false;
-                            startTimer(totalSeconds, true);
-                            const certifId = document.getElementById('id').value;
-                            clearSelectedAnswers();
+                        sessionStorage.removeItem('certiTime');
+                        const timerDisplay = document.getElementById('timer-display');
+                        const timerDuration = timerDisplay.getAttribute('timer-duration');
+                        const totalSeconds = parseInt(timerDuration) * 60 -
+                            1; // Remove timer data from sessionStorage
+                        timerStarted = false;
+                        startTimer(totalSeconds, true);
+                        const certifId = document.getElementById('id').value;
+                        clearSelectedAnswers();
 
                     });
                 }

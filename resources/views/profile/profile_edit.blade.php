@@ -40,7 +40,7 @@
             <div class="container mx-auto flex flex-col items-start justify-between py-6 md:flex-row md:items-center">
                 <div>
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
-                        <a  class="flex items-center" href="#">
+                        <a class="flex items-center" href="#">
                             <span class="mb-1 ml-2">Pengaturan Profil</span>
                         </a>
                 </div>
@@ -101,6 +101,11 @@
                                             accept="image/*" value={{ Auth::user()->profile_img }}
                                             onchange="previewImage()" />
                                     </label>
+                                    @error('profile_img')
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
@@ -145,6 +150,11 @@
                                         placeholder="Silahkan isi informasi mengenai anda." required=""> {{ $searchUser->about_me }}
 
                                     </textarea>
+                                    @error('about_me')
+                                        <div class="invalid-feedback my-1 text-sm text-red-500">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">

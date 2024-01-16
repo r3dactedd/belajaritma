@@ -133,34 +133,43 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         Log::info('Request Data:', $request->all());
-
-        $validateProfile = $request->validate([
+        $rules = [
             'full_name' => 'string|min:3|max:50',
             'username' => 'string|min:3|max:30|unique:users,username,' . Auth::user()->id,
-            'about_me' => 'max:150',
-        ]);
+            'about_me' => 'string|max:150',
+            'profile_img' => 'image|mimes:jpeg,png,jpg,gif|max:10000'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+         // Verify the old password
+         if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
 
         // Initialize $changeProfile as an empty array
-        $changeProfile = [];
+
 
         if ($request->hasFile('profile_img')) {
             $filename = Str::orderedUuid() . '.' . $request->file('profile_img')->getClientOriginalExtension();
             $request->file('profile_img')->storeAs('profile_images', $filename, 'profile_images');
-            $changeProfile['profile_img'] = $filename;
+            User::where('id', Auth::user()->id)->update([
+                'full_name' => $request->full_name,
+                'username' => $request->username,
+                'about_me' => $request->about_me,
+                'profile_img' => $filename,
+
+            ]);
+        }
+        else{
+            User::where('id', Auth::user()->id)->update([
+                'full_name' => $request->full_name,
+                'username' => $request->username,
+                'about_me' => $request->about_me,
+            ]);
         }
 
-        // Check if 'profile_img' exists in the validated data
-        if (array_key_exists('profile_img', $validateProfile)) {
-            unset($validateProfile['profile_img']);
-        }
-
-        $changeProfile += [
-            'username' => $validateProfile['username'],
-            'full_name' => $validateProfile['full_name'],
-            'about_me' => $validateProfile['about_me'],
-        ];
         // dd($request->profile_img);
-        User::where('id', Auth::user()->id)->update($changeProfile);
+
         return Redirect::to("/profile/{$request->username}");
     }
     public function editProfile()
