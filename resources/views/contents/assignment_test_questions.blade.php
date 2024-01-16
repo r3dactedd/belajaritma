@@ -702,67 +702,63 @@
                         updateRadioButtons();
 
                         // Lakukan pengumpulan jawaban tanpa konfirmasi
-                        if (validateAnswers()) {
-
-                            const submissionData = {
-                                answers: userAnswers.map(answer => ({
-                                    questionId: answer.questionId,
-                                    answer: answer.answer,
-                                    answerDetail: answer.answerDetail,
-                                })),
-                                courseId: document.querySelector('input[name="courseId"]').value,
-                                materialId: document.querySelector('input[name="materialId"]').value
-                            }
-
-                            fetch('/submit-answers', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'X-CSRF-TOKEN': document.head.querySelector(
-                                            'meta[name="csrf-token"]').content,
-                                    },
-                                    body: JSON.stringify(submissionData),
-                                })
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error('Network response was not ok');
-                                    }
-                                    return response.json();
-                                })
-                                .then(data => {
-                                    // Handle the response from the server if needed
-                                    if (data.message === 'Success') {
-                                        // Tangani respons JSON jika permintaan berasal dari AJAX
-                                        const timerDisplay = document.getElementById('timer-display');
-                                        const timerDuration = timerDisplay.getAttribute('timer-duration');
-                                        const totalSeconds = parseInt(timerDuration) * 60 -
-                                            1; // Remove timer data from sessionStorage
-                                        timerStarted = false;
-                                        startTimer(totalSeconds, true);
-                                        clearSelectedAnswers();
-                                        // Redirect ke halaman assignment_test_results
-                                        window.location.href = '/courses/material/' + courseId +
-                                            '/' + materialId + '/' + type + '/score'
-                                    } else {
-                                        // Tangani respons HTML jika permintaan bukan dari AJAX
-                                        // Lakukan sesuatu dengan HTML yang diterima
-                                    }
-
-                                })
-                                .catch(error => {
-                                    // Use the error parameter instead of response
-                                    // Check if the response is HTML (error page) and handle accordingly
-                                    if (error.headers && error.headers.get('content-type').includes(
-                                            'text/html')) {
-                                        console.error('Server returned HTML:', error.statusText);
-                                    } else {
-                                        console.error(
-                                            'There was a problem with the fetch operation:',
-                                            error);
-                                    }
-                                });
+                        const submissionData = {
+                            answers: userAnswers.map(answer => ({
+                                questionId: answer.questionId,
+                                answer: answer.answer,
+                                answerDetail: answer.answerDetail,
+                            })),
+                            courseId: document.querySelector('input[name="courseId"]').value,
+                            materialId: document.querySelector('input[name="materialId"]').value
                         }
 
+                        fetch('/submit-answers', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.head.querySelector(
+                                        'meta[name="csrf-token"]').content,
+                                },
+                                body: JSON.stringify(submissionData),
+                            })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                // Handle the response from the server if needed
+                                if (data.message === 'Success') {
+                                    // Tangani respons JSON jika permintaan berasal dari AJAX
+                                    const timerDisplay = document.getElementById('timer-display');
+                                    const timerDuration = timerDisplay.getAttribute('timer-duration');
+                                    const totalSeconds = parseInt(timerDuration) * 60 -
+                                        1; 
+                                    timerStarted = false;
+                                    startTimer(totalSeconds, true);
+                                    clearSelectedAnswers();
+                                    // Redirect ke halaman assignment_test_results
+                                    window.location.href = '/courses/material/' + courseId +
+                                        '/' + materialId + '/' + type + '/score'
+                                } else {
+                                    // Tangani respons HTML jika permintaan bukan dari AJAX
+                                    // Lakukan sesuatu dengan HTML yang diterima
+                                }
+
+                            })
+                            .catch(error => {
+                                // Use the error parameter instead of response
+                                // Check if the response is HTML (error page) and handle accordingly
+                                if (error.headers && error.headers.get('content-type').includes(
+                                        'text/html')) {
+                                    console.error('Server returned HTML:', error.statusText);
+                                } else {
+                                    console.error(
+                                        'There was a problem with the fetch operation:',
+                                        error);
+                                }
+                            });
                     };
                 }
 
