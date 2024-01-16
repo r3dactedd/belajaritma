@@ -143,7 +143,7 @@ Route::get('/courses/material/{title}/{id}/{material_id}/{question_id}/{type}/{i
 
 Route::post('/submit-answers', [CourseController::class, 'submitAnswers'])->name('submit.answers');
 Route::get('/courses/{courseId}/{materialId}/results', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
-Route::get('/courses/material/{id}/{material_id}/{type}/score', [CourseController::class, 'showScore']);
+Route::get('/courses/material/{id}/{material_id}/{type}/{answer_attempt}/score', [CourseController::class, 'showScore']);
 
 
 
@@ -156,7 +156,7 @@ Route::get('/courses/material/previous/{title}/{course_id}/{current_material_id}
 
 //show page spesifik
 Route::get('/courses/materialContent/{title}/{id}', [SidebarController::class, 'showByType']);
-
+Route::get('/courses/{id}/complete', [CourseController::class, 'congratulatePage']);
 Route::get('/manager', function () {
     return view('administrator.admin_manager');
 });

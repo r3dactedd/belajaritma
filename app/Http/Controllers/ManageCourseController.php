@@ -376,7 +376,13 @@ class ManageCourseController extends Controller
                 'total_questions'=>'required|integer',
             ]);
             $changeMaterialDetail = [];
-            $questionList = AssignmentQuestions::where('material_id',$id)->get()->count();
+            if($material->materialContentToMasterType->master_type_name == 'Assignment'){
+                $questionList = AssignmentQuestions::where('material_id',$id)->get()->count();
+            }
+            else{
+                $questionList = FinalTestQuestions::where('material_id',$id)->get()->count();
+            }
+
             // dd($questionList);
             if($validateAssignment['total_questions'] <= $questionList){
                 $changeMaterialDetail += [

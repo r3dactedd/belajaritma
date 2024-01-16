@@ -22,17 +22,16 @@
                 <div class="md:mx-2 md:w-4/12">
                     <!-- Sidebar, pass value courselistnya aja-->
                     @php
-                    // Get shuffled question IDs from the session or shuffle if not set
-                    $shuffledQuestionIds = session('shuffledQuestionIds');
+                        // Get shuffled question IDs from the session or shuffle if not set
+                        $shuffledQuestionIds = session('shuffledQuestionIds');
 
-                    // If not set or reshuffle flag is true, shuffle and store in the session
-                    if (!$shuffledQuestionIds || session('reshuffled')) {
-                        $shuffledQuestionIds = $listQuestionId;
-                        session(['shuffledQuestionIds' => $shuffledQuestionIds, 'reshuffled' => false]);
-                    }
+                        // If not set or reshuffle flag is true, shuffle and store in the session
+                        if (!$shuffledQuestionIds || session('reshuffled')) {
+                            $shuffledQuestionIds = $listQuestionId;
+                            session(['shuffledQuestionIds' => $shuffledQuestionIds, 'reshuffled' => false]);
+                        }
 
-
-                @endphp
+                    @endphp
                     <!-- Sidebar, pass value courselistnya aja-->
                     <div class="p-2 bg-white border-4 border-green-400 rounded-xl md:flex md:flex-col">
                         <div class="flex flex-col overflow-hidden bg-white">
@@ -192,17 +191,16 @@
                 const nextButton = document.getElementById('tombol-selanjutnya');
                 const previousButton = document.getElementById('tombol-sebelumnya');
                 const exitAsg = document.getElementById('exit-asg');
+                // const timerDisplay = document.getElementById('timer-display');
+                // const timerDuration = timerDisplay.getAttribute('timer-duration');
+                // const totalSeconds = parseInt(timerDuration) * 60 - 1;
                 const submitButton = document.getElementById('submit-button');
                 // localStorage.removeItem('userAnswers');
                 let userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || [];
-                const timerDisplay = document.getElementById('timer-display');
-                const timerDuration = timerDisplay.getAttribute('timer-duration');
-                const totalSeconds = parseInt(timerDuration) * 60 - 1;
                 const questionContainer = document.querySelector('.question-container');
                 const startTime = Date.now();
                 const rawQuestionIds = JSON.parse(document.querySelector('.question-container').getAttribute(
                     'data-question-id'));
-                console.log(rawQuestionIds);
 
                 // Sekarang, listQuestionId adalah array yang berisi question ID
                 if (userAnswers.length === 0) {
@@ -223,7 +221,8 @@
                 // sessionStorage.removeItem('timer');
 
                 // Untuk keperluan debugging, Anda dapat mencetak array userAnswers ke konsol
-                console.log(userAnswers);
+                let timeIsUp = false;
+
 
                 function convertTime(seconds) {
                     const minutes = Math.floor(seconds / 60);
@@ -231,44 +230,90 @@
                     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
                 }
 
-                let timeIsUp = false;
+                function convertTime(seconds) {
+                    const minutes = Math.floor(seconds / 60);
+                    const remainingSeconds = seconds % 60;
 
-                function startTimer(duration) {
-                    let timer;
-                    // localStorage.removeItem('timer');
-                    const storedTime = localStorage.getItem('timer');
+                    // Menambahkan nol di depan jika detik kurang dari 10
+                    const displaySeconds = (remainingSeconds < 10) ? '0' + remainingSeconds : remainingSeconds;
 
-                    if (storedTime !== null) {
-                        // Hapus nilai 'timer' dari localStorage
-                        localStorage.removeItem('timer');
-                        timer = parseInt(storedTime, 10);
-                    } else {
-                        timer = duration;
-                    }
+                    return `${minutes}:${displaySeconds}`;
+                }
+
+                function startTimer() {
+                    const timerDisplay = document.getElementById('timer-display');
+                    const timerDuration = parseInt(timerDisplay.getAttribute('timer-duration'), 10) * 60;
+                    let timerInterval;
+
+                    // Check if the start time is stored in localStorage
+                    const storedStartTime = localStorage.getItem('startTime');
+
+                    // Use the stored start time if available, otherwise use the current time
+                    const startTime = (storedStartTime !== null) ? parseInt(storedStartTime, 10) : Date.now() / 1000;
+
+                    const elapsedTime = Math.floor(Date.now() / 1000) - startTime;
+                    let remainingTime = Math.max(0, timerDuration - elapsedTime);
+
+                    const convertTime = function(seconds) {
+                        const minutes = Math.floor(seconds / 60);
+                        const remainingSeconds = seconds % 60;
+
+                        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+                    };
 
                     const updateTimerDisplay = function() {
-                        timerDisplay.textContent = convertTime(timer);
-                        if (timer > 0) {
-                            timer--;
-                            localStorage.setItem('timer', timer.toString());
+                        timerDisplay.textContent = convertTime(remainingTime);
+
+                        if (remainingTime > 0) {
+                            remainingTime--;
+                            localStorage.setItem('startTime', startTime); // Update the start time in localStorage
                         } else {
                             clearInterval(timerInterval);
-                            localStorage.removeItem('timer');
-                            timeIsUp = true;
+                            localStorage.removeItem('startTime');
 
                             // Gumpulkan jawaban dan tampilkan alert waktu habis
-                            submitAnswers();
+                            submitAnswersWithoutConfirmation();
                             alert('Waktu telah habis. Jawaban Anda sudah otomatis terkumpul.');
                         }
                     };
 
-                    const timerInterval = setInterval(updateTimerDisplay, 1000);
+                    timerInterval = setInterval(updateTimerDisplay, 1000);
 
                     updateTimerDisplay();
                 }
 
-                startTimer(totalSeconds);
+                // Jalankan startTimer saat halaman dimuat
+                startTimer();
 
+                // function updateTimer() {
+                //     // Hitung menit dan detik
+                //     var minutes = Math.floor(totalSeconds / 60);
+                //     var seconds = totalSeconds % 60;
+
+                //     // Tampilkan waktu pada elemen p
+                //     timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                //     // Kurangi totalSeconds
+                //     totalSeconds--;
+
+                //     // Hentikan timer jika waktu habis
+                //     if (totalSeconds < 0) {
+                //         clearInterval(countdownInterval);
+                //         // Tambahkan logika atau tindakan yang ingin Anda lakukan setelah waktu habis
+                //         alert('Waktu telah habis!');
+                //     }
+                // }
+
+
+
+                function stopTimer() {
+                    const type = document.getElementById('type').value;
+                    if (type == 'assignment') {
+                        localStorage.removeItem('timer');
+                    } else if (type == 'finalTest') {
+                        localStorage.removeItem('timerFinalTest');
+                    }
+                }
                 // startTimer(totalSeconds);
 
                 function validateAnswers() {
@@ -362,7 +407,7 @@
                             const materialId = document.getElementById('material_id').value;
                             const materialTitle = document.getElementById('material_title').value;
                             clearSelectedAnswers();
-                            localStorage.removeItem('timer');
+                            localStorage.removeItem('startTime');
                             @php
                                 // session()->forget('shuffledQuestionIds');
                                 // session()->forget('reshuffled');
@@ -453,7 +498,7 @@
                                             // Handle the response from the server if needed
                                             if (data.message === 'Success') {
                                                 clearSelectedAnswers();
-                                                localStorage.removeItem('timer');
+                                                localStorage.removeItem('startTime');
                                                 window.location.href = '/courses/material/' + courseId +
                                                     '/' + materialId + '/' + type + '/score'
                                             } else {}
@@ -546,7 +591,7 @@
                             // Handle the response from the server if needed
                             if (data.message === 'Success') {
                                 // Tangani respons JSON jika permintaan berasal dari AJAX
-
+                                localStorage.removeItem('startTime');
                                 clearSelectedAnswers();
                                 // Redirect ke halaman assignment_test_results
                                 window.location.href = '/courses/material/' + courseId +

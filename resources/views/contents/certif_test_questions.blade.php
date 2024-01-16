@@ -61,7 +61,7 @@
                     <div class="w-full my-2 flex justify-center text-center rounded-md shadow h-fit md:w-9/12">
 
 
-                        <button id="exit-asg"
+                        <button id="exit-certi"
                             class="w-full my-2 mr-2 justify-center text-center items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow h-fit md:w-9/12">Keluar
                             dari Tes Sertifikasi</button>
 
@@ -183,15 +183,12 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const nextButton = document.getElementById('tombol-selanjutnya');
                 const previousButton = document.getElementById('tombol-sebelumnya');
-                const exitAsg = document.getElementById('exit-asg');
+                const exitAsg = document.getElementById('exit-certi');
                 const submitButton = document.getElementById('submit-button');
                 // localStorage.removeItem('userAnswers');
                 let userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || [];
-                const timerDisplay = document.getElementById('timer-display');
-                const timerDuration = timerDisplay.getAttribute('timer-duration');
-                const totalSeconds = parseInt(timerDuration) * 60 - 1;
                 const questionContainer = document.querySelector('.question-container');
-                const startTime = Date.now();
+                // const startTime = Date.now();
                 const rawQuestionIds = JSON.parse(document.querySelector('.question-container').getAttribute(
                     'data-question-id'));
                 console.log(rawQuestionIds);
@@ -212,10 +209,11 @@
                     });
                 }
 
-                // sessionStorage.removeItem('timer');
+
 
                 // Untuk keperluan debugging, Anda dapat mencetak array userAnswers ke konsol
                 console.log(userAnswers);
+                let timeIsUp = false;
 
                 function convertTime(seconds) {
                     const minutes = Math.floor(seconds / 60);
@@ -223,43 +221,80 @@
                     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
                 }
 
-                let timeIsUp = false;
+                let timerStarted = false;
+                // localStorage.removeItem('certiTime');
 
-                function startTimer(duration) {
-                    let timer;
-                    // localStorage.removeItem('timer');
-                    const storedTime = localStorage.getItem('timer');
+                let timerInterval;
 
-                    if (storedTime !== null) {
-                        // Hapus nilai 'timer' dari localStorage
-                        localStorage.removeItem('timer');
+                function startTimer(duration, resetTimer) {
+                    const timerDisplay = document.getElementById('timer-display');
+                    const timerDuration = parseInt(timerDisplay.getAttribute('timer-duration'), 10) * 60;
+                    let elapsedTime, remainingTime;
+
+                    // Hapus 'certiTime' hanya jika belum pernah dihapus sebelumnya
+                    const storedTime = sessionStorage.getItem('certiTime');
+
+                    if (resetTimer && !timerStarted) {
+                        sessionStorage.removeItem('certiTime');
                         timer = parseInt(storedTime, 10);
                     } else {
+                        timerStarted = true;
                         timer = duration;
                     }
 
+                    const getStartTime = function() {
+                        const storedStartTime = sessionStorage.getItem('certiTime');
+                        return (storedStartTime !== null) ? parseInt(storedStartTime, 10) : Date.now() / 1000;
+                    };
+
+                    let startTime = getStartTime();
+
+                    const convertTime = function(seconds) {
+                        const minutes = Math.floor(seconds / 60);
+                        const remainingSeconds = seconds % 60;
+                        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+                    };
+
                     const updateTimerDisplay = function() {
-                        timerDisplay.textContent = convertTime(timer);
-                        if (timer > 0) {
-                            timer--;
-                            localStorage.setItem('timer', timer.toString());
+                        timerDisplay.textContent = convertTime(remainingTime);
+
+                        if (remainingTime > 0) {
+                            remainingTime--;
+                            sessionStorage.setItem('certiTime', startTime);
                         } else {
                             clearInterval(timerInterval);
-                            localStorage.removeItem('timer');
-                            timeIsUp = true;
-
-                            // Gumpulkan jawaban dan tampilkan alert waktu habis
-                            submitAnswers();
+                            submitAnswersWithoutConfirmation();
                             alert('Waktu telah habis. Jawaban Anda sudah otomatis terkumpul.');
                         }
                     };
 
-                    const timerInterval = setInterval(updateTimerDisplay, 1000);
+                    // Hentikan interval sebelum membuat yang baru
+                    clearInterval(timerInterval);
 
-                    updateTimerDisplay();
+                    elapsedTime = Math.floor(Date.now() / 1000) - startTime;
+                    remainingTime = Math.max(0, timerDuration - elapsedTime);
+
+                    // Atur interval kembali
+                    timerInterval = setInterval(updateTimerDisplay, 1000);
+                    if (timerStarted) {
+                        updateTimerDisplay();
+                    }
+
+                    // if(resetTimer){
+                    //     timerStarted = false;
+                    // }
+                    // else{
+                    //     timerStarted = true;
+                    // }
+
                 }
+                const timerDisplay = document.getElementById('timer-display');
+                const timerDuration = timerDisplay.getAttribute('timer-duration');
+                const totalSeconds = parseInt(timerDuration) * 60 - 1;
+                // Jalankan startTimer saat halaman dimuat
+                startTimer(totalSeconds, false);
+                // Jalankan startTimer saat halaman dimuat
 
-                startTimer(totalSeconds);
 
                 // startTimer(totalSeconds);
 
@@ -350,18 +385,20 @@
                         );
 
                         if (isConfirmed) {
+                            sessionStorage.removeItem('certiTime');
+                            const timerDisplay = document.getElementById('timer-display');
+                            const timerDuration = timerDisplay.getAttribute('timer-duration');
+                            const totalSeconds = parseInt(timerDuration) * 60 -
+                                1; // Remove timer data from sessionStorage
+                            timerStarted = false;
+                            startTimer(totalSeconds, true);
                             const certifId = document.getElementById('id').value;
                             clearSelectedAnswers();
-                            localStorage.removeItem('timer');
-                            @php
-                                // session()->forget('shuffledQuestionIds');
-                                // session()->forget('reshuffled');
-                            @endphp
                             window.location.href = '/certifications/aboutTest/' + certifId
                         }
                     });
                 }
-
+                // startTimer();
 
 
                 function submitAnswers() {
@@ -399,6 +436,7 @@
                         } else {
                             const isConfirmed = window.confirm('Apakah Anda yakin ingin mengumpulkan jawaban?');
                             if (isConfirmed) {
+                                sessionStorage.removeItem('timerCerti');
                                 if (validateAnswers()) {
                                     const certifId = document.getElementById('id').value;
                                     // If validation is successful, send the submission data to the controller
@@ -433,7 +471,12 @@
                                             // Handle the response from the server if needed
                                             if (data.message === 'Success') {
                                                 clearSelectedAnswers();
-                                                localStorage.removeItem('timer');
+                                                const timerDisplay = document.getElementById('timer-display');
+                                                const timerDuration = timerDisplay.getAttribute('timer-duration');
+                                                const totalSeconds = parseInt(timerDuration) * 60 -
+                                                    1; // Remove timer data from sessionStorage
+                                                timerStarted = false;
+                                                startTimer(totalSeconds, true);
                                                 window.location.href = '/certification/' + certifId +
                                                     '/score'
                                             } else {}
@@ -503,8 +546,7 @@
                             answer: answer.answer,
                             answerDetail: answer.answerDetail,
                         })),
-                        courseId: document.querySelector('input[name="courseId"]').value,
-                        materialId: document.querySelector('input[name="materialId"]').value
+                        certifId: document.querySelector('input[name="certifId"]').value,
                     }
 
                     fetch('/certification/submit-answers', {
@@ -526,7 +568,12 @@
                             // Handle the response from the server if needed
                             if (data.message === 'Success') {
                                 // Tangani respons JSON jika permintaan berasal dari AJAX
-
+                                const timerDisplay = document.getElementById('timer-display');
+                                const timerDuration = timerDisplay.getAttribute('timer-duration');
+                                const totalSeconds = parseInt(timerDuration) * 60 -
+                                    1; // Remove timer data from sessionStorage
+                                timerStarted = false;
+                                startTimer(totalSeconds, true);
                                 clearSelectedAnswers();
                                 // Redirect ke halaman assignment_test_results
                                 window.location.href = '/certification/' + certifId +
