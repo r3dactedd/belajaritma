@@ -74,6 +74,10 @@
 
 
                             </div>
+                            <h2
+                            class="relative mx-6 mb-2 w-auto text-base font-bold tracking-normal text-red-500 lg:text-base">
+                            Apabila gagal, anda harus menunggu 1 hari sebelum dapat mengerjakan kembali tes sertifikasi ini.
+                        </h2>
                             @if ($getCertCompleted->total_score == null)
                                 <a href='/certification/test/{{ $data->id }}/{{ $firstIndexCERT->id }}/1'
                                     class="flex items-center justify-center w-full px-2 py-4 mx-auto mt-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md y-4 hover:bg-yellow-500 focus:outline-none md:w-4/12">
