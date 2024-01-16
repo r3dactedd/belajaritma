@@ -387,14 +387,14 @@
 
     <style>
         .cert {
-            border: 15px solid #0072c6;
-            border-right: 15px solid #0894fb;
-            border-left: 15px solid #0894fb;
+            border: 15px solid #4f46e5;
+            border-right: 15px solid #818cf8;
+            border-left: 15px solid #818cf8;
             width: 5.83in;
             /* Set width to 8.27 inches for A4 size */
             height: 8.27in;
             /* Set height to 11.69 inches for A4 size */
-            font-family: arial;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
             color: #383737;
         }
 
@@ -402,8 +402,9 @@
             margin-top: 60px;
             font-size: 40px;
             font-style: bold;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.2px;
             color: #0060a9;
+            margin: 4px;
         }
 
         .crt_logo img {
@@ -455,10 +456,11 @@
 
             <tr>
                 <td align="center">
-                    <h1 class="crt_title">Certificate Of Completion
+                    <h1 class="crt_title px-4">Certificate Of Completion
                         <h2 class="afterName my-6 font-semibold">Sertifikat ini Diberikan Kepada</h2>
                         <h1 class="colorGreen crt_user">{{ auth()->user()->full_name }}</h1>
-                        <h2 class="afterName mt-4">{{ $data->course_name }}</h2>
+                        <h2 class="afterName mt-4">Untuk Penyelesaian Kursus</h2>
+                        <h2 class=" my-6 font-bold">{{ $data->course_name }}</h2>
                         <h3 class="mb-12 mt-4">Pada Tanggal <span class="font-semibold">
                                 {{ auth()->user()->updateTimestampForCourse($data->id) }}</span></h3>
                         <img class="mb-16 w-3/5" src="{{ asset('local/logo.png') }}" alt="logo">

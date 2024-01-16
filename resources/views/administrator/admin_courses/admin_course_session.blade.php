@@ -143,7 +143,7 @@
                                     Deskripsi Singkat Materi</label>
                                 <textarea name="description" id="inputDescription"
                                     class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                    placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->description) }}
+                                    placeholder="Input Penjelasan mengenai Kursus" required="">{{ htmlspecialchars($material->description) }}
                             </textarea>
                             </div>
                             <div class="flex justify-end pt-2">
@@ -218,7 +218,7 @@
                                             Assignment</label>
                                         <textarea name="detailed_description" id="inputDetDesc"
                                             class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->detailed_description) }}
+                                            placeholder="Input Penjelasan Assignment" required="">{{ htmlspecialchars($material->detailed_description) }}
                                         </textarea>
                                         <div class="mb-6 font-semibold">
                                             <div class="grid grid-cols-1 md:grid-cols-2">
@@ -370,7 +370,7 @@
                                             Penjelasan Final Test</label>
                                         <textarea name="detailed_description" id="inputDetDesc"
                                             class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Input Deskripsi Singkat mengenai Kursus" required="">{{ htmlspecialchars($material->detailed_description) }}</textarea>
+                                            placeholder="Input Penjelasan mengenai Final Test" required="">{{ htmlspecialchars($material->detailed_description) }}</textarea>
                                         <div class="mb-6 font-semibold">
                                             <div class="grid grid-cols-1 md:grid-cols-2">
                                                 <div class="mx-2">
