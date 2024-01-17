@@ -708,8 +708,8 @@
                                 answer: answer.answer,
                                 answerDetail: answer.answerDetail,
                             })),
-                            courseId: document.querySelector('input[name="courseId"]').value,
-                            materialId: document.querySelector('input[name="materialId"]').value
+                            courseId: document.querySelector('input[name="id"]').value,
+                            materialId: document.querySelector('input[name="material_id"]').value
                         }
 
                         fetch('/submit-answers', {
@@ -734,7 +734,7 @@
                                     const timerDisplay = document.getElementById('timer-display');
                                     const timerDuration = timerDisplay.getAttribute('timer-duration');
                                     const totalSeconds = parseInt(timerDuration) * 60 -
-                                        1; 
+                                        1;
                                     timerStarted = false;
                                     startTimer(totalSeconds, true);
                                     clearSelectedAnswers();
