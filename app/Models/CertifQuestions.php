@@ -20,7 +20,7 @@ class CertifQuestions extends Model
         'jawaban_d',
         'jawaban_benar',
     ];
-    public function questionToMaterial(){
+    public function questionToCertification(){
         return $this->belongsTo(Certification::class, 'certification_id');
     }
 }
