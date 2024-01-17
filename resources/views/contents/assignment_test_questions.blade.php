@@ -323,8 +323,7 @@
                 // localStorage.removeItem('timer');
 
                 // Untuk keperluan debugging, Anda dapat mencetak array userAnswers ke konsol
-                console.log(userAnswers);
-                console.log(userAnswers);
+
                 let timeIsUp = false;
 
                 // function convertTime(seconds) {
@@ -575,7 +574,6 @@
                                         .value,
                                 };
 
-                                console.log(submissionData);
 
                                 // Use fetch API to make a POST request
                                 fetch('/submit-answers', {

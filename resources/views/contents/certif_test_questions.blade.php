@@ -234,7 +234,7 @@
                 // const startTime = Date.now();
                 const rawQuestionIds = JSON.parse(document.querySelector('.question-container').getAttribute(
                     'data-question-id'));
-                console.log(rawQuestionIds);
+
 
                 // Sekarang, listQuestionId adalah array yang berisi question ID
                 if (userAnswers.length === 0) {
@@ -255,7 +255,7 @@
 
 
                 // Untuk keperluan debugging, Anda dapat mencetak array userAnswers ke konsol
-                console.log(userAnswers);
+
                 let timeIsUp = false;
 
                 function convertTime(seconds) {
@@ -503,7 +503,7 @@
                                         certifId: certifId
                                     };
 
-                                    console.log(submissionData);
+
 
                                     // Use fetch API to make a POST request
                                     fetch('/certification/submit-answers', {
