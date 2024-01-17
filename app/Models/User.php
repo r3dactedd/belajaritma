@@ -56,7 +56,7 @@ class User extends Authenticatable
         return $this->hasMany(User::class,'id','user_id');
     }
 
-    public function UserTosidebarProgress(){
+    public function userTosidebarProgress(){
         return $this->hasMany(UserSidebarProgress::class,'user_id','id');
     }
 
