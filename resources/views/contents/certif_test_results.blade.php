@@ -125,19 +125,17 @@
                                                 ($userAnswer->question->$choice == $userAnswer->question->jawaban_d &&
                                                     $userAnswer->question->jawaban_benar == 'D'))
                                             <input id="radio{{ $index + 1 }}-{{ $choice }}" type="radio"
-                                                name="radio{{ $index + 1 }}" class="hidden" />
+                                                name="radio{{ $index + 1 }}"
+                                                {{ $userAnswer->question->$choice == $userAnswer->answer_detail ? 'checked' : '' }} />
                                             <label for="radio{{ $index + 1 }}-{{ $choice }}"
-                                                class="flex items-center text-green-400 underline cursor-pointer text-md">
-                                                <span
-                                                    class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
+                                                class="flex items-center text-green-400 underline cursor-pointer text-md ml-3">
                                                 {{ $userAnswer->question->$choice }}</label>
                                         @else
                                             <input id="radio{{ $index + 1 }}-{{ $choice }}" type="radio"
-                                                name="radio{{ $index + 1 }}" class="hidden" />
+                                                name="radio{{ $index + 1 }}"
+                                                {{ $userAnswer->question->$choice == $userAnswer->answer_detail ? 'checked' : '' }} />
                                             <label for="radio{{ $index + 1 }}-{{ $choice }}"
-                                                class="flex items-center cursor-pointer text-md">
-                                                <span
-                                                    class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
+                                                class="flex items-center cursor-pointer text-md ml-3">
                                                 {{ $userAnswer->question->$choice }}
                                             </label>
                                         @endif
