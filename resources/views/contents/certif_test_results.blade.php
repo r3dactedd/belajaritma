@@ -158,7 +158,7 @@
                                 @endforeach
                             </div>
                         @empty
-                            <p>No user answers available.</p>
+                            <p>Tidak ada jawaban dari user.</p>
                         @endforelse
                     </div>
                 </div>
