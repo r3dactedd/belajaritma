@@ -89,24 +89,22 @@
                                 </div>
                             </div>
                             @if ($material->materialContentToMasterType->master_type_name == 'Final Test')
-
                                 <h2
                                     class="relative mx-6 mb-2 w-auto text-base font-bold tracking-normal text-red-500 lg:text-base">
                                     Apabila gagal, anda harus menunggu 1 hari sebelum dapat mengerjakan kembali Final Test
                                     kursus.
                                 </h2>
+                            @else
+                                <h2
+                                    class="relative mx-6 mb-2 w-auto text-base font-bold tracking-normal text-gray-800 lg:text-base">
+                                    Batas untuk mengambil ulang Assignment ini adalah 3 Kali.
+                                </h2>
 
-                        @else
-                            <h2
-                                class="relative mx-6 mb-2 w-auto text-base font-bold tracking-normal text-gray-800 lg:text-base">
-                                Batas untuk mengambil ulang Assignment ini adalah 3 Kali.
-                            </h2>
-
-                            <h2
-                                class="relative mx-6 mb-2 w-auto text-base font-bold tracking-normal text-red-500 lg:text-base">
-                                Apabila gagal, anda harus menunggu 30 menit sebelum dapat mengerjakan assignment
-                                kembali.
-                            </h2>
+                                <h2
+                                    class="relative mx-6 mb-2 w-auto text-base font-bold tracking-normal text-red-500 lg:text-base">
+                                    Apabila gagal, anda harus menunggu 30 menit sebelum dapat mengerjakan assignment
+                                    kembali.
+                                </h2>
                             @endif
 
                             </h2>
@@ -184,7 +182,7 @@
                             </a>
                         </button>
                     @endif
-                    @if (!$nextMaterial)
+                    @if (!$nextMaterial && $enrollment->completed == 1)
                         <a id="open-btn" href="/courses/{{ $material->course_id }}/complete"
                             class="justify-content-center mx-auto my-4 ml-4 flex w-fit rounded-md bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none"
                             data-modal-target="defaultModal" data-modal-toggle="defaultModal">

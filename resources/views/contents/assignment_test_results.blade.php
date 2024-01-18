@@ -22,7 +22,8 @@
                 <div>
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
-                        <a href="/courses/material/{{ $sidebars->title }}/{{ $sidebars->course_id }}/{{ $sidebars->order }}" class="flex items-center" href="#">
+                        <a href="/courses/material/{{ $sidebars->title }}/{{ $sidebars->course_id }}/{{ $sidebars->order }}"
+                            class="flex items-center" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
@@ -187,19 +188,18 @@
                                                     ($userAnswer->question->$choice == $userAnswer->question->jawaban_d &&
                                                         $userAnswer->question->jawaban_benar == 'D'))
                                                 <input id="radio{{ $index + 1 }}-{{ $choice }}" type="radio"
-                                                    name="radio{{ $index + 1 }}" class="hidden" />
+                                                    name="radio{{ $index + 1 }}"
+                                                    {{ $userAnswer->question->$choice == $userAnswer->answer_detail ? 'checked' : '' }} />
                                                 <label for="radio{{ $index + 1 }}-{{ $choice }}"
-                                                    class="flex items-center text-green-400 underline cursor-pointer text-md">
-                                                    <span
-                                                        class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
-                                                    {{ $userAnswer->question->$choice }}</label>
+                                                    class="flex items-center text-green-400 underline cursor-pointer text-md ml-3">
+                                                    {{ $userAnswer->question->$choice }}
+                                                </label>
                                             @else
                                                 <input id="radio{{ $index + 1 }}-{{ $choice }}" type="radio"
-                                                    name="radio{{ $index + 1 }}" class="hidden" />
+                                                    name="radio{{ $index + 1 }}"
+                                                    {{ $userAnswer->question->$choice == $userAnswer->answer_detail ? 'checked' : '' }} />
                                                 <label for="radio{{ $index + 1 }}-{{ $choice }}"
-                                                    class="flex items-center cursor-pointer text-md">
-                                                    <span
-                                                        class="inline-block w-4 h-4 mr-2 border border-gray-600 rounded-full flex-no-shrink"></span>
+                                                    class="flex items-center cursor-pointer text-md ml-3">
                                                     {{ $userAnswer->question->$choice }}
                                                 </label>
                                             @endif
