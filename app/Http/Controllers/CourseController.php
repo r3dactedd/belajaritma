@@ -959,4 +959,10 @@ class CourseController extends Controller
         ]);
     }
 
+    public function congratulatePage($id,)
+    {
+        $course = Course::find($id);
+        return view('contents.course_complete', ['course' => $course]);
+    }
+
 }

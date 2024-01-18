@@ -227,10 +227,10 @@ class SidebarController extends Controller
             return view('contents.session_pdf', compact('material','userSidebarProgress', 'currentMaterialIndex', 'previousMaterial', 'nextMaterial', 'previousMaterialId', 'nextMaterialId', 'nextMaterialTitle', 'previousMaterialTitle', 'sidebars', 'id', 'excludeFinal', 'userCourseDetail', 'nextMaterialIndex'));
         } elseif ($master_type->master_type_name == 'Assignment') {
             // dd($firstIndexASG);
-            return view('contents.session_assignment_test', compact('material', 'previousMaterial', 'nextMaterial', 'previousMaterialId', 'nextMaterialId', 'currentMaterialIndex', 'previousMaterialTitle', 'nextMaterialTitle', 'sidebars', 'id', 'excludeFinal', 'firstRandomQuestionASG', 'firstRandomQuestionFIN', 'userCourseDetail', 'nextMaterialIndex', 'materialCompleted', 'getMatCompleted'));
+            return view('contents.session_assignment_test', compact('material', 'previousMaterial', 'nextMaterial', 'previousMaterialId', 'nextMaterialId', 'currentMaterialIndex', 'previousMaterialTitle', 'nextMaterialTitle', 'sidebars', 'id', 'excludeFinal', 'firstRandomQuestionASG', 'firstRandomQuestionFIN', 'userCourseDetail', 'nextMaterialIndex', 'materialCompleted', 'getMatCompleted', 'enrollment'));
         } elseif ($master_type->master_type_name == 'Final Test') {
             // dd($firstIndexFIN);
-            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterialId', 'nextMaterialId', 'previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'previousMaterialTitle', 'nextMaterialTitle','firstRandomQuestionASG', 'firstRandomQuestionFIN', 'userCourseDetail', 'nextMaterialIndex', 'materialCompleted', 'getMatCompleted'));
+            return view('contents.session_assignment_test', compact('material', 'currentMaterialIndex','previousMaterialId', 'nextMaterialId', 'previousMaterial', 'nextMaterial', 'sidebars', 'id', 'excludeFinal', 'previousMaterialTitle', 'nextMaterialTitle','firstRandomQuestionASG', 'firstRandomQuestionFIN', 'userCourseDetail', 'nextMaterialIndex', 'materialCompleted', 'getMatCompleted','enrollment'));
         }
     }
 }
