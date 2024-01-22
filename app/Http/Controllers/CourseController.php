@@ -821,7 +821,7 @@ class CourseController extends Controller
 
             if ($materialCompleted->attempts == 3 && $materialCompleted->total_score < $material->minimum_score) {
                 MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
-                    'blocked_until' => Carbon::now()->addMinutes(30),
+                    'blocked_until' => Carbon::now()->addMinutes(2),
                     'attempts' => 0,
                 ]);
                 $tempMaterial = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
@@ -883,7 +883,7 @@ class CourseController extends Controller
 
             if ($materialCompleted->attempts == 1 && $materialCompleted->total_score < $material->minimum_score) {
                 MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
-                    'blocked_until' => Carbon::now()->addDay(1),
+                    'blocked_until' => Carbon::now()->addMinutes(30),
                     'attempts' => 0,
                 ]);
                 $tempMaterial = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
@@ -943,18 +943,18 @@ class CourseController extends Controller
         }
     }
 
-    protected function blockUserFor30Minutes($materialCompleted)
+    protected function blockUserFor2Minutes($materialCompleted)
     {
         MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
-            'blocked_until' => Carbon::now()->addMinutes(30),
+            'blocked_until' => Carbon::now()->addMinutes(2),
             'attempts' => 0,
         ]);
     }
 
-    protected function blockUserForADay($materialCompleted)
+    protected function blockUserFor30Minutes($materialCompleted)
     {
         MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
-            'blocked_until' => Carbon::now()->addDay(1),
+            'blocked_until' => Carbon::now()->addMinutes(30),
             'attempts' => 0,
         ]);
     }
