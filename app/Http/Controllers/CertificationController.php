@@ -369,7 +369,7 @@ class CertificationController extends Controller
     }
     protected function blockUserForADay ($register){
         RegistrationCertification::where('id', $register->id)->update([
-            'blocked_until' => Carbon::now()->addDay(1),
+            'blocked_until' => Carbon::now()->addMinutes(120),
             'attempts' => 0,
         ]);
 
