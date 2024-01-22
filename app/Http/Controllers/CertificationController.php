@@ -353,7 +353,7 @@ class CertificationController extends Controller
         $remainingTime=null;
         // dd($register);
         if ($register->attempts >= 1 && $register->total_score < $certif->minimum_score) {
-            $this->blockUserforADay($register);
+            $this->blockUserfor2Hours($register);
             $tempRegister = RegistrationCertification::where('user_id', auth()->id())->where('certif_id', $certif_id)->first();
             $remainingTime = Carbon::now()->diffInMinutes($tempRegister->blocked_until);
         }
@@ -367,7 +367,7 @@ class CertificationController extends Controller
         }
         return view('contents.certif_test_results', compact('userAnswers', 'questions','certif','firstIndex','register','totalQuestions','firstIndexCERT','remainingTime'));
     }
-    protected function blockUserForADay ($register){
+    protected function blockUserfor2Hours ($register){
         RegistrationCertification::where('id', $register->id)->update([
             'blocked_until' => Carbon::now()->addMinutes(120),
             'attempts' => 0,

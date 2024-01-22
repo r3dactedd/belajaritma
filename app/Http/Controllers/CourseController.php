@@ -943,7 +943,7 @@ class CourseController extends Controller
         }
     }
 
-    protected function blockUserFor30Minutes($materialCompleted)
+    protected function blockUserFor2Minutes($materialCompleted)
     {
         MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
             'blocked_until' => Carbon::now()->addMinutes(2),
@@ -951,7 +951,7 @@ class CourseController extends Controller
         ]);
     }
 
-    protected function blockUserForADay($materialCompleted)
+    protected function blockUserFor30Minutes($materialCompleted)
     {
         MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
             'blocked_until' => Carbon::now()->addMinutes(30),
