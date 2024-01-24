@@ -92,22 +92,25 @@
                         <div class="flex items-center justify-center w-full bg-white">
                             <div class="w-full">
                                 {{-- Input --}}
+                                @if (Auth::user()->role_id == '2')
+                                    <form id="myForm" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
+                                        <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
+                                        <input type="hidden" id="original_forum_id" name="forum_id"
+                                            value="{{ $data->id }}">
+                                        <input type="hidden" id="courseId" name="course_id"
+                                            value="{{ $data->course_id }}">
+                                        <input type="hidden" id="materialId" name="material_id"
+                                            value="{{ $data->material_id }}">
+                                        <input type="hidden" id="parent_id" name="parent_id" value="{{ $data->id }}">
+                                        <div class="flex justify-end my-4">
+                                            <button id="get-content-button" type="submit"
+                                                class="absolute px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded w-fit">Kirim</button>
+                                        </div>
+                                    </form>
+                                @endif
 
-                                <form id="myForm" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    <textarea id="forum_message" class="h-24" placeholder="Input Pertanyaan Anda disini."></textarea>
-                                    <input type="hidden" id="replyId" name="reply_id" value="{{ $data->id }}">
-                                    <input type="hidden" id="original_forum_id" name="forum_id"
-                                        value="{{ $data->id }}">
-                                    <input type="hidden" id="courseId" name="course_id" value="{{ $data->course_id }}">
-                                    <input type="hidden" id="materialId" name="material_id"
-                                        value="{{ $data->material_id }}">
-                                    <input type="hidden" id="parent_id" name="parent_id" value="{{ $data->id }}">
-                                    <div class="flex justify-end my-4">
-                                        <button id="get-content-button" type="submit"
-                                            class="absolute px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded w-fit">Kirim</button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
 

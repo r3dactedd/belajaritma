@@ -95,12 +95,14 @@
                         </div>
                     </div>
                     </form>
-
+                    @if (Auth::user()->role_id == '2')
                     <button id="open-btn"
                         class="flex items-center px-4 py-3 my-4 ml-4 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-600 rounded-md w-fit hover:bg-yellow-500 focus:outline-none"
                         data-modal-target="defaultModal" data-modal-toggle="defaultModal">
                         Buat Diskusi Baru
                     </button>
+                    @endif
+
 
                     @foreach ($forums as $forumData)
                         @if ($forumData->forum_title != null)
@@ -284,8 +286,9 @@
                                     </div>
                                     <div class="flex justify-start pt-2">
                                         <button type="submit"
-                                            class="p-3 px-4 mt-2 text-white bg-indigo-600 rounded-lg modal-close hover:bg-indigo-400">Buat
-                                            Diskusi</button>
+                                            class="p-3 px-4 mt-2 text-white bg-indigo-600 rounded-lg modal-close hover:bg-indigo-400">
+                                            Submit
+                                        </button>
                                     </div>
                                 </div>
                             </form>
