@@ -418,7 +418,7 @@ class CourseController extends Controller
     }
 
 
-    public function showAssignmentResults($courseId, $materialId)
+    public function showAssignmentOrFinalTestResults($courseId, $materialId)
     {
         $sidebars = Sidebar::select(
             'sidebar.id',
@@ -821,7 +821,7 @@ class CourseController extends Controller
 
             if ($materialCompleted->attempts == 3 && $materialCompleted->total_score < $material->minimum_score) {
                 MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
-                    'blocked_until' => Carbon::now()->addMinutes(2),
+                    'blocked_until' => Carbon::now()->addMinutes(3),
                     'attempts' => 0,
                 ]);
                 $tempMaterial = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
@@ -943,10 +943,10 @@ class CourseController extends Controller
         }
     }
 
-    protected function blockUserFor2Minutes($materialCompleted)
+    protected function blockUserFor3Minutes($materialCompleted)
     {
         MaterialCompleted::where('material_id', $materialCompleted->material_id)->update([
-            'blocked_until' => Carbon::now()->addMinutes(2),
+            'blocked_until' => Carbon::now()->addMinutes(3),
             'attempts' => 0,
         ]);
     }
