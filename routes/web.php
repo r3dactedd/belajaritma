@@ -144,7 +144,7 @@ Route::get('/courses/material/{title}/{id}/{material_id}/{question_id}/{type}/{i
 Route::get('/courses/{id}/{material_id}/exitTest', [CourseController::class, 'exitTest']);
 
 Route::post('/submit-answers', [CourseController::class, 'submitAnswers'])->name('submit.answers');
-Route::get('/courses/{courseId}/{materialId}/results', [CourseController::class, 'showAssignmentResults'])->name('course.showResults');
+Route::get('/courses/{courseId}/{materialId}/results', [CourseController::class, 'showAssignmentOrFinalTestResults'])->name('course.showResults');
 Route::get('/courses/material/{id}/{material_id}/{type}/score', [CourseController::class, 'showScore']);
 
 
