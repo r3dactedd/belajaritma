@@ -15,23 +15,6 @@ use Illuminate\Support\Str;
 
 class ForumController extends Controller
 {
-    //
-    // public function showCourseData(Request $request){
-    //     $searchKeyword = $request->input('searchKeyword');
-
-    //     if ($searchKeyword) {
-    //         $data = Course::where('course_name', 'like', "%$searchKeyword%")->get();
-    //     } else {
-    //         $data = Course::all();
-    //     }
-
-    //     $data = $data->map(function ($course) {
-    //         $course->course_img_url = asset('uploads/course_images/' . $course->course_img);
-    //         return $course;
-    //     });
-
-    //     return view('forum.forum_list', compact('data'));
-    // }
 
     public function showCourseData(Request $request)
     {
