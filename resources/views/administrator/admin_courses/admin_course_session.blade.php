@@ -54,7 +54,8 @@
                 <div>
 
                     <h4 class="inline text-2xl font-bold leading-tight text-gray-800">
-                        <a href="/manager/course/materiallist/{{ $material->materialToCourse->id }}" class="flex items-center" href="#">
+                        <a href="/manager/course/materiallist/{{ $material->materialToCourse->id }}"
+                            class="flex items-center" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                 <path
                                     d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z" />
@@ -139,12 +140,22 @@
                             </div>
                             <div class="my-4"></div>
                             <div class="px-4 font-semibold">
+                                <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                    Estimasi Waktu Penyelesaian (dalam Menit)</label>
+                                <input type="number" name="material_duration" id="inputMatDuration"
+                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                    placeholder="Berikan estimasi waktu penyelesaian untuk materi ini " required=""
+                                    value="{{ htmlspecialchars($material->material_duration) }}">
+                                </input>
+                            </div>
+                            <div class="my-4"></div>
+                            <div class="px-4 font-semibold">
                                 <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                     Deskripsi Singkat Materi</label>
                                 <textarea name="description" id="inputDescription"
                                     class="mt-focus:ring-primary-600 mb-6 block h-20 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 align-top text-sm text-gray-900 focus:border-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                     placeholder="Input Penjelasan mengenai Kursus" required="">{{ htmlspecialchars($material->description) }}
-                            </textarea>
+                                </textarea>
                             </div>
                             <div class="flex justify-end pt-2">
                                 <button type="submit"
@@ -155,7 +166,6 @@
                         </div>
                     </div>
                 </div>
-
             </form>
             <div class="my-4"></div>
             <form id="" method="post" action="/manager/course/session/{{ $material->id }}/edit/detail"
@@ -392,11 +402,11 @@
                                                         value="{{ $material->total_questions }}"
                                                         placeholder="Input jumlah pertanyaan untuk final test"
                                                         required="">
-                                                        <span class="text-sm text-red-500">
-                                                            @error('total_questions')
-                                                                {{ $message }}
-                                                            @enderror
-                                                        </span>
+                                                    <span class="text-sm text-red-500">
+                                                        @error('total_questions')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
                                                     <input type="hidden" name="certification_id">
                                                 </div>
                                             </div>

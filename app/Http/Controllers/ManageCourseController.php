@@ -255,6 +255,7 @@ class ManageCourseController extends Controller
         $validateMaterialData = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
+            'material_duration' => 'required|numeric',
         ]);
         // dd($getCurrentMaterial->course_id);
         $changeMaterialData = [];
@@ -263,6 +264,7 @@ class ManageCourseController extends Controller
             'title'=> $validateMaterialData['title'],
             'description'=> $validateMaterialData['description'],
             'master_type_id' => $request->master_type_id,
+            'material_duration'=>$validateMaterialData['material_duration'],
         ];
 
         // $updateLastAccessedMats = UserCourseDetail::where(['course_id' => $getCurrentMaterial->course_id])->get();
