@@ -263,7 +263,6 @@ class ManageCourseController extends Controller
         $differenceTime = $request->material_duration-$material->material_duration;
         $editTime = [
             'total_time' => \DB::raw('total_time + ' . $differenceTime),
-            'updated_by' => $user->id,
         ];
         Course::where('id', $material->course_id)->update($editTime);
         // dd($getCurrentMaterial->course_id);
@@ -275,6 +274,10 @@ class ManageCourseController extends Controller
             'master_type_id' => $request->master_type_id,
             'material_duration'=>$validateMaterialData['material_duration'],
         ];
+        $editUpdatedBy = [
+            'updated_by' => $user->id,
+        ];
+        Course::where('id', $material->course_id)->update($editUpdatedBy);
 
         // $updateLastAccessedMats = UserCourseDetail::where(['course_id' => $getCurrentMaterial->course_id])->get();
 
