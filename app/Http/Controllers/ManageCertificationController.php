@@ -150,12 +150,14 @@ class ManageCertificationController extends Controller
         $validateScore = $request->validate([
             'minimum_score'=>'required|integer|max:100',
             'total_questions'=>'required|integer',
+            'certif_duration' => 'required|numeric',
         ]);
         $changeScore= [];
 
         $changeScore += [
             'minimum_score'=> $validateScore['minimum_score'],
             'total_questions'=> $validateScore['total_questions'],
+            'certif_duration'=> $validateScore['certif_duration'],
             'updated_by' => $user->id,
         ];
         // dd($changeMaterialDetail);

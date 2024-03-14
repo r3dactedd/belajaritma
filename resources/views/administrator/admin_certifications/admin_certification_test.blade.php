@@ -134,8 +134,18 @@
                                                     placeholder="Input jumlah pertanyaan untuk tes sertifikasi"
                                                     required="">
                                             </div>
-
+                                            <div class="mx-2 py-3">
+                                                <label
+                                                    class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                    Estimasi Waktu Penyelesaian (dalam Menit)</label>
+                                                <input type="number" name="certif_duration" id="inputCertDuration"
+                                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                    placeholder="Berikan estimasi waktu penyelesaian untuk materi ini "
+                                                    required="" value="{{ htmlspecialchars($data->certif_duration) }}">
+                                                </input>
+                                            </div>
                                         </div>
+
                                     </div>
 
                                     <div class="mt-6 md:mt-0">
