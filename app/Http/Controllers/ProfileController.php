@@ -136,7 +136,7 @@ class ProfileController extends Controller
         $rules = [
             'full_name' => 'string|min:3|max:50',
             'username' => 'string|min:3|max:30|unique:users,username,' . Auth::user()->id,
-            'about_me' => 'string|max:150',
+            'about_me' => 'nullable|string|max:150',
             'profile_img' => 'image|mimes:jpeg,png,jpg,gif|max:10000'
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -170,7 +170,7 @@ class ProfileController extends Controller
 
         // dd($request->profile_img);
 
-        return Redirect::to("/profile/{$request->username}");
+        return Redirect::to("/profile/$request->username");
     }
     public function editProfile()
     {
