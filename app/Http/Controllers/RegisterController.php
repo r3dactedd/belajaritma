@@ -27,7 +27,7 @@ class RegisterController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return back()->withErrors($validator);
+            return back()->withErrors($validator)->withInput();
         }
 
         $user = new User();
