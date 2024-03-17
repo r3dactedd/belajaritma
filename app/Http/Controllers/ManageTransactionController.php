@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Certification;
 use App\Models\RegistrationCertification;
 use App\Models\Transaction;
+use App\Notifications\TransactionApprovedNotification;
+use App\Notifications\TransactionDeclinedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -42,7 +44,8 @@ class ManageTransactionController extends Controller
             'students_registered' => \DB::raw('students_registered + 1'),
         ];
         Certification::where('id', $transaction->transactionToCertification->id)->update($addStudentsRegistered);
-
+        $user = $transaction->transactionToUser;
+        $user->notify(new TransactionApprovedNotification($transaction));
 
         return redirect('/manager/transaction')->with('success', 'Transaction approved successfully!');
     }
@@ -54,6 +57,9 @@ class ManageTransactionController extends Controller
         $transaction->isApproved = false;
         $transaction->is_pending = false;
         $transaction->save();
+
+        $user = $transaction->transactionToUser;
+     $user->notify(new TransactionDeclinedNotification($transaction));
 
         return redirect('/manager/transaction')->with('success', 'Transaction declined successfully!');
     }
