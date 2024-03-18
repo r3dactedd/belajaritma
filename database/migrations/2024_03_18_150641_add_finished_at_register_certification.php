@@ -24,7 +24,7 @@ return new class extends Migration
     {
         Schema::table('register_certification', function (Blueprint $table) {
             //
-            $table->timestamp('finished_at')->nullable();
+            $table->dropColumn('finished_at')->nullable();
         });
     }
 };
