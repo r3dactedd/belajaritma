@@ -317,7 +317,7 @@
                         <div class="w-full px-4">
                             <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                                 <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                    Sertifikasi Penyelesaian Kursus
+                                    Sertifikat Penyelesaian Kursus
                                 </h2>
                                 <p class="mb-6 text-sm font-normal tracking-normal text-gray-600">
                                     Selamat! Anda telah menyelesaikan kursus ini. Silahkan mengunduh sertifikat anda.
@@ -394,7 +394,7 @@
             /* Set width to 8.27 inches for A4 size */
             height: 8.27in;
             /* Set height to 11.69 inches for A4 size */
-            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
             color: #383737;
         }
 
@@ -451,7 +451,7 @@
             }
         }
     </style>
-    @if (Auth::check())
+    @if (Auth::check() && $parsedFinDate != null)
         <table id="certificate" class="cert hidden bg-white">
 
             <tr>
@@ -462,7 +462,7 @@
                         <h2 class="afterName mt-4">Untuk Penyelesaian Kursus</h2>
                         <h2 class=" my-6 font-bold">{{ $data->course_name }}</h2>
                         <h3 class="mb-12 mt-4">Pada Tanggal <span class="font-semibold">
-                                {{ auth()->user()->updateTimestampForCourse($data->id) }}</span></h3>
+                                {{ $parsedFinDate->format('Y-m-d') }}</span></h3>
                         <img class="mb-16 w-3/5" src="{{ asset('local/logo.png') }}" alt="logo">
                 </td>
             </tr>
