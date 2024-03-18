@@ -156,7 +156,7 @@ class ManageCourseController extends Controller
                 'processor'=> $request->processor,
                 'operating_system' => $request->operating_system,
                 'other_programs'=> $request->other_programs,
-                'course_img' => $request->course_img,
+                'course_img' => $filename,
                 'updated_by' => Auth()->user()->id,
             ]);
             return redirect('/manager/course')->with('success', 'Course edit successfull!');

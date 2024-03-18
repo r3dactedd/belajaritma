@@ -115,7 +115,7 @@ class ManageCertificationController extends Controller
                 'certif_duration'=> $request->certif_duration,
                 'certif_cost' => $request->certif_cost,
                 'certif_outline'=> $request->certif_outline,
-                'certif_img' => $request->certif_img,
+                'certif_img' => $filename,
                 'updated_by' => Auth()->user()->id,
             ]);
             return redirect('/manager/certification')->with('success', 'Certification edit successfull!');
