@@ -55,6 +55,10 @@ class CourseController extends Controller
         $userCourseDetail = UserCourseDetail::where('user_id', auth()->id())->where('course_id', $id)->first();
         $materialAccessed = null;
         $enrollment = Enrollment::where('user_id', auth()->id())->where('course_id', $id)->first();
+        $parsedFinDate = null;
+        if ($enrollment && $enrollment->completed) {
+            $parsedFinDate = Carbon::parse($enrollment->finished_at);
+        }
         $checkFinalComplete = null;
         if ($enrollment) {
             $checkFinalComplete = MaterialCompleted::where('user_id', auth()->id())->where('course_id', $id)
@@ -66,7 +70,7 @@ class CourseController extends Controller
         foreach ($material as $materials) {
             $contentArray[$materials->id] = ModuleContent::where('material_id', $materials->id)->get();
         }
-        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray, 'userCourseDetail' => $userCourseDetail, 'checkFinalComplete' => $checkFinalComplete, 'firstIndexFIN' => $firstIndexFIN, 'materialAccessed' => $materialAccessed]);
+        return view('contents.course_details', ['data' => $data, 'material' => $material, 'contentArray' => $contentArray, 'userCourseDetail' => $userCourseDetail, 'checkFinalComplete' => $checkFinalComplete, 'firstIndexFIN' => $firstIndexFIN, 'materialAccessed' => $materialAccessed, 'parsedFinDate'=>$parsedFinDate]);
         // dd($contentArray);
     }
 
@@ -684,6 +688,7 @@ class CourseController extends Controller
                     $enrollment->material_completed_count += 1;
                     $enrollment->total_duration_count += $material->material_duration;
                     $enrollment->completed = true;
+                    $enrollment->finished_at = Carbon::now();
                     $enrollment->save();
 
                     $currentMaterial->is_locked = false;

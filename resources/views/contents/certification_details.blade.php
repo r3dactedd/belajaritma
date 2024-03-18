@@ -245,7 +245,7 @@
                             <div class="p-4 lg:pb-6 lg:pl-6 lg:pr-6 lg:pt-6">
                                 <div class="text-center">
                                     <h2 class="mb-2 mt-4 text-xl font-bold tracking-normal text-gray-800 lg:text-2xl">
-                                        Pembayaran Anda sedang diproses. Harap tunggu konfirmasi dari admin untuk menerima bukti transaksi Anda.
+                                        Pembayaran Anda sedang diproses. Harap tunggu konfirmasi dari admin melalui Email.
                                     </h2>
                                 </div>
                             </div>
@@ -279,7 +279,7 @@
             @endif
     </body>
     <style>
-         .cert {
+        .cert {
             border: 15px solid #4f46e5;
             border-right: 15px solid #818cf8;
             border-left: 15px solid #818cf8;
@@ -287,7 +287,7 @@
             /* Set width to 8.27 inches for A4 size */
             height: 8.27in;
             /* Set height to 11.69 inches for A4 size */
-            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
             color: #383737;
         }
 
@@ -345,17 +345,17 @@
         }
     </style>
 
-    @if (Auth::check())
+    @if (Auth::check() && $parsedFinDate != null)
         <table id="certificateProof" class="cert hidden bg-white">
             <tr>
                 <td align="center">
                     <h1 class="crt_title px-4">Proof of Certification
-                        <h2 class="afterName my-6 font-semibold">Bukti Sertifikat ini Diberikan Kepada</h2>
+                        <h2 class="afterName my-6 font-semibold">Bukti Sertifikasi ini Diberikan Kepada</h2>
                         <h1 class="colorGreen crt_user">{{ auth()->user()->full_name }}</h1>
                         <h2 class="afterName mt-4">Untuk Penyelesaian Sertifikasi</h2>
                         <h2 class="my-6 font-bold"> {{ $data->certif_title }}</h2>
                         <h3 class="mb-12 mt-4">Pada Tanggal <span class="font-semibold">
-                                {{ auth()->user()->updateTimestampForCourse($data->id) }}</span></h3>
+                                {{ $parsedFinDate->format('Y-m-d') }}</span></h3>
                         <img class="mb-16 w-3/5" src="{{ asset('local/logo.png') }}" alt="logo">
                 </td>
             </tr>

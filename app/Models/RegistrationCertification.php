@@ -17,9 +17,10 @@ class RegistrationCertification extends Model
         'passed',
         'total_score',
         'blocked_until',
+        'finished_at',
         'attempts',
     ];
-
+    protected $dates = ['finished_at'];
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }

@@ -16,7 +16,9 @@ class Enrollment extends Model
         'completed',
         'ready_for_final',
         'material_completed_count',
+        'finished_at',
     ];
+    protected $dates = ['finished_at'];
 
     public function user(){
         return $this->belongsTo(User::class);

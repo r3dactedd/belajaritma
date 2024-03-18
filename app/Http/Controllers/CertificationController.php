@@ -41,8 +41,12 @@ class CertificationController extends Controller
     public function certifDetail($id){
         $data=Certification::find($id);
         $register = RegistrationCertification::where('user_id', auth()->id())->where('certif_id', $data->id)->first();
+        $parsedFinDate = null;
+        if ($register && $register->passed) {
+            $parsedFinDate = Carbon::parse($register->finished_at);
+        }
         $transaction = Transaction::where('user_id', auth()->id())->where('certif_id', $data->id)->first();
-        return view('contents.certification_details', ['data' => $data, 'register' => $register, 'transaction'=>$transaction]);
+        return view('contents.certification_details', ['data' => $data, 'register' => $register, 'transaction'=>$transaction, 'parsedFinDate'=>$parsedFinDate]);
     }
 
     public function registerCertification($id){
@@ -318,6 +322,7 @@ class CertificationController extends Controller
                 ]);
                 if($userScore>=$certif->minimum_score){
                     $register->passed = true;
+                    $register->finished_at = Carbon::now();
                     $register->save();
                 }
                 Log::info('Total Correct Answers:', [$correctAnswers]);
