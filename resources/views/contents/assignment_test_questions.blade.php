@@ -38,7 +38,7 @@
                             <div class="grid grid-cols-4 my-2">
                                 @foreach ($shuffledQuestionIds as $index => $shuffledQuestionId)
                                     <a href='/courses/material/{{ $title }}/{{ $id }}/{{ $material_id }}/{{ $shuffledQuestionId }}/{{ $type }}/2'
-                                        class="flex items-center justify-center py-2 mx-1 my-2 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md hover:bg-yellow-500 focus:outline-none"
+                                        class="flex items-center justify-center py-2 mx-1 my-2 text-sm font-semibold text-white transition duration-150 ease-in-out bg-indigo-500 rounded-md hover:bg-green-400 focus:outline-none"
                                         id="indexQuestion-{{ $shuffledQuestionId }}">
                                         <span class="items-center">{{ $index + 1 }}</span>
                                     </a>

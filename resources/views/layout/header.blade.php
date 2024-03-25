@@ -91,7 +91,7 @@
                                         <li>
 
                                             <button type="submit"
-                                                class="w-full my-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-red-600 focus:text-indigo-600 focus:outline-none">
+                                                class="my-2 flex w-full cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-red-600 focus:text-indigo-600 focus:outline-none">
 
                                                 @csrf
                                                 <div class="flex items-center">
@@ -202,21 +202,19 @@
                     </div>
                 </a>
             @endauth
-            <div class="grid grid-cols-2 items-start px-4 pb-2 md:flex md:flex-col lg:flex-row lg:items-center">
-                <div class="flex w-full items-center">
+            <div class="grid grid-cols-3 items-start px-4 pb-2 md:flex md:flex-col lg:flex-row lg:items-center">
+                <div class="ml-0 flex w-full items-end lg:ml-12 lg:mt-0">
                     <li
                         class="mx-auto flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
-                        <a href="/profile/{{ auth()->user()->username }}"class="ml-4 font-semibold">Profil
+                        <a href="/profile/{{ auth()->user()->username }}"class="my-1 px-2 font-semibold">Profil
                             Saya</a>
                     </li>
 
                 </div>
-                <div class="flex w-full items-center">
+                <div class="ml-0 flex w-full items-end lg:ml-12 lg:mt-0">
                     <li
-                        class="mt-2 flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
-
-                        <a href="/editProfile" class="ml-4 font-semibold">Atur
-                            Profil</a>
+                        class="mx-auto flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none lg:hidden">
+                        <a href="/editProfile" class="my-1 px-2 font-semibold">Atur Profil</a>
                     </li>
 
                 </div>
@@ -225,7 +223,7 @@
                         class="mx-auto flex cursor-pointer items-center py-2 text-sm leading-3 tracking-normal text-gray-600 hover:bg-gray-200 hover:text-indigo-600 focus:text-indigo-600 focus:outline-none">
                         <form method="POST" action="/logout">
                             @csrf
-                            <button type="submit" class="my-1 px-2 font-bold">Logout</button>
+                            <button type="submit" class="my-1 px-2 font-bold text-red-500">Logout</button>
                         </form>
                     </li>
                 </div>

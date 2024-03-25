@@ -133,7 +133,7 @@
                     <div class="rounded-t-xl bg-white p-4 shadow-sm">
                         <div class="mb-3 ml-2 flex items-center space-x-2 font-semibold leading-8 text-gray-900">
 
-                            <span class="px-2 text-xl tracking-wide">Mengenai Kursus</span>
+                            <span class="px-2 text-xl tracking-wide whitespace-pre-line">Mengenai Kursus</span>
                         </div>
                         <div class="text-gray-700">
                             <div class="flex text-sm">

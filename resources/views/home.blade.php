@@ -50,8 +50,9 @@
                                 <p class="text-lg font-bold">Aktivitas Pembelajaran Anda</p>
                                 @if (auth()->check())
                                     @if ($enrolledCourses->count() == 0)
-                                        <p class="text-lg text-center mt-10 mb-10">Kamu belum mendaftar kursus apapun.
-                                            mulailah perjalanan programming kamu <span class="text-bold underline" style="color:rgb(15, 104, 182)"><a href="/courses">disini.</a></span></p>
+                                        <p class="mb-10 mt-10 text-center text-lg">Kamu belum mendaftar kursus apapun.
+                                            mulailah perjalanan programming kamu <span class="text-bold underline"
+                                                style="color:rgb(15, 104, 182)"><a href="/courses">disini.</a></span></p>
                                     @else
                                         @foreach ($enrolledCourses as $ongoCor)
                                             <div
@@ -59,7 +60,11 @@
                                                 <div class="flex w-11/12">
                                                     <div class="w-full px-4">
                                                         @php
-                                                            $progressPercentage = ceil(($ongoCor->material_completed_count / $ongoCor->course->total_module) * 100);
+                                                            $progressPercentage = ceil(
+                                                                ($ongoCor->material_completed_count /
+                                                                    $ongoCor->course->total_module) *
+                                                                    100,
+                                                            );
                                                         @endphp
                                                         <p class="text-lg font-semibold">
                                                             {{ $ongoCor->course->course_name }}
@@ -74,11 +79,18 @@
                                                         </div>
                                                         <div class="mt-6 max-w-xl rounded-xl bg-gray-600">
                                                             @php
-                                                                $progressPercentage = ceil(($ongoCor->material_completed_count / $ongoCor->course->total_module) * 100);
-                                                                $barWidth = ($progressPercentage / 100) * 600;
+                                                                $progressPercentage = ceil(
+                                                                    ($ongoCor->material_completed_count /
+                                                                        $ongoCor->course->total_module) *
+                                                                        100,
+                                                                );
+                                                                $progWidth = $progressPercentage;
+                                                                if ($progressPercentage < 5) {
+                                                                    $progWidth = 5;
+                                                                }
                                                             @endphp
                                                             <div class="rounded-xl bg-blue-400 py-1 text-center text-xs leading-none text-white"
-                                                                style="width: {{ $barWidth + 25 }}px; padding-left: 2px">
+                                                                style="width: {{ $progWidth }}%; padding-left: 2px">
                                                                 {{ $progressPercentage }}%
                                                             </div>
                                                         </div>
@@ -107,7 +119,7 @@
                                 <p class="mb-4 text-lg font-bold">Forum untuk Kursus Anda</p>
                                 @if (auth()->check())
                                     @if ($enrolledCourses->count() == 0)
-                                        <p class="text-lg text-center mt-10 mb-10">Belum ada kursus yang di ambil</p>
+                                        <p class="mb-10 mt-10 text-center text-lg">Belum ada kursus yang di ambil</p>
                                     @else
                                         @foreach ($enrolledCourses as $enCor)
                                             <div class="flex items-center border-b border-gray-300 py-4">

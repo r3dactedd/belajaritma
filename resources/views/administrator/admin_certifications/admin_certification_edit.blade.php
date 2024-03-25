@@ -205,7 +205,7 @@
                                 </div>
                                 <div>
                                     <label class="mb-4 ml-4 block text-base font-semibold text-gray-900 dark:text-white">
-                                        Outline Test</label>
+                                        Kompetensi Sertifikasi</label>
 
                                     <div class="px-4 py-2 font-semibold">
                                         <textarea id="inputCertifOutline" name="certif_outline"

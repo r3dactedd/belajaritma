@@ -134,11 +134,10 @@
                                 <div
                                     class="mb-3 ml-2 mt-6 flex items-center space-x-2 font-semibold leading-8 text-gray-900 md:mt-0">
 
-                                    <span class="px-2 text-xl tracking-wide">Outline Test</span>
+                                    <span class="px-2 text-xl tracking-wide">Kompetensi Sertifikasi</span>
                                 </div>
-                                <div class="px-4 py-2 text-sm font-semibold text-gray-700">
-                                    <p>{{ $data->certif_outline }}
-                                    </p>
+                                <div class="whitespace-pre-line px-4 text-sm font-semibold text-gray-700">
+                                    <p>{{ $data->certif_outline }}</p>
                                 </div>
                             </div>
                         </div>
