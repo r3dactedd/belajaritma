@@ -291,12 +291,7 @@
                                         <textarea id="myInfo" name="questions" id="inputQuestions"
                                             class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Input soal di dalam field ini" required=""></textarea>
-                                        <div class="my-4"></div>
-                                        <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                            Nama Kompetensi</label>
-                                        <input type="text" name="competency_name" id="inputCompetency"
-                                            class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                            placeholder="Input nama kompetensi dari soal ini" required="">
+
 
                                         <div class="my-4"></div>
                                         <label class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
@@ -330,7 +325,7 @@
                                     <div class="sm:col-span-2">
                                         <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Kompetensi Sertifikasi</label>
-                                        <input type="text" name="afawefe" id="aefafeaf"
+                                            <input type="text" name="competency_name" id="inputCompetency"
                                             class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Berikan Kompetensi Sertifikasi untuk Pertanyaan Ini"
                                             required="">
@@ -411,15 +406,7 @@
                                                     class="block h-32 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                     placeholder="Input Penjelasan Singkat mengenai Materi" required="">{{ $certif_test->questions }}</textarea>
                                                 <div class="my-4"></div>
-                                                <label
-                                                    class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-                                                    Nama Kompetensi</label>
-                                                <input type="text" name="competency_name" id="inputCompetency"
-                                                    class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                                                    placeholder="Input nama kompetensi dari soal ini" required=""
-                                                    value="{{ $certif_test->competency_name }}">
 
-                                                <div class="my-4"></div>
                                                 <label
                                                     class="mb-2 block text-base font-semibold text-gray-900 dark:text-white">
                                                     Upload Gambar (Opsional)</label>
@@ -460,6 +447,14 @@
                                                 <input type="text" name="jawaban_d" id="inputJawabanD"
                                                     class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                     placeholder="Jawaban D" value="{{ $certif_test->jawaban_d }}"
+                                                    required="">
+                                            </div>
+                                            <div class="sm:col-span-2">
+                                                <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                    Kompetensi Sertifikasi</label>
+                                                    <input type="text" name="competency_name" id="inputCompetency"
+                                                    class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                                    placeholder="Berikan Kompetensi Sertifikasi untuk Pertanyaan Ini"
                                                     required="">
                                             </div>
                                             <input type="hidden" name="certif_test_id" value="{{ $certif_test->id }}">
