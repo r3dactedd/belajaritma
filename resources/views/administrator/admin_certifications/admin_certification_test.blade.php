@@ -200,7 +200,7 @@
                                                     </td>
                                                 @endif
                                                 <td scope="row" class="px-6 py-4 text-gray-800">
-                                                    lorem ipsum deez nuts lmao
+                                                    l{{ $certif_test->competency_name }}
                                                 </td>
                                                 <td class="px-6 py-4">
                                                     <div class="item-center flex justify-center">
@@ -325,7 +325,7 @@
                                     <div class="sm:col-span-2">
                                         <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                             Kompetensi Sertifikasi</label>
-                                            <input type="text" name="competency_name" id="inputCompetency"
+                                        <input type="text" name="competency_name" id="inputCompetency"
                                             class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Berikan Kompetensi Sertifikasi untuk Pertanyaan Ini"
                                             required="">
@@ -450,12 +450,13 @@
                                                     required="">
                                             </div>
                                             <div class="sm:col-span-2">
-                                                <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                                <label
+                                                    class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
                                                     Kompetensi Sertifikasi</label>
-                                                    <input type="text" name="competency_name" id="inputCompetency"
+                                                <input type="text" name="competency_name" id="inputCompetency"
                                                     class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                     placeholder="Berikan Kompetensi Sertifikasi untuk Pertanyaan Ini"
-                                                    required="">
+                                                    value="{{ $certif_test->competency_name }}" required="">
                                             </div>
                                             <input type="hidden" name="certif_test_id" value="{{ $certif_test->id }}">
                                             <input type="hidden" name="certification_id"
