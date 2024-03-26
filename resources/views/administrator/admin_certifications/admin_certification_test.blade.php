@@ -200,7 +200,7 @@
                                                     </td>
                                                 @endif
                                                 <td scope="row" class="px-6 py-4 text-gray-800">
-                                                    l{{ $certif_test->competency_name }}
+                                                    {{ $certif_test->competency_name }}
                                                 </td>
                                                 <td class="px-6 py-4">
                                                     <div class="item-center flex justify-center">
