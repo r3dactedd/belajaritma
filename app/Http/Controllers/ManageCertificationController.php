@@ -173,6 +173,7 @@ class ManageCertificationController extends Controller
             'jawaban_b'=>'required|string',
             'jawaban_c'=>'required|string',
             'jawaban_d'=>'required|string',
+            'competency_name'=> 'required|string',
             'jawaban_benar'=>'required|string',
         ]);
         $createCertifQuestions = new CertifQuestions();
@@ -182,6 +183,7 @@ class ManageCertificationController extends Controller
         $createCertifQuestions->jawaban_c = $request->jawaban_c;
         $createCertifQuestions->jawaban_d = $request->jawaban_d;
         $createCertifQuestions->jawaban_benar = $request->jawaban_benar;
+        $createCertifQuestions->competency_name = $request->competency_name;
         $createCertifQuestions->certification_id = $id;
         $filename = '';
         if ($request->hasFile('question_img')) {
@@ -213,6 +215,7 @@ class ManageCertificationController extends Controller
             'jawaban_c'=>'required|string',
             'jawaban_d'=>'required|string',
             'jawaban_benar'=>'required|string',
+            'competency_name'=> 'required|string',
             'question_img'=>'image|file',
         ]);
 
@@ -233,6 +236,7 @@ class ManageCertificationController extends Controller
             'jawaban_b'=>$validateQuestions['jawaban_b'],
             'jawaban_c'=>$validateQuestions['jawaban_c'],
             'jawaban_d'=>$validateQuestions['jawaban_d'],
+            'competency_name'=>$validateQuestions['competency_name'],
             'jawaban_benar'=>$validateQuestions['jawaban_benar'],
         ];
         CertifQuestions::where('id', $request->certif_test_id)->update($changeCertTest);
