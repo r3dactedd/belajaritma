@@ -164,6 +164,9 @@
                                                 Jawaban Tepat
                                             </th>
                                             <th scope="col" class="px-6 py-3">
+                                                Kompetensi Sertifikasi
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
                                                 Aksi
                                             </th>
 
@@ -196,7 +199,9 @@
                                                         D | {{ $certif_test->jawaban_d }}
                                                     </td>
                                                 @endif
-
+                                                <td scope="row" class="px-6 py-4 text-gray-800">
+                                                    lorem ipsum deez nuts lmao
+                                                </td>
                                                 <td class="px-6 py-4">
                                                     <div class="item-center flex justify-center">
                                                         <div class="mr-2 w-4 transform hover:scale-110 hover:text-purple-500"
@@ -291,7 +296,7 @@
                                             Upload Gambar (Opsional)</label>
 
                                         <img id="img-preview-createCERT"
-                                            class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                            class="mb-2 h-auto max-w-full rounded-lg border border-gray-300"
                                             style="max-width: 150px; max-height: 150px;"
                                             onclick="showImagePopupCreateCERT()">
                                         <input name="question_img" id="inputImageCreateCERT"
@@ -314,6 +319,14 @@
                                         <input type="text" name="jawaban_d" id="inputJawabanD"
                                             class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                             placeholder="Jawaban D" required="">
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+                                            Kompetensi Sertifikasi</label>
+                                        <input type="text" name="afawefe" id="aefafeaf"
+                                            class="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                                            placeholder="Berikan Kompetensi Sertifikasi untuk Pertanyaan Ini"
+                                            required="">
                                     </div>
                                     <div class="sm:col-span-1">
                                         <label class="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
@@ -340,17 +353,17 @@
                 </div>
             </div>
             <div id="image-popup-createCERT"
-                class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
-                <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                class="fixed left-0 right-0 top-0 z-50 hidden h-full w-full bg-gray-800 bg-opacity-75">
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                     <button type="button" onclick="hideImagePopupCreateCERT()"
-                        class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
-                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-gray-300">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
-                    <img id="popup-image-createCERT" class="max-w-full max-h-full" />
+                    <img id="popup-image-createCERT" class="max-h-full max-w-full" />
                 </div>
             </div>
         </div>
@@ -397,12 +410,12 @@
                                                 @if ($certif_test->question_img)
                                                     <img src="{{ asset('uploads/certif_question_img/' . $certif_test->question_img) }}"
                                                         alt="Question Image" id="img-preview-{{ $certif_test->id }}"
-                                                        class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                        class="mb-2 h-auto max-w-full rounded-lg border border-gray-300"
                                                         style="max-width: 150px; max-height: 150px;"
                                                         onclick="showImagePopupCERT('{{ $certif_test->id }}')">
                                                 @else
                                                     <img id="img-preview-{{ $certif_test->id }}"
-                                                        class="mb-2 max-w-full h-auto rounded-lg border border-gray-300"
+                                                        class="mb-2 h-auto max-w-full rounded-lg border border-gray-300"
                                                         style="max-width: 150px; max-height: 150px;"
                                                         onclick="showImagePopupCERT('{{ $certif_test->id }}')">
                                                 @endif
@@ -474,18 +487,18 @@
                         </div>
                     </div>
                     <div id="image-popup-{{ $certif_test->id }}"
-                        class="fixed top-0 left-0 right-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-75">
-                        <div class="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                        class="fixed left-0 right-0 top-0 z-50 hidden h-full w-full bg-gray-800 bg-opacity-75">
+                        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                             <button type="button" onclick="hideImagePopupCERT({{ $certif_test->id }})"
-                                class="absolute inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white rounded-full right-4 top-4 hover:bg-gray-300">
-                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                class="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-gray-300">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
                             </button>
                             <img src="{{ $certif_test->question_img }}" alt="Question Image"
-                                id="popup-image-{{ $certif_test->id }}" class="max-w-full max-h-full" />
+                                id="popup-image-{{ $certif_test->id }}" class="max-h-full max-w-full" />
                         </div>
                     </div>
                 </div>

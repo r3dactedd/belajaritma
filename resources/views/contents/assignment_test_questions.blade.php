@@ -177,7 +177,7 @@
                     <div class="p-6 mx-auto antialiased">
                         <div class="space-y-4">
                             <h1
-                                class="relative block w-auto pt-6 mx-6 mb-6 text-base font-semibold tracking-normal text-gray-800 lg:text-xl">
+                                class="relative mx-6 mb-6 block w-auto whitespace-pre-line pt-2 text-base font-semibold tracking-normal text-gray-800 lg:text-xl">
                                 {{ $currentQuestionNumber }}. {{ $questionDetail->questions }}
                             </h1>
 

@@ -91,23 +91,24 @@
                                         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                                             Apakah kamu yakin ingin membatalkan pengerjaan tes sertifikasi?
                                         </h3>
-                                        <strong>
+                                        <h3 class="mb-5 text-lg font-bold text-gray-500 dark:text-gray-400">
                                             Attempt pengerjaan tes sertifikasi ini akan hangus
-                                        </strong>
+                                        </h3>
                                         <div class="flex justify-center text-center">
                                             <form method="GET" action="/certification/{{ $certif_id }}/exitCertTest">
                                                 @csrf
                                                 <button type="submit" id="exit-certi"
-                                                    class="mr-2 items-center rounded-lg bg-red-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
-                                                    Ya
+                                                    class="mr-2 items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+                                                    Ya, batalkan
                                                 </button>
                                             </form>
                                             <button type="button"
                                                 class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-indigo-400 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
-                                                data-modal-hide="popup-exit-final">
+                                                data-modal-hide="popup-exit-cert">
                                                 Tidak
                                             </button>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +123,7 @@
                     <div class="mx-auto p-6 antialiased">
                         <div class="space-y-4">
                             <h1
-                                class="relative mx-6 mb-6 block w-auto pt-6 text-base font-semibold tracking-normal text-gray-800 lg:text-xl">
+                                class="relative mx-6 mb-6 block w-auto whitespace-pre-line pt-2 text-base font-semibold tracking-normal text-gray-800 lg:text-xl">
                                 {{ $currentQuestionNumber }}. {{ $questionDetail->questions }}
                             </h1>
 
